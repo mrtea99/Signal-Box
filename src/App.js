@@ -47,7 +47,7 @@ function MakeBatch(props) {
 
     //Build new batch object here
     const newBatch = {
-      uid: 0,
+      uid: Date.now(),
       batchInfo: {
         batchId: new Date().getUTCMilliseconds()
       },
@@ -78,8 +78,8 @@ function MakeBatch(props) {
 }
 
 function BatchList(props) {
-  function editBatch(index) {
-    props.setCurrentBatchIndex(index)
+  function editBatch(uid) {
+    props.setCurrentBatchUid(uid)
   }
   function deleteBatch(index) {
     let newData = [...props.batchData];
@@ -88,10 +88,10 @@ function BatchList(props) {
   }
 
   const batchItems = props.batchData.map((batch, index) =>
-    <tr key={batch.batchInfo.batchId}>
+    <tr key={batch.uid}>
       <td>{batch.batchInfo.batchId}</td>
       <td>{batch.productInfo.productName}</td>
-      <td><button onClick={(e) => editBatch(index)}>Edit</button></td>
+      <td><button onClick={(e) => editBatch(batch.uid)}>Edit</button></td>
       <td><button onClick={(e) => deleteBatch(index)}>Delete</button></td>
     </tr>
   )
@@ -117,40 +117,50 @@ function BatchList(props) {
 }
 
 function FormItem(props) {
+  const itemValue = props.data[props.dataSection][props.dataKey];
+
+  if (itemValue === undefined) {
+    return (<></>)
+  }
+
+  const viewField = (
+    <span>{itemValue}</span>
+  )
+  const editField = (
+    <input id={props.ident} type={props.type} onChange={(e) => props.changeHandler(props.dataSection, props.dataKey, e)} value={itemValue}></input>
+  )
+
   return (
     <>
-    <label htmlFor={props.ident}>{props.name}:</label>
-    <input id={props.ident} type={props.type} onChange={(e) => props.changeHandler(props.dataSection, props.dataKey, e)} value={props.data}></input>
+      <label htmlFor={props.ident}>{props.name}:</label>
+      { props.editable ? editField : viewField }
     </>
   )
 }
 
 function BatchEditor(props) {
-  // const [thisBatchData, setThisBatchData] = React.useState(props.batchData[props.currentBatchIndex]);
-  // React.useEffect(() => {
-  //   setThisBatchData(props.currentBatchData);
-  // },[props.currentBatchData])
-  
-  let thisBatchData = props.batchData[props.currentBatchIndex];
+  const thisBatchData = props.batchData.find(obj => obj.uid === props.currentBatchUid);
+  //const [thisBatchData, setThisBatchData] = React.useState(thatBatchData);
 
   function handleChange(dataSection, dataKey, e) {
     thisBatchData[dataSection][dataKey] = e.target.value;
 
     let newData = [...props.batchData];
-    newData[props.currentBatchIndex] = thisBatchData;
+    //newData[props.currentBatchIndex] = thisBatchData;
     props.setBatchData(newData);
   }
 
   return (
     <section>
       <h2>Batch Editor:</h2>
-      <button onClick={() => props.setCurrentBatchIndex(null)}>Clear Current Batch</button>
+      <button onClick={() => props.setCurrentBatchUid(null)}>Clear Current Batch</button>
       {thisBatchData ?
         <>
           <pre>{JSON.stringify(thisBatchData)}</pre>
           <form>
-            <FormItem name="Batch ID" ident="batchid" data={thisBatchData.batchInfo.batchId} dataSection="batchInfo" dataKey="batchId" type="number" changeHandler={handleChange} />
-            <FormItem name="Price" ident="price" data={thisBatchData.productInfo.price} dataSection="productInfo" dataKey="price" type="number" changeHandler={handleChange} />
+            <FormItem editable={true} name="Batch ID" ident="batchid" dataSection="batchInfo" dataKey="batchId" type="number" data={thisBatchData} changeHandler={handleChange} />
+            <FormItem editable={false} name="Price" ident="price" dataSection="productInfo" dataKey="price" type="number" data={thisBatchData} changeHandler={handleChange} />
+            <FormItem editable={true} name="Quantity" ident="quantity" dataSection="productInfo" dataKey="quantity" type="number" data={thisBatchData} changeHandler={handleChange} />
           </form>
         </>
       : <p>Choose batch to edit</p>
@@ -164,8 +174,7 @@ function App() {
   //const savedBatchData = () => defaultBatchData
 
   const [batchData, setBatchData] = React.useState(savedBatchData)
-  const [currentBatchData, setCurrentBatchData] = React.useState(null)
-  const [currentBatchIndex, setCurrentBatchIndex] = React.useState(null)
+  const [currentBatchUid, setCurrentBatchUid] = React.useState(null)
 
   React.useEffect(() => {
     window.localStorage.setItem('batchData', JSON.stringify(batchData));
@@ -177,8 +186,7 @@ function App() {
         <BatchList
           batchData={batchData}
           setBatchData={setBatchData}
-          setCurrentBatchData={setCurrentBatchData}
-          setCurrentBatchIndex={setCurrentBatchIndex} 
+          setCurrentBatchUid={setCurrentBatchUid} 
         />
         <MakeBatch
           batchData={batchData}
@@ -186,11 +194,10 @@ function App() {
         />
       </section>
       <BatchEditor 
-        setCurrentBatchIndex={setCurrentBatchIndex}
-        currentBatchData={currentBatchData}
+        setCurrentBatchUid={setCurrentBatchUid}
         setBatchData={setBatchData}
         batchData={batchData}
-        currentBatchIndex={currentBatchIndex} />
+        currentBatchUid={currentBatchUid} />
     </main>
   );
 }
