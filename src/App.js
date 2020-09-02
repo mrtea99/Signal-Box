@@ -37,11 +37,25 @@ function App() {
   //const savedBatchData = () => defaultBatchData
 
   const [batchData, setBatchData] = React.useState(savedBatchData)
+  // const [currentBatchData, setCurrentBatchData] = React.useState(null)
   const [currentBatchUid, setCurrentBatchUid] = React.useState(null)
+  const [activeStep, setActiveStep] = React.useState(0);
 
   React.useEffect(() => {
     window.localStorage.setItem('batchData', JSON.stringify(batchData));
-  },[batchData])
+  },[batchData, activeStep])
+
+  function updateBatchData(uid, dataSection, dataKey, newValue) {
+    const updatedBatchData = batchData.map(batch => {
+      if (batch.uid === uid) {
+        //A new object should be created and returned here, but this is working for the time being
+        batch[dataSection][dataKey] = newValue
+        return batch
+      }
+      return batch
+    })
+    setBatchData(updatedBatchData);
+  }
 
   return (
     <main className="app-wrap">
@@ -49,7 +63,9 @@ function App() {
         <BatchList
           batchData={batchData}
           setBatchData={setBatchData}
-          setCurrentBatchUid={setCurrentBatchUid} 
+          // setCurrentBatchData={setCurrentBatchData}
+          setCurrentBatchUid={setCurrentBatchUid}
+          setActiveStep={setActiveStep}
         />
         <MakeBatch
           batchData={batchData}
@@ -57,10 +73,16 @@ function App() {
         />
       </section>
       <BatchEditor 
-        setCurrentBatchUid={setCurrentBatchUid}
-        setBatchData={setBatchData}
+        // setBatchData={setBatchData}
         batchData={batchData}
-        currentBatchUid={currentBatchUid} />
+        // currentBatchData={currentBatchData}
+        currentBatchUid={currentBatchUid}
+        // setCurrentBatchData={setCurrentBatchData}
+        setCurrentBatchUid={setCurrentBatchUid}
+        setActiveStep={setActiveStep}
+        activeStep={activeStep}
+        updateBatchData={updateBatchData}
+      />
     </main>
   );
 }

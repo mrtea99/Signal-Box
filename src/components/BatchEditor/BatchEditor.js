@@ -31,16 +31,57 @@ function FormItem(props) {
   )
 }
 
+
+
+
+
+
 function BatchEditor(props) {
   const thisBatchData = props.batchData.find(obj => obj.uid === props.currentBatchUid);
   //const [thisBatchData, setThisBatchData] = React.useState(thatBatchData);
+  //const thisBatchData = props.currentBatchData;
+
+  const stepPrep = (
+    <fieldset>
+      <legend>Preparation</legend>
+      <FormItem editable={true} name="Start Time" ident="prep-start" dataSection="prep" dataKey="startTime" type="datetime-local" data={thisBatchData} changeHandler={handleChange} />
+      <FormItem editable={true} name="Finish Time" ident="prep-end" dataSection="prep" dataKey="finishTime" type="datetime-local" data={thisBatchData} changeHandler={handleChange} />
+    </fieldset>
+  )
+  const stepMan = (
+    <fieldset>
+      <legend>Manufacturing</legend>
+    </fieldset>
+  )
+  const stepCool = (
+    <fieldset>
+      <legend>Cooling</legend>
+    </fieldset>
+  )
+  const stepPack = (
+    <fieldset>
+      <legend>Packaging</legend>
+    </fieldset>
+  )
+  const stepLabel = (
+    <fieldset>
+      <legend>Labeling</legend>
+    </fieldset>
+  )
+  const stepArr = [stepPrep, stepMan, stepCool, stepPack, stepLabel]
+
 
   function handleChange(dataSection, dataKey, e) {
-    thisBatchData[dataSection][dataKey] = e.target.value;
+    props.updateBatchData(props.currentBatchUid, dataSection, dataKey, e.target.value)
+  }
 
-    let newData = [...props.batchData];
-    //newData[props.currentBatchIndex] = thisBatchData;
-    props.setBatchData(newData);
+  function handleNavigation(dir, e) {
+    e.preventDefault()
+
+    thisBatchData.activeStep = dir;
+    if (dir !== -1 && dir < stepArr.length) {
+      props.setActiveStep(dir)
+    }
   }
 
   return (
@@ -61,27 +102,13 @@ function BatchEditor(props) {
             <fieldset>
               <legend>Batch Info</legend>
             </fieldset>
-            <fieldset>
-              <legend>Preparation</legend>
-              <FormItem editable={true} name="Start Time" ident="prep-start" dataSection="prep" dataKey="startTime" type="datetime-local" data={thisBatchData} changeHandler={handleChange} />
-              <FormItem editable={true} name="Finish Time" ident="prep-end" dataSection="prep" dataKey="finishTime" type="datetime-local" data={thisBatchData} changeHandler={handleChange} />
-            </fieldset>
-            <fieldset>
-              <legend>Manufacturing</legend>
-              
-            </fieldset>
-            <fieldset>
-              <legend>Cooling</legend>
-              
-            </fieldset>
-            <fieldset>
-              <legend>Packaging</legend>
-              
-            </fieldset>
-            <fieldset>
-              <legend>Labeling</legend>
-              
-            </fieldset>
+            {stepArr[props.activeStep]}
+            { props.activeStep > 0 ?
+              <button onClick={(e) => handleNavigation(props.activeStep - 1, e)}>Previous Step</button>
+            : <></> }
+            { props.activeStep < stepArr.length - 1 ?
+              <button onClick={(e) => handleNavigation(props.activeStep + 1, e)}>Next Step</button>
+            : <></> }
           </form>
         </>
       : <p>Choose batch to edit</p>

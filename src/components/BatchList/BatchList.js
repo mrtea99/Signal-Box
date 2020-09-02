@@ -2,8 +2,10 @@ import React from 'react';
 
 function BatchList(props) {
 
-  function editBatch(uid) {
+  function editBatch(uid, activeStep) {
+    // props.setCurrentBatchData(props.batchData.find(obj => obj.uid === uid))
     props.setCurrentBatchUid(uid)
+    props.setActiveStep(activeStep)
   }
 
   function deleteBatch(index) {
@@ -11,12 +13,13 @@ function BatchList(props) {
     newData.splice(index, 1)
     props.setBatchData(newData);
   }
-  
+
   const batchItems = props.batchData.map((batch, index) =>
     <tr key={batch.uid}>
       <td>{batch.batchInfo.batchId}</td>
       <td>{batch.productInfo.productName}</td>
-      <td><button onClick={(e) => editBatch(batch.uid)}>Edit</button></td>
+      <td>{batch.activeStep}</td>
+      <td><button onClick={(e) => editBatch(batch.uid, batch.activeStep)}>Edit</button></td>
       <td><button onClick={(e) => deleteBatch(index)}>Delete</button></td>
     </tr>
   )
@@ -29,6 +32,7 @@ function BatchList(props) {
           <tr>
             <th>Batch ID</th>
             <th>Product</th>
+            <th>Step</th>
             <th></th>
             <th></th>
           </tr>

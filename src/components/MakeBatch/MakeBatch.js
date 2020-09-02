@@ -21,6 +21,7 @@ function MakeBatch(props) {
     //Build new batch object here
     const newBatch = {
       uid: Date.now(),
+      activeStep: 0,
       batchInfo: {
         batchId: new Date().getUTCMilliseconds()
       },
