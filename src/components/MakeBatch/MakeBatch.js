@@ -26,7 +26,12 @@ function MakeBatch(props) {
       },
       productInfo: {
         price: currentTemplate.price,
-        productName: currentTemplate.name
+        productName: currentTemplate.name,
+        quantity: 0
+      },
+      prep: {
+        startTime: '',
+        finishTime: ''
       }
     };
     newData.push(newBatch);
