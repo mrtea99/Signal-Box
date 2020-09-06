@@ -51,7 +51,7 @@ function MakeBatch(props) {
           <option key={template.name} value={index}>{template.name}</option>
         )}
       </select>
-      <button onClick={handleClick} disabled={!currentTemplate}>New Batch</button>
+      <button onClick={handleClick} disabled={!currentTemplate}>Save New Batch</button>
     </>
   )
 }

@@ -84,6 +84,12 @@ function BatchEditor(props) {
     }
   }
 
+  function handleEditInfoClick(e) {
+    e.preventDefault();
+
+    props.setModalActive(true)
+  }
+
   return (
     <section>
       <h2>Batch Editor:</h2>
@@ -95,12 +101,13 @@ function BatchEditor(props) {
             <fieldset>
               <legend>Product Info</legend>
               <FormItem editable={false} name="Product" ident="product-name" dataSection="productInfo" dataKey="productName" type="text" data={thisBatchData} changeHandler={handleChange} />
-              <FormItem editable={true} name="Batch ID" ident="batchid" dataSection="batchInfo" dataKey="batchId" type="number" data={thisBatchData} changeHandler={handleChange} />
-              <FormItem editable={false} name="Price" ident="price" dataSection="productInfo" dataKey="price" type="number" data={thisBatchData} changeHandler={handleChange} />
-              <FormItem editable={true} name="Quantity" ident="quantity" dataSection="productInfo" dataKey="quantity" type="number" data={thisBatchData} changeHandler={handleChange} />
+              <FormItem editable={true} name="Price" ident="price" dataSection="productInfo" dataKey="price" type="number" data={thisBatchData} changeHandler={handleChange} />
             </fieldset>
             <fieldset>
               <legend>Batch Info</legend>
+              <FormItem editable={true} name="Batch ID" ident="batchid" dataSection="batchInfo" dataKey="batchId" type="number" data={thisBatchData} changeHandler={handleChange} />
+              <FormItem editable={false} name="Quantity" ident="quantity" dataSection="productInfo" dataKey="quantity" type="number" data={thisBatchData} changeHandler={handleChange} />
+              <button onClick={handleEditInfoClick}>Edit</button>
             </fieldset>
             {stepArr[props.activeStep]}
             { props.activeStep > 0 ?

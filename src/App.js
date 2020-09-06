@@ -1,9 +1,11 @@
 import React from 'react';
 import './App.css';
 
-import MakeBatch from './components/MakeBatch/MakeBatch.js';
+// import MakeBatch from './components/MakeBatch/MakeBatch.js';
 import BatchList from './components/BatchList/BatchList.js';
 import BatchEditor from './components/BatchEditor/BatchEditor.js';
+import BatchInfoNew from './components/BatchInfoNew/BatchInfoNew.js';
+import BatchInfoChange from './components/BatchInfoChange/BatchInfoChange.js';
 
 function App() {
   const savedBatchData = () => JSON.parse(window.localStorage.getItem('batchData')) || []
@@ -11,6 +13,10 @@ function App() {
   const [batchData, setBatchData] = React.useState(savedBatchData)
   const [currentBatchUid, setCurrentBatchUid] = React.useState(null)
   const [activeStep, setActiveStep] = React.useState(0);
+
+  const [modalNewActive, setModalNewActive] = React.useState(false)
+  const [modalChangeActive, setModalChangeActive] = React.useState(false)
+
 
   React.useEffect(() => {
     window.localStorage.setItem('batchData', JSON.stringify(batchData));
@@ -39,6 +45,12 @@ function App() {
     setActiveStep(activeStep)
   }
 
+  function handleAddClick(e) {
+    e.preventDefault();
+
+    setModalNewActive(true)
+  }
+
 
   return (
     <main className="app-wrap">
@@ -51,19 +63,32 @@ function App() {
           deleteBatch={deleteBatch}
           setCurrentBatch={setCurrentBatch}
         />
-        <MakeBatch
+        <button onClick={handleAddClick}>New Batch +</button>
+        <BatchInfoNew 
+          active={modalNewActive}
+          setActive={setModalNewActive}
           batchData={batchData}
           setBatchData={setBatchData}
         />
       </section>
-      <BatchEditor 
-        batchData={batchData}
-        currentBatchUid={currentBatchUid}
-        setCurrentBatchUid={setCurrentBatchUid}
-        setActiveStep={setActiveStep}
-        activeStep={activeStep}
-        updateBatchData={updateBatchData}
-      />
+      <section>
+        <BatchEditor 
+          batchData={batchData}
+          currentBatchUid={currentBatchUid}
+          setCurrentBatchUid={setCurrentBatchUid}
+          setActiveStep={setActiveStep}
+          activeStep={activeStep}
+          updateBatchData={updateBatchData}
+          modalActive={modalChangeActive}
+          setModalActive={setModalChangeActive}
+        />
+        <BatchInfoChange 
+          active={modalChangeActive}
+          setActive={setModalChangeActive}
+          currentBatchUid={currentBatchUid}
+          batchData={batchData}
+        />
+      </section>
     </main>
   );
 }
