@@ -12,18 +12,18 @@ const productTemplates = [
 ]
 
 function RunInfoForm(props) {
-  const [thisRunData, setThisRunData] = React.useState(() => {
+  const thisRunData = React.useState(() => {
     if (!props.runData) {
       return {}
     }
 
     const runData = props.runData.find(obj => obj.uid === props.currentRunUid);
     return runData
-  })
+  })[0]
 
   const [currentTemplate, setTemplate] = React.useState(() => {
     if (!props.runData) {
-      return 'default'
+      return null
     }
 
     const currentProductName = thisRunData.productInfo.productName;
@@ -55,7 +55,7 @@ function RunInfoForm(props) {
   return(
     <>
       <form>
-        <select onChange={handleTemplateChange} value={currentTemplate}>
+        <select onChange={handleTemplateChange} value={currentTemplate === null ? 'default' : currentTemplate }>
           <option value="default" disabled="disabled">Choose a template</option>
           {productTemplates.map((template, index) => 
             <option key={template.name} value={index}>{template.name}</option>

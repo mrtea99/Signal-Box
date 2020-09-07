@@ -6,7 +6,6 @@ import RunInfoForm from '../RunInfoForm/RunInfoForm.js';
 
 function RunInfoChange(props) {
   function updateRunInfo(productTemplateData, quantity) {
-    console.log('update run');
 
     props.updateRunData(props.currentRunUid, 'productInfo', 'price', productTemplateData.price)
     props.updateRunData(props.currentRunUid, 'productInfo', 'productName', productTemplateData.name)
