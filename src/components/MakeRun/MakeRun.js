@@ -12,18 +12,18 @@ const productTemplates = [
 ]
 
 
-function MakeBatch(props) {
+function MakeRun(props) {
   const [currentTemplate, setTemplate] = React.useState(null);
 
   function handleClick() {
-    let newData = [...props.batchData];
+    let newData = [...props.runData];
 
-    //Build new batch object here
-    const newBatch = {
+    //Build new run object here
+    const newRun = {
       uid: Date.now(),
       activeStep: 0,
-      batchInfo: {
-        batchId: new Date().getUTCMilliseconds()
+      runInfo: {
+        runId: new Date().getUTCMilliseconds()
       },
       productInfo: {
         price: currentTemplate.price,
@@ -35,8 +35,8 @@ function MakeBatch(props) {
         finishTime: ''
       }
     };
-    newData.push(newBatch);
-    props.setBatchData(newData);
+    newData.push(newRun);
+    props.setRunData(newData);
   }
 
   function handleChange(event) {
@@ -51,10 +51,10 @@ function MakeBatch(props) {
           <option key={template.name} value={index}>{template.name}</option>
         )}
       </select>
-      <button onClick={handleClick} disabled={!currentTemplate}>Save New Batch</button>
+      <button onClick={handleClick} disabled={!currentTemplate}>Save New Run</button>
     </>
   )
 }
   
 
-export default MakeBatch;
+export default MakeRun;

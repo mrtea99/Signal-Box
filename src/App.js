@@ -1,17 +1,17 @@
 import React from 'react';
 import './App.css';
 
-// import MakeBatch from './components/MakeBatch/MakeBatch.js';
-import BatchList from './components/BatchList/BatchList.js';
-import BatchEditor from './components/BatchEditor/BatchEditor.js';
-import BatchInfoNew from './components/BatchInfoNew/BatchInfoNew.js';
-import BatchInfoChange from './components/BatchInfoChange/BatchInfoChange.js';
+// import MakeRun from './components/MakeRun/MakeRun.js';
+import RunList from './components/RunList/RunList.js';
+import RunEditor from './components/RunEditor/RunEditor.js';
+import RunInfoNew from './components/RunInfoNew/RunInfoNew.js';
+import RunInfoChange from './components/RunInfoChange/RunInfoChange.js';
 
 function App() {
-  const savedBatchData = () => JSON.parse(window.localStorage.getItem('batchData')) || []
+  const savedRunData = () => JSON.parse(window.localStorage.getItem('runData')) || []
 
-  const [batchData, setBatchData] = React.useState(savedBatchData)
-  const [currentBatchUid, setCurrentBatchUid] = React.useState(null)
+  const [runData, setRunData] = React.useState(savedRunData)
+  const [currentRunUid, setCurrentRunUid] = React.useState(null)
   const [activeStep, setActiveStep] = React.useState(0);
 
   const [modalNewActive, setModalNewActive] = React.useState(false)
@@ -19,29 +19,29 @@ function App() {
 
 
   React.useEffect(() => {
-    window.localStorage.setItem('batchData', JSON.stringify(batchData));
-  },[batchData, activeStep])
+    window.localStorage.setItem('runData', JSON.stringify(runData));
+  },[runData, activeStep])
 
 
-  function updateBatchData(uid, dataSection, dataKey, newValue) {
-    const updatedBatchData = batchData.map(batch => {
-      if (batch.uid === uid) {
+  function updateRunData(uid, dataSection, dataKey, newValue) {
+    const updatedRunData = runData.map(run => {
+      if (run.uid === uid) {
         //A new object should be created and returned here, but this is working for the time being
-        batch[dataSection][dataKey] = newValue
-        return batch
+        run[dataSection][dataKey] = newValue
+        return run
       }
-      return batch
+      return run
     })
-    setBatchData(updatedBatchData);
+    setRunData(updatedRunData);
   }
 
-  function deleteBatch(uid) {
-    const updatedBatchData = batchData.filter(batch => uid !== batch.uid)
-    setBatchData(updatedBatchData);
+  function deleteRun(uid) {
+    const updatedRunData = runData.filter(run => uid !== run.uid)
+    setRunData(updatedRunData);
   }
 
-  function setCurrentBatch(uid, activeStep) {
-    setCurrentBatchUid(uid)
+  function setCurrentRun(uid, activeStep) {
+    setCurrentRunUid(uid)
     setActiveStep(activeStep)
   }
 
@@ -55,38 +55,38 @@ function App() {
   return (
     <main className="app-wrap">
       <section>
-        <BatchList
-          batchData={batchData}
-          setBatchData={setBatchData}
-          setCurrentBatchUid={setCurrentBatchUid}
+        <RunList
+          runData={runData}
+          setRunData={setRunData}
+          setCurrentRunUid={setCurrentRunUid}
           setActiveStep={setActiveStep}
-          deleteBatch={deleteBatch}
-          setCurrentBatch={setCurrentBatch}
+          deleteRun={deleteRun}
+          setCurrentRun={setCurrentRun}
         />
-        <button onClick={handleAddClick}>New Batch +</button>
-        <BatchInfoNew 
+        <button onClick={handleAddClick}>New Run +</button>
+        <RunInfoNew 
           active={modalNewActive}
           setActive={setModalNewActive}
-          batchData={batchData}
-          setBatchData={setBatchData}
+          runData={runData}
+          setRunData={setRunData}
         />
       </section>
       <section>
-        <BatchEditor 
-          batchData={batchData}
-          currentBatchUid={currentBatchUid}
-          setCurrentBatchUid={setCurrentBatchUid}
+        <RunEditor 
+          runData={runData}
+          currentRunUid={currentRunUid}
+          setCurrentRunUid={setCurrentRunUid}
           setActiveStep={setActiveStep}
           activeStep={activeStep}
-          updateBatchData={updateBatchData}
+          updateRunData={updateRunData}
           modalActive={modalChangeActive}
           setModalActive={setModalChangeActive}
         />
-        <BatchInfoChange 
+        <RunInfoChange 
           active={modalChangeActive}
           setActive={setModalChangeActive}
-          currentBatchUid={currentBatchUid}
-          batchData={batchData}
+          currentRunUid={currentRunUid}
+          runData={runData}
         />
       </section>
     </main>

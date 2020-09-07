@@ -11,16 +11,16 @@ const productTemplates = [
   }
 ]
 
-function BatchInfoForm(props) {
+function RunInfoForm(props) {
   // const [currentTemplate, setTemplate] = React.useState(props.defaultTemplate);
 
   const [currentTemplate, setTemplate] = React.useState(() => {
-    if (!props.batchData) {
+    if (!props.runData) {
       return 'default'
     }
 
-    const thisBatchData = props.batchData.find(obj => obj.uid === props.currentBatchUid);
-    const currentProductName = thisBatchData.productInfo.productName;
+    const thisRunData = props.runData.find(obj => obj.uid === props.currentRunUid);
+    const currentProductName = thisRunData.productInfo.productName;
     const templateIndex = productTemplates.findIndex(obj => obj.name === currentProductName)
     return templateIndex.toString()
   });
@@ -58,4 +58,4 @@ function BatchInfoForm(props) {
   )
 }
 
-export default BatchInfoForm;
+export default RunInfoForm;

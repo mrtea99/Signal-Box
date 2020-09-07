@@ -1,19 +1,19 @@
 import React from 'react';
 
 import Modal from '../Modal/Modal.js';
-import BatchInfoForm from '../BatchInfoForm/BatchInfoForm.js';
+import RunInfoForm from '../RunInfoForm/RunInfoForm.js';
 
-function BatchInfoNew(props) {
+function RunInfoNew(props) {
 
-  function createBatch(productTemplateData) {
-    let newData = [...props.batchData];
+  function createRun(productTemplateData) {
+    let newData = [...props.runData];
 
-    //Build new batch object here
-    const newBatch = {
+    //Build new run object here
+    const newRun = {
       uid: Date.now(),
       activeStep: 0,
-      batchInfo: {
-        batchId: new Date().getUTCMilliseconds()
+      runInfo: {
+        runId: new Date().getUTCMilliseconds()
       },
       productInfo: {
         price: productTemplateData.price,
@@ -25,16 +25,16 @@ function BatchInfoNew(props) {
         finishTime: ''
       }
     };
-    newData.push(newBatch);
-    props.setBatchData(newData);
+    newData.push(newRun);
+    props.setRunData(newData);
   }
 
   return(
     <>
       {props.active ? 
         <Modal>
-          <BatchInfoForm 
-            handleSave={createBatch}
+          <RunInfoForm 
+            handleSave={createRun}
           />
         </Modal>
         : <></> }
@@ -42,4 +42,4 @@ function BatchInfoNew(props) {
   )
 }
 
-export default BatchInfoNew;
+export default RunInfoNew;
