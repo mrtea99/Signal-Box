@@ -64,6 +64,7 @@ function RunInfoForm(props) {
         <label>Quantity:</label>
         <input onChange={(e) => { setQuantity(e.target.value) }} type="number" defaultValue={quantity}></input>
         <button disabled={currentTemplate === null ? 'disabled' : '' } onClick={handleSubmit}>Save</button>
+        <button onClick={(e) => { e.preventDefault(); props.handleCancel() }}>Cancel</button>
       </form>
       <pre>{JSON.stringify(productTemplates[currentTemplate])}</pre>
     </>

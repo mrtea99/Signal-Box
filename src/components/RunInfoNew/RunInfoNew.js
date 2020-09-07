@@ -30,12 +30,17 @@ function RunInfoNew(props) {
     props.setActive(false)
   }
 
+  function handleCancel() {
+    props.setActive(false);
+  }
+
   return(
     <>
       {props.active ? 
         <Modal>
           <RunInfoForm 
             handleSave={createRun}
+            handleCancel={handleCancel}
           />
         </Modal>
         : <></> }
