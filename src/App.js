@@ -87,6 +87,7 @@ function App() {
           setActive={setModalChangeActive}
           currentRunUid={currentRunUid}
           runData={runData}
+          updateRunData={updateRunData}
         />
       </section>
     </main>

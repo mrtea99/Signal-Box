@@ -12,18 +12,34 @@ const productTemplates = [
 ]
 
 function RunInfoForm(props) {
-  // const [currentTemplate, setTemplate] = React.useState(props.defaultTemplate);
+  const [thisRunData, setThisRunData] = React.useState(() => {
+    if (!props.runData) {
+      return {}
+    }
+
+    const runData = props.runData.find(obj => obj.uid === props.currentRunUid);
+    return runData
+  })
 
   const [currentTemplate, setTemplate] = React.useState(() => {
     if (!props.runData) {
       return 'default'
     }
 
-    const thisRunData = props.runData.find(obj => obj.uid === props.currentRunUid);
     const currentProductName = thisRunData.productInfo.productName;
     const templateIndex = productTemplates.findIndex(obj => obj.name === currentProductName)
     return templateIndex.toString()
   });
+
+  const [quantity, setQuantity] = React.useState(() => {
+    if (!props.runData) {
+      return 0
+    }
+
+    const thisRunData = props.runData.find(obj => obj.uid === props.currentRunUid);
+    const currentQuantity = thisRunData.productInfo.quantity;
+    return currentQuantity
+  })
 
 
   function handleTemplateChange(e) {
@@ -33,11 +49,7 @@ function RunInfoForm(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.handleSave(productTemplates[currentTemplate]);
-  }
-
-  function handleChange(e) {
-    // setQuantity(e.target.value);
+    props.handleSave(productTemplates[currentTemplate], quantity);
   }
 
   return(
@@ -50,7 +62,7 @@ function RunInfoForm(props) {
           )}
         </select>
         <label>Quantity:</label>
-        <input onChange={handleChange} type="number" defaultValue='0'></input>
+        <input onChange={(e) => { setQuantity(e.target.value) }} type="number" defaultValue={quantity}></input>
         <button disabled={currentTemplate === null ? 'disabled' : '' } onClick={handleSubmit}>Save</button>
       </form>
       <pre>{JSON.stringify(productTemplates[currentTemplate])}</pre>

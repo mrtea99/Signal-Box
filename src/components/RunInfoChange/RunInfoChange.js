@@ -21,9 +21,15 @@ function RunInfoChange(props) {
   //const templateIndex = 0
   
 
-  function updateRunInfo() {
+  function updateRunInfo(productTemplateData, quantity) {
     console.log('update run');
+
+    props.updateRunData(props.currentRunUid, 'productInfo', 'price', productTemplateData.price)
+    props.updateRunData(props.currentRunUid, 'productInfo', 'productName', productTemplateData.name)
+    props.updateRunData(props.currentRunUid, 'productInfo', 'quantity', quantity)
+
     //call props.updateRunData multiple times?
+    props.setActive(false)
   }
 
   return(
