@@ -12,7 +12,7 @@ function App() {
 
   const [runData, setRunData] = React.useState(savedRunData)
   const [currentRunUid, setCurrentRunUid] = React.useState(null)
-  const [activeStep, setActiveStep] = React.useState(0);
+  // const [activeStep, setActiveStep] = React.useState(0);
 
   const [modalNewActive, setModalNewActive] = React.useState(false)
   const [modalChangeActive, setModalChangeActive] = React.useState(false)
@@ -20,14 +20,19 @@ function App() {
 
   React.useEffect(() => {
     window.localStorage.setItem('runData', JSON.stringify(runData));
-  },[runData, activeStep])
+  },[runData])
 
 
   function updateRunData(uid, dataSection, dataKey, newValue) {
     const updatedRunData = runData.map(run => {
       if (run.uid === uid) {
         //A new object should be created and returned here, but this is working for the time being
-        run[dataSection][dataKey] = newValue
+        if (dataSection !== null) {
+          run[dataSection][dataKey] = newValue
+        }
+        else {
+          run[dataKey] = newValue
+        }
         return run
       }
       return run
@@ -40,9 +45,8 @@ function App() {
     setRunData(updatedRunData);
   }
 
-  function setCurrentRun(uid, activeStep) {
-    setCurrentRunUid(uid)
-    setActiveStep(activeStep)
+  function setActiveStep(activeStep) {
+    updateRunData(currentRunUid, null, 'activeStep', activeStep)
   }
 
   function handleAddClick(e) {
@@ -61,7 +65,6 @@ function App() {
           setCurrentRunUid={setCurrentRunUid}
           setActiveStep={setActiveStep}
           deleteRun={deleteRun}
-          setCurrentRun={setCurrentRun}
         />
         <button onClick={handleAddClick}>New Run +</button>
         <RunInfoNew 
@@ -77,7 +80,6 @@ function App() {
           currentRunUid={currentRunUid}
           setCurrentRunUid={setCurrentRunUid}
           setActiveStep={setActiveStep}
-          activeStep={activeStep}
           updateRunData={updateRunData}
           modalActive={modalChangeActive}
           setModalActive={setModalChangeActive}

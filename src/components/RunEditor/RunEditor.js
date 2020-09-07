@@ -37,9 +37,28 @@ function FormItem(props) {
 
 
 function RunEditor(props) {
-  const thisRunData = props.runData.find(obj => obj.uid === props.currentRunUid);
-  //const [thisRunData, setThisRunData] = React.useState(thatRunData);
-  //const thisRunData = props.currentRunData;
+  const [thisRunData, setThisRunData] = React.useState(props.runData.find(obj => obj.uid === props.currentRunUid));
+  const [activeStep, setActiveStep] = React.useState(() => {
+    if (thisRunData !== undefined) {
+      return thisRunData.activeStep
+    }
+    else {
+      return 0
+    }
+  });
+
+  React.useEffect(() => {
+    const newRunData = props.runData.find(obj => obj.uid === props.currentRunUid)
+
+    if (newRunData !== undefined) {
+      setThisRunData(newRunData);
+      setActiveStep(newRunData.activeStep)
+    }
+    else {
+      setThisRunData(null)
+      setActiveStep(null)
+    }
+  }, [props.runData, props.currentRunUid]);
 
   const stepPrep = (
     <fieldset>
@@ -70,7 +89,6 @@ function RunEditor(props) {
   )
   const stepArr = [stepPrep, stepMan, stepCool, stepPack, stepLabel]
 
-
   function handleChange(dataSection, dataKey, e) {
     props.updateRunData(props.currentRunUid, dataSection, dataKey, e.target.value)
   }
@@ -78,9 +96,11 @@ function RunEditor(props) {
   function handleNavigation(dir, e) {
     e.preventDefault()
 
-    thisRunData.activeStep = dir;
+    // thisRunData.activeStep = dir;
+
     if (dir !== -1 && dir < stepArr.length) {
-      props.setActiveStep(dir)
+      setActiveStep(dir)
+      props.updateRunData(props.currentRunUid, null, 'activeStep', dir)
     }
   }
 
@@ -93,9 +113,9 @@ function RunEditor(props) {
   return (
     <section>
       <h2>Run Editor:</h2>
-      <button onClick={() => props.setCurrentRunUid(null)}>Clear Current Run</button>
       {thisRunData ?
         <>
+          <button onClick={() => props.setCurrentRunUid(null)}>Clear Current Run</button>
           <pre>{JSON.stringify(thisRunData)}</pre>
           <form>
             <fieldset>
@@ -109,12 +129,12 @@ function RunEditor(props) {
               <FormItem editable={false} name="Quantity" ident="quantity" dataSection="productInfo" dataKey="quantity" type="number" data={thisRunData} changeHandler={handleChange} />
               <button onClick={handleEditInfoClick}>Edit</button>
             </fieldset>
-            {stepArr[props.activeStep]}
-            { props.activeStep > 0 ?
-              <button onClick={(e) => handleNavigation(props.activeStep - 1, e)}>Previous Step</button>
+            {stepArr[activeStep]}
+            { activeStep > 0 ?
+              <button onClick={(e) => handleNavigation(activeStep - 1, e)}>Previous Step</button>
             : <></> }
-            { props.activeStep < stepArr.length - 1 ?
-              <button onClick={(e) => handleNavigation(props.activeStep + 1, e)}>Next Step</button>
+            { activeStep < stepArr.length - 1 ?
+              <button onClick={(e) => handleNavigation(activeStep + 1, e)}>Next Step</button>
             : <></> }
           </form>
         </>

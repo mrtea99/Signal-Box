@@ -8,7 +8,7 @@ function RunList(props) {
       <td>{run.productInfo.productName}</td>
       <td>{run.activeStep}</td>
       <td>{run.productInfo.quantity}</td>
-      <td><button onClick={(e) => props.setCurrentRun(run.uid, run.activeStep)}>Edit</button></td>
+      <td><button onClick={(e) => props.setCurrentRunUid(run.uid)}>Edit</button></td>
       <td><button onClick={(e) => props.deleteRun(run.uid)}>Delete</button></td>
     </tr>
   )
