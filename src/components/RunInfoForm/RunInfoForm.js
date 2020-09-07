@@ -33,7 +33,7 @@ function RunInfoForm(props) {
 
   const [quantity, setQuantity] = React.useState(() => {
     if (!props.runData) {
-      return 0
+      return 1
     }
 
     const thisRunData = props.runData.find(obj => obj.uid === props.currentRunUid);
@@ -55,14 +55,19 @@ function RunInfoForm(props) {
   return(
     <>
       <form>
-        <select onChange={handleTemplateChange} value={currentTemplate === null ? 'default' : currentTemplate }>
-          <option value="default" disabled="disabled">Choose a template</option>
-          {productTemplates.map((template, index) => 
-            <option key={template.name} value={index}>{template.name}</option>
-          )}
-        </select>
-        <label>Quantity:</label>
-        <input onChange={(e) => { setQuantity(e.target.value) }} type="number" defaultValue={quantity}></input>
+        <div>
+          <label>Product:</label>
+          <select onChange={handleTemplateChange} value={currentTemplate === null ? 'default' : currentTemplate }>
+            <option value="default" disabled="disabled">Choose a template</option>
+            {productTemplates.map((template, index) => 
+              <option key={template.name} value={index}>{template.name}</option>
+            )}
+          </select>
+        </div>
+        <div>
+          <label>BatchQuantity:</label>
+          <input onChange={(e) => { setQuantity(e.target.value) }} type="number" defaultValue={quantity} min="0"></input>
+        </div>
         <button disabled={currentTemplate === null ? 'disabled' : '' } onClick={handleSubmit}>Save</button>
         <button onClick={(e) => { e.preventDefault(); props.handleCancel() }}>Cancel</button>
       </form>
