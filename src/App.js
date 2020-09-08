@@ -12,7 +12,6 @@ function App() {
 
   const [runData, setRunData] = React.useState(savedRunData)
   const [currentRunUid, setCurrentRunUid] = React.useState(null)
-  // const [activeStage, setActiveStage] = React.useState(0);
 
   const [modalNewActive, setModalNewActive] = React.useState(false)
   const [modalChangeActive, setModalChangeActive] = React.useState(false)

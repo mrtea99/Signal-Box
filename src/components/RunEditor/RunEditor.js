@@ -1,46 +1,23 @@
 import React from 'react';
-import Stage from '../Stage/Stage.js';
+import StageControl from '../StageControl/StageControl.js';
 
 
 function RunEditor(props) {
   const [thisRunData, setThisRunData] = React.useState(props.runData.find(obj => obj.uid === props.currentRunUid));
-  const [activeStage, setActiveStage] = React.useState(() => {
-    if (thisRunData !== undefined) {
-      return thisRunData.activeStage
-    }
-    else {
-      return 0
-    }
-  });
 
   React.useEffect(() => {
     const newRunData = props.runData.find(obj => obj.uid === props.currentRunUid)
 
     if (newRunData !== undefined) {
       setThisRunData(newRunData);
-      setActiveStage(newRunData.activeStage)
     }
     else {
       setThisRunData(null)
-      setActiveStage(null)
     }
   }, [props.runData, props.currentRunUid]);
 
-  const stageNameArr = ['Preparation', 'Manufacturing', 'Cooling', 'Packaging', 'Labeling']
-
   function handleChange(dataSection, dataKey, e) {
     props.updateRunData(props.currentRunUid, dataSection, dataKey, e.target.value)
-  }
-
-  function handleNavigation(dir, e) {
-    e.preventDefault()
-
-    // thisRunData.activeStage = dir;
-
-    if (dir !== -1 && dir < stageNameArr.length) {
-      setActiveStage(dir)
-      props.updateRunData(props.currentRunUid, null, 'activeStage', dir)
-    }
   }
 
   function handleEditInfoClick(e) {
@@ -70,22 +47,14 @@ function RunEditor(props) {
             </fieldset>
 
             <fieldset>
-              <Stage 
+              <StageControl 
                 thisRunData={thisRunData}
-                activeStage={activeStage}
+                runData={props.runData}
                 currentRunUid={props.currentRunUid}
-                stageNameArr={stageNameArr}
                 updateRunData={props.updateRunData}
               />
               
             </fieldset>
-
-            { activeStage > 0 ?
-              <button onClick={(e) => handleNavigation(activeStage - 1, e)}>Previous Stage</button>
-            : <></> }
-            { activeStage < stageNameArr.length - 1 ?
-              <button onClick={(e) => handleNavigation(activeStage + 1, e)}>Next Stage</button>
-            : <></> }
           </form>
         </>
       : <p>Choose run to edit</p>

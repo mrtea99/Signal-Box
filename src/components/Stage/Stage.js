@@ -26,7 +26,7 @@ function Stage(props) {
 
   return (
     <>
-      <legend>{props.stageNameArr[props.activeStage]}</legend>
+      <legend>{props.stageName}</legend>
       <SessionControl 
         activeSession={activeSession}
         setActiveSession={setActiveSession}
