@@ -1,4 +1,5 @@
 import React from 'react';
+import SessionControl from '../SessionControl/SessionControl.js';
 
 function FormItem(props) {
   const itemValueSection = props.data[props.dataSection];
@@ -60,34 +61,7 @@ function RunEditor(props) {
     }
   }, [props.runData, props.currentRunUid]);
 
-  const stagePrep = (
-    <fieldset>
-      <legend>Preparation</legend>
-      <FormItem editable={true} name="Start Time" ident="prep-start" dataSection="prep" dataKey="startTime" type="datetime-local" data={thisRunData} changeHandler={handleChange} />
-      <FormItem editable={true} name="Finish Time" ident="prep-end" dataSection="prep" dataKey="finishTime" type="datetime-local" data={thisRunData} changeHandler={handleChange} />
-    </fieldset>
-  )
-  const stageMan = (
-    <fieldset>
-      <legend>Manufacturing</legend>
-    </fieldset>
-  )
-  const stageCool = (
-    <fieldset>
-      <legend>Cooling</legend>
-    </fieldset>
-  )
-  const stagePack = (
-    <fieldset>
-      <legend>Packaging</legend>
-    </fieldset>
-  )
-  const stageLabel = (
-    <fieldset>
-      <legend>Labeling</legend>
-    </fieldset>
-  )
-  const stageArr = [stagePrep, stageMan, stageCool, stagePack, stageLabel]
+  const stageNameArr = ['Preparation', 'Manufacturing', 'Cooling', 'Packaging', 'Labeling']
 
   function handleChange(dataSection, dataKey, e) {
     props.updateRunData(props.currentRunUid, dataSection, dataKey, e.target.value)
@@ -98,7 +72,7 @@ function RunEditor(props) {
 
     // thisRunData.activeStage = dir;
 
-    if (dir !== -1 && dir < stageArr.length) {
+    if (dir !== -1 && dir < stageNameArr.length) {
       setActiveStage(dir)
       props.updateRunData(props.currentRunUid, null, 'activeStage', dir)
     }
@@ -129,11 +103,17 @@ function RunEditor(props) {
               <FormItem editable={false} name="Quantity" ident="quantity" dataSection="productInfo" dataKey="quantity" type="number" data={thisRunData} changeHandler={handleChange} />
               <button onClick={handleEditInfoClick}>Edit</button>
             </fieldset>
-            {stageArr[activeStage]}
+
+            <fieldset>
+              <legend>{stageNameArr[activeStage]}</legend>
+              <SessionControl 
+              />
+            </fieldset>
+
             { activeStage > 0 ?
               <button onClick={(e) => handleNavigation(activeStage - 1, e)}>Previous Stage</button>
             : <></> }
-            { activeStage < stageArr.length - 1 ?
+            { activeStage < stageNameArr.length - 1 ?
               <button onClick={(e) => handleNavigation(activeStage + 1, e)}>Next Stage</button>
             : <></> }
           </form>
