@@ -1,16 +1,19 @@
 import React from 'react';
 
 function SessionList(props) {
-console.log(props.activeStage)
-
   return (
     <>
       <h3>Session List</h3>
-      <ul>
-        {props.thisRunData['stages'][props.activeStage].map((session, index) =>
-          <li key={session.sessionUid}>{session.startTime}</li>
+      <table>
+        <tbody>
+        {props.thisRunData['stages'][props.thisStage].map((session, index) =>
+          <tr key={session.sessionUid}>
+            <td>{session.startTime}</td>
+            <td>{session.endTime ? session.endTime : ''}</td>
+          </tr>
         )}
-      </ul>
+        </tbody>
+      </table>
     </>
   )
 }

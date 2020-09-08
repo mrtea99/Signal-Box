@@ -46,15 +46,13 @@ function RunEditor(props) {
               <button onClick={handleEditInfoClick}>Edit</button>
             </fieldset>
 
-            <fieldset>
-              <StageControl 
-                thisRunData={thisRunData}
-                runData={props.runData}
-                currentRunUid={props.currentRunUid}
-                updateRunData={props.updateRunData}
-              />
-              
-            </fieldset>
+            <StageControl 
+              thisRunData={thisRunData}
+              runData={props.runData}
+              currentRunUid={props.currentRunUid}
+              updateRunData={props.updateRunData}
+            />
+            
           </form>
         </>
       : <p>Choose run to edit</p>

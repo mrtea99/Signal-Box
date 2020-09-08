@@ -7,25 +7,25 @@ function Stage(props) {
   const [activeSession, setActiveSession] = React.useState(null)
 
   function addSession(sessionData) {
-    const sessionList = props.thisRunData['stages'][props.activeStage]
+    const sessionList = props.thisRunData['stages'][props.thisStage]
     const newSessionList = [...sessionList];
     newSessionList.push(sessionData)
 
-    props.updateRunData(props.currentRunUid, 'stages', props.activeStage, newSessionList)
+    props.updateRunData(props.currentRunUid, 'stages', props.thisStage, newSessionList)
   }
 
   function endSession() {
-    const sessionList = props.thisRunData['stages'][props.activeStage]
+    const sessionList = props.thisRunData['stages'][props.thisStage]
     const newSessionList = [...sessionList];
 
     const activeSessionObj = newSessionList.find(obj => obj.sessionUid === activeSession)
     activeSessionObj.endTime = Date.now();
 
-    props.updateRunData(props.currentRunUid, 'stages', props.activeStage, newSessionList)
+    props.updateRunData(props.currentRunUid, 'stages', props.thisStage, newSessionList)
   }
 
   return (
-    <>
+    <fieldset style={{display: props.thisStage === props.activeStage ? 'block' : 'none' }}>
       <legend>{props.stageName}</legend>
       <SessionControl 
         activeSession={activeSession}
@@ -34,10 +34,10 @@ function Stage(props) {
         endSession={endSession}
       />
       <SessionList 
-        activeStage={props.activeStage}
+        thisStage={props.thisStage}
         thisRunData={props.thisRunData}
       />
-      </>
+    </fieldset>
   )
 }
   

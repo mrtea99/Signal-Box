@@ -35,13 +35,18 @@ function StageControl(props) {
 
   return (
     <>
-      <Stage 
-        activeStage={activeStage}
-        stageName={stageNameArr[activeStage]}
-        thisRunData={props.thisRunData}
-        currentRunUid={props.currentRunUid}
-        updateRunData={props.updateRunData}
-      />
+      {stageNameArr.map((stage, index) => 
+        <Stage 
+          key={stage}
+          thisStage={index}
+          stageName={stage}
+          activeStage={activeStage}
+          thisRunData={props.thisRunData}
+          currentRunUid={props.currentRunUid}
+          updateRunData={props.updateRunData}
+        />
+      )}
+      
       { activeStage > 0 ?
         <button onClick={(e) => handleNavigation(activeStage - 1, e)}>Previous Stage</button>
       : <></> }
