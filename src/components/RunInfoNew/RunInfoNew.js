@@ -20,10 +20,20 @@ function RunInfoNew(props) {
         productName: productTemplateData.name,
         quantity: quantity
       },
-      prep: {
-        startTime: '',
-        finishTime: ''
-      }
+      // stages: {
+      //   prep: [],
+      //   manufacturing: [],
+      //   cooling: [],
+      //   packaging: [],
+      //   labeling: []
+      // }
+      stages: [
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
     };
     newData.push(newRun);
     props.setRunData(newData);

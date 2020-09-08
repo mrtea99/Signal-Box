@@ -1,42 +1,6 @@
 import React from 'react';
 import SessionControl from '../SessionControl/SessionControl.js';
 
-function FormItem(props) {
-  const itemValueSection = props.data[props.dataSection];
-  let itemValue = {}
-  if (itemValueSection !== undefined) {
-    itemValue = props.data[props.dataSection][props.dataKey]
-  }
-
-  if (itemValueSection === undefined && itemValue === undefined) {
-    return (<></>)
-  }
-
-  const viewField = (
-    <span>{itemValue}</span>
-  )
-  const editField = (
-    <input 
-      id={props.ident} 
-      name={props.ident} 
-      type={props.type} 
-      onChange={(e) => props.changeHandler(props.dataSection, props.dataKey, e)} 
-      value={itemValue} />
-  )
-
-  return (
-    <div>
-      <label htmlFor={props.ident}>{props.name}:</label>
-      { props.editable ? editField : viewField }
-    </div>
-  )
-}
-
-
-
-
-
-
 function RunEditor(props) {
   const [thisRunData, setThisRunData] = React.useState(props.runData.find(obj => obj.uid === props.currentRunUid));
   const [activeStage, setActiveStage] = React.useState(() => {
@@ -47,6 +11,7 @@ function RunEditor(props) {
       return 0
     }
   });
+  const [activeSession, setActiveSession] = React.useState(null)
 
   React.useEffect(() => {
     const newRunData = props.runData.find(obj => obj.uid === props.currentRunUid)
@@ -84,6 +49,24 @@ function RunEditor(props) {
     props.setModalActive(true)
   }
 
+  function addSession(sessionData) {
+    const sessionList = thisRunData['stages'][activeStage]
+    const newSessionList = [...sessionList];
+    newSessionList.push(sessionData)
+
+    props.updateRunData(props.currentRunUid, 'stages', activeStage, newSessionList)
+  }
+
+  function endSession() {
+    const sessionList = thisRunData['stages'][activeStage]
+    const newSessionList = [...sessionList];
+
+    const activeSessionObj = newSessionList.find(obj => obj.sessionUid === activeSession)
+    activeSessionObj.endTime = Date.now();
+
+    props.updateRunData(props.currentRunUid, 'stages', activeStage, newSessionList)
+  }
+
   return (
     <section>
       <h2>Run Editor:</h2>
@@ -107,6 +90,10 @@ function RunEditor(props) {
             <fieldset>
               <legend>{stageNameArr[activeStage]}</legend>
               <SessionControl 
+                activeSession = {activeSession}
+                setActiveSession = {setActiveSession}
+                addSession = {addSession}
+                endSession = {endSession}
               />
             </fieldset>
 
@@ -123,5 +110,43 @@ function RunEditor(props) {
     </section>
   )
 }
+
+
+
+function FormItem(props) {
+  const itemValueSection = props.data[props.dataSection];
+  let itemValue = {}
+  if (itemValueSection !== undefined) {
+    itemValue = props.data[props.dataSection][props.dataKey]
+  }
+
+  if (itemValueSection === undefined && itemValue === undefined) {
+    return (<></>)
+  }
+
+  const viewField = (
+    <span>{itemValue}</span>
+  )
+  const editField = (
+    <input 
+      id={props.ident} 
+      name={props.ident} 
+      type={props.type} 
+      onChange={(e) => props.changeHandler(props.dataSection, props.dataKey, e)} 
+      value={itemValue} />
+  )
+
+  return (
+    <div>
+      <label htmlFor={props.ident}>{props.name}:</label>
+      { props.editable ? editField : viewField }
+    </div>
+  )
+}
+
+
+
+
+
 
 export default RunEditor;
