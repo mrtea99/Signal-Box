@@ -1,6 +1,5 @@
 import React from 'react';
-import SessionControl from '../SessionControl/SessionControl.js';
-import SessionList from '../SessionList/SessionList.js';
+import Stage from '../Stage/Stage.js';
 
 
 function RunEditor(props) {
@@ -13,7 +12,6 @@ function RunEditor(props) {
       return 0
     }
   });
-  const [activeSession, setActiveSession] = React.useState(null)
 
   React.useEffect(() => {
     const newRunData = props.runData.find(obj => obj.uid === props.currentRunUid)
@@ -51,24 +49,6 @@ function RunEditor(props) {
     props.setModalActive(true)
   }
 
-  function addSession(sessionData) {
-    const sessionList = thisRunData['stages'][activeStage]
-    const newSessionList = [...sessionList];
-    newSessionList.push(sessionData)
-
-    props.updateRunData(props.currentRunUid, 'stages', activeStage, newSessionList)
-  }
-
-  function endSession() {
-    const sessionList = thisRunData['stages'][activeStage]
-    const newSessionList = [...sessionList];
-
-    const activeSessionObj = newSessionList.find(obj => obj.sessionUid === activeSession)
-    activeSessionObj.endTime = Date.now();
-
-    props.updateRunData(props.currentRunUid, 'stages', activeStage, newSessionList)
-  }
-
   return (
     <section>
       <h2>Run Editor:</h2>
@@ -90,17 +70,14 @@ function RunEditor(props) {
             </fieldset>
 
             <fieldset>
-              <legend>{stageNameArr[activeStage]}</legend>
-              <SessionControl 
-                activeSession={activeSession}
-                setActiveSession={setActiveSession}
-                addSession={addSession}
-                endSession={endSession}
-              />
-              <SessionList 
-                activeStage={activeStage}
+              <Stage 
                 thisRunData={thisRunData}
+                activeStage={activeStage}
+                currentRunUid={props.currentRunUid}
+                stageNameArr={stageNameArr}
+                updateRunData={props.updateRunData}
               />
+              
             </fieldset>
 
             { activeStage > 0 ?
