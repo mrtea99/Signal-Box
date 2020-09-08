@@ -38,9 +38,9 @@ function FormItem(props) {
 
 function RunEditor(props) {
   const [thisRunData, setThisRunData] = React.useState(props.runData.find(obj => obj.uid === props.currentRunUid));
-  const [activeStep, setActiveStep] = React.useState(() => {
+  const [activeStage, setActiveStage] = React.useState(() => {
     if (thisRunData !== undefined) {
-      return thisRunData.activeStep
+      return thisRunData.activeStage
     }
     else {
       return 0
@@ -52,42 +52,42 @@ function RunEditor(props) {
 
     if (newRunData !== undefined) {
       setThisRunData(newRunData);
-      setActiveStep(newRunData.activeStep)
+      setActiveStage(newRunData.activeStage)
     }
     else {
       setThisRunData(null)
-      setActiveStep(null)
+      setActiveStage(null)
     }
   }, [props.runData, props.currentRunUid]);
 
-  const stepPrep = (
+  const stagePrep = (
     <fieldset>
       <legend>Preparation</legend>
       <FormItem editable={true} name="Start Time" ident="prep-start" dataSection="prep" dataKey="startTime" type="datetime-local" data={thisRunData} changeHandler={handleChange} />
       <FormItem editable={true} name="Finish Time" ident="prep-end" dataSection="prep" dataKey="finishTime" type="datetime-local" data={thisRunData} changeHandler={handleChange} />
     </fieldset>
   )
-  const stepMan = (
+  const stageMan = (
     <fieldset>
       <legend>Manufacturing</legend>
     </fieldset>
   )
-  const stepCool = (
+  const stageCool = (
     <fieldset>
       <legend>Cooling</legend>
     </fieldset>
   )
-  const stepPack = (
+  const stagePack = (
     <fieldset>
       <legend>Packaging</legend>
     </fieldset>
   )
-  const stepLabel = (
+  const stageLabel = (
     <fieldset>
       <legend>Labeling</legend>
     </fieldset>
   )
-  const stepArr = [stepPrep, stepMan, stepCool, stepPack, stepLabel]
+  const stageArr = [stagePrep, stageMan, stageCool, stagePack, stageLabel]
 
   function handleChange(dataSection, dataKey, e) {
     props.updateRunData(props.currentRunUid, dataSection, dataKey, e.target.value)
@@ -96,11 +96,11 @@ function RunEditor(props) {
   function handleNavigation(dir, e) {
     e.preventDefault()
 
-    // thisRunData.activeStep = dir;
+    // thisRunData.activeStage = dir;
 
-    if (dir !== -1 && dir < stepArr.length) {
-      setActiveStep(dir)
-      props.updateRunData(props.currentRunUid, null, 'activeStep', dir)
+    if (dir !== -1 && dir < stageArr.length) {
+      setActiveStage(dir)
+      props.updateRunData(props.currentRunUid, null, 'activeStage', dir)
     }
   }
 
@@ -129,12 +129,12 @@ function RunEditor(props) {
               <FormItem editable={false} name="Quantity" ident="quantity" dataSection="productInfo" dataKey="quantity" type="number" data={thisRunData} changeHandler={handleChange} />
               <button onClick={handleEditInfoClick}>Edit</button>
             </fieldset>
-            {stepArr[activeStep]}
-            { activeStep > 0 ?
-              <button onClick={(e) => handleNavigation(activeStep - 1, e)}>Previous Step</button>
+            {stageArr[activeStage]}
+            { activeStage > 0 ?
+              <button onClick={(e) => handleNavigation(activeStage - 1, e)}>Previous Stage</button>
             : <></> }
-            { activeStep < stepArr.length - 1 ?
-              <button onClick={(e) => handleNavigation(activeStep + 1, e)}>Next Step</button>
+            { activeStage < stageArr.length - 1 ?
+              <button onClick={(e) => handleNavigation(activeStage + 1, e)}>Next Stage</button>
             : <></> }
           </form>
         </>

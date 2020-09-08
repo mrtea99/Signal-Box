@@ -12,7 +12,7 @@ function App() {
 
   const [runData, setRunData] = React.useState(savedRunData)
   const [currentRunUid, setCurrentRunUid] = React.useState(null)
-  // const [activeStep, setActiveStep] = React.useState(0);
+  // const [activeStage, setActiveStage] = React.useState(0);
 
   const [modalNewActive, setModalNewActive] = React.useState(false)
   const [modalChangeActive, setModalChangeActive] = React.useState(false)
@@ -45,8 +45,8 @@ function App() {
     setRunData(updatedRunData);
   }
 
-  function setActiveStep(activeStep) {
-    updateRunData(currentRunUid, null, 'activeStep', activeStep)
+  function setActiveStage(activeStage) {
+    updateRunData(currentRunUid, null, 'activeStage', activeStage)
   }
 
   function handleAddClick(e) {
@@ -63,7 +63,7 @@ function App() {
           runData={runData}
           setRunData={setRunData}
           setCurrentRunUid={setCurrentRunUid}
-          setActiveStep={setActiveStep}
+          setActiveStage={setActiveStage}
           deleteRun={deleteRun}
         />
         <button onClick={handleAddClick}>New Run +</button>
@@ -79,7 +79,7 @@ function App() {
           runData={runData}
           currentRunUid={currentRunUid}
           setCurrentRunUid={setCurrentRunUid}
-          setActiveStep={setActiveStep}
+          setActiveStage={setActiveStage}
           updateRunData={updateRunData}
           modalActive={modalChangeActive}
           setModalActive={setModalChangeActive}

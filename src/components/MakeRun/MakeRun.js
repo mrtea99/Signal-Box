@@ -21,7 +21,7 @@ function MakeRun(props) {
     //Build new run object here
     const newRun = {
       uid: Date.now(),
-      activeStep: 0,
+      activeStage: 0,
       runInfo: {
         runId: new Date().getUTCMilliseconds()
       },
