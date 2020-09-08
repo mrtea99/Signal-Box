@@ -1,5 +1,7 @@
 import React from 'react';
 import SessionControl from '../SessionControl/SessionControl.js';
+import SessionList from '../SessionList/SessionList.js';
+
 
 function RunEditor(props) {
   const [thisRunData, setThisRunData] = React.useState(props.runData.find(obj => obj.uid === props.currentRunUid));
@@ -90,10 +92,14 @@ function RunEditor(props) {
             <fieldset>
               <legend>{stageNameArr[activeStage]}</legend>
               <SessionControl 
-                activeSession = {activeSession}
-                setActiveSession = {setActiveSession}
-                addSession = {addSession}
-                endSession = {endSession}
+                activeSession={activeSession}
+                setActiveSession={setActiveSession}
+                addSession={addSession}
+                endSession={endSession}
+              />
+              <SessionList 
+                activeStage={activeStage}
+                thisRunData={thisRunData}
               />
             </fieldset>
 
