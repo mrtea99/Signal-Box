@@ -20,7 +20,18 @@ function Stage(props) {
 
   React.useEffect(() => {
     setSessionList(props.thisRunData['stages'][props.thisStage])
-  },[props.thisRunData, props.thisStage, activeSession])
+    setActiveSession(() => {
+      if (sessionList.length) {
+        const lastSession = sessionList[sessionList.length - 1];
+        if (lastSession.endTime === undefined) {
+          return lastSession.sessionUid
+        }
+        else {
+          return null
+        }
+      }
+    })
+  },[props.thisRunData, props.thisStage, activeSession, sessionList])
 
   function addSession(sessionData, newSessionUid) {
     const newSessionList = [...sessionList];
@@ -48,7 +59,6 @@ function Stage(props) {
       <legend>{props.stageName}</legend>
       <SessionControl 
         activeSession={activeSession}
-        setActiveSession={setActiveSession}
         addSession={addSession}
         endSession={endSession}
       />

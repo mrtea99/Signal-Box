@@ -29,13 +29,13 @@ function StageControl(props) {
     props.updateRunData(props.currentRunUid, null, 'activeStage', newStageIndex)
   }
 
-  function handleNavigation(dir, e) {
-    e.preventDefault()
+  // function handleNavigation(dir, e) {
+  //   e.preventDefault()
 
-    if (dir !== -1 && dir < stageNameArr.length) {
-      stageChange(dir)
-    }
-  }
+  //   if (dir !== -1 && dir < stageNameArr.length) {
+  //     stageChange(dir)
+  //   }
+  // }
 
   function handleNavList(stageIndex, e) {
     e.preventDefault()
@@ -48,7 +48,7 @@ function StageControl(props) {
 
       <ul>
         {stageNameArr.map((stage, index) => 
-          <li key={stage}>
+          <li key={props.currentRunUid + stage}>
             <button style={ {opacity: activeStage === index ? 1 : 0.8} } onClick={(e) => handleNavList(index, e)}>{stage}</button>
           </li>
         )}
@@ -56,7 +56,7 @@ function StageControl(props) {
 
       {stageNameArr.map((stage, index) => 
         <Stage 
-          key={stage}
+          key={props.currentRunUid + stage}
           thisStage={index}
           stageName={stage}
           activeStage={activeStage}
@@ -66,12 +66,12 @@ function StageControl(props) {
         />
       )}
       
-      { activeStage > 0 ?
+      {/* { activeStage > 0 ?
         <button onClick={(e) => handleNavigation(activeStage - 1, e)}>Previous Stage</button>
       : <></> }
       { activeStage < stageNameArr.length - 1 ?
         <button onClick={(e) => handleNavigation(activeStage + 1, e)}>Next Stage</button>
-      : <></> }
+      : <></> } */}
     </>
   )
 }
