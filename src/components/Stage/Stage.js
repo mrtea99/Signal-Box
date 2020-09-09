@@ -4,10 +4,21 @@ import SessionList from '../SessionList/SessionList.js';
 
 
 function Stage(props) {
-  const [activeSession, setActiveSession] = React.useState(null)
+  //Add initial status by checking if there is an incomplete session for this stage
+  const [sessionList, setsessionList] = React.useState(props.thisRunData['stages'][props.thisStage])
+  const [activeSession, setActiveSession] = React.useState(() => {
+    if (sessionList.length) {
+      const lastSession = sessionList[sessionList.length - 1];
+      if (lastSession.endTime === undefined) {
+        return lastSession.sessionUid
+      }
+      else {
+        return null
+      }
+    }
+  })
 
   function addSession(sessionData) {
-    const sessionList = props.thisRunData['stages'][props.thisStage]
     const newSessionList = [...sessionList];
     newSessionList.push(sessionData)
 

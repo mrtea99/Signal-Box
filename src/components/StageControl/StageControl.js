@@ -35,6 +35,9 @@ function StageControl(props) {
 
   return (
     <>
+
+        {/* Stage nav */}
+
       {stageNameArr.map((stage, index) => 
         <Stage 
           key={stage}
