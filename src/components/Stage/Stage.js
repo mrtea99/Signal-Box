@@ -5,7 +5,7 @@ import SessionList from '../SessionList/SessionList.js';
 
 function Stage(props) {
   //Add initial status by checking if there is an incomplete session for this stage
-  const [sessionList, setsessionList] = React.useState(props.thisRunData['stages'][props.thisStage])
+  const [sessionList, setSessionList] = React.useState(props.thisRunData['stages'][props.thisStage])
   const [activeSession, setActiveSession] = React.useState(() => {
     if (sessionList.length) {
       const lastSession = sessionList[sessionList.length - 1];
@@ -18,11 +18,17 @@ function Stage(props) {
     }
   })
 
-  function addSession(sessionData) {
+  React.useEffect(() => {
+    setSessionList(props.thisRunData['stages'][props.thisStage])
+  },[props.thisRunData, props.thisStage, activeSession])
+
+  function addSession(sessionData, newSessionUid) {
     const newSessionList = [...sessionList];
     newSessionList.push(sessionData)
 
     props.updateRunData(props.currentRunUid, 'stages', props.thisStage, newSessionList)
+  
+    setActiveSession(newSessionUid);
   }
 
   function endSession() {
@@ -33,6 +39,8 @@ function Stage(props) {
     activeSessionObj.endTime = Date.now();
 
     props.updateRunData(props.currentRunUid, 'stages', props.thisStage, newSessionList)
+  
+    setActiveSession(null);
   }
 
   return (

@@ -12,17 +12,13 @@ function SessionControl(props) {
       startTime: Date.now()
     }
 
-    props.addSession(newSession)
-
-    props.setActiveSession(newSessionUid);
+    props.addSession(newSession, newSessionUid)
   }
 
   function handleEndClick(e) {
     e.preventDefault();
 
     props.endSession();
-
-    props.setActiveSession(null);
   }
 
   return (
