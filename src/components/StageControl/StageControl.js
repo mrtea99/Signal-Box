@@ -24,19 +24,35 @@ function StageControl(props) {
 
   const stageNameArr = ['Preparation', 'Manufacturing', 'Cooling', 'Packaging', 'Labeling']
 
+  function stageChange(newStageIndex) {
+    setActiveStage(newStageIndex)
+    props.updateRunData(props.currentRunUid, null, 'activeStage', newStageIndex)
+  }
+
   function handleNavigation(dir, e) {
     e.preventDefault()
 
     if (dir !== -1 && dir < stageNameArr.length) {
-      setActiveStage(dir)
-      props.updateRunData(props.currentRunUid, null, 'activeStage', dir)
+      stageChange(dir)
     }
+  }
+
+  function handleNavList(stageIndex, e) {
+    e.preventDefault()
+
+    stageChange(stageIndex)
   }
 
   return (
     <>
 
-        {/* Stage nav */}
+      <ul>
+        {stageNameArr.map((stage, index) => 
+          <li key={stage}>
+            <button style={ {opacity: activeStage === index ? 1 : 0.8} } onClick={(e) => handleNavList(index, e)}>{stage}</button>
+          </li>
+        )}
+      </ul>
 
       {stageNameArr.map((stage, index) => 
         <Stage 
