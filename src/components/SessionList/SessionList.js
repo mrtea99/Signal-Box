@@ -5,11 +5,17 @@ function SessionList(props) {
     <>
       <h3>Session List</h3>
       <table>
+        <thead>
+          <tr>
+            <th>Start Time</th>
+            <th>Finish Time</th>
+          </tr>
+        </thead>
         <tbody>
         {props.thisRunData['stages'][props.thisStage].map((session, index) =>
           <tr key={session.sessionUid}>
-            <td>{session.startTime}</td>
-            <td>{session.endTime ? session.endTime : ''}</td>
+            <td>{new Date(session.startTime).toISOString()}</td>
+            <td>{session.endTime ? new Date(session.endTime).toISOString() : ''}</td>
           </tr>
         )}
         </tbody>
