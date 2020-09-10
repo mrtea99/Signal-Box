@@ -1,6 +1,7 @@
 @import-normalize;
 
 body {
-  background-color: black;
+  background-color: #575253;
   color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
