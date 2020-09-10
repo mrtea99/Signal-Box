@@ -6,6 +6,8 @@ import RunList from './components/RunList/RunList.js';
 import RunEditor from './components/RunEditor/RunEditor.js';
 import RunInfoNew from './components/RunInfoNew/RunInfoNew.js';
 import RunInfoChange from './components/RunInfoChange/RunInfoChange.js';
+import Button from './components/Button/Button.js';
+
 
 function App() {
   const savedRunData = () => JSON.parse(window.localStorage.getItem('runData')) || []
@@ -65,7 +67,7 @@ function App() {
           setActiveStage={setActiveStage}
           deleteRun={deleteRun}
         />
-        <button onClick={handleAddClick}>New Run +</button>
+        <Button text="New Run +" clickHandler={handleAddClick} />
         <RunInfoNew 
           active={modalNewActive}
           setActive={setModalNewActive}
