@@ -20,12 +20,12 @@ function RunList(props) {
       <table className={styles.container}>
         <thead className={styles.header}>
           <tr>
-            <th>Run ID</th>
-            <th>Product</th>
-            <th>Stage</th>
-            <th>Batches</th>
-            <th></th>
-            <th></th>
+            <th className={styles.headerItem}>Run ID</th>
+            <th className={styles.headerItem}>Product</th>
+            <th className={styles.headerItem}>Stage</th>
+            <th className={styles.headerItem}>Batches</th>
+            <th className={styles.headerItem}></th>
+            <th className={styles.headerItem}></th>
           </tr>
         </thead>
         <tbody>
