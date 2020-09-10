@@ -1,10 +1,12 @@
+@import '../../settings.css';
+
 .container {
   border-collapse: collapse;
   width: 100%;
 }
 
 .header {
-  background-color: #eb257b;
+  background-color: var(--color-accent);
 }
 
 .headerItem {
