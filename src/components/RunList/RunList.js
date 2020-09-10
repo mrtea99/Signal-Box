@@ -1,4 +1,5 @@
 import React from 'react';
+import styles from './RunList.module.css';
 
 function RunList(props) {
 
@@ -16,8 +17,8 @@ function RunList(props) {
   return (
     <>
       <h2>Run List:</h2>
-      <table>
-        <thead>
+      <table className={styles.container}>
+        <thead className={styles.header}>
           <tr>
             <th>Run ID</th>
             <th>Product</th>
