@@ -1,0 +1,6 @@
+.appWrap {
+  overflow: auto;
+  min-height: 100vh;
+  max-width: var(--break-extra);
+  margin: 0 auto;
+}

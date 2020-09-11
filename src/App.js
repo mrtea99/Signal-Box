@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 
-// import MakeRun from './components/MakeRun/MakeRun.js';
+import styles from './App.module.css';
+
 import RunList from './components/RunList/RunList.js';
 import RunEditor from './components/RunEditor/RunEditor.js';
 import RunInfoNew from './components/RunInfoNew/RunInfoNew.js';
@@ -58,7 +59,7 @@ function App() {
 
 
   return (
-    <main className="app-wrap">
+    <main className={styles.appWrap}>
       <section>
         <RunList
           runData={runData}

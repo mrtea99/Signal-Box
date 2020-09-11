@@ -10,6 +10,11 @@ body {
   color: var(--color-text);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: 16px;
+  margin: 0;
+}
+
+#root {
+  min-height: 100vh;
 }
 
 *, :after, :before {
