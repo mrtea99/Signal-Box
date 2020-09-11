@@ -13,3 +13,11 @@
   font-weight: lighter;
   font-size: 0.7em;
 }
+
+.itemRow {
+  background-color: var(--color-fg);
+}
+
+.itemTitle {
+  font-weight: bold;
+}

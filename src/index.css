@@ -1,7 +1,17 @@
 @import-normalize;
+@import './settings.css';
+
+html {
+  box-sizing: border-box;
+}
 
 body {
   background-color: #575253;
-  color: white;
+  color: var(--color-text);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 16px;
+}
+
+*, :after, :before {
+  box-sizing: inherit;
 }

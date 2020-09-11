@@ -3,13 +3,12 @@
 .button {
   display: inline-block;
   border: none;
-  padding: 1rem 2rem;
+  padding: 1rem;
   margin: 0;
   text-decoration: none;
   background-color: var(--color-accent);
-  color: #ffffff;
+  color: var(--color-text);
   font-family: sans-serif;
-  font-size: 1rem;
   cursor: pointer;
   text-align: center;
   transition: background-color 250ms ease-in-out, 
@@ -18,11 +17,13 @@
   -moz-appearance: none;
 
   text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.125rem;
 }
 
 .button:hover,
 .button:focus {
-  background: #0053ba;
+  background: var(--color-fg);
 }
 
 .button:focus {

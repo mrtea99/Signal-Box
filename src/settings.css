@@ -1,3 +1,27 @@
 :root {
-  --color-accent: #eb257b;
+  /* Colours */
+  --color-white: #ffffff;
+  --color-black: #000000;
+
+  --color-grey-dark: #575253;
+  --color-gray-light: #5d5758;
+
+  --color-pink-bright: #eb257b;
+
+  /* Color reassignments */
+  --color-text: var(--color-white);
+
+  --color-accent: var(--color-pink-bright);
+
+  --color-bg: var(--color-grey-dark);
+  --color-fg: var(--color-gray-light);
+
+  /* Sizes */
+  --size-touch-min: 2.7rem;
+
+  /* Break points */
+  --break-extra: 1280px;
+  --break-laptop: 1024px;
+  --break-tablet: 768px;
+  --break-phone: 
 }

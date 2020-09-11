@@ -4,9 +4,9 @@ import styles from './RunList.module.css';
 function RunList(props) {
 
   const runItems = props.runData.map((run, index) =>
-    <tr key={run.uid}>
+    <tr key={run.uid} className={styles.itemRow}>
       <td>{run.runInfo.runId}</td>
-      <td>{run.productInfo.productName}</td>
+      <td className={styles.itemTitle}>{run.productInfo.productName}</td>
       <td>{run.activeStage}</td>
       <td>{run.productInfo.quantity}</td>
       <td><button onClick={(e) => props.setCurrentRunUid(run.uid)}>Edit</button></td>
