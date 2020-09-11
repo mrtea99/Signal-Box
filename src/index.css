@@ -8,7 +8,7 @@ html {
 body {
   background-color: #575253;
   color: var(--color-text);
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: var(--font-default);
   font-size: 16px;
   margin: 0;
 }

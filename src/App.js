@@ -61,6 +61,7 @@ function App() {
   return (
     <main className={styles.appWrap}>
       <section>
+        <Button text="New Run +" clickHandler={handleAddClick} />
         <RunList
           runData={runData}
           setRunData={setRunData}
@@ -68,7 +69,6 @@ function App() {
           setActiveStage={setActiveStage}
           deleteRun={deleteRun}
         />
-        <Button text="New Run +" clickHandler={handleAddClick} />
         <RunInfoNew 
           active={modalNewActive}
           setActive={setModalNewActive}

@@ -16,6 +16,9 @@
   --color-bg: var(--color-grey-dark);
   --color-fg: var(--color-gray-light);
 
+  /* Fonts */
+  --font-default: 'Myriad Pro', Verdana, Geneva, Tahoma, sans-serif;
+
   /* Sizes */
   --size-touch-min: 2.7rem;
 
