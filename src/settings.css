@@ -10,6 +10,7 @@
 
   /* Color reassignments */
   --color-text: var(--color-white);
+  --color-text-alt: var(--color-grey-dark);
 
   --color-accent: var(--color-pink-bright);
 
@@ -18,6 +19,11 @@
 
   /* Fonts */
   --font-default: 'Myriad Pro', Verdana, Geneva, Tahoma, sans-serif;
+
+  /* 16pt */
+  --text-normal: 1rem;
+  /* 18pt */
+  --text-larger: 1.125rem;
 
   /* Sizes */
   --size-touch-min: 2.7rem;

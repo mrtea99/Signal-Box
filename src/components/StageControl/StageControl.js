@@ -1,6 +1,8 @@
 import React from 'react';
 import Stage from '../Stage/Stage.js';
 
+import styles from './StageControl.module.css';
+
 function StageControl(props) {
   const [activeStage, setActiveStage] = React.useState(() => {
     if (props.thisRunData !== undefined) {
@@ -46,10 +48,10 @@ function StageControl(props) {
   return (
     <>
 
-      <ul>
+      <ul className={styles.progBar}>
         {stageNameArr.map((stage, index) => 
-          <li key={props.currentRunUid + stage}>
-            <button style={ {opacity: activeStage === index ? 1 : 0.8} } onClick={(e) => handleNavList(index, e)}>{stage}</button>
+          <li key={props.currentRunUid + stage} className={styles.progItem}>
+            <button style={ {opacity: activeStage === index ? 1 : 0.8} } className={styles.progBtn} onClick={(e) => handleNavList(index, e)}>{stage}</button>
           </li>
         )}
       </ul>
