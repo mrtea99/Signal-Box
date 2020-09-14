@@ -55,8 +55,8 @@ function Stage(props) {
   }
 
   return (
-    <fieldset style={{display: props.thisStage === props.activeStage ? 'block' : 'none' }}>
-      <legend>{props.stageName}</legend>
+    <section style={{display: props.thisStage === props.activeStage ? 'block' : 'none' }}>
+      <h2>{props.stageName}</h2>
       <SessionControl 
         activeSession={activeSession}
         addSession={addSession}
@@ -66,7 +66,7 @@ function Stage(props) {
         thisStage={props.thisStage}
         thisRunData={props.thisRunData}
       />
-    </fieldset>
+    </section>
   )
 }
   

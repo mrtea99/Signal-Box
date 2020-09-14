@@ -26,9 +26,10 @@ function SessionControl(props) {
       <h3>Session Control</h3>
 
       <h4>Session: { props.activeSession !== null ? props.activeSession : '' }</h4>
-
-      <button disabled={props.activeSession ? 'disabled' : '' } onClick={handleNewClick}>Start New Session</button>
-      <button disabled={props.activeSession ? '' : 'disabled' } onClick={handleEndClick}>End Session</button>
+      <form>
+        <button disabled={props.activeSession ? 'disabled' : '' } onClick={handleNewClick}>Start New Session</button>
+        <button disabled={props.activeSession ? '' : 'disabled' } onClick={handleEndClick}>End Session</button>
+      </form>
     </>
   )
 }

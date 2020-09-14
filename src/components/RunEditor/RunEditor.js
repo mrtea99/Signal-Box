@@ -33,18 +33,18 @@ function RunEditor(props) {
         <>
           <button onClick={() => props.setCurrentRunUid(null)}>Clear Current Run</button>
           <pre>{JSON.stringify(thisRunData)}</pre>
-          <form>
-            <fieldset>
-              <legend>Product Info</legend>
+          <div>
+            <section>
+              <h2>Product Info</h2>
               <FormItem editable={false} name="Product" ident="product-name" dataSection="productInfo" dataKey="productName" type="text" data={thisRunData} changeHandler={handleChange} />
-              <FormItem editable={true} name="Price" ident="price" dataSection="productInfo" dataKey="price" type="number" data={thisRunData} changeHandler={handleChange} />
-            </fieldset>
-            <fieldset>
-              <legend>Run Info</legend>
-              <FormItem editable={true} name="Run ID" ident="runid" dataSection="runInfo" dataKey="runId" type="number" data={thisRunData} changeHandler={handleChange} />
+              <FormItem editable={false} name="Price" ident="price" dataSection="productInfo" dataKey="price" type="number" data={thisRunData} changeHandler={handleChange} />
+            </section>
+            <section>
+              <h2>Run Info</h2>
+              <FormItem editable={false} name="Run ID" ident="runid" dataSection="runInfo" dataKey="runId" type="number" data={thisRunData} changeHandler={handleChange} />
               <FormItem editable={false} name="Quantity" ident="quantity" dataSection="productInfo" dataKey="quantity" type="number" data={thisRunData} changeHandler={handleChange} />
               <button onClick={handleEditInfoClick}>Edit</button>
-            </fieldset>
+            </section>
 
             <StageControl 
               thisRunData={thisRunData}
@@ -53,7 +53,7 @@ function RunEditor(props) {
               updateRunData={props.updateRunData}
             />
             
-          </form>
+          </div>
         </>
       : <p>Choose run to edit</p>
       }
