@@ -9,6 +9,7 @@ function SessionList(props) {
           <tr>
             <th>Start Time</th>
             <th>Finish Time</th>
+            <th>Note</th>
           </tr>
         </thead>
         <tbody>
@@ -16,6 +17,7 @@ function SessionList(props) {
           <tr key={session.sessionUid}>
             <td>{new Date(session.startTime).toISOString()}</td>
             <td>{session.endTime ? new Date(session.endTime).toISOString() : ''}</td>
+            <td>{session.notes}</td>
           </tr>
         )}
         </tbody>
