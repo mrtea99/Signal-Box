@@ -7,6 +7,7 @@ function SessionList(props) {
       <table>
         <thead>
           <tr>
+            <th>Activity</th>
             <th>Start Time</th>
             <th>Finish Time</th>
             <th>Note</th>
@@ -15,6 +16,7 @@ function SessionList(props) {
         <tbody>
         {props.thisRunData['stages'][props.thisStage].map((session, index) =>
           <tr key={session.sessionUid}>
+            <td>{session.activity}</td>
             <td>{new Date(session.startTime).toISOString()}</td>
             <td>{session.endTime ? new Date(session.endTime).toISOString() : ''}</td>
             <td>{session.notes}</td>

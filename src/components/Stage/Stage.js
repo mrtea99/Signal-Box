@@ -17,6 +17,7 @@ function Stage(props) {
       }
     }
   })
+  const [activeSessionData, setActiveSessionData] = React.useState(sessionList.find(obj => obj.sessionUid === activeSession));
 
   React.useEffect(() => {
     setSessionList(props.thisRunData['stages'][props.thisStage])
@@ -33,17 +34,20 @@ function Stage(props) {
     })
   },[props.thisRunData, props.thisStage, activeSession, sessionList])
 
+  React.useEffect(() => {
+    setActiveSessionData(sessionList.find(obj => obj.sessionUid === activeSession));
+  }, [activeSession, sessionList, props.currentRunUid])
+
   function addSession(sessionData, newSessionUid) {
     const newSessionList = [...sessionList];
     newSessionList.push(sessionData)
 
     props.updateRunData(props.currentRunUid, 'stages', props.thisStage, newSessionList)
-  
+    
     setActiveSession(newSessionUid);
   }
 
   function endSession(extraData) {
-    const sessionList = props.thisRunData['stages'][props.thisStage]
     let newSessionList = [...sessionList];
 
     const activeSessionObj = newSessionList.find(obj => obj.sessionUid === activeSession)
@@ -66,6 +70,7 @@ function Stage(props) {
         addSession={addSession}
         endSession={endSession}
         thisStage={props.thisStage}
+        activeSessionData={activeSessionData}
       />
       <SessionList 
         thisStage={props.thisStage}
