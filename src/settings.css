@@ -4,7 +4,7 @@
   --color-black: #000000;
 
   --color-grey-dark: #575253;
-  --color-gray-light: #5d5758;
+  --color-grey-light: #5d5758;
 
   --color-pink-bright: #eb257b;
 
@@ -15,7 +15,7 @@
   --color-accent: var(--color-pink-bright);
 
   --color-bg: var(--color-grey-dark);
-  --color-fg: var(--color-gray-light);
+  --color-fg: var(--color-grey-light);
 
   /* Fonts */
   --font-default: 'Myriad Pro', Verdana, Geneva, Tahoma, sans-serif;

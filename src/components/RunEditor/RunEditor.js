@@ -1,5 +1,6 @@
 import React from 'react';
 import StageControl from '../StageControl/StageControl.js';
+import Button from '../Button/Button.js';
 
 
 function RunEditor(props) {
@@ -31,7 +32,7 @@ function RunEditor(props) {
       <h2>Run Editor:</h2>
       {thisRunData ?
         <>
-          <button onClick={() => props.setCurrentRunUid(null)}>Clear Current Run</button>
+          <Button text="< Exit" clickHandler={() => props.setCurrentRunUid(null)} />
           <pre>{JSON.stringify(thisRunData)}</pre>
           <div>
             <section>
@@ -43,7 +44,7 @@ function RunEditor(props) {
               <h2>Run Info</h2>
               <FormItem editable={false} name="Run ID" ident="runid" dataSection="runInfo" dataKey="runId" type="number" data={thisRunData} changeHandler={handleChange} />
               <FormItem editable={false} name="Quantity" ident="quantity" dataSection="productInfo" dataKey="quantity" type="number" data={thisRunData} changeHandler={handleChange} />
-              <button onClick={handleEditInfoClick}>Edit</button>
+              <Button text="Run info" clickHandler={handleEditInfoClick} />
             </section>
 
             <StageControl 

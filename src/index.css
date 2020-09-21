@@ -6,7 +6,7 @@ html {
 }
 
 body {
-  background-color: #575253;
+  background-color: var(--color-grey-dark);
   color: var(--color-text);
   font-family: var(--font-default);
   font-size: 16px;

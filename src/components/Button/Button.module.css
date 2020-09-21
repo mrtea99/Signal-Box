@@ -3,7 +3,7 @@
 .button {
   display: inline-block;
   border: none;
-  padding: 1rem;
+  padding: 0.65rem;
   margin: 0;
   text-decoration: none;
   background-color: var(--color-accent);

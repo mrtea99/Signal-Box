@@ -59,9 +59,16 @@ function App() {
 
 
   return (
-    <main className={styles.appWrap}>
+    <>
+    <header className={styles.siteHeader}></header>
+    <main className={styles.pageContent}>
       <section>
-        <Button text="New Run +" clickHandler={handleAddClick} />
+        <menu className={styles.listControls}>
+          <section className={styles.filterControls}></section>
+          <section className={styles.otherControls}>
+            <Button text="New Run +" clickHandler={handleAddClick} />
+          </section>
+        </menu>
         <RunList
           runData={runData}
           setRunData={setRunData}
@@ -95,6 +102,7 @@ function App() {
         />
       </section>
     </main>
+    </>
   );
 }
 
