@@ -47,18 +47,26 @@ function Stage(props) {
     setActiveSession(newSessionUid);
   }
 
-  function endSession(extraData) {
+  function updateSession(extraData) {
     let newSessionList = [...sessionList];
 
     const activeSessionObj = newSessionList.find(obj => obj.sessionUid === activeSession)
-    activeSessionObj.endTime = Date.now();
-
-    if (extraData) {
-      Object.assign(activeSessionObj, extraData)
-    }
+    
+    Object.assign(activeSessionObj, extraData)
 
     props.updateRunData(props.currentRunUid, 'stages', props.thisStage, newSessionList)
-  
+  }
+
+  function endSession(extraData) {
+    const endTime = { endTime: Date.now() }
+
+    if (extraData) {
+      Object.assign(extraData, endTime)
+      updateSession(extraData)
+    } else {
+      updateSession(endTime)
+    }
+
     setActiveSession(null);
   }
 
@@ -68,6 +76,7 @@ function Stage(props) {
       <SessionControl 
         activeSession={activeSession}
         addSession={addSession}
+        updateSession={updateSession}
         endSession={endSession}
         thisStage={props.thisStage}
         activeSessionData={activeSessionData}

@@ -35,7 +35,7 @@ function SessionControl(props) {
     // Room humidity (manu and cool)
   // After Statuses
     // Notes (all)
-    const [noteData, setNoteData] = React.useState('');
+    const [noteData, setNoteData] = React.useState(props.activeSessionData === undefined ? '' : props.activeSessionData['notes']);
     // QA check (manu, pack, label)
     // Quantity made (manu, pack, label)
     // Number Defective (manu, pack, label)
@@ -69,6 +69,11 @@ function SessionControl(props) {
     setActivityData(activityList[props.thisStage][0]);
   }
 
+  function handleNoteChange(e) {
+    setNoteData(e.target.value);
+    props.updateSession({notes: e.target.value})
+  }
+
   return (
     <>
       <h3>Session Control</h3>
@@ -91,7 +96,8 @@ function SessionControl(props) {
         <form>
           <div>
             <label htmlFor={"sess-notes-step-" + props.thisStage}>Notes:</label>
-            <textarea id={"sess-notes-step-" + props.thisStage} onChange={(e) => setNoteData(e.target.value)}></textarea>
+            {/* <textarea id={"sess-notes-step-" + props.thisStage} onChange={(e) => setNoteData(e.target.value)}></textarea> */}
+            <textarea id={"sess-notes-step-" + props.thisStage} onChange={(e) => handleNoteChange(e)} value={noteData}></textarea>
           </div>
           <button onClick={handleEndClick}>End Session</button>
         </form>
