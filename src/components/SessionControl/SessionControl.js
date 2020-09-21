@@ -96,7 +96,6 @@ function SessionControl(props) {
         <form>
           <div>
             <label htmlFor={"sess-notes-step-" + props.thisStage}>Notes:</label>
-            {/* <textarea id={"sess-notes-step-" + props.thisStage} onChange={(e) => setNoteData(e.target.value)}></textarea> */}
             <textarea id={"sess-notes-step-" + props.thisStage} onChange={(e) => handleNoteChange(e)} value={noteData}></textarea>
           </div>
           <button onClick={handleEndClick}>End Session</button>
@@ -121,9 +120,6 @@ function SessionControl(props) {
         </form>
       </>
       }
-      {/* <button disabled={props.activeSession ? 'disabled' : '' } onClick={handleNewClick}>Start New Session</button>
-      <button disabled={props.activeSession ? '' : 'disabled' } onClick={handleEndClick}>End Session</button> */}
-      
     </>
   )
 }
