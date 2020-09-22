@@ -15,4 +15,6 @@
   background-color: var(--color-bg);
   transform: translate(-50%, -50%);
   padding: 1em;
+  max-height: 100vh;
+  overflow: scroll;
 }

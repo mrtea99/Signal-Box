@@ -40,12 +40,13 @@ function RunEditor(props) {
             <section className={styles.runInfo}>
               <div className={[styles.runInfoSec, styles.runInfoProd].join(' ')}>
                 <h2 className={styles.runInfoTitle}>Production Run of:</h2>
-                <FormItem editable={false} name="Product" ident="product-name" dataSection="productInfo" dataKey="productName" type="text" data={thisRunData} changeHandler={handleChange} />
+                <h3 className={styles.runInfoName}>{thisRunData.productInfo.productName}</h3>
+                {/* <FormItem editable={false} name="Product" ident="product-name" dataSection="productInfo" dataKey="productName" type="text" data={thisRunData} changeHandler={handleChange} /> */}
                 <FormItem editable={false} name="Price" ident="price" dataSection="productInfo" dataKey="price" type="number" data={thisRunData} changeHandler={handleChange} />
               </div>
               <div className={[styles.runInfoSec, styles.runInfoRun].join(' ')}>
                 <FormItem editable={false} name="Run ID" ident="runid" dataSection="runInfo" dataKey="runId" type="number" data={thisRunData} changeHandler={handleChange} />
-                <FormItem editable={false} name="Quantity" ident="quantity" dataSection="productInfo" dataKey="quantity" type="number" data={thisRunData} changeHandler={handleChange} />
+                <FormItem editable={false} name="Batch Quantity" ident="quantity" dataSection="productInfo" dataKey="quantity" type="number" data={thisRunData} changeHandler={handleChange} />
                 <Button text="Run info" clickHandler={handleEditInfoClick} />
               </div>
             </section>
@@ -96,7 +97,7 @@ function FormItem(props) {
 
   return (
     <div>
-      <label htmlFor={props.ident}>{props.name}:</label>
+      <label htmlFor={props.ident}>{props.name}: </label>
       { props.editable ? editField : viewField }
     </div>
   )
