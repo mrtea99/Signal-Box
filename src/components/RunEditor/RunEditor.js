@@ -2,6 +2,8 @@ import React from 'react';
 import StageControl from '../StageControl/StageControl.js';
 import Button from '../Button/Button.js';
 
+import styles from './RunEditor.module.css';
+
 
 function RunEditor(props) {
   const [thisRunData, setThisRunData] = React.useState(props.runData.find(obj => obj.uid === props.currentRunUid));
@@ -28,23 +30,24 @@ function RunEditor(props) {
   }
 
   return (
-    <section>
-      <h2>Run Editor:</h2>
+    <>
       {thisRunData ?
-        <>
-          <Button text="< Exit" clickHandler={() => props.setCurrentRunUid(null)} />
-          <pre>{JSON.stringify(thisRunData)}</pre>
+        <div className={[styles.runEditor, styles.runEditorActive].join(' ')}>
+          <header>
+            <Button text="< Exit" clickHandler={() => props.setCurrentRunUid(null)} />
+          </header>
           <div>
-            <section>
-              <h2>Product Info</h2>
-              <FormItem editable={false} name="Product" ident="product-name" dataSection="productInfo" dataKey="productName" type="text" data={thisRunData} changeHandler={handleChange} />
-              <FormItem editable={false} name="Price" ident="price" dataSection="productInfo" dataKey="price" type="number" data={thisRunData} changeHandler={handleChange} />
-            </section>
-            <section>
-              <h2>Run Info</h2>
-              <FormItem editable={false} name="Run ID" ident="runid" dataSection="runInfo" dataKey="runId" type="number" data={thisRunData} changeHandler={handleChange} />
-              <FormItem editable={false} name="Quantity" ident="quantity" dataSection="productInfo" dataKey="quantity" type="number" data={thisRunData} changeHandler={handleChange} />
-              <Button text="Run info" clickHandler={handleEditInfoClick} />
+            <section className={styles.runInfo}>
+              <div className={[styles.runInfoSec, styles.runInfoProd].join(' ')}>
+                <h2 className={styles.runInfoTitle}>Production Run of:</h2>
+                <FormItem editable={false} name="Product" ident="product-name" dataSection="productInfo" dataKey="productName" type="text" data={thisRunData} changeHandler={handleChange} />
+                <FormItem editable={false} name="Price" ident="price" dataSection="productInfo" dataKey="price" type="number" data={thisRunData} changeHandler={handleChange} />
+              </div>
+              <div className={[styles.runInfoSec, styles.runInfoRun].join(' ')}>
+                <FormItem editable={false} name="Run ID" ident="runid" dataSection="runInfo" dataKey="runId" type="number" data={thisRunData} changeHandler={handleChange} />
+                <FormItem editable={false} name="Quantity" ident="quantity" dataSection="productInfo" dataKey="quantity" type="number" data={thisRunData} changeHandler={handleChange} />
+                <Button text="Run info" clickHandler={handleEditInfoClick} />
+              </div>
             </section>
 
             <StageControl 
@@ -55,10 +58,14 @@ function RunEditor(props) {
             />
             
           </div>
-        </>
-      : <p>Choose run to edit</p>
+          <pre>{JSON.stringify(thisRunData)}</pre>
+        </div>
+      : 
+        <div className={styles.runEditor}>
+          <p>No Run loaded</p>
+        </div>
       }
-    </section>
+    </>
   )
 }
 

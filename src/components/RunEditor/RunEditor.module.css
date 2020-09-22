@@ -1,0 +1,47 @@
+@import '../../settings.css';
+
+.runEditor {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  /* bottom: 0; */
+  background-color: var(--color-bg);
+  padding: 1rem;
+  overflow: scroll;
+  max-height: 100vh;
+}
+
+.runEditorActive {
+  display: block;
+}
+
+.runInfo {
+  background-color: var(--color-fg);
+  display: flex;
+  flex-direction: row;
+  padding: 1em;
+  margin: 1em 0;
+}
+/* 
+.runInfoSec {
+} */
+
+.runInfoProd {
+  flex-grow: 4;
+  padding-right: 1em;
+}
+
+.runInfoRun {
+  flex-grow: 1;
+  border-left: 1px solid var(--color-white);
+  padding-left: 1em;
+}
+
+.runInfoTitle {
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+  font-size: var(--text-larger);
+}

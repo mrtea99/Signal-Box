@@ -21,9 +21,9 @@
   --font-default: 'Myriad Pro', Verdana, Geneva, Tahoma, sans-serif;
 
   /* 16pt */
-  --text-normal: 1rem;
+  --text-normal: 1em;
   /* 18pt */
-  --text-larger: 1.125rem;
+  --text-larger: 1.125em;
 
   /* Sizes */
   --size-touch-min: 2.7rem;
