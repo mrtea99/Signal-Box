@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Button from '../Button/Button.js';
+
 const productTemplates = [
   {
     name: 'Product One',
@@ -54,6 +56,7 @@ function RunInfoForm(props) {
 
   return(
     <>
+      <h3>{props.runData ? 'Edit Run Info' : 'Create New Run' }</h3>
       <form>
         <div>
           <label>Product:</label>
@@ -68,8 +71,8 @@ function RunInfoForm(props) {
           <label>BatchQuantity:</label>
           <input onChange={(e) => { setQuantity(e.target.value) }} type="number" defaultValue={quantity} min="0"></input>
         </div>
-        <button disabled={currentTemplate === null ? 'disabled' : '' } onClick={handleSubmit}>Save</button>
-        <button onClick={(e) => { e.preventDefault(); props.handleCancel() }}>Cancel</button>
+        <Button text="Cancel" clickHandler={(e) => { e.preventDefault(); props.handleCancel() }} />
+        <Button text="Save" disabled={currentTemplate === null ? 'disabled' : '' } clickHandler={handleSubmit} />
       </form>
       <pre>{JSON.stringify(productTemplates[currentTemplate])}</pre>
     </>

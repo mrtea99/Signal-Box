@@ -34,3 +34,7 @@
 .button:active {
   transform: scale(0.99);
 }
+
+.button:disabled {
+  opacity: 0.5;
+}

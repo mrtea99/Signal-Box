@@ -3,7 +3,7 @@ import styles from './Button.module.css';
 
 function Button(props) {
   return(
-    <button className={styles.button} onClick={props.clickHandler}>{props.text}</button>
+    <button className={styles.button} onClick={props.clickHandler} disabled={props.disabled}>{props.text}</button>
   )
 }
 
