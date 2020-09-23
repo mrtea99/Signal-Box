@@ -3,7 +3,6 @@ import React from 'react';
 function SessionList(props) {
   return (
     <>
-      <h3>Session List</h3>
       <table>
         <thead>
           <tr>

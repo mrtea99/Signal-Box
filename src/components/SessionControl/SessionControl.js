@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Timer from '../Timer/Timer.js';
+
 const activityList = [
   [
     'Manufacturing',
@@ -83,12 +85,15 @@ function SessionControl(props) {
         <div>
           <h4>Session {props.activeSession} in progress</h4>
           {props.activeSessionData ? 
-          <dl>
-            <dt>Start Time:</dt>
-            <dd>{props.activeSessionData.startTime}</dd>
-            <dt>Activity:</dt>
-            <dd>{props.activeSessionData.activity}</dd>
-          </dl>
+          <>
+            <dl>
+              <dt>Start Time:</dt>
+              <dd>{props.activeSessionData.startTime}</dd>
+              <dt>Activity:</dt>
+              <dd>{props.activeSessionData.activity}</dd>
+            </dl>
+            <Timer startTime={props.activeSessionData.startTime} />
+          </>
           :
           <></>
           }
