@@ -2,13 +2,11 @@ import React from 'react';
 
 function Timer(props) {
   const [startTime, setStartTime] = React.useState(new Date(props.startTime))
-  const [duration, setDuration] = React.useState(0)
+  const [duration, setDuration] = React.useState(getTimeDiff(startTime))
 
   React.useEffect(() => {
     const timerInterval = setInterval(() => {
-      const currentTime = Date.now();
-      const diffTime = ((currentTime - startTime))
-
+      const diffTime = getTimeDiff(startTime)
       setDuration(diffTime)
     }, 333)
 
@@ -17,10 +15,17 @@ function Timer(props) {
     }
   })
 
-  function timeConverter() {
-    let seconds = Math.floor((duration / 1000) % 60);
-    let minutes = Math.floor((duration / (1000 * 60)) % 60);
-    let hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
+  function getTimeDiff(timeStart) {
+    const currentTime = Date.now();
+    const diffTime = ((currentTime - timeStart))
+
+    return diffTime;
+  }
+
+  function timeConverter(rawTime) {
+    let seconds = Math.floor((rawTime / 1000) % 60);
+    let minutes = Math.floor((rawTime / (1000 * 60)) % 60);
+    let hours = Math.floor((rawTime / (1000 * 60 * 60)) % 24);
 
     hours = (hours < 10) ? "0" + hours : hours;
     minutes = (minutes < 10) ? "0" + minutes : minutes;
@@ -31,9 +36,8 @@ function Timer(props) {
     )
   }
 
-
   return(
-    <p>{timeConverter()}</p>
+    <p>{timeConverter(duration)}</p>
   )
 }
 

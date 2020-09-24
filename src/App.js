@@ -12,9 +12,10 @@ import Button from './components/Button/Button.js';
 
 function App() {
   const savedRunData = () => JSON.parse(window.localStorage.getItem('runData')) || []
+  const savedcurrentRunUid = () => parseInt(window.localStorage.getItem('currentRunUid'), 10) || null
 
   const [runData, setRunData] = React.useState(savedRunData)
-  const [currentRunUid, setCurrentRunUid] = React.useState(null)
+  const [currentRunUid, setCurrentRunUid] = React.useState(savedcurrentRunUid)
 
   const [modalNewActive, setModalNewActive] = React.useState(false)
   const [modalChangeActive, setModalChangeActive] = React.useState(false)
@@ -23,6 +24,10 @@ function App() {
   React.useEffect(() => {
     window.localStorage.setItem('runData', JSON.stringify(runData));
   },[runData])
+
+  React.useEffect(() => {
+    window.localStorage.setItem('currentRunUid', currentRunUid);
+  },[currentRunUid])
 
 
   function updateRunData(uid, dataSection, dataKey, newValue) {
