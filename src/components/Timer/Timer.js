@@ -25,7 +25,7 @@ function Timer(props) {
   function timeConverter(rawTime) {
     let seconds = Math.floor((rawTime / 1000) % 60);
     let minutes = Math.floor((rawTime / (1000 * 60)) % 60);
-    let hours = Math.floor((rawTime / (1000 * 60 * 60)) % 24);
+    let hours = Math.floor((rawTime / (1000 * 60 * 60)));
 
     hours = (hours < 10) ? "0" + hours : hours;
     minutes = (minutes < 10) ? "0" + minutes : minutes;
