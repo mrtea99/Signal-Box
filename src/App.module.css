@@ -1,14 +1,28 @@
-.pageContent {
+.siteContainer {
   overflow: auto;
   max-width: var(--break-extra);
   margin: 0 auto;
-  padding: 0 1rem;
+  /* display: grid; */
+  /* grid-template-columns: auto 1rem  */
 }
 
 .siteHeader {
   min-height: 3.1rem;
   background-color: var(--color-pink-bright);
   width: 100%;
+}
+
+.siteSidebar {
+  background-color: blue;
+  width: 20rem;
+}
+
+.siteLogo {
+  margin: 0;
+}
+
+.siteContent {
+  padding: 0 1rem;
 }
 
 .listControls {
