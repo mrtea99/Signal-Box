@@ -92,7 +92,7 @@ function SessionControl(props) {
               <dt>Activity:</dt>
               <dd>{props.activeSessionData.activity}</dd>
             </dl>
-            <Timer startTime={props.activeSessionData.startTime} />
+            <p><Timer startTime={props.activeSessionData.startTime} /></p>
           </>
           :
           <></>
