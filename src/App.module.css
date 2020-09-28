@@ -1,9 +1,8 @@
 .siteContainer {
-  overflow: auto;
-  max-width: var(--break-extra);
-  margin: 0 auto;
-  /* display: grid; */
-  /* grid-template-columns: auto 1rem  */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .siteHeader {
@@ -12,9 +11,20 @@
   width: 100%;
 }
 
+.sitePage {
+  overflow: auto;
+  max-width: var(--break-extra);
+  /* margin: 0 auto; */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
 .siteSidebar {
-  background-color: blue;
-  width: 20rem;
+  background-color: var(--color-pink-bright);
+  width: 16rem;
+  flex: none;
 }
 
 .siteLogo {
@@ -23,6 +33,7 @@
 
 .siteContent {
   padding: 0 1rem;
+  flex-grow: 1;
 }
 
 .listControls {

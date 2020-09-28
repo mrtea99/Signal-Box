@@ -29,7 +29,8 @@
   --size-touch-min: 2.7rem;
 
   /* Break points */
-  --break-extra: 1280px;
+  --break-extra: 1440px;
+  --break-desktop: 1280px;
   --break-laptop: 1024px;
   --break-tablet: 768px;
   --break-phone: 320px;

@@ -64,55 +64,55 @@ function App() {
 
 
   return (
-    <>
     <div className={styles.siteContainer}>
-    <header className={styles.siteHeader}></header>
-      <div className={styles.siteSidebar}>
-        <h1 className={styles.siteLogo}>Mojo Spa</h1>
+      <header className={styles.siteHeader}></header>
+      <div className={styles.sitePage}>
+        <div className={styles.siteSidebar}>
+          <h1 className={styles.siteLogo}>Mojo Spa</h1>
+        </div>
+        <main className={styles.siteContent}>
+          <section>
+            <menu className={styles.listControls}>
+              <section className={styles.filterControls}></section>
+              <section className={styles.otherControls}>
+                <Button text="New Run +" clickHandler={handleAddClick} />
+              </section>
+            </menu>
+            <RunList
+              runData={runData}
+              setRunData={setRunData}
+              setCurrentRunUid={setCurrentRunUid}
+              setActiveStage={setActiveStage}
+              deleteRun={deleteRun}
+            />
+            <RunInfoNew 
+              active={modalNewActive}
+              setActive={setModalNewActive}
+              runData={runData}
+              setRunData={setRunData}
+            />
+          </section>
+          <section>
+            <RunEditor 
+              runData={runData}
+              currentRunUid={currentRunUid}
+              setCurrentRunUid={setCurrentRunUid}
+              setActiveStage={setActiveStage}
+              updateRunData={updateRunData}
+              modalActive={modalChangeActive}
+              setModalActive={setModalChangeActive}
+            />
+            <RunInfoChange 
+              active={modalChangeActive}
+              setActive={setModalChangeActive}
+              currentRunUid={currentRunUid}
+              runData={runData}
+              updateRunData={updateRunData}
+            />
+          </section>
+        </main>
       </div>
-      <main className={styles.siteContent}>
-        <section>
-          <menu className={styles.listControls}>
-            <section className={styles.filterControls}></section>
-            <section className={styles.otherControls}>
-              <Button text="New Run +" clickHandler={handleAddClick} />
-            </section>
-          </menu>
-          <RunList
-            runData={runData}
-            setRunData={setRunData}
-            setCurrentRunUid={setCurrentRunUid}
-            setActiveStage={setActiveStage}
-            deleteRun={deleteRun}
-          />
-          <RunInfoNew 
-            active={modalNewActive}
-            setActive={setModalNewActive}
-            runData={runData}
-            setRunData={setRunData}
-          />
-        </section>
-        <section>
-          <RunEditor 
-            runData={runData}
-            currentRunUid={currentRunUid}
-            setCurrentRunUid={setCurrentRunUid}
-            setActiveStage={setActiveStage}
-            updateRunData={updateRunData}
-            modalActive={modalChangeActive}
-            setModalActive={setModalChangeActive}
-          />
-          <RunInfoChange 
-            active={modalChangeActive}
-            setActive={setModalChangeActive}
-            currentRunUid={currentRunUid}
-            runData={runData}
-            updateRunData={updateRunData}
-          />
-        </section>
-      </main>
     </div>
-    </>
   );
 }
 
