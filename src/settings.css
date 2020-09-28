@@ -5,8 +5,11 @@
 
   --color-grey-dark: #575253;
   --color-grey-light: #5d5758;
+  --color-grey-bright: #6f7271;
 
-  --color-pink-bright: #eb257b;
+  --color-pink-bright: #ea407b;
+  --color-pink: #eda3aa;
+  --color-pink-light: #fae8e8;
 
   /* Color reassignments */
   --color-text: var(--color-white);
@@ -18,7 +21,7 @@
   --color-fg: var(--color-grey-light);
 
   /* Fonts */
-  --font-default: 'Myriad Pro', Verdana, Geneva, Tahoma, sans-serif;
+  --font-default: 'Helvetica Neue', Helvetica, Geneva, Tahoma, sans-serif;
 
   /* 16pt */
   --text-normal: 1em;

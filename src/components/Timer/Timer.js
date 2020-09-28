@@ -2,7 +2,7 @@ import React from 'react';
 import TimeFormater from '../TimeFormater/TimeFormater';
 
 function Timer(props) {
-  const [startTime, setStartTime] = React.useState(new Date(props.startTime))
+  const startTime = React.useState(new Date(props.startTime))[0]
   const [duration, setDuration] = React.useState(getTimeDiff(startTime))
 
   React.useEffect(() => {

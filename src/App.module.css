@@ -27,6 +27,16 @@
   flex: none;
 }
 
+.siteSidebarActive {
+  background-color: red;
+}
+
+@media (max-width: 768px) {
+  .siteSidebar {
+    background-color: blue;
+  }
+}
+
 .siteLogo {
   margin: 0;
 }

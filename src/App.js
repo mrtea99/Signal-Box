@@ -20,6 +20,7 @@ function App() {
   const [modalNewActive, setModalNewActive] = React.useState(false)
   const [modalChangeActive, setModalChangeActive] = React.useState(false)
 
+  const [sidebarActive, setSidebarActive] = React.useState(false)
 
   React.useEffect(() => {
     window.localStorage.setItem('runData', JSON.stringify(runData));
@@ -67,7 +68,7 @@ function App() {
     <div className={styles.siteContainer}>
       <header className={styles.siteHeader}></header>
       <div className={styles.sitePage}>
-        <div className={styles.siteSidebar}>
+        <div className={sidebarActive ? [styles.siteSidebar, styles.siteSidebarActive].join(' ') : styles.siteSidebar }>
           <h1 className={styles.siteLogo}>Mojo Spa</h1>
         </div>
         <main className={styles.siteContent}>
