@@ -9,32 +9,17 @@
   min-height: 3.1rem;
   background-color: var(--color-pink-bright);
   width: 100%;
+  z-index: 100;
 }
 
 .sitePage {
-  overflow: auto;
+  /* overflow: auto; */
   max-width: var(--break-extra);
   /* margin: 0 auto; */
   flex-grow: 1;
   display: flex;
   flex-direction: row;
   width: 100%;
-}
-
-.siteSidebar {
-  background-color: var(--color-pink-bright);
-  width: 16rem;
-  flex: none;
-}
-
-.siteSidebarActive {
-  background-color: red;
-}
-
-@media (max-width: 768px) {
-  .siteSidebar {
-    background-color: blue;
-  }
 }
 
 .siteLogo {

@@ -3,6 +3,7 @@ import './App.css';
 
 import styles from './App.module.css';
 
+import SiteSidebar from './components/SiteSidebar/SiteSidebar.js';
 import RunList from './components/RunList/RunList.js';
 import RunEditor from './components/RunEditor/RunEditor.js';
 import RunInfoNew from './components/RunInfoNew/RunInfoNew.js';
@@ -66,11 +67,11 @@ function App() {
 
   return (
     <div className={styles.siteContainer}>
-      <header className={styles.siteHeader}></header>
+      <header className={styles.siteHeader}>
+        <Button text="Open Sidebar" clickHandler={() => setSidebarActive(true)} />
+      </header>
       <div className={styles.sitePage}>
-        <div className={sidebarActive ? [styles.siteSidebar, styles.siteSidebarActive].join(' ') : styles.siteSidebar }>
-          <h1 className={styles.siteLogo}>Mojo Spa</h1>
-        </div>
+        <SiteSidebar sidebarActive={sidebarActive} setSidebarActive={setSidebarActive} />
         <main className={styles.siteContent}>
           <section>
             <menu className={styles.listControls}>

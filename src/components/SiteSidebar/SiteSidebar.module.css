@@ -1,0 +1,25 @@
+
+.siteSidebar {
+  background-color: var(--color-pink-bright);
+  flex: none;
+  position: fixed;
+  top: 0;
+  left: -80vw;
+  width: 80vw;
+  height: 100vh;
+  z-index: 101;
+  transition: left 0.5s;
+}
+
+.siteSidebarActive {
+  left: 0vw;
+}
+
+@media (min-width: 768px) {
+  .siteSidebar {
+    width: 16rem;
+    position: relative;
+    left: 0;
+    top: -3.1rem;
+  }
+}
