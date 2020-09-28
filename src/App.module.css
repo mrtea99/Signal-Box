@@ -41,3 +41,10 @@
 .otherControls {
   flex-grow: 0
 }
+
+
+
+.editorSection {
+  z-index: 200;
+  position: relative;
+}

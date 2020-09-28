@@ -94,7 +94,7 @@ function App() {
               setRunData={setRunData}
             />
           </section>
-          <section>
+          <section className={styles.editorSection}>
             <RunEditor 
               runData={runData}
               currentRunUid={currentRunUid}
