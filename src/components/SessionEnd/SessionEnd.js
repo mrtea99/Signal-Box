@@ -6,7 +6,7 @@ function SessionEnd(props) {
   // After Statuses
     // Notes (all)
     const [noteData, setNoteData] = React.useState(props.activeSessionData === undefined ? '' : props.activeSessionData['notes']);
-    // QA check (manu, pack, label)
+    // QA check (prep, manu, pack, label)
     // Quantity made (manu, pack, label)
     // Number Defective (manu, pack, label)
     // Batch weight (manu)
@@ -20,9 +20,6 @@ function SessionEnd(props) {
     }
 
     props.endSession(extraData);
-
-    setNoteData('');
-    // setActivityData(activityList[props.thisStage][0]);
   }
 
   function handleNoteChange(e) {

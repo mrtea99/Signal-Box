@@ -29,13 +29,13 @@ const activityList = [
 ]
 
 function SessionStart(props) {
-  // Before states
-    // Activity type (all)
-    const [activityData, setActivityData] = React.useState(props.activeSession ? '' : activityList[props.thisStage][0]);
-    // Room temp (manu and cool)
-
-    // const [roomTemp, setRoomTemp] = React.useState(props.activeSessionData === undefined ? '' : props.activeSessionData['roomTemp'])
-    // Room humidity (manu and cool)
+  // Activity type (all)
+  const [activityData, setActivityData] = React.useState(activityList[props.thisStage][0]);
+  
+  // Room temp (manu and cool)
+  const [roomTemp, setRoomTemp] = React.useState(0)
+  
+  // Room humidity (manu and cool)
   
   function handleNewClick(e) {
     e.preventDefault();
@@ -46,6 +46,10 @@ function SessionStart(props) {
       sessionUid: newSessionUid,
       startTime: Date.now(),
       activity: activityData
+    }
+
+    if(props.thisStage === 1 || props.thisStage === 2) {
+      newSession.roomTemp = roomTemp;
     }
 
     props.addSession(newSession, newSessionUid)
@@ -61,10 +65,12 @@ function SessionStart(props) {
           )}
         </select>
       </div>
-      {/* <div>
-        <label htmlFor="sess-temp">Room Temperature:</label>
-        <input id="sess-temp" type="text" />
-      </div> */}
+      {props.thisStage === 1 || props.thisStage === 2 ?  
+        <div>
+          <label htmlFor="sess-temp">Room Temperature:</label>
+          <input id="sess-temp" type="text" onChange={(e) => setRoomTemp(e.target.value)} value={roomTemp} />
+        </div>
+      : <></> }
       <button onClick={handleNewClick}>Start New Session</button>
     </form>
   )
