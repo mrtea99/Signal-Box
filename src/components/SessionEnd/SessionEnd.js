@@ -10,7 +10,7 @@ function SessionEnd(props) {
     // Quantity made (manu, pack, label)
     // Number Defective (manu, pack, label)
     // Batch weight (manu)
-    // Average unti weight (pack)
+    // Average unit weight (pack)
   
   function handleEndClick(e) {
     e.preventDefault();
@@ -31,19 +31,13 @@ function SessionEnd(props) {
     <>
       <div>
         <h4>Session {props.activeSession} in progress</h4>
-        {props.activeSessionData ? 
-        <>
-          <dl>
-            <dt>Start Time:</dt>
-            <dd>{props.activeSessionData.startTime}</dd>
-            <dt>Activity:</dt>
-            <dd>{props.activeSessionData.activity}</dd>
-          </dl>
-          <p><Timer startTime={props.activeSessionData.startTime} /></p>
-        </>
-        :
-        <></>
-        }
+        <dl>
+          <dt>Start Time:</dt>
+          <dd>{props.activeSessionData.startTime}</dd>
+          <dt>Activity:</dt>
+          <dd>{props.activeSessionData.activity}</dd>
+        </dl>
+        <p><Timer startTime={props.activeSessionData.startTime} /></p>
       </div>
       <form>
         <div>

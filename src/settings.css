@@ -21,7 +21,7 @@
   --color-fg: var(--color-grey-light);
 
   /* Fonts */
-  --font-default: 'Helvetica Neue', Helvetica, Geneva, Tahoma, sans-serif;
+  --font-default: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
 
   /* 16pt */
   --text-normal: 1em;

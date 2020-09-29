@@ -33,9 +33,10 @@ function SessionStart(props) {
   const [activityData, setActivityData] = React.useState(activityList[props.thisStage][0]);
   
   // Room temp (manu and cool)
-  const [roomTemp, setRoomTemp] = React.useState(0)
+  const [roomTemp, setRoomTemp] = React.useState(null)
   
   // Room humidity (manu and cool)
+  const [roomHumidity, setRoomHumidity] = React.useState(null)
   
   function handleNewClick(e) {
     e.preventDefault();
@@ -55,6 +56,20 @@ function SessionStart(props) {
     props.addSession(newSession, newSessionUid)
   }
 
+  function validateForm() {
+    if(props.thisStage === 1 || props.thisStage === 2) {
+      if (typeof roomTemp === 'number' && roomTemp >= 0 && roomTemp <= 120 && typeof roomHumidity === 'number' && roomHumidity >= 0 && roomHumidity <= 100) {
+        return true;
+      }
+      else {
+        return false;
+      }
+    }
+    else {
+      return true;
+    }
+  }
+
   return(
     <form>
       <div>
@@ -66,12 +81,18 @@ function SessionStart(props) {
         </select>
       </div>
       {props.thisStage === 1 || props.thisStage === 2 ?  
-        <div>
-          <label htmlFor="sess-temp">Room Temperature:</label>
-          <input id="sess-temp" type="text" onChange={(e) => setRoomTemp(e.target.value)} value={roomTemp} />
-        </div>
+        <>
+          <div>
+            <label htmlFor="sess-temp">Room Temperature:</label>
+            <input id="sess-temp" type="number" onChange={(e) => setRoomTemp(parseInt(e.target.value))} min="0" max="120"/>
+          </div>
+          <div>
+            <label htmlFor="sess-humidity">Room Humidity:</label>
+            <input id="sess-humidity" type="number" onChange={(e) => setRoomHumidity(parseInt(e.target.value))} min="0" max="100"/>
+          </div>
+        </>
       : <></> }
-      <button onClick={handleNewClick}>Start New Session</button>
+      <button onClick={handleNewClick} disabled={!validateForm()} >Start New Session</button>
     </form>
   )
 }

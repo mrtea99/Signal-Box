@@ -7,7 +7,7 @@ function SessionControl(props) {
 
   return (
     <>
-      {!props.activeSession ?
+      {!props.activeSessionData ?
         <SessionStart
           thisStage={props.thisStage}
           addSession={props.addSession}
