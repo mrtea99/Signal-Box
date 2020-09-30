@@ -5,12 +5,13 @@ import Timer from '../Timer/Timer.js';
 function SessionEnd(props) {
   // After Statuses
     // Notes (all)
-    const [noteData, setNoteData] = React.useState(props.activeSessionData === undefined ? '' : props.activeSessionData['notes']);
-    // QA check (prep, manu, pack, label)
+    const [noteData, setNoteData] = React.useState(props.activeSessionData['notes'] || '');
     // Quantity made (manu, pack, label)
+    const [countMade, setCountMade] = React.useState(props.activeSessionData['countMade'] || 0);
     // Number Defective (manu, pack, label)
     // Batch weight (manu)
     // Average unit weight (pack)
+    // QA check (prep, manu, pack, label)
   
   function handleEndClick(e) {
     e.preventDefault();
@@ -22,9 +23,9 @@ function SessionEnd(props) {
     props.endSession(extraData);
   }
 
-  function handleNoteChange(e) {
-    setNoteData(e.target.value);
-    props.updateSession({notes: e.target.value})
+  function handleFieldChange(e, setState, dataKey) {
+    setState(e.target.value);
+    props.updateSession({[dataKey]: e.target.value})
   }
 
   return(
@@ -42,8 +43,16 @@ function SessionEnd(props) {
       <form>
         <div>
           <label htmlFor={"sess-notes-step-" + props.thisStage}>Notes:</label>
-          <textarea id={"sess-notes-step-" + props.thisStage} onChange={(e) => handleNoteChange(e)} value={noteData}></textarea>
+          <textarea id={"sess-notes-step-" + props.thisStage} onChange={(e) => handleFieldChange(e, setNoteData, 'notes')} value={noteData} />
         </div>
+        {props.thisStage === 1 || props.thisStage === 3 || props.thisStage === 4 ?  
+          <div>
+            <label htmlFor={"sess-count-made-step-" + props.thisStage}>Completed {props.thisStage === 1 ? 'Batches' : 'Units' }:</label>
+            <input id={"sess-count-made-step-" + props.thisStage} type="number" min="0" onChange={(e) => handleFieldChange(e, setCountMade, 'countMade')} value={countMade} />
+          </div>
+        :
+          <></>
+        }
         <button onClick={handleEndClick}>End Session</button>
       </form>
     </>

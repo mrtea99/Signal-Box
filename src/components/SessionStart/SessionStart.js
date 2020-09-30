@@ -31,10 +31,8 @@ const activityList = [
 function SessionStart(props) {
   // Activity type (all)
   const [activityData, setActivityData] = React.useState(activityList[props.thisStage][0]);
-  
   // Room temp (manu and cool)
   const [roomTemp, setRoomTemp] = React.useState(null)
-  
   // Room humidity (manu and cool)
   const [roomHumidity, setRoomHumidity] = React.useState(null)
   
@@ -73,8 +71,8 @@ function SessionStart(props) {
   return(
     <form>
       <div>
-        <label htmlFor={"sess-activity-step-" + props.thisStage}>Activity:</label>
-        <select id={"sess-activity-step-" + props.thisStage} onChange={(e) => setActivityData(e.target.value)} value={activityData}>
+        <label htmlFor={"sess-activity-stage-" + props.thisStage}>Activity:</label>
+        <select id={"sess-activity-stage-" + props.thisStage} onChange={(e) => setActivityData(e.target.value)} value={activityData}>
           {activityList[props.thisStage].map((activityType, index) => 
             <option key={'activity-' + index + '-stage-' + props.thisStage} value={activityType}>{activityType}</option>
           )}
@@ -83,12 +81,12 @@ function SessionStart(props) {
       {props.thisStage === 1 || props.thisStage === 2 ?  
         <>
           <div>
-            <label htmlFor="sess-temp">Room Temperature:</label>
-            <input id="sess-temp" type="number" onChange={(e) => setRoomTemp(parseInt(e.target.value))} min="0" max="120"/>
+            <label htmlFor={"sess-temp-stage-" + props.thisStage}>Room Temperature:</label>
+            <input id={"sess-temp-stage-" + props.thisStage} type="number" onChange={(e) => setRoomTemp(parseInt(e.target.value))} min="0" max="120"/>
           </div>
           <div>
-            <label htmlFor="sess-humidity">Room Humidity:</label>
-            <input id="sess-humidity" type="number" onChange={(e) => setRoomHumidity(parseInt(e.target.value))} min="0" max="100"/>
+            <label htmlFor={"sess-humidity-stage-" + props.thisStage}>Room Humidity:</label>
+            <input id={"sess-humidity-stage-" + props.thisStage} type="number" onChange={(e) => setRoomHumidity(parseInt(e.target.value))} min="0" max="100"/>
           </div>
         </>
       : <></> }
