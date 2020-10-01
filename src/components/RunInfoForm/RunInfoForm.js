@@ -70,7 +70,10 @@ function RunInfoForm(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.handleSave(productTemplates[currentTemplate], batchQuantity);
+    let productInfo = {...productTemplates[currentTemplate]}
+    productInfo.batchQuantity = batchQuantity;
+
+    props.handleSave(productInfo);
   }
 
   return(

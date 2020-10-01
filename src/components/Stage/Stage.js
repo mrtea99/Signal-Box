@@ -70,9 +70,34 @@ function Stage(props) {
     setActiveSession(null);
   }
 
+  function getDifficulty() {
+    let difficulty = '';
+
+    switch(props.thisStage) {
+      case 0:
+        difficulty = props.thisRunData.productInfo.prepDiffilculty
+        break;
+      case 1:
+        difficulty = props.thisRunData.productInfo.manufacturingDifficulty
+        break;
+      case 3:
+        difficulty = props.thisRunData.productInfo.packagingDiffilculty
+        break;
+      case 4:
+        difficulty = props.thisRunData.productInfo.labelingDifficulty
+        break;
+      default:
+        difficulty = 'N/A'
+        // code block
+    }
+
+    return difficulty;
+  }
+
   return (
     <section style={{display: props.thisStage === props.activeStage ? 'block' : 'none' }}>
       <h2>{props.stageName}</h2>
+      <h4>Difficulty: {getDifficulty()}</h4>
       <SessionControl 
         activeSession={activeSession}
         addSession={addSession}
