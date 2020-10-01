@@ -42,7 +42,7 @@ function RunEditor(props) {
                 <h2 className={styles.runInfoTitle}>Production Run of:</h2>
                 <h3 className={styles.runInfoName}>{thisRunData.productInfo.productName}</h3>
                 {/* <FormItem editable={false} name="Product" ident="product-name" dataSection="productInfo" dataKey="productName" type="text" data={thisRunData} changeHandler={handleChange} /> */}
-                <FormItem editable={false} name="Price" ident="price" dataSection="productInfo" dataKey="price" type="number" data={thisRunData} changeHandler={handleChange} />
+                <FormItem editable={false} name="SKU" ident="productSKU" dataSection="productInfo" dataKey="productSKU" type="number" data={thisRunData} changeHandler={handleChange} />
               </div>
               <div className={[styles.runInfoSec, styles.runInfoRun].join(' ')}>
                 <FormItem editable={false} name="Run ID" ident="runid" dataSection="runInfo" dataKey="runId" type="number" data={thisRunData} changeHandler={handleChange} />

@@ -5,7 +5,7 @@ import RunInfoForm from '../RunInfoForm/RunInfoForm.js';
 
 function RunInfoNew(props) {
 
-  function createRun(productTemplateData, quantity) {
+  function createRun(productTemplateData, batchQuantity) {
     let newData = [...props.runData];
 
     //Build new run object here
@@ -16,9 +16,9 @@ function RunInfoNew(props) {
         runId: new Date().getUTCMilliseconds()
       },
       productInfo: {
-        price: productTemplateData.price,
-        productName: productTemplateData.name,
-        quantity: quantity
+        productName: productTemplateData.productName,
+        productSKU: productTemplateData.productSKU,
+        batchQuantity: batchQuantity
       },
       // stages: {
       //   prep: [],

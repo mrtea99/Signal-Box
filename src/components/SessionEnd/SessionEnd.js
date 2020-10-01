@@ -23,9 +23,9 @@ function SessionEnd(props) {
     props.endSession(extraData);
   }
 
-  function handleFieldChange(e, setState, dataKey) {
-    setState(e.target.value);
-    props.updateSession({[dataKey]: e.target.value})
+  function handleFieldChange(value, setState, dataKey) {
+    setState(value);
+    props.updateSession({[dataKey]: value})
   }
 
   return(
@@ -43,12 +43,12 @@ function SessionEnd(props) {
       <form>
         <div>
           <label htmlFor={"sess-notes-step-" + props.thisStage}>Notes:</label>
-          <textarea id={"sess-notes-step-" + props.thisStage} onChange={(e) => handleFieldChange(e, setNoteData, 'notes')} value={noteData} />
+          <textarea id={"sess-notes-step-" + props.thisStage} onChange={(e) => handleFieldChange(e.target.value, setNoteData, 'notes')} value={noteData} />
         </div>
         {props.thisStage === 1 || props.thisStage === 3 || props.thisStage === 4 ?  
           <div>
             <label htmlFor={"sess-count-made-step-" + props.thisStage}>Completed {props.thisStage === 1 ? 'Batches' : 'Units' }:</label>
-            <input id={"sess-count-made-step-" + props.thisStage} type="number" min="0" onChange={(e) => handleFieldChange(e, setCountMade, 'countMade')} value={countMade} />
+            <input id={"sess-count-made-step-" + props.thisStage} type="number" min="0" onChange={(e) => handleFieldChange(e.target.value, setCountMade, 'countMade')} value={countMade} />
           </div>
         :
           <></>

@@ -4,13 +4,37 @@ import Button from '../Button/Button.js';
 
 const productTemplates = [
   {
-    name: 'Product One',
-    price: 50
+    productName: 'Product One',
+    productSKU: 'MS00423',
+    productCategory: 'Bodycare',
+    productSubcategory: 'Body Scrubs',
+    averageBatchQuantity: 18,
+    averageUnitWeight: 5.9,
+    batchWeight: 106,
+    prepDiffilculty: 'Easy',
+    manufacturingDifficulty: 'Easy',
+    packagingDiffilculty: 'Easy',
+    labelingDifficulty: 'Easy',
+    merchandising: 90,
+    lowInventoryTrigger: 0,
+    duplicate: 1
   },
   {
-    name: 'Product Two',
-    price: 100
-  }
+    productName: 'Product Two',
+    productSKU: 'MS00425',
+    productCategory: 'Soy Massage Candles',
+    productSubcategory: 'Glass Jar Candles',
+    averageBatchQuantity: 10,
+    averageUnitWeight: 7.1,
+    batchWeight: 70.4,
+    prepDiffilculty: 'Medium',
+    manufacturingDifficulty: 'Medium',
+    packagingDiffilculty: 'Hard',
+    labelingDifficulty: 'Easy',
+    merchandising: 0,
+    lowInventoryTrigger: 0,
+    duplicate: 1
+  },
 ]
 
 function RunInfoForm(props) {
@@ -33,7 +57,7 @@ function RunInfoForm(props) {
     return templateIndex.toString()
   });
 
-  const [quantity, setQuantity] = React.useState(() => {
+  const [batchQuantity, setBatchQuantity] = React.useState(() => {
     if (!props.runData) {
       return 1
     }
@@ -51,7 +75,7 @@ function RunInfoForm(props) {
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.handleSave(productTemplates[currentTemplate], quantity);
+    props.handleSave(productTemplates[currentTemplate], batchQuantity);
   }
 
   return(
@@ -63,18 +87,18 @@ function RunInfoForm(props) {
           <select onChange={handleTemplateChange} value={currentTemplate === null ? 'default' : currentTemplate }>
             <option value="default" disabled="disabled">Choose a template</option>
             {productTemplates.map((template, index) => 
-              <option key={template.name} value={index}>{template.name}</option>
+              <option key={template.productName} value={index}>{template.productName}</option>
             )}
           </select>
         </div>
         <div>
-          <label>BatchQuantity:</label>
-          <input onChange={(e) => { setQuantity(e.target.value) }} type="number" defaultValue={quantity} min="0"></input>
+          <label>Batch Quantity:</label>
+          <input onChange={(e) => { setBatchQuantity(e.target.value) }} type="number" defaultValue={batchQuantity} min="0"></input>
         </div>
         <Button text="Cancel" clickHandler={(e) => { e.preventDefault(); props.handleCancel() }} />
         <Button text="Save" disabled={currentTemplate === null ? 'disabled' : '' } clickHandler={handleSubmit} />
       </form>
-      <pre>{JSON.stringify(productTemplates[currentTemplate])}</pre>
+      {/* <pre>{JSON.stringify(productTemplates[currentTemplate])}</pre> */}
     </>
   )
 }
