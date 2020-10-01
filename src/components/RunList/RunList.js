@@ -22,7 +22,7 @@ function RunList(props) {
             <td className={[styles.itemTitle, styles.runItem, styles.alignLeft].join(' ')}>{run.productInfo.productName}</td>
             <td className={styles.runItem}>{run.runInfo.runId}</td>
             <td className={styles.runItem}>{run.activeStage}</td>
-            <td className={styles.runItem}>{run.productInfo.quantity}</td>
+            <td className={styles.runItem}>{run.productInfo.batchQuantity}</td>
             <td className={styles.runItem}>
               <Button text="Edit" clickHandler={() => props.setCurrentRunUid(run.uid)} />
             </td>

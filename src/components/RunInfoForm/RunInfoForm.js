@@ -53,7 +53,7 @@ function RunInfoForm(props) {
     }
 
     const currentProductName = thisRunData.productInfo.productName;
-    const templateIndex = productTemplates.findIndex(obj => obj.name === currentProductName)
+    const templateIndex = productTemplates.findIndex(obj => obj.productName === currentProductName)
     return templateIndex.toString()
   });
 
@@ -63,14 +63,9 @@ function RunInfoForm(props) {
     }
 
     const thisRunData = props.runData.find(obj => obj.uid === props.currentRunUid);
-    const currentQuantity = thisRunData.productInfo.quantity;
+    const currentQuantity = thisRunData.productInfo.batchQuantity;
     return currentQuantity
   })
-
-
-  function handleTemplateChange(e) {
-    setTemplate(e.target.value);
-  }
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -84,7 +79,7 @@ function RunInfoForm(props) {
       <form>
         <div>
           <label>Product:</label>
-          <select onChange={handleTemplateChange} value={currentTemplate === null ? 'default' : currentTemplate }>
+          <select onChange={(e) => setTemplate(e.target.value)} value={currentTemplate === null ? 'default' : currentTemplate }>
             <option value="default" disabled="disabled">Choose a template</option>
             {productTemplates.map((template, index) => 
               <option key={template.productName} value={index}>{template.productName}</option>

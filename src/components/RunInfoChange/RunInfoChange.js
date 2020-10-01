@@ -5,11 +5,10 @@ import RunInfoForm from '../RunInfoForm/RunInfoForm.js';
 
 
 function RunInfoChange(props) {
-  function updateRunInfo(productTemplateData, quantity) {
+  function updateRunInfo(productTemplateData, batchQuantity) {
 
-    props.updateRunData(props.currentRunUid, 'productInfo', 'price', productTemplateData.price)
-    props.updateRunData(props.currentRunUid, 'productInfo', 'productName', productTemplateData.name)
-    props.updateRunData(props.currentRunUid, 'productInfo', 'quantity', quantity)
+    props.updateRunData(props.currentRunUid, 'productInfo', 'productName', productTemplateData.productName)
+    props.updateRunData(props.currentRunUid, 'productInfo', 'batchQuantity', batchQuantity)
 
     props.setActive(false)
   }
