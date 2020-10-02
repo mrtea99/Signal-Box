@@ -1,7 +1,9 @@
 import React from 'react';
-import Stage from '../Stage/Stage.js';
 
-import styles from './StageControl.module.css';
+import Stage from '../Stage/Stage.js';
+import StageNav from '../StageNav/StageNav.js';
+
+// import styles from './StageControl.module.css';
 
 function StageControl(props) {
   const [activeStage, setActiveStage] = React.useState(() => {
@@ -26,35 +28,15 @@ function StageControl(props) {
 
   const stageNameArr = ['Preparation', 'Manufacturing', 'Cooling', 'Packaging', 'Labeling']
 
-  function stageChange(newStageIndex) {
-    setActiveStage(newStageIndex)
-    props.updateRunData(props.currentRunUid, null, 'activeStage', newStageIndex)
-  }
-
-  // function handleNavigation(dir, e) {
-  //   e.preventDefault()
-
-  //   if (dir !== -1 && dir < stageNameArr.length) {
-  //     stageChange(dir)
-  //   }
-  // }
-
-  function handleNavList(stageIndex, e) {
-    e.preventDefault()
-
-    stageChange(stageIndex)
-  }
-
   return (
     <>
-
-      <ul className={styles.progBar}>
-        {stageNameArr.map((stage, index) => 
-          <li key={props.currentRunUid + stage} className={styles.progItem}>
-            <button style={ {opacity: activeStage === index ? 1 : 0.8} } className={styles.progBtn} onClick={(e) => handleNavList(index, e)}>{stage}</button>
-          </li>
-        )}
-      </ul>
+      <StageNav 
+        stageNameArr={stageNameArr}
+        currentRunUid={props.currentRunUid}
+        activeStage={activeStage}
+        setActiveStage={setActiveStage}
+        updateRunData={props.updateRunData}
+      />
 
       {stageNameArr.map((stage, index) => 
         <Stage 
@@ -67,13 +49,6 @@ function StageControl(props) {
           updateRunData={props.updateRunData}
         />
       )}
-      
-      {/* { activeStage > 0 ?
-        <button onClick={(e) => handleNavigation(activeStage - 1, e)}>Previous Stage</button>
-      : <></> }
-      { activeStage < stageNameArr.length - 1 ?
-        <button onClick={(e) => handleNavigation(activeStage + 1, e)}>Next Stage</button>
-      : <></> } */}
     </>
   )
 }

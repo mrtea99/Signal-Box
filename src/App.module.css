@@ -12,6 +12,12 @@
   z-index: 100;
 }
 
+@media (min-width: 768px) {
+  .sidebarTrigger {
+    display: none;
+  }
+}
+
 .sitePage {
   /* overflow: auto; */
   max-width: var(--break-extra);

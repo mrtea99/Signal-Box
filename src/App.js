@@ -68,7 +68,9 @@ function App() {
   return (
     <div className={styles.siteContainer}>
       <header className={styles.siteHeader}>
-        <Button text="Open Sidebar" clickHandler={() => setSidebarActive(true)} />
+        <div className={styles.sidebarTrigger}>
+          <Button text="Open Sidebar" clickHandler={() => setSidebarActive(true)} />
+        </div>
       </header>
       <div className={styles.sitePage}>
         <SiteSidebar sidebarActive={sidebarActive} setSidebarActive={setSidebarActive} />
