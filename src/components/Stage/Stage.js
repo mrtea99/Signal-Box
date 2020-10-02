@@ -88,7 +88,6 @@ function Stage(props) {
         break;
       default:
         difficulty = 'N/A'
-        // code block
     }
 
     return difficulty;
