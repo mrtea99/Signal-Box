@@ -36,6 +36,7 @@ function StageControl(props) {
         activeStage={activeStage}
         setActiveStage={setActiveStage}
         updateRunData={props.updateRunData}
+        thisRunData={props.thisRunData}
       />
 
       {stageNameArr.map((stage, index) => 
