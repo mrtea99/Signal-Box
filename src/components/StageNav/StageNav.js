@@ -17,7 +17,7 @@ function StageNav(props) {
     <ul className={styles.progBar}>
       {props.stageNameArr.map((stage, index) => 
         <li key={props.currentRunUid + stage} className={styles.progItem}>
-          <button style={ {opacity: props.activeStage === index ? 1 : 0.8} } className={styles.progBtn} onClick={(e) => handleNavList(index, e)}>{stage}</button>
+          <button className={props.activeStage !== index ? styles.progBtn : [styles.progBtn, styles.progBtnActive].join(' ')}  onClick={(e) => handleNavList(index, e)}>{stage}</button>
         </li>
       )}
     </ul>

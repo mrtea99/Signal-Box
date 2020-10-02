@@ -1,49 +1,103 @@
+
 .progBar {
+  --color-bar: var(--color-grey-dark);
+  --color-active: var(--color-pink-bright);
+  --color-inactive: var(--color-pink-light);
+  --height-bar: 2.4rem;
+  --height-bar-half: 1.2rem;
+  --time-anim: 250ms;
+  
   margin: 0;
   padding: 0;
   display: flex;
   flex-direction: row;
+  background-color: var(--color-bar);
 }
+
 .progItem {
   list-style: none;
   flex-grow: 1;
+  margin-right: 5px;
 }
 
 .progBtn {
   display: inline-block;
   border: none;
-  padding: 0.65rem;
+  /* padding: 0.65rem; */
+  height: var(--height-bar);
   margin: 0;
   text-decoration: none;
-  background-color: var(--color-accent);
-  color: var(--color-text);
+  background-color: var(--color-inactive);
+  color: var(--color-text-alt);
   font-family: var(--font-default);
   cursor: pointer;
   text-align: center;
-  transition: background-color 250ms ease-in-out, 
-              transform 150ms ease;
+  transition: background-color var(--time-anim) ease-in-out,
+              color var(--time-anim) ease-in-out;
   -webkit-appearance: none;
   -moz-appearance: none;
 
   width: 100%;
   font-weight: bold;
   font-size: var(--text-larger);
+  position: relative;
+  min-height: 1rem;
+  overflow: visible;
+}
+
+.progBtn::before {
+  content: '';
+  border-left: var(--height-bar-half) solid var(--color-bar);
+  border-top: var(--height-bar-half) solid transparent;
+  border-bottom: var(--height-bar-half) solid transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.progBtn::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  border-top: var(--height-bar-half) solid transparent;
+  border-bottom: var(--height-bar-half) solid transparent;
+  border-left: var(--height-bar-half) solid var(--color-inactive);
+  z-index: 20;
+  transition: border-color var(--time-anim) ease-in-out, 
+}
+
+.progItem:first-child .progBtn::before {
+  display: none;
+}
+.progItem:last-child {
+  margin-right: 0;
+}
+.progItem:last-child .progBtn::after {
+  display: none;
 }
 
 .progBtnActive {
-  color: var(--color-text-alt);
+  color: var(--color-text);
+  background-color: var(--color-active);
+}
+
+.progBtnActive::after {
+  border-left-color: var(--color-pink-bright);
 }
 
 .progBtn:hover,
 .progBtn:focus {
-  background: var(--color-fg);
+  /* background: var(--color-fg); */
 }
 
 .progBtn:focus {
-  outline: 1px solid #fff;
-  outline-offset: -4px;
+  outline: 0;
+  text-decoration: underline;
 }
 
 .progBtn:active {
-  transform: scale(0.99);
+  /* transform: scale(0.99); */
 }
