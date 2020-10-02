@@ -9,6 +9,7 @@
   height: 100vh;
   z-index: 101;
   transition: left 0.5s;
+  padding: 1rem;
 }
 
 .siteSidebarActive {
@@ -22,4 +23,12 @@
     left: 0;
     top: -3.1rem;
   }
+}
+
+
+.siteLogo {
+  width: 100%;
+  max-width: 15rem;
+  border: 0.3rem solid white;
+  border-radius: 50%;
 }

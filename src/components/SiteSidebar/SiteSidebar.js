@@ -12,7 +12,7 @@ function SiteSidebar(props) {
 
   return(
     <div className={props.sidebarActive ? [styles.siteSidebar, styles.siteSidebarActive].join(' ') : styles.siteSidebar }>
-      <h1 className={styles.siteLogo}>Mojo Spa</h1>
+      <img className={styles.siteLogo} alt="Mojo Spa Logo" src="./logo.svg" />
       <Button text="Close Sidebar" clickHandler={closeSidebar} />
     </div>
   )
