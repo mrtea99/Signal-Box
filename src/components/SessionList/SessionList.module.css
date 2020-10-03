@@ -1,8 +1,9 @@
-/* @import '../../settings.css'; */
-
 .container {
   border-collapse: collapse;
   width: 100%;
+  background-color: var(--color-bg);
+  margin-top: 1rem;
+  border: 0.5rem solid var(--color-bg);
 }
 
 .header {
@@ -16,24 +17,22 @@
   padding: 0.3rem 0;
 }
 
-.headerItem, .runItem {
+.headerItem, .contentItem {
   padding-left: 1rem;
   padding-right: 1rem;
 }
 
 .itemRow {
   background-color: var(--color-fg);
+  margin: 0 1rem;
 }
 
-.runItem {
+.contentItem {
   text-align: center;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   border-top: 0.5rem solid var(--color-bg);
-}
-
-.itemTitle {
-  font-weight: bold;
+  font-size: 1em;
 }
 
 .alignLeft {
