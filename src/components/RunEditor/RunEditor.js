@@ -1,4 +1,5 @@
 import React from 'react';
+
 import StageControl from '../StageControl/StageControl.js';
 import Button from '../Button/Button.js';
 

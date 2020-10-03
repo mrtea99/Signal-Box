@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Timer from '../Timer/Timer.js';
+import Button from '../Button/Button.js';
 
 function SessionEnd(props) {
   // After Statuses
@@ -53,7 +54,7 @@ function SessionEnd(props) {
         :
           <></>
         }
-        <button onClick={handleEndClick}>End Session</button>
+        <Button text="End Session" clickHandler={handleEndClick} />
       </form>
     </>
   )

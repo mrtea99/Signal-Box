@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Button from '../Button/Button.js';
 
 const activityList = [
   [
@@ -90,7 +91,7 @@ function SessionStart(props) {
           </div>
         </>
       : <></> }
-      <button onClick={handleNewClick} disabled={!validateForm()} >Start New Session</button>
+      <Button text="Start New Session" clickHandler={handleNewClick} disabled={!validateForm()} />
     </form>
   )
 }
