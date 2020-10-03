@@ -3,6 +3,8 @@ import React from 'react';
 import Timer from '../Timer/Timer.js';
 import Button from '../Button/Button.js';
 
+import styles from './SessionEnd.module.css';
+
 function SessionEnd(props) {
   // After Statuses
     // Notes (all)
@@ -32,7 +34,7 @@ function SessionEnd(props) {
   return(
     <>
       <div>
-        <h4>Session {props.activeSession} in progress</h4>
+        <h4 className={styles.sessionTitle}>Session {props.activeSession} in progress</h4>
         <dl>
           <dt>Start Time:</dt>
           <dd>{props.activeSessionData.startTime}</dd>

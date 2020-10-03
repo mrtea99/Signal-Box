@@ -20,3 +20,7 @@
 .stageDifficulty {
   margin: 0;
 }
+
+.sessionControl {
+  min-height: 17rem;
+}

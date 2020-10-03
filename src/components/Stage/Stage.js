@@ -101,14 +101,16 @@ function Stage(props) {
         <h2 className={styles.stageTitle}>{props.stageName}</h2>
         <h4 className={styles.stageDifficulty}>Difficulty: {getDifficulty()}</h4>
       </header>
-      <SessionControl 
-        activeSession={activeSession}
-        addSession={addSession}
-        updateSession={updateSession}
-        endSession={endSession}
-        thisStage={props.thisStage}
-        activeSessionData={activeSessionData}
-      />
+      <div className={styles.sessionControl}>
+        <SessionControl 
+          activeSession={activeSession}
+          addSession={addSession}
+          updateSession={updateSession}
+          endSession={endSession}
+          thisStage={props.thisStage}
+          activeSessionData={activeSessionData}
+        />
+      </div>
       <SessionList 
         thisStage={props.thisStage}
         thisRunData={props.thisRunData}
