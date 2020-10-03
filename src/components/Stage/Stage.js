@@ -1,7 +1,9 @@
 import React from 'react';
+
 import SessionControl from '../SessionControl/SessionControl.js';
 import SessionList from '../SessionList/SessionList.js';
 
+import styles from './Stage.module.css';
 
 function Stage(props) {
   //Add initial status by checking if there is an incomplete session for this stage
@@ -94,9 +96,11 @@ function Stage(props) {
   }
 
   return (
-    <section style={{display: props.thisStage === props.activeStage ? 'block' : 'none' }}>
-      <h2>{props.stageName}</h2>
-      <h4>Difficulty: {getDifficulty()}</h4>
+    <section className={styles.stage} style={{display: props.thisStage === props.activeStage ? 'block' : 'none' }}>
+      <header className={styles.stageHeader}>
+        <h2 className={styles.stageTitle}>{props.stageName}</h2>
+        <h4 className={styles.stageDifficulty}>Difficulty: {getDifficulty()}</h4>
+      </header>
       <SessionControl 
         activeSession={activeSession}
         addSession={addSession}

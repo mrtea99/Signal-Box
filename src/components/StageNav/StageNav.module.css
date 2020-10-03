@@ -1,6 +1,6 @@
 
 .progBar {
-  --color-bar: var(--color-grey-dark);
+  --color-bar: var(--color-fg);
   --color-active: var(--color-pink-bright);
   --color-inactive: var(--color-pink-light);
   --height-bar: 2.4rem;
