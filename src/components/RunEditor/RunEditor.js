@@ -7,18 +7,7 @@ import styles from './RunEditor.module.css';
 
 
 function RunEditor(props) {
-  const [thisRunData, setThisRunData] = React.useState(props.runData.find(obj => obj.uid === props.currentRunUid));
-
-  React.useEffect(() => {
-    const newRunData = props.runData.find(obj => obj.uid === props.currentRunUid)
-
-    if (newRunData !== undefined) {
-      setThisRunData(newRunData);
-    }
-    else {
-      setThisRunData(null)
-    }
-  }, [props.runData, props.currentRunUid]);
+  const thisRunData = props.runData.find(obj => obj.uid === props.currentRunUid);
 
   function handleChange(dataSection, dataKey, e) {
     props.updateRunData(props.currentRunUid, dataSection, dataKey, e.target.value)
