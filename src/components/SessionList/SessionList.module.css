@@ -27,6 +27,11 @@
   margin: 0 1rem;
 }
 
+.itemRowTotals {
+  background-color: var(--color-pink);
+  color: var(--color-text-alt)
+}
+
 .contentItem {
   text-align: center;
   padding-top: 0.5rem;

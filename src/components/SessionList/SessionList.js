@@ -6,6 +6,8 @@ import Timer from "../Timer/Timer.js";
 import styles from "./SessionList.module.css";
 
 function SessionList(props) {
+  const thisStageData = props.thisRunData["stages"][props.thisStage];
+
   function addLeadingZero(number) {
     if (number < 10) {
       number = "0" + number;
@@ -36,6 +38,36 @@ function SessionList(props) {
     return `${hour}:${min}:${sec}`;
   }
 
+  let newestEndTime = 0;
+  for (let i = 0; i < thisStageData.length; i++) {
+    if (thisStageData[i].endTime === undefined) {
+      newestEndTime = 0;
+      break;
+    } else {
+      if (thisStageData[i].endTime > newestEndTime) {
+        newestEndTime = thisStageData[i].endTime;
+      }
+    }
+  }
+
+  function findTotalEndTime() {
+    if (newestEndTime === 0) {
+      return "-";
+    } else {
+      return (
+        <>
+          {formatDate(newestEndTime)}
+          <br />
+          {formatTime(newestEndTime)}
+        </>
+      );
+    }
+  }
+
+  function findTotalDuration() {
+    
+  }
+
   return (
     <table className={styles.container}>
       <thead className={styles.header}>
@@ -48,7 +80,7 @@ function SessionList(props) {
         </tr>
       </thead>
       <tbody>
-        {props.thisRunData["stages"][props.thisStage].map((session, index) => (
+        {thisStageData.map((session, index) => (
           <tr key={session.sessionUid} className={styles.itemRow}>
             <td className={styles.contentItem}>{session.activity}</td>
             <td className={styles.contentItem}>
@@ -66,7 +98,7 @@ function SessionList(props) {
                   {formatTime(session.endTime)}
                 </time>
               ) : (
-                <></>
+                "-"
               )}
             </td>
             <td className={styles.contentItem}>
@@ -83,6 +115,23 @@ function SessionList(props) {
             <td className={styles.contentItem}>{session.notes}</td>
           </tr>
         ))}
+        <tr className={`${styles.itemRow} ${styles.itemRowTotals}`}>
+          <td className={styles.contentItem}></td>
+          <td className={styles.contentItem}>
+            {thisStageData.length ? (
+              <>
+                {formatDate(thisStageData[0].startTime)}
+                <br />
+                {formatTime(thisStageData[0].startTime)}
+              </>
+            ) : (
+              ""
+            )}
+          </td>
+          <td className={styles.contentItem}>{findTotalEndTime()}</td>
+          <td className={styles.contentItem}>{findTotalDuration()}</td>
+          <td className={styles.contentItem}></td>
+        </tr>
       </tbody>
     </table>
   );
