@@ -1,18 +1,17 @@
-import React from 'react';
+import React from "react";
 
-import SessionStart from '../SessionStart/SessionStart.js';
-import SessionEnd from '../SessionEnd/SessionEnd.js';
+import SessionStart from "../SessionStart/SessionStart.js";
+import SessionEnd from "../SessionEnd/SessionEnd.js";
 
 function SessionControl(props) {
-
   return (
     <>
-      {!props.activeSessionData ?
+      {!props.activeSessionData ? (
         <SessionStart
           thisStage={props.thisStage}
           addSession={props.addSession}
         />
-      :
+      ) : (
         <SessionEnd
           activeSessionData={props.activeSessionData}
           endSession={props.endSession}
@@ -20,10 +19,9 @@ function SessionControl(props) {
           activeSession={props.activeSession}
           thisStage={props.thisStage}
         />
-      }
+      )}
     </>
-  )
+  );
 }
-
 
 export default SessionControl;

@@ -1,23 +1,28 @@
-import React from 'react';
+import React from "react";
 
-import styles from './SiteSidebar.module.css';
+import styles from "./SiteSidebar.module.css";
 
-import Button from '../Button/Button.js';
-
+import Button from "../Button/Button.js";
 
 function SiteSidebar(props) {
   function closeSidebar() {
-    props.setSidebarActive(false)
+    props.setSidebarActive(false);
   }
 
-  return(
-    <div className={props.sidebarActive ? [styles.siteSidebar, styles.siteSidebarActive].join(' ') : styles.siteSidebar }>
+  return (
+    <div
+      className={
+        props.sidebarActive
+          ? [styles.siteSidebar, styles.siteSidebarActive].join(" ")
+          : styles.siteSidebar
+      }
+    >
       <img className={styles.siteLogo} alt="Mojo Spa Logo" src="./logo.svg" />
       <div className={styles.sidebarControl}>
         <Button text="Close Sidebar" clickHandler={closeSidebar} />
       </div>
     </div>
-  )
+  );
 }
 
 export default SiteSidebar;

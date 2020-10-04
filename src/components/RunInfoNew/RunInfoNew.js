@@ -1,10 +1,9 @@
-import React from 'react';
+import React from "react";
 
-import Modal from '../Modal/Modal.js';
-import RunInfoForm from '../RunInfoForm/RunInfoForm.js';
+import Modal from "../Modal/Modal.js";
+import RunInfoForm from "../RunInfoForm/RunInfoForm.js";
 
 function RunInfoNew(props) {
-
   function createRun(productTemplateData) {
     let newData = [...props.runData];
 
@@ -13,7 +12,7 @@ function RunInfoNew(props) {
       uid: Date.now(),
       activeStage: 0,
       runInfo: {
-        runId: new Date().getUTCMilliseconds()
+        runId: new Date().getUTCMilliseconds(),
       },
       productInfo: productTemplateData,
       // stages: {
@@ -23,35 +22,28 @@ function RunInfoNew(props) {
       //   packaging: [],
       //   labeling: []
       // }
-      stages: [
-        [],
-        [],
-        [],
-        [],
-        []
-      ]
+      stages: [[], [], [], [], []],
     };
     newData.push(newRun);
     props.setRunData(newData);
-    props.setActive(false)
+    props.setActive(false);
   }
 
   function handleCancel() {
     props.setActive(false);
   }
 
-  return(
+  return (
     <>
-      {props.active ? 
+      {props.active ? (
         <Modal>
-          <RunInfoForm 
-            handleSave={createRun}
-            handleCancel={handleCancel}
-          />
+          <RunInfoForm handleSave={createRun} handleCancel={handleCancel} />
         </Modal>
-        : <></> }
+      ) : (
+        <></>
+      )}
     </>
-  )
+  );
 }
 
 export default RunInfoNew;

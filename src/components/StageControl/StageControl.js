@@ -1,36 +1,42 @@
-import React from 'react';
+import React from "react";
 
-import Stage from '../Stage/Stage.js';
-import StageNav from '../StageNav/StageNav.js';
+import Stage from "../Stage/Stage.js";
+import StageNav from "../StageNav/StageNav.js";
 
 // import styles from './StageControl.module.css';
 
 function StageControl(props) {
   const [activeStage, setActiveStage] = React.useState(() => {
     if (props.thisRunData !== undefined) {
-      return props.thisRunData.activeStage
-    }
-    else {
-      return 0
+      return props.thisRunData.activeStage;
+    } else {
+      return 0;
     }
   });
 
   React.useEffect(() => {
-    const newRunData = props.runData.find(obj => obj.uid === props.currentRunUid)
+    const newRunData = props.runData.find(
+      (obj) => obj.uid === props.currentRunUid
+    );
 
     if (newRunData !== undefined) {
-      setActiveStage(newRunData.activeStage)
-    }
-    else {
-      setActiveStage(null)
+      setActiveStage(newRunData.activeStage);
+    } else {
+      setActiveStage(null);
     }
   }, [props.runData, props.currentRunUid]);
 
-  const stageNameArr = ['Preparation', 'Manufacturing', 'Cooling', 'Packaging', 'Labeling']
+  const stageNameArr = [
+    "Preparation",
+    "Manufacturing",
+    "Cooling",
+    "Packaging",
+    "Labeling",
+  ];
 
   return (
     <>
-      <StageNav 
+      <StageNav
         stageNameArr={stageNameArr}
         currentRunUid={props.currentRunUid}
         activeStage={activeStage}
@@ -39,8 +45,8 @@ function StageControl(props) {
         thisRunData={props.thisRunData}
       />
 
-      {stageNameArr.map((stage, index) => 
-        <Stage 
+      {stageNameArr.map((stage, index) => (
+        <Stage
           key={props.currentRunUid + stage}
           thisStage={index}
           stageName={stage}
@@ -49,9 +55,9 @@ function StageControl(props) {
           currentRunUid={props.currentRunUid}
           updateRunData={props.updateRunData}
         />
-      )}
+      ))}
     </>
-  )
+  );
 }
 
 export default StageControl;

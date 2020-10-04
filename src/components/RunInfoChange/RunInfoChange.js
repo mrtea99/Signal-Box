@@ -1,25 +1,28 @@
-import React from 'react';
+import React from "react";
 
-import Modal from '../Modal/Modal.js';
-import RunInfoForm from '../RunInfoForm/RunInfoForm.js';
-
+import Modal from "../Modal/Modal.js";
+import RunInfoForm from "../RunInfoForm/RunInfoForm.js";
 
 function RunInfoChange(props) {
   function updateRunInfo(productTemplateData) {
-
-    props.updateRunData(props.currentRunUid, null, 'productInfo', productTemplateData)
+    props.updateRunData(
+      props.currentRunUid,
+      null,
+      "productInfo",
+      productTemplateData
+    );
     // props.updateRunData(props.currentRunUid, 'productInfo', 'batchQuantity', batchQuantity)
 
-    props.setActive(false)
+    props.setActive(false);
   }
 
   function handleCancel() {
     props.setActive(false);
   }
 
-  return(
+  return (
     <>
-      {props.active ? 
+      {props.active ? (
         <Modal>
           <RunInfoForm
             runData={props.runData}
@@ -28,9 +31,11 @@ function RunInfoChange(props) {
             handleCancel={handleCancel}
           />
         </Modal>
-        : <></> }
+      ) : (
+        <></>
+      )}
     </>
-  )
+  );
 }
 
 export default RunInfoChange;
