@@ -65,7 +65,20 @@ function SessionList(props) {
   }
 
   function findTotalDuration() {
-    
+    let totalDuration = 0;
+
+    for (let i = 0; i < thisStageData.length; i++) {
+      if (thisStageData[i].endTime === undefined) {
+        totalDuration =
+          totalDuration + (Date.now() - thisStageData[i].startTime);
+      } else {
+        totalDuration =
+          totalDuration +
+          (thisStageData[i].endTime - thisStageData[i].startTime);
+      }
+    }
+
+    return <TimeFormater rawTime={totalDuration} />;
   }
 
   return (
@@ -116,7 +129,7 @@ function SessionList(props) {
           </tr>
         ))}
         <tr className={`${styles.itemRow} ${styles.itemRowTotals}`}>
-          <td className={styles.contentItem}></td>
+          <td className={styles.contentItem}>Overall</td>
           <td className={styles.contentItem}>
             {thisStageData.length ? (
               <>
@@ -125,16 +138,38 @@ function SessionList(props) {
                 {formatTime(thisStageData[0].startTime)}
               </>
             ) : (
-              ""
+              "-"
             )}
           </td>
           <td className={styles.contentItem}>{findTotalEndTime()}</td>
-          <td className={styles.contentItem}>{findTotalDuration()}</td>
+          <td className={styles.contentItem}>
+            {newestEndTime ? (
+              <>{findTotalDuration()}</>
+            ) : (
+              <Repeater interval={333} callback={findTotalDuration} />
+            )}
+          </td>
           <td className={styles.contentItem}></td>
         </tr>
       </tbody>
     </table>
   );
+}
+
+function Repeater(props) {
+  const [returnValue, setReturnValue] = React.useState(props.callback());
+
+  React.useEffect(() => {
+    const timerInterval = setInterval(() => {
+      setReturnValue(props.callback());
+    }, props.interval);
+
+    return () => {
+      clearInterval(timerInterval);
+    };
+  });
+
+  return returnValue;
 }
 
 export default SessionList;
