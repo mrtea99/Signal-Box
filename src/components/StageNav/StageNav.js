@@ -5,12 +5,6 @@ import styles from "./StageNav.module.css";
 function StageNav(props) {
   function stageChange(newStageIndex) {
     props.setActiveStage(newStageIndex);
-    props.updateRunData(
-      props.currentRunUid,
-      null,
-      "activeStage",
-      newStageIndex
-    );
   }
 
   function handleNavList(stageIndex, e) {

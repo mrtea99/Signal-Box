@@ -67,10 +67,6 @@ function App() {
     setModalNewActive(true);
   }
 
-  // function setActiveStage(activeStage) {
-  //   updateRunData(currentRunUid, null, "activeStage", activeStage);
-  // }
-
   return (
     <div className={styles.siteContainer}>
       <header className={styles.siteHeader}>
