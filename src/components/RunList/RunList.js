@@ -4,10 +4,9 @@ import styles from "./RunList.module.css";
 import Button from "../Button/Button.js";
 
 function RunList(props) {
-
   function openEditor(runUid, stageNum) {
     props.setCurrentRunUid(runUid);
-    props.setActiveStage(stageNum)
+    props.setActiveStage(stageNum);
   }
 
   return (
@@ -33,19 +32,13 @@ function RunList(props) {
               {run.productInfo.productName}
             </td>
             <td className={styles.runItem}>
-              <Button onClick={() => openEditor(run.uid, 1)}>
-                Edit
-              </Button>
+              <Button onClick={() => openEditor(run.uid, 1)}>Edit ({run['stages'][0].length + run['stages'][1].length + run['stages'][2].length})</Button>
             </td>
             <td className={styles.runItem}>
-              <Button onClick={() =>openEditor(run.uid, 3)}>
-                Edit
-              </Button>
+              <Button onClick={() => openEditor(run.uid, 3)}>Edit ({run['stages'][3].length})</Button>
             </td>
             <td className={styles.runItem}>
-              <Button onClick={() =>openEditor(run.uid, 4)}>
-                Edit
-              </Button>
+              <Button onClick={() => openEditor(run.uid, 4)}>Edit ({run['stages'][4].length})</Button>
             </td>
             <td className={styles.runItem}>
               <Button>X</Button>
