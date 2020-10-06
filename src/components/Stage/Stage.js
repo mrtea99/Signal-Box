@@ -132,6 +132,7 @@ function Stage(props) {
           endSession={endSession}
           thisStage={props.thisStage}
           activeSessionData={activeSessionData}
+          activeUser={props.activeUser}
         />
       </div>
       <SessionList

@@ -92,6 +92,7 @@ function RunEditor(props) {
               updateRunData={props.updateRunData}
               activeStage={props.activeStage}
               setActiveStage={props.setActiveStage}
+              activeUser={props.activeUser}
             />
           </div>
           <pre>{JSON.stringify(thisRunData)}</pre>

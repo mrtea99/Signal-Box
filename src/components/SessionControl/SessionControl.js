@@ -10,6 +10,7 @@ function SessionControl(props) {
         <SessionStart
           thisStage={props.thisStage}
           addSession={props.addSession}
+          activeUser={props.activeUser}
         />
       ) : (
         <SessionEnd

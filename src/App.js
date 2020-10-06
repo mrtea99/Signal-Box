@@ -129,6 +129,7 @@ function App() {
               updateRunData={updateRunData}
               modalActive={modalChangeActive}
               setModalActive={setModalChangeActive}
+              activeUser={activeUser}
             />
             <RunInfoChange
               active={modalChangeActive}
