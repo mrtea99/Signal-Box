@@ -17,11 +17,15 @@ function App() {
     parseInt(window.localStorage.getItem("currentRunUid"), 10) || null;
   const savedActiveStage = () =>
     parseInt(window.localStorage.getItem("activeStage"), 10) || 0;
+  const savedActiveUser = () =>
+    parseInt(window.localStorage.getItem("activeUser"), 10) || 1;
 
   const [runData, setRunData] = React.useState(savedRunData);
   const [currentRunUid, setCurrentRunUid] = React.useState(savedCurrentRunUid);
 
   const [activeStage, setActiveStage] = React.useState(savedActiveStage);
+
+  const [activeUser, setActiveUser] = React.useState(savedActiveUser);
 
   const [modalNewActive, setModalNewActive] = React.useState(false);
   const [modalChangeActive, setModalChangeActive] = React.useState(false);
@@ -39,6 +43,10 @@ function App() {
   React.useEffect(() => {
     window.localStorage.setItem("activeStage", activeStage);
   }, [activeStage]);
+
+  React.useEffect(() => {
+    window.localStorage.setItem("activeUser", activeUser);
+  }, [activeUser]);
 
   function updateRunData(uid, dataSection, dataKey, newValue) {
     const updatedRunData = runData.map((run) => {
@@ -72,6 +80,15 @@ function App() {
       <header className={styles.siteHeader}>
         <div className={styles.sidebarTrigger}>
           <Button onClick={() => setSidebarActive(true)}>Open Sidebar</Button>
+        </div>
+        <div>
+          <select
+            value={activeUser}
+            onChange={(e) => setActiveUser(parseInt(e.target.value))}
+          >
+            <option value="1">User 1</option>
+            <option value="2">User 2</option>
+          </select>
         </div>
       </header>
       <div className={styles.sitePage}>
