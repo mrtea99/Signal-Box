@@ -11,32 +11,42 @@ function RunList(props) {
           <th className={[styles.headerItem, styles.alignLeft].join(" ")}>
             Product
           </th>
-          <th className={styles.headerItem}>Run ID</th>
-          <th className={styles.headerItem}>Stage</th>
-          <th className={styles.headerItem}>Batches</th>
-          <th className={styles.headerItem}></th>
-          <th className={styles.headerItem}></th>
+          <th className={styles.headerItem}>Manufacturing</th>
+          <th className={styles.headerItem}>Packaging</th>
+          <th className={styles.headerItem}>Labeling</th>
+          <th className={styles.headerItem}>Status</th>
+          <th className={styles.headerItem}>Delete</th>
         </tr>
       </thead>
       <tbody>
         {props.runData.map((run, index) => (
           <tr key={run.uid} className={styles.itemRow}>
             <td
-              className={[
-                styles.itemTitle,
-                styles.runItem,
-                styles.alignLeft,
-              ].join(" ")}
+              className={`${styles.itemTitle} ${styles.runItem} ${styles.alignLeft}`}
             >
               {run.productInfo.productName}
             </td>
-            <td className={styles.runItem}>{run.runInfo.runId}</td>
-            <td className={styles.runItem}>{run.activeStage}</td>
-            <td className={styles.runItem}>{run.productInfo.batchQuantity}</td>
             <td className={styles.runItem}>
               <Button
                 text="Edit"
                 clickHandler={() => props.setCurrentRunUid(run.uid)}
+              />
+            </td>
+            <td className={styles.runItem}>
+              <Button
+                text="Edit"
+                clickHandler={() => props.setCurrentRunUid(run.uid)}
+              />
+            </td>
+            <td className={styles.runItem}>
+              <Button
+                text="Edit"
+                clickHandler={() => props.setCurrentRunUid(run.uid)}
+              />
+            </td>
+            <td className={styles.runItem}>
+              <Button
+                text="X"
               />
             </td>
             <td className={styles.runItem}>
