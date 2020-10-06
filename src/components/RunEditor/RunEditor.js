@@ -25,12 +25,19 @@ function RunEditor(props) {
     props.setModalActive(true);
   }
 
+  function handleExitClick(e) {
+    e.preventDefault();
+
+    props.setCurrentRunUid(null);
+    props.setActiveStage(0);
+  }
+
   return (
     <>
       {thisRunData ? (
         <div className={[styles.runEditor, styles.runEditorActive].join(" ")}>
           <header>
-            <Button onClick={() => props.setCurrentRunUid(null)}>Exit</Button>
+            <Button onClick={(e) => handleExitClick(e)}>Exit</Button>
           </header>
           <div>
             <section className={styles.runInfo}>
@@ -83,6 +90,8 @@ function RunEditor(props) {
               runData={props.runData}
               currentRunUid={props.currentRunUid}
               updateRunData={props.updateRunData}
+              activeStage={props.activeStage}
+              setActiveStage={props.setActiveStage}
             />
           </div>
           <pre>{JSON.stringify(thisRunData)}</pre>

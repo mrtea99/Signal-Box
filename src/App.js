@@ -13,11 +13,15 @@ import Button from "./components/Button/Button.js";
 function App() {
   const savedRunData = () =>
     JSON.parse(window.localStorage.getItem("runData")) || [];
-  const savedcurrentRunUid = () =>
+  const savedCurrentRunUid = () =>
     parseInt(window.localStorage.getItem("currentRunUid"), 10) || null;
+  const savedActiveStage = () =>
+    parseInt(window.localStorage.getItem("activeStage"), 10) || 0;
 
   const [runData, setRunData] = React.useState(savedRunData);
-  const [currentRunUid, setCurrentRunUid] = React.useState(savedcurrentRunUid);
+  const [currentRunUid, setCurrentRunUid] = React.useState(savedCurrentRunUid);
+
+  const [activeStage, setActiveStage] = React.useState(savedActiveStage);
 
   const [modalNewActive, setModalNewActive] = React.useState(false);
   const [modalChangeActive, setModalChangeActive] = React.useState(false);
@@ -31,6 +35,10 @@ function App() {
   React.useEffect(() => {
     window.localStorage.setItem("currentRunUid", currentRunUid);
   }, [currentRunUid]);
+
+  React.useEffect(() => {
+    window.localStorage.setItem("activeStage", activeStage);
+  }, [activeStage]);
 
   function updateRunData(uid, dataSection, dataKey, newValue) {
     const updatedRunData = runData.map((run) => {
@@ -53,23 +61,21 @@ function App() {
     setRunData(updatedRunData);
   }
 
-  function setActiveStage(activeStage) {
-    updateRunData(currentRunUid, null, "activeStage", activeStage);
-  }
-
   function handleAddClick(e) {
     e.preventDefault();
 
     setModalNewActive(true);
   }
 
+  // function setActiveStage(activeStage) {
+  //   updateRunData(currentRunUid, null, "activeStage", activeStage);
+  // }
+
   return (
     <div className={styles.siteContainer}>
       <header className={styles.siteHeader}>
         <div className={styles.sidebarTrigger}>
-          <Button
-            onClick={() => setSidebarActive(true)}
-            >Open Sidebar</Button>
+          <Button onClick={() => setSidebarActive(true)}>Open Sidebar</Button>
         </div>
       </header>
       <div className={styles.sitePage}>
@@ -82,13 +88,14 @@ function App() {
             <menu className={styles.listControls}>
               <section className={styles.filterControls}></section>
               <section className={styles.otherControls}>
-                <Button onClick={handleAddClick} >New Run +</Button>
+                <Button onClick={handleAddClick}>New Run +</Button>
               </section>
             </menu>
             <RunList
               runData={runData}
               setRunData={setRunData}
               setCurrentRunUid={setCurrentRunUid}
+              activeStage={activeStage}
               setActiveStage={setActiveStage}
               deleteRun={deleteRun}
             />
@@ -104,6 +111,7 @@ function App() {
               runData={runData}
               currentRunUid={currentRunUid}
               setCurrentRunUid={setCurrentRunUid}
+              activeStage={activeStage}
               setActiveStage={setActiveStage}
               updateRunData={updateRunData}
               modalActive={modalChangeActive}

@@ -6,25 +6,25 @@ import StageNav from "../StageNav/StageNav.js";
 // import styles from './StageControl.module.css';
 
 function StageControl(props) {
-  const [activeStage, setActiveStage] = React.useState(() => {
-    if (props.thisRunData !== undefined) {
-      return props.thisRunData.activeStage;
-    } else {
-      return 0;
-    }
-  });
+  // const [activeStage, setActiveStage] = React.useState(() => {
+  //   if (props.thisRunData !== undefined) {
+  //     return props.thisRunData.activeStage;
+  //   } else {
+  //     return 0;
+  //   }
+  // });
 
-  React.useEffect(() => {
-    const newRunData = props.runData.find(
-      (obj) => obj.uid === props.currentRunUid
-    );
+  // React.useEffect(() => {
+  //   const newRunData = props.runData.find(
+  //     (obj) => obj.uid === props.currentRunUid
+  //   );
 
-    if (newRunData !== undefined) {
-      setActiveStage(newRunData.activeStage);
-    } else {
-      setActiveStage(null);
-    }
-  }, [props.runData, props.currentRunUid]);
+  //   if (newRunData !== undefined) {
+  //     setActiveStage(newRunData.activeStage);
+  //   } else {
+  //     setActiveStage(null);
+  //   }
+  // }, [props.runData, props.currentRunUid]);
 
   const stageNameArr = [
     "Preparation",
@@ -39,8 +39,8 @@ function StageControl(props) {
       <StageNav
         stageNameArr={stageNameArr}
         currentRunUid={props.currentRunUid}
-        activeStage={activeStage}
-        setActiveStage={setActiveStage}
+        activeStage={props.activeStage}
+        setActiveStage={props.setActiveStage}
         updateRunData={props.updateRunData}
         thisRunData={props.thisRunData}
       />
@@ -50,7 +50,7 @@ function StageControl(props) {
           key={props.currentRunUid + stage}
           thisStage={index}
           stageName={stage}
-          activeStage={activeStage}
+          activeStage={props.activeStage}
           thisRunData={props.thisRunData}
           currentRunUid={props.currentRunUid}
           updateRunData={props.updateRunData}

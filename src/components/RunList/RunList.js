@@ -4,6 +4,12 @@ import styles from "./RunList.module.css";
 import Button from "../Button/Button.js";
 
 function RunList(props) {
+
+  function openEditor(runUid, stageNum) {
+    props.setCurrentRunUid(runUid);
+    props.setActiveStage(stageNum)
+  }
+
   return (
     <table className={styles.container}>
       <thead className={styles.header}>
@@ -27,17 +33,17 @@ function RunList(props) {
               {run.productInfo.productName}
             </td>
             <td className={styles.runItem}>
-              <Button onClick={() => props.setCurrentRunUid(run.uid)}>
+              <Button onClick={() => openEditor(run.uid, 1)}>
                 Edit
               </Button>
             </td>
             <td className={styles.runItem}>
-              <Button onClick={() => props.setCurrentRunUid(run.uid)}>
+              <Button onClick={() =>openEditor(run.uid, 3)}>
                 Edit
               </Button>
             </td>
             <td className={styles.runItem}>
-              <Button onClick={() => props.setCurrentRunUid(run.uid)}>
+              <Button onClick={() =>openEditor(run.uid, 4)}>
                 Edit
               </Button>
             </td>
