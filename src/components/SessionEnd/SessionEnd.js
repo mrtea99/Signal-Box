@@ -39,7 +39,7 @@ function SessionEnd(props) {
     <>
       <div>
         <h4 className={styles.sessionTitle}>
-          Session {props.activeSession} in progress
+          Session {props.activeSessionData.sessionUid} in progress
         </h4>
         <dl>
           <dt>Start Time:</dt>

@@ -6,43 +6,25 @@ import SessionList from "../SessionList/SessionList.js";
 import styles from "./Stage.module.css";
 
 function Stage(props) {
-  //Add initial status by checking if there is an incomplete session for this stage
-  const [sessionList, setSessionList] = React.useState(
-    props.thisRunData["stages"][props.thisStage]
-  );
-  const [activeSession, setActiveSession] = React.useState(() => {
-    if (sessionList.length) {
-      const lastSession = sessionList[sessionList.length - 1];
-      if (lastSession.endTime === undefined) {
-        return lastSession.sessionUid;
-      } else {
-        return null;
-      }
-    }
-  });
-  const [activeSessionData, setActiveSessionData] = React.useState(
-    sessionList.find((obj) => obj.sessionUid === activeSession)
+  const sessionList = props.thisRunData["stages"][props.thisStage];
+
+  const [activeSessionData, setActiveSessionData] = React.useState(() =>
+    findActiveSession()
   );
 
-  React.useEffect(() => {
-    setSessionList(props.thisRunData["stages"][props.thisStage]);
-    setActiveSession(() => {
-      if (sessionList.length) {
-        const lastSession = sessionList[sessionList.length - 1];
-        if (lastSession.endTime === undefined) {
-          return lastSession.sessionUid;
-        } else {
-          return null;
+  function findActiveSession() {
+    if (sessionList.length) {
+      for (let i = 0; i < sessionList.length; i++) {
+        if (
+          sessionList[i].user === props.activeUser &&
+          sessionList[i].endTime === undefined
+        ) {
+          return sessionList[i];
         }
       }
-    });
-  }, [props.thisRunData, props.thisStage, activeSession, sessionList]);
-
-  React.useEffect(() => {
-    setActiveSessionData(
-      sessionList.find((obj) => obj.sessionUid === activeSession)
-    );
-  }, [activeSession, sessionList, props.currentRunUid]);
+    }
+    return null;
+  }
 
   function addSession(sessionData, newSessionUid) {
     const newSessionList = [...sessionList];
@@ -55,14 +37,14 @@ function Stage(props) {
       newSessionList
     );
 
-    setActiveSession(newSessionUid);
+    setActiveSessionData(sessionData);
   }
 
   function updateSession(extraData) {
     let newSessionList = [...sessionList];
 
     const activeSessionObj = newSessionList.find(
-      (obj) => obj.sessionUid === activeSession
+      (obj) => obj.sessionUid === activeSessionData.sessionUid
     );
 
     Object.assign(activeSessionObj, extraData);
@@ -85,7 +67,7 @@ function Stage(props) {
       updateSession(endTime);
     }
 
-    setActiveSession(null);
+    setActiveSessionData(null);
   }
 
   function getDifficulty() {
@@ -126,7 +108,6 @@ function Stage(props) {
       </header>
       <div className={styles.sessionControl}>
         <SessionControl
-          activeSession={activeSession}
           addSession={addSession}
           updateSession={updateSession}
           endSession={endSession}

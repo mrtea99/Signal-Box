@@ -17,7 +17,6 @@ function SessionControl(props) {
           activeSessionData={props.activeSessionData}
           endSession={props.endSession}
           updateSession={props.updateSession}
-          activeSession={props.activeSession}
           thisStage={props.thisStage}
         />
       )}
