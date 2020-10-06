@@ -114,17 +114,19 @@ function RunInfoForm(props) {
           ></input>
         </div>
         <Button
-          text="Cancel"
-          clickHandler={(e) => {
+          onClick={(e) => {
             e.preventDefault();
             props.handleCancel();
           }}
-        />
+        >
+          Cancel
+        </Button>
         <Button
-          text="Save"
           disabled={currentTemplate === null ? "disabled" : ""}
-          clickHandler={handleSubmit}
-        />
+          onClick={handleSubmit}
+        >
+          Save
+        </Button>
       </form>
       {/* <pre>{JSON.stringify(productTemplates[currentTemplate])}</pre> */}
     </>

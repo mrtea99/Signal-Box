@@ -68,9 +68,8 @@ function App() {
       <header className={styles.siteHeader}>
         <div className={styles.sidebarTrigger}>
           <Button
-            text="Open Sidebar"
-            clickHandler={() => setSidebarActive(true)}
-          />
+            onClick={() => setSidebarActive(true)}
+            >Open Sidebar</Button>
         </div>
       </header>
       <div className={styles.sitePage}>
@@ -83,7 +82,7 @@ function App() {
             <menu className={styles.listControls}>
               <section className={styles.filterControls}></section>
               <section className={styles.otherControls}>
-                <Button text="New Run +" clickHandler={handleAddClick} />
+                <Button onClick={handleAddClick} >New Run +</Button>
               </section>
             </menu>
             <RunList

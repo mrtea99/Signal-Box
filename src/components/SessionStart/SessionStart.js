@@ -114,11 +114,9 @@ function SessionStart(props) {
       ) : (
         <></>
       )}
-      <Button
-        text="Start New Session"
-        clickHandler={handleNewClick}
-        disabled={!validateForm()}
-      />
+      <Button onClick={handleNewClick} disabled={!validateForm()}>
+        Start New Session
+      </Button>
     </form>
   );
 }

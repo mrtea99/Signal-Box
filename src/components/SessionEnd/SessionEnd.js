@@ -82,7 +82,7 @@ function SessionEnd(props) {
         ) : (
           <></>
         )}
-        <Button text="End Session" clickHandler={handleEndClick} />
+        <Button onClick={handleEndClick}>End Session</Button>
       </form>
     </>
   );

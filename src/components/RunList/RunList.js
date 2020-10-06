@@ -27,33 +27,25 @@ function RunList(props) {
               {run.productInfo.productName}
             </td>
             <td className={styles.runItem}>
-              <Button
-                text="Edit"
-                clickHandler={() => props.setCurrentRunUid(run.uid)}
-              />
+              <Button onClick={() => props.setCurrentRunUid(run.uid)}>
+                Edit
+              </Button>
             </td>
             <td className={styles.runItem}>
-              <Button
-                text="Edit"
-                clickHandler={() => props.setCurrentRunUid(run.uid)}
-              />
+              <Button onClick={() => props.setCurrentRunUid(run.uid)}>
+                Edit
+              </Button>
             </td>
             <td className={styles.runItem}>
-              <Button
-                text="Edit"
-                clickHandler={() => props.setCurrentRunUid(run.uid)}
-              />
+              <Button onClick={() => props.setCurrentRunUid(run.uid)}>
+                Edit
+              </Button>
             </td>
             <td className={styles.runItem}>
-              <Button
-                text="X"
-              />
+              <Button>X</Button>
             </td>
             <td className={styles.runItem}>
-              <Button
-                text="Delete"
-                clickHandler={() => props.deleteRun(run.uid)}
-              />
+              <Button onClick={() => props.deleteRun(run.uid)}>Delete</Button>
             </td>
           </tr>
         ))}

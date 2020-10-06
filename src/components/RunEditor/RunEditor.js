@@ -30,10 +30,7 @@ function RunEditor(props) {
       {thisRunData ? (
         <div className={[styles.runEditor, styles.runEditorActive].join(" ")}>
           <header>
-            <Button
-              text="< Exit"
-              clickHandler={() => props.setCurrentRunUid(null)}
-            />
+            <Button onClick={() => props.setCurrentRunUid(null)}>Exit</Button>
           </header>
           <div>
             <section className={styles.runInfo}>
@@ -77,7 +74,7 @@ function RunEditor(props) {
                   data={thisRunData}
                   changeHandler={handleChange}
                 />
-                <Button text="Run Info" clickHandler={handleEditInfoClick} />
+                <Button onClick={handleEditInfoClick}>Run Info</Button>
               </div>
             </section>
 

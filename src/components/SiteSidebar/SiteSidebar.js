@@ -19,7 +19,7 @@ function SiteSidebar(props) {
     >
       <img className={styles.siteLogo} alt="Mojo Spa Logo" src="./logo.svg" />
       <div className={styles.sidebarControl}>
-        <Button text="Close Sidebar" clickHandler={closeSidebar} />
+        <Button onClick={closeSidebar}>Close Sidebar</Button>
       </div>
     </div>
   );
