@@ -21,7 +21,7 @@ function StageNav(props) {
       className = styles.progBtn;
     }
 
-    if (props.thisRunData["stages"][index].length) {
+    if (props.thisRunData["stages"][index]["sessions"]) {
       className = className + " " + styles.progBtnStarted;
     }
 
@@ -36,7 +36,7 @@ function StageNav(props) {
             className={getButtonClasses(index)}
             onClick={(e) => handleNavList(index, e)}
           >
-            {stage} ({props.thisRunData["stages"][index].length})
+            {stage} ({props.thisRunData["stages"][index]["sessions"].length})
           </button>
         </li>
       ))}

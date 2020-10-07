@@ -35,7 +35,7 @@ function SessionStart(props) {
       sessionUid: newSessionUid,
       startTime: Date.now(),
       activity: activityData,
-      user: props.activeUser
+      user: props.activeUser,
     };
 
     if (props.thisStage === 1 || props.thisStage === 2) {

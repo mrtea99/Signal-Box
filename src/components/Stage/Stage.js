@@ -6,7 +6,8 @@ import SessionList from "../SessionList/SessionList.js";
 import styles from "./Stage.module.css";
 
 function Stage(props) {
-  const sessionList = props.thisRunData["stages"][props.thisStage];
+  const stageData = props.thisRunData["stages"][props.thisStage]
+  const sessionList = stageData["sessions"];
 
   const [activeSessionData, setActiveSessionData] = React.useState(() =>
     findActiveSession()
@@ -27,20 +28,24 @@ function Stage(props) {
   }
 
   function addSession(sessionData, newSessionUid) {
-    const newSessionList = [...sessionList];
+    let newStageObj = {...stageData};
+    let newSessionList = [...sessionList];
+
     newSessionList.push(sessionData);
+    newStageObj["sessions"] = newSessionList;
 
     props.updateRunData(
       props.currentRunUid,
       "stages",
       props.thisStage,
-      newSessionList
+      newStageObj
     );
 
     setActiveSessionData(sessionData);
   }
 
   function updateSession(extraData) {
+    let newStageObj = {...stageData};
     let newSessionList = [...sessionList];
 
     const activeSessionObj = newSessionList.find(
@@ -49,11 +54,13 @@ function Stage(props) {
 
     Object.assign(activeSessionObj, extraData);
 
+    newStageObj["sessions"] = newSessionList;
+
     props.updateRunData(
       props.currentRunUid,
       "stages",
       props.thisStage,
-      newSessionList
+      newStageObj
     );
   }
 

@@ -15,14 +15,29 @@ function RunInfoNew(props) {
         runId: new Date().getUTCMilliseconds(),
       },
       productInfo: productTemplateData,
-      // stages: {
-      //   prep: [],
-      //   manufacturing: [],
-      //   cooling: [],
-      //   packaging: [],
-      //   labeling: []
-      // }
-      stages: [[], [], [], [], []],
+      // stages: [[], [], [], [], []],
+      stages: [
+        {
+          sessions: [],
+          complete: false,
+        },
+        {
+          sessions: [],
+          complete: false,
+        },
+        {
+          sessions: [],
+          complete: false,
+        },
+        {
+          sessions: [],
+          complete: false,
+        },
+        {
+          sessions: [],
+          complete: false,
+        },
+      ],
     };
     newData.push(newRun);
     props.setRunData(newData);

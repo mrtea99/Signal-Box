@@ -6,7 +6,8 @@ import Timer from "../Timer/Timer.js";
 import styles from "./SessionList.module.css";
 
 function SessionList(props) {
-  const thisStageData = props.thisRunData["stages"][props.thisStage];
+  const thisStageData =
+    props.thisRunData["stages"][props.thisStage]["sessions"];
 
   function addLeadingZero(number) {
     if (number < 10) {
@@ -89,6 +90,7 @@ function SessionList(props) {
           <th className={styles.headerItem}>Start Time</th>
           <th className={styles.headerItem}>Finish Time</th>
           <th className={styles.headerItem}>Duration</th>
+          <th className={styles.headerItem}>Technician</th>
           <th className={styles.headerItem}>Note</th>
         </tr>
       </thead>
@@ -125,6 +127,7 @@ function SessionList(props) {
                 <Timer startTime={session.startTime} />
               )}
             </td>
+            <td className={styles.contentItem}>{session.user}</td>
             <td className={styles.contentItem}>{session.notes}</td>
           </tr>
         ))}
@@ -149,6 +152,7 @@ function SessionList(props) {
               <Repeater interval={333} callback={findTotalDuration} />
             )}
           </td>
+          <td className={styles.contentItem}></td>
           <td className={styles.contentItem}></td>
         </tr>
       </tbody>
