@@ -11,14 +11,10 @@ function StageStatus(props) {
   let sessionsEnded = [];
 
   stageNumbers.forEach((item, index) => {
-    count = count + getSessionCount(item);
+    count = count + stagesData[item]["sessions"].length;
     complete.push(stagesData[item].complete);
     sessionsEnded.push(areSessionsEnded(item));
   });
-
-  function getSessionCount(stage) {
-    return stagesData[stage]["sessions"].length;
-  }
 
   function areSessionsEnded(stage) {
     for (let i = 0; i < stagesData[stage]["sessions"].length; i++) {
