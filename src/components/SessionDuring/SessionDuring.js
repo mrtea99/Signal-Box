@@ -11,13 +11,18 @@ function SessionDuring(props) {
   const [noteData, setNoteData] = React.useState(
     props.activeSessionData["notes"] || ""
   );
-  // Quantity made (manu, pack, label)
-  const [countMade, setCountMade] = React.useState(
-    props.activeSessionData["countMade"] || 0
+  // Amount made (manu, pack, label)
+  const [amount, setAmount] = React.useState(
+    props.activeSessionData["amount"] || 0
   );
-  // Number Defective (manu, pack, label)
-  // Batch weight (manu)
-  // Average unit weight (pack)
+  // Amount Bad (manu, pack, label)
+  const [amountBad, setAmountBad] = React.useState(
+    props.activeSessionData["amountBad"] || 0
+  );
+  // Average unit/batch weight (manu, pack)
+  const [averageWeight, setAverageWeight] = React.useState(
+    props.activeSessionData["averageWeight"] || 0
+  );
   // QA check (prep, manu, pack, label)
 
   function handleEndClick(e) {
@@ -65,20 +70,60 @@ function SessionDuring(props) {
         {props.thisStage === 1 ||
         props.thisStage === 3 ||
         props.thisStage === 4 ? (
-          <div>
-            <label htmlFor={"sess-count-made-step-" + props.thisStage}>
-              Completed {props.thisStage === 1 ? "Batches" : "Units"}:
-            </label>
-            <input
-              id={"sess-count-made-step-" + props.thisStage}
-              type="number"
-              min="0"
-              onChange={(e) =>
-                handleFieldChange(e.target.value, setCountMade, "countMade")
-              }
-              value={countMade}
-            />
-          </div>
+          <>
+            <div>
+              <label htmlFor={"sess-amount-step-" + props.thisStage}>
+                Completed {props.thisStage === 1 ? "Batches" : "Units"}:
+                {props.thisStage === 1 ? '(Target ' + props.thisRunData.productInfo.averageBatchQuantity + ')' : ''}
+              </label>
+              <input
+                id={"sess-amount-step-" + props.thisStage}
+                type="number"
+                min="0"
+                onChange={(e) =>
+                  handleFieldChange(e.target.value, setAmount, "amount")
+                }
+                value={amount}
+              />
+            </div>
+            <div>
+              <label htmlFor={"sess-amount-bad-step-" + props.thisStage}>
+                Defective {props.thisStage === 1 ? "Batches" : "Units"}:
+              </label>
+              <input
+                id={"sess-amount-bad-step-" + props.thisStage}
+                type="number"
+                min="0"
+                onChange={(e) =>
+                  handleFieldChange(e.target.value, setAmountBad, "amountBad")
+                }
+                value={amountBad}
+              />
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
+        {props.thisStage === 1 ||
+        props.thisStage === 3 ? (
+          <>
+            <div>
+              <label htmlFor={"sess-average-weight-step-" + props.thisStage}>
+                Average {props.thisStage === 1 ? "Batch" : "Unit"} Weight:
+                {props.thisStage === 1 ? '(Target ' + props.thisRunData.productInfo.batchWeight + ')' : ''}
+                {props.thisStage === 3 ? '(Target ' + props.thisRunData.productInfo.averageUnitWeight + ')' : ''}
+              </label>{/*  */}
+              <input
+                id={"sess-average-weight-step-" + props.thisStage}
+                type="number"
+                min="0"
+                onChange={(e) =>
+                  handleFieldChange(e.target.value, setAverageWeight, "averageWeight")
+                }
+                value={averageWeight}
+              />
+            </div>
+          </>
         ) : (
           <></>
         )}

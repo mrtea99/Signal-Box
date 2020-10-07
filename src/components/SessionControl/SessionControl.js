@@ -13,6 +13,7 @@ function SessionControl(props) {
           endSession={props.endSession}
           updateSession={props.updateSession}
           thisStage={props.thisStage}
+          thisRunData={props.thisRunData}
         />
       ) : (
         <>
