@@ -121,6 +121,13 @@ function SessionList(props) {
           ) : (
             <></>
           )}
+          {props.thisStage === 1 ||
+          props.thisStage === 2 ||
+          props.thisStage === 3 ? (
+            <th className={styles.headerItem}>Data</th>
+          ) : (
+            <></>
+          )}
           <th className={styles.headerItem}>Technician</th>
           <th className={styles.headerItem}>Note</th>
         </tr>
@@ -162,9 +169,27 @@ function SessionList(props) {
             props.thisStage === 3 ||
             props.thisStage === 4 ? (
               <>
-                <td className={styles.contentItem}>{session.amount || 0}</td>
-                <td className={styles.contentItem}>{session.amountBad || 0}</td>
+                <td className={styles.contentItem}>
+                  {session.amount === undefined ? "-" : session.amount}
+                </td>
+                <td className={styles.contentItem}>
+                  {session.amountBad === undefined ? "-" : session.amountBad}
+                </td>
               </>
+            ) : (
+              <></>
+            )}
+            {props.thisStage === 1 ||
+            props.thisStage === 2 ||
+            props.thisStage === 3 ? (
+              <td className={styles.contentItem}>
+                {props.thisStage === 1 ||
+                props.thisStage === 2 ? (
+                <>Temp:{session.temperature}<br />Humidity:{session.humidity}%</>
+                ) : (
+                  <>Avg Weight:{session.averageWeight}</>
+                )}
+              </td>
             ) : (
               <></>
             )}
@@ -202,6 +227,13 @@ function SessionList(props) {
                 {findTotalCount("amountBad")}
               </td>
             </>
+          ) : (
+            <></>
+          )}
+          {props.thisStage === 1 ||
+          props.thisStage === 2 ||
+          props.thisStage === 3 ? (
+            <td className={styles.contentItem}></td>
           ) : (
             <></>
           )}

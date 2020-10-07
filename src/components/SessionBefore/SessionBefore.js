@@ -22,9 +22,9 @@ function SessionBefore(props) {
     activityList[props.thisStage][0]
   );
   // Room temp (manu and cool)
-  const [roomTemp, setRoomTemp] = React.useState(null);
+  const [temperature, setTemperature] = React.useState(null);
   // Room humidity (manu and cool)
-  const [roomHumidity, setRoomHumidity] = React.useState(null);
+  const [humidity, setHumidity] = React.useState(null);
 
   function handleNewClick(e) {
     e.preventDefault();
@@ -39,7 +39,8 @@ function SessionBefore(props) {
     };
 
     if (props.thisStage === 1 || props.thisStage === 2) {
-      newSession.roomTemp = roomTemp;
+      newSession.temperature = temperature;
+      newSession.humidity = humidity;
     }
 
     props.addSession(newSession, newSessionUid);
@@ -48,12 +49,12 @@ function SessionBefore(props) {
   function validateForm() {
     if (props.thisStage === 1 || props.thisStage === 2) {
       if (
-        typeof roomTemp === "number" &&
-        roomTemp >= 0 &&
-        roomTemp <= 120 &&
-        typeof roomHumidity === "number" &&
-        roomHumidity >= 0 &&
-        roomHumidity <= 100
+        typeof temperature === "number" &&
+        temperature >= 0 &&
+        temperature <= 120 &&
+        typeof humidity === "number" &&
+        humidity >= 0 &&
+        humidity <= 100
       ) {
         return true;
       } else {
@@ -94,7 +95,7 @@ function SessionBefore(props) {
             <input
               id={"sess-temp-stage-" + props.thisStage}
               type="number"
-              onChange={(e) => setRoomTemp(parseInt(e.target.value))}
+              onChange={(e) => setTemperature(parseInt(e.target.value))}
               min="0"
               max="120"
             />
@@ -106,7 +107,7 @@ function SessionBefore(props) {
             <input
               id={"sess-humidity-stage-" + props.thisStage}
               type="number"
-              onChange={(e) => setRoomHumidity(parseInt(e.target.value))}
+              onChange={(e) => setHumidity(parseInt(e.target.value))}
               min="0"
               max="100"
             />
