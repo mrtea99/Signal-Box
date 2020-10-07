@@ -3,9 +3,9 @@ import React from "react";
 import Timer from "../Timer/Timer.js";
 import Button from "../Button/Button.js";
 
-import styles from "./SessionEnd.module.css";
+import styles from "./SessionDuring.module.css";
 
-function SessionEnd(props) {
+function SessionDuring(props) {
   // After Statuses
   // Notes (all)
   const [noteData, setNoteData] = React.useState(
@@ -88,4 +88,4 @@ function SessionEnd(props) {
   );
 }
 
-export default SessionEnd;
+export default SessionDuring;

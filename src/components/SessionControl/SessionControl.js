@@ -1,19 +1,19 @@
 import React from "react";
 
-import SessionStart from "../SessionStart/SessionStart.js";
-import SessionEnd from "../SessionEnd/SessionEnd.js";
+import SessionBefore from "../SessionBefore/SessionBefore.js";
+import SessionDuring from "../SessionDuring/SessionDuring.js";
 
 function SessionControl(props) {
   return (
     <>
       {!props.activeSessionData ? (
-        <SessionStart
+        <SessionBefore
           thisStage={props.thisStage}
           addSession={props.addSession}
           activeUser={props.activeUser}
         />
       ) : (
-        <SessionEnd
+        <SessionDuring
           activeSessionData={props.activeSessionData}
           endSession={props.endSession}
           updateSession={props.updateSession}

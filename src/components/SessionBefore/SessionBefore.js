@@ -16,7 +16,7 @@ const activityList = [
   ["Labeling", "Sealing", "Boxing"],
 ];
 
-function SessionStart(props) {
+function SessionBefore(props) {
   // Activity type (all)
   const [activityData, setActivityData] = React.useState(
     activityList[props.thisStage][0]
@@ -122,4 +122,4 @@ function SessionStart(props) {
   );
 }
 
-export default SessionStart;
+export default SessionBefore;
