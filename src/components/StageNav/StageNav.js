@@ -1,5 +1,7 @@
 import React from "react";
 
+import StageStatus from "../StageStatus/StageStatus.js";
+
 import styles from "./StageNav.module.css";
 
 function StageNav(props) {
@@ -36,7 +38,7 @@ function StageNav(props) {
             className={getButtonClasses(index)}
             onClick={(e) => handleNavList(index, e)}
           >
-            {stage} ({props.thisRunData["stages"][index]["sessions"].length})
+            {stage} (<StageStatus runData={props.thisRunData} stageNum={index} />)
           </button>
         </li>
       ))}

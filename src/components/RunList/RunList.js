@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./RunList.module.css";
 
 import Button from "../Button/Button.js";
+import StageStatus from "../StageStatus/StageStatus";
 
 function RunList(props) {
   function openEditor(runUid, stageNum) {
@@ -33,21 +34,17 @@ function RunList(props) {
             </td>
             <td className={styles.runItem}>
               <Button onClick={() => openEditor(run.uid, 1)}>
-                Edit (
-                {run["stages"][0]["sessions"].length +
-                  run["stages"][1]["sessions"].length +
-                  run["stages"][2]["sessions"].length}
-                )
+              <StageStatus runData={run} stageNum={[0, 1, 2]} />
               </Button>
             </td>
             <td className={styles.runItem}>
               <Button onClick={() => openEditor(run.uid, 3)}>
-                Edit ({run["stages"][3]["sessions"].length})
+                <StageStatus runData={run} stageNum={3} />
               </Button>
             </td>
             <td className={styles.runItem}>
               <Button onClick={() => openEditor(run.uid, 4)}>
-                Edit ({run["stages"][4]["sessions"].length})
+                <StageStatus runData={run} stageNum={4} />
               </Button>
             </td>
             <td className={styles.runItem}>
