@@ -6,12 +6,28 @@ import SessionList from "../SessionList/SessionList.js";
 import styles from "./Stage.module.css";
 
 function Stage(props) {
-  const stageData = props.thisRunData["stages"][props.thisStage]
+  const stageData = props.thisRunData["stages"][props.thisStage];
   const sessionList = stageData["sessions"];
+
+  // const [stageComplete, setStageComplete] = React.useState(stageData.complete);
+  const stageComplete = stageData.complete;
 
   const [activeSessionData, setActiveSessionData] = React.useState(() =>
     findActiveSession()
   );
+
+  function updateStageCompletion(newState) {
+    let newStageObj = { ...stageData };
+
+    newStageObj.complete = newState
+
+    props.updateRunData(
+      props.currentRunUid,
+      "stages",
+      props.thisStage,
+      newStageObj
+    );
+  }
 
   function findActiveSession() {
     if (sessionList.length) {
@@ -28,7 +44,7 @@ function Stage(props) {
   }
 
   function addSession(sessionData, newSessionUid) {
-    let newStageObj = {...stageData};
+    let newStageObj = { ...stageData };
     let newSessionList = [...sessionList];
 
     newSessionList.push(sessionData);
@@ -45,7 +61,7 @@ function Stage(props) {
   }
 
   function updateSession(extraData) {
-    let newStageObj = {...stageData};
+    let newStageObj = { ...stageData };
     let newSessionList = [...sessionList];
 
     const activeSessionObj = newSessionList.find(
@@ -121,6 +137,8 @@ function Stage(props) {
           thisStage={props.thisStage}
           activeSessionData={activeSessionData}
           activeUser={props.activeUser}
+          stageComplete={stageComplete}
+          updateStageCompletion={updateStageCompletion}
         />
       </div>
       <SessionList

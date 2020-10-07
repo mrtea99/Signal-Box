@@ -27,7 +27,7 @@ function StageStatus(props) {
 
   return (
     <>
-      {complete.includes(true) ? "Complete" : count}
+      {complete.includes(false) ? count : "C"}
       {sessionsEnded.includes(false) ? "*" : ""}
     </>
   );
