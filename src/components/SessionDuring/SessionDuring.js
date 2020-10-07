@@ -81,7 +81,7 @@ function SessionDuring(props) {
                 type="number"
                 min="0"
                 onChange={(e) =>
-                  handleFieldChange(e.target.value, setAmount, "amount")
+                  handleFieldChange(parseInt(e.target.value), setAmount, "amount")
                 }
                 value={amount}
               />
@@ -95,7 +95,7 @@ function SessionDuring(props) {
                 type="number"
                 min="0"
                 onChange={(e) =>
-                  handleFieldChange(e.target.value, setAmountBad, "amountBad")
+                  handleFieldChange(parseInt(e.target.value), setAmountBad, "amountBad")
                 }
                 value={amountBad}
               />
@@ -118,7 +118,7 @@ function SessionDuring(props) {
                 type="number"
                 min="0"
                 onChange={(e) =>
-                  handleFieldChange(e.target.value, setAverageWeight, "averageWeight")
+                  handleFieldChange(parseInt(e.target.value), setAverageWeight, "averageWeight")
                 }
                 value={averageWeight}
               />

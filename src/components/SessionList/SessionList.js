@@ -82,6 +82,20 @@ function SessionList(props) {
     return <TimeFormater rawTime={totalDuration} />;
   }
 
+  function findTotalCount(propertyName) {
+    let total = 0;
+
+    for (let i = 0; i < thisStageData.length; i++) {
+      const sessionValue = thisStageData[i][propertyName];
+
+      if (sessionValue) {
+        total = total + sessionValue;
+      }
+    }
+
+    return total;
+  }
+
   return (
     <table className={styles.container}>
       <thead className={styles.header}>
@@ -90,6 +104,23 @@ function SessionList(props) {
           <th className={styles.headerItem}>Start Time</th>
           <th className={styles.headerItem}>Finish Time</th>
           <th className={styles.headerItem}>Duration</th>
+          {props.thisStage === 1 ? (
+            <th className={styles.headerItem}>Batches</th>
+          ) : (
+            <></>
+          )}
+          {props.thisStage === 3 || props.thisStage === 4 ? (
+            <th className={styles.headerItem}>Units</th>
+          ) : (
+            <></>
+          )}
+          {props.thisStage === 1 ||
+          props.thisStage === 3 ||
+          props.thisStage === 4 ? (
+            <th className={styles.headerItem}>Defective</th>
+          ) : (
+            <></>
+          )}
           <th className={styles.headerItem}>Technician</th>
           <th className={styles.headerItem}>Note</th>
         </tr>
@@ -127,6 +158,16 @@ function SessionList(props) {
                 <Timer startTime={session.startTime} />
               )}
             </td>
+            {props.thisStage === 1 ||
+            props.thisStage === 3 ||
+            props.thisStage === 4 ? (
+              <>
+                <td className={styles.contentItem}>{session.amount || 0}</td>
+                <td className={styles.contentItem}>{session.amountBad || 0}</td>
+              </>
+            ) : (
+              <></>
+            )}
             <td className={styles.contentItem}>{session.user}</td>
             <td className={styles.contentItem}>{session.notes}</td>
           </tr>
@@ -152,6 +193,18 @@ function SessionList(props) {
               <Repeater interval={333} callback={findTotalDuration} />
             )}
           </td>
+          {props.thisStage === 1 ||
+          props.thisStage === 3 ||
+          props.thisStage === 4 ? (
+            <>
+              <td className={styles.contentItem}>{findTotalCount("amount")}</td>
+              <td className={styles.contentItem}>
+                {findTotalCount("amountBad")}
+              </td>
+            </>
+          ) : (
+            <></>
+          )}
           <td className={styles.contentItem}></td>
           <td className={styles.contentItem}></td>
         </tr>
