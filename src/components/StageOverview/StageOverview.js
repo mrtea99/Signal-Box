@@ -17,8 +17,13 @@ function StageOverview(props) {
       {stageNameArr.map((stageName, index) => (
         <section key={stageName}>
           <h3>
-            {stageName} (
-            <StageStatus runData={props.thisRunData} stageNum={index} />)
+            {stageName}
+            {": "}
+            <StageStatus
+              runData={props.thisRunData}
+              stageNum={index}
+              label={true}
+            />
           </h3>
           <SessionList thisStage={index} thisRunData={props.thisRunData} />
         </section>

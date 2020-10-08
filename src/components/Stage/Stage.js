@@ -2,6 +2,7 @@ import React from "react";
 
 import SessionControl from "../SessionControl/SessionControl.js";
 import SessionList from "../SessionList/SessionList.js";
+import StageStatus from "../StageStatus/StageStatus.js";
 
 import styles from "./Stage.module.css";
 
@@ -19,7 +20,7 @@ function Stage(props) {
   function updateStageCompletion(newState) {
     let newStageObj = { ...stageData };
 
-    newStageObj.complete = newState
+    newStageObj.complete = newState;
 
     props.updateRunData(
       props.currentRunUid,
@@ -125,6 +126,13 @@ function Stage(props) {
     >
       <header className={styles.stageHeader}>
         <h2 className={styles.stageTitle}>{props.stageName}</h2>
+        <h3>
+          <StageStatus
+            runData={props.thisRunData}
+            stageNum={props.thisStage}
+            label={true}
+          />
+        </h3>
         <h4 className={styles.stageDifficulty}>
           Difficulty: {getDifficulty()}
         </h4>

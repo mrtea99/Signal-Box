@@ -38,27 +38,31 @@ function RunList(props) {
             </td>
             <td className={styles.runItem}>
               <Button onClick={() => openEditor(run.uid, 1)}>
-              <StageStatus runData={run} stageNum={[0, 1, 2]} />
+                <StageStatus runData={run} stageNum={[0, 1, 2]} label={true} />
               </Button>
             </td>
             <td className={styles.runItem}>
               <Button onClick={() => openEditor(run.uid, 3)}>
-                <StageStatus runData={run} stageNum={3} />
+                <StageStatus runData={run} stageNum={3} label={true} />
               </Button>
             </td>
             <td className={styles.runItem}>
               <Button onClick={() => openEditor(run.uid, 4)}>
-                <StageStatus runData={run} stageNum={4} />
+                <StageStatus runData={run} stageNum={4} label={true} />
               </Button>
             </td>
             <td className={styles.runItem}>
               <Button onClick={() => setModalOverviewActive(true)}>X</Button>
-              {modalOverviewActive ? <Modal>
-                <Button onClick={() => setModalOverviewActive(false)}>
-                  Close
-                </Button>
-                <StageOverview thisRunData={run}></StageOverview>
-              </Modal> : <></>}
+              {modalOverviewActive ? (
+                <Modal>
+                  <Button onClick={() => setModalOverviewActive(false)}>
+                    Close
+                  </Button>
+                  <StageOverview thisRunData={run}></StageOverview>
+                </Modal>
+              ) : (
+                <></>
+              )}
             </td>
             <td className={styles.runItem}>
               <Button onClick={() => props.deleteRun(run.uid)}>Delete</Button>
