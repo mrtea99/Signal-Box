@@ -3,8 +3,12 @@ import styles from "./RunList.module.css";
 
 import Button from "../Button/Button.js";
 import StageStatus from "../StageStatus/StageStatus";
+import StageOverview from "../StageOverview/StageOverview.js";
+import Modal from "../Modal/Modal.js";
 
 function RunList(props) {
+  const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
+
   function openEditor(runUid, stageNum) {
     props.setCurrentRunUid(runUid);
     props.setActiveStage(stageNum);
@@ -48,7 +52,13 @@ function RunList(props) {
               </Button>
             </td>
             <td className={styles.runItem}>
-              <Button>X</Button>
+              <Button onClick={() => setModalOverviewActive(true)}>X</Button>
+              {modalOverviewActive ? <Modal>
+                <Button onClick={() => setModalOverviewActive(false)}>
+                  Close
+                </Button>
+                <StageOverview thisRunData={run}></StageOverview>
+              </Modal> : <></>}
             </td>
             <td className={styles.runItem}>
               <Button onClick={() => props.deleteRun(run.uid)}>Delete</Button>

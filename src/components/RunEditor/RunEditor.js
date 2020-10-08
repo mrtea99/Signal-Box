@@ -1,11 +1,15 @@
 import React from "react";
 
 import StageControl from "../StageControl/StageControl.js";
+import StageOverview from "../StageOverview/StageOverview.js";
+import Modal from "../Modal/Modal.js";
 import Button from "../Button/Button.js";
 
 import styles from "./RunEditor.module.css";
 
 function RunEditor(props) {
+  const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
+
   const thisRunData = props.runData.find(
     (obj) => obj.uid === props.currentRunUid
   );
@@ -48,7 +52,6 @@ function RunEditor(props) {
                 <h3 className={styles.runInfoName}>
                   {thisRunData.productInfo.productName}
                 </h3>
-                {/* <FormItem editable={false} name="Product" ident="product-name" dataSection="productInfo" dataKey="productName" type="text" data={thisRunData} changeHandler={handleChange} /> */}
                 <FormItem
                   editable={false}
                   name="SKU"
@@ -82,6 +85,19 @@ function RunEditor(props) {
                   changeHandler={handleChange}
                 />
                 <Button onClick={handleEditInfoClick}>Run Info</Button>
+                <Button onClick={() => setModalOverviewActive(true)}>
+                  Status
+                </Button>
+                {modalOverviewActive ? (
+                  <Modal>
+                    <Button onClick={() => setModalOverviewActive(false)}>
+                      Close
+                    </Button>
+                    <StageOverview thisRunData={thisRunData}></StageOverview>
+                  </Modal>
+                ) : (
+                  <></>
+                )}
               </div>
             </section>
 

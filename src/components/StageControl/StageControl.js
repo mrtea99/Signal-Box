@@ -69,11 +69,11 @@ function StageControl(props) {
         thisRunData={props.thisRunData}
       />
 
-      {stageNameArr.map((stage, index) => (
+      {stageNameArr.map((stageName, index) => (
         <Stage
-          key={props.currentRunUid + stage}
+          key={props.currentRunUid + stageName}
           thisStage={index}
-          stageName={stage}
+          stageName={stageName}
           activeStage={adjustedActiveStage}
           thisRunData={props.thisRunData}
           currentRunUid={props.currentRunUid}

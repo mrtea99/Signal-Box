@@ -1,0 +1,30 @@
+import React from "react";
+
+import SessionList from "../SessionList/SessionList.js";
+import StageStatus from "../StageStatus/StageStatus.js";
+
+function StageOverview(props) {
+  const stageNameArr = [
+    "Preparation",
+    "Manufacturing",
+    "Cooling",
+    "Packaging",
+    "Labeling",
+  ];
+
+  return (
+    <article>
+      {stageNameArr.map((stageName, index) => (
+        <section key={stageName}>
+          <h3>
+            {stageName} (
+            <StageStatus runData={props.thisRunData} stageNum={index} />)
+          </h3>
+          <SessionList thisStage={index} thisRunData={props.thisRunData} />
+        </section>
+      ))}
+    </article>
+  );
+}
+
+export default StageOverview;
