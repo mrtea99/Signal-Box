@@ -43,7 +43,6 @@ function Stage(props) {
     //Update run completion
     let chainCompleted = "test";
     for (let i = 0; i < props.thisRunData["stages"].length; i++) {
-      console.log(props.thisRunData["stages"][i].complete)
       if (props.thisRunData["stages"][i].complete) {
         chainCompleted = i;
       } else {

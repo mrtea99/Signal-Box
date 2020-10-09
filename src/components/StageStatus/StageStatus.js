@@ -37,7 +37,7 @@ function StageStatus(props) {
   }
 
   function getStatusName() {
-    if (!complete.includes(true)) {
+    if (complete.includes(false)) {
       if (prevStarted || count) {
         if (count) {
           if (sessionsEnded.includes(false)) {

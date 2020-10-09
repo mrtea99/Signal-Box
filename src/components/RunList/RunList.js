@@ -14,6 +14,18 @@ function RunList(props) {
     props.setActiveStage(stageNum);
   }
 
+  function findManuStage(runCompletion) {
+    if (runCompletion === null) {
+      return 0;
+    } else {
+      if (runCompletion < 2) {
+        return runCompletion + 1;
+      } else {
+        return 2;
+      }
+    }
+  }
+
   return (
     <table className={styles.container}>
       <thead className={styles.header}>
@@ -37,7 +49,11 @@ function RunList(props) {
               {run.productInfo.productName}
             </td>
             <td className={styles.runItem}>
-              <Button onClick={() => openEditor(run.uid, 1)}>
+              <Button
+                onClick={() =>
+                  openEditor(run.uid, findManuStage(run.completion))
+                }
+              >
                 <StageStatus runData={run} stageNum={[0, 1, 2]} label={true} />
               </Button>
             </td>
