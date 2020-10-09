@@ -14,6 +14,7 @@ const activityList = [
   ["Unsupervised", "Supervised", "Finishing Touches"],
   ["Packaging"],
   ["Labeling", "Sealing", "Boxing"],
+  ["Stocking"],
 ];
 
 function SessionBefore(props) {

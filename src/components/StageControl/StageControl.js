@@ -12,6 +12,7 @@ function StageControl(props) {
     "Cooling",
     "Packaging",
     "Labeling",
+    "Stocking",
   ];
 
   return (

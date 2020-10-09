@@ -36,6 +36,7 @@ function RunList(props) {
           <th className={styles.headerItem}>Manufacturing</th>
           <th className={styles.headerItem}>Packaging</th>
           <th className={styles.headerItem}>Labeling</th>
+          <th className={styles.headerItem}>Stocking</th>
           <th className={styles.headerItem}>Status</th>
           <th className={styles.headerItem}>Delete</th>
         </tr>
@@ -65,6 +66,11 @@ function RunList(props) {
             <td className={styles.runItem}>
               <Button onClick={() => openEditor(run.uid, 4)}>
                 <StageStatus runData={run} stageNum={4} label={true} />
+              </Button>
+            </td>
+            <td className={styles.runItem}>
+              <Button onClick={() => openEditor(run.uid, 5)}>
+                <StageStatus runData={run} stageNum={5} label={true} />
               </Button>
             </td>
             <td className={styles.runItem}>

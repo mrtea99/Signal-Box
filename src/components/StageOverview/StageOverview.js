@@ -10,6 +10,7 @@ function StageOverview(props) {
     "Cooling",
     "Packaging",
     "Labeling",
+    "Stocking",
   ];
 
   return (
