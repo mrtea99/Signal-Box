@@ -38,11 +38,29 @@ function Stage(props) {
 
     newStageObj.complete = newState;
 
+    props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
+
+    //Update run completion
+    let chainCompleted = "test";
+    for (let i = 0; i < props.thisRunData["stages"].length; i++) {
+      console.log(props.thisRunData["stages"][i].complete)
+      if (props.thisRunData["stages"][i].complete) {
+        chainCompleted = i;
+      } else {
+        if ((i === 0)) {
+          chainCompleted = null;
+        } else {
+          chainCompleted = i - 1;
+        }
+        break;
+      }
+    }
+
     props.updateRunData(
       props.currentRunUid,
-      "stages",
-      stage,
-      newStageObj
+      null,
+      "completion",
+      chainCompleted
     );
   }
 
@@ -56,12 +74,7 @@ function Stage(props) {
     newSessionList.push(sessionData);
     newStageObj["sessions"] = newSessionList;
 
-    props.updateRunData(
-      props.currentRunUid,
-      "stages",
-      stage,
-      newStageObj
-    );
+    props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
 
     setActiveSessionData(sessionData);
   }
@@ -81,12 +94,7 @@ function Stage(props) {
 
     newStageObj["sessions"] = newSessionList;
 
-    props.updateRunData(
-      props.currentRunUid,
-      "stages",
-      stage,
-      newStageObj
-    );
+    props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
   }
 
   function endSession(extraData, stage) {
@@ -100,6 +108,8 @@ function Stage(props) {
     }
 
     setActiveSessionData(null);
+
+    updateStageCompletion(false, stage + 1);
   }
 
   function getDifficulty() {

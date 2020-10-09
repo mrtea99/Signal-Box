@@ -11,6 +11,7 @@ function RunInfoNew(props) {
     const newRun = {
       uid: Date.now(),
       activeStage: 0,
+      completion: null,
       runInfo: {
         runId: new Date().getUTCMilliseconds(),
       },

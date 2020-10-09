@@ -74,14 +74,22 @@ function SessionDuring(props) {
             <div>
               <label htmlFor={"sess-amount-step-" + props.thisStage}>
                 Completed {props.thisStage === 1 ? "Batches" : "Units"}:
-                {props.thisStage === 1 ? '(Target ' + props.thisRunData.productInfo.averageBatchQuantity + ')' : ''}
+                {props.thisStage === 1
+                  ? "(Target " +
+                    props.thisRunData.productInfo.averageBatchQuantity +
+                    ")"
+                  : ""}
               </label>
               <input
                 id={"sess-amount-step-" + props.thisStage}
                 type="number"
                 min="0"
                 onChange={(e) =>
-                  handleFieldChange(parseInt(e.target.value), setAmount, "amount")
+                  handleFieldChange(
+                    parseInt(e.target.value),
+                    setAmount,
+                    "amount"
+                  )
                 }
                 value={amount}
               />
@@ -95,7 +103,11 @@ function SessionDuring(props) {
                 type="number"
                 min="0"
                 onChange={(e) =>
-                  handleFieldChange(parseInt(e.target.value), setAmountBad, "amountBad")
+                  handleFieldChange(
+                    parseInt(e.target.value),
+                    setAmountBad,
+                    "amountBad"
+                  )
                 }
                 value={amountBad}
               />
@@ -104,21 +116,31 @@ function SessionDuring(props) {
         ) : (
           <></>
         )}
-        {props.thisStage === 1 ||
-        props.thisStage === 3 ? (
+        {props.thisStage === 1 || props.thisStage === 3 ? (
           <>
             <div>
               <label htmlFor={"sess-average-weight-step-" + props.thisStage}>
                 Average {props.thisStage === 1 ? "Batch" : "Unit"} Weight:
-                {props.thisStage === 1 ? '(Target ' + props.thisRunData.productInfo.batchWeight + ')' : ''}
-                {props.thisStage === 3 ? '(Target ' + props.thisRunData.productInfo.averageUnitWeight + ')' : ''}
-              </label>{/*  */}
+                {props.thisStage === 1
+                  ? "(Target " + props.thisRunData.productInfo.batchWeight + ")"
+                  : ""}
+                {props.thisStage === 3
+                  ? "(Target " +
+                    props.thisRunData.productInfo.averageUnitWeight +
+                    ")"
+                  : ""}
+              </label>
+              {/*  */}
               <input
                 id={"sess-average-weight-step-" + props.thisStage}
                 type="number"
                 min="0"
                 onChange={(e) =>
-                  handleFieldChange(parseInt(e.target.value), setAverageWeight, "averageWeight")
+                  handleFieldChange(
+                    parseInt(e.target.value),
+                    setAverageWeight,
+                    "averageWeight"
+                  )
                 }
                 value={averageWeight}
               />
