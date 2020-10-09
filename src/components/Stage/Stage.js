@@ -7,30 +7,17 @@ import StageStatus from "../StageStatus/StageStatus.js";
 import styles from "./Stage.module.css";
 
 function Stage(props) {
-  const stageData = props.thisRunData["stages"][props.thisStage];
-  const sessionList = stageData["sessions"];
+  const thisStageData = props.thisRunData["stages"][props.thisStage];
 
-  // const [stageComplete, setStageComplete] = React.useState(stageData.complete);
-  const stageComplete = stageData.complete;
+  const stageComplete = thisStageData.complete;
 
   const [activeSessionData, setActiveSessionData] = React.useState(() =>
     findActiveSession()
   );
 
-  function updateStageCompletion(newState) {
-    let newStageObj = { ...stageData };
-
-    newStageObj.complete = newState;
-
-    props.updateRunData(
-      props.currentRunUid,
-      "stages",
-      props.thisStage,
-      newStageObj
-    );
-  }
-
   function findActiveSession() {
+    const sessionList = thisStageData["sessions"];
+
     if (sessionList.length) {
       for (let i = 0; i < sessionList.length; i++) {
         if (
@@ -44,7 +31,25 @@ function Stage(props) {
     return null;
   }
 
-  function addSession(sessionData, newSessionUid) {
+  function updateStageCompletion(newState, stage) {
+    const stageData = props.thisRunData["stages"][stage];
+
+    let newStageObj = { ...stageData };
+
+    newStageObj.complete = newState;
+
+    props.updateRunData(
+      props.currentRunUid,
+      "stages",
+      stage,
+      newStageObj
+    );
+  }
+
+  function addSession(sessionData, newSessionUid, stage) {
+    const stageData = props.thisRunData["stages"][stage];
+    const sessionList = stageData["sessions"];
+
     let newStageObj = { ...stageData };
     let newSessionList = [...sessionList];
 
@@ -54,14 +59,17 @@ function Stage(props) {
     props.updateRunData(
       props.currentRunUid,
       "stages",
-      props.thisStage,
+      stage,
       newStageObj
     );
 
     setActiveSessionData(sessionData);
   }
 
-  function updateSession(extraData) {
+  function updateSession(extraData, stage) {
+    const stageData = props.thisRunData["stages"][stage];
+    const sessionList = stageData["sessions"];
+
     let newStageObj = { ...stageData };
     let newSessionList = [...sessionList];
 
@@ -76,19 +84,19 @@ function Stage(props) {
     props.updateRunData(
       props.currentRunUid,
       "stages",
-      props.thisStage,
+      stage,
       newStageObj
     );
   }
 
-  function endSession(extraData) {
+  function endSession(extraData, stage) {
     const endTime = { endTime: Date.now() };
 
     if (extraData) {
       Object.assign(extraData, endTime);
-      updateSession(extraData);
+      updateSession(extraData, stage);
     } else {
-      updateSession(endTime);
+      updateSession(endTime, stage);
     }
 
     setActiveSessionData(null);

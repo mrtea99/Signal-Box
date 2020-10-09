@@ -43,7 +43,7 @@ function SessionBefore(props) {
       newSession.humidity = humidity;
     }
 
-    props.addSession(newSession, newSessionUid);
+    props.addSession(newSession, newSessionUid, props.thisStage);
   }
 
   function validateForm() {

@@ -32,12 +32,12 @@ function SessionDuring(props) {
       notes: noteData,
     };
 
-    props.endSession(extraData);
+    props.endSession(extraData, props.thisStage);
   }
 
   function handleFieldChange(value, setState, dataKey) {
     setState(value);
-    props.updateSession({ [dataKey]: value });
+    props.updateSession({ [dataKey]: value }, props.thisStage);
   }
 
   return (

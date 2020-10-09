@@ -21,7 +21,7 @@ function SessionControl(props) {
             <div>
               <p>
                 Stage complete 
-                <Button onClick={() => props.updateStageCompletion(false)}>
+                <Button onClick={() => props.updateStageCompletion(false, props.thisStage)}>
                   Undo
                 </Button>
               </p>
@@ -30,7 +30,7 @@ function SessionControl(props) {
             <div>
               {/* todo: dont show completion button if there are any open sessions */}
               {/* todo: if there are no sessions then button should 'skip stage', and make a dummy session */}
-              <Button onClick={() => props.updateStageCompletion(true)}>
+              <Button onClick={() => props.updateStageCompletion(true, props.thisStage)}>
                 Complete Stage
               </Button>
               <SessionBefore
