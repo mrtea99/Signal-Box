@@ -74,8 +74,8 @@ function RunList(props) {
               </Button>
             </td>
             <td className={styles.runItem}>
-              <Button onClick={() => setModalOverviewActive(true)}>X</Button>
-              {modalOverviewActive ? (
+              <Button onClick={() => setModalOverviewActive(run.uid)}>X</Button>
+              {modalOverviewActive === run.uid ? (
                 <Modal>
                   <Button onClick={() => setModalOverviewActive(false)}>
                     Close
