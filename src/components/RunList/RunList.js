@@ -77,7 +77,7 @@ function RunList(props) {
               <Button onClick={() => setModalOverviewActive(run.uid)}>X</Button>
               {modalOverviewActive === run.uid ? (
                 <Modal>
-                  <Button onClick={() => setModalOverviewActive(false)}>
+                  <Button onClick={() => setModalOverviewActive(null)}>
                     Close
                   </Button>
                   <StageOverview thisRunData={run}></StageOverview>
