@@ -28,14 +28,13 @@
 }
 
 .itemRowTotals {
-  background-color: var(--color-pink);
+  background-color: var(--color-pink-light);
   color: var(--color-text-alt)
 }
 
 .contentItem {
   text-align: center;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0.2em;
   border-top: 0.5rem solid var(--color-bg);
   font-size: 1em;
 }

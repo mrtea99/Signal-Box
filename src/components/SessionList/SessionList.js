@@ -2,6 +2,7 @@ import React from "react";
 
 import TimeFormater from "../TimeFormater/TimeFormater.js";
 import Timer from "../Timer/Timer.js";
+import Button from "../Button/Button.js";
 
 import styles from "./SessionList.module.css";
 
@@ -100,6 +101,7 @@ function SessionList(props) {
     <table className={styles.container}>
       <thead className={styles.header}>
         <tr>
+          <th className={styles.headerItem}>№</th>
           <th className={styles.headerItem}>Activity</th>
           <th className={styles.headerItem}>Start Time</th>
           <th className={styles.headerItem}>Finish Time</th>
@@ -133,71 +135,8 @@ function SessionList(props) {
         </tr>
       </thead>
       <tbody>
-        {thisStageData.map((session, index) => (
-          <tr key={session.sessionUid} className={styles.itemRow}>
-            <td className={styles.contentItem}>{session.activity}</td>
-            <td className={styles.contentItem}>
-              <time dateTime={new Date(session.startTime).toISOString()}>
-                {formatDate(session.startTime)}
-                <br />
-                {formatTime(session.startTime)}
-              </time>
-            </td>
-            <td className={styles.contentItem}>
-              {session.endTime ? (
-                <time dateTime={new Date(session.endTime).toISOString()}>
-                  {formatDate(session.endTime)}
-                  <br />
-                  {formatTime(session.endTime)}
-                </time>
-              ) : (
-                "-"
-              )}
-            </td>
-            <td className={styles.contentItem}>
-              {session.endTime ? (
-                <TimeFormater
-                  rawTime={
-                    new Date(session.endTime) - new Date(session.startTime)
-                  }
-                />
-              ) : (
-                <Timer startTime={session.startTime} />
-              )}
-            </td>
-            {props.thisStage === 1 ||
-            props.thisStage === 3 ||
-            props.thisStage === 4 ? (
-              <>
-                <td className={styles.contentItem}>
-                  {session.amount === undefined ? "-" : session.amount}
-                </td>
-                <td className={styles.contentItem}>
-                  {session.amountBad === undefined ? "-" : session.amountBad}
-                </td>
-              </>
-            ) : (
-              <></>
-            )}
-            {props.thisStage === 1 ||
-            props.thisStage === 2 ||
-            props.thisStage === 3 ? (
-              <td className={styles.contentItem}>
-                {props.thisStage === 1 ||
-                props.thisStage === 2 ? (
-                <>Temp:{session.temperature}<br />Humidity:{session.humidity}%</>
-                ) : (
-                  <>Avg Weight:{session.averageWeight}</>
-                )}
-              </td>
-            ) : (
-              <></>
-            )}
-            <td className={styles.contentItem}>{session.user}</td>
-            <td className={styles.contentItem}>{session.notes}</td>
-          </tr>
-        ))}
         <tr className={`${styles.itemRow} ${styles.itemRowTotals}`}>
+          <td className={styles.contentItem}></td>
           <td className={styles.contentItem}>Overall</td>
           <td className={styles.contentItem}>
             {thisStageData.length ? (
@@ -240,6 +179,83 @@ function SessionList(props) {
           <td className={styles.contentItem}></td>
           <td className={styles.contentItem}></td>
         </tr>
+        {thisStageData
+          .slice(0)
+          .reverse()
+          .map((session, index) => (
+            <tr key={session.sessionUid} className={styles.itemRow}>
+              <td className={styles.contentItem}>
+                {thisStageData.length - index}
+              </td>
+              <td className={styles.contentItem}>{session.activity}</td>
+              <td className={styles.contentItem}>
+                <time dateTime={new Date(session.startTime).toISOString()}>
+                  {formatDate(session.startTime)}
+                  <br />
+                  {formatTime(session.startTime)}
+                </time>
+              </td>
+              <td className={styles.contentItem}>
+                {session.endTime ? (
+                  <time dateTime={new Date(session.endTime).toISOString()}>
+                    {formatDate(session.endTime)}
+                    <br />
+                    {formatTime(session.endTime)}
+                  </time>
+                ) : (
+                  "-"
+                )}
+              </td>
+              <td className={styles.contentItem}>
+                {session.endTime ? (
+                  <TimeFormater
+                    rawTime={
+                      new Date(session.endTime) - new Date(session.startTime)
+                    }
+                  />
+                ) : (
+                  <Timer startTime={session.startTime} />
+                )}
+              </td>
+              {props.thisStage === 1 ||
+              props.thisStage === 3 ||
+              props.thisStage === 4 ? (
+                <>
+                  <td className={styles.contentItem}>
+                    {session.amount === undefined ? "-" : session.amount}
+                  </td>
+                  <td className={styles.contentItem}>
+                    {session.amountBad === undefined ? "-" : session.amountBad}
+                  </td>
+                </>
+              ) : (
+                <></>
+              )}
+              {props.thisStage === 1 ||
+              props.thisStage === 2 ||
+              props.thisStage === 3 ? (
+                <td className={styles.contentItem}>
+                  {props.thisStage === 1 || props.thisStage === 2 ? (
+                    <>
+                      Temp:{session.temperature}
+                      <br />
+                      Humidity:{session.humidity}%
+                      <br />
+                    </>
+                  ) : (
+                    <></>
+                  )}
+                  Avg Weight:{session.averageWeight}
+                </td>
+              ) : (
+                <></>
+              )}
+              <td className={styles.contentItem}>{session.user}</td>
+              <td className={styles.contentItem}>
+                {session.notes ? <Button>N</Button> : ""}
+              </td>
+            </tr>
+          ))}
       </tbody>
     </table>
   );
