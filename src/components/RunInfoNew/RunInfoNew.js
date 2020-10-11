@@ -19,27 +19,27 @@ function RunInfoNew(props) {
       stages: [
         {
           sessions: [],
-          complete: false,
+          active: true,
         },
         {
           sessions: [],
-          complete: false,
+          active: true,
         },
         {
           sessions: [],
-          complete: false,
+          active: true,
         },
         {
           sessions: [],
-          complete: false,
+          active: true,
         },
         {
           sessions: [],
-          complete: false,
+          active: true,
         },
         {
           sessions: [],
-          complete: false,
+          active: true,
         },
       ],
     };

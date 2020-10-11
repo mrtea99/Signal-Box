@@ -9,7 +9,7 @@ import styles from "./Stage.module.css";
 function Stage(props) {
   const thisStageData = props.thisRunData["stages"][props.thisStage];
 
-  const stageComplete = thisStageData.complete;
+  const stageActive = thisStageData.active;
 
   const [activeSessionData, setActiveSessionData] = React.useState(() =>
     findActiveSession()
@@ -31,25 +31,25 @@ function Stage(props) {
     return null;
   }
 
-  function updateStageCompletion(newState, stage) {
+  function updateStageActive(newState, stage) {
     const stageData = props.thisRunData["stages"][stage];
 
     let newStageObj = { ...stageData };
 
-    newStageObj.complete = newState;
+    newStageObj.active = newState;
 
     props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
 
     //Update run completion
-    let chainCompleted = "test";
+    let chainInactive = 0;
     for (let i = 0; i < props.thisRunData["stages"].length; i++) {
-      if (props.thisRunData["stages"][i].complete) {
-        chainCompleted = i;
+      if (!props.thisRunData["stages"][i].active) {
+        chainInactive = i;
       } else {
         if ((i === 0)) {
-          chainCompleted = null;
+          chainInactive = null;
         } else {
-          chainCompleted = i - 1;
+          chainInactive = i - 1;
         }
         break;
       }
@@ -59,7 +59,7 @@ function Stage(props) {
       props.currentRunUid,
       null,
       "completion",
-      chainCompleted
+      chainInactive
     );
   }
 
@@ -108,7 +108,7 @@ function Stage(props) {
 
     setActiveSessionData(null);
 
-    updateStageCompletion(false, stage + 1);
+    updateStageActive(true, stage + 1);
   }
 
   function getDifficulty() {
@@ -162,8 +162,8 @@ function Stage(props) {
           thisStage={props.thisStage}
           activeSessionData={activeSessionData}
           activeUser={props.activeUser}
-          stageComplete={stageComplete}
-          updateStageCompletion={updateStageCompletion}
+          stageActive={stageActive}
+          updateStageActive={updateStageActive}
           thisRunData={props.thisRunData}
         />
       </div>

@@ -7,20 +7,20 @@ function StageStatus(props) {
     : [props.stageNum];
 
   let count = 0;
-  let complete = [];
+  let active = [];
   let sessionsEnded = [];
   let prevStarted = false;
 
   stageNumbers.forEach((stageNumber, index) => {
     count = count + stagesData[stageNumber]["sessions"].length;
-    complete.push(stagesData[stageNumber].complete);
+    active.push(stagesData[stageNumber].active);
     sessionsEnded.push(areSessionsEnded(stagesData[stageNumber]["sessions"]));
     if (stageNumber === 0) {
       prevStarted = true;
     } else {
       if (
         stagesData[stageNumber - 1]["sessions"].length ||
-        stagesData[stageNumber - 1].complete
+        !stagesData[stageNumber - 1].active
       ) {
         prevStarted = true;
       }
@@ -37,7 +37,7 @@ function StageStatus(props) {
   }
 
   function getStatusName() {
-    if (complete.includes(false)) {
+    if (active.includes(true)) {
       if (prevStarted || count) {
         if (count) {
           if (sessionsEnded.includes(false)) {
@@ -60,7 +60,7 @@ function StageStatus(props) {
     <>
       {props.label ? getStatusName() + " " : <></>}
       {"("}
-      {prevStarted || count ? (complete.includes(false) ? count : "C") : "-"}
+      {prevStarted || count ? (active.includes(true) ? count : "C") : "-"}
       {")"}
       {sessionsEnded.includes(false) ? "*" : ""}
     </>
