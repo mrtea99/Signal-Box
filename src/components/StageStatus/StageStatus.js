@@ -6,24 +6,30 @@ function StageStatus(props) {
     ? props.stageNum
     : [props.stageNum];
 
-  let count = 0;
-  let active = [];
+  let sessionCount = 0;
+  let stageActive = [];
   let sessionsEnded = [];
   let prevStarted = false;
+  let allPrevInactive = false;
 
   stageNumbers.forEach((stageNumber, index) => {
-    count = count + stagesData[stageNumber]["sessions"].length;
-    active.push(stagesData[stageNumber].active);
+    sessionCount = sessionCount + stagesData[stageNumber]["sessions"].length;
+
+    stageActive.push(stagesData[stageNumber].active);
+
     sessionsEnded.push(areSessionsEnded(stagesData[stageNumber]["sessions"]));
+
     if (stageNumber === 0) {
       prevStarted = true;
     } else {
-      if (
-        stagesData[stageNumber - 1]["sessions"].length ||
-        !stagesData[stageNumber - 1].active
-      ) {
+      const prevSessions = stagesData[stageNumber - 1]["sessions"];
+      if (prevSessions.length && areSessionsEnded(prevSessions)) {
         prevStarted = true;
       }
+    }
+
+    if (stageNumber <= props.runData.completion) {
+      allPrevInactive = true;
     }
   });
 
@@ -36,33 +42,57 @@ function StageStatus(props) {
     return true;
   }
 
-  function getStatusName() {
-    if (active.includes(true)) {
-      if (prevStarted || count) {
-        if (count) {
-          if (sessionsEnded.includes(false)) {
-            return "Working";
-          } else {
-            return "Started";
-          }
+  function getStatus() {
+    if (stageActive.includes(true)) {
+      //Active states
+      if (sessionCount) {
+        if (sessionsEnded.includes(false)) {
+          return "Working";
         } else {
-          return "Ready";
+          return "Started";
         }
       } else {
-        return "Pending";
+        return "Ready";
       }
     } else {
-      return "Complete";
+      //Inactive States
+      if (allPrevInactive) {
+        if (sessionCount) {
+          return "Complete";
+        } else {
+          return "Skipped";
+        }
+      } else {
+        if (sessionCount || prevStarted) {
+          return "Paused";
+        } else {
+          return "Pending";
+        }
+      }
+    }
+  }
+
+  function getStatusIcon(status) {
+    switch (status) {
+      case "Complete":
+        return "C";
+      case "Skipped":
+        return "S";
+      case "Paused":
+        return "P";
+      case "Pending":
+        return "-";
+      default:
+        return "-";
     }
   }
 
   return (
     <>
-      {props.label ? getStatusName() + " " : <></>}
+      {props.label ? getStatus() + " " : <></>}
       {"("}
-      {prevStarted || count ? (active.includes(true) ? count : "C") : "-"}
+      {stageActive.includes(true) ? sessionCount : getStatusIcon(getStatus())}
       {")"}
-      {sessionsEnded.includes(false) ? "*" : ""}
     </>
   );
 }

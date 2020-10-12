@@ -23,23 +23,23 @@ function RunInfoNew(props) {
         },
         {
           sessions: [],
-          active: true,
+          active: false,
         },
         {
           sessions: [],
-          active: true,
+          active: false,
         },
         {
           sessions: [],
-          active: true,
+          active: false,
         },
         {
           sessions: [],
-          active: true,
+          active: false,
         },
         {
           sessions: [],
-          active: true,
+          active: false,
         },
       ],
     };
