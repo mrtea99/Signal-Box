@@ -31,7 +31,7 @@ function Stage(props) {
     return null;
   }
 
-  function updateStageActive(newState, stage) {
+  const updateStageActive = function(newState, stage) {
     const stageData = props.thisRunData["stages"][stage];
 
     let newStageObj = { ...stageData };
@@ -63,7 +63,7 @@ function Stage(props) {
     );
   }
 
-  function addSession(sessionData, newSessionUid, stage) {
+  const addSession = function(sessionData, newSessionUid, stage) {
     const stageData = props.thisRunData["stages"][stage];
     const sessionList = stageData["sessions"];
 
@@ -78,7 +78,7 @@ function Stage(props) {
     setActiveSessionData(sessionData);
   }
 
-  function updateSession(extraData, stage) {
+  const updateSession = function(extraData, stage) {
     const stageData = props.thisRunData["stages"][stage];
     const sessionList = stageData["sessions"];
 
@@ -96,7 +96,7 @@ function Stage(props) {
     props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
   }
 
-  function endSession(extraData, stage) {
+  const endSession = function(extraData, stage) {
     const endTime = { endTime: Date.now() };
 
     if (extraData) {
@@ -111,7 +111,7 @@ function Stage(props) {
     updateStageActive(true, stage + 1);
   }
 
-  function getDifficulty() {
+  const getDifficulty = function() {
     let difficulty = "";
 
     switch (props.thisStage) {

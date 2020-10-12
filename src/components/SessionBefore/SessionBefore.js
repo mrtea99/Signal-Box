@@ -27,7 +27,7 @@ function SessionBefore(props) {
   // Room humidity (manu and cool)
   const [humidity, setHumidity] = React.useState(null);
 
-  function handleNewClick(e) {
+  const handleNewClick = function(e) {
     e.preventDefault();
 
     const newSessionUid = Date.now();
@@ -47,7 +47,7 @@ function SessionBefore(props) {
     props.addSession(newSession, newSessionUid, props.thisStage);
   }
 
-  function validateForm() {
+  const validateForm = function() {
     if (props.thisStage === 1 || props.thisStage === 2) {
       if (
         typeof temperature === "number" &&

@@ -4,7 +4,7 @@ import Modal from "../Modal/Modal.js";
 import RunInfoForm from "../RunInfoForm/RunInfoForm.js";
 
 function RunInfoNew(props) {
-  function createRun(productTemplateData) {
+  const createRun = function(productTemplateData) {
     let newData = [...props.runData];
 
     //Build new run object here
@@ -48,7 +48,7 @@ function RunInfoNew(props) {
     props.setActive(false);
   }
 
-  function handleCancel() {
+  const handleCancel = function() {
     props.setActive(false);
   }
 

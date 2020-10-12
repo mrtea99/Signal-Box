@@ -25,7 +25,7 @@ function SessionDuring(props) {
   );
   // QA check (prep, manu, pack, label)
 
-  function handleEndClick(e) {
+  const handleEndClick = function(e) {
     e.preventDefault();
 
     const extraData = {
@@ -35,7 +35,7 @@ function SessionDuring(props) {
     props.endSession(extraData, props.thisStage);
   }
 
-  function handleFieldChange(value, setState, dataKey) {
+  const handleFieldChange = function(value, setState, dataKey) {
     setState(value);
     props.updateSession({ [dataKey]: value }, props.thisStage);
   }

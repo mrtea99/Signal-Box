@@ -5,7 +5,7 @@ import styles from "./SiteSidebar.module.css";
 import Button from "../Button/Button.js";
 
 function SiteSidebar(props) {
-  function closeSidebar() {
+  const closeSidebar = function() {
     props.setSidebarActive(false);
   }
 

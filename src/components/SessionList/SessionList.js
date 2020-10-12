@@ -10,7 +10,7 @@ function SessionList(props) {
   const thisStageData =
     props.thisRunData["stages"][props.thisStage]["sessions"];
 
-  function addLeadingZero(number) {
+  const addLeadingZero = function(number) {
     if (number < 10) {
       number = "0" + number;
     }
@@ -18,7 +18,7 @@ function SessionList(props) {
     return number;
   }
 
-  function formatDate(time) {
+  const formatDate = function(time) {
     const dateObj = new Date(time);
 
     const year = dateObj.getFullYear();
@@ -30,7 +30,7 @@ function SessionList(props) {
     return dateString;
   }
 
-  function formatTime(time) {
+  const formatTime = function(time) {
     const dateObj = new Date(time);
 
     const hour = addLeadingZero(dateObj.getHours());
@@ -52,7 +52,7 @@ function SessionList(props) {
     }
   }
 
-  function findTotalEndTime() {
+  const findTotalEndTime = function() {
     if (newestEndTime === 0) {
       return "-";
     } else {
@@ -66,7 +66,7 @@ function SessionList(props) {
     }
   }
 
-  function findTotalDuration() {
+  const findTotalDuration = function() {
     let totalDuration = 0;
 
     for (let i = 0; i < thisStageData.length; i++) {
@@ -83,7 +83,7 @@ function SessionList(props) {
     return <TimeFormater rawTime={totalDuration} />;
   }
 
-  function findTotalCount(propertyName) {
+  const findTotalCount = function(propertyName) {
     let total = 0;
 
     for (let i = 0; i < thisStageData.length; i++) {

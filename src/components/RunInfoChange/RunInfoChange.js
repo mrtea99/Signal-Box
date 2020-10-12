@@ -5,7 +5,7 @@ import RunInfoForm from "../RunInfoForm/RunInfoForm.js";
 import RunDelete from "../RunDelete/RunDelete.js";
 
 function RunInfoChange(props) {
-  function updateRunInfo(productTemplateData) {
+  const updateRunInfo = function(productTemplateData) {
     props.updateRunData(
       props.currentRunUid,
       null,
@@ -16,7 +16,7 @@ function RunInfoChange(props) {
     props.setActive(false);
   }
 
-  function handleCancel() {
+  const handleCancel = function() {
     props.setActive(false);
   }
 

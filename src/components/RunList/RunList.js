@@ -10,12 +10,12 @@ import RunDelete from "../RunDelete/RunDelete.js";
 function RunList(props) {
   const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
 
-  function openEditor(runUid, stageNum) {
+  const openEditor = function(runUid, stageNum) {
     props.setCurrentRunUid(runUid);
     props.setActiveStage(stageNum);
   }
 
-  function findManuStage(runCompletion) {
+  const findManuStage = function(runCompletion) {
     if (runCompletion === null) {
       return 0;
     } else {

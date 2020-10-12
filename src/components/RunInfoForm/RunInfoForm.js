@@ -73,7 +73,7 @@ function RunInfoForm(props) {
     return currentQuantity;
   });
 
-  function handleSubmit(e) {
+  const handleSubmit = function(e) {
     e.preventDefault();
 
     let productInfo = { ...productTemplates[currentTemplate] };

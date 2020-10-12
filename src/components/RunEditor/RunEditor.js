@@ -14,7 +14,7 @@ function RunEditor(props) {
     (obj) => obj.uid === props.currentRunUid
   );
 
-  function handleChange(dataSection, dataKey, e) {
+  const handleChange = function(dataSection, dataKey, e) {
     props.updateRunData(
       props.currentRunUid,
       dataSection,
@@ -23,13 +23,13 @@ function RunEditor(props) {
     );
   }
 
-  function handleEditInfoClick(e) {
+  const handleEditInfoClick = function(e) {
     e.preventDefault();
 
     props.setModalActive(true);
   }
 
-  function handleExitClick(e) {
+  const handleExitClick = function(e) {
     e.preventDefault();
 
     props.setCurrentRunUid(null);

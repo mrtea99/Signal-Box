@@ -48,7 +48,7 @@ function App() {
     window.localStorage.setItem("activeUser", activeUser);
   }, [activeUser]);
 
-  function updateRunData(uid, dataSection, dataKey, newValue) {
+  const updateRunData = function(uid, dataSection, dataKey, newValue) {
     if (dataSection === "delete") {
       deleteRun(uid);
     } else {
@@ -68,12 +68,12 @@ function App() {
     }
   }
 
-  function deleteRun(uid) {
+  const deleteRun = function(uid) {
     const updatedRunData = runData.filter((run) => uid !== run.uid);
     setRunData(updatedRunData);
   }
 
-  function handleAddClick(e) {
+  const handleAddClick = function(e) {
     e.preventDefault();
 
     setModalNewActive(true);

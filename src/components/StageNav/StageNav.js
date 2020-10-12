@@ -5,16 +5,16 @@ import StageStatus from "../StageStatus/StageStatus.js";
 import styles from "./StageNav.module.css";
 
 function StageNav(props) {
-  function stageChange(newStageIndex) {
+  const stageChange = function(newStageIndex) {
     props.setActiveStage(newStageIndex);
   }
 
-  function handleNavList(stageIndex, e) {
+  const handleNavList = function(stageIndex, e) {
     e.preventDefault();
     stageChange(stageIndex);
   }
 
-  function getButtonClasses(index) {
+  const getButtonClasses = function(index) {
     let className = "";
 
     if (props.activeStage === index) {
