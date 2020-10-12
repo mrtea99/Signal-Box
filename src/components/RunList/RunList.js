@@ -5,6 +5,7 @@ import Button from "../Button/Button.js";
 import StageStatus from "../StageStatus/StageStatus";
 import StageOverview from "../StageOverview/StageOverview.js";
 import Modal from "../Modal/Modal.js";
+import RunDelete from "../RunDelete/RunDelete.js";
 
 function RunList(props) {
   const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
@@ -87,7 +88,7 @@ function RunList(props) {
               )}
             </td>
             <td className={styles.runItem}>
-              <Button onClick={() => props.deleteRun(run.uid)}>Delete</Button>
+              <RunDelete updateRunData={props.updateRunData} uid={run.uid} />
             </td>
           </tr>
         ))}

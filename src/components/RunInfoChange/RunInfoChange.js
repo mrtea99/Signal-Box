@@ -2,6 +2,7 @@ import React from "react";
 
 import Modal from "../Modal/Modal.js";
 import RunInfoForm from "../RunInfoForm/RunInfoForm.js";
+import RunDelete from "../RunDelete/RunDelete.js";
 
 function RunInfoChange(props) {
   function updateRunInfo(productTemplateData) {
@@ -11,7 +12,6 @@ function RunInfoChange(props) {
       "productInfo",
       productTemplateData
     );
-    // props.updateRunData(props.currentRunUid, 'productInfo', 'batchQuantity', batchQuantity)
 
     props.setActive(false);
   }
@@ -24,6 +24,11 @@ function RunInfoChange(props) {
     <>
       {props.active ? (
         <Modal>
+          <RunDelete
+            updateRunData={props.updateRunData}
+            uid={props.currentRunUid}
+            successCallback={() => props.setActive(false)}
+          />
           <RunInfoForm
             runData={props.runData}
             currentRunUid={props.currentRunUid}

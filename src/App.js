@@ -49,19 +49,23 @@ function App() {
   }, [activeUser]);
 
   function updateRunData(uid, dataSection, dataKey, newValue) {
-    const updatedRunData = runData.map((run) => {
-      if (run.uid === uid) {
-        //A new object should be created and returned here, but this is working for the time being
-        if (dataSection !== null) {
-          run[dataSection][dataKey] = newValue;
-        } else {
-          run[dataKey] = newValue;
+    if (dataSection === "delete") {
+      deleteRun(uid);
+    } else {
+      const updatedRunData = runData.map((run) => {
+        if (run.uid === uid) {
+          //A new object should be created and returned here, but this is working for the time being
+          if (dataSection !== null) {
+            run[dataSection][dataKey] = newValue;
+          } else {
+            run[dataKey] = newValue;
+          }
+          return run;
         }
         return run;
-      }
-      return run;
-    });
-    setRunData(updatedRunData);
+      });
+      setRunData(updatedRunData);
+    }
   }
 
   function deleteRun(uid) {
@@ -110,7 +114,7 @@ function App() {
               setCurrentRunUid={setCurrentRunUid}
               activeStage={activeStage}
               setActiveStage={setActiveStage}
-              deleteRun={deleteRun}
+              updateRunData={updateRunData}
             />
             <RunInfoNew
               active={modalNewActive}
