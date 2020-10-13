@@ -3,6 +3,7 @@ import React from "react";
 import SessionControl from "../SessionControl/SessionControl.js";
 import SessionList from "../SessionList/SessionList.js";
 import StageStatus from "../StageStatus/StageStatus.js";
+import StageActions from "../StageActions/StageActions.js";
 
 import styles from "./Stage.module.css";
 
@@ -31,7 +32,7 @@ function Stage(props) {
     return null;
   }
 
-  const updateStageActive = function(newState, stage) {
+  const updateStageActive = function (newState, stage) {
     const stageData = props.thisRunData["stages"][stage];
 
     let newStageObj = { ...stageData };
@@ -46,7 +47,7 @@ function Stage(props) {
       if (!props.thisRunData["stages"][i].active) {
         chainInactive = i;
       } else {
-        if ((i === 0)) {
+        if (i === 0) {
           chainInactive = null;
         } else {
           chainInactive = i - 1;
@@ -55,15 +56,10 @@ function Stage(props) {
       }
     }
 
-    props.updateRunData(
-      props.currentRunUid,
-      null,
-      "completion",
-      chainInactive
-    );
-  }
+    props.updateRunData(props.currentRunUid, null, "completion", chainInactive);
+  };
 
-  const addSession = function(sessionData, newSessionUid, stage) {
+  const addSession = function (sessionData, newSessionUid, stage) {
     const stageData = props.thisRunData["stages"][stage];
     const sessionList = stageData["sessions"];
 
@@ -76,9 +72,9 @@ function Stage(props) {
     props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
 
     setActiveSessionData(sessionData);
-  }
+  };
 
-  const updateSession = function(extraData, stage) {
+  const updateSession = function (extraData, stage) {
     const stageData = props.thisRunData["stages"][stage];
     const sessionList = stageData["sessions"];
 
@@ -94,9 +90,9 @@ function Stage(props) {
     newStageObj["sessions"] = newSessionList;
 
     props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
-  }
+  };
 
-  const endSession = function(extraData, stage) {
+  const endSession = function (extraData, stage) {
     const endTime = { endTime: Date.now() };
 
     if (extraData) {
@@ -109,9 +105,9 @@ function Stage(props) {
     setActiveSessionData(null);
 
     updateStageActive(true, stage + 1);
-  }
+  };
 
-  const getDifficulty = function() {
+  const getDifficulty = function () {
     let difficulty = "";
 
     switch (props.thisStage) {
@@ -132,7 +128,7 @@ function Stage(props) {
     }
 
     return difficulty;
-  }
+  };
 
   return (
     <section
@@ -155,6 +151,12 @@ function Stage(props) {
         </h4>
       </header>
       <div className={styles.sessionControl}>
+        <StageActions
+          stageActive={stageActive}
+          updateStageActive={updateStageActive}
+          thisRunData={props.thisRunData}
+          thisStage={props.thisStage}
+        />
         <SessionControl
           addSession={addSession}
           updateSession={updateSession}
@@ -163,7 +165,6 @@ function Stage(props) {
           activeSessionData={activeSessionData}
           activeUser={props.activeUser}
           stageActive={stageActive}
-          updateStageActive={updateStageActive}
           thisRunData={props.thisRunData}
         />
       </div>
