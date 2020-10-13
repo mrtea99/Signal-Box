@@ -1,0 +1,50 @@
+.wrapper {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-bg);
+  font-size: 1rem;
+  border-radius: 0.8em;
+  min-height: 1.6em;
+  min-width: 1.6em;
+  text-align: center;
+  border: 0.15em solid var(--color-white);
+  line-height: 1em;
+}
+
+.container--pending {
+  opacity: 50%;
+}
+.container--working {
+  background-color: var(--color-pink-bright)
+}
+.container--paused {
+  background-color: orange;
+}
+
+.container--skipped, .container--complete {
+  background-color: forestgreen;
+}
+
+.inner {
+  color: var(--color-white);
+  vertical-align: middle;
+  font-size: 0.9em;
+  padding: 0 0.2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  max-height: 0.8em;
+  max-width: 0.8em
+}
+.icon path {
+  fill: var(--color-white);
+}

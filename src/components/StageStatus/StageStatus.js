@@ -1,5 +1,7 @@
 import React from "react";
 
+import StatusIcon from "../StatusIcon/StatusIcon.js";
+
 import useStageStatus from "../../hooks/useStageStatus.js";
 
 function StageStatus(props) {
@@ -13,9 +15,11 @@ function StageStatus(props) {
   return (
     <>
       {props.label ? stageStatusName + " " : <></>}
-      {"("}
-      {stageActive ? stageSessionCount : stageStatusIcon}
-      {")"}
+      {/* {stageActive ? stageSessionCount : stageStatusIcon} */}
+      <StatusIcon
+        stageStatusName={stageStatusName}
+        stageSessionCount={stageSessionCount}
+      />
     </>
   );
 }

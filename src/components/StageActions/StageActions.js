@@ -22,7 +22,7 @@ function StageActions(props) {
       case "paused":
         return "Pause stage";
       case "pending":
-        return "Undo";
+        return "Set stage to pending";
       default:
         return "End Stage";
     }
