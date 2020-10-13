@@ -2,39 +2,72 @@ import React from "react";
 
 import Button from "../Button/Button.js";
 
-// import useStageStatus from "../../hooks/useStageStatus.js";
+import useStageStatus from "../../hooks/useStageStatus.js";
 
 function StageActions(props) {
-  // const [
-  //   stageActive,
-  //   stageStatusName,
-  //   stageStatusIcon,
-  //   stageSessionCount,
-  // ] = useStageStatus(props.thisRunData, props.thisStage);
+  const [
+    stageActive,
+    stageStatusName,
+    stageStatusIcon,
+    stageSessionCount,
+    stageStatusNext,
+  ] = useStageStatus(props.thisRunData, props.thisStage);
+
+  const inactiveMessage = function (status) {
+    switch (status) {
+      case "complete":
+        return "Complete stage";
+      case "skipped":
+        return "Skip stage";
+      case "paused":
+        return "Pause stage";
+      case "pending":
+        return "Undo";
+      default:
+        return "End Stage";
+    }
+  };
 
   return (
     <>
-      {!props.stageActive ? (
+      {stageActive ? (
         <div>
-          <p>
-            Stage complete
+          {stageStatusName !== "working" ? (
             <Button
-              onClick={() => props.updateStageActive(true, props.thisStage)}
+              onClick={() => {
+                props.updateStageActive(false, props.thisStage);
+                if (stageStatusNext !== "pending") {
+                  props.updateStageActive(true, props.thisStage + 1);
+                }
+              }}
             >
-              Undo
+              {inactiveMessage(stageStatusNext)}
             </Button>
-          </p>
+          ) : (
+            <></>
+          )}
         </div>
       ) : (
         <div>
+          {stageStatusName === "pending"?
+        (<p>
+          There is no work ready to be done for this stage
           <Button
-            onClick={() => {
-              props.updateStageActive(false, props.thisStage);
-              props.updateStageActive(true, props.thisStage + 1);
-            }}
+            onClick={() => props.updateStageActive(true, props.thisStage)}
           >
-            Complete Stage
+            Start anyway
           </Button>
+        </p>)
+        : (<p>
+          Stage {stageStatusName}
+          <Button
+            onClick={() => props.updateStageActive(true, props.thisStage)}
+          >
+            Undo
+          </Button>
+        </p>)
+        }
+          
         </div>
       )}
     </>

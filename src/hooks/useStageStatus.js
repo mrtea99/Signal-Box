@@ -24,7 +24,10 @@ function useStageStatus(runData, stageNum) {
       }
     }
 
-    if (stageNumber <= runData.completion) {
+    if (
+      stageNumber === 0 ||
+      (runData.completion !== null && stageNumber - 1 <= runData.completion)
+    ) {
       allPrevInactive = true;
     }
   });
@@ -40,29 +43,44 @@ function useStageStatus(runData, stageNum) {
 
   function getStatus() {
     if (stageActive.includes(true)) {
-      //Active states
-      if (sessionCount) {
-        if (sessionsEnded.includes(false)) {
-          return "Working";
-        } else {
-          return "Started";
-        }
+      if (sessionsEnded.includes(false)) {
+        return ["working"];
       } else {
-        return "Ready";
+        //Work out what the next status will be if set to inactive
+        let nextStatus = "";
+        if (allPrevInactive) {
+          if (sessionCount) {
+            nextStatus = "complete";
+          } else {
+            nextStatus = "skipped";
+          }
+        } else {
+          if (sessionCount || prevStarted) {
+            nextStatus = "paused";
+          } else {
+            nextStatus = "pending";
+          }
+        }
+
+        if (sessionCount) {
+          return ["started", nextStatus];
+        } else {
+          return ["ready", nextStatus];
+        }
       }
     } else {
       //Inactive States
       if (allPrevInactive) {
         if (sessionCount) {
-          return "Complete";
+          return ["complete"];
         } else {
-          return "Skipped";
+          return ["skipped"];
         }
       } else {
         if (sessionCount || prevStarted) {
-          return "Paused";
+          return ["paused"];
         } else {
-          return "Pending";
+          return ["pending"];
         }
       }
     }
@@ -70,13 +88,13 @@ function useStageStatus(runData, stageNum) {
 
   function getStatusIcon(status) {
     switch (status) {
-      case "Complete":
+      case "complete":
         return "C";
-      case "Skipped":
+      case "skipped":
         return "S";
-      case "Paused":
+      case "paused":
         return "P";
-      case "Pending":
+      case "pending":
         return "-";
       default:
         return "-";
@@ -84,10 +102,17 @@ function useStageStatus(runData, stageNum) {
   }
 
   const stageIsActive = stageActive.includes(true);
-  const stageStatusName = getStatus();
+  const stageStatusName = getStatus()[0];
+  const stageStatusNext = getStatus()[1];
   const stageStatusIcon = getStatusIcon(stageStatusName);
 
-  return [stageIsActive, stageStatusName, stageStatusIcon, sessionCount];
+  return [
+    stageIsActive,
+    stageStatusName,
+    stageStatusIcon,
+    sessionCount,
+    stageStatusNext,
+  ];
 }
 
 export default useStageStatus;

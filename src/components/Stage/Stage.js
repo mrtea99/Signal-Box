@@ -152,7 +152,6 @@ function Stage(props) {
       </header>
       <div className={styles.sessionControl}>
         <StageActions
-          stageActive={stageActive}
           updateStageActive={updateStageActive}
           thisRunData={props.thisRunData}
           thisStage={props.thisStage}
