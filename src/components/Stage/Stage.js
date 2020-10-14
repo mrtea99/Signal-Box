@@ -138,14 +138,16 @@ function Stage(props) {
       }}
     >
       <header className={styles.stageHeader}>
-        <h2 className={styles.stageTitle}>{props.stageName}</h2>
-        <h3>
-          <StageStatus
-            runData={props.thisRunData}
-            stageNum={props.thisStage}
-            label={true}
-          />
-        </h3>
+        <div className={styles.stageTitleWrap}>
+          <h2 className={styles.stageTitle}>{props.stageName}:</h2>
+          <h3 className={styles.stageStatus}>
+            <StageStatus
+              runData={props.thisRunData}
+              stageNum={props.thisStage}
+              label={true}
+            />
+          </h3>
+        </div>
         <h4 className={styles.stageDifficulty}>
           Difficulty: {getDifficulty()}
         </h4>

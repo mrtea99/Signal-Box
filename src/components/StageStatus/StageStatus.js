@@ -14,8 +14,7 @@ function StageStatus(props) {
 
   return (
     <>
-      {props.label ? stageStatusName + " " : <></>}
-      {/* {stageActive ? stageSessionCount : stageStatusIcon} */}
+      {props.label ? stageStatusName.charAt(0).toUpperCase() + stageStatusName.slice(1) + " " : <></>}
       <StatusIcon
         stageStatusName={stageStatusName}
         stageSessionCount={stageSessionCount}
