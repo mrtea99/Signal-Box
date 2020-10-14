@@ -10,12 +10,12 @@ import RunDelete from "../RunDelete/RunDelete.js";
 function RunList(props) {
   const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
 
-  const openEditor = function(runUid, stageNum) {
+  const openEditor = function (runUid, stageNum) {
     props.setCurrentRunUid(runUid);
     props.setActiveStage(stageNum);
-  }
+  };
 
-  const findManuStage = function(runCompletion) {
+  const findManuStage = function (runCompletion) {
     if (runCompletion === null) {
       return 0;
     } else {
@@ -25,7 +25,7 @@ function RunList(props) {
         return 2;
       }
     }
-  }
+  };
 
   return (
     <table className={styles.container}>
@@ -51,28 +51,58 @@ function RunList(props) {
               {run.productInfo.productName}
             </td>
             <td className={styles.runItem}>
-              <Button
+              {/* <Button
                 onClick={() =>
                   openEditor(run.uid, findManuStage(run.completion))
                 }
               >
                 <StageStatus runData={run} stageNum={[0, 1, 2]} label={true} />
-              </Button>
+              </Button> */}
+              <StageStatus
+                runData={run}
+                stageNum={[0, 1, 2]}
+                label={true}
+                button={true}
+                onClick={() =>
+                  openEditor(run.uid, findManuStage(run.completion))
+                }
+              />
             </td>
             <td className={styles.runItem}>
-              <Button onClick={() => openEditor(run.uid, 3)}>
+              {/* <Button onClick={() => openEditor(run.uid, 3)}>
                 <StageStatus runData={run} stageNum={3} label={true} />
-              </Button>
+              </Button> */}
+              <StageStatus
+                runData={run}
+                stageNum={3}
+                label={true}
+                button={true}
+                onClick={() => openEditor(run.uid, 3)}
+              />
             </td>
             <td className={styles.runItem}>
-              <Button onClick={() => openEditor(run.uid, 4)}>
+              {/* <Button onClick={() => openEditor(run.uid, 4)}>
                 <StageStatus runData={run} stageNum={4} label={true} />
-              </Button>
+              </Button> */}
+              <StageStatus
+                runData={run}
+                stageNum={4}
+                label={true}
+                button={true}
+                onClick={() => openEditor(run.uid, 4)}
+              />
             </td>
             <td className={styles.runItem}>
-              <Button onClick={() => openEditor(run.uid, 5)}>
+              {/* <Button onClick={() => openEditor(run.uid, 5)}>
                 <StageStatus runData={run} stageNum={5} label={true} />
-              </Button>
+              </Button> */}
+              <StageStatus
+                runData={run}
+                stageNum={5}
+                label={true}
+                button={true}
+                onClick={() => openEditor(run.uid, 5)}
+              />
             </td>
             <td className={styles.runItem}>
               <Button onClick={() => setModalOverviewActive(run.uid)}>X</Button>
