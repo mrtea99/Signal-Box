@@ -4,6 +4,7 @@ import SessionControl from "../SessionControl/SessionControl.js";
 import SessionList from "../SessionList/SessionList.js";
 import StageStatus from "../StageStatus/StageStatus.js";
 import StageActions from "../StageActions/StageActions.js";
+import IssueRaiser from "../IssueRaiser/IssueRaiser.js";
 
 import styles from "./Stage.module.css";
 
@@ -71,10 +72,12 @@ function Stage(props) {
 
     props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
 
-    setActiveSessionData(sessionData);
+    if(sessionData.user === props.activeUser) {
+      setActiveSessionData(sessionData);
+    }
   };
 
-  const updateSession = function (extraData, stage) {
+  const updateSession = function (extraData, stage, sessionUid) {
     const stageData = props.thisRunData["stages"][stage];
     const sessionList = stageData["sessions"];
 
@@ -82,7 +85,7 @@ function Stage(props) {
     let newSessionList = [...sessionList];
 
     const activeSessionObj = newSessionList.find(
-      (obj) => obj.sessionUid === activeSessionData.sessionUid
+      (obj) => obj.sessionUid === sessionUid
     );
 
     Object.assign(activeSessionObj, extraData);
@@ -92,19 +95,20 @@ function Stage(props) {
     props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
   };
 
-  const endSession = function (extraData, stage) {
+  const endSession = function (extraData, stage, sessionData) {
     const endTime = { endTime: Date.now() };
 
     if (extraData) {
       Object.assign(extraData, endTime);
-      updateSession(extraData, stage);
+      updateSession(extraData, stage, sessionData.sessionUid);
     } else {
-      updateSession(endTime, stage);
+      updateSession(endTime, stage, sessionData.sessionUid);
     }
 
-    setActiveSessionData(null);
-
-    updateStageActive(true, stage + 1);
+    if(sessionData.user === props.activeUser) {
+      setActiveSessionData(null);
+    }
+    // updateStageActive(true, stage + 1);
   };
 
   const getDifficulty = function () {
@@ -168,10 +172,12 @@ function Stage(props) {
           stageActive={stageActive}
           thisRunData={props.thisRunData}
         />
+        <IssueRaiser addSession={addSession} thisStage={props.thisStage} />
       </div>
       <SessionList
         thisStage={props.thisStage}
         thisRunData={props.thisRunData}
+        endSession={endSession}
       />
     </section>
   );

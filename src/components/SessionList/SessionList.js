@@ -10,15 +10,15 @@ function SessionList(props) {
   const thisStageData =
     props.thisRunData["stages"][props.thisStage]["sessions"];
 
-  const addLeadingZero = function(number) {
+  const addLeadingZero = function (number) {
     if (number < 10) {
       number = "0" + number;
     }
 
     return number;
-  }
+  };
 
-  const formatDate = function(time) {
+  const formatDate = function (time) {
     const dateObj = new Date(time);
 
     const year = dateObj.getFullYear();
@@ -28,9 +28,9 @@ function SessionList(props) {
     const dateString = `${year}-${month}-${day}`;
 
     return dateString;
-  }
+  };
 
-  const formatTime = function(time) {
+  const formatTime = function (time) {
     const dateObj = new Date(time);
 
     const hour = addLeadingZero(dateObj.getHours());
@@ -38,7 +38,7 @@ function SessionList(props) {
     const sec = addLeadingZero(dateObj.getSeconds());
 
     return `${hour}:${min}:${sec}`;
-  }
+  };
 
   let newestEndTime = 0;
   for (let i = 0; i < thisStageData.length; i++) {
@@ -52,7 +52,7 @@ function SessionList(props) {
     }
   }
 
-  const findTotalEndTime = function() {
+  const findTotalEndTime = function () {
     if (newestEndTime === 0) {
       return "-";
     } else {
@@ -64,9 +64,9 @@ function SessionList(props) {
         </>
       );
     }
-  }
+  };
 
-  const findTotalDuration = function() {
+  const findTotalDuration = function () {
     let totalDuration = 0;
 
     for (let i = 0; i < thisStageData.length; i++) {
@@ -81,9 +81,9 @@ function SessionList(props) {
     }
 
     return <TimeFormater rawTime={totalDuration} />;
-  }
+  };
 
-  const findTotalCount = function(propertyName) {
+  const findTotalCount = function (propertyName) {
     let total = 0;
 
     for (let i = 0; i < thisStageData.length; i++) {
@@ -95,7 +95,7 @@ function SessionList(props) {
     }
 
     return total;
-  }
+  };
 
   return (
     <table className={styles.container}>
@@ -187,7 +187,9 @@ function SessionList(props) {
               <td className={styles.contentItem}>
                 {thisStageData.length - index}
               </td>
-              <td className={styles.contentItem}>{session.activity}</td>
+              <td className={styles.contentItem}>
+                {session.type === "work" ? session.activity : session.type}
+              </td>
               <td className={styles.contentItem}>
                 <time dateTime={new Date(session.startTime).toISOString()}>
                   {formatDate(session.startTime)}
@@ -252,7 +254,28 @@ function SessionList(props) {
               )}
               <td className={styles.contentItem}>{session.user}</td>
               <td className={styles.contentItem}>
-                {session.notes ? <Button>N</Button> : ""}
+                {/* {session.notes ? <Button>N</Button> : ""} */}
+                <div>{session.notes}</div>
+                {session.type === "issue" ? (
+                  session.resolved === false ? (
+                    <Button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        props.endSession(
+                          { resolved: true },
+                          props.thisStage,
+                          session
+                        );
+                      }}
+                    >
+                      Resolve
+                    </Button>
+                  ) : (
+                    <span>Resolved</span>
+                  )
+                ) : (
+                  <></>
+                )}
               </td>
             </tr>
           ))}
