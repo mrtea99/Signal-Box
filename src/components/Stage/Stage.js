@@ -42,6 +42,21 @@ function Stage(props) {
 
     props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
 
+    //Add event item to sessionlist
+    const newSessionUid = Date.now();
+
+    const newSession = {
+      sessionUid: newSessionUid,
+      type: "event",
+      activity: newState,
+      startTime: Date.now(),
+      endTime: Date.now(),
+      user: props.activeUser,
+      notes: newState ? "Activate" : "Deactivate"
+    };
+
+    addSession(newSession, newSessionUid, stage);
+
     //Update run completion
     let chainInactive = 0;
     for (let i = 0; i < props.thisRunData["stages"].length; i++) {
@@ -72,7 +87,7 @@ function Stage(props) {
 
     props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
 
-    if(sessionData.user === props.activeUser) {
+    if (sessionData.user === props.activeUser && sessionData.endTime === undefined) {
       setActiveSessionData(sessionData);
     }
   };
@@ -105,7 +120,7 @@ function Stage(props) {
       updateSession(endTime, stage, sessionData.sessionUid);
     }
 
-    if(sessionData.user === props.activeUser) {
+    if (sessionData.user === props.activeUser) {
       setActiveSessionData(null);
     }
     // updateStageActive(true, stage + 1);

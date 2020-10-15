@@ -183,7 +183,7 @@ function SessionList(props) {
           .slice(0)
           .reverse()
           .map((session, index) => (
-            <tr key={session.sessionUid} className={styles.itemRow}>
+            <tr key={session.sessionUid + index} className={styles.itemRow}>
               <td className={styles.contentItem}>
                 {thisStageData.length - index}
               </td>
