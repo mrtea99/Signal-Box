@@ -76,7 +76,7 @@ function SessionDuring(props) {
                 Completed {props.thisStage === 1 ? "Batches" : "Units"}:
                 {props.thisStage === 1
                   ? "(Target " +
-                    props.thisRunData.productInfo.averageBatchQuantity +
+                    props.thisRunData.productInfo.batchQuantity +
                     ")"
                   : ""}
               </label>

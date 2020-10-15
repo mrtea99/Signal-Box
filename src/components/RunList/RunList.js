@@ -34,7 +34,7 @@ function RunList(props) {
           <th className={[styles.headerItem, styles.alignLeft].join(" ")}>
             Product
           </th>
-          <th className={styles.headerItem}>Manufacturing</th>
+          <th className={styles.headerItem}>Crafting</th>
           <th className={styles.headerItem}>Packaging</th>
           <th className={styles.headerItem}>Labeling</th>
           <th className={styles.headerItem}>Stocking</th>
