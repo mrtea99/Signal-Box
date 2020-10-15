@@ -31,6 +31,9 @@ function IssueRaiser(props) {
     };
 
     props.addSession(newSession, newSessionUid, props.thisStage);
+
+    setDescription("");
+    setIsBlocker(false);
   };
 
   return (
