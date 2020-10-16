@@ -20,9 +20,9 @@ function StageActions(props) {
       case "skipped":
         return "Skip stage";
       case "paused":
-        return "Complete for now";
+        return "Pause stage";
       case "pending":
-        return "Complete for now";
+        return "Set stage to pending";
       default:
         return "End Stage";
     }
@@ -36,9 +36,9 @@ function StageActions(props) {
             <Button
               onClick={() => {
                 props.updateStageActive(false, props.thisStage);
-                // if (stageStatusNext !== "pending") {
-                //   props.updateStageActive(true, props.thisStage + 1);
-                // }
+                if (stageStatusNext !== "pending") {
+                  props.updateStageActive(true, props.thisStage + 1);
+                }
               }}
             >
               {inactiveMessage(stageStatusNext)}
@@ -51,11 +51,11 @@ function StageActions(props) {
         <div>
           {stageStatusName === "pending"?
         (<p>
-          Is there is work to be done?
+          There is no work ready to be done for this stage
           <Button
             onClick={() => props.updateStageActive(true, props.thisStage)}
           >
-            Yes
+            Start anyway
           </Button>
         </p>)
         : (<p>

@@ -40,37 +40,37 @@ function IssueRaiser(props) {
     <>
       <Button onClick={() => setModalActive(true)}>Raise Issue</Button>
       {modalActive ? (
-        // <Modal>
-        <form>
-          <div>
-            <label htmlFor="issue-description">Issue Description:</label>
-            <textarea
-              id="issue-description"
-              name="issue-description"
-              onChange={(e) => setDescription(e.target.value)}
-            ></textarea>
-          </div>
-          <div>
-            <label htmlFor="issue-blocker">Blocker:</label>
-            <input
-              onChange={(e) => handleChange(e)}
-              type="checkbox"
-              id="issue-blocker"
-              name="issue-blocker"
-            />
-          </div>
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              setModalActive(false);
-            }}
-          >
-            Cancel
-          </Button>
-          <Button onClick={(e) => handleSubmit(e)}>Save</Button>
-        </form>
+        <Modal>
+          <form>
+            <div>
+              <label htmlFor="issue-description">Issue Description:</label>
+              <textarea
+                id="issue-description"
+                name="issue-description"
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
+            </div>
+            <div>
+              <label htmlFor="issue-blocker">Blocker:</label>
+              <input
+                onChange={(e) => handleChange(e)}
+                type="checkbox"
+                id="issue-blocker"
+                name="issue-blocker"
+              />
+            </div>
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                setModalActive(false);
+              }}
+            >
+              Cancel
+            </Button>
+            <Button onClick={(e) => handleSubmit(e)}>Save</Button>
+          </form>
+        </Modal>
       ) : (
-        // </Modal>
         <></>
       )}
     </>
