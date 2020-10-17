@@ -52,7 +52,7 @@ function Stage(props) {
       startTime: Date.now(),
       endTime: Date.now(),
       user: props.activeUser,
-      notes: newState ? "Activate" : "Deactivate"
+      notes: newState ? "Activate" : "Deactivate",
     };
 
     addSession(newSession, newSessionUid, stage);
@@ -87,7 +87,10 @@ function Stage(props) {
 
     props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
 
-    if (sessionData.user === props.activeUser && sessionData.endTime === undefined) {
+    if (
+      sessionData.user === props.activeUser &&
+      sessionData.endTime === undefined
+    ) {
       setActiveSessionData(sessionData);
     }
   };
@@ -187,7 +190,11 @@ function Stage(props) {
           stageActive={stageActive}
           thisRunData={props.thisRunData}
         />
-        <IssueRaiser addSession={addSession} thisStage={props.thisStage} />
+        <IssueRaiser
+          addSession={addSession}
+          thisStage={props.thisStage}
+          activeUser={props.activeUser}
+        />
       </div>
       <SessionList
         thisStage={props.thisStage}

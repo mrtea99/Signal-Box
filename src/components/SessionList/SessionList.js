@@ -2,7 +2,8 @@ import React from "react";
 
 import TimeFormater from "../TimeFormater/TimeFormater.js";
 import Timer from "../Timer/Timer.js";
-import Button from "../Button/Button.js";
+import IssueCloser from "../IssueCloser/IssueCloser.js";
+// import Button from "../Button/Button.js";
 
 import styles from "./SessionList.module.css";
 
@@ -132,6 +133,7 @@ function SessionList(props) {
           )}
           <th className={styles.headerItem}>Technician</th>
           <th className={styles.headerItem}>Note</th>
+          <th className={styles.headerItem}>Action</th>
         </tr>
       </thead>
       <tbody>
@@ -176,6 +178,7 @@ function SessionList(props) {
           ) : (
             <></>
           )}
+          <td className={styles.contentItem}></td>
           <td className={styles.contentItem}></td>
           <td className={styles.contentItem}></td>
         </tr>
@@ -256,23 +259,14 @@ function SessionList(props) {
               <td className={styles.contentItem}>
                 {/* {session.notes ? <Button>N</Button> : ""} */}
                 <div>{session.notes}</div>
+              </td>
+              <td className={styles.contentItem}>
                 {session.type === "issue" ? (
-                  session.resolved === false ? (
-                    <Button
-                      onClick={(e) => {
-                        e.preventDefault();
-                        props.endSession(
-                          { resolved: true },
-                          props.thisStage,
-                          session
-                        );
-                      }}
-                    >
-                      Resolve
-                    </Button>
-                  ) : (
-                    <span>Resolved</span>
-                  )
+                  <IssueCloser
+                    thisStage={props.thisStage}
+                    session={session}
+                    endSession={props.endSession}
+                  />
                 ) : (
                   <></>
                 )}

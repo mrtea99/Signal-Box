@@ -24,7 +24,7 @@ function IssueRaiser(props) {
       sessionUid: newSessionUid,
       type: "issue",
       startTime: Date.now(),
-      user: null,
+      user: props.activeUser,
       resolved: false,
       blocker: isBlocker,
       notes: description,
@@ -47,7 +47,7 @@ function IssueRaiser(props) {
               <textarea
                 id="issue-description"
                 name="issue-description"
-                onChange={(e) => setDescription(e.target.value)}
+                onChange={(e) => setDescription("Issue: " + e.target.value)}
               ></textarea>
             </div>
             <div>
