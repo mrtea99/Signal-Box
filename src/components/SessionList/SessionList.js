@@ -3,6 +3,7 @@ import React from "react";
 import TimeFormater from "../TimeFormater/TimeFormater.js";
 import Timer from "../Timer/Timer.js";
 import FlagCloser from "../FlagCloser/FlagCloser.js";
+import CheckCloser from "../CheckCloser/CheckCloser.js";
 // import Button from "../Button/Button.js";
 
 import styles from "./SessionList.module.css";
@@ -263,9 +264,17 @@ function SessionList(props) {
                 </div>
               </td>
               <td className={styles.contentItem}>
-                {session.type === "issue" || session.type === "qa" ? (
+                {session.type === "issue" ? (
                   <FlagCloser
-                    flagType={session.type}
+                    thisStage={props.thisStage}
+                    session={session}
+                    endSession={props.endSession}
+                  />
+                ) : (
+                  <></>
+                )}
+                {session.type === "qa" ? (
+                  <CheckCloser
                     thisStage={props.thisStage}
                     session={session}
                     endSession={props.endSession}

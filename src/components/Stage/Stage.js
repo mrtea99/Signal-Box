@@ -5,6 +5,7 @@ import SessionList from "../SessionList/SessionList.js";
 import StageStatus from "../StageStatus/StageStatus.js";
 import StageActions from "../StageActions/StageActions.js";
 import FlagOpener from "../FlagOpener/FlagOpener.js";
+import CheckOpener from "../CheckOpener/CheckOpener.js";
 
 import styles from "./Stage.module.css";
 
@@ -193,13 +194,11 @@ function Stage(props) {
           thisRunData={props.thisRunData}
         />
         <FlagOpener
-          flagType="issue"
           addSession={addSession}
           thisStage={props.thisStage}
           activeUser={props.activeUser}
         />
-        <FlagOpener
-          flagType="qa"
+        <CheckOpener
           addSession={addSession}
           thisStage={props.thisStage}
           activeUser={props.activeUser}
