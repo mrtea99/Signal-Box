@@ -16,8 +16,6 @@ function IssueRaiser(props) {
   const handleSubmit = function (e) {
     e.preventDefault();
 
-    setModalActive(false);
-
     const newSessionUid = Date.now();
 
     const newSession = {
@@ -32,6 +30,7 @@ function IssueRaiser(props) {
 
     props.addSession(newSession, newSessionUid, props.thisStage);
 
+    setModalActive(false);
     setDescription("");
     setIsBlocker(false);
   };

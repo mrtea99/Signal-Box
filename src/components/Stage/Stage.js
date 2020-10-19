@@ -24,7 +24,8 @@ function Stage(props) {
       for (let i = 0; i < sessionList.length; i++) {
         if (
           sessionList[i].user === props.activeUser &&
-          sessionList[i].endTime === undefined
+          sessionList[i].endTime === undefined &&
+          sessionList[i].type === "work"
         ) {
           return sessionList[i];
         }
@@ -89,7 +90,8 @@ function Stage(props) {
 
     if (
       sessionData.user === props.activeUser &&
-      sessionData.endTime === undefined
+      sessionData.endTime === undefined &&
+      sessionData.type === "work"
     ) {
       setActiveSessionData(sessionData);
     }
