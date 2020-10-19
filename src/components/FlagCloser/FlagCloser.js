@@ -3,19 +3,22 @@ import React from "react";
 import Button from "../Button/Button.js";
 import Modal from "../Modal/Modal.js";
 
-function IssueCloser(props) {
+function FlagCloser(props) {
   const [modalActive, setModalActive] = React.useState(false);
 
-  const [description, setDescription] = React.useState("123");
+  const [description, setDescription] = React.useState("");
 
   const handleSubmit = function (e) {
     e.preventDefault();
 
     props.endSession(
-      { resolved: true, notes: props.session.notes + " " + description },
+      { resolved: true, notes: props.session.notes + "\n" + description },
       props.thisStage,
       props.session
     );
+
+    setModalActive(false);
+    setDescription("");
   };
 
   return (
@@ -34,6 +37,7 @@ function IssueCloser(props) {
             <Modal>
               <div>
                 <p>{props.session.notes}</p>
+                <p>Raised by: {props.session.user}</p>
                 <p>{props.session.blocker ? "Blocker" : ""}</p>
                 <label htmlFor="fix-description">Fix Description:</label>
                 <textarea
@@ -57,10 +61,11 @@ function IssueCloser(props) {
           )}
         </>
       ) : (
-        <Button disabled="disabled">Fixed</Button>
+        <></>
+        // <Button disabled="disabled">Fixed</Button>
       )}
     </>
   );
 }
 
-export default IssueCloser;
+export default FlagCloser;

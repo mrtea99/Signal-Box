@@ -3,15 +3,11 @@ import React from "react";
 import Button from "../Button/Button.js";
 import Modal from "../Modal/Modal.js";
 
-function IssueRaiser(props) {
+function FlagOpener(props) {
   const [modalActive, setModalActive] = React.useState(false);
 
   const [description, setDescription] = React.useState("");
   const [isBlocker, setIsBlocker] = React.useState(false);
-
-  const handleChange = function (e) {
-    setIsBlocker(e.target.checked);
-  };
 
   const handleSubmit = function (e) {
     e.preventDefault();
@@ -52,7 +48,7 @@ function IssueRaiser(props) {
             <div>
               <label htmlFor="issue-blocker">Blocker:</label>
               <input
-                onChange={(e) => handleChange(e)}
+                onChange={(e) => setIsBlocker(e.target.checked)}
                 type="checkbox"
                 id="issue-blocker"
                 name="issue-blocker"
@@ -76,4 +72,4 @@ function IssueRaiser(props) {
   );
 }
 
-export default IssueRaiser;
+export default FlagOpener;

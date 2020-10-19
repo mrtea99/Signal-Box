@@ -2,7 +2,7 @@ import React from "react";
 
 import TimeFormater from "../TimeFormater/TimeFormater.js";
 import Timer from "../Timer/Timer.js";
-import IssueCloser from "../IssueCloser/IssueCloser.js";
+import FlagCloser from "../FlagCloser/FlagCloser.js";
 // import Button from "../Button/Button.js";
 
 import styles from "./SessionList.module.css";
@@ -124,13 +124,13 @@ function SessionList(props) {
           ) : (
             <></>
           )}
-          {props.thisStage === 1 ||
+          {/* {props.thisStage === 1 ||
           props.thisStage === 2 ||
           props.thisStage === 3 ? (
             <th className={styles.headerItem}>Data</th>
           ) : (
             <></>
-          )}
+          )} */}
           <th className={styles.headerItem}>Technician</th>
           <th className={styles.headerItem}>Note</th>
           <th className={styles.headerItem}>Action</th>
@@ -171,13 +171,13 @@ function SessionList(props) {
           ) : (
             <></>
           )}
-          {props.thisStage === 1 ||
+          {/* {props.thisStage === 1 ||
           props.thisStage === 2 ||
           props.thisStage === 3 ? (
             <td className={styles.contentItem}></td>
           ) : (
             <></>
-          )}
+          )} */}
           <td className={styles.contentItem}></td>
           <td className={styles.contentItem}></td>
           <td className={styles.contentItem}></td>
@@ -236,33 +236,36 @@ function SessionList(props) {
               ) : (
                 <></>
               )}
-              {props.thisStage === 1 ||
+              {/* {props.thisStage === 1 ||
               props.thisStage === 2 ||
               props.thisStage === 3 ? (
                 <td className={styles.contentItem}>
-                  {props.thisStage === 1 || props.thisStage === 2 ? (
-                    <>
-                      Temp:{session.temperature}
-                      <br />
-                      Humidity:{session.humidity}%
-                      <br />
-                    </>
-                  ) : (
-                    <></>
-                  )}
-                  Avg Weight:{session.averageWeight}
+                  {session.temperature ? <>Temp: {session.temperature}°C<br /></> : <></>}
+                  {session.humidity ? <>Humidity: {session.humidity}%<br /></> : <></>}
+                  {session.averageWeight ? <>Avg Weight: {session.averageWeight}<br /></> : <></>}
                 </td>
               ) : (
                 <></>
-              )}
+              )} */}
               <td className={styles.contentItem}>{session.user}</td>
               <td className={styles.contentItem}>
                 {/* {session.notes ? <Button>N</Button> : ""} */}
-                <div>{session.notes}</div>
+                <div>
+                  {/* {session.notes} */}
+                  {session.notes.split("\n").map((item, key) => {
+                    return (
+                      <span key={key}>
+                        {item}
+                        <br />
+                      </span>
+                    );
+                  })}
+                </div>
               </td>
               <td className={styles.contentItem}>
-                {session.type === "issue" ? (
-                  <IssueCloser
+                {session.type === "issue" || session.type === "qa" ? (
+                  <FlagCloser
+                    flagType={session.type}
                     thisStage={props.thisStage}
                     session={session}
                     endSession={props.endSession}
