@@ -18,21 +18,22 @@ function CheckCloser(props) {
   return (
     <>
       {props.session.resolved ? (
-        // <Button disabled="disabled">Fixed</Button>
         <></>
       ) : (
         <ModalControl handleSubmit={handleSubmit} triggerCopy={"Check"}>
           <div>
             <p>{props.session.notes}</p>
-            <p>Raised by: {props.session.user}</p>
-            <p>{props.session.blocker ? "Blocker" : ""}</p>
+            <p>Requested by: {props.session.user}</p>
+            <p>Assigned to: {props.session.checker}</p>
+            <p>Timeframe: {props.session.timeframe}</p>
           </div>
           <div>
-            <label htmlFor="fix-description">Fix Description:</label>
+            <label htmlFor="fix-description">Note:</label>
+            <br />
             <textarea
-              id="fix-description"
-              name="fix-description"
-              onChange={(e) => setDescription("Fix: " + e.target.value)}
+              id="check-description"
+              name="check-description"
+              onChange={(e) => setDescription("Checked: " + e.target.value)}
             ></textarea>
           </div>
         </ModalControl>
