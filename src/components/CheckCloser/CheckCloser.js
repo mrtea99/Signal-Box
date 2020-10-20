@@ -6,8 +6,13 @@ function CheckCloser(props) {
   const [description, setDescription] = React.useState("");
 
   const handleSubmit = function () {
+    const newNote =
+      props.session.notes && props.session.notes.length
+        ? props.session.notes + "\n" + description
+        : description;
+
     props.endSession(
-      { resolved: true, notes: props.session.notes + "\n" + description },
+      { resolved: true, notes: newNote },
       props.thisStage,
       props.session
     );

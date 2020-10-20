@@ -4,7 +4,7 @@ import TimeFormater from "../TimeFormater/TimeFormater.js";
 import Timer from "../Timer/Timer.js";
 import FlagCloser from "../FlagCloser/FlagCloser.js";
 import CheckCloser from "../CheckCloser/CheckCloser.js";
-// import Button from "../Button/Button.js";
+import ModalControl from "../Modal/ModalControl/ModalControl.js";
 
 import styles from "./SessionList.module.css";
 
@@ -250,18 +250,17 @@ function SessionList(props) {
               )} */}
               <td className={styles.contentItem}>{session.user}</td>
               <td className={styles.contentItem}>
-                {/* {session.notes ? <Button>N</Button> : ""} */}
-                <div>
-                  {/* {session.notes} */}
-                  {session.notes.split("\n").map((item, key) => {
-                    return (
-                      <span key={key}>
-                        {item}
-                        <br />
-                      </span>
-                    );
-                  })}
-                </div>
+                  {session.notes && session.notes.length ?
+                  <ModalControl triggerCopy={"N"}>
+                    {session.notes.split("\n").map((item, key) => {
+                      return (
+                        <span key={key}>
+                          {item}
+                          <br />
+                        </span>
+                      );
+                    })}
+                  </ModalControl> : <></>}
               </td>
               <td className={styles.contentItem}>
                 {session.type === "issue" ? (

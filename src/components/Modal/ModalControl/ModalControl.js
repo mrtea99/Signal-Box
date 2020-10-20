@@ -20,15 +20,28 @@ function ModalControl(props) {
       {modalActive ? (
         <Modal>
           {props.children}
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              setModalActive(false);
-            }}
-          >
-            Cancel
-          </Button>
-          <Button onClick={(e) => handleSubmit(e)}>Save</Button>
+          {props.handleSubmit ? (
+            <>
+              <Button
+                onClick={(e) => {
+                  e.preventDefault();
+                  setModalActive(false);
+                }}
+              >
+                Cancel
+              </Button>
+              <Button onClick={(e) => handleSubmit(e)}>Save</Button>
+            </>
+          ) : (
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                setModalActive(false);
+              }}
+            >
+              Close
+            </Button>
+          )}
         </Modal>
       ) : (
         <></>

@@ -4,8 +4,6 @@ import SessionControl from "../SessionControl/SessionControl.js";
 import SessionList from "../SessionList/SessionList.js";
 import StageStatus from "../StageStatus/StageStatus.js";
 import StageActions from "../StageActions/StageActions.js";
-import FlagOpener from "../FlagOpener/FlagOpener.js";
-import CheckOpener from "../CheckOpener/CheckOpener.js";
 
 import styles from "./Stage.module.css";
 
@@ -193,16 +191,7 @@ function Stage(props) {
           stageActive={stageActive}
           thisRunData={props.thisRunData}
         />
-        <FlagOpener
-          addSession={addSession}
-          thisStage={props.thisStage}
-          activeUser={props.activeUser}
-        />
-        <CheckOpener
-          addSession={addSession}
-          thisStage={props.thisStage}
-          activeUser={props.activeUser}
-        />
+        
       </div>
       <SessionList
         thisStage={props.thisStage}
