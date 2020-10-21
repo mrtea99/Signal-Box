@@ -4,6 +4,7 @@ import ModalControl from "../Modal/ModalControl/ModalControl.js";
 
 function CheckCloser(props) {
   const [description, setDescription] = React.useState("");
+  const [countBad, setCountBad] = React.useState(0);
 
   const handleSubmit = function () {
     const newNote =
@@ -12,12 +13,13 @@ function CheckCloser(props) {
         : description;
 
     props.endSession(
-      { resolved: true, notes: newNote },
+      { resolved: true, notes: newNote, amount: -Math.abs(countBad), amountBad: countBad },
       props.thisStage,
       props.session
     );
 
     setDescription("");
+    setCountBad(0);
   };
 
   return (
@@ -33,13 +35,23 @@ function CheckCloser(props) {
             <p>Timeframe: {props.session.timeframe}</p>
           </div>
           <div>
-            <label htmlFor="fix-description">Note:</label>
+            <label htmlFor="check-description">Note:</label>
             <br />
             <textarea
               id="check-description"
               name="check-description"
               onChange={(e) => setDescription("Checked: " + e.target.value)}
             ></textarea>
+          </div>
+          <div>
+            <label htmlFor="check-count-bad">Defective:</label>
+            <br />
+            <input type="number"
+              id="check-count-bad"
+              name="check-count-bad"
+              onChange={(e) => setCountBad(parseInt(e.target.value))}
+              value={countBad}
+             />
           </div>
         </ModalControl>
       )}
