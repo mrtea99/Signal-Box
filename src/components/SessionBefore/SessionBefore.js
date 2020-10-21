@@ -35,6 +35,7 @@ function SessionBefore(props) {
     const newSession = {
       sessionUid: newSessionUid,
       type: "work",
+      resolved: false,
       startTime: Date.now(),
       activity: activityData,
       user: props.activeUser,

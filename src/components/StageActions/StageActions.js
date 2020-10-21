@@ -8,7 +8,6 @@ function StageActions(props) {
   const [
     stageActive,
     stageStatusName,
-    stageStatusIcon,
     stageSessionCount,
     stageStatusNext,
   ] = useStageStatus(props.thisRunData, props.thisStage);
@@ -36,9 +35,10 @@ function StageActions(props) {
             <Button
               onClick={() => {
                 props.updateStageActive(false, props.thisStage);
-                if (stageStatusNext !== "pending") {
-                  props.updateStageActive(true, props.thisStage + 1);
-                }
+                
+                // if (stageStatusNext !== "pending") {
+                //   props.updateStageActive(true, props.thisStage + 1);
+                // }
               }}
             >
               {inactiveMessage(stageStatusNext)}

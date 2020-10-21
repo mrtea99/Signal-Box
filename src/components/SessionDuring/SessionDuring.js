@@ -29,6 +29,7 @@ function SessionDuring(props) {
     e.preventDefault();
 
     const extraData = {
+      resolved: true,
       notes: noteData,
     };
 

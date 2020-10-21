@@ -10,7 +10,6 @@ function StageStatus(props) {
   const [
     stageActive,
     stageStatusName,
-    stageStatusIcon,
     stageSessionCount,
   ] = useStageStatus(props.runData, props.stageNum);
 
