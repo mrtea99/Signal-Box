@@ -1,4 +1,4 @@
-function useStageStatus(runData, stageNum) {
+function useStageStatus(runData, stageNum, activeUser) {
   const stagesData = runData["stages"];
   const stageNumbers = Array.isArray(stageNum) ? stageNum : [stageNum];
 
@@ -9,7 +9,7 @@ function useStageStatus(runData, stageNum) {
   let workActive = 0;
   let issueActive = 0;
   let qaActive = 0;
-  // let userSessionCount = 0;
+  let userTotal = 0;
 
   stageNumbers.forEach((stageNumber, index) => {
     stageActive.push(stagesData[stageNumber].active);
@@ -19,28 +19,25 @@ function useStageStatus(runData, stageNum) {
     const workSessions = allSessions.filter((session) => {
       return session.type === "work";
     });
-    workTotal = workTotal + workSessions.length;
+    workTotal += workSessions.length;
 
-    const workActiveSessions = workSessions.filter((session) => {
+    workActive += workSessions.filter((session) => {
       return session.type === "work" && session.resolved === false;
-    });
-    workActive = workActive + workActiveSessions.length;
+    }).length;
 
-    issueActive =
-      issueActive +
-      allSessions.filter((session) => {
-        return session.type === "issue" && session.resolved === false;
-      }).length;
+    issueActive += allSessions.filter((session) => {
+      return session.type === "issue" && session.resolved === false;
+    }).length;
 
-    qaActive =
-      qaActive +
-      allSessions.filter((session) => {
-        return session.type === "qa" && session.resolved === false;
-      }).length;
+    qaActive += allSessions.filter((session) => {
+      return session.type === "qa" && session.resolved === false;
+    }).length;
 
-    // const userSessions = allSessions.filter((session) => {
-    //   return session.user === activeUser;
-    // });
+    if (activeUser) {
+      userTotal += allSessions.filter((session) => {
+        return session.user === activeUser;
+      });
+    }
 
     // if (stageNumber === 0) {
     //   prevStarted = true;
@@ -141,6 +138,9 @@ function useStageStatus(runData, stageNum) {
     stageStatusName: statusNames[0],
     stageStatusNext: statusNames[1],
     workTotal: workTotal,
+    issueActive: issueActive,
+    qaActive: qaActive,
+    userTotal: userTotal,
   };
 }
 
