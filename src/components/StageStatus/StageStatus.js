@@ -7,30 +7,36 @@ import useStageStatus from "../../hooks/useStageStatus.js";
 import styles from "./StageStatus.module.css";
 
 function StageStatus(props) {
-  const [
-    stageActive,
-    stageStatusName,
-    stageSessionCount,
-  ] = useStageStatus(props.runData, props.stageNum);
+  const stageStatus = useStageStatus(props.runData, props.stageNum);
 
   const capsLabel =
-    stageStatusName.charAt(0).toUpperCase() + stageStatusName.slice(1);
+    stageStatus.stageStatusName.charAt(0).toUpperCase() +
+    stageStatus.stageStatusName.slice(1);
 
   return (
     <>
       {props.button ? (
-        <button onClick={props.onClick} className={`${styles.button} ${stageActive ? styles.buttonStageActive : ''}`}>
+        <button
+          onClick={props.onClick}
+          className={`${styles.button} ${
+            stageStatus.stageIsActive ? styles.buttonStageActive : ""
+          }`}
+        >
           <StatusIcon
-            stageStatusName={stageStatusName}
-            stageSessionCount={stageSessionCount}
+            stageStatusName={stageStatus.stageStatusName}
+            stageSessionCount={stageStatus.workTotal}
           />
-          {props.label ? <span className={styles.label}>{capsLabel + " "}</span> : <></>}
+          {props.label ? (
+            <span className={styles.label}>{capsLabel + " "}</span>
+          ) : (
+            <></>
+          )}
         </button>
       ) : (
         <>
           <StatusIcon
-            stageStatusName={stageStatusName}
-            stageSessionCount={stageSessionCount}
+            stageStatusName={stageStatus.stageStatusName}
+            stageSessionCount={stageStatus.workTotal}
           />{" "}
           {props.label ? capsLabel + " " : <></>}
         </>
