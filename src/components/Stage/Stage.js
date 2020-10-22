@@ -168,6 +168,7 @@ function Stage(props) {
               runData={props.thisRunData}
               stageNum={props.thisStage}
               label={true}
+              activeUser={props.activeUser}
             />
           </h3>
         </div>

@@ -32,7 +32,8 @@
 }
 
 .core--pending {
-  opacity: 50%;
+  /* opacity: 50%; */
+  background-color: var(--color-grey-bright);
 }
 .core--working {
   background-color: var(--color-pink-bright);
@@ -62,7 +63,7 @@
   z-index: 9;
 }
 
-.wrapper:hover .flag,
+/* .wrapper:hover .flag, */
 .flagActive {
   width: calc((var(--core-size) / 2) + var(--flag-width));
 }

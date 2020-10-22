@@ -7,7 +7,7 @@ import useStageStatus from "../../hooks/useStageStatus.js";
 import styles from "./StageStatus.module.css";
 
 function StageStatus(props) {
-  const stageStatus = useStageStatus(props.runData, props.stageNum);
+  const stageStatus = useStageStatus(props.runData, props.stageNum, props.activeUser);
 
   const capsLabel =
     stageStatus.stageStatusName.charAt(0).toUpperCase() +
@@ -22,10 +22,7 @@ function StageStatus(props) {
             stageStatus.stageIsActive ? styles.buttonStageActive : ""
           }`}
         >
-          <StatusIcon
-            stageStatusName={stageStatus.stageStatusName}
-            stageSessionCount={stageStatus.workTotal}
-          />
+          <StatusIcon {...stageStatus} />
           {props.label ? (
             <span className={styles.label}>{capsLabel + " "}</span>
           ) : (
@@ -34,10 +31,7 @@ function StageStatus(props) {
         </button>
       ) : (
         <>
-          <StatusIcon
-            stageStatusName={stageStatus.stageStatusName}
-            stageSessionCount={stageStatus.workTotal}
-          />{" "}
+          <StatusIcon {...stageStatus} />{" "}
           {props.label ? capsLabel + " " : <></>}
         </>
       )}

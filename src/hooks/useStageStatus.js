@@ -36,7 +36,7 @@ function useStageStatus(runData, stageNum, activeUser) {
     if (activeUser) {
       userTotal += allSessions.filter((session) => {
         return session.user === activeUser;
-      });
+      }).length;
     }
 
     // if (stageNumber === 0) {
@@ -132,6 +132,8 @@ function useStageStatus(runData, stageNum, activeUser) {
   }
 
   const statusNames = getStatus();
+
+  console.log(userTotal)
 
   return {
     stageIsActive: stageActive.includes(true),

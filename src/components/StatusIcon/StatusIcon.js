@@ -13,7 +13,7 @@ function StatusIcon(props) {
       props.stageStatusName === "started" ||
       props.stageStatusName === "working"
     ) {
-      return props.stageSessionCount;
+      return props.workTotal;
     }
 
     if (props.stageStatusName === "complete") {
@@ -40,15 +40,15 @@ function StatusIcon(props) {
       </span>
       <span className={styles.flags}>
         <span
-          className={`${styles.core} ${styles.flag} ${styles.flagIssue} ${styles.flagActive}`}
+          className={`${styles.core} ${styles.flag} ${styles.flagIssue} ${props.issueActive ? styles.flagActive : ''}`}
         >
-          <span className={styles.inner}>1</span>
+          <span className={styles.inner}>!</span>
         </span>
-        <span className={`${styles.core} ${styles.flag} ${styles.flagQa}`}>
-          <span className={styles.inner}>2</span>
+        <span className={`${styles.core} ${styles.flag} ${styles.flagQa} ${props.qaActive ? styles.flagActive : ''}`}>
+          <span className={styles.inner}>?</span>
         </span>
-        <span className={`${styles.core} ${styles.flag} ${styles.flagUser}`}>
-          <span className={styles.inner}>3</span>
+        <span className={`${styles.core} ${styles.flag} ${styles.flagUser} ${props.userTotal ? styles.flagActive : ''}`}>
+          <span className={styles.inner}>U</span>
         </span>
       </span>
     </span>
