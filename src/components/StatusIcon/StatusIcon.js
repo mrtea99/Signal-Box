@@ -2,9 +2,9 @@ import React from "react";
 
 import styles from "./StatusIcon.module.css";
 
-import {ReactComponent as Checkmark} from "./checkmark.svg";
-import {ReactComponent as Pause} from "./pause.svg";
-import {ReactComponent as ArrowRight} from "./arrow-right.svg";
+import { ReactComponent as Checkmark } from "./checkmark.svg";
+import { ReactComponent as Pause } from "./pause.svg";
+import { ReactComponent as ArrowRight } from "./arrow-right.svg";
 
 function StatusIcon(props) {
   const innerContent = function () {
@@ -34,11 +34,24 @@ function StatusIcon(props) {
   return (
     <span className={styles.wrapper}>
       <span
-        className={`${styles.container} ${
-          styles["container--" + props.stageStatusName]
-        }`}
+        className={`${styles.core} ${styles["core--" + props.stageStatusName]}`}
       >
         <span className={styles.inner}>{innerContent()}</span>
+      </span>
+      <span className={styles.flagholder}>
+        <span className={`${styles.core} ${styles.flag}`}>
+          <span className={styles.inner}>!</span>
+        </span>
+        <span className={styles.flagholder}>
+          <span className={`${styles.core} ${styles.flag}`}>
+            <span className={styles.inner}>!</span>
+          </span>
+          <span className={styles.flagholder}>
+            <span className={`${styles.core} ${styles.flag}`}>
+              <span className={styles.inner}>!</span>
+            </span>
+          </span>
+        </span>
       </span>
     </span>
   );
