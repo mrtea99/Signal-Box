@@ -25,23 +25,31 @@ function StageActions(props) {
   return (
     <>
       {stageStatus.stageIsActive ? (
-        <div>
+        <>
           {stageStatus.stageStatusName !== "working" ? (
-            <Button
-              onClick={() => {
-                props.updateStageActive(false, props.thisStage);
+            <div>
+              {stageStatus.issueActive || stageStatus.qaActive ? (
+                <p>
+                  Cannot complete until qa is complete and issues are resolved
+                </p>
+              ) : (
+                <Button
+                  onClick={() => {
+                    props.updateStageActive(false, props.thisStage);
 
-                // if (stageStatus.stageStatusNext !== "pending") {
-                //   props.updateStageActive(true, props.thisStage + 1);
-                // }
-              }}
-            >
-              {inactiveMessage(stageStatus.stageStatusNext)}
-            </Button>
+                    // if (stageStatus.stageStatusNext !== "pending") {
+                    //   props.updateStageActive(true, props.thisStage + 1);
+                    // }
+                  }}
+                >
+                  {inactiveMessage(stageStatus.stageStatusNext)}
+                </Button>
+              )}
+            </div>
           ) : (
             <></>
           )}
-        </div>
+        </>
       ) : (
         <div>
           {stageStatus.stageStatusName === "pending" ? (
