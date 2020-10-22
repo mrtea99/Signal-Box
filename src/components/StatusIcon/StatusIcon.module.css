@@ -1,7 +1,7 @@
 .wrapper {
   display: inline-flex;
   flex-direction: row;
-  /* vertical-align: middle; */
+  vertical-align: middle;
   position: relative;
   /* align-items: flex-end; */
   margin-right: 0;
@@ -46,41 +46,35 @@
   background-color: forestgreen;
 }
 
-.flagholder {
+.flags {
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin-top: calc(var(--core-size) * -1);
-  /* margin-top: -10px; */
-  transition: all 0.5s ease;
-  z-index: 1;
-}
-
-.wrapper:hover .flag {
-  width: calc((var(--core-size) / 2) + var(--flag-width));
-}
-
-.wrapper:hover .flagholder {
-  margin-left: calc((var(--flag-width)) - (var(--core-size) / 2));
-}
-
-.wrapper > .flagholder,
-.wrapper:hover > .flagholder {
-  margin-top: 0;
-  margin-left: calc(var(--core-size) * -1);
+  flex-direction: row-reverse;
 }
 
 .flag {
-  margin-left: 0;
+  margin-left: calc(var(--core-size) * -1);
   border-radius: calc(var(--core-size) / 2);
   width: var(--core-size);
-
   transition: all 0.5s ease;
   display: inline-flex;
   justify-content: flex-end;
   padding-right: 0.5em;
   z-index: 9;
+}
+
+.wrapper:hover .flag,
+.flagActive {
+  width: calc((var(--core-size) / 2) + var(--flag-width));
+}
+
+.flagIssue {
   background-color: red;
+}
+.flagQa {
+  background-color: orange;
+}
+.flagUser {
+  background-color: blue;
 }
 
 .inner {

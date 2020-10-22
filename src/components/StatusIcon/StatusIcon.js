@@ -38,19 +38,17 @@ function StatusIcon(props) {
       >
         <span className={styles.inner}>{innerContent()}</span>
       </span>
-      <span className={styles.flagholder}>
-        <span className={`${styles.core} ${styles.flag}`}>
-          <span className={styles.inner}>!</span>
+      <span className={styles.flags}>
+        <span
+          className={`${styles.core} ${styles.flag} ${styles.flagIssue} ${styles.flagActive}`}
+        >
+          <span className={styles.inner}>1</span>
         </span>
-        <span className={styles.flagholder}>
-          <span className={`${styles.core} ${styles.flag}`}>
-            <span className={styles.inner}>!</span>
-          </span>
-          <span className={styles.flagholder}>
-            <span className={`${styles.core} ${styles.flag}`}>
-              <span className={styles.inner}>!</span>
-            </span>
-          </span>
+        <span className={`${styles.core} ${styles.flag} ${styles.flagQa}`}>
+          <span className={styles.inner}>2</span>
+        </span>
+        <span className={`${styles.core} ${styles.flag} ${styles.flagUser}`}>
+          <span className={styles.inner}>3</span>
         </span>
       </span>
     </span>
