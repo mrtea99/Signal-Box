@@ -133,8 +133,6 @@ function useStageStatus(runData, stageNum, activeUser) {
 
   const statusNames = getStatus();
 
-  console.log(userTotal)
-
   return {
     stageIsActive: stageActive.includes(true),
     stageStatusName: statusNames[0],
