@@ -47,7 +47,7 @@ function StatusIcon(props) {
         <span className={`${styles.core} ${styles.flag} ${styles.flagQa} ${props.qaActive ? styles.flagActive : ''}`}>
           <span className={styles.inner}>?</span>
         </span>
-        <span className={`${styles.core} ${styles.flag} ${styles.flagUser} ${props.userTotal ? styles.flagActive : ''}`}>
+        <span className={`${styles.core} ${styles.flag} ${styles.flagUser} ${props.userTotal ? styles.flagActive : ''} ${props.stageStatusName === "working" ? styles.flagUserWorking : ''}`}>
           <span className={styles.inner}>U</span>
         </span>
       </span>

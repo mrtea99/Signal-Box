@@ -1,17 +1,16 @@
 .wrapper {
+  --border-width: 0.15em;
+  --core-size: 1.6em;
+  --flag-width: calc((var(--core-size)) * 1.5);
+  --speed-change: 0.5s;
+  --easing-change: ease;
+
   display: inline-flex;
   flex-direction: row;
   vertical-align: middle;
   position: relative;
-  /* align-items: flex-end; */
-  margin-right: 0;
-  transition: all 0.5s ease;
-  /* text-align: right; */
   font-size: 1rem;
-
-  --border-width: 0.15em;
-  --core-size: 1.6em;
-  --flag-width: calc((var(--core-size)) * 1.5);
+  font-weight: bold;
 }
 
 .core {
@@ -29,10 +28,10 @@
   position: relative;
   z-index: 10;
   align-self: flex-start;
+  transition: background-color var(--speed-change) var(--easing-change);
 }
 
 .core--pending {
-  /* opacity: 50%; */
   background-color: var(--color-grey-bright);
 }
 .core--working {
@@ -56,16 +55,17 @@
   margin-left: calc(var(--core-size) * -1);
   border-radius: calc(var(--core-size) / 2);
   width: var(--core-size);
-  transition: all 0.5s ease;
+  transition: all var(--speed-change) var(--easing-change);
   display: inline-flex;
-  justify-content: flex-end;
-  padding-right: 0.5em;
+  justify-content: center;
+  padding-left: 0;
   z-index: 9;
 }
 
 /* .wrapper:hover .flag, */
 .flagActive {
   width: calc((var(--core-size) / 2) + var(--flag-width));
+  padding-left: calc(var(--core-size) - var(--border-width));
 }
 
 .flagIssue {
@@ -75,7 +75,10 @@
   background-color: orange;
 }
 .flagUser {
-  background-color: blue;
+  /* background-color: blue; */
+}
+.flagUserWorking {
+  background-color: var(--color-pink-bright);
 }
 
 .inner {
