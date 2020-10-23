@@ -1,4 +1,3 @@
-
 .progBar {
   --color-bar: var(--color-fg);
   --color-active: var(--color-pink-bright);
@@ -6,7 +5,7 @@
   --height-bar: 2.4rem;
   --height-bar-half: 1.2rem;
   --time-anim: 250ms;
-  
+
   margin: 0;
   padding: 0;
   display: flex;
@@ -33,7 +32,7 @@
   cursor: pointer;
   text-align: center;
   transition: background-color var(--time-anim) ease-in-out,
-              color var(--time-anim) ease-in-out;
+    color var(--time-anim) ease-in-out;
   -webkit-appearance: none;
   -moz-appearance: none;
 
@@ -45,28 +44,31 @@
   overflow: visible;
 }
 
-.progBtn::before {
-  content: '';
-  border-left: var(--height-bar-half) solid var(--color-bar);
-  border-top: var(--height-bar-half) solid transparent;
-  border-bottom: var(--height-bar-half) solid transparent;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
+.progBtn::before,
 .progBtn::after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   top: 0;
   bottom: 0;
+  transform-origin: left center 0;
+  transform: scaleX(0.6);
+}
+
+.progBtn::before {
+  left: 0;
+  border-left: var(--height-bar-half) solid var(--color-bar);
+  border-top: var(--height-bar-half) solid transparent;
+  border-bottom: var(--height-bar-half) solid transparent;
+}
+
+.progBtn::after {
   left: 100%;
   border-top: var(--height-bar-half) solid transparent;
   border-bottom: var(--height-bar-half) solid transparent;
   border-left: var(--height-bar-half) solid var(--color-inactive);
   z-index: 20;
-  transition: border-color var(--time-anim) ease-in-out, 
+  transition: border-color var(--time-anim) ease-in-out;
 }
 
 .progItem:first-child .progBtn::before {
