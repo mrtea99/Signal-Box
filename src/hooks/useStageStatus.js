@@ -7,8 +7,11 @@ function useStageStatus(runData, stageNum, activeUser) {
   // let allPrevInactive = false;
   let workTotal = 0;
   let workActive = 0;
+  let issueTotal = 0;
   let issueActive = 0;
+  let qaTotal = 0;
   let qaActive = 0;
+  let userActive = 0;
   let userTotal = 0;
 
   stageNumbers.forEach((stageNumber, index) => {
@@ -16,26 +19,45 @@ function useStageStatus(runData, stageNum, activeUser) {
 
     const allSessions = stagesData[stageNumber]["sessions"];
 
+    //Work
     const workSessions = allSessions.filter((session) => {
       return session.type === "work";
     });
     workTotal += workSessions.length;
 
     workActive += workSessions.filter((session) => {
-      return session.type === "work" && session.resolved === false;
+      return session.resolved === false;
     }).length;
 
-    issueActive += allSessions.filter((session) => {
-      return session.type === "issue" && session.resolved === false;
+    //Issues
+    const issueSessions = allSessions.filter((session) => {
+      return session.type === "issue";
+    });
+    issueTotal += issueSessions.length;
+
+    issueActive += issueSessions.filter((session) => {
+      return session.resolved === false;
     }).length;
 
-    qaActive += allSessions.filter((session) => {
-      return session.type === "qa" && session.resolved === false;
+    //QA
+    const qaSessions = allSessions.filter((session) => {
+      return session.type === "qa";
+    });
+    qaTotal += qaSessions.length;
+
+    qaActive += qaSessions.filter((session) => {
+      return session.resolved === false;
     }).length;
 
+    //User
     if (activeUser) {
-      userTotal += allSessions.filter((session) => {
+      const userSessions = allSessions.filter((session) => {
         return session.user === activeUser;
+      });
+      userTotal += userSessions.length;
+
+      userActive += userSessions.filter((session) => {
+        return session.type === "work" && session.resolved === false;
       }).length;
     }
 
@@ -138,9 +160,13 @@ function useStageStatus(runData, stageNum, activeUser) {
     stageStatusName: statusNames[0],
     stageStatusNext: statusNames[1],
     workTotal: workTotal,
+    workActive: workActive,
+    issueTotal: issueTotal,
     issueActive: issueActive,
+    qaTotal: qaTotal,
     qaActive: qaActive,
     userTotal: userTotal,
+    userActive: userActive,
   };
 }
 
