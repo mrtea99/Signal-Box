@@ -1,6 +1,7 @@
 import React from "react";
 
 import Button from "../../Button/Button.js";
+import CheckOpenerForm from "../../CheckOpener/CheckOpenerForm/CheckOpenerForm.js";
 
 function SessionEndForm(props) {
   // After Statuses
@@ -21,9 +22,30 @@ function SessionEndForm(props) {
     props.activeSessionData["averageWeight"] || 0
   );
 
+  const [qaFormData, setQaFormData] = React.useState({
+    notes: "",
+    checker: 1,
+    timeframe: "now",
+  });
+
   const handleEndClick = function (e) {
     e.preventDefault();
 
+    //Start QA Session
+    const newSessionUid = Date.now();
+
+    const newSession = {
+      sessionUid: newSessionUid,
+      type: "qa",
+      startTime: Date.now(),
+      user: props.activeUser,
+      resolved: false,
+      ...qaFormData,
+    };
+
+    props.addSession(newSession, newSessionUid, props.thisStage);
+
+    //End Session
     const extraData = {
       resolved: true,
       notes: noteData,
@@ -33,6 +55,7 @@ function SessionEndForm(props) {
     };
 
     props.endSession(extraData, props.thisStage, props.activeSessionData);
+
     props.setFormActive(false);
   };
 
@@ -127,6 +150,9 @@ function SessionEndForm(props) {
       ) : (
         <></>
       )}
+
+      <CheckOpenerForm formData={qaFormData} setFormData={setQaFormData} />
+
       <Button onClick={() => props.setFormActive(false)}>Cancel</Button>
       <Button onClick={handleEndClick}>End Session</Button>
     </form>

@@ -23,6 +23,7 @@ function SessionControl(props) {
           />
           {props.activeSessionData ? (
             <SessionEnd
+              addSession={props.addSession}
               endSession={props.endSession}
               thisStage={props.thisStage}
               activeSessionData={props.activeSessionData}
@@ -38,7 +39,6 @@ function SessionControl(props) {
           {props.activeSessionData ? (
             <SessionDuring
               activeSessionData={props.activeSessionData}
-              endSession={props.endSession}
               updateSession={props.updateSession}
               thisStage={props.thisStage}
               thisRunData={props.thisRunData}

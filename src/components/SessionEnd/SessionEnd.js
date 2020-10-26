@@ -14,6 +14,7 @@ function SessionEnd(props) {
         <Modal>
           <SessionEndForm
             setFormActive={setModalActive}
+            addSession={props.addSession}
             endSession={props.endSession}
             thisStage={props.thisStage}
             activeSessionData={props.activeSessionData}

@@ -163,25 +163,13 @@ function Stage(props) {
       <header className={styles.stageHeader}>
         <div className={styles.stageTitleWrap}>
           <h2 className={styles.stageTitle}>{props.stageName}:</h2>
-          <h3 className={styles.stageStatus}>
-            <StageStatus
-              runData={props.thisRunData}
-              stageNum={props.thisStage}
-              label={true}
-              activeUser={props.activeUser}
-            />
-          </h3>
+          {/* <h3 className={styles.stageStatus}></h3> */}
         </div>
         <h4 className={styles.stageDifficulty}>
           Difficulty: {getDifficulty()}
         </h4>
       </header>
       <div className={styles.sessionControl}>
-        <StageActions
-          updateStageActive={updateStageActive}
-          thisRunData={props.thisRunData}
-          thisStage={props.thisStage}
-        />
         <SessionControl
           addSession={addSession}
           updateSession={updateSession}
@@ -192,7 +180,19 @@ function Stage(props) {
           stageActive={stageActive}
           thisRunData={props.thisRunData}
         />
-        
+        <div>
+          <StageStatus
+            runData={props.thisRunData}
+            stageNum={props.thisStage}
+            label={true}
+            activeUser={props.activeUser}
+          />
+          <StageActions
+            updateStageActive={updateStageActive}
+            thisRunData={props.thisRunData}
+            thisStage={props.thisStage}
+          />
+        </div>
       </div>
       <SessionList
         thisStage={props.thisStage}
