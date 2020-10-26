@@ -19,33 +19,22 @@ function SessionDuring(props) {
   const [amountBad, setAmountBad] = React.useState(
     props.activeSessionData["amountBad"] || 0
   );
-  // Average unit/batch weight (manu, pack)
-  const [averageWeight, setAverageWeight] = React.useState(
-    props.activeSessionData["averageWeight"] || 0
-  );
-  // QA check (prep, manu, pack, label)
 
-  const handleEndClick = function(e) {
-    e.preventDefault();
-
-    const extraData = {
-      resolved: true,
-      notes: noteData,
-    };
-
-    props.endSession(extraData, props.thisStage, props.activeSessionData);
-  }
-
-  const handleFieldChange = function(value, setState, dataKey) {
+  const handleFieldChange = function (value, setState, dataKey) {
     setState(value);
-    props.updateSession({ [dataKey]: value }, props.thisStage, props.activeSessionData.sessionUid);
-  }
+    props.updateSession(
+      { [dataKey]: value },
+      props.thisStage,
+      props.activeSessionData.sessionUid
+    );
+  };
 
   return (
     <>
       <div>
         <h4 className={styles.sessionTitle}>
-          Session {props.activeSessionData.sessionUid} in progress
+          {props.activeSessionData.activity} Session{" "}
+          {props.activeSessionData.sessionUid} in progress
         </h4>
         <dl>
           <dt>Start Time:</dt>
@@ -117,40 +106,6 @@ function SessionDuring(props) {
         ) : (
           <></>
         )}
-        {props.thisStage === 1 || props.thisStage === 3 ? (
-          <>
-            <div>
-              <label htmlFor={"sess-average-weight-step-" + props.thisStage}>
-                Average {props.thisStage === 1 ? "Batch" : "Unit"} Weight:
-                {props.thisStage === 1
-                  ? "(Target " + props.thisRunData.productInfo.batchWeight + ")"
-                  : ""}
-                {props.thisStage === 3
-                  ? "(Target " +
-                    props.thisRunData.productInfo.averageUnitWeight +
-                    ")"
-                  : ""}
-              </label>
-              {/*  */}
-              <input
-                id={"sess-average-weight-step-" + props.thisStage}
-                type="number"
-                min="0"
-                onChange={(e) =>
-                  handleFieldChange(
-                    parseInt(e.target.value),
-                    setAverageWeight,
-                    "averageWeight"
-                  )
-                }
-                value={averageWeight}
-              />
-            </div>
-          </>
-        ) : (
-          <></>
-        )}
-        <Button onClick={handleEndClick}>End Session</Button>
       </form>
     </>
   );

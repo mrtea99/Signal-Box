@@ -1,6 +1,6 @@
 import React from "react";
 
-import SessionBefore from "./SessionStartForm/SessionStartForm.js";
+import SessionStartForm from "./SessionStartForm/SessionStartForm.js";
 import Button from "../Button/Button.js";
 import Modal from "../Modal/Modal.js";
 
@@ -12,7 +12,7 @@ function SessionStart(props) {
       <Button onClick={() => setModalActive(true)}>Start New Session</Button>
       {modalActive ? (
         <Modal>
-          <SessionBefore
+          <SessionStartForm
             thisStage={props.thisStage}
             addSession={props.addSession}
             activeUser={props.activeUser}
