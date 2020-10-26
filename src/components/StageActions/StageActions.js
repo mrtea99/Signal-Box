@@ -3,9 +3,12 @@ import React from "react";
 import Button from "../Button/Button.js";
 
 import useStageStatus from "../../hooks/useStageStatus.js";
+import Modal from "../Modal/Modal.js";
 
 function StageActions(props) {
   const stageStatus = useStageStatus(props.thisRunData, props.thisStage);
+
+  const [modalActive, setModalActive] = React.useState(false);
 
   const inactiveMessage = function (status) {
     switch (status) {
@@ -22,6 +25,14 @@ function StageActions(props) {
     }
   };
 
+  const completeStage = function () {
+    props.updateStageActive(false, props.thisStage);
+
+    // if (stageStatus.stageStatusNext !== "pending") {
+    //   props.updateStageActive(true, props.thisStage + 1);
+    // }
+  };
+  //updateStageActive={updateStageActive}
   return (
     <>
       {stageStatus.stageIsActive ? (
@@ -33,17 +44,50 @@ function StageActions(props) {
                   Cannot complete until qa is complete and issues are resolved
                 </p>
               ) : (
-                <Button
-                  onClick={() => {
-                    props.updateStageActive(false, props.thisStage);
-
-                    // if (stageStatus.stageStatusNext !== "pending") {
-                    //   props.updateStageActive(true, props.thisStage + 1);
-                    // }
-                  }}
-                >
-                  {inactiveMessage(stageStatus.stageStatusNext)}
-                </Button>
+                <>
+                  <Button
+                    onClick={() => {
+                      setModalActive(true);
+                    }}
+                  >
+                    {inactiveMessage(stageStatus.stageStatusNext)}
+                  </Button>
+                  {modalActive ? (
+                    <Modal>
+                      <Button onClick={completeStage}>
+                        {inactiveMessage(stageStatus.stageStatusNext)}
+                      </Button>
+                      <br />
+                      <Button
+                        onClick={() => {
+                          completeStage();
+                          props.setCurrentRunUid(null);
+                        }}
+                      >
+                        {inactiveMessage(stageStatus.stageStatusNext)} &amp;
+                        exit
+                      </Button>
+                      {props.thisStage !== 5 ? (
+                        <>
+                          <br />
+                          <Button
+                            onClick={() => {
+                              completeStage();
+                              props.setActiveStage(props.thisStage + 1);
+                            }}
+                          >
+                            {inactiveMessage(stageStatus.stageStatusNext)} &amp;
+                            go to next stage
+                          </Button>
+                        </>
+                      ) : (
+                        <></>
+                      )}
+                    </Modal>
+                  ) : (
+                    <></>
+                  )}
+                </>
               )}
             </div>
           ) : (
@@ -54,11 +98,10 @@ function StageActions(props) {
         <div>
           {stageStatus.stageStatusName === "pending" ? (
             <p>
-              There is no work ready to be done for this stage
               <Button
                 onClick={() => props.updateStageActive(true, props.thisStage)}
               >
-                Start anyway
+                Start stage
               </Button>
             </p>
           ) : (

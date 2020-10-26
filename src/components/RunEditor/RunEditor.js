@@ -14,27 +14,27 @@ function RunEditor(props) {
     (obj) => obj.uid === props.currentRunUid
   );
 
-  const handleChange = function(dataSection, dataKey, e) {
+  const handleChange = function (dataSection, dataKey, e) {
     props.updateRunData(
       props.currentRunUid,
       dataSection,
       dataKey,
       e.target.value
     );
-  }
+  };
 
-  const handleEditInfoClick = function(e) {
+  const handleEditInfoClick = function (e) {
     e.preventDefault();
 
     props.setModalActive(true);
-  }
+  };
 
-  const handleExitClick = function(e) {
+  const handleExitClick = function (e) {
     e.preventDefault();
 
     props.setCurrentRunUid(null);
     props.setActiveStage(0);
-  }
+  };
 
   return (
     <>
@@ -109,6 +109,7 @@ function RunEditor(props) {
               activeStage={props.activeStage}
               setActiveStage={props.setActiveStage}
               activeUser={props.activeUser}
+              setCurrentRunUid={props.setCurrentRunUid}
             />
           </div>
           <pre>{JSON.stringify(thisRunData)}</pre>

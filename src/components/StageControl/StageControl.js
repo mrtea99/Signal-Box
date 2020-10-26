@@ -36,6 +36,8 @@ function StageControl(props) {
           currentRunUid={props.currentRunUid}
           updateRunData={props.updateRunData}
           activeUser={props.activeUser}
+          setCurrentRunUid={props.setCurrentRunUid}
+          setActiveStage={props.setActiveStage}
         />
       ))}
     </>
