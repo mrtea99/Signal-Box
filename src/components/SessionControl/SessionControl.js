@@ -1,6 +1,6 @@
 import React from "react";
 
-import SessionBefore from "../SessionBefore/SessionBefore.js";
+import SessionStart from "../SessionStart/SessionStart.js";
 import SessionDuring from "../SessionDuring/SessionDuring.js";
 import FlagOpener from "../FlagOpener/FlagOpener.js";
 import CheckOpener from "../CheckOpener/CheckOpener.js";
@@ -29,7 +29,12 @@ function SessionControl(props) {
               thisRunData={props.thisRunData}
             />
           ) : (
-            <SessionBefore
+            // <SessionBefore
+            //   thisStage={props.thisStage}
+            //   addSession={props.addSession}
+            //   activeUser={props.activeUser}
+            // />
+            <SessionStart
               thisStage={props.thisStage}
               addSession={props.addSession}
               activeUser={props.activeUser}

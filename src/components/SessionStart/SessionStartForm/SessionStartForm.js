@@ -1,6 +1,6 @@
 import React from "react";
 
-import Button from "../Button/Button.js";
+import Button from "../../Button/Button.js";
 
 const activityList = [
   ["Manufacturing", "Packaging"],
@@ -17,7 +17,7 @@ const activityList = [
   ["Stocking"],
 ];
 
-function SessionBefore(props) {
+function SessionStartForm(props) {
   // Activity type (all)
   const [activityData, setActivityData] = React.useState(
     activityList[props.thisStage][0]
@@ -47,6 +47,8 @@ function SessionBefore(props) {
     }
 
     props.addSession(newSession, newSessionUid, props.thisStage);
+
+    props.setFormActive(false);
   };
 
   const validateForm = function () {
@@ -118,7 +120,8 @@ function SessionBefore(props) {
         </>
       ) : (
         <></>
-      )}
+      )}{" "}
+      <Button onClick={() => props.setFormActive(false)}>Cancel</Button>
       <Button onClick={handleNewClick} disabled={!validateForm()}>
         Start New Session
       </Button>
@@ -126,4 +129,4 @@ function SessionBefore(props) {
   );
 }
 
-export default SessionBefore;
+export default SessionStartForm;
