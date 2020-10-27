@@ -1,7 +1,6 @@
 import React from "react";
 
 import Timer from "../Timer/Timer.js";
-import Button from "../Button/Button.js";
 
 import styles from "./SessionDuring.module.css";
 

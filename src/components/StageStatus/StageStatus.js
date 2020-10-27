@@ -33,12 +33,12 @@ function StageStatus(props) {
             stageStatus.stageIsActive ? styles.buttonStageActive : ""
           }`}
         >
-          <StatusIcon {...stageStatus} />
           {props.label ? (
             <span className={styles.label}>{getLabel() + " "}</span>
           ) : (
             <></>
           )}
+          <StatusIcon {...stageStatus} />
         </button>
       ) : (
         <>

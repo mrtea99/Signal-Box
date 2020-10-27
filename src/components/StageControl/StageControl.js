@@ -8,7 +8,7 @@ import StageNav from "../StageNav/StageNav.js";
 function StageControl(props) {
   const stageNameArr = [
     "Prep",
-    "Manufacture",
+    "Craft",
     "Package",
     "Label",
     "Stock",

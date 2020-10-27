@@ -22,7 +22,7 @@ function SessionEndForm(props) {
     props.activeSessionData["averageWeight"] || 0
   );
 
-  const [skipQa, setSkipQa] = React.useState(false);
+  const [skipQa, setSkipQa] = React.useState(props.thisStage === 0 || props.thisStage === 4 ? true : false);
 
   const [qaFormData, setQaFormData] = React.useState({
     notes: "",
@@ -160,6 +160,7 @@ function SessionEndForm(props) {
           id="sess-skip-qa"
           name="sess-skip-qa"
           type="checkbox"
+          checked={skipQa}
           onChange={(e) => setSkipQa(e.target.checked)}
         />
       </div>
