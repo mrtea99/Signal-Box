@@ -27,6 +27,7 @@ function StageActions(props) {
 
   const completeStage = function () {
     props.updateStageActive(false, props.thisStage);
+    setModalActive(false);
 
     // if (stageStatus.stageStatusNext !== "pending") {
     //   props.updateStageActive(true, props.thisStage + 1);
@@ -54,10 +55,10 @@ function StageActions(props) {
                   </Button>
                   {modalActive ? (
                     <Modal>
-                      <Button onClick={completeStage}>
+                      {/* <Button onClick={completeStage}>
                         {inactiveMessage(stageStatus.stageStatusNext)}
                       </Button>
-                      <br />
+                      <br /> */}
                       <Button
                         onClick={() => {
                           completeStage();
