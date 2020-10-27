@@ -9,7 +9,6 @@ function StageControl(props) {
   const stageNameArr = [
     "Prep",
     "Manufacture",
-    "Cool",
     "Package",
     "Label",
     "Stock",

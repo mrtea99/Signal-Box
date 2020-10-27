@@ -7,7 +7,6 @@ function StageOverview(props) {
   const stageNameArr = [
     "Preparation",
     "Manufacturing",
-    "Cooling",
     "Packaging",
     "Labeling",
     "Stocking",
@@ -19,7 +18,7 @@ function StageOverview(props) {
         Run status:{" "}
         <StageStatus
           runData={props.thisRunData}
-          stageNum={[1, 2, 3, 4, 5]}
+          stageNum={[1, 2, 3, 4]}
           label={true}
         />
       </h2>

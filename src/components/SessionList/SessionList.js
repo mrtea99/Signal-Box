@@ -113,14 +113,14 @@ function SessionList(props) {
           ) : (
             <></>
           )}
-          {props.thisStage === 3 || props.thisStage === 4 ? (
+          {props.thisStage === 2 || props.thisStage === 3 ? (
             <th className={styles.headerItem}>Units</th>
           ) : (
             <></>
           )}
           {props.thisStage === 1 ||
-          props.thisStage === 3 ||
-          props.thisStage === 4 ? (
+          props.thisStage === 2 ||
+          props.thisStage === 3 ? (
             <th className={styles.headerItem}>Defective</th>
           ) : (
             <></>
@@ -161,8 +161,8 @@ function SessionList(props) {
             )}
           </td>
           {props.thisStage === 1 ||
-          props.thisStage === 3 ||
-          props.thisStage === 4 ? (
+          props.thisStage === 2 ||
+          props.thisStage === 3 ? (
             <>
               <td className={styles.contentItem}>{findTotalCount("amount")}</td>
               <td className={styles.contentItem}>
@@ -224,8 +224,8 @@ function SessionList(props) {
                 )}
               </td>
               {props.thisStage === 1 ||
-              props.thisStage === 3 ||
-              props.thisStage === 4 ? (
+              props.thisStage === 2 ||
+              props.thisStage === 3 ? (
                 <>
                   <td className={styles.contentItem}>
                     {session.amount === undefined ? "-" : session.amount}

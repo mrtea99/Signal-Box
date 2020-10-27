@@ -19,10 +19,10 @@ function RunList(props) {
     if (runCompletion === null) {
       return 0;
     } else {
-      if (runCompletion < 2) {
+      if (runCompletion < 1) {
         return runCompletion + 1;
       } else {
-        return 2;
+        return 1;
       }
     }
   };
@@ -60,7 +60,7 @@ function RunList(props) {
               </Button> */}
               <StageStatus
                 runData={run}
-                stageNum={[0, 1, 2]}
+                stageNum={[0, 1]}
                 label={true}
                 button={true}
                 onClick={() =>
@@ -74,10 +74,10 @@ function RunList(props) {
               </Button> */}
               <StageStatus
                 runData={run}
-                stageNum={3}
+                stageNum={2}
                 label={true}
                 button={true}
-                onClick={() => openEditor(run.uid, 3)}
+                onClick={() => openEditor(run.uid, 2)}
               />
             </td>
             <td className={styles.runItem}>
@@ -86,10 +86,10 @@ function RunList(props) {
               </Button> */}
               <StageStatus
                 runData={run}
-                stageNum={4}
+                stageNum={3}
                 label={true}
                 button={true}
-                onClick={() => openEditor(run.uid, 4)}
+                onClick={() => openEditor(run.uid, 3)}
               />
             </td>
             <td className={styles.runItem}>
@@ -98,10 +98,10 @@ function RunList(props) {
               </Button> */}
               <StageStatus
                 runData={run}
-                stageNum={5}
+                stageNum={4}
                 label={true}
                 button={true}
-                onClick={() => openEditor(run.uid, 5)}
+                onClick={() => openEditor(run.uid, 4)}
               />
             </td>
             <td className={styles.runItem}>

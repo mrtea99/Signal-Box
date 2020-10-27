@@ -11,7 +11,7 @@ const activityList = [
     "Manufacturing",
     "Pouring",
   ],
-  ["Unsupervised", "Supervised", "Finishing Touches"],
+  // ["Unsupervised", "Supervised", "Finishing Touches"],
   ["Packaging"],
   ["Labeling", "Sealing", "Boxing"],
   ["Stocking"],
@@ -41,7 +41,7 @@ function SessionStartForm(props) {
       user: props.activeUser,
     };
 
-    if (props.thisStage === 1 || props.thisStage === 2) {
+    if (props.thisStage === 1) {
       newSession.temperature = temperature;
       newSession.humidity = humidity;
     }
@@ -52,7 +52,7 @@ function SessionStartForm(props) {
   };
 
   const validateForm = function () {
-    if (props.thisStage === 1 || props.thisStage === 2) {
+    if (props.thisStage === 1) {
       if (
         typeof temperature === "number" &&
         temperature >= 0 &&
@@ -91,7 +91,7 @@ function SessionStartForm(props) {
           ))}
         </select>
       </div>
-      {props.thisStage === 1 || props.thisStage === 2 ? (
+      {props.thisStage === 1 ? (
         <>
           <div>
             <label htmlFor={"sess-temp-stage-" + props.thisStage}>

@@ -76,8 +76,8 @@ function SessionEndForm(props) {
         />
       </div>
       {props.thisStage === 1 ||
-      props.thisStage === 3 ||
-      props.thisStage === 4 ? (
+      props.thisStage === 2 ||
+      props.thisStage === 3 ? (
         <>
           <div>
             <label htmlFor={"sess-amount-step-" + props.thisStage}>
@@ -118,7 +118,7 @@ function SessionEndForm(props) {
       ) : (
         <></>
       )}
-      {props.thisStage === 1 || props.thisStage === 3 ? (
+      {props.thisStage === 1 || props.thisStage === 2 ? (
         <>
           <div>
             <label htmlFor={"sess-average-weight-step-" + props.thisStage}>
@@ -126,7 +126,7 @@ function SessionEndForm(props) {
               {props.thisStage === 1
                 ? "(Target " + props.thisRunData.productInfo.batchWeight + ")"
                 : ""}
-              {props.thisStage === 3
+              {props.thisStage === 2
                 ? "(Target " +
                   props.thisRunData.productInfo.averageUnitWeight +
                   ")"

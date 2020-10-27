@@ -58,8 +58,8 @@ function SessionDuring(props) {
           />
         </div>
         {props.thisStage === 1 ||
-        props.thisStage === 3 ||
-        props.thisStage === 4 ? (
+        props.thisStage === 2 ||
+        props.thisStage === 3 ? (
           <>
             <div>
               <label htmlFor={"sess-amount-step-" + props.thisStage}>

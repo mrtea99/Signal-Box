@@ -36,11 +36,7 @@ function RunInfoNew(props) {
         {
           sessions: [],
           active: false,
-        },
-        {
-          sessions: [],
-          active: false,
-        },
+        }
       ],
     };
     newData.push(newRun);

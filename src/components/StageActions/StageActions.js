@@ -68,7 +68,7 @@ function StageActions(props) {
                         {inactiveMessage(stageStatus.stageStatusNext)} &amp;
                         exit
                       </Button>
-                      {props.thisStage !== 5 ? (
+                      {props.thisStage !== 4 ? (
                         <>
                           <br />
                           <Button
