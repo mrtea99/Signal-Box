@@ -7,6 +7,7 @@ function useStageStatus(runData, stageNum, activeUser) {
   // let allPrevInactive = false;
   let workTotal = 0;
   let workActive = 0;
+  let workActiveNames = "";
   let issueTotal = 0;
   let issueActive = 0;
   let qaTotal = 0;
@@ -25,9 +26,13 @@ function useStageStatus(runData, stageNum, activeUser) {
     });
     workTotal += workSessions.length;
 
-    workActive += workSessions.filter((session) => {
+    const workActiveSessions = workSessions.filter((session) => {
       return session.resolved === false;
-    }).length;
+    });
+    workActive += workActiveSessions.length;
+    workActiveSessions.forEach((session, index) => {
+      workActiveNames = workActiveNames + (index ? ", " : "") + session.activity;
+    });
 
     //Issues
     const issueSessions = allSessions.filter((session) => {
@@ -138,9 +143,9 @@ function useStageStatus(runData, stageNum, activeUser) {
         }
 
         if (workTotal) {
-          return ["started", nextStatus];
+          return ["ready", nextStatus];//started
         } else {
-          return ["ready", nextStatus];
+          return ["ready", nextStatus];//ready
         }
       }
     } else {
@@ -161,6 +166,7 @@ function useStageStatus(runData, stageNum, activeUser) {
     stageStatusNext: statusNames[1],
     workTotal: workTotal,
     workActive: workActive,
+    workActiveNames: workActiveNames,
     issueTotal: issueTotal,
     issueActive: issueActive,
     qaTotal: qaTotal,

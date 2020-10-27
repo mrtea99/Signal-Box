@@ -11,6 +11,7 @@ const productTemplates = [
     averageBatchQuantity: 18,
     averageUnitWeight: 5.9,
     batchWeight: 106,
+    unitsPerBatch: 100,
     prepDiffilculty: "Easy",
     manufacturingDifficulty: "Easy",
     packagingDiffilculty: "Easy",
@@ -27,6 +28,7 @@ const productTemplates = [
     averageBatchQuantity: 10,
     averageUnitWeight: 7.1,
     batchWeight: 70.4,
+    unitsPerBatch: 150,
     prepDiffilculty: "Medium",
     manufacturingDifficulty: "Medium",
     packagingDiffilculty: "Hard",
@@ -73,14 +75,14 @@ function RunInfoForm(props) {
     return currentQuantity;
   });
 
-  const handleSubmit = function(e) {
+  const handleSubmit = function (e) {
     e.preventDefault();
 
     let productInfo = { ...productTemplates[currentTemplate] };
     productInfo.batchQuantity = batchQuantity;
 
     props.handleSave(productInfo);
-  }
+  };
 
   return (
     <>

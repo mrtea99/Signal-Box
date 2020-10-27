@@ -55,10 +55,10 @@ function StageActions(props) {
                   </Button>
                   {modalActive ? (
                     <Modal>
-                      {/* <Button onClick={completeStage}>
+                      <Button onClick={completeStage}>
                         {inactiveMessage(stageStatus.stageStatusNext)}
                       </Button>
-                      <br /> */}
+                      <br />
                       <Button
                         onClick={() => {
                           completeStage();
@@ -84,6 +84,14 @@ function StageActions(props) {
                       ) : (
                         <></>
                       )}
+                      <br />
+                      <Button
+                        onClick={() => {
+                          setModalActive(false);
+                        }}
+                      >
+                        Cancel
+                      </Button>
                     </Modal>
                   ) : (
                     <></>
