@@ -22,6 +22,8 @@ function SessionEndForm(props) {
     props.activeSessionData["averageWeight"] || 0
   );
 
+  const [skipQa, setSkipQa] = React.useState(false);
+
   const [qaFormData, setQaFormData] = React.useState({
     notes: "",
     checker: 1,
@@ -32,18 +34,20 @@ function SessionEndForm(props) {
     e.preventDefault();
 
     //Start QA Session
-    const newSessionUid = Date.now();
+    if (!skipQa) {
+      const newSessionUid = Date.now();
 
-    const newSession = {
-      sessionUid: newSessionUid,
-      type: "qa",
-      startTime: Date.now(),
-      user: props.activeUser,
-      resolved: false,
-      ...qaFormData,
-    };
+      const newSession = {
+        sessionUid: newSessionUid,
+        type: "qa",
+        startTime: Date.now(),
+        user: props.activeUser,
+        resolved: false,
+        ...qaFormData,
+      };
 
-    props.addSession(newSession, newSessionUid, props.thisStage);
+      props.addSession(newSession, newSessionUid, props.thisStage);
+    }
 
     //End Session
     const extraData = {
@@ -150,8 +154,21 @@ function SessionEndForm(props) {
       ) : (
         <></>
       )}
+      <div>
+        <label htmlFor="sess-skip-qa">Skip Qa</label>
+        <input
+          id="sess-skip-qa"
+          name="sess-skip-qa"
+          type="checkbox"
+          onChange={(e) => setSkipQa(e.target.checked)}
+        />
+      </div>
 
-      <CheckOpenerForm formData={qaFormData} setFormData={setQaFormData} />
+      {skipQa ? (
+        <p>QA Skipped</p>
+      ) : (
+        <CheckOpenerForm formData={qaFormData} setFormData={setQaFormData} />
+      )}
 
       <Button onClick={() => props.setFormActive(false)}>Cancel</Button>
       <Button onClick={handleEndClick}>End Session</Button>
