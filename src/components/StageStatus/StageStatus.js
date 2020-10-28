@@ -44,6 +44,8 @@ function StageStatus(props) {
         <>
           <StatusIcon {...stageStatus} />{" "}
           {props.label ? getLabel() + " " : <></>}
+          {" "}
+          {stageStatus.completion ? <>({stageStatus.completion})</> : ''}
         </>
       )}
     </>

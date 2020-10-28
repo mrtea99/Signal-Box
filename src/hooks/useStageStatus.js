@@ -5,6 +5,7 @@ function useStageStatus(runData, stageNum, activeUser) {
   let stageActive = [];
   // let prevStarted = false;
   // let allPrevInactive = false;
+  let itemCount = 0;
   let workTotal = 0;
   let workActive = 0;
   let workActiveNames = "";
@@ -12,13 +13,18 @@ function useStageStatus(runData, stageNum, activeUser) {
   let issueActive = 0;
   let qaTotal = 0;
   let qaActive = 0;
-  let userActive = 0;
   let userTotal = 0;
+  let userActive = 0;
 
   stageNumbers.forEach((stageNumber, index) => {
     stageActive.push(stagesData[stageNumber].active);
 
     const allSessions = stagesData[stageNumber]["sessions"];
+
+    //Items
+    allSessions.forEach((session, index) => {
+      itemCount += session.amount ? session.amount : 0;
+    });
 
     //Work
     const workSessions = allSessions.filter((session) => {
@@ -31,7 +37,8 @@ function useStageStatus(runData, stageNum, activeUser) {
     });
     workActive += workActiveSessions.length;
     workActiveSessions.forEach((session, index) => {
-      workActiveNames = workActiveNames + (index ? ", " : "") + session.activity;
+      workActiveNames =
+        workActiveNames + (index ? ", " : "") + session.activity;
     });
 
     //Issues
@@ -143,9 +150,9 @@ function useStageStatus(runData, stageNum, activeUser) {
         }
 
         if (workTotal) {
-          return ["ready", nextStatus];//started
+          return ["ready", nextStatus]; //started
         } else {
-          return ["ready", nextStatus];//ready
+          return ["ready", nextStatus]; //ready
         }
       }
     } else {
@@ -160,6 +167,36 @@ function useStageStatus(runData, stageNum, activeUser) {
 
   const statusNames = getStatus();
 
+  let completion = null;
+  let completionPercentage = null;
+
+  if (stageNumbers.includes(1)) {
+    completion = itemCount + "/" + runData.productInfo.batchQuantity;
+    completionPercentage = Math.floor((100 / runData.productInfo.batchQuantity) * itemCount) + "%";
+  }
+  // if (stageNumbers.includes(2)) {
+  //   completion = itemCount + "/" + (runData.productInfo.batchQuantity * runData.productInfo.unitsPerBatch)
+  // }
+  if (stageNumbers.includes(2) || stageNumbers.includes(3)) {
+    // // Non-computed:
+    // completion = itemCount + "/" + (runData.productInfo.batchQuantity * runData.productInfo.unitsPerBatch)
+
+    //Computed
+    const prevSessions = stagesData[stageNumbers[0] - 1]["sessions"];
+
+    let prevItemCount = 0;
+    prevSessions.forEach((session, index) => {
+      prevItemCount += session.amount ? session.amount : 0;
+    });
+
+    if (stageNumbers.includes(2)) {
+      prevItemCount = prevItemCount * runData.productInfo.unitsPerBatch;
+    }
+
+    completion = itemCount + "/" + prevItemCount;
+    completionPercentage = Math.floor((100 / prevItemCount) * itemCount) + "%";
+  }
+
   return {
     stageIsActive: stageActive.includes(true),
     stageStatusName: statusNames[0],
@@ -173,6 +210,8 @@ function useStageStatus(runData, stageNum, activeUser) {
     qaActive: qaActive,
     userTotal: userTotal,
     userActive: userActive,
+    completion: completion,
+    // completion: completionPercentage,
   };
 }
 
