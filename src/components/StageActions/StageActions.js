@@ -4,6 +4,7 @@ import Button from "../Button/Button.js";
 
 import useStageStatus from "../../hooks/useStageStatus.js";
 import Modal from "../Modal/Modal.js";
+import ConsignItems from "../ConsignItems/ConsignItems.js";
 
 function StageActions(props) {
   const stageStatus = useStageStatus(props.thisRunData, props.thisStage);
@@ -36,6 +37,18 @@ function StageActions(props) {
   //updateStageActive={updateStageActive}
   return (
     <>
+      {props.thisStage === 0 || props.thisStage === 4 ? (
+        <></>
+      ) : (
+        <div>
+          <ConsignItems
+            thisRunData={props.thisRunData}
+            thisStage={props.thisStage}
+            updateRunData={props.updateRunData}
+          />
+        </div>
+      )}
+
       {stageStatus.stageIsActive ? (
         <>
           {stageStatus.stageStatusName !== "working" ? (

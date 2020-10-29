@@ -12,6 +12,12 @@ function RunInfoNew(props) {
       uid: Date.now(),
       activeStage: 0,
       completion: null,
+      consignedManufacturing: 0,
+      defectiveManufacturing: 0,
+      consignedPackaging: 0,
+      defectivePackaging: 0,
+      consignedLabeling: 0,
+      defectiveLabeling: 0,
       runInfo: {
         runId: new Date().getUTCMilliseconds(),
       },
@@ -23,19 +29,19 @@ function RunInfoNew(props) {
         },
         {
           sessions: [],
-          active: false,
+          active: true,
         },
         {
           sessions: [],
-          active: false,
+          active: true,
         },
         {
           sessions: [],
-          active: false,
+          active: true,
         },
         {
           sessions: [],
-          active: false,
+          active: true,
         }
       ],
     };
