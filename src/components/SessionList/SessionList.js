@@ -164,9 +164,11 @@ function SessionList(props) {
           props.thisStage === 2 ||
           props.thisStage === 3 ? (
             <>
-              <td className={styles.contentItem}>{findTotalCount("amount")}</td>
               <td className={styles.contentItem}>
-                {findTotalCount("amountBad")}
+                {/* {findTotalCount("amount")} */}
+              </td>
+              <td className={styles.contentItem}>
+                {/* {findTotalCount("amountBad")} */}
               </td>
             </>
           ) : (
@@ -250,7 +252,7 @@ function SessionList(props) {
               )} */}
               <td className={styles.contentItem}>{session.user}</td>
               <td className={styles.contentItem}>
-                  {session.notes && session.notes.length ?
+                {session.notes && session.notes.length ? (
                   <ModalControl triggerCopy={"N"}>
                     {session.notes.split("\n").map((item, key) => {
                       return (
@@ -260,7 +262,10 @@ function SessionList(props) {
                         </span>
                       );
                     })}
-                  </ModalControl> : <></>}
+                  </ModalControl>
+                ) : (
+                  <></>
+                )}
               </td>
               <td className={styles.contentItem}>
                 {session.type === "issue" ? (

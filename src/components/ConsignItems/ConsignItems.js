@@ -43,11 +43,6 @@ function ConsignItems(props) {
     let totalsData = {};
 
     allSessions.forEach((session, index) => {
-      // const activityDataNew = {
-      //   amount: session.amount,
-      //   amountBad: session.amountBad,
-      // };
-
       const activityKey = session.type === "qa" ? "QA" : session.activity;
 
       const activityDataOld = totalsData[activityKey];

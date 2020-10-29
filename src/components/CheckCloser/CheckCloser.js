@@ -13,7 +13,12 @@ function CheckCloser(props) {
         : description;
 
     props.endSession(
-      { resolved: true, notes: newNote, amount: -Math.abs(countBad), amountBad: countBad },
+      {
+        resolved: true,
+        notes: newNote,
+        //amount: -Math.abs(countBad),
+        amountBad: countBad,
+      },
       props.thisStage,
       props.session
     );
@@ -46,12 +51,13 @@ function CheckCloser(props) {
           <div>
             <label htmlFor="check-count-bad">Defective:</label>
             <br />
-            <input type="number"
+            <input
+              type="number"
               id="check-count-bad"
               name="check-count-bad"
               onChange={(e) => setCountBad(parseInt(e.target.value))}
               value={countBad}
-             />
+            />
           </div>
         </ModalControl>
       )}
