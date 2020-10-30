@@ -32,9 +32,14 @@ function ConsignItems(props) {
       props.thisRunData.uid,
       null,
       updateGoodField,
-      countGood
+      (props.thisRunData[updateGoodField] += countGood)
     );
-    props.updateRunData(props.thisRunData.uid, null, updateBadField, countBad);
+    props.updateRunData(
+      props.thisRunData.uid,
+      null,
+      updateBadField,
+      (props.thisRunData[updateBadField] += countBad)
+    );
   };
 
   const buildTotals = function () {
@@ -48,8 +53,19 @@ function ConsignItems(props) {
       const activityDataOld = totalsData[activityKey];
 
       if (activityDataOld) {
-        activityDataOld.amount += session.amount ? session.amount : 0;
-        activityDataOld.amountBad += session.amountBad ? session.amountBad : 0;
+        if (activityDataOld.amount) {
+          activityDataOld.amount += session.amount ? session.amount : 0;
+        } else {
+          activityDataOld.amount = 0;
+        }
+
+        if (activityDataOld.amountBad) {
+          activityDataOld.amountBad += session.amountBad
+            ? session.amountBad
+            : 0;
+        } else {
+          activityDataOld.amountBad = 0;
+        }
       } else {
         totalsData[activityKey] = {
           amount: session.amount,
@@ -58,11 +74,10 @@ function ConsignItems(props) {
       }
     });
 
-    console.log(totalsData);
     return totalsData;
   };
 
-  const tots = buildTotals();
+  const activityTotals = buildTotals();
 
   return (
     <ModalControl triggerCopy="Consign" handleSubmit={handleSubmit}>
@@ -76,12 +91,12 @@ function ConsignItems(props) {
             </tr>
           </thead>
           <tbody>
-            {Object.keys(tots).map((key) => {
+            {Object.keys(activityTotals).map((key) => {
               return (
                 <tr key={key}>
                   <td>{key}</td>
-                  <td>{tots[key].amount}</td>
-                  <td>{tots[key].amountBad}</td>
+                  <td>{activityTotals[key].amount}</td>
+                  <td>{activityTotals[key].amountBad}</td>
                 </tr>
               );
             })}
@@ -93,7 +108,7 @@ function ConsignItems(props) {
         <input
           type="number"
           onChange={(e) => {
-            setCountGood(e.target.value);
+            setCountGood(parseInt(e.target.value));
           }}
           min="0"
           name="consign-items"
@@ -105,7 +120,7 @@ function ConsignItems(props) {
         <input
           type="number"
           onChange={(e) => {
-            setCountBad(e.target.value);
+            setCountBad(parseInt(e.target.value));
           }}
           min="0"
           name="consign-items"

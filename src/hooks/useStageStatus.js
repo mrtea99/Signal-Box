@@ -22,9 +22,19 @@ function useStageStatus(runData, stageNum, activeUser) {
     const allSessions = stagesData[stageNumber]["sessions"];
 
     //Items
-    allSessions.forEach((session, index) => {
-      itemCount += session.amount ? session.amount : 0;
-    });
+    switch (stageNumber) {
+      case 1:
+        itemCount += runData.consignedManufacturing;
+        break;
+      case 2:
+        itemCount += runData.consignedPackaging;
+        break;
+      case 3:
+        itemCount += runData.consignedLabeling;
+        break;
+      default:
+        break;
+    }
 
     //Work
     const workSessions = allSessions.filter((session) => {
@@ -172,25 +182,15 @@ function useStageStatus(runData, stageNum, activeUser) {
 
   if (stageNumbers.includes(1)) {
     completion = itemCount + "/" + runData.productInfo.batchQuantity;
-    completionPercentage = Math.floor((100 / runData.productInfo.batchQuantity) * itemCount) + "%";
+    completionPercentage =
+      Math.floor((100 / runData.productInfo.batchQuantity) * itemCount) + "%";
   }
-  // if (stageNumbers.includes(2)) {
-  //   completion = itemCount + "/" + (runData.productInfo.batchQuantity * runData.productInfo.unitsPerBatch)
-  // }
   if (stageNumbers.includes(2) || stageNumbers.includes(3)) {
-    // // Non-computed:
-    // completion = itemCount + "/" + (runData.productInfo.batchQuantity * runData.productInfo.unitsPerBatch)
-
-    //Computed
-    const prevSessions = stagesData[stageNumbers[0] - 1]["sessions"];
-
-    let prevItemCount = 0;
-    prevSessions.forEach((session, index) => {
-      prevItemCount += session.amount ? session.amount : 0;
-    });
-
+    let prevItemCount = stageNumbers.includes(2)
+      ? runData.consignedManufacturing
+      : runData.consignedPackaging;
     if (stageNumbers.includes(2)) {
-      prevItemCount = prevItemCount * runData.productInfo.unitsPerBatch;
+      prevItemCount *= runData.productInfo.unitsPerBatch;
     }
 
     completion = itemCount + "/" + prevItemCount;
@@ -210,8 +210,8 @@ function useStageStatus(runData, stageNum, activeUser) {
     qaActive: qaActive,
     userTotal: userTotal,
     userActive: userActive,
-    completion: completion,
-    // completion: completionPercentage,
+    // completion: completion,
+    completion: completionPercentage,
   };
 }
 
