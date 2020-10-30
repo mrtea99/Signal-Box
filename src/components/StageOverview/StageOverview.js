@@ -14,14 +14,6 @@ function StageOverview(props) {
 
   return (
     <article>
-      <h2>
-        Run status:{" "}
-        <StageStatus
-          runData={props.thisRunData}
-          stageNum={[1, 2, 3, 4]}
-          label={true}
-        />
-      </h2>
       {stageNameArr.map((stageName, index) => (
         <section key={stageName}>
           <h3>

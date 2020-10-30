@@ -13,7 +13,12 @@ function StatusIcon(props) {
       props.stageStatusName === "started" ||
       props.stageStatusName === "working"
     ) {
-      return props.workTotal;
+      if (props.stageNum === 0 || props.stageNum === 4) {
+        return props.workTotal;
+      } else {
+        return props.completionPercentage + "%";
+        // return props.completion;
+      }
     }
 
     if (props.stageStatusName === "complete") {
@@ -40,14 +45,26 @@ function StatusIcon(props) {
       </span>
       <span className={styles.flags}>
         <span
-          className={`${styles.core} ${styles.flag} ${styles.flagIssue} ${props.issueActive ? styles.flagActive : ''}`}
+          className={`${styles.core} ${styles.flag} ${styles.flagIssue} ${
+            props.issueActive ? styles.flagActive : ""
+          }`}
         >
           <span className={styles.inner}>!</span>
         </span>
-        <span className={`${styles.core} ${styles.flag} ${styles.flagQa} ${props.qaActive ? styles.flagActive : ''}`}>
+        <span
+          className={`${styles.core} ${styles.flag} ${styles.flagQa} ${
+            props.qaActive ? styles.flagActive : ""
+          }`}
+        >
           <span className={styles.inner}>?</span>
         </span>
-        <span className={`${styles.core} ${styles.flag} ${styles.flagUser} ${props.userTotal ? styles.flagActive : ''} ${props.userActive ? styles.flagUserWorking : ''} ${props.stageStatusName === "complete" ? styles.flagUserComplete : ''}`}>
+        <span
+          className={`${styles.core} ${styles.flag} ${styles.flagUser} ${
+            props.userTotal ? styles.flagActive : ""
+          } ${props.userActive ? styles.flagUserWorking : ""} ${
+            props.stageStatusName === "complete" ? styles.flagUserComplete : ""
+          }`}
+        >
           <span className={styles.inner}>U</span>
         </span>
       </span>

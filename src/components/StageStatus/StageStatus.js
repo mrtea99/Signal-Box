@@ -38,14 +38,13 @@ function StageStatus(props) {
           ) : (
             <></>
           )}
-          <StatusIcon {...stageStatus} />
+          <StatusIcon {...stageStatus} stageNum={props.stageNum} />
         </button>
       ) : (
         <>
-          <StatusIcon {...stageStatus} />{" "}
-          {props.label ? getLabel() + " " : <></>}
-          {" "}
-          {stageStatus.completion ? <>({stageStatus.completion})</> : ''}
+          <StatusIcon {...stageStatus} stageNum={props.stageNum} />{" "}
+          {props.label ? getLabel() + " " : <></>}{" "}
+          {/* {stageStatus.completion ? <>({stageStatus.completion})</> : ""} */}
         </>
       )}
     </>

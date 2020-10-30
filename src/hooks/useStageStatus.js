@@ -1,11 +1,11 @@
-function useStageStatus(runData, stageNum, activeUser) {
+function useStageStatus(runData, stageNumber, activeUser) {
   const stagesData = runData["stages"];
-  const stageNumbers = Array.isArray(stageNum) ? stageNum : [stageNum];
 
-  let stageActive = [];
-  // let prevStarted = false;
-  // let allPrevInactive = false;
+  let stageActive = 0;
   let itemCount = 0;
+  let targetItemCount = 0;
+  let completion;
+  let completionPercentage;
   let workTotal = 0;
   let workActive = 0;
   let workActiveNames = "";
@@ -15,90 +15,104 @@ function useStageStatus(runData, stageNum, activeUser) {
   let qaActive = 0;
   let userTotal = 0;
   let userActive = 0;
+  // let prevStarted = false;
+  // let allPrevInactive = false;
 
-  stageNumbers.forEach((stageNumber, index) => {
-    stageActive.push(stagesData[stageNumber].active);
+  stageActive = stagesData[stageNumber].active;
 
-    const allSessions = stagesData[stageNumber]["sessions"];
+  const allSessions = stagesData[stageNumber]["sessions"];
 
-    //Items
-    switch (stageNumber) {
-      case 1:
-        itemCount += runData.consignedManufacturing;
-        break;
-      case 2:
-        itemCount += runData.consignedPackaging;
-        break;
-      case 3:
-        itemCount += runData.consignedLabeling;
-        break;
-      default:
-        break;
-    }
+  //Items
+  switch (stageNumber) {
+    case 1:
+      itemCount = runData.consignedManufacturing;
+      targetItemCount = runData.productInfo.batchQuantity;
+      break;
+    case 2:
+      itemCount = runData.consignedPackaging;
+      targetItemCount =
+        runData.consignedManufacturing * runData.productInfo.unitsPerBatch;
+      break;
+    case 3:
+      itemCount = runData.consignedLabeling;
+      targetItemCount = runData.consignedPackaging;
+      break;
+    case 4:
+      targetItemCount = runData.consignedLabeling;
+      break;
+    default:
+      break;
+  }
 
-    //Work
-    const workSessions = allSessions.filter((session) => {
-      return session.type === "work";
-    });
-    workTotal += workSessions.length;
+  //Completion progress
+  if ([1,2,3].includes(stageNumber)) {
+    completion = itemCount + "/" + targetItemCount;
+    completionPercentage = itemCount
+      ? Math.floor((100 / targetItemCount) * itemCount)
+      : 0;
+  }
 
-    const workActiveSessions = workSessions.filter((session) => {
-      return session.resolved === false;
-    });
-    workActive += workActiveSessions.length;
-    workActiveSessions.forEach((session, index) => {
-      workActiveNames =
-        workActiveNames + (index ? ", " : "") + session.activity;
-    });
-
-    //Issues
-    const issueSessions = allSessions.filter((session) => {
-      return session.type === "issue";
-    });
-    issueTotal += issueSessions.length;
-
-    issueActive += issueSessions.filter((session) => {
-      return session.resolved === false;
-    }).length;
-
-    //QA
-    const qaSessions = allSessions.filter((session) => {
-      return session.type === "qa";
-    });
-    qaTotal += qaSessions.length;
-
-    qaActive += qaSessions.filter((session) => {
-      return session.resolved === false;
-    }).length;
-
-    //User
-    if (activeUser) {
-      const userSessions = allSessions.filter((session) => {
-        return session.user === activeUser;
-      });
-      userTotal += userSessions.length;
-
-      userActive += userSessions.filter((session) => {
-        return session.type === "work" && session.resolved === false;
-      }).length;
-    }
-
-    // if (stageNumber === 0) {
-    //   prevStarted = true;
-    // } else {
-    //   const prevSessions = stagesData[stageNumber - 1]["sessions"];
-    //   if (prevSessions.length && areSessionsEnded(prevSessions)) {
-    //     prevStarted = true;
-    //   }
-    // }
-
-    // if (
-    //   stageNumber === 0 ||
-    //   (runData.completion !== null && stageNumber - 1 <= runData.completion)
-    // ) {
-    //   allPrevInactive = true;
-    // }
+  //Work
+  const workSessions = allSessions.filter((session) => {
+    return session.type === "work";
   });
+  workTotal = workSessions.length;
+
+  const workActiveSessions = workSessions.filter((session) => {
+    return session.resolved === false;
+  });
+  workActive = workActiveSessions.length;
+  workActiveSessions.forEach((session, index) => {
+    workActiveNames = workActiveNames + (index ? ", " : "") + session.activity;
+  });
+
+  //Issues
+  const issueSessions = allSessions.filter((session) => {
+    return session.type === "issue";
+  });
+  issueTotal = issueSessions.length;
+
+  issueActive = issueSessions.filter((session) => {
+    return session.resolved === false;
+  }).length;
+
+  //QA
+  const qaSessions = allSessions.filter((session) => {
+    return session.type === "qa";
+  });
+  qaTotal = qaSessions.length;
+
+  qaActive = qaSessions.filter((session) => {
+    return session.resolved === false;
+  }).length;
+
+  //User
+  if (activeUser) {
+    const userSessions = allSessions.filter((session) => {
+      return session.user === activeUser;
+    });
+    userTotal = userSessions.length;
+
+    userActive = userSessions.filter((session) => {
+      return session.type === "work" && session.resolved === false;
+    }).length;
+  }
+
+  // if (stageNumber === 0) {
+  //   prevStarted = true;
+  // } else {
+  //   const prevSessions = stagesData[stageNumber - 1]["sessions"];
+  //   if (prevSessions.length && areSessionsEnded(prevSessions)) {
+  //     prevStarted = true;
+  //   }
+  // }
+
+  // if (
+  //   stageNumber === 0 ||
+  //   (runData.completion !== null && stageNumber - 1 <= runData.completion)
+  // ) {
+  //   allPrevInactive = true;
+  // }
 
   // function getStatus() {
   //   if (stageActive.includes(true)) {
@@ -147,7 +161,7 @@ function useStageStatus(runData, stageNum, activeUser) {
 
   //Temporary simplified status
   function getStatus() {
-    if (stageActive.includes(true)) {
+    if (stageActive) {
       if (workActive) {
         return ["working"];
       } else {
@@ -177,28 +191,8 @@ function useStageStatus(runData, stageNum, activeUser) {
 
   const statusNames = getStatus();
 
-  let completion = null;
-  let completionPercentage = null;
-
-  if (stageNumbers.includes(1)) {
-    completion = itemCount + "/" + runData.productInfo.batchQuantity;
-    completionPercentage =
-      Math.floor((100 / runData.productInfo.batchQuantity) * itemCount) + "%";
-  }
-  if (stageNumbers.includes(2) || stageNumbers.includes(3)) {
-    let prevItemCount = stageNumbers.includes(2)
-      ? runData.consignedManufacturing
-      : runData.consignedPackaging;
-    if (stageNumbers.includes(2)) {
-      prevItemCount *= runData.productInfo.unitsPerBatch;
-    }
-
-    completion = itemCount + "/" + prevItemCount;
-    completionPercentage = Math.floor((100 / prevItemCount) * itemCount) + "%";
-  }
-
   return {
-    stageIsActive: stageActive.includes(true),
+    stageIsActive: stageActive,
     stageStatusName: statusNames[0],
     stageStatusNext: statusNames[1],
     workTotal: workTotal,
@@ -210,8 +204,8 @@ function useStageStatus(runData, stageNum, activeUser) {
     qaActive: qaActive,
     userTotal: userTotal,
     userActive: userActive,
-    // completion: completion,
-    completion: completionPercentage,
+    completion: completion,
+    completionPercentage: completionPercentage,
   };
 }
 

@@ -108,7 +108,7 @@ function RunInfoForm(props) {
           <label>Batch Quantity:</label>
           <input
             onChange={(e) => {
-              setBatchQuantity(e.target.value);
+              setBatchQuantity(parseInt(e.target.value));
             }}
             type="number"
             defaultValue={batchQuantity}
