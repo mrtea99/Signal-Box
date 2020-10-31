@@ -30,7 +30,10 @@ function StageStatus(props) {
         <button
           onClick={props.onClick}
           className={`${styles.button} ${
-            stageStatus.stageIsActive ? styles.buttonStageActive : ""
+            stageStatus.stageStatusName !== "complete" &&
+            stageStatus.stageStatusName !== "pending"
+              ? styles.buttonStageActive
+              : ""
           }`}
         >
           {props.label ? (

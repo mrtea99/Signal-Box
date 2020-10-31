@@ -29,12 +29,7 @@ function StageActions(props) {
   const completeStage = function () {
     props.updateStageActive(false, props.thisStage);
     setModalActive(false);
-
-    // if (stageStatus.stageStatusNext !== "pending") {
-    //   props.updateStageActive(true, props.thisStage + 1);
-    // }
   };
-  //updateStageActive={updateStageActive}
   return (
     <>
       {props.thisStage === 0 || props.thisStage === 4 ? (
@@ -49,7 +44,7 @@ function StageActions(props) {
         </div>
       )}
 
-      {stageStatus.stageIsActive ? (
+      {stageStatus.stageActive ? (
         <>
           {stageStatus.stageStatusName !== "working" ? (
             <div>
