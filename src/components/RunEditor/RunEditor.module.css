@@ -32,12 +32,11 @@
 } */
 
 .runInfoProd {
-  flex-grow: 4;
+  flex-grow: 1;
   padding-right: 1em;
 }
 
 .runInfoRun {
-  flex-grow: 1;
   border-left: 1px solid var(--color-white);
   padding-left: 1em;
 }

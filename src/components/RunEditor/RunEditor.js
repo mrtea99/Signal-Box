@@ -86,7 +86,7 @@ function RunEditor(props) {
                   changeHandler={handleChange}
                 />
                 <ButtonSpacer>
-                  <Button onClick={handleEditInfoClick}>Run Info</Button>
+                  <Button onClick={handleEditInfoClick}>Info</Button>
                   <Button onClick={() => setModalOverviewActive(true)}>
                     Status
                   </Button>

@@ -3,7 +3,7 @@
   --color-active: var(--color-pink-bright);
   --color-inactive: var(--color-pink-light);
   --height-bar: 2.4rem;
-  --height-bar-half: 1.2rem;
+  --height-bar-half: calc(var(--height-bar) / 2);
   --time-anim: 250ms;
 
   margin: 0;

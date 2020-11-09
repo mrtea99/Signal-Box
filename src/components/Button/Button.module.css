@@ -18,8 +18,8 @@
   font-weight: bold;
   font-size: var(--text-larger);
 
-  min-height: 44px;
-  min-width: 44px;
+  min-height: var(--size-touch-min);
+  min-width: var(--size-touch-min);
 }
 
 .button:hover,

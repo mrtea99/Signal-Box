@@ -38,8 +38,8 @@ function StageNav(props) {
             className={getButtonClasses(index)}
             onClick={(e) => handleNavList(index, e)}
           >
-            {stage}
-            {/* <StageStatus runData={props.thisRunData} stageNum={index} /> */}
+            {stage}{' '}
+            <StageStatus runData={props.thisRunData} stageNum={index} />
           </button>
         </li>
       ))}
