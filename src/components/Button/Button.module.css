@@ -3,7 +3,7 @@
 .button {
   display: inline-block;
   border: none;
-  padding: 0.65rem;
+  padding: 0.25rem 1rem;
   margin: 0;
   text-decoration: none;
   background-color: var(--color-accent);
@@ -19,6 +19,9 @@
   text-transform: uppercase;
   font-weight: bold;
   font-size: var(--text-larger);
+
+  min-height: 44px;
+  min-width: 44px;
 }
 
 .button:hover,
@@ -37,4 +40,8 @@
 
 .button:disabled {
   opacity: 0.5;
+}
+
+.buttonFillWidth {
+  width: 100%;
 }

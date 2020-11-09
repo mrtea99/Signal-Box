@@ -47,6 +47,7 @@ function StageActions(props) {
                       onClick={() => {
                         setModalActive(true);
                       }}
+                      fillWidth
                     >
                       {inactiveMessage(stageStatus.stageStatusNext)}
                     </Button>
@@ -105,7 +106,7 @@ function StageActions(props) {
             {stageStatus.stageStatusName === "pending" ? (
               <p>
                 <Button
-                  onClick={() => props.updateStageActive(true, props.thisStage)}
+                  onClick={() => props.updateStageActive(true, props.thisStage)} fillWidth
                 >
                   Start stage
                 </Button>
@@ -114,7 +115,7 @@ function StageActions(props) {
               <p>
                 Stage {stageStatus.stageStatusName}
                 <Button
-                  onClick={() => props.updateStageActive(true, props.thisStage)}
+                  onClick={() => props.updateStageActive(true, props.thisStage)} fillWidth
                 >
                   Undo
                 </Button>

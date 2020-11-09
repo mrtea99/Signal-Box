@@ -9,7 +9,7 @@ function SessionEnd(props) {
 
   return (
     <>
-      <Button onClick={() => setModalActive(true)}>End Session</Button>
+      <Button onClick={() => setModalActive(true)} fillWidth>End Session</Button>
       {modalActive ? (
         <Modal>
           <SessionEndForm

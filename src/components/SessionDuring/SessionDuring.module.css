@@ -1,3 +1,21 @@
 .sessionTitle {
   margin: 0;
+  background-color: var(--color-pink-bright);
+  color: var(--color-white);
+  margin: 0;
+  padding: 0.5rem;
+  text-transform: uppercase;
+  font-size: var(--text-larger);
+}
+
+.session {
+  border: 0.2rem solid var(--color-pink-bright);
+  border-top: none;
+  min-height: 15rem;
+  background-color: var(--color-grey-dark);
+}
+
+.readOnly {
+  padding: 1rem;
+  background-color: var(--color-grey-light);
 }

@@ -30,17 +30,17 @@
 }
 
 /* Session */
-
 .sessionHolder {
   display: flex;
 }
 
-.sessionControl, .stageControl {
+.sessionControl,
+.stageControl {
   width: 10rem;
 }
 
 .sessionView {
   flex-grow: 1;
-  padding: 0 2rem;
+  padding: 0 1rem;
   min-height: 15rem;
 }

@@ -29,12 +29,12 @@ function SessionDuring(props) {
   };
 
   return (
-    <>
-      <div>
-        <h4 className={styles.sessionTitle}>
+    <article className={styles.session}>
+      <h4 className={styles.sessionTitle}>
           {props.activeSessionData.activity} Session{" "}
-          {props.activeSessionData.sessionUid} in progress
+          {props.activeSessionData.sessionUid}
         </h4>
+      <div className={styles.readOnly}>
         <dl>
           <dt>Start Time:</dt>
           <dd>{props.activeSessionData.startTime}</dd>
@@ -106,7 +106,7 @@ function SessionDuring(props) {
           <></>
         )}
       </form>
-    </>
+    </article>
   );
 }
 
