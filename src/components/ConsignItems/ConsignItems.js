@@ -80,7 +80,7 @@ function ConsignItems(props) {
   const activityTotals = buildTotals();
 
   return (
-    <ModalControl triggerCopy="Consign" handleSubmit={handleSubmit}>
+    <ModalControl triggerCopy="Consign" handleSubmit={handleSubmit} buttonAttrs={{fillWidth: true}}>
       <div>
         <table>
           <thead>

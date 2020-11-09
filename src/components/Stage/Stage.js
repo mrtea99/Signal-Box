@@ -190,7 +190,7 @@ function Stage(props) {
             <></>
           )}
         </div>
-        <div class={styles.stageControl}>
+        <div className={styles.stageControl}>
           <StageStatus
             runData={props.thisRunData}
             stageNum={props.thisStage}

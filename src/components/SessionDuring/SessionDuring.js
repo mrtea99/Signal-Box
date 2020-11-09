@@ -31,9 +31,9 @@ function SessionDuring(props) {
   return (
     <article className={styles.session}>
       <h4 className={styles.sessionTitle}>
-          {props.activeSessionData.activity} Session{" "}
-          {props.activeSessionData.sessionUid}
-        </h4>
+        {props.activeSessionData.activity} Session
+        {/* {" "}{props.activeSessionData.sessionUid} */}
+      </h4>
       <div className={styles.readOnly}>
         <dl>
           <dt>Start Time:</dt>

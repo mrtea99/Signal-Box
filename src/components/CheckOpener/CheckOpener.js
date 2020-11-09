@@ -30,7 +30,7 @@ function CheckOpener(props) {
   };
 
   return (
-    <ModalControl handleSubmit={handleSubmit} triggerCopy={"Request QA Check"}>
+    <ModalControl handleSubmit={handleSubmit} triggerCopy={"Request QA Check"} buttonAttrs={{fillWidth: true}}>
       <form>
         <CheckOpenerForm formData={formData} setFormData={setFormData} />
       </form>

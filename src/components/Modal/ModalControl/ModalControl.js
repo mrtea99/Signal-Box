@@ -16,7 +16,7 @@ function ModalControl(props) {
 
   return (
     <>
-      <Button onClick={() => setModalActive(true)}>{props.triggerCopy}</Button>
+      <Button {...props.buttonAttrs} onClick={() => setModalActive(true)}>{props.triggerCopy}</Button>
       {modalActive ? (
         <Modal>
           {props.children}

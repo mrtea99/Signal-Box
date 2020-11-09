@@ -26,7 +26,7 @@ function FlagOpener(props) {
   };
 
   return (
-    <ModalControl handleSubmit={handleSubmit} triggerCopy={"Raise Issue"}>
+    <ModalControl handleSubmit={handleSubmit} triggerCopy={"Raise Issue"} buttonAttrs={{fillWidth: true}}>
       <form>
         <div>
           <label htmlFor="issue-description">Issue Description:</label>
