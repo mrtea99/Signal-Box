@@ -3,7 +3,7 @@
   background-color: var(--color-fg);
 }
 
-
+/* Header */
 .stageHeader {
   display: flex;
   justify-content: space-between;
@@ -29,6 +29,18 @@
   margin: 0;
 }
 
-.sessionControl {
-  /* min-height: 17rem; */
+/* Session */
+
+.sessionHolder {
+  display: flex;
+}
+
+.sessionControl, .stageControl {
+  width: 10rem;
+}
+
+.sessionView {
+  flex-grow: 1;
+  padding: 0 2rem;
+  min-height: 15rem;
 }

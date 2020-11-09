@@ -10,16 +10,6 @@ function SessionControl(props) {
     <>
       {props.stageActive ? (
         <>
-          <FlagOpener
-            addSession={props.addSession}
-            thisStage={props.thisStage}
-            activeUser={props.activeUser}
-          />
-          <CheckOpener
-            addSession={props.addSession}
-            thisStage={props.thisStage}
-            activeUser={props.activeUser}
-          />
           {props.activeSessionData ? (
             <SessionEnd
               addSession={props.addSession}
@@ -35,6 +25,16 @@ function SessionControl(props) {
               activeUser={props.activeUser}
             />
           )}
+          <CheckOpener
+            addSession={props.addSession}
+            thisStage={props.thisStage}
+            activeUser={props.activeUser}
+          />
+          <FlagOpener
+            addSession={props.addSession}
+            thisStage={props.thisStage}
+            activeUser={props.activeUser}
+          />
         </>
       ) : (
         <></>
