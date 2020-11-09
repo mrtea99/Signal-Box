@@ -31,84 +31,29 @@ function RunList(props) {
     <table className={styles.container}>
       <thead className={styles.header}>
         <tr>
-          <th className={[styles.headerItem, styles.alignLeft].join(" ")}>
+          {/* <th className={[styles.headerItem, styles.alignLeft].join(" ")}>
             Product
-          </th>
+          </th> */}
           <th className={styles.headerItem}>Prep</th>
           <th className={styles.headerItem}>Craft</th>
           <th className={styles.headerItem}>Package</th>
           <th className={styles.headerItem}>Label</th>
           <th className={styles.headerItem}>Stock</th>
-          <th className={styles.headerItem}>Status</th>
+          {/* <th className={styles.headerItem}>Status</th> */}
           {/* <th className={styles.headerItem}>Delete</th> */}
         </tr>
       </thead>
       <tbody>
         {props.runData.map((run, index) => (
-          <tr key={run.uid} className={styles.itemRow}>
-            <td
-              className={`${styles.itemTitle} ${styles.runItem} ${styles.alignLeft}`}
-            >
-              {run.productInfo.productName}
-            </td>
-            <td className={styles.runItem}>
-              <StageStatus
-                runData={run}
-                stageNum={0}
-                label={true}
-                button={true}
-                onClick={() => openEditor(run.uid, 0)}
-              />
-            </td>
-            <td className={styles.runItem}>
-              <StageStatus
-                runData={run}
-                stageNum={1}
-                label={true}
-                button={true}
-                onClick={() => openEditor(run.uid, 1)}
-              />
-            </td>
-            {/* <td className={styles.runItem}>
-              <StageStatus
-                runData={run}
-                stageNum={[0, 1]}
-                label={true}
-                button={true}
-                onClick={() =>
-                  openEditor(run.uid, findManuStage(run.completion))
-                }
-              />
-            </td> */}
-            <td className={styles.runItem}>
-              <StageStatus
-                runData={run}
-                stageNum={2}
-                label={true}
-                button={true}
-                onClick={() => openEditor(run.uid, 2)}
-              />
-            </td>
-            <td className={styles.runItem}>
-              <StageStatus
-                runData={run}
-                stageNum={3}
-                label={true}
-                button={true}
-                onClick={() => openEditor(run.uid, 3)}
-              />
-            </td>
-            <td className={styles.runItem}>
-              <StageStatus
-                runData={run}
-                stageNum={4}
-                label={true}
-                button={true}
-                onClick={() => openEditor(run.uid, 4)}
-              />
-            </td>
-            <td className={styles.runItem}>
-              <Button onClick={() => setModalOverviewActive(run.uid)}>X</Button>
+          <>
+            <tr key={run.uid + "_title"}>
+              <td
+                colSpan="5"
+                className={`${styles.itemTitle} ${styles.runItem} ${styles.alignLeft}`}
+                onClick={() => setModalOverviewActive(run.uid)}
+              >
+                {run.productInfo.productName}
+              </td>
               {modalOverviewActive === run.uid ? (
                 <Modal>
                   <Button onClick={() => setModalOverviewActive(null)}>
@@ -119,11 +64,84 @@ function RunList(props) {
               ) : (
                 <></>
               )}
-            </td>
-            {/* <td className={styles.runItem}>
+            </tr>
+            <tr key={run.uid} className={styles.itemRow}>
+              <td className={styles.runItem}>
+                <StageStatus
+                  runData={run}
+                  stageNum={0}
+                  label={true}
+                  button={true}
+                  onClick={() => openEditor(run.uid, 0)}
+                />
+              </td>
+              <td className={styles.runItem}>
+                <StageStatus
+                  runData={run}
+                  stageNum={1}
+                  label={true}
+                  button={true}
+                  onClick={() => openEditor(run.uid, 1)}
+                />
+              </td>
+              {/* <td className={styles.runItem}>
+              <StageStatus
+                runData={run}
+                stageNum={[0, 1]}
+                label={true}
+                button={true}
+                onClick={() =>
+                  openEditor(run.uid, findManuStage(run.completion))
+                }
+              />
+            </td> */}
+              <td className={styles.runItem}>
+                <StageStatus
+                  runData={run}
+                  stageNum={2}
+                  label={true}
+                  button={true}
+                  onClick={() => openEditor(run.uid, 2)}
+                />
+              </td>
+              <td className={styles.runItem}>
+                <StageStatus
+                  runData={run}
+                  stageNum={3}
+                  label={true}
+                  button={true}
+                  onClick={() => openEditor(run.uid, 3)}
+                />
+              </td>
+              <td className={styles.runItem}>
+                <StageStatus
+                  runData={run}
+                  stageNum={4}
+                  label={true}
+                  button={true}
+                  onClick={() => openEditor(run.uid, 4)}
+                />
+              </td>
+              {/* <td className={styles.runItem}>
+                <Button onClick={() => setModalOverviewActive(run.uid)}>
+                  X
+                </Button>
+                {modalOverviewActive === run.uid ? (
+                  <Modal>
+                    <Button onClick={() => setModalOverviewActive(null)}>
+                      Close
+                    </Button>
+                    <StageOverview thisRunData={run}></StageOverview>
+                  </Modal>
+                ) : (
+                  <></>
+                )}
+              </td> */}
+              {/* <td className={styles.runItem}>
               <RunDelete updateRunData={props.updateRunData} uid={run.uid} />
             </td> */}
-          </tr>
+            </tr>
+          </>
         ))}
       </tbody>
     </table>

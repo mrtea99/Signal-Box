@@ -29,11 +29,15 @@
   text-align: center;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  border-top: 0.5rem solid var(--color-bg);
 }
 
 .itemTitle {
   font-weight: bold;
+  background-color: var(--color-grey-bright);
+  border-top: 0.5rem solid var(--color-bg);
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
+  height: var(--size-touch-min);
 }
 
 .alignLeft {
