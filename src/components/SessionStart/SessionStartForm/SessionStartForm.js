@@ -1,6 +1,7 @@
 import React from "react";
 
 import Button from "../../Button/Button.js";
+import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
 
 const activityList = [
   ["Manufacturing", "Packaging"],
@@ -121,10 +122,12 @@ function SessionStartForm(props) {
       ) : (
         <></>
       )}{" "}
-      <Button onClick={() => props.setFormActive(false)}>Cancel</Button>
-      <Button onClick={handleNewClick} disabled={!validateForm()}>
-        Start New Session
-      </Button>
+      <ButtonSpacer>
+        <Button onClick={() => props.setFormActive(false)}>Cancel</Button>
+        <Button onClick={handleNewClick} disabled={!validateForm()}>
+          Start New Session
+        </Button>
+      </ButtonSpacer>
     </form>
   );
 }

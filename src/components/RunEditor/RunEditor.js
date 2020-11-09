@@ -6,6 +6,7 @@ import Modal from "../Modal/Modal.js";
 import Button from "../Button/Button.js";
 
 import styles from "./RunEditor.module.css";
+import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
 
 function RunEditor(props) {
   const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
@@ -84,10 +85,12 @@ function RunEditor(props) {
                   data={thisRunData}
                   changeHandler={handleChange}
                 />
-                <Button onClick={handleEditInfoClick}>Run Info</Button>
-                <Button onClick={() => setModalOverviewActive(true)}>
-                  Status
-                </Button>
+                <ButtonSpacer>
+                  <Button onClick={handleEditInfoClick}>Run Info</Button>
+                  <Button onClick={() => setModalOverviewActive(true)}>
+                    Status
+                  </Button>
+                </ButtonSpacer>
                 {modalOverviewActive ? (
                   <Modal>
                     <Button onClick={() => setModalOverviewActive(false)}>

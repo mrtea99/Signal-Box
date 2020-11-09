@@ -1,6 +1,7 @@
 import React from "react";
 
 import Button from "../Button/Button.js";
+import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
 
 const productTemplates = [
   {
@@ -115,20 +116,22 @@ function RunInfoForm(props) {
             min="0"
           ></input>
         </div>
-        <Button
-          onClick={(e) => {
-            e.preventDefault();
-            props.handleCancel();
-          }}
-        >
-          Cancel
-        </Button>
-        <Button
-          disabled={currentTemplate === null ? "disabled" : ""}
-          onClick={handleSubmit}
-        >
-          Save
-        </Button>
+        <ButtonSpacer>
+          <Button
+            onClick={(e) => {
+              e.preventDefault();
+              props.handleCancel();
+            }}
+          >
+            Cancel
+          </Button>
+          <Button
+            disabled={currentTemplate === null ? "disabled" : ""}
+            onClick={handleSubmit}
+          >
+            Save
+          </Button>
+        </ButtonSpacer>
       </form>
       {/* <pre>{JSON.stringify(productTemplates[currentTemplate])}</pre> */}
     </>

@@ -1,6 +1,7 @@
 import React from "react";
 
 import Button from "../../Button/Button.js";
+import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
 import Modal from "../../Modal/Modal.js";
 
 function ModalControl(props) {
@@ -21,7 +22,7 @@ function ModalControl(props) {
         <Modal>
           {props.children}
           {props.handleSubmit ? (
-            <>
+            <ButtonSpacer>
               <Button
                 onClick={(e) => {
                   e.preventDefault();
@@ -31,7 +32,7 @@ function ModalControl(props) {
                 Cancel
               </Button>
               <Button onClick={(e) => handleSubmit(e)}>Save</Button>
-            </>
+            </ButtonSpacer>
           ) : (
             <Button
               onClick={(e) => {

@@ -1,0 +1,15 @@
+.wrapper > * {
+  margin-right: 0.75rem;
+}
+.wrapper > *:last-child {
+  margin-right: 0;
+}
+
+
+.wrapperVert > * {
+  margin-bottom: 0.75rem;
+  margin-right: 0;
+}
+.wrapperVert > *:last-child {
+  margin-bottom: 0;
+}
