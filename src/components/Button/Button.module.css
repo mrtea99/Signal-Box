@@ -1,5 +1,5 @@
 .button {
-  display: inline-block;
+  display: inline-flex;
   border: none;
   padding: 0.25rem 1rem;
   margin: 0;
@@ -19,6 +19,10 @@
 
   min-height: var(--size-touch-min);
   min-width: var(--size-touch-min);
+
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .button:hover,
@@ -43,6 +47,13 @@
   width: 100%;
 }
 
+.hasIcon {
+  text-align: left;
+  justify-content: space-between;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
 .colorCancel {
   background-color: var(--color-cancel);
 }
@@ -58,4 +69,25 @@
 }
 .colorComplete {
   background-color: var(--color-complete);
+}
+
+/* Copy */
+.copy {
+}
+
+/* Icon */
+.iconWrapper {
+  width: 1.6rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.25rem;
+}
+.icon {
+  min-height: 1.6rem;
+  min-width: 1.6rem;
+}
+
+.icon path {
+  fill: var(--color-white);
 }
