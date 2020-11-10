@@ -174,7 +174,9 @@ function SessionEndForm(props) {
         <CheckOpenerForm formData={qaFormData} setFormData={setQaFormData} />
       )}
       <ButtonSpacer>
-        <Button onClick={() => props.setFormActive(false)}>Cancel</Button>
+        <Button onClick={() => props.setFormActive(false)} color="cancel">
+          Cancel
+        </Button>
         <Button onClick={handleEndClick}>End Session</Button>
       </ButtonSpacer>
     </form>

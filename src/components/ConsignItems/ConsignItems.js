@@ -79,8 +79,26 @@ function ConsignItems(props) {
 
   const activityTotals = buildTotals();
 
+  const triggerCopy = function () {
+    const prefix = "Consign ";
+
+    switch (props.thisStage) {
+      case 1:
+        return prefix + "Batches";
+      case 2:
+      case 3:
+        return prefix + "Units";
+      default:
+        return prefix + "Items";
+    }
+  };
+
   return (
-    <ModalControl triggerCopy="Consign" handleSubmit={handleSubmit} buttonAttrs={{fillWidth: true}}>
+    <ModalControl
+      triggerCopy={triggerCopy()}
+      handleSubmit={handleSubmit}
+      buttonAttrs={{ fillWidth: true, color: "complete" }}
+    >
       <div>
         <table>
           <thead>

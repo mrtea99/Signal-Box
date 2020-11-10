@@ -28,6 +28,7 @@ function ModalControl(props) {
                   e.preventDefault();
                   setModalActive(false);
                 }}
+                color="cancel"
               >
                 Cancel
               </Button>

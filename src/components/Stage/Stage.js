@@ -166,30 +166,6 @@ function Stage(props) {
         </h4>
       </header>
       <div className={styles.sessionHolder}>
-        <div className={styles.sessionControl}>
-          <SessionControl
-            addSession={addSession}
-            updateSession={updateSession}
-            endSession={endSession}
-            thisStage={props.thisStage}
-            activeSessionData={activeSessionData}
-            activeUser={props.activeUser}
-            stageActive={stageActive}
-            thisRunData={props.thisRunData}
-          />
-        </div>
-        <div className={styles.sessionView}>
-          {activeSessionData ? (
-            <SessionDuring
-              activeSessionData={activeSessionData}
-              updateSession={updateSession}
-              thisStage={props.thisStage}
-              thisRunData={props.thisRunData}
-            />
-          ) : (
-            <></>
-          )}
-        </div>
         <div className={styles.stageControl}>
           <StageStatus
             runData={props.thisRunData}
@@ -204,6 +180,30 @@ function Stage(props) {
             setCurrentRunUid={props.setCurrentRunUid}
             setActiveStage={props.setActiveStage}
             updateRunData={props.updateRunData}
+          />
+        </div>
+        <div className={styles.sessionView}>
+          {activeSessionData ? (
+            <SessionDuring
+              activeSessionData={activeSessionData}
+              updateSession={updateSession}
+              thisStage={props.thisStage}
+              thisRunData={props.thisRunData}
+            />
+          ) : (
+            <></>
+          )}
+        </div>
+        <div className={styles.sessionControl}>
+          <SessionControl
+            addSession={addSession}
+            updateSession={updateSession}
+            endSession={endSession}
+            thisStage={props.thisStage}
+            activeSessionData={activeSessionData}
+            activeUser={props.activeUser}
+            stageActive={stageActive}
+            thisRunData={props.thisRunData}
           />
         </div>
       </div>

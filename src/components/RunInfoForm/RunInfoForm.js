@@ -122,6 +122,7 @@ function RunInfoForm(props) {
               e.preventDefault();
               props.handleCancel();
             }}
+            color="cancel"
           >
             Cancel
           </Button>

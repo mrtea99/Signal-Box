@@ -49,6 +49,7 @@ function StageActions(props) {
                         setModalActive(true);
                       }}
                       fillWidth
+                      color="complete"
                     >
                       {inactiveMessage(stageStatus.stageStatusNext)}
                     </Button>
@@ -89,6 +90,7 @@ function StageActions(props) {
                             onClick={() => {
                               setModalActive(false);
                             }}
+                            color="cancel"
                           >
                             Cancel
                           </Button>

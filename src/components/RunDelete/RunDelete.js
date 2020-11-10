@@ -1,6 +1,7 @@
 import React from "react";
 
 import Button from "../Button/Button.js";
+import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
 import Modal from "../Modal/Modal.js";
 
 function RunDelete(props) {
@@ -8,22 +9,29 @@ function RunDelete(props) {
 
   return (
     <>
-      <Button onClick={() => setModalActive(true)}>Delete</Button>
+      <Button onClick={() => setModalActive(true)} color="delete">
+        Delete
+      </Button>
       {modalActive ? (
         <Modal>
           <h3>Confirm Delete Run</h3>
-          <Button onClick={() => setModalActive(false)}>Cancel</Button>
-          <Button
-            onClick={() => {
-              props.updateRunData(props.uid, "delete");
-              setModalActive(false);
-              if(props.successCallback) {
-                props.successCallback()
-              }
-            }}
-          >
-            Delete
-          </Button>
+          <ButtonSpacer>
+            <Button onClick={() => setModalActive(false)} color="cancel">
+              Cancel
+            </Button>
+            <Button
+              onClick={() => {
+                props.updateRunData(props.uid, "delete");
+                setModalActive(false);
+                if (props.successCallback) {
+                  props.successCallback();
+                }
+              }}
+              color="delete"
+            >
+              Delete
+            </Button>
+          </ButtonSpacer>
         </Modal>
       ) : (
         <></>

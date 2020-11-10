@@ -9,8 +9,7 @@
   font-family: var(--font-default);
   cursor: pointer;
   text-align: center;
-  transition: background-color 250ms ease-in-out, 
-              transform 150ms ease;
+  transition: background-color 250ms ease-in-out, transform 150ms ease;
   -webkit-appearance: none;
   -moz-appearance: none;
 
@@ -42,4 +41,21 @@
 
 .buttonFillWidth {
   width: 100%;
+}
+
+.colorCancel {
+  background-color: var(--color-cancel);
+}
+.colorQa {
+  background-color: var(--color-qa);
+}
+.colorIssue {
+  background-color: var(--color-issue);
+}
+.colorBlocker,
+.colorDelete {
+  background-color: var(--color-blocker);
+}
+.colorComplete {
+  background-color: var(--color-complete);
 }
