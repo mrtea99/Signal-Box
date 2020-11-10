@@ -39,14 +39,14 @@
 .core--working {
   background-color: var(--color-pink-bright);
 }
-.core--paused {
+/* .core--paused {
   background-color: orange;
-}
+} */
 
 .flagUserComplete,
 .core--skipped,
 .core--complete {
-  background-color: forestgreen;
+  background-color: var(--color-complete);
 }
 
 .flags {
@@ -72,10 +72,10 @@
 }
 
 .flagIssue {
-  background-color: red;
+  background-color: var(--color-issue);
 }
 .flagQa {
-  background-color: orange;
+  background-color: var(--color-qa);
 }
 .flagUser {
   /* background-color: blue; */

@@ -26,7 +26,7 @@ function FlagCloser(props) {
         // <Button disabled="disabled">Fixed</Button>
         <></>
       ) : (
-        <ModalControl handleSubmit={handleSubmit} triggerCopy={"Fix"}>
+        <ModalControl handleSubmit={handleSubmit} triggerCopy={"Fix"} buttonAttrs={{color: "issue"}}>
           <div>
             <p>{props.session.notes}</p>
             <p>Raised by: {props.session.user}</p>

@@ -123,8 +123,8 @@ function SessionStartForm(props) {
         <></>
       )}{" "}
       <ButtonSpacer>
-        <Button onClick={() => props.setFormActive(false)}>Cancel</Button>
-        <Button onClick={handleNewClick} disabled={!validateForm()}>
+        <Button onClick={() => props.setFormActive(false)} color="cancel">Cancel</Button>
+        <Button onClick={handleNewClick} disabled={!validateForm()} icon="start">
           Start New Session
         </Button>
       </ButtonSpacer>

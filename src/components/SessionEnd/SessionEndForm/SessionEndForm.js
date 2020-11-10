@@ -177,7 +177,7 @@ function SessionEndForm(props) {
         <Button onClick={() => props.setFormActive(false)} color="cancel">
           Cancel
         </Button>
-        <Button onClick={handleEndClick}>End Session</Button>
+        <Button onClick={handleEndClick} icon="stop">End Session</Button>
       </ButtonSpacer>
     </form>
   );
