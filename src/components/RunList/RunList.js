@@ -45,7 +45,7 @@ function RunList(props) {
       </thead>
       <tbody>
         {props.runData.map((run, index) => (
-          <>
+          <React.Fragment key={run.uid}>
             <tr key={run.uid + "_title"}>
               <td
                 colSpan="5"
@@ -141,7 +141,7 @@ function RunList(props) {
               <RunDelete updateRunData={props.updateRunData} uid={run.uid} />
             </td> */}
             </tr>
-          </>
+          </React.Fragment>
         ))}
       </tbody>
     </table>

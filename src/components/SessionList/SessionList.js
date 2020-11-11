@@ -85,19 +85,19 @@ function SessionList(props) {
     return <TimeFormater rawTime={totalDuration} />;
   };
 
-  const findTotalCount = function (propertyName) {
-    let total = 0;
+  // const findTotalCount = function (propertyName) {
+  //   let total = 0;
 
-    for (let i = 0; i < thisStageData.length; i++) {
-      const sessionValue = thisStageData[i][propertyName];
+  //   for (let i = 0; i < thisStageData.length; i++) {
+  //     const sessionValue = thisStageData[i][propertyName];
 
-      if (sessionValue) {
-        total = total + sessionValue;
-      }
-    }
+  //     if (sessionValue) {
+  //       total = total + sessionValue;
+  //     }
+  //   }
 
-    return total;
-  };
+  //   return total;
+  // };
 
   return (
     <table className={styles.container}>

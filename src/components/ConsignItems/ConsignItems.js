@@ -1,7 +1,6 @@
 import React from "react";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
-import StageStatus from "../StageStatus/StageStatus.js";
 
 function ConsignItems(props) {
   const [countGood, setCountGood] = React.useState(0);
