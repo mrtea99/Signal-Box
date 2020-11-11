@@ -41,6 +41,9 @@ function ConsignItems(props) {
       updateBadField,
       (props.thisRunData[updateBadField] += countBad)
     );
+
+    //Force activate next stage
+    props.updateStageActive(true, props.thisStage + 1);
   };
 
   const buildTotals = function () {

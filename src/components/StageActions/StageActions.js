@@ -138,6 +138,7 @@ function StageActions(props) {
             thisStage={props.thisStage}
             updateRunData={props.updateRunData}
             stageStatus={stageStatus}
+            updateStageActive={props.updateStageActive}
           />
         </div>
       )}
