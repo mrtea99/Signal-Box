@@ -38,7 +38,7 @@ function StageNav(props) {
             className={getButtonClasses(index)}
             onClick={(e) => handleNavList(index, e)}
           >
-            {stage}{' '}
+            <span className={styles.btnLabel}>{stage}</span><br />
             <StageStatus runData={props.thisRunData} stageNum={index} activeUser={props.activeUser} />
           </button>
         </li>

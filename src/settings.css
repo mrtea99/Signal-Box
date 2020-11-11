@@ -38,6 +38,8 @@
   /* Fonts */
   --font-default: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
 
+  /* 12pt */
+  --text-smaller: 0.8em;
   /* 16pt */
   --text-normal: 1em;
   /* 18pt */

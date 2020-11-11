@@ -2,9 +2,11 @@
   --color-bar: var(--color-fg);
   --color-active: var(--color-pink-bright);
   --color-inactive: var(--color-pink-light);
-  --height-bar: 2.4rem;
+  --height-bar: 3rem;
+  /* --height-bar: 4.1rem; */
   --height-bar-half: calc(var(--height-bar) / 2);
   --time-anim: 250ms;
+  --width-button-pad: 0.4rem;
 
   margin: 0;
   padding: 0;
@@ -14,7 +16,7 @@
 }
 
 .progItem {
-  list-style: none;
+  list-style-type: none;
   flex-grow: 1;
   margin-right: 5px;
 }
@@ -22,8 +24,9 @@
 .progBtn {
   display: inline-block;
   border: none;
-  /* padding: 0.65rem; */
-  height: var(--height-bar);
+  padding: 0rem var(--width-button-pad) 0.3rem calc(var(--width-button-pad) + (var(--height-bar-half) * 0.6));
+  min-height: var(--height-bar);
+  /* height: 5rem; */
   margin: 0;
   text-decoration: none;
   background-color: var(--color-inactive);
@@ -37,10 +40,8 @@
   -moz-appearance: none;
 
   width: 100%;
-  font-weight: bold;
-  font-size: var(--text-larger);
+  font-size: 1rem;
   position: relative;
-  min-height: 1rem;
   overflow: visible;
 }
 
@@ -49,10 +50,10 @@
   content: "";
   display: block;
   position: absolute;
-  top: 0;
-  bottom: 0;
+  top: 50%;
+  height: var(--height-bar);
   transform-origin: left center 0;
-  transform: scaleX(0.6);
+  transform: scaleX(0.6) translateY(-50%);
 }
 
 .progBtn::before {
@@ -71,6 +72,9 @@
   transition: border-color var(--time-anim) ease-in-out;
 }
 
+.progItem:first-child .progBtn {
+  padding-left: var(--width-button-pad);
+}
 .progItem:first-child .progBtn::before {
   display: none;
 }
@@ -96,16 +100,26 @@
   border-left-color: var(--color-pink-bright);
 }
 
-.progBtn:hover,
+/* .progBtn:hover,
 .progBtn:focus {
-  /* background: var(--color-fg); */
-}
+  background: var(--color-fg);
+} */
+
+/* .progBtn:active {
+  transform: scale(0.99);
+} */
 
 .progBtn:focus {
   outline: 0;
-  text-decoration: underline;
 }
 
-.progBtn:active {
-  /* transform: scale(0.99); */
+.btnLabel {
+  /* font-weight: bold; */
+  /* font-size: var(--text-larger); */
+  text-transform: uppercase;
+  font-size: var(--text-smaller);
+  padding-bottom: 0.1rem;
+}
+.progBtn:focus .btnLabel {
+  text-decoration: underline;
 }
