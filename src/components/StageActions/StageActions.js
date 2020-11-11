@@ -15,7 +15,7 @@ function StageActions(props) {
   const inactiveMessage = function (status) {
     switch (status) {
       case "complete":
-        return "Complete stage";
+        return "End stage";
       case "skipped":
         return "Skip stage";
       case "paused":
@@ -23,7 +23,7 @@ function StageActions(props) {
       case "pending":
         return "Set stage to pending";
       default:
-        return "End Stage";
+        return "Complete Stage";
     }
   };
 
@@ -50,6 +50,7 @@ function StageActions(props) {
                       }}
                       fillWidth
                       color="complete"
+                      icon="tick"
                     >
                       {inactiveMessage(stageStatus.stageStatusNext)}
                     </Button>

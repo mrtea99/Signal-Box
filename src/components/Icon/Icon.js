@@ -6,6 +6,7 @@ import { ReactComponent as Checkmark } from "./checkmark.svg";
 import { ReactComponent as Bookmark } from "./bookmark.svg";
 import { ReactComponent as Warning } from "./warning.svg";
 import { ReactComponent as Notification } from "./notification.svg";
+import { ReactComponent as ArrowRight } from "./arrow-right.svg";
 
 function Icon(props) {
   const iconElem = function () {
@@ -22,6 +23,8 @@ function Icon(props) {
         return <Warning className={props.className} />;
       case "blocker":
         return <Notification className={props.className} />;
+      case "next":
+        return <ArrowRight className={props.className} />;
       default:
         return <></>;
     }

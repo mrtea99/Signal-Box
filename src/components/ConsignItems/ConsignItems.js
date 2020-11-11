@@ -107,7 +107,7 @@ function ConsignItems(props) {
       <ModalControl
         triggerCopy={triggerCopy()}
         handleSubmit={handleSubmit}
-        buttonAttrs={{ fillWidth: true, color: "complete" }}
+        buttonAttrs={{ fillWidth: true, color: "complete", icon: "next" }}
       >
         <div>
           <h3>{triggerCopy()}</h3>
