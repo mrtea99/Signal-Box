@@ -45,32 +45,34 @@ function ConsignItems(props) {
   const buildTotals = function () {
     const allSessions = props.thisRunData.stages[props.thisStage]["sessions"];
 
-    let totalsData = {};
+    let totalsData = [{name:"QA", amount: 0, amountBad: 0}];
 
     allSessions.forEach((session, index) => {
-      const activityKey = session.type === "qa" ? "QA" : session.activity;
+      let activityName;
+      switch (session.type) {
+        case "qa":
+          activityName = "QA";
+          break;
+        case "work":
+          activityName = session.activity;
+          break;
+        default:
+          return false;
+      }
 
-      const activityDataOld = totalsData[activityKey];
+      const activityDataOld = totalsData.find(
+        (activity) => activity.name === activityName
+      );
 
       if (activityDataOld) {
-        if (activityDataOld.amount) {
-          activityDataOld.amount += session.amount ? session.amount : 0;
-        } else {
-          activityDataOld.amount = 0;
-        }
-
-        if (activityDataOld.amountBad) {
-          activityDataOld.amountBad += session.amountBad
-            ? session.amountBad
-            : 0;
-        } else {
-          activityDataOld.amountBad = 0;
-        }
+        activityDataOld.amount += session.amount || 0;
+        activityDataOld.amountBad += session.amountBad || 0;
       } else {
-        totalsData[activityKey] = {
-          amount: session.amount,
-          amountBad: session.amountBad,
-        };
+        totalsData.push({
+          name: activityName,
+          amount: session.amount || 0,
+          amountBad: session.amountBad || 0,
+        });
       }
     });
 
@@ -109,12 +111,12 @@ function ConsignItems(props) {
             </tr>
           </thead>
           <tbody>
-            {Object.keys(activityTotals).map((key) => {
+            {activityTotals.map((activity, index) => {
               return (
-                <tr key={key}>
-                  <td>{key}</td>
-                  <td>{activityTotals[key].amount}</td>
-                  <td>{activityTotals[key].amountBad}</td>
+                <tr key={activity.name}>
+                  <td>{activity.name}</td>
+                  <td>{activity.amount}</td>
+                  <td>{activity.amountBad}</td>
                 </tr>
               );
             })}
