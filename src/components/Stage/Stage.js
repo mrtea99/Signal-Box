@@ -170,7 +170,7 @@ function Stage(props) {
           <StageStatus
             runData={props.thisRunData}
             stageNum={props.thisStage}
-            label={true}
+            label
             activeUser={props.activeUser}
           />
           <StageActions

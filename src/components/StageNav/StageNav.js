@@ -39,7 +39,7 @@ function StageNav(props) {
             onClick={(e) => handleNavList(index, e)}
           >
             {stage}{' '}
-            <StageStatus runData={props.thisRunData} stageNum={index} />
+            <StageStatus runData={props.thisRunData} stageNum={index} activeUser={props.activeUser} />
           </button>
         </li>
       ))}

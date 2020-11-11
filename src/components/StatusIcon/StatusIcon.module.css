@@ -1,3 +1,9 @@
+.module {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .wrapper {
   --border-width: 0.15em;
   --core-size: 1.6em;
@@ -12,6 +18,8 @@
   font-size: 1rem;
   font-weight: bold;
   text-decoration: none;
+
+  align-content: stretch;
 }
 
 .core {
@@ -19,8 +27,9 @@
   width: auto;
   justify-content: center;
   align-items: center;
+  color: var(--color-text);
   background-color: var(--color-bg);
-  height: var(--core-size);
+  min-height: var(--core-size);
   min-width: var(--core-size);
   text-align: center;
   border: var(--border-width) solid var(--color-white);
@@ -28,8 +37,13 @@
   line-height: 1em;
   position: relative;
   z-index: 10;
-  align-self: flex-start;
+  /* align-self: flex-start; */
   transition: background-color var(--speed-change) var(--easing-change);
+}
+
+.coreLabel {
+  margin-bottom: calc(var(--border-width) * -1);
+  min-width: 7rem;
 }
 
 .core--pending {
@@ -77,15 +91,11 @@
 .flagQa {
   background-color: var(--color-qa);
 }
-/* .flagUser {
-  background-color: blue;
-} */
 
 .inner {
-  color: var(--color-white);
   vertical-align: middle;
   font-size: 0.9em;
-  padding: 0 0.4em;
+  padding: 0.1em 0.4em;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -17,6 +17,7 @@ function StageControl(props) {
         setActiveStage={props.setActiveStage}
         updateRunData={props.updateRunData}
         thisRunData={props.thisRunData}
+        activeUser={props.activeUser}
       />
 
       <Stage

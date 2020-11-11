@@ -115,6 +115,7 @@ function App() {
               activeStage={activeStage}
               setActiveStage={setActiveStage}
               updateRunData={updateRunData}
+              activeUser={activeUser}
             />
             <RunInfoNew
               active={modalNewActive}

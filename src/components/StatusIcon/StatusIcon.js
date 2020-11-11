@@ -36,36 +36,66 @@ function StatusIcon(props) {
     return "";
   };
 
+  const getLabel = function () {
+    if (props.workActive) {
+      return props.workActiveNames;
+    } else {
+      return (
+        props.stageStatusName.charAt(0).toUpperCase() +
+        props.stageStatusName.slice(1)
+      );
+    }
+  };
+
   return (
-    <span className={styles.wrapper}>
-      <span
-        className={`${styles.core} ${styles["core--" + props.stageStatusName]}`}
-      >
-        <span className={styles.inner}>{innerContent()}</span>
-      </span>
-      <span className={styles.flags}>
-        <span
-          className={`${styles.core} ${styles.flag} ${styles.flagIssue} ${
-            props.issueActive ? styles.flagActive : ""
-          }`}
-        >
-          <span className={styles.inner}>!</span>
+    <span className={styles.module}>
+      {props.label ? (
+        <span className={styles.wrapper}>
+          <span
+            className={`${styles.core} ${styles.coreLabel} ${
+              styles["core--" + props.stageStatusName]
+            }`}
+          >
+            <span className={styles.inner}>{getLabel()}</span>
+          </span>
         </span>
+      ) : (
+        <></>
+      )}
+      <span className={styles.wrapper}>
         <span
-          className={`${styles.core} ${styles.flag} ${styles.flagQa} ${
-            props.qaActive ? styles.flagActive : ""
+          className={`${styles.core} ${
+            styles["core--" + props.stageStatusName]
           }`}
         >
-          <span className={styles.inner}>?</span>
+          <span className={styles.inner}>{innerContent()}</span>
         </span>
-        <span
-          className={`${styles.core} ${styles.flag} ${styles.flagUser} ${
-            props.userTotal ? styles.flagActive : ""
-          } ${props.userActive ? styles.flagUserWorking : ""} ${
-            props.stageStatusName === "complete" ? styles.flagUserComplete : ""
-          }`}
-        >
-          <span className={styles.inner}>U</span>
+        <span className={styles.flags}>
+          <span
+            className={`${styles.core} ${styles.flag} ${styles.flagIssue} ${
+              props.issueActive ? styles.flagActive : ""
+            }`}
+          >
+            <span className={styles.inner}>!</span>
+          </span>
+          <span
+            className={`${styles.core} ${styles.flag} ${styles.flagQa} ${
+              props.qaActive ? styles.flagActive : ""
+            }`}
+          >
+            <span className={styles.inner}>?</span>
+          </span>
+          <span
+            className={`${styles.core} ${styles.flag} ${
+              props.userTotal ? styles.flagActive : ""
+            } ${props.userActive ? styles.flagUserWorking : ""} ${
+              props.stageStatusName === "complete"
+                ? styles.flagUserComplete
+                : ""
+            }`}
+          >
+            <span className={styles.inner}>U</span>
+          </span>
         </span>
       </span>
     </span>

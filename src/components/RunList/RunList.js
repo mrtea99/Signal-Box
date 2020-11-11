@@ -73,6 +73,7 @@ function RunList(props) {
                   label={true}
                   button={true}
                   onClick={() => openEditor(run.uid, 0)}
+                  activeUser={props.activeUser}
                 />
               </td>
               <td className={styles.runItem}>
@@ -82,6 +83,7 @@ function RunList(props) {
                   label={true}
                   button={true}
                   onClick={() => openEditor(run.uid, 1)}
+                  activeUser={props.activeUser}
                 />
               </td>
               {/* <td className={styles.runItem}>
@@ -93,6 +95,7 @@ function RunList(props) {
                 onClick={() =>
                   openEditor(run.uid, findManuStage(run.completion))
                 }
+                activeUser={props.activeUser}
               />
             </td> */}
               <td className={styles.runItem}>
@@ -102,6 +105,7 @@ function RunList(props) {
                   label={true}
                   button={true}
                   onClick={() => openEditor(run.uid, 2)}
+                  activeUser={props.activeUser}
                 />
               </td>
               <td className={styles.runItem}>
@@ -111,6 +115,7 @@ function RunList(props) {
                   label={true}
                   button={true}
                   onClick={() => openEditor(run.uid, 3)}
+                  activeUser={props.activeUser}
                 />
               </td>
               <td className={styles.runItem}>
@@ -120,6 +125,7 @@ function RunList(props) {
                   label={true}
                   button={true}
                   onClick={() => openEditor(run.uid, 4)}
+                  activeUser={props.activeUser}
                 />
               </td>
               {/* <td className={styles.runItem}>

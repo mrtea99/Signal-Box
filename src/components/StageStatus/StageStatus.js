@@ -13,17 +13,6 @@ function StageStatus(props) {
     props.activeUser
   );
 
-  const getLabel = function () {
-    if (stageStatus.workActive) {
-      return stageStatus.workActiveNames;
-    } else {
-      return (
-        stageStatus.stageStatusName.charAt(0).toUpperCase() +
-        stageStatus.stageStatusName.slice(1)
-      );
-    }
-  };
-
   return (
     <>
       {props.button ? (
@@ -36,19 +25,10 @@ function StageStatus(props) {
               : ""
           }`}
         >
-          {props.label ? (
-            <span className={styles.label}>{getLabel() + " "}</span>
-          ) : (
-            <></>
-          )}
-          <StatusIcon {...stageStatus} stageNum={props.stageNum} />
+          <StatusIcon {...stageStatus} stageNum={props.stageNum} label={props.label || false} />
         </button>
       ) : (
-        <>
-          <StatusIcon {...stageStatus} stageNum={props.stageNum} />{" "}
-          {props.label ? getLabel() + " " : <></>}{" "}
-          {/* {stageStatus.completion ? <>({stageStatus.completion})</> : ""} */}
-        </>
+        <StatusIcon {...stageStatus} stageNum={props.stageNum} label={props.label || false} />
       )}
     </>
   );
