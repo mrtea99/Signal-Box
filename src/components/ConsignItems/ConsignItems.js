@@ -1,6 +1,7 @@
 import React from "react";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
+import StageStatus from "../StageStatus/StageStatus.js";
 
 function ConsignItems(props) {
   const [countGood, setCountGood] = React.useState(0);
@@ -45,7 +46,7 @@ function ConsignItems(props) {
   const buildTotals = function () {
     const allSessions = props.thisRunData.stages[props.thisStage]["sessions"];
 
-    let totalsData = [{name:"QA", amount: 0, amountBad: 0}];
+    let totalsData = [{ name: "QA", amount: 0, amountBad: 0 }];
 
     allSessions.forEach((session, index) => {
       let activityName;
@@ -96,58 +97,75 @@ function ConsignItems(props) {
   };
 
   return (
-    <ModalControl
-      triggerCopy={triggerCopy()}
-      handleSubmit={handleSubmit}
-      buttonAttrs={{ fillWidth: true, color: "complete" }}
-    >
-      <div>
-        <table>
-          <thead>
-            <tr>
-              <th>Activity</th>
-              <th>Items</th>
-              <th>Defective</th>
-            </tr>
-          </thead>
-          <tbody>
-            {activityTotals.map((activity, index) => {
-              return (
-                <tr key={activity.name}>
-                  <td>{activity.name}</td>
-                  <td>{activity.amount}</td>
-                  <td>{activity.amountBad}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-      <div>
-        <label htmlFor="consign-items">Consignment amount</label>
-        <input
-          type="number"
-          onChange={(e) => {
-            setCountGood(parseInt(e.target.value));
-          }}
-          min="0"
-          name="consign-items"
-          id="consign-items"
-        />
-      </div>
-      <div>
-        <label htmlFor="consign-items">Defective amount</label>
-        <input
-          type="number"
-          onChange={(e) => {
-            setCountBad(parseInt(e.target.value));
-          }}
-          min="0"
-          name="consign-items"
-          id="consign-items"
-        />
-      </div>
-    </ModalControl>
+    <>
+      <p>
+        Consigned: {props.stageStatus.completionFraction}
+        <br />
+        Remaining:{" "}
+        {props.stageStatus.targetItemCount - props.stageStatus.itemCount}
+      </p>
+      <ModalControl
+        triggerCopy={triggerCopy()}
+        handleSubmit={handleSubmit}
+        buttonAttrs={{ fillWidth: true, color: "complete" }}
+      >
+        <div>
+          <h3>{triggerCopy()}</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Activity</th>
+                <th>Items</th>
+                <th>Defective</th>
+              </tr>
+            </thead>
+            <tbody>
+              {activityTotals.map((activity, index) => {
+                return (
+                  <tr key={activity.name}>
+                    <td>{activity.name}</td>
+                    <td>{activity.amount}</td>
+                    <td>{activity.amountBad}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <p>
+          Consigned: {props.stageStatus.completionFraction}
+          <br />
+          Remaining:{" "}
+          {props.stageStatus.targetItemCount - props.stageStatus.itemCount}
+        </p>
+        <div>
+          <label htmlFor="consign-items">Consignment amount:</label>
+          <input
+            type="number"
+            onChange={(e) => {
+              setCountGood(parseInt(e.target.value));
+            }}
+            min="0"
+            name="consign-items"
+            id="consign-items"
+            defaultValue="0"
+          />
+        </div>
+        <div>
+          <label htmlFor="consign-items">Defective amount:</label>
+          <input
+            type="number"
+            onChange={(e) => {
+              setCountBad(parseInt(e.target.value));
+            }}
+            min="0"
+            name="consign-items"
+            id="consign-items"
+            defaultValue="0"
+          />
+        </div>
+      </ModalControl>
+    </>
   );
 }
 

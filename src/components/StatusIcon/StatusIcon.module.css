@@ -77,9 +77,9 @@
 .flagQa {
   background-color: var(--color-qa);
 }
-.flagUser {
-  /* background-color: blue; */
-}
+/* .flagUser {
+  background-color: blue;
+} */
 
 .inner {
   color: var(--color-white);

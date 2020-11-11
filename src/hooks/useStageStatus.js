@@ -34,14 +34,19 @@ function useStageStatus(runData, stageNumber, activeUser) {
   }
 
   //Completion progress
-  let completion;
+  let completionFraction;
   let completionPercentage;
 
   if ([1, 2, 3].includes(stageNumber)) {
-    completion = itemCount + "/" + targetItemCount;
-    completionPercentage = itemCount
-      ? Math.floor((100 / targetItemCount) * itemCount)
-      : 0;
+    completionFraction = itemCount + "/" + targetItemCount;
+
+    if (itemCount === targetItemCount) {
+      completionPercentage = 100;
+    } else {
+      completionPercentage = itemCount
+        ? Math.floor((100 / targetItemCount) * itemCount)
+        : 0;
+    }
   }
 
   //Work
@@ -233,7 +238,9 @@ function useStageStatus(runData, stageNumber, activeUser) {
     qaActive: qaActive,
     userTotal: userTotal,
     userActive: userActive,
-    completion: completion,
+    itemCount: itemCount,
+    targetItemCount: targetItemCount,
+    completionFraction: completionFraction,
     completionPercentage: completionPercentage,
   };
 }
