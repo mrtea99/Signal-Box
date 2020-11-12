@@ -85,12 +85,12 @@
   display: none;
 }
 
-.progBtnStarted {
-  /* background-color: var(--color-pink); */
-}
-.progBtnStarted::after {
-  /* border-left-color: var(--color-pink); */
-}
+/* .progBtnStarted {
+  background-color: var(--color-pink);
+} */
+/* .progBtnStarted::after {
+  border-left-color: var(--color-pink);
+} */
 
 .progBtnActive {
   color: var(--color-text);

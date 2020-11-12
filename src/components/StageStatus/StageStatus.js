@@ -18,17 +18,26 @@ function StageStatus(props) {
       {props.button ? (
         <button
           onClick={props.onClick}
-          className={`${styles.button} ${
-            stageStatus.stageStatusName !== "complete" &&
-            stageStatus.stageStatusName !== "pending"
-              ? styles.buttonStageActive
-              : ""
-          }`}
+          // className={`${styles.button} ${
+          //   stageStatus.stageStatusName !== "complete" &&
+          //   stageStatus.stageStatusName !== "pending"
+          //     ? styles.buttonStageActive
+          //     : ""
+          // }`}
+          className={styles.button}
         >
-          <StatusIcon {...stageStatus} stageNum={props.stageNum} label={props.label || false} />
+          <StatusIcon
+            {...stageStatus}
+            stageNum={props.stageNum}
+            label={props.label || false}
+          />
         </button>
       ) : (
-        <StatusIcon {...stageStatus} stageNum={props.stageNum} label={props.label || false} />
+        <StatusIcon
+          {...stageStatus}
+          stageNum={props.stageNum}
+          label={props.label || false}
+        />
       )}
     </>
   );
