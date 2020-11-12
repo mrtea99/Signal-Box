@@ -18,4 +18,22 @@
 .readOnly {
   padding: 1rem;
   background-color: var(--color-grey-light);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.readOnlyList {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.userInput {
+  padding: 1rem;
+}
+
+.userInputForm {
+  display: flex;
+  flex-direction: row;
 }

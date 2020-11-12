@@ -1,11 +1,13 @@
 import React from "react";
 
-import Button from "../Button/Button.js";
-
 import useStageStatus from "../../hooks/useStageStatus.js";
+
+import Button from "../Button/Button.js";
 import Modal from "../Modal/Modal.js";
 import ConsignItems from "../ConsignItems/ConsignItems.js";
 import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
+
+import styles from "./StageActions.module.css";
 
 function StageActions(props) {
   const stageStatus = useStageStatus(props.thisRunData, props.thisStage);
@@ -32,7 +34,7 @@ function StageActions(props) {
     setModalActive(false);
   };
   return (
-    <>
+    <div className={styles.stageActions}>
       {props.thisStage === 0 || props.thisStage === 4 ? (
         stageStatus.stageActive ? (
           <>
@@ -142,7 +144,7 @@ function StageActions(props) {
           />
         </div>
       )}
-    </>
+    </div>
   );
 }
 

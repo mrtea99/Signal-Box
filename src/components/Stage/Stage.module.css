@@ -8,9 +8,9 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  border-bottom: 1px solid var(--color-white);
-  padding-bottom: 0.5rem;
-  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-grey-bright);
+  padding-bottom: 0.2rem;
+  margin-bottom: 1rem;
 }
 
 .stageTitleWrap {
@@ -21,26 +21,49 @@
   margin: 0;
   padding-right: 0.5rem;
 }
-.stageStatus {
-  margin: 0;
-}
 
 .stageDifficulty {
   margin: 0;
 }
 
-/* Session */
+/* Main */
 .sessionHolder {
   display: flex;
+  align-items: stretch;
+}
+
+/* Stage Control */
+.stageControl {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.stageStatus {
+  margin: 0;
 }
 
 .sessionControl,
 .stageControl {
   width: 10rem;
+  flex-shrink: 0;
 }
 
+/* Session Viewer */
 .sessionView {
   flex-grow: 1;
-  padding: 0 1rem;
+  margin: 0 1rem;
   min-height: 15rem;
+  background-color: var(--color-grey-dark);
+}
+
+/* Temp */
+.sessionControl {
+  order: 1
+}
+.stageControl {
+  order: 3
+}
+.sessionView {
+  order: 2
 }

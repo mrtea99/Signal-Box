@@ -6,11 +6,13 @@ import FlagOpener from "../FlagOpener/FlagOpener.js";
 import CheckOpener from "../CheckOpener/CheckOpener.js";
 import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
 
+import styles from "./SessionControl.module.css";
+
 function SessionControl(props) {
   return (
     <>
       {props.stageActive ? (
-        <ButtonSpacer direction="vert">
+        <div className={styles.sessionActions}>
           {props.activeSessionData ? (
             <SessionEnd
               addSession={props.addSession}
@@ -26,17 +28,19 @@ function SessionControl(props) {
               activeUser={props.activeUser}
             />
           )}
-          <CheckOpener
-            addSession={props.addSession}
-            thisStage={props.thisStage}
-            activeUser={props.activeUser}
-          />
-          <FlagOpener
-            addSession={props.addSession}
-            thisStage={props.thisStage}
-            activeUser={props.activeUser}
-          />
-        </ButtonSpacer>
+          <ButtonSpacer direction="vert">
+            <CheckOpener
+              addSession={props.addSession}
+              thisStage={props.thisStage}
+              activeUser={props.activeUser}
+            />
+            <FlagOpener
+              addSession={props.addSession}
+              thisStage={props.thisStage}
+              activeUser={props.activeUser}
+            />
+          </ButtonSpacer>
+        </div>
       ) : (
         <></>
       )}

@@ -158,8 +158,7 @@ function Stage(props) {
     <section className={styles.stage}>
       <header className={styles.stageHeader}>
         <div className={styles.stageTitleWrap}>
-          <h2 className={styles.stageTitle}>{props.stageName}:</h2>
-          {/* <h3 className={styles.stageStatus}></h3> */}
+          <h2 className={styles.stageTitle}>{props.stageName}</h2>
         </div>
         <h4 className={styles.stageDifficulty}>
           Difficulty: {getDifficulty()}
