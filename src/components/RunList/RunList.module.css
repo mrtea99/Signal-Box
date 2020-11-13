@@ -13,12 +13,7 @@
   font-weight: normal;
   text-transform: uppercase;
   font-size: 0.8em;
-  padding: 0.3rem 0;
-}
-
-.headerItem, .runItem {
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding: 0.3rem 0.1rem;
 }
 
 .itemRow {
@@ -27,16 +22,14 @@
 
 .runItem {
   text-align: center;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding: 0rem 0.1rem;
 }
 
 .itemTitle {
   font-weight: bold;
   background-color: var(--color-grey-bright);
   border-top: 0.5rem solid var(--color-bg);
-  padding-top: 0.3rem;
-  padding-bottom: 0.3rem;
+  padding: 0.3rem 1rem;
   height: var(--size-touch-min);
 }
 

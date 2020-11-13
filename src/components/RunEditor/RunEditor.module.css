@@ -1,31 +1,38 @@
 @import '../../settings.css';
 
 .runEditor {
-  /* display: none; */
   position: fixed;
-  top: 0;
+  /* top: 0;
   left: 100vw;
   right: -100vw;
-  bottom: 0;
+  bottom: 0; */
+
+  top: 100vh;
+  right: 0;
+  bottom: -100vh;
+  left: 0;
+
   background-color: var(--color-bg);
   padding: 1rem;
   overflow: scroll;
   max-height: 100vh;
-  transition: all 0.5s ease-in-out;
+  transition: all 0.3s cubic-bezier(0.4, 0, 1, 1);
 }
 
 .runEditorActive {
-  /* display: block; */
-  left: 0vw;
-  right: 0vw;
+  /* left: 0vw;
+  right: 0vw; */
+
+  top: 0vh;
+  bottom: 0vh;
 }
 
 .runInfo {
-  background-color: var(--color-fg);
+  background-color: var(--color-grey-bright);
   display: flex;
   flex-direction: row;
   padding: 1em;
-  margin: 1em 0;
+  margin-top: 1em;
 }
 /* 
 .runInfoSec {
