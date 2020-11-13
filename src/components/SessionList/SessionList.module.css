@@ -14,12 +14,11 @@
   font-weight: normal;
   text-transform: uppercase;
   font-size: 0.8em;
-  padding: 0.3rem 0;
+  padding: 0.3rem 0.5rem;
 }
 
-.headerItem, .contentItem {
-  padding-left: 1rem;
-  padding-right: 1rem;
+.headerItemItems {
+  width: 10%;
 }
 
 .itemRow {
@@ -46,7 +45,9 @@
 .itemRow--issue .contentItem:first-child:before {
   background-color: var(--color-issue);
 }
-.itemRow--event .contentItem:first-child:before {
+.itemRow--activate .contentItem:first-child:before,
+.itemRow--deactivate .contentItem:first-child:before,
+.itemRow--consign .contentItem:first-child:before {
   background-color: var(--color-complete);
 }
 
@@ -61,6 +62,10 @@
   border-top: 0.5rem solid var(--color-bg);
   font-size: 1em;
   position: relative;
+}
+
+.contentItemName {
+  width: 20%;
 }
 
 .alignLeft {

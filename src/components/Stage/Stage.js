@@ -37,6 +37,10 @@ function Stage(props) {
   const updateStageActive = function (newState, stage) {
     const stageData = props.thisRunData["stages"][stage];
 
+    if (stageData.active === newState) {
+      return false;
+    }
+
     let newStageObj = { ...stageData };
 
     newStageObj.active = newState;
@@ -48,32 +52,31 @@ function Stage(props) {
 
     const newSession = {
       sessionUid: newSessionUid,
-      type: "event",
+      type: newState ? "activate" : "deactivate",
       activity: newState,
       startTime: Date.now(),
       endTime: Date.now(),
       user: props.activeUser,
-      notes: newState ? "Activate" : "Deactivate",
     };
 
     addSession(newSession, newSessionUid, stage);
 
-    //Update run completion
-    let chainInactive = 0;
-    for (let i = 0; i < props.thisRunData["stages"].length; i++) {
-      if (!props.thisRunData["stages"][i].active) {
-        chainInactive = i;
-      } else {
-        if (i === 0) {
-          chainInactive = null;
-        } else {
-          chainInactive = i - 1;
-        }
-        break;
-      }
-    }
-
-    props.updateRunData(props.currentRunUid, null, "completion", chainInactive);
+    // //Update run completion
+    // let chainInactive = 0;
+    // for (let i = 0; i < props.thisRunData["stages"].length; i++) {
+    //   if (!props.thisRunData["stages"][i].active) {
+    //     chainInactive = i;
+    //   } else {
+    //     if (i === 0) {
+    //       chainInactive = null;
+    //     } else {
+    //       chainInactive = i - 1;
+    //     }
+    //     break;
+    //   }
+    // }
+    //
+    // props.updateRunData(props.currentRunUid, null, "completion", chainInactive);
   };
 
   const addSession = function (sessionData, newSessionUid, stage) {
@@ -179,6 +182,7 @@ function Stage(props) {
             setCurrentRunUid={props.setCurrentRunUid}
             setActiveStage={props.setActiveStage}
             updateRunData={props.updateRunData}
+            addSession={addSession}
           />
         </div>
         <div className={styles.sessionView}>

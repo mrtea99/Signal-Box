@@ -32,7 +32,7 @@ function CheckCloser(props) {
       {props.session.resolved ? (
         <></>
       ) : (
-        <ModalControl handleSubmit={handleSubmit} triggerCopy={"Check"} buttonAttrs={{color: "qa"}}>
+        <ModalControl handleSubmit={handleSubmit} triggerCopy={""} buttonAttrs={{color: "qa", icon: "check"}}>
           <div>
             <p>{props.session.notes}</p>
             <p>Requested by: {props.session.user}</p>

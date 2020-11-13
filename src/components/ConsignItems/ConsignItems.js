@@ -41,8 +41,26 @@ function ConsignItems(props) {
       (props.thisRunData[updateBadField] += countBad)
     );
 
-    //Force activate next stage
-    props.updateStageActive(true, props.thisStage + 1);
+    //Force activate stocking stage
+    if (props.thisStage === 3) {
+      props.updateStageActive(true, props.thisStage + 1);
+    }
+
+    //Add session
+    const newSessionUid = Date.now();
+
+    const newSession = {
+      sessionUid: newSessionUid,
+      type: "consign",
+      startTime: Date.now(),
+      endTime: Date.now(),
+      resolved: true,
+      user: props.activeUser,
+      amount: countGood,
+      amountBad: countBad,
+    };
+
+    props.addSession(newSession, newSessionUid, props.thisStage);
   };
 
   const buildTotals = function () {
