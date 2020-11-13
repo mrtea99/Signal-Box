@@ -106,7 +106,7 @@ function SessionList(props) {
           <th className={styles.headerItem}>№</th>
           <th className={styles.headerItem}>Activity</th>
           <th className={styles.headerItem}>Start Time</th>
-          <th className={styles.headerItem}>Finish Time</th>
+          {/* <th className={styles.headerItem}>Finish Time</th> */}
           <th className={styles.headerItem}>Duration</th>
           {props.thisStage === 1 ? (
             <th className={styles.headerItem}>Batches</th>
@@ -152,7 +152,7 @@ function SessionList(props) {
               "-"
             )}
           </td>
-          <td className={styles.contentItem}>{findTotalEndTime()}</td>
+          {/* <td className={styles.contentItem}>{findTotalEndTime()}</td> */}
           <td className={styles.contentItem}>
             {newestEndTime ? (
               <>{findTotalDuration()}</>
@@ -189,7 +189,12 @@ function SessionList(props) {
           .slice(0)
           .reverse()
           .map((session, index) => (
-            <tr key={session.sessionUid + index} className={styles.itemRow}>
+            <tr
+              key={session.sessionUid + index}
+              className={`${styles.itemRow} ${
+                styles["itemRow--" + session.type]
+              }`}
+            >
               <td className={styles.contentItem}>
                 {thisStageData.length - index}
               </td>
@@ -198,22 +203,30 @@ function SessionList(props) {
               </td>
               <td className={styles.contentItem}>
                 <time dateTime={new Date(session.startTime).toISOString()}>
-                  {formatDate(session.startTime)}
+                  <span className={styles.date}>
+                    {formatDate(session.startTime)}
+                  </span>
                   <br />
-                  {formatTime(session.startTime)}
+                  <span className={styles.time}>
+                    {formatTime(session.startTime)}
+                  </span>
                 </time>
               </td>
-              <td className={styles.contentItem}>
+              {/* <td className={styles.contentItem}>
                 {session.endTime ? (
                   <time dateTime={new Date(session.endTime).toISOString()}>
-                    {formatDate(session.endTime)}
+                    <span className={styles.date}>
+                      {formatDate(session.endTime)}
+                    </span>
                     <br />
-                    {formatTime(session.endTime)}
+                    <span className={styles.time}>
+                      {formatTime(session.endTime)}
+                    </span>
                   </time>
                 ) : (
                   "-"
                 )}
-              </td>
+              </td> */}
               <td className={styles.contentItem}>
                 {session.endTime ? (
                   <TimeFormater

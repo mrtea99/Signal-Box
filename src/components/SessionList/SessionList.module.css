@@ -24,7 +24,30 @@
 
 .itemRow {
   background-color: var(--color-fg);
-  margin: 0 1rem;
+  /* margin: 0 1rem; */
+}
+
+.itemRow .contentItem:first-child:before {
+  content: '';
+  display: block;
+  width: 0.4rem;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.itemRow--work .contentItem:first-child:before {
+  background-color: var(--color-pink-bright);
+}
+.itemRow--qa .contentItem:first-child:before {
+  background-color: var(--color-qa);
+}
+.itemRow--issue .contentItem:first-child:before {
+  background-color: var(--color-issue);
+}
+.itemRow--event .contentItem:first-child:before {
+  background-color: var(--color-complete);
 }
 
 .itemRowTotals {
@@ -37,8 +60,13 @@
   padding: 0.2em;
   border-top: 0.5rem solid var(--color-bg);
   font-size: 1em;
+  position: relative;
 }
 
 .alignLeft {
   text-align: left;
+}
+
+.date, .time {
+  white-space: nowrap;
 }
