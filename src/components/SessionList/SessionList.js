@@ -5,6 +5,7 @@ import Timer from "../Timer/Timer.js";
 import FlagCloser from "../FlagCloser/FlagCloser.js";
 import CheckCloser from "../CheckCloser/CheckCloser.js";
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
+import Repeater from "./Repeater/Repeater.js";
 
 import styles from "./SessionList.module.css";
 
@@ -313,7 +314,10 @@ function SessionList(props) {
               </td>
               <td className={styles.contentItem}>
                 {session.notes && session.notes.length ? (
-                  <ModalControl triggerCopy={""} buttonAttrs={{icon: 'details'}}>
+                  <ModalControl
+                    triggerCopy={""}
+                    buttonAttrs={{ icon: "details" }}
+                  >
                     {session.notes.split("\n").map((item, key) => {
                       return (
                         <span key={key}>
@@ -332,22 +336,6 @@ function SessionList(props) {
       </tbody>
     </table>
   );
-}
-
-function Repeater(props) {
-  const [returnValue, setReturnValue] = React.useState(props.callback());
-
-  React.useEffect(() => {
-    const timerInterval = setInterval(() => {
-      setReturnValue(props.callback());
-    }, props.interval);
-
-    return () => {
-      clearInterval(timerInterval);
-    };
-  });
-
-  return returnValue;
 }
 
 export default SessionList;

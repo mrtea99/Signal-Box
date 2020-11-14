@@ -4,6 +4,7 @@ import StageControl from "../StageControl/StageControl.js";
 import StageOverview from "../StageOverview/StageOverview.js";
 import Modal from "../Modal/Modal.js";
 import Button from "../Button/Button.js";
+// import FormItem from "../FormItem/FormItem.js";
 
 import styles from "./RunEditor.module.css";
 import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
@@ -15,14 +16,14 @@ function RunEditor(props) {
     (obj) => obj.uid === props.currentRunUid
   );
 
-  const handleChange = function (dataSection, dataKey, e) {
-    props.updateRunData(
-      props.currentRunUid,
-      dataSection,
-      dataKey,
-      e.target.value
-    );
-  };
+  // const handleChange = function (dataSection, dataKey, e) {
+  //   props.updateRunData(
+  //     props.currentRunUid,
+  //     dataSection,
+  //     dataKey,
+  //     e.target.value
+  //   );
+  // };
 
   const handleEditInfoClick = function (e) {
     e.preventDefault();
@@ -40,51 +41,25 @@ function RunEditor(props) {
   return (
     <>
       {thisRunData ? (
-        <div className={[styles.runEditor, styles.runEditorActive].join(" ")}>
+        <div className={`${styles.runEditor} ${styles.runEditorActive}`}>
           <header>
             <Button onClick={(e) => handleExitClick(e)}>Exit</Button>
           </header>
           <div>
             <section className={styles.runInfo}>
-              <div
-                className={[styles.runInfoSec, styles.runInfoProd].join(" ")}
-              >
+              <div className={`${styles.runInfoSec} ${styles.runInfoProd}`}>
                 <h2 className={styles.runInfoTitle}>Production Run of:</h2>
                 <h3 className={styles.runInfoName}>
                   {thisRunData.productInfo.productName}
                 </h3>
-                <FormItem
-                  editable={false}
-                  name="SKU"
-                  ident="productSKU"
-                  dataSection="productInfo"
-                  dataKey="productSKU"
-                  type="number"
-                  data={thisRunData}
-                  changeHandler={handleChange}
-                />
+                <h4 className={styles.runInfoId}>
+                  Run ID:{thisRunData.runInfo.runId}
+                </h4>
               </div>
-              <div className={[styles.runInfoSec, styles.runInfoRun].join(" ")}>
-                <FormItem
-                  editable={false}
-                  name="Run ID"
-                  ident="runid"
-                  dataSection="runInfo"
-                  dataKey="runId"
-                  type="number"
-                  data={thisRunData}
-                  changeHandler={handleChange}
-                />
-                <FormItem
-                  editable={false}
-                  name="Batch Quantity"
-                  ident="quantity"
-                  dataSection="productInfo"
-                  dataKey="batchQuantity"
-                  type="number"
-                  data={thisRunData}
-                  changeHandler={handleChange}
-                />
+              <div className={`${styles.runInfoSec}, ${styles.runInfoRun}`}>
+                <h4 className={styles.runInfoQuantity}>
+                  Batch Quantity: {thisRunData.productInfo.batchQuantity}
+                </h4>
                 <ButtonSpacer>
                   <Button onClick={handleEditInfoClick}>Info</Button>
                   <Button onClick={() => setModalOverviewActive(true)}>
@@ -123,36 +98,6 @@ function RunEditor(props) {
         </div>
       )}
     </>
-  );
-}
-
-function FormItem(props) {
-  const itemValueSection = props.data[props.dataSection];
-  let itemValue = {};
-  if (itemValueSection !== undefined) {
-    itemValue = props.data[props.dataSection][props.dataKey];
-  }
-
-  if (itemValueSection === undefined && itemValue === undefined) {
-    return <></>;
-  }
-
-  const viewField = <span>{itemValue}</span>;
-  const editField = (
-    <input
-      id={props.ident}
-      name={props.ident}
-      type={props.type}
-      onChange={(e) => props.changeHandler(props.dataSection, props.dataKey, e)}
-      value={itemValue}
-    />
-  );
-
-  return (
-    <div>
-      <label htmlFor={props.ident}>{props.name}: </label>
-      {props.editable ? editField : viewField}
-    </div>
   );
 }
 

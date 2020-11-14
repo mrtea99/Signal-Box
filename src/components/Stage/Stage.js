@@ -1,6 +1,6 @@
 import React from "react";
 
-import SessionControl from "../SessionControl/SessionControl.js";
+import SessionControl from "./SessionControl/SessionControl.js";
 import SessionList from "../SessionList/SessionList.js";
 import StageStatus from "../StageStatus/StageStatus.js";
 import StageActions from "../StageActions/StageActions.js";
