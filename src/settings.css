@@ -44,6 +44,8 @@
   --text-normal: 1em;
   /* 18pt */
   --text-larger: 1.125em;
+  /* 24pt */
+  --text-large: 1.375em;
 
   /* Sizes */
   --size-touch-min: 2.7rem;

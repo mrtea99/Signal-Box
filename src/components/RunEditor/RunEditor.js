@@ -52,18 +52,21 @@ function RunEditor(props) {
                 <h3 className={styles.runInfoName}>
                   {thisRunData.productInfo.productName}
                 </h3>
-                <h4 className={styles.runInfoId}>
-                  Run ID:{thisRunData.runInfo.runId}
+                <h4 className={styles.runInfoItem}>
+                  Run ID: {thisRunData.runInfo.runId}
                 </h4>
               </div>
-              <div className={`${styles.runInfoSec}, ${styles.runInfoRun}`}>
-                <h4 className={styles.runInfoQuantity}>
-                  Batch Quantity: {thisRunData.productInfo.batchQuantity}
-                </h4>
+              <div className={`${styles.runInfoSec} ${styles.runInfoRun}`}>
+                <div className={styles.infoBox}>
+                  <h4 className={styles.runInfoItem}>Status: In Progress</h4>
+                  <h4 className={styles.runInfoItem}>
+                    Batches: {thisRunData.productInfo.batchQuantity}
+                  </h4>
+                </div>
                 <ButtonSpacer>
                   <Button onClick={handleEditInfoClick}>Info</Button>
                   <Button onClick={() => setModalOverviewActive(true)}>
-                    Status
+                    Review
                   </Button>
                 </ButtonSpacer>
                 {modalOverviewActive ? (
