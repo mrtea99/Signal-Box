@@ -1,6 +1,6 @@
 import React from "react";
 
-import StageStatus from "../StageStatus/StageStatus.js";
+import StageStatus from "../../StageStatus/StageStatus.js";
 
 import styles from "./StageNav.module.css";
 
