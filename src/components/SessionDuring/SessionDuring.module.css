@@ -15,6 +15,12 @@
   background-color: var(--color-grey-dark);
 }
 
+.sessionPlaceholder {
+  height: 100%;
+  border: 0.2rem solid var(--color-grey-bright);
+  border-top-width: 2.2rem;
+}
+
 .readOnly {
   padding: 1rem;
   background-color: var(--color-grey-light);

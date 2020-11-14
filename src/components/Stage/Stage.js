@@ -24,7 +24,7 @@ function Stage(props) {
       for (let i = 0; i < sessionList.length; i++) {
         if (
           sessionList[i].user === props.activeUser &&
-          sessionList[i].endTime === undefined &&
+          sessionList[i].resolved === false &&
           sessionList[i].type === "work"
         ) {
           return sessionList[i];
@@ -186,16 +186,12 @@ function Stage(props) {
           />
         </div>
         <div className={styles.sessionView}>
-          {activeSessionData ? (
-            <SessionDuring
-              activeSessionData={activeSessionData}
-              updateSession={updateSession}
-              thisStage={props.thisStage}
-              thisRunData={props.thisRunData}
-            />
-          ) : (
-            <></>
-          )}
+          <SessionDuring
+            activeSessionData={activeSessionData}
+            updateSession={updateSession}
+            thisStage={props.thisStage}
+            thisRunData={props.thisRunData}
+          />
         </div>
         <div className={styles.sessionControl}>
           <SessionControl
