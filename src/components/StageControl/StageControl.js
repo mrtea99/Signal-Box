@@ -1,7 +1,7 @@
 import React from "react";
 
 import Stage from "../Stage/Stage.js";
-import StageNav from "../RunEditor/StageNav/StageNav.js";
+import StageNav from "../StageNav/StageNav.js";
 
 // import styles from './StageControl.module.css';
 
@@ -14,10 +14,12 @@ function StageControl(props) {
         stageNameArr={stageNameArr}
         currentRunUid={props.currentRunUid}
         activeStage={props.activeStage}
-        setActiveStage={props.setActiveStage}
+        buttonCallback={props.setActiveStage}
         updateRunData={props.updateRunData}
         thisRunData={props.thisRunData}
         activeUser={props.activeUser}
+        stageLabels
+        showActive
       />
 
       <Stage

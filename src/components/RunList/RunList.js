@@ -2,9 +2,10 @@ import React from "react";
 import styles from "./RunList.module.css";
 
 import Button from "../Button/Button.js";
-import StageStatus from "../StageStatus/StageStatus";
+// import StageStatus from "../StageStatus/StageStatus";
 import StageOverview from "../StageOverview/StageOverview.js";
 import Modal from "../Modal/Modal.js";
+import StageNav from "../StageNav/StageNav";
 // import RunDelete from "../RunDelete/RunDelete.js";
 
 function RunList(props) {
@@ -65,7 +66,20 @@ function RunList(props) {
                 <></>
               )}
             </tr>
-            <tr key={run.uid} className={styles.itemRow}>
+
+            <StageNav
+              stageNameArr={["Prep", "Craft", "Package", "Label", "Stock"]}
+              currentRunUid={props.currentRunUid}
+              activeStage={props.activeStage}
+              buttonCallback={(newIndex) => openEditor(run.uid, newIndex)}
+              updateRunData={props.updateRunData}
+              thisRunData={run}
+              activeUser={props.activeUser}
+              sessionLabels
+              syntax="table"
+            ></StageNav>
+
+            {/* <tr key={run.uid} className={styles.itemRow}>
               <td className={styles.runItem}>
                 <StageStatus
                   runData={run}
@@ -86,18 +100,6 @@ function RunList(props) {
                   activeUser={props.activeUser}
                 />
               </td>
-              {/* <td className={styles.runItem}>
-              <StageStatus
-                runData={run}
-                stageNum={[0, 1]}
-                label={true}
-                button={true}
-                onClick={() =>
-                  openEditor(run.uid, findManuStage(run.completion))
-                }
-                activeUser={props.activeUser}
-              />
-            </td> */}
               <td className={styles.runItem}>
                 <StageStatus
                   runData={run}
@@ -128,7 +130,7 @@ function RunList(props) {
                   activeUser={props.activeUser}
                 />
               </td>
-              {/* <td className={styles.runItem}>
+              <td className={styles.runItem}>
                 <Button onClick={() => setModalOverviewActive(run.uid)}>
                   X
                 </Button>
@@ -142,11 +144,11 @@ function RunList(props) {
                 ) : (
                   <></>
                 )}
-              </td> */}
-              {/* <td className={styles.runItem}>
+              </td>
+              <td className={styles.runItem}>
               <RunDelete updateRunData={props.updateRunData} uid={run.uid} />
-            </td> */}
-            </tr>
+            </td>
+            </tr> */}
           </React.Fragment>
         ))}
       </tbody>
