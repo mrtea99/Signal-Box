@@ -43,7 +43,7 @@ function RunEditor(props) {
       {thisRunData ? (
         <div className={`${styles.runEditor} ${styles.runEditorActive}`}>
           <header>
-            <Button onClick={(e) => handleExitClick(e)}>Exit</Button>
+            <Button onClick={(e) => handleExitClick(e)} icon="previous" iconFirst>Exit</Button>
           </header>
           <div>
             <section className={styles.runInfo}>

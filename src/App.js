@@ -105,7 +105,7 @@ function App() {
             <menu className={styles.listControls}>
               <section className={styles.filterControls}></section>
               <section className={styles.otherControls}>
-                <Button onClick={handleAddClick}>New Run +</Button>
+                <Button onClick={handleAddClick} icon="plus">New Run</Button>
               </section>
             </menu>
             <RunList

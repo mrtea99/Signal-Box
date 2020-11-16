@@ -20,12 +20,17 @@ function Button(props) {
   if (props.icon) {
     styleClasses += " " + styles.hasIcon;
   }
+  if (props.iconFirst) {
+    styleClasses += " " + styles.iconFirst;
+  }
+  if (!props.children) {
+    styleClasses += " " + styles.iconOnly;
+  }
 
   return (
     <button
       className={styleClasses}
       disabled={props.disabled}
-      // {...props}
       onClick={(e) => {
         e.preventDefault();
         props.onClick(e);

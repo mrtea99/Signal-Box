@@ -1,11 +1,14 @@
 .button {
+  --width-icon-spacing: 0.75rem;
+  --color-copy: var(--color-white);
+
   display: inline-flex;
   border: none;
   padding: 0.25rem 1rem;
   margin: 0;
   text-decoration: none;
   background-color: var(--color-accent);
-  color: var(--color-text);
+  color: var(--color-copy);
   font-family: var(--font-default);
   cursor: pointer;
   text-align: center;
@@ -27,7 +30,7 @@
 
 .button:hover,
 .button:focus {
-  background: var(--color-fg);
+  background: var(--color-grey-bright);
 }
 
 .button:focus {
@@ -52,6 +55,16 @@
   justify-content: space-between;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+.iconFirst {
+  flex-direction: row-reverse;
+}
+.iconFirst .iconWrapper  {
+  margin-right: var(--width-icon-spacing);
+  margin-left: 0;
+}
+.iconOnly .iconWrapper {
+  margin-left: 0;
 }
 
 .colorCancel {
@@ -81,7 +94,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  margin-left: 0.25rem;
+  margin-left: var(--width-icon-spacing);
+  flex-shrink: 0;
 }
 .icon {
   min-height: 1.6rem;
@@ -89,5 +103,5 @@
 }
 
 .icon path {
-  fill: var(--color-white);
+  fill: var(--color-copy);
 }
