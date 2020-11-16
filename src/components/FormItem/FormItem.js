@@ -1,34 +1,19 @@
 import React from "react";
 
 function FormItem(props) {
+  const { ident, label, type, ...fieldProps } = props;
+
   let fieldElem;
 
-  switch (props.type) {
+  switch (type) {
     case "textarea":
-      fieldElem = (
-        <textarea
-          id={props.ident}
-          name={props.ident}
-          onChange={props.onChange}
-          value={props.value}
-          {...props.fieldProps}
-        />
-      );
+      fieldElem = <textarea id={ident} name={ident} {...fieldProps} />;
       break;
     case "number":
-      fieldElem = (
-        <input
-          type="number"
-          id={props.ident}
-          name={props.ident}
-          onChange={props.onChange}
-          value={props.value}
-          {...props.fieldProps}
-        />
-      );
+      fieldElem = <input type={type} id={ident} name={ident} {...fieldProps} />;
       break;
     default:
-      fieldElem = <></>;
+      fieldElem = null;
       break;
   }
 

@@ -80,7 +80,7 @@ function SessionDuring(props) {
                       )
                     }
                     value={amount}
-                    fieldProps={{ min: 0 }}
+                    min="0"
                   ></FormItem>
 
                   <FormItem
@@ -98,7 +98,7 @@ function SessionDuring(props) {
                       )
                     }
                     value={amountBad}
-                    fieldProps={{ min: 0 }}
+                    min="0"
                   ></FormItem>
                 </>
               ) : (
