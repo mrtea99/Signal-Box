@@ -1,4 +1,5 @@
 import React from "react";
+import FormItem from "../FormItem/FormItem.js";
 
 import Timer from "../Timer/Timer.js";
 
@@ -50,63 +51,55 @@ function SessionDuring(props) {
           </div>
           <div className={styles.userInput}>
             <form className={styles.userInputForm}>
-              <div>
-                <label htmlFor={"sess-notes-step-" + props.thisStage}>
-                  Notes:
-                </label>
-                <textarea
-                  id={"sess-notes-step-" + props.thisStage}
-                  onChange={(e) =>
-                    handleFieldChange(e.target.value, setNoteData, "notes")
-                  }
-                  value={noteData}
-                />
-              </div>
+              <FormItem
+                type="textarea"
+                ident={"sess-notes-step-" + props.thisStage}
+                label="Note"
+                onChange={(e) =>
+                  handleFieldChange(e.target.value, setNoteData, "notes")
+                }
+                value={noteData}
+              ></FormItem>
+
               {props.thisStage === 1 ||
               props.thisStage === 2 ||
               props.thisStage === 3 ? (
                 <>
-                  <div>
-                    <label htmlFor={"sess-amount-step-" + props.thisStage}>
-                      Completed {props.thisStage === 1 ? "Batches" : "Units"}:
-                      {props.thisStage === 1
-                        ? "(Target " +
-                          props.thisRunData.productInfo.batchQuantity +
-                          ")"
-                        : ""}
-                    </label>
-                    <input
-                      id={"sess-amount-step-" + props.thisStage}
-                      type="number"
-                      min="0"
-                      onChange={(e) =>
-                        handleFieldChange(
-                          parseInt(e.target.value),
-                          setAmount,
-                          "amount"
-                        )
-                      }
-                      value={amount}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor={"sess-amount-bad-step-" + props.thisStage}>
-                      Defective {props.thisStage === 1 ? "Batches" : "Units"}:
-                    </label>
-                    <input
-                      id={"sess-amount-bad-step-" + props.thisStage}
-                      type="number"
-                      min="0"
-                      onChange={(e) =>
-                        handleFieldChange(
-                          parseInt(e.target.value),
-                          setAmountBad,
-                          "amountBad"
-                        )
-                      }
-                      value={amountBad}
-                    />
-                  </div>
+                  <FormItem
+                    type="number"
+                    ident={"sess-amount-step-" + props.thisStage}
+                    label={
+                      "Completed " +
+                      (props.thisStage === 1 ? "Batches" : "Units")
+                    }
+                    onChange={(e) =>
+                      handleFieldChange(
+                        parseInt(e.target.value),
+                        setAmount,
+                        "amount"
+                      )
+                    }
+                    value={amount}
+                    fieldProps={{ min: 0 }}
+                  ></FormItem>
+
+                  <FormItem
+                    type="number"
+                    ident={"sess-amount-bad-step-" + props.thisStage}
+                    label={
+                      "Defective " +
+                      (props.thisStage === 1 ? "Batches" : "Units")
+                    }
+                    onChange={(e) =>
+                      handleFieldChange(
+                        parseInt(e.target.value),
+                        setAmountBad,
+                        "amountBad"
+                      )
+                    }
+                    value={amountBad}
+                    fieldProps={{ min: 0 }}
+                  ></FormItem>
                 </>
               ) : (
                 <></>

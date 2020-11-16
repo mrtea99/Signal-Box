@@ -1,31 +1,41 @@
 import React from "react";
 
 function FormItem(props) {
-  const itemValueSection = props.data[props.dataSection];
-  let itemValue = {};
-  if (itemValueSection !== undefined) {
-    itemValue = props.data[props.dataSection][props.dataKey];
-  }
+  let fieldElem;
 
-  if (itemValueSection === undefined && itemValue === undefined) {
-    return <></>;
+  switch (props.type) {
+    case "textarea":
+      fieldElem = (
+        <textarea
+          id={props.ident}
+          name={props.ident}
+          onChange={props.onChange}
+          value={props.value}
+          {...props.fieldProps}
+        />
+      );
+      break;
+    case "number":
+      fieldElem = (
+        <input
+          type="number"
+          id={props.ident}
+          name={props.ident}
+          onChange={props.onChange}
+          value={props.value}
+          {...props.fieldProps}
+        />
+      );
+      break;
+    default:
+      fieldElem = <></>;
+      break;
   }
-
-  const viewField = <span>{itemValue}</span>;
-  const editField = (
-    <input
-      id={props.ident}
-      name={props.ident}
-      type={props.type}
-      onChange={(e) => props.changeHandler(props.dataSection, props.dataKey, e)}
-      value={itemValue}
-    />
-  );
 
   return (
     <div>
-      <label htmlFor={props.ident}>{props.name}: </label>
-      {props.editable ? editField : viewField}
+      <label htmlFor={props.ident}>{props.label}:</label>
+      {fieldElem}
     </div>
   );
 }
