@@ -7,10 +7,25 @@ function FormItem(props) {
 
   switch (type) {
     case "textarea":
-      fieldElem = <textarea id={ident} name={ident} {...fieldProps} />;
+      fieldElem = (
+        <textarea
+          id={ident}
+          name={ident}
+          {...fieldProps}
+          value={fieldProps.value || ""}
+        />
+      );
       break;
     case "number":
-      fieldElem = <input type={type} id={ident} name={ident} {...fieldProps} />;
+      fieldElem = (
+        <input
+          type={type}
+          id={ident}
+          name={ident}
+          {...fieldProps}
+          value={fieldProps.value || 0}
+        />
+      );
       break;
     default:
       fieldElem = null;
