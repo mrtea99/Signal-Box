@@ -4,6 +4,7 @@ import FormItem from "../FormItem/FormItem.js";
 import Timer from "../Timer/Timer.js";
 
 import styles from "./SessionDuring.module.css";
+import Stopwatch from "./Stopwatch/Stopwatch.js";
 
 function SessionDuring(props) {
   // After Statuses
@@ -45,9 +46,9 @@ function SessionDuring(props) {
                 Activity: {props.activeSessionData.activity}
               </li>
             </ul>
-            <p>
+            <Stopwatch>
               <Timer startTime={props.activeSessionData.startTime} />
-            </p>
+            </Stopwatch>
           </div>
           <div className={styles.userInput}>
             <form className={styles.userInputForm}>

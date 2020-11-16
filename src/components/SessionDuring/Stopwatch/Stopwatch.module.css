@@ -1,0 +1,29 @@
+.label {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+  /* padding-bottom: 0.1em; */
+}
+.label::before, .label::after {
+  content: '';
+  display: inline-block;
+  height: 0.5em;
+  width: 1.3em;
+  background-color: white;
+  margin: 0 0.3em 0em 0.3em;
+}
+
+.labelInner {
+  font-size: 0.8em;
+  padding: 0 0.3em;
+}
+
+.time {
+  border: 0.2rem solid var(--color-white);
+  border-radius: 0.2rem;
+  padding: 0.2rem 0.5rem;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2em;
+}
