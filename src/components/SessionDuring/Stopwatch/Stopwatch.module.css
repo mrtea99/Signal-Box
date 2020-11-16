@@ -1,3 +1,7 @@
+.wrapper {
+  --color-stopwatch: var(--color-white);
+}
+
 .label {
   display: flex;
   flex-direction: row;
@@ -10,7 +14,7 @@
   display: inline-block;
   height: 0.5em;
   width: 1.3em;
-  background-color: white;
+  background-color: var(--color-stopwatch);
   margin: 0 0.3em 0em 0.3em;
 }
 
@@ -20,7 +24,7 @@
 }
 
 .time {
-  border: 0.2rem solid var(--color-white);
+  border: 0.2rem solid var(--color-stopwatch);
   border-radius: 0.2rem;
   padding: 0.2rem 0.5rem;
   text-align: center;
