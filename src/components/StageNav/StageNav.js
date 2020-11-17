@@ -24,10 +24,7 @@ function StageNav(props) {
   return (
     <WrapperElem className={wrapperClasses}>
       {props.stageNameArr.map((stage, index) => (
-        <InnerElem
-          key={props.currentRunUid + stage}
-          className={innerClasses}
-        >
+        <InnerElem key={props.currentRunUid + stage} className={innerClasses}>
           <button
             className={`${styles.progBtn} ${
               props.activeStage === index && props.showActive
@@ -36,21 +33,22 @@ function StageNav(props) {
             }`}
             onClick={(e) => handleNavList(index, e)}
           >
-            {props.stageLabels ? (
-              <>
-                <span className={styles.btnLabel}>{stage}</span>
-                <br />
-              </>
-            ) : (
-              <></>
-            )}
+            <span
+              className={`${styles.btnLabel} ${
+                props.stageLabels ? styles.showLabel : ""
+              }`}
+            >
+              {stage}
+            </span>
 
-            <StageStatus
-              runData={props.thisRunData}
-              stageNum={index}
-              activeUser={props.activeUser}
-              label={props.sessionLabels}
-            />
+            <span className={styles.status}>
+              <StageStatus
+                runData={props.thisRunData}
+                stageNum={index}
+                activeUser={props.activeUser}
+                label={props.sessionLabels}
+              />
+            </span>
           </button>
         </InnerElem>
       ))}

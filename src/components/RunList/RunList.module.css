@@ -1,19 +1,36 @@
 /* @import '../../settings.css'; */
 
 .container {
-  border-collapse: collapse;
-  width: 100%;
+
 }
 
 .header {
   background-color: var(--color-accent);
+  display: none;
+}
+
+.headerList {
+  display: flex;
+  flex-direction: row;
+  flex-basis: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .headerItem {
+  list-style-type: none;
   font-weight: normal;
   text-transform: uppercase;
   font-size: 0.8em;
   padding: 0.3rem 0.1rem;
+  flex-grow: 1;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .header {
+    display: block;
+  }
 }
 
 .itemRow {
@@ -25,12 +42,19 @@
   padding: 0rem 0.1rem;
 }
 
-.itemTitle {
-  font-weight: bold;
+.itemInfo {
   background-color: var(--color-grey-bright);
   border-top: 0.5rem solid var(--color-bg);
   padding: 0.3rem 1rem;
   height: var(--size-touch-min);
+  display: flex;
+  align-items: center;
+}
+
+.itemTitle {
+  font-weight: bold;
+  margin: 0;
+
 }
 
 .alignLeft {
