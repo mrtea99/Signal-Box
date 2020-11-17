@@ -21,7 +21,7 @@
   left: 0vw;
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .siteSidebar {
     width: 16rem;
     position: relative;
@@ -32,7 +32,7 @@
   .sidebarControl {
     display: none;
   }
-}
+} */
 
 
 .siteLogo {

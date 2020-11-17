@@ -83,7 +83,7 @@ function App() {
     <div className={styles.siteContainer}>
       <header className={styles.siteHeader}>
         <div className={styles.sidebarTrigger}>
-          <Button onClick={() => setSidebarActive(true)}>Open Sidebar</Button>
+          <Button onClick={() => setSidebarActive(true)} icon="fix" />
         </div>
         <div>
           <select
