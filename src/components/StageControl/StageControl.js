@@ -3,8 +3,6 @@ import React from "react";
 import Stage from "../Stage/Stage.js";
 import StageNav from "../StageNav/StageNav.js";
 
-// import styles from './StageControl.module.css';
-
 function StageControl(props) {
   const stageNameArr = ["Prep", "Craft", "Package", "Label", "Stock"];
 

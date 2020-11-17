@@ -1,8 +1,6 @@
-/* @import '../../settings.css'; */
+/* .container {
 
-.container {
-
-}
+} */
 
 .header {
   background-color: var(--color-accent);
@@ -49,12 +47,12 @@
   height: var(--size-touch-min);
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .itemTitle {
   font-weight: bold;
   margin: 0;
-
 }
 
 .alignLeft {

@@ -29,7 +29,14 @@
 /* Main */
 .sessionHolder {
   display: flex;
-  align-items: stretch;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .sessionHolder {
+    flex-direction: row;
+    align-items: stretch;
+  }
 }
 
 /* Stage Control */
@@ -43,27 +50,33 @@
   margin: 0;
 }
 
-.sessionControl,
-.stageControl {
-  width: 10rem;
-  flex-shrink: 0;
-}
-
 /* Session Viewer */
 .sessionView {
   flex-grow: 1;
-  margin: 0 1rem;
-  min-height: 15rem;
   background-color: var(--color-grey-dark);
+  margin: 1rem 0;
+  min-height: 10rem;
+}
+
+@media (min-width: 768px) {
+  .sessionControl,
+  .stageControl {
+    width: 10rem;
+    flex-shrink: 0;
+  }
+  .sessionView {
+    margin: 0 1rem;
+    min-height: 15rem;
+  }
 }
 
 /* Temp */
 .sessionControl {
-  order: 1
+  order: 1;
 }
 .stageControl {
-  order: 3
+  order: 3;
 }
 .sessionView {
-  order: 2
+  order: 2;
 }
