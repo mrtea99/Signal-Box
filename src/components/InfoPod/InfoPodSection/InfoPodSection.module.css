@@ -1,0 +1,22 @@
+.wrapper {
+  --border-width: 0.15em;
+  --core-size: 1.6em;
+  --flag-width: calc(((var(--core-size)) * 2) - var(--border-width));
+  --speed-change: 0.5s;
+  --easing-change: ease;
+
+  display: inline-flex;
+  flex-direction: row;
+  vertical-align: middle;
+  position: relative;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+
+  align-content: stretch;
+}
+
+.flags {
+  display: flex;
+  flex-direction: row-reverse;
+}

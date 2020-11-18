@@ -1,88 +1,12 @@
-.module {
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-}
 
-.wrapper {
-  --border-width: 0.15em;
-  --core-size: 1.6em;
-  --flag-width: calc(((var(--core-size)) * 2) - var(--border-width));
-  --speed-change: 0.5s;
-  --easing-change: ease;
-
-  display: inline-flex;
-  flex-direction: row;
-  vertical-align: middle;
-  position: relative;
-  font-size: 1rem;
-  font-weight: bold;
-  text-decoration: none;
-
-  align-content: stretch;
-}
-
-.core {
-  display: flex;
-  width: auto;
-  justify-content: center;
-  align-items: center;
-  color: var(--color-text);
-  background-color: var(--color-bg);
-  min-height: var(--core-size);
-  min-width: var(--core-size);
-  text-align: center;
-  border: var(--border-width) solid var(--color-white);
-  border-radius: calc(var(--core-size) / 2);
-  line-height: 1em;
-  position: relative;
-  z-index: 10;
-  /* align-self: flex-start; */
-  transition: background-color var(--speed-change) var(--easing-change);
-}
-
-.coreLabel {
-  margin-bottom: calc(var(--border-width) * -1);
-  min-width: 7rem;
-}
-
-.core--pending {
+.podItempending {
   background-color: var(--color-grey-bright);
 }
-.flagUserWorking,
-.core--working {
+.podItemworking {
   background-color: var(--color-pink-bright);
 }
-/* .core--paused {
-  background-color: orange;
-} */
-
-.flagUserComplete,
-.core--skipped,
-.core--complete {
+.podItemcomplete {
   background-color: var(--color-complete);
-}
-
-.flags {
-  display: flex;
-  flex-direction: row-reverse;
-}
-
-.flag {
-  margin-left: calc(var(--core-size) * -1);
-  border-radius: calc(var(--core-size) / 2);
-  width: var(--core-size);
-  transition: all var(--speed-change) var(--easing-change);
-  display: inline-flex;
-  justify-content: center;
-  padding-left: 0;
-  z-index: 9;
-}
-
-/* .wrapper:hover .flag, */
-.flagActive {
-  width: var(--flag-width);
-  padding-left: calc(var(--core-size) - var(--border-width));
 }
 
 .flagIssue {
@@ -92,14 +16,7 @@
   background-color: var(--color-qa);
 }
 
-.inner {
-  vertical-align: middle;
-  font-size: 0.9em;
-  padding: 0.1em 0.4em;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+
 
 .icon {
   max-height: 0.8em;

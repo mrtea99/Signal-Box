@@ -1,5 +1,9 @@
 import React from "react";
 
+import InfoPod from "../InfoPod/InfoPod.js";
+import InfoPodSection from "../InfoPod/InfoPodSection/InfoPodSection.js";
+import InfoPodItem from "../InfoPod/InfoPodItem/InfoPodItem.js";
+
 import styles from "./StatusIcon.module.css";
 
 import { ReactComponent as Checkmark } from "./checkmark.svg";
@@ -48,28 +52,66 @@ function StatusIcon(props) {
   };
 
   return (
-    <span className={styles.module}>
+    <InfoPod>
       {props.label ? (
-        <span className={styles.wrapper}>
-          <span
-            className={`${styles.core} ${styles.coreLabel} ${
-              styles["core--" + props.stageStatusName]
+        <InfoPodSection
+          core={
+            <InfoPodItem
+              type="label"
+              className={`${styles["podItem" + props.stageStatusName]}`}
+              stageStatusName={props.stageStatusName}
+            >
+              {getLabel()}
+            </InfoPodItem>
+          }
+        ></InfoPodSection>
+      ) : null}
+      <InfoPodSection
+        core={
+          <InfoPodItem
+            type="core"
+            className={`${styles["podItem" + props.stageStatusName]}`}
+          >
+            {innerContent()}
+          </InfoPodItem>
+        }
+        flags={[
+          <InfoPodItem
+            type="flag"
+            key="issue"
+            active={props.issueActive}
+            className={styles.flagIssue}
+          >
+            !
+          </InfoPodItem>,
+          <InfoPodItem
+            type="flag"
+            key="qa"
+            active={props.qaActive}
+            className={styles.flagQa}
+          >
+            ?
+          </InfoPodItem>,
+          <InfoPodItem
+            type="flag"
+            key="user"
+            active={props.userTotal}
+            className={`${props.userActive ? styles.podItemworking : ""} ${
+              props.stageStatusName === "complete" ? styles.podItemcomplete : ""
             }`}
           >
-            <span className={styles.inner}>{getLabel()}</span>
-          </span>
-        </span>
-      ) : (
-        <></>
-      )}
-      <span className={styles.wrapper}>
-        <span
+            U
+          </InfoPodItem>,
+        ]}
+      >
+        {/* <span
           className={`${styles.core} ${
             styles["core--" + props.stageStatusName]
           }`}
         >
           <span className={styles.inner}>{innerContent()}</span>
         </span>
+
         <span className={styles.flags}>
           <span
             className={`${styles.core} ${styles.flag} ${styles.flagIssue} ${
@@ -96,9 +138,9 @@ function StatusIcon(props) {
           >
             <span className={styles.inner}>U</span>
           </span>
-        </span>
-      </span>
-    </span>
+        </span> */}
+      </InfoPodSection>
+    </InfoPod>
   );
 }
 
