@@ -11,6 +11,7 @@ function RunListStage(props) {
             key={run.uid}
             runData={run}
             stageNum={props.stageNum}
+            activeUser={props.activeUser}
           />
         ))
       ) : (

@@ -54,27 +54,17 @@ function StatusIcon(props) {
   return (
     <InfoPod>
       {props.label ? (
-        <InfoPodSection
-          core={
-            <InfoPodItem
-              type="label"
-              className={`${styles["podItem" + props.stageStatusName]}`}
-              stageStatusName={props.stageStatusName}
-            >
-              {getLabel()}
-            </InfoPodItem>
-          }
-        ></InfoPodSection>
+        <InfoPodSection>
+          <InfoPodItem
+            type="label"
+            className={`${styles["podItem" + props.stageStatusName]}`}
+            stageStatusName={props.stageStatusName}
+          >
+            {getLabel()}
+          </InfoPodItem>
+        </InfoPodSection>
       ) : null}
       <InfoPodSection
-        core={
-          <InfoPodItem
-            type="core"
-            className={`${styles["podItem" + props.stageStatusName]}`}
-          >
-            {innerContent()}
-          </InfoPodItem>
-        }
         flags={[
           <InfoPodItem
             type="flag"
@@ -104,6 +94,12 @@ function StatusIcon(props) {
           </InfoPodItem>,
         ]}
       >
+        <InfoPodItem
+          type="core"
+          className={`${styles["podItem" + props.stageStatusName]}`}
+        >
+          {innerContent()}
+        </InfoPodItem>
         {/* <span
           className={`${styles.core} ${
             styles["core--" + props.stageStatusName]
