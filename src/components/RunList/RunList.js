@@ -1,27 +1,46 @@
 import React from "react";
-import styles from "./RunList.module.css";
 
 import TableHeader from "../TableHeader/TableHeader.js";
+import RunListAllItem from "./RunListAllItem/RunListAllItem.js";
+
+import RunListStageItem from "./RunListStageItem/RunListStageItem.js";
 
 function RunList(props) {
-
-  const stageNameArr = ["Prep", "Craft", "Package", "Label", "Stock"];
-
-  const openEditor = function (runUid, stageNum) {
-    props.setCurrentRunUid(runUid);
-    props.setActiveStage(stageNum);
-  };
+  let columns;
+  if (props.stageNum === "all") {
+    columns = ["Prep", "Craft", "Package", "Label", "Stock"];
+  } else {
+    columns = ["Product", "Progress", "User", "QA", "Issues", "Open"];
+  }
 
   return (
-    <div className={styles.container}>
-      <header className={styles.header}>
-        <TableHeader items={stageNameArr} />
+    <div>
+      <header>
+        <TableHeader items={columns} />
       </header>
       <div>
         {props.runData.length ? (
-          props.runData.map((run, index) => (
-            <></>
-          ))
+          props.runData.map((run, index) =>
+            props.stageNum === "all" ? (
+              <RunListAllItem
+                key={run.uid}
+                runData={run}
+                activeUser={props.activeUser}
+                setCurrentRunUid={props.setCurrentRunUid}
+                setActiveStage={props.setActiveStage}
+                stageNameArr={columns}
+              />
+            ) : (
+              <RunListStageItem
+                key={run.uid}
+                runData={run}
+                stageNum={props.stageNum}
+                activeUser={props.activeUser}
+                setCurrentRunUid={props.setCurrentRunUid}
+                setActiveStage={props.setActiveStage}
+              />
+            )
+          )
         ) : (
           <h3>No Runs Available</h3>
         )}

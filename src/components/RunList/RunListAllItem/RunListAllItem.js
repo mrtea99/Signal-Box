@@ -18,23 +18,22 @@ function RunListAllItem(props) {
   };
 
   return (
-    <div key={run.uid}>
-      <div>
-        <div
-          className={`${styles.itemInfo} ${styles.runItem} ${styles.alignLeft}`}
-          onClick={() => setModalOverviewActive(run.uid)}
-        >
-          <h3 className={styles.itemTitle}>{run.productInfo.productName}</h3>
-        </div>
-        {modalOverviewActive === run.uid ? (
-          <Modal>
-            <Button onClick={() => setModalOverviewActive(null)}>Close</Button>
-            <StageOverview thisRunData={run}></StageOverview>
-          </Modal>
-        ) : (
-          <></>
-        )}
-      </div>
+    <div>
+      <header
+        className={`${styles.itemInfo} ${styles.runItem} ${styles.alignLeft}`}
+        onClick={() => setModalOverviewActive(run.uid)}
+      >
+        <h3 className={styles.itemTitle}>{run.productInfo.productName}</h3>
+      </header>
+      
+      {modalOverviewActive === run.uid ? (
+        <Modal>
+          <Button onClick={() => setModalOverviewActive(null)}>Close</Button>
+          <StageOverview thisRunData={run}></StageOverview>
+        </Modal>
+      ) : (
+        <></>
+      )}
 
       <StageNav
         stageNameArr={props.stageNameArr}
