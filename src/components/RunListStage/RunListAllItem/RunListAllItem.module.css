@@ -1,0 +1,41 @@
+/* .container {
+
+} */
+
+.header {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .header {
+    display: block;
+  }
+}
+
+.itemRow {
+  background-color: var(--color-fg);
+}
+
+.runItem {
+  text-align: center;
+  padding: 0rem 0.1rem;
+}
+
+.itemInfo {
+  background-color: var(--color-grey-bright);
+  border-top: 0.5rem solid var(--color-bg);
+  padding: 0.3rem 1rem;
+  height: var(--size-touch-min);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.itemTitle {
+  font-weight: bold;
+  margin: 0;
+}
+
+.alignLeft {
+  text-align: left;
+}

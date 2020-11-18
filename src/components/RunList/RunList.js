@@ -1,14 +1,9 @@
 import React from "react";
 import styles from "./RunList.module.css";
 
-import Button from "../Button/Button.js";
-import StageOverview from "../StageOverview/StageOverview.js";
-import Modal from "../Modal/Modal.js";
-import StageNav from "../StageNav/StageNav";
 import TableHeader from "../TableHeader/TableHeader.js";
 
 function RunList(props) {
-  const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
 
   const stageNameArr = ["Prep", "Craft", "Package", "Label", "Stock"];
 
@@ -25,40 +20,7 @@ function RunList(props) {
       <div>
         {props.runData.length ? (
           props.runData.map((run, index) => (
-            <React.Fragment key={run.uid}>
-              <div key={run.uid + "_info"}>
-                <div
-                  className={`${styles.itemInfo} ${styles.runItem} ${styles.alignLeft}`}
-                  onClick={() => setModalOverviewActive(run.uid)}
-                >
-                  <h3 className={styles.itemTitle}>
-                    {run.productInfo.productName}
-                  </h3>
-                </div>
-                {modalOverviewActive === run.uid ? (
-                  <Modal>
-                    <Button onClick={() => setModalOverviewActive(null)}>
-                      Close
-                    </Button>
-                    <StageOverview thisRunData={run}></StageOverview>
-                  </Modal>
-                ) : (
-                  <></>
-                )}
-              </div>
-
-              <StageNav
-                stageNameArr={stageNameArr}
-                currentRunUid={props.currentRunUid}
-                activeStage={props.activeStage}
-                buttonCallback={(newIndex) => openEditor(run.uid, newIndex)}
-                updateRunData={props.updateRunData}
-                thisRunData={run}
-                activeUser={props.activeUser}
-                sessionLabels
-                syntax="list"
-              ></StageNav>
-            </React.Fragment>
+            <></>
           ))
         ) : (
           <h3>No Runs Available</h3>

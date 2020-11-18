@@ -117,11 +117,13 @@ function App() {
                 />
               </section>
             </menu>
-            <RunList
+            <RunListStage
               runData={runData}
               setCurrentRunUid={setCurrentRunUid}
               setActiveStage={setActiveStage}
               activeUser={activeUser}
+              stageNum={'all'}
+              columns={["Prep", "Craft", "Package", "Label", "Stock"]}
             />
             <RunListStage
               runData={runData}
@@ -129,6 +131,7 @@ function App() {
               setActiveStage={setActiveStage}
               activeUser={activeUser}
               stageNum={1}
+              columns={["Product", "Progress", "User", "QA", "Issues", "Open"]}
             ></RunListStage>
           </section>
           <section className={styles.editorSection}>

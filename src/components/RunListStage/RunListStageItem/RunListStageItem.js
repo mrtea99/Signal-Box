@@ -5,6 +5,7 @@ import useStageStatus from "../../../hooks/useStageStatus.js";
 import InfoPod from "../../InfoPod/InfoPod.js";
 import InfoPodSection from "../../InfoPod/InfoPodSection/InfoPodSection.js";
 import InfoPodItem from "../../InfoPod/InfoPodItem/InfoPodItem.js";
+import Button from "../../Button/Button.js";
 
 import styles from "./RunListStageItem.module.css";
 
@@ -14,6 +15,11 @@ function RunListStageItem(props) {
     props.stageNum,
     props.activeUser
   );
+
+  const openEditor = function (runUid, stageNum) {
+    props.setCurrentRunUid(runUid);
+    props.setActiveStage(stageNum);
+  };
 
   return (
     <ul className={styles.line}>
@@ -36,20 +42,39 @@ function RunListStageItem(props) {
         </InfoPod>
       </li>
       <li className={styles.lineItem}>
-        {stageStatus.userTotal ? 
-        <InfoPod>
-          <InfoPodSection>
-            <InfoPodItem>U</InfoPodItem>
-          </InfoPodSection>
-        </InfoPod> : null }
+        {stageStatus.userTotal ? (
+          <InfoPod>
+            <InfoPodSection>
+              <InfoPodItem>U</InfoPodItem>
+            </InfoPodSection>
+          </InfoPod>
+        ) : null}
       </li>
       <li className={styles.lineItem}>
-        {stageStatus.qaTotal ? 
-        <InfoPod>
-          <InfoPodSection>
-            <InfoPodItem>?</InfoPodItem>
-          </InfoPodSection>
-        </InfoPod> : null }
+        {stageStatus.qaActive ? (
+          <InfoPod>
+            <InfoPodSection>
+              <InfoPodItem>?</InfoPodItem>
+            </InfoPodSection>
+          </InfoPod>
+        ) : null}
+      </li>
+      <li className={styles.lineItem}>
+        {stageStatus.issueActive ? (
+          <InfoPod>
+            <InfoPodSection>
+              <InfoPodItem>!</InfoPodItem>
+            </InfoPodSection>
+          </InfoPod>
+        ) : null}
+      </li>
+      <li className={styles.lineItem}>
+        <Button
+          onClick={() => (
+            openEditor(props.runData.uid, props.stageNum)
+          )}
+          icon="start"
+        ></Button>
       </li>
     </ul>
   );
