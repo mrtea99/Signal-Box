@@ -48,7 +48,7 @@ function App() {
     window.localStorage.setItem("activeUser", activeUser);
   }, [activeUser]);
 
-  const updateRunData = function(uid, dataSection, dataKey, newValue) {
+  const updateRunData = function (uid, dataSection, dataKey, newValue) {
     if (dataSection === "delete") {
       deleteRun(uid);
     } else {
@@ -66,18 +66,18 @@ function App() {
       });
       setRunData(updatedRunData);
     }
-  }
+  };
 
-  const deleteRun = function(uid) {
+  const deleteRun = function (uid) {
     const updatedRunData = runData.filter((run) => uid !== run.uid);
     setRunData(updatedRunData);
-  }
+  };
 
-  const handleAddClick = function(e) {
+  const handleAddClick = function (e) {
     e.preventDefault();
 
     setModalNewActive(true);
-  }
+  };
 
   return (
     <div className={styles.siteContainer}>
@@ -105,23 +105,25 @@ function App() {
             <menu className={styles.listControls}>
               <section className={styles.filterControls}></section>
               <section className={styles.otherControls}>
-                <Button onClick={handleAddClick} icon="plus">New Run</Button>
+                <Button onClick={handleAddClick} icon="plus">
+                  New Run
+                </Button>
+                <RunInfoNew
+                  active={modalNewActive}
+                  setActive={setModalNewActive}
+                  runData={runData}
+                  setRunData={setRunData}
+                />
               </section>
             </menu>
             <RunList
               runData={runData}
-              setRunData={setRunData}
+              // setRunData={setRunData}
               setCurrentRunUid={setCurrentRunUid}
-              activeStage={activeStage}
+              // activeStage={activeStage}
               setActiveStage={setActiveStage}
-              updateRunData={updateRunData}
+              // updateRunData={updateRunData}
               activeUser={activeUser}
-            />
-            <RunInfoNew
-              active={modalNewActive}
-              setActive={setModalNewActive}
-              runData={runData}
-              setRunData={setRunData}
             />
           </section>
           <section className={styles.editorSection}>
