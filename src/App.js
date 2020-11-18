@@ -5,6 +5,7 @@ import styles from "./App.module.css";
 
 import SiteSidebar from "./components/SiteSidebar/SiteSidebar.js";
 import RunList from "./components/RunList/RunList.js";
+import RunListStage from "./components/RunListStage/RunListStage.js";
 import RunEditor from "./components/RunEditor/RunEditor.js";
 import RunInfoNew from "./components/RunInfoNew/RunInfoNew.js";
 import RunInfoChange from "./components/RunInfoChange/RunInfoChange.js";
@@ -118,13 +119,17 @@ function App() {
             </menu>
             <RunList
               runData={runData}
-              // setRunData={setRunData}
               setCurrentRunUid={setCurrentRunUid}
-              // activeStage={activeStage}
               setActiveStage={setActiveStage}
-              // updateRunData={updateRunData}
               activeUser={activeUser}
             />
+            <RunListStage
+              runData={runData}
+              setCurrentRunUid={setCurrentRunUid}
+              setActiveStage={setActiveStage}
+              activeUser={activeUser}
+              stageNum={1}
+            ></RunListStage>
           </section>
           <section className={styles.editorSection}>
             <RunEditor
