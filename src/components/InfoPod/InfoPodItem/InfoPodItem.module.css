@@ -1,6 +1,10 @@
+.item {
+  --border-width: 0.15em;
+  --core-size: 1.6em;
+  --flag-width: calc(((var(--core-size)) * 2) - var(--border-width));
+  --speed-change: 0.5s;
+  --easing-change: ease;
 
-
-.core {
   display: flex;
   width: auto;
   justify-content: center;
@@ -18,26 +22,26 @@
   transition: background-color var(--speed-change) var(--easing-change);
 }
 
-.coreLabel {
+.itemLabel {
   margin-bottom: calc(var(--border-width) * -1);
   min-width: 7rem;
 }
 
-
-.flag {
+.itemFlag {
   margin-left: calc(var(--core-size) * -1);
   border-radius: calc(var(--core-size) / 2);
-  width: var(--core-size);
+  max-width: var(--core-size);
   transition: all var(--speed-change) var(--easing-change);
   display: inline-flex;
   justify-content: center;
   padding-left: 0;
   z-index: 9;
+  overflow: hidden;
 }
 
-/* .wrapper:hover .flag, */
-.flagActive {
-  width: var(--flag-width);
+.itemFlagActive {
+  max-width: 10rem;
+  min-width: var(--flag-width);
   padding-left: calc(var(--core-size) - var(--border-width));
 }
 
@@ -49,4 +53,3 @@
   justify-content: center;
   align-items: center;
 }
-
