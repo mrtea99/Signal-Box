@@ -1,0 +1,13 @@
+.itemInfo {
+  background-color: var(--color-grey-bright);
+  padding: 0.3rem 1rem;
+  height: var(--size-touch-min);
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.itemTitle {
+  font-weight: bold;
+  margin: 0;
+}

@@ -2,8 +2,9 @@ import React from "react";
 
 import TableHeader from "../TableHeader/TableHeader.js";
 import RunListAllItem from "./RunListAllItem/RunListAllItem.js";
-
 import RunListStageItem from "./RunListStageItem/RunListStageItem.js";
+
+import styles from "./RunList.module.css";
 
 function RunList(props) {
   let columns;
@@ -15,30 +16,32 @@ function RunList(props) {
 
   return (
     <div>
-      <header>
+      <header className={styles.header}>
         <TableHeader items={columns} />
       </header>
       <div>
         {props.runData.length ? (
           props.runData.map((run, index) =>
             props.stageNum === "all" ? (
-              <RunListAllItem
-                key={run.uid}
-                runData={run}
-                activeUser={props.activeUser}
-                setCurrentRunUid={props.setCurrentRunUid}
-                setActiveStage={props.setActiveStage}
-                stageNameArr={columns}
-              />
+              <div className={styles.itemRow} key={index}>
+                <RunListAllItem
+                  runData={run}
+                  activeUser={props.activeUser}
+                  setCurrentRunUid={props.setCurrentRunUid}
+                  setActiveStage={props.setActiveStage}
+                  stageNameArr={columns}
+                />
+              </div>
             ) : (
-              <RunListStageItem
-                key={run.uid}
-                runData={run}
-                stageNum={props.stageNum}
-                activeUser={props.activeUser}
-                setCurrentRunUid={props.setCurrentRunUid}
-                setActiveStage={props.setActiveStage}
-              />
+              <div className={styles.itemRow} key={index}>
+                <RunListStageItem
+                  runData={run}
+                  stageNum={props.stageNum}
+                  activeUser={props.activeUser}
+                  setCurrentRunUid={props.setCurrentRunUid}
+                  setActiveStage={props.setActiveStage}
+                />
+              </div>
             )
           )
         ) : (

@@ -116,20 +116,16 @@ function App() {
                 />
               </section>
             </menu>
-            <RunList
-              runData={runData}
-              setCurrentRunUid={setCurrentRunUid}
-              setActiveStage={setActiveStage}
-              activeUser={activeUser}
-              stageNum={'all'}
-            />
-            <RunList
-              runData={runData}
-              setCurrentRunUid={setCurrentRunUid}
-              setActiveStage={setActiveStage}
-              activeUser={activeUser}
-              stageNum={1}
-            />
+            {["all", 0, 1, 2, 3, 4].map((stage, index) => (
+              <RunList
+                key={index}
+                runData={runData}
+                setCurrentRunUid={setCurrentRunUid}
+                setActiveStage={setActiveStage}
+                activeUser={activeUser}
+                stageNum={stage}
+              />
+            ))}
           </section>
           <section className={styles.editorSection}>
             <RunEditor

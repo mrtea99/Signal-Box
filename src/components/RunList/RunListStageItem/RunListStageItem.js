@@ -6,6 +6,8 @@ import InfoPod from "../../InfoPod/InfoPod.js";
 import InfoPodSection from "../../InfoPod/InfoPodSection/InfoPodSection.js";
 import InfoPodItem from "../../InfoPod/InfoPodItem/InfoPodItem.js";
 import Button from "../../Button/Button.js";
+import RunTitle from "../RunTitle/RunTitle.js";
+
 
 import styles from "./RunListStageItem.module.css";
 
@@ -24,9 +26,7 @@ function RunListStageItem(props) {
   return (
     <ul className={styles.line}>
       <li className={styles.lineItem}>
-        <h3 className={styles.itemTitle}>
-          {props.runData.productInfo.productName}
-        </h3>
+        <RunTitle>{props.runData.productInfo.productName}</RunTitle>
       </li>
       <li className={styles.lineItem}>
         <InfoPod>

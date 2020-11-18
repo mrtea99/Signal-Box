@@ -1,0 +1,14 @@
+.header {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .header {
+    display: block;
+  }
+}
+
+.itemRow {
+  background-color: var(--color-fg);
+  border-top: 0.5rem solid var(--color-bg);
+}
