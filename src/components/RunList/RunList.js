@@ -5,6 +5,7 @@ import Button from "../Button/Button.js";
 import StageOverview from "../StageOverview/StageOverview.js";
 import Modal from "../Modal/Modal.js";
 import StageNav from "../StageNav/StageNav";
+import TableHeader from "../TableHeader/TableHeader.js";
 
 function RunList(props) {
   const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
@@ -18,15 +19,9 @@ function RunList(props) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <ul className={styles.headerList}>
-          <li className={styles.headerItem}>Prep</li>
-          <li className={styles.headerItem}>Craft</li>
-          <li className={styles.headerItem}>Package</li>
-          <li className={styles.headerItem}>Label</li>
-          <li className={styles.headerItem}>Stock</li>
-        </ul>
-      </div>
+      <header className={styles.header}>
+        <TableHeader items={stageNameArr} />
+      </header>
       <div>
         {props.runData.length ? (
           props.runData.map((run, index) => (
