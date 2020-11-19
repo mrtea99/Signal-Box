@@ -11,6 +11,7 @@ function TabBox(props) {
         <TabList
           tabs={props.boxes.map((box, index) => box.label)}
           indexCallback={setSelectedBox}
+          activeTab={selectedBox}
         />
       </nav>
       <div>{props.boxes[selectedBox].content}</div>
