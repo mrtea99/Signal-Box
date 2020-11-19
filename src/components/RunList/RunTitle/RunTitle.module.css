@@ -1,10 +1,11 @@
 .itemInfo {
   background-color: var(--color-grey-bright);
   padding: 0.3rem 1rem;
-  height: var(--size-touch-min);
   display: flex;
   align-items: center;
-  cursor: pointer;
+  min-height: var(--size-touch-min);
+  height: 100%;
+  width: 100%;
 }
 
 .itemTitle {

@@ -12,3 +12,16 @@
   background-color: var(--color-fg);
   border-top: 0.5rem solid var(--color-bg);
 }
+
+.colProduct {
+  flex-grow: 1;
+}
+.colProgress {
+  width: 10rem;
+}
+.colSingle {
+  width: 4rem;
+}
+.colIconButton {
+  width: 4rem;
+}

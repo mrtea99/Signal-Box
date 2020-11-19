@@ -8,7 +8,6 @@ import InfoPodItem from "../../InfoPod/InfoPodItem/InfoPodItem.js";
 import Button from "../../Button/Button.js";
 import RunTitle from "../RunTitle/RunTitle.js";
 
-
 import styles from "./RunListStageItem.module.css";
 
 function RunListStageItem(props) {
@@ -25,23 +24,31 @@ function RunListStageItem(props) {
 
   return (
     <ul className={styles.line}>
-      <li className={styles.lineItem}>
+      <li className={`${styles.lineItem} ${styles.lineItemFull} ${props.columns[0].className}`}>
         <RunTitle>{props.runData.productInfo.productName}</RunTitle>
       </li>
-      <li className={styles.lineItem}>
-        <InfoPod>
-          <InfoPodSection
-            flags={
-              <InfoPodItem type="flag" active>
-                {stageStatus.completionPercentage}%
-              </InfoPodItem>
-            }
-          >
-            <InfoPodItem>{stageStatus.completionFraction}</InfoPodItem>
-          </InfoPodSection>
-        </InfoPod>
+      <li className={`${styles.lineItem} ${props.columns[1].className}`}>
+        {props.stageNum === 0 || props.stageNum === 4 ? (
+          <InfoPod>
+            <InfoPodSection>
+              <InfoPodItem>{stageStatus.workTotal}</InfoPodItem>
+            </InfoPodSection>
+          </InfoPod>
+        ) : (
+          <InfoPod>
+            <InfoPodSection
+              flags={
+                <InfoPodItem type="flag" active>
+                  {stageStatus.completionPercentage}%
+                </InfoPodItem>
+              }
+            >
+              <InfoPodItem>{stageStatus.completionFraction}</InfoPodItem>
+            </InfoPodSection>
+          </InfoPod>
+        )}
       </li>
-      <li className={styles.lineItem}>
+      <li className={`${styles.lineItem} ${props.columns[2].className}`}>
         {stageStatus.userTotal ? (
           <InfoPod>
             <InfoPodSection>
@@ -50,7 +57,7 @@ function RunListStageItem(props) {
           </InfoPod>
         ) : null}
       </li>
-      <li className={styles.lineItem}>
+      <li className={`${styles.lineItem} ${props.columns[3].className}`}>
         {stageStatus.qaActive ? (
           <InfoPod>
             <InfoPodSection>
@@ -59,7 +66,7 @@ function RunListStageItem(props) {
           </InfoPod>
         ) : null}
       </li>
-      <li className={styles.lineItem}>
+      <li className={`${styles.lineItem} ${props.columns[4].className}`}>
         {stageStatus.issueActive ? (
           <InfoPod>
             <InfoPodSection>
@@ -68,11 +75,9 @@ function RunListStageItem(props) {
           </InfoPod>
         ) : null}
       </li>
-      <li className={styles.lineItem}>
+      <li className={`${styles.lineItem} ${props.columns[5].className}`}>
         <Button
-          onClick={() => (
-            openEditor(props.runData.uid, props.stageNum)
-          )}
+          onClick={() => openEditor(props.runData.uid, props.stageNum)}
           icon="start"
         ></Button>
       </li>

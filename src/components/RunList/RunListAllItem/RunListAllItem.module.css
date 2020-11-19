@@ -1,0 +1,6 @@
+.itemHeader {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  cursor: pointer;
+}

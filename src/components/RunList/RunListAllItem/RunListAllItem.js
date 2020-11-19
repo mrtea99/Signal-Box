@@ -4,9 +4,9 @@ import Button from "../../Button/Button.js";
 import StageOverview from "../../StageOverview/StageOverview.js";
 import Modal from "../../Modal/Modal.js";
 import StageNav from "../../StageNav/StageNav";
+import RunTitle from "../RunTitle/RunTitle.js";
 
 import styles from "./RunListAllItem.module.css";
-import RunTitle from "../RunTitle/RunTitle.js";
 
 function RunListAllItem(props) {
   const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
@@ -22,7 +22,7 @@ function RunListAllItem(props) {
     <div>
       <header
         onClick={() => setModalOverviewActive(run.uid)}
-      >
+      className={styles.itemHeader}>
         <RunTitle>{run.productInfo.productName}</RunTitle>
       </header>
 

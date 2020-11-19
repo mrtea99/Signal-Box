@@ -9,9 +9,22 @@ import styles from "./RunList.module.css";
 function RunList(props) {
   let columns;
   if (props.stageNum === "all") {
-    columns = ["Prep", "Craft", "Package", "Label", "Stock"];
+    columns = [
+      { copy: "Prep" },
+      { copy: "Craft" },
+      { copy: "Package" },
+      { copy: "Label" },
+      { copy: "Stock" },
+    ];
   } else {
-    columns = ["Product", "Progress", "User", "QA", "Issues", "Open"];
+    columns = [
+      { copy: "Product", className: styles.colProduct },
+      { copy: "Progress", className: styles.colProgress },
+      { copy: "User", className: styles.colSingle },
+      { copy: "QA", className: styles.colSingle },
+      { copy: "Issues", className: styles.colSingle },
+      { copy: "Open", className: styles.colIconButton },
+    ];
   }
 
   return (
@@ -29,7 +42,9 @@ function RunList(props) {
                   activeUser={props.activeUser}
                   setCurrentRunUid={props.setCurrentRunUid}
                   setActiveStage={props.setActiveStage}
-                  stageNameArr={columns}
+                  stageNameArr={columns.map((col) => {
+                    return col.copy;
+                  })}
                 />
               </div>
             ) : (
@@ -40,6 +55,7 @@ function RunList(props) {
                   activeUser={props.activeUser}
                   setCurrentRunUid={props.setCurrentRunUid}
                   setActiveStage={props.setActiveStage}
+                  columns={columns}
                 />
               </div>
             )
