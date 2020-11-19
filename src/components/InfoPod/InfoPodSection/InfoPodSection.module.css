@@ -7,6 +7,8 @@
   font-weight: bold;
   text-decoration: none;
   align-content: stretch;
+  width: 100%;
+  justify-content: center;
 }
 
 .flags {

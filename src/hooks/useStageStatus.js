@@ -40,7 +40,7 @@ function useStageStatus(runData, stageNumber, activeUser) {
   if ([1, 2, 3].includes(stageNumber)) {
     completionFraction = itemCount + "/" + targetItemCount;
 
-    if (itemCount === targetItemCount) {
+    if (itemCount === targetItemCount && targetItemCount !== 0) {
       completionPercentage = 100;
     } else {
       completionPercentage = itemCount

@@ -21,7 +21,6 @@ function StatusIcon(props) {
         return props.workTotal;
       } else {
         return props.completionPercentage + "%";
-        // return props.completion;
       }
     }
 
@@ -100,41 +99,6 @@ function StatusIcon(props) {
         >
           {innerContent()}
         </InfoPodItem>
-        {/* <span
-          className={`${styles.core} ${
-            styles["core--" + props.stageStatusName]
-          }`}
-        >
-          <span className={styles.inner}>{innerContent()}</span>
-        </span>
-
-        <span className={styles.flags}>
-          <span
-            className={`${styles.core} ${styles.flag} ${styles.flagIssue} ${
-              props.issueActive ? styles.flagActive : ""
-            }`}
-          >
-            <span className={styles.inner}>!</span>
-          </span>
-          <span
-            className={`${styles.core} ${styles.flag} ${styles.flagQa} ${
-              props.qaActive ? styles.flagActive : ""
-            }`}
-          >
-            <span className={styles.inner}>?</span>
-          </span>
-          <span
-            className={`${styles.core} ${styles.flag} ${
-              props.userTotal ? styles.flagActive : ""
-            } ${props.userActive ? styles.flagUserWorking : ""} ${
-              props.stageStatusName === "complete"
-                ? styles.flagUserComplete
-                : ""
-            }`}
-          >
-            <span className={styles.inner}>U</span>
-          </span>
-        </span> */}
       </InfoPodSection>
     </InfoPod>
   );

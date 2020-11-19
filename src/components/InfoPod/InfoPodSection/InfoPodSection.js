@@ -6,7 +6,14 @@ function InfoPodSection(props) {
   return (
     <span className={styles.wrapper}>
       {props.children}
-      <span className={styles.flags}>{props.flags}</span>
+      <span className={styles.flags}>
+        {props.flags}
+        {/* {props.flags
+          ? props.flags.map((flag) => {
+              return flag;
+            })
+          : null} */}
+      </span>
     </span>
   );
 }

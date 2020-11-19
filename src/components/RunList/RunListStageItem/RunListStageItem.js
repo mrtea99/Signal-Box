@@ -58,11 +58,11 @@ function RunListStageItem(props) {
         ) : (
           <InfoPod>
             <InfoPodSection
-              flags={
-                <InfoPodItem type="flag" active>
+              flags={[
+                <InfoPodItem key={'percent'} type="flag" active>
                   {stageStatus.completionPercentage}%
-                </InfoPodItem>
-              }
+                </InfoPodItem>,
+              ]}
             >
               <InfoPodItem>{stageStatus.completionFraction}</InfoPodItem>
             </InfoPodSection>
