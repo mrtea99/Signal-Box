@@ -13,16 +13,6 @@ function StageStatus(props) {
     props.activeUser
   );
 
-  const Status = () => {
-    return (
-      <StatusIcon
-        stageStatus={stageStatus}
-        stageNum={props.stageNum}
-        label={props.label || false}
-      />
-    );
-  };
-
   return (
     <>
       {props.button ? (
@@ -36,10 +26,18 @@ function StageStatus(props) {
           // }`}
           className={styles.button}
         >
-          <Status />
+          <StatusIcon
+            stageStatus={stageStatus}
+            stageNum={props.stageNum}
+            label={props.label || false}
+          />
         </button>
       ) : (
-        <Status />
+        <StatusIcon
+          stageStatus={stageStatus}
+          stageNum={props.stageNum}
+          label={props.label || false}
+        />
       )}
     </>
   );

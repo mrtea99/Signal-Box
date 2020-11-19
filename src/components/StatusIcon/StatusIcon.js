@@ -2,13 +2,6 @@ import React from "react";
 
 import InfoPod from "../InfoPod/InfoPod.js";
 import InfoPodSection from "../InfoPod/InfoPodSection/InfoPodSection.js";
-// import InfoPodItem from "../InfoPod/InfoPodItem/InfoPodItem.js";
-
-// import styles from "./StatusIcon.module.css";
-
-// import { ReactComponent as Checkmark } from "./checkmark.svg";
-// import { ReactComponent as Pause } from "./pause.svg";
-// import { ReactComponent as ArrowRight } from "./arrow-right.svg";
 import StatusPodItem from "../StatusPodItem/StatusPodItem.js";
 
 function StatusIcon(props) {

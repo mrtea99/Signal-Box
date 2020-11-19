@@ -68,7 +68,6 @@ function StatusPodItem(props) {
         if (props.stageStatus.userTotal || props.type === 'flag') {
           return (
             <InfoPodItem
-            key="user123"
               type={props.type}
               active={props.stageStatus.userTotal}
               className={`${
@@ -85,18 +84,18 @@ function StatusPodItem(props) {
         }
         return null;
       case "qa":
-        if (props.stageStatus.qaActive) {
+        if (props.stageStatus.qaActive || props.type === 'flag') {
           return (
-            <InfoPodItem type={props.type} active className={styles.flagQa}>
+            <InfoPodItem type={props.type} active={props.stageStatus.qaActive} className={styles.flagQa}>
               ?
             </InfoPodItem>
           );
         }
         return null;
       case "issue":
-        if (props.stageStatus.issueActive) {
+        if (props.stageStatus.issueActive || props.type === 'flag') {
           return (
-            <InfoPodItem type={props.type} active className={styles.flagIssue}>
+            <InfoPodItem type={props.type} active={props.stageStatus.issueActive} className={styles.flagIssue}>
               !
             </InfoPodItem>
           );
