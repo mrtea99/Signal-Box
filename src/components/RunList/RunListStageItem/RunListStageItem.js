@@ -4,7 +4,8 @@ import useStageStatus from "../../../hooks/useStageStatus.js";
 
 import InfoPod from "../../InfoPod/InfoPod.js";
 import InfoPodSection from "../../InfoPod/InfoPodSection/InfoPodSection.js";
-import InfoPodItem from "../../InfoPod/InfoPodItem/InfoPodItem.js";
+// import InfoPodItem from "../../InfoPod/InfoPodItem/InfoPodItem.js";
+import StatusPodItem from "../../StatusPodItem/StatusPodItem.js";
 import Button from "../../Button/Button.js";
 import RunTitle from "../RunTitle/RunTitle.js";
 
@@ -22,18 +23,6 @@ function RunListStageItem(props) {
     props.setActiveStage(stageNum);
   };
 
-  //duplicates statusicon functionality
-  const getLabel = function () {
-    if (stageStatus.workActive) {
-      return stageStatus.workActiveNames;
-    } else {
-      return (
-        stageStatus.stageStatusName.charAt(0).toUpperCase() +
-        stageStatus.stageStatusName.slice(1)
-      );
-    }
-  };
-
   return (
     <ul className={styles.line}>
       <li
@@ -44,57 +33,47 @@ function RunListStageItem(props) {
       <li className={`${styles.lineItem} ${props.columns[1].className}`}>
         <InfoPod>
           <InfoPodSection>
-            <InfoPodItem type="label">{getLabel()}</InfoPodItem>
+            <StatusPodItem
+              type="label"
+              statusField="label"
+              stageStatus={stageStatus}
+            />
           </InfoPodSection>
         </InfoPod>
       </li>
       <li className={`${styles.lineItem} ${props.columns[2].className}`}>
-        {props.stageNum === 0 || props.stageNum === 4 ? (
-          <InfoPod>
-            <InfoPodSection>
-              <InfoPodItem>{stageStatus.workTotal}</InfoPodItem>
-            </InfoPodSection>
-          </InfoPod>
-        ) : (
-          <InfoPod>
-            <InfoPodSection
-              flags={[
-                <InfoPodItem key={'percent'} type="flag" active>
-                  {stageStatus.completionPercentage}%
-                </InfoPodItem>,
-              ]}
-            >
-              <InfoPodItem>{stageStatus.completionFraction}</InfoPodItem>
-            </InfoPodSection>
-          </InfoPod>
-        )}
+        <InfoPod>
+          <InfoPodSection>
+            <StatusPodItem
+              key="user"
+              type="core"
+              statusField="completion"
+              stageStatus={stageStatus}
+              stageNum={props.stageNum}
+            />
+          </InfoPodSection>
+        </InfoPod>
       </li>
       <li className={`${styles.lineItem} ${props.columns[3].className}`}>
-        {stageStatus.userTotal ? (
-          <InfoPod>
-            <InfoPodSection>
-              <InfoPodItem>U</InfoPodItem>
-            </InfoPodSection>
-          </InfoPod>
-        ) : null}
+        <InfoPod>
+          <InfoPodSection>
+            <StatusPodItem statusField="user" stageStatus={stageStatus} />
+          </InfoPodSection>
+        </InfoPod>
       </li>
       <li className={`${styles.lineItem} ${props.columns[4].className}`}>
-        {stageStatus.qaActive ? (
-          <InfoPod>
-            <InfoPodSection>
-              <InfoPodItem>?</InfoPodItem>
-            </InfoPodSection>
-          </InfoPod>
-        ) : null}
+        <InfoPod>
+          <InfoPodSection>
+            <StatusPodItem statusField="qa" stageStatus={stageStatus} />
+          </InfoPodSection>
+        </InfoPod>
       </li>
       <li className={`${styles.lineItem} ${props.columns[5].className}`}>
-        {stageStatus.issueActive ? (
-          <InfoPod>
-            <InfoPodSection>
-              <InfoPodItem>!</InfoPodItem>
-            </InfoPodSection>
-          </InfoPod>
-        ) : null}
+        <InfoPod>
+          <InfoPodSection>
+            <StatusPodItem statusField="issue" stageStatus={stageStatus} />
+          </InfoPodSection>
+        </InfoPod>
       </li>
       <li className={`${styles.lineItem} ${props.columns[6].className}`}>
         <Button

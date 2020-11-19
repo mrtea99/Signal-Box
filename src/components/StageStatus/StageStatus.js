@@ -16,7 +16,7 @@ function StageStatus(props) {
   const Status = () => {
     return (
       <StatusIcon
-        {...stageStatus}
+        stageStatus={stageStatus}
         stageNum={props.stageNum}
         label={props.label || false}
       />
