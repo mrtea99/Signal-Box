@@ -9,6 +9,7 @@ import RunEditor from "./components/RunEditor/RunEditor.js";
 import RunInfoNew from "./components/RunInfoNew/RunInfoNew.js";
 import RunInfoChange from "./components/RunInfoChange/RunInfoChange.js";
 import Button from "./components/Button/Button.js";
+import TabBox from "./components/TabBox/TabBox";
 
 function App() {
   const savedRunData = () =>
@@ -116,7 +117,25 @@ function App() {
                 />
               </section>
             </menu>
-            {["all", 0, 1, 2, 3, 4].map((stage, index) => (
+            <TabBox
+              boxes={["All", "Prep", "Craft", "Package", "Label", "Stock"].map(
+                (stage, index) => ({
+                  label: stage,
+                  content: (
+                    <RunList
+                      key={stage}
+                      runData={runData}
+                      setCurrentRunUid={setCurrentRunUid}
+                      setActiveStage={setActiveStage}
+                      activeUser={activeUser}
+                      stageNum={index === 0 ? "all" : index - 1}
+                    />
+                  ),
+                })
+              )}
+            />
+
+            {/* {["all", 0, 1, 2, 3, 4].map((stage, index) => (
               <RunList
                 key={index}
                 runData={runData}
@@ -125,7 +144,7 @@ function App() {
                 activeUser={activeUser}
                 stageNum={stage}
               />
-            ))}
+            ))} */}
           </section>
           <section className={styles.editorSection}>
             <RunEditor
