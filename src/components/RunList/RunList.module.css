@@ -14,14 +14,17 @@
 }
 
 .colProduct {
-  flex-grow: 1;
+  flex: 1 1 auto;
+}
+.colStatus {
+  flex: 0 0 10rem;
 }
 .colProgress {
-  width: 10rem;
+  flex: 0 0 10rem;
 }
 .colSingle {
-  width: 4rem;
+  flex: 0 0 4rem;
 }
 .colIconButton {
-  width: 4rem;
+  flex: 0 0 4rem;
 }

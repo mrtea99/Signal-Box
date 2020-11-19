@@ -22,12 +22,33 @@ function RunListStageItem(props) {
     props.setActiveStage(stageNum);
   };
 
+  //duplicates statusicon functionality
+  const getLabel = function () {
+    if (stageStatus.workActive) {
+      return stageStatus.workActiveNames;
+    } else {
+      return (
+        stageStatus.stageStatusName.charAt(0).toUpperCase() +
+        stageStatus.stageStatusName.slice(1)
+      );
+    }
+  };
+
   return (
     <ul className={styles.line}>
-      <li className={`${styles.lineItem} ${styles.lineItemFull} ${props.columns[0].className}`}>
+      <li
+        className={`${styles.lineItem} ${styles.lineItemFull} ${props.columns[0].className}`}
+      >
         <RunTitle>{props.runData.productInfo.productName}</RunTitle>
       </li>
       <li className={`${styles.lineItem} ${props.columns[1].className}`}>
+        <InfoPod>
+          <InfoPodSection>
+            <InfoPodItem type="label">{getLabel()}</InfoPodItem>
+          </InfoPodSection>
+        </InfoPod>
+      </li>
+      <li className={`${styles.lineItem} ${props.columns[2].className}`}>
         {props.stageNum === 0 || props.stageNum === 4 ? (
           <InfoPod>
             <InfoPodSection>
@@ -48,7 +69,7 @@ function RunListStageItem(props) {
           </InfoPod>
         )}
       </li>
-      <li className={`${styles.lineItem} ${props.columns[2].className}`}>
+      <li className={`${styles.lineItem} ${props.columns[3].className}`}>
         {stageStatus.userTotal ? (
           <InfoPod>
             <InfoPodSection>
@@ -57,7 +78,7 @@ function RunListStageItem(props) {
           </InfoPod>
         ) : null}
       </li>
-      <li className={`${styles.lineItem} ${props.columns[3].className}`}>
+      <li className={`${styles.lineItem} ${props.columns[4].className}`}>
         {stageStatus.qaActive ? (
           <InfoPod>
             <InfoPodSection>
@@ -66,7 +87,7 @@ function RunListStageItem(props) {
           </InfoPod>
         ) : null}
       </li>
-      <li className={`${styles.lineItem} ${props.columns[4].className}`}>
+      <li className={`${styles.lineItem} ${props.columns[5].className}`}>
         {stageStatus.issueActive ? (
           <InfoPod>
             <InfoPodSection>
@@ -75,7 +96,7 @@ function RunListStageItem(props) {
           </InfoPod>
         ) : null}
       </li>
-      <li className={`${styles.lineItem} ${props.columns[5].className}`}>
+      <li className={`${styles.lineItem} ${props.columns[6].className}`}>
         <Button
           onClick={() => openEditor(props.runData.uid, props.stageNum)}
           icon="start"

@@ -19,6 +19,7 @@ function RunList(props) {
   } else {
     columns = [
       { copy: "Product", className: styles.colProduct },
+      { copy: "Status", className: styles.colStatus },
       { copy: "Progress", className: styles.colProgress },
       { copy: "User", className: styles.colSingle },
       { copy: "QA", className: styles.colSingle },
