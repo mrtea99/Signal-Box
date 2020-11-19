@@ -1,5 +1,5 @@
 .item {
-  --border-width: 0.15em;
+  --border-width: 2px; /* Pixels used to prevent rounding errors */
   --core-size: 1.6em;
   --flag-width: calc(((var(--core-size)) * 2) - var(--border-width));
   --speed-change: 0.5s;
@@ -20,6 +20,7 @@
   position: relative;
   z-index: 10;
   transition: background-color var(--speed-change) var(--easing-change);
+  overflow: hidden;
 }
 
 .itemLabel {
@@ -36,7 +37,6 @@
   justify-content: center;
   padding-left: 0;
   z-index: 9;
-  overflow: hidden;
 }
 
 .itemFlagActive {
@@ -48,8 +48,13 @@
 .inner {
   vertical-align: middle;
   font-size: 0.9em;
-  padding: 0.1em 0.4em;
+  padding: 0.1em 0.1em;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.innerText {
+  padding-left: 0.4em;
+  padding-right: 0.4em;
 }

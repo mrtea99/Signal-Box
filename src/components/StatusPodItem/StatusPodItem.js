@@ -1,6 +1,7 @@
 import React from "react";
 
 import InfoPodItem from "../InfoPod/InfoPodItem/InfoPodItem.js";
+import Icon from "../Icon/Icon.js";
 
 import styles from "./StatusPodItem.module.css";
 
@@ -64,8 +65,31 @@ function StatusPodItem(props) {
             {combinedCompletion()}
           </InfoPodItem>
         );
+      case "completionFraction":
+        if (
+          (props.stageStatus.stageStatusName === "ready" ||
+            props.stageStatus.stageStatusName === "started" ||
+            props.stageStatus.stageStatusName === "working") &&
+          props.stageNum !== 0 &&
+          props.stageNum !== 4
+        ) {
+          return (
+            <InfoPodItem
+              type={props.type}
+              active
+              className={`${
+                styles["podItem" + props.stageStatus.stageStatusName]
+              }`}
+            >
+              {props.stageStatus.itemCount +
+                "/" +
+                props.stageStatus.targetItemCount}
+            </InfoPodItem>
+          );
+        }
+        return null;
       case "user":
-        if (props.stageStatus.userTotal || props.type === 'flag') {
+        if (props.stageStatus.userTotal || props.type === "flag") {
           return (
             <InfoPodItem
               type={props.type}
@@ -78,25 +102,36 @@ function StatusPodItem(props) {
                   : ""
               }`}
             >
-              U
+              <Icon
+                name="user"
+                className={`${styles.icon} ${styles.iconUser}`}
+              ></Icon>
             </InfoPodItem>
           );
         }
         return null;
       case "qa":
-        if (props.stageStatus.qaActive || props.type === 'flag') {
+        if (props.stageStatus.qaActive || props.type === "flag") {
           return (
-            <InfoPodItem type={props.type} active={props.stageStatus.qaActive} className={styles.flagQa}>
-              ?
+            <InfoPodItem
+              type={props.type}
+              active={props.stageStatus.qaActive}
+              className={styles.flagQa}
+            >
+              <Icon name="qa" className={styles.icon}></Icon>
             </InfoPodItem>
           );
         }
         return null;
       case "issue":
-        if (props.stageStatus.issueActive || props.type === 'flag') {
+        if (props.stageStatus.issueActive || props.type === "flag") {
           return (
-            <InfoPodItem type={props.type} active={props.stageStatus.issueActive} className={styles.flagIssue}>
-              !
+            <InfoPodItem
+              type={props.type}
+              active={props.stageStatus.issueActive}
+              className={styles.flagIssue}
+            >
+              <Icon name="issue" className={styles.icon}></Icon>
             </InfoPodItem>
           );
         }

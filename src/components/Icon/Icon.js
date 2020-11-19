@@ -14,6 +14,7 @@ import { ReactComponent as Wrench } from "./wrench.svg";
 import { ReactComponent as FileText } from "./file-text.svg";
 import { ReactComponent as Plus } from "./plus.svg";
 import { ReactComponent as Minus } from "./minus.svg";
+import { ReactComponent as User } from "./user.svg";
 
 function Icon(props) {
   const iconElem = function () {
@@ -46,6 +47,8 @@ function Icon(props) {
         return <Plus className={props.className} />;
       case "minus":
         return <Minus className={props.className} />;
+      case "user":
+        return <User className={props.className} />;
       default:
         return <></>;
     }

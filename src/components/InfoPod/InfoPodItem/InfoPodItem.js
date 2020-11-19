@@ -11,7 +11,13 @@ function InfoPodItem(props) {
         props.type === "flag" && props.active ? styles.itemFlagActive : ""
       }`}
     >
-      <span className={styles.inner}>{props.children}</span>
+      <span
+        className={`${styles.inner} ${
+          typeof props.children === "string" ? styles.innerText : ""
+        }`}
+      >
+        {props.children}
+      </span>
     </span>
   );
 }

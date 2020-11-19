@@ -4,7 +4,7 @@ import useStageStatus from "../../../hooks/useStageStatus.js";
 
 import InfoPod from "../../InfoPod/InfoPod.js";
 import InfoPodSection from "../../InfoPod/InfoPodSection/InfoPodSection.js";
-// import InfoPodItem from "../../InfoPod/InfoPodItem/InfoPodItem.js";
+import InfoPodItem from "../../InfoPod/InfoPodItem/InfoPodItem.js";
 import StatusPodItem from "../../StatusPodItem/StatusPodItem.js";
 import Button from "../../Button/Button.js";
 import RunTitle from "../RunTitle/RunTitle.js";
@@ -42,10 +42,35 @@ function RunListStageItem(props) {
         </InfoPod>
       </li>
       <li className={`${styles.lineItem} ${props.columns[2].className}`}>
+        {/* {props.stageNum === 0 || props.stageNum === 4 ? (
+          <InfoPod>
+            <InfoPodSection>
+              <InfoPodItem>{stageStatus.workTotal}</InfoPodItem>
+            </InfoPodSection>
+          </InfoPod>
+        ) : (
+          <InfoPod>
+            <InfoPodSection
+              flags={[
+                <InfoPodItem key={"percent"} type="flag" active>
+                  {stageStatus.completionPercentage}%
+                </InfoPodItem>,
+              ]}
+            >
+              <InfoPodItem>{stageStatus.completionFraction}</InfoPodItem>
+            </InfoPodSection>
+          </InfoPod>
+        )} */}
         <InfoPod>
-          <InfoPodSection>
+          <InfoPodSection flags={[<StatusPodItem
+              key="progress"
+              type="flag"
+              statusField="completionFraction"
+              stageStatus={stageStatus}
+              stageNum={props.stageNum}
+            />]}>
             <StatusPodItem
-              key="user"
+              key="progress"
               type="core"
               statusField="completion"
               stageStatus={stageStatus}

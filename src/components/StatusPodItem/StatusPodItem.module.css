@@ -23,3 +23,9 @@
 .icon path {
   fill: var(--color-white);
 }
+
+.iconUser {
+  max-height: none;
+  max-width: none;
+  transform: scale(1.6) translateY(0.1em)
+}
