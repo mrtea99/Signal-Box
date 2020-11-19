@@ -1,18 +1,17 @@
 import React from "react";
 
+import TabList from "./TabList/TabList.js";
+
 function TabBox(props) {
   const [selectedBox, setSelectedBox] = React.useState(0);
 
   return (
     <div>
       <nav>
-        <ul>
-          {props.boxes.map((box, index) => (
-            <li key={box.label}>
-              <button onClick={() => setSelectedBox(index)}>{box.label}</button>
-            </li>
-          ))}
-        </ul>
+        <TabList
+          tabs={props.boxes.map((box, index) => box.label)}
+          indexCallback={setSelectedBox}
+        />
       </nav>
       <div>{props.boxes[selectedBox].content}</div>
     </div>
