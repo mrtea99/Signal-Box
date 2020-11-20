@@ -9,7 +9,7 @@ function InfoPodItem(props) {
         props.coreStyle === "label" ? styles.itemLabel : ""
       } ${props.type === "flag" ? styles.itemFlag : ""} ${
         props.type === "flag" && props.active ? styles.itemFlagActive : ""
-      }`}
+      } ${props.layout === "vert" ? styles.itemVert : styles.itemHoriz}`}
     >
       <span
         className={`${styles.inner} ${

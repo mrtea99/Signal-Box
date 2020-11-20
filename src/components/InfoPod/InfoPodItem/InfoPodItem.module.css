@@ -26,6 +26,7 @@
 .itemLabel {
   margin-bottom: calc(var(--border-width) * -1);
   min-width: 7rem;
+  width: 100%;
 }
 
 .itemFlag {
@@ -39,11 +40,25 @@
   z-index: 9;
 }
 
+.itemFlag.itemVert {
+  margin-left: 0;
+  margin-top: calc(var(--core-size) * -1);
+}
+
 .itemFlagActive {
   max-width: 10rem;
   min-width: var(--flag-width);
   padding-left: calc(var(--core-size) - var(--border-width));
 }
+.itemFlagActive.itemVert {
+  max-width: none;
+  min-width: none;
+  padding-left: 0;
+  max-height: 10rem;
+  min-height: var(--flag-width);
+  padding-top: calc(var(--core-size) - var(--border-width));
+}
+
 
 .inner {
   vertical-align: middle;

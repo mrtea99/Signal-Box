@@ -174,6 +174,8 @@ function Stage(props) {
             stageNum={props.thisStage}
             label
             activeUser={props.activeUser}
+            layout="vert"
+            fullWidth
           />
           <StageActions
             updateStageActive={updateStageActive}

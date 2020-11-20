@@ -10,8 +10,14 @@
   width: 100%;
   justify-content: center;
 }
+.wrapperVert {
+  flex-direction: column;
+}
 
 .flags {
   display: flex;
   flex-direction: row-reverse;
+}
+.flagsVert {
+  flex-direction: column-reverse;
 }

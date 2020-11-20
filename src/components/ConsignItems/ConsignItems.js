@@ -1,4 +1,7 @@
 import React from "react";
+import InfoPod from "../InfoPod/InfoPod.js";
+import InfoPodItem from "../InfoPod/InfoPodItem/InfoPodItem.js";
+import InfoPodSection from "../InfoPod/InfoPodSection/InfoPodSection.js";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 
@@ -118,12 +121,21 @@ function ConsignItems(props) {
 
   return (
     <>
-      <p>
-        Consigned: {props.stageStatus.completionFraction}
-        <br />
-        Remaining:{" "}
-        {props.stageStatus.targetItemCount - props.stageStatus.itemCount}
-      </p>
+      <InfoPod fullWidth>
+        <InfoPodSection
+          layout="vert"
+          flags={[
+            <InfoPodItem active key={"remaining"}>
+              Remaining:{" "}
+              {props.stageStatus.targetItemCount - props.stageStatus.itemCount}
+            </InfoPodItem>,
+          ]}
+        >
+          <InfoPodItem>
+            Consigned: {props.stageStatus.completionFraction}
+          </InfoPodItem>
+        </InfoPodSection>
+      </InfoPod>
       <ModalControl
         triggerCopy={triggerCopy()}
         handleSubmit={handleSubmit}

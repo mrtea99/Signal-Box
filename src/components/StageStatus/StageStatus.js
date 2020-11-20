@@ -7,6 +7,8 @@ import StatusPodItem from "../StatusPodItem/StatusPodItem.js";
 import useStageStatus from "../../hooks/useStageStatus.js";
 
 function StageStatus(props) {
+
+
   const stageStatus = useStageStatus(
     props.runData,
     props.stageNum,
@@ -14,7 +16,7 @@ function StageStatus(props) {
   );
 
   return (
-    <InfoPod>
+    <InfoPod fullWidth={props.fullWidth}>
       {props.label ? (
         <InfoPodSection>
           <StatusPodItem
@@ -24,7 +26,7 @@ function StageStatus(props) {
           />
         </InfoPodSection>
       ) : null}
-      <InfoPodSection
+      <InfoPodSection layout={props.layout}
         flags={[
           <StatusPodItem
             key="issue"
