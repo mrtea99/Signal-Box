@@ -10,21 +10,10 @@ function StageNav(props) {
     props.buttonCallback(stageIndex);
   };
 
-  let WrapperElem = "ul";
-  let wrapperClasses = styles.progBar;
-  let InnerElem = "li";
-  let innerClasses = styles.progItem;
-
-  if (props.syntax === "table") {
-    WrapperElem = "tr";
-    wrapperClasses = `${styles.progBar} ${styles.progBarTable} `;
-    InnerElem = "td";
-  }
-
   return (
-    <WrapperElem className={wrapperClasses}>
+    <ul className={styles.progBar}>
       {props.stageNameArr.map((stage, index) => (
-        <InnerElem key={props.currentRunUid + stage} className={innerClasses}>
+        <li key={props.currentRunUid + stage} className={styles.progItem}>
           <button
             className={`${styles.progBtn} ${
               props.activeStage === index && props.showActive
@@ -50,9 +39,9 @@ function StageNav(props) {
               />
             </span>
           </button>
-        </InnerElem>
+        </li>
       ))}
-    </WrapperElem>
+    </ul>
   );
 }
 

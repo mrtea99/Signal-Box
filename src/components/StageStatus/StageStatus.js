@@ -1,10 +1,10 @@
 import React from "react";
 
-import StatusIcon from "../StatusIcon/StatusIcon.js";
+import InfoPod from "../InfoPod/InfoPod.js";
+import InfoPodSection from "../InfoPod/InfoPodSection/InfoPodSection.js";
+import StatusPodItem from "../StatusPodItem/StatusPodItem.js";
 
 import useStageStatus from "../../hooks/useStageStatus.js";
-
-import styles from "./StageStatus.module.css";
 
 function StageStatus(props) {
   const stageStatus = useStageStatus(
@@ -14,32 +14,39 @@ function StageStatus(props) {
   );
 
   return (
-    <>
-      {props.button ? (
-        <button
-          onClick={props.onClick}
-          // className={`${styles.button} ${
-          //   stageStatus.stageStatusName !== "complete" &&
-          //   stageStatus.stageStatusName !== "pending"
-          //     ? styles.buttonStageActive
-          //     : ""
-          // }`}
-          className={styles.button}
-        >
-          <StatusIcon
+    <InfoPod>
+      {props.label ? (
+        <InfoPodSection>
+          <StatusPodItem
+            coreStyle="label"
+            statusField="label"
             stageStatus={stageStatus}
-            stageNum={props.stageNum}
-            label={props.label || false}
           />
-        </button>
-      ) : (
-        <StatusIcon
+        </InfoPodSection>
+      ) : null}
+      <InfoPodSection
+        flags={[
+          <StatusPodItem
+            key="issue"
+            statusField="issue"
+            stageStatus={stageStatus}
+          />,
+          <StatusPodItem key="qa" statusField="qa" stageStatus={stageStatus} />,
+          <StatusPodItem
+            key="user"
+            statusField="user"
+            stageStatus={stageStatus}
+          />,
+        ]}
+      >
+        <StatusPodItem
+          key="user"
+          statusField="completion"
           stageStatus={stageStatus}
           stageNum={props.stageNum}
-          label={props.label || false}
         />
-      )}
-    </>
+      </InfoPodSection>
+    </InfoPod>
   );
 }
 

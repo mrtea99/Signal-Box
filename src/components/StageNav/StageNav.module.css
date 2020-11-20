@@ -24,10 +24,6 @@
   }
 }
 
-.progBarTable {
-  display: table-row;
-}
-
 .progItem {
   list-style-type: none;
   flex-grow: 1;
