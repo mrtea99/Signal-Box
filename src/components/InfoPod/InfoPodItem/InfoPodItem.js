@@ -6,7 +6,7 @@ function InfoPodItem(props) {
   return (
     <span
       className={`${props.className} ${styles.item} ${
-        props.type === "label" ? styles.itemLabel : ""
+        props.coreStyle === "label" ? styles.itemLabel : ""
       } ${props.type === "flag" ? styles.itemFlag : ""} ${
         props.type === "flag" && props.active ? styles.itemFlagActive : ""
       }`}

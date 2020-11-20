@@ -10,7 +10,7 @@ function StatusIcon(props) {
       {props.label ? (
         <InfoPodSection>
           <StatusPodItem
-            type="label"
+            coreStyle="label"
             statusField="label"
             stageStatus={props.stageStatus}
           />
@@ -20,19 +20,16 @@ function StatusIcon(props) {
         flags={[
           <StatusPodItem
             key="issue"
-            type="flag"
             statusField="issue"
             stageStatus={props.stageStatus}
           />,
           <StatusPodItem
             key="qa"
-            type="flag"
             statusField="qa"
             stageStatus={props.stageStatus}
           />,
           <StatusPodItem
             key="user"
-            type="flag"
             statusField="user"
             stageStatus={props.stageStatus}
           />,
@@ -40,7 +37,6 @@ function StatusIcon(props) {
       >
         <StatusPodItem
           key="user"
-          type="core"
           statusField="completion"
           stageStatus={props.stageStatus}
           stageNum={props.stageNum}

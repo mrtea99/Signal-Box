@@ -12,7 +12,12 @@ function TabList(props) {
             props.activeTab === index ? styles.itemActive : ""
           }`}
         >
-          <button onClick={() => props.indexCallback(index)} className={styles.button}>{tabName}</button>
+          <button
+            onClick={() => props.indexCallback(index)}
+            className={styles.button}
+          >
+            {tabName}
+          </button>
         </li>
       ))}
     </ul>

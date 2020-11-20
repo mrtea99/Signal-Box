@@ -5,14 +5,17 @@ import styles from "./InfoPodSection.module.css";
 function InfoPodSection(props) {
   return (
     <span className={styles.wrapper}>
-      {props.children}
+      {props.children
+        ? React.Children.toArray(props.children).map((child, index) =>
+            React.cloneElement(child, { type: "core" })
+          )
+        : ""}
       <span className={styles.flags}>
-        {props.flags}
-        {/* {props.flags
-          ? props.flags.map((flag) => {
-              return flag;
-            })
-          : null} */}
+        {props.flags
+          ? props.flags.map((flag, index) =>
+              React.cloneElement(flag, { type: "flag" })
+            )
+          : ""}
       </span>
     </span>
   );

@@ -34,7 +34,7 @@ function RunListStageItem(props) {
         <InfoPod>
           <InfoPodSection>
             <StatusPodItem
-              type="label"
+              coreStyle="label"
               statusField="label"
               stageStatus={stageStatus}
             />
@@ -62,16 +62,18 @@ function RunListStageItem(props) {
           </InfoPod>
         )} */}
         <InfoPod>
-          <InfoPodSection flags={[<StatusPodItem
-              key="progress"
-              type="flag"
-              statusField="completionFraction"
-              stageStatus={stageStatus}
-              stageNum={props.stageNum}
-            />]}>
+          <InfoPodSection
+            flags={[
+              <StatusPodItem
+                key="progress"
+                statusField="completionFraction"
+                stageStatus={stageStatus}
+                stageNum={props.stageNum}
+              />,
+            ]}
+          >
             <StatusPodItem
               key="progress"
-              type="core"
               statusField="completion"
               stageStatus={stageStatus}
               stageNum={props.stageNum}

@@ -8,6 +8,8 @@ import styles from "./StatusPodItem.module.css";
 import { ReactComponent as Checkmark } from "./checkmark.svg";
 
 function StatusPodItem(props) {
+  const { statusField, stageStatus, stageNum, ...itemProps } = props;
+
   const getLabel = function () {
     if (props.stageStatus.workActive) {
       return props.stageStatus.workActiveNames;
@@ -44,7 +46,7 @@ function StatusPodItem(props) {
       case "label":
         return (
           <InfoPodItem
-            type={props.type}
+            {...itemProps}
             active
             className={`${
               styles["podItem" + props.stageStatus.stageStatusName]
@@ -56,7 +58,7 @@ function StatusPodItem(props) {
       case "completion":
         return (
           <InfoPodItem
-            type={props.type}
+            {...itemProps}
             active
             className={`${
               styles["podItem" + props.stageStatus.stageStatusName]
@@ -75,7 +77,7 @@ function StatusPodItem(props) {
         ) {
           return (
             <InfoPodItem
-              type={props.type}
+              {...itemProps}
               active
               className={`${
                 styles["podItem" + props.stageStatus.stageStatusName]
@@ -92,7 +94,7 @@ function StatusPodItem(props) {
         if (props.stageStatus.userTotal || props.type === "flag") {
           return (
             <InfoPodItem
-              type={props.type}
+              {...itemProps}
               active={props.stageStatus.userTotal}
               className={`${
                 props.stageStatus.userActive ? styles.podItemworking : ""
@@ -114,7 +116,7 @@ function StatusPodItem(props) {
         if (props.stageStatus.qaActive || props.type === "flag") {
           return (
             <InfoPodItem
-              type={props.type}
+              {...itemProps}
               active={props.stageStatus.qaActive}
               className={styles.flagQa}
             >
@@ -127,7 +129,7 @@ function StatusPodItem(props) {
         if (props.stageStatus.issueActive || props.type === "flag") {
           return (
             <InfoPodItem
-              type={props.type}
+              {...itemProps}
               active={props.stageStatus.issueActive}
               className={styles.flagIssue}
             >

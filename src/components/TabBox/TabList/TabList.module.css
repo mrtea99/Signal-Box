@@ -36,6 +36,7 @@
 
   text-transform: uppercase;
   min-height: var(--size-touch-min);
+  min-width: var(--size-touch-min);
 }
 
 .button:hover {
@@ -54,7 +55,6 @@
 .button:disabled {
   opacity: 0.5;
 }
-
 
 .itemActive .button {
   background-color: var(--color-pink-bright);
