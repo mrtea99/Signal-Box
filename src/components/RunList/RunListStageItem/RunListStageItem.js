@@ -4,7 +4,6 @@ import useStageStatus from "../../../hooks/useStageStatus.js";
 
 import InfoPod from "../../InfoPod/InfoPod.js";
 import InfoPodSection from "../../InfoPod/InfoPodSection/InfoPodSection.js";
-import InfoPodItem from "../../InfoPod/InfoPodItem/InfoPodItem.js";
 import StatusPodItem from "../../StatusPodItem/StatusPodItem.js";
 import Button from "../../Button/Button.js";
 import RunTitle from "../RunTitle/RunTitle.js";
@@ -31,82 +30,82 @@ function RunListStageItem(props) {
         <RunTitle>{props.runData.productInfo.productName}</RunTitle>
       </li>
       <li className={`${styles.lineItem} ${props.columns[1].className}`}>
-        <InfoPod>
-          <InfoPodSection>
-            <StatusPodItem
-              coreStyle="label"
-              statusField="label"
-              stageStatus={stageStatus}
-            />
-          </InfoPodSection>
-        </InfoPod>
-      </li>
-      <li className={`${styles.lineItem} ${props.columns[2].className}`}>
-        {/* {props.stageNum === 0 || props.stageNum === 4 ? (
+        <span className={styles.cellLabel}>Status</span>
+        <span className={styles.cellContent}>
           <InfoPod>
             <InfoPodSection>
-              <InfoPodItem>{stageStatus.workTotal}</InfoPodItem>
+              <StatusPodItem
+                coreStyle="label"
+                statusField="label"
+                stageStatus={stageStatus}
+              />
             </InfoPodSection>
           </InfoPod>
-        ) : (
+        </span>
+      </li>
+      <li className={`${styles.lineItem} ${props.columns[2].className}`}>
+        <span className={styles.cellLabel}>Progress</span>
+        <span className={styles.cellContent}>
           <InfoPod>
             <InfoPodSection
+              // layout="vert"
               flags={[
-                <InfoPodItem key={"percent"} type="flag" active>
-                  {stageStatus.completionPercentage}%
-                </InfoPodItem>,
+                <StatusPodItem
+                  key="progress"
+                  statusField="completionFraction"
+                  stageStatus={stageStatus}
+                  stageNum={props.stageNum}
+                />,
               ]}
             >
-              <InfoPodItem>{stageStatus.completionFraction}</InfoPodItem>
-            </InfoPodSection>
-          </InfoPod>
-        )} */}
-        <InfoPod>
-          <InfoPodSection
-            flags={[
               <StatusPodItem
                 key="progress"
-                statusField="completionFraction"
+                statusField="completion"
                 stageStatus={stageStatus}
                 stageNum={props.stageNum}
-              />,
-            ]}
-          >
-            <StatusPodItem
-              key="progress"
-              statusField="completion"
-              stageStatus={stageStatus}
-              stageNum={props.stageNum}
-            />
-          </InfoPodSection>
-        </InfoPod>
+              />
+            </InfoPodSection>
+          </InfoPod>
+        </span>
       </li>
       <li className={`${styles.lineItem} ${props.columns[3].className}`}>
-        <InfoPod>
-          <InfoPodSection>
-            <StatusPodItem statusField="user" stageStatus={stageStatus} />
-          </InfoPodSection>
-        </InfoPod>
+        <span className={styles.cellLabel}>User</span>
+        <span className={styles.cellContent}>
+          <InfoPod>
+            <InfoPodSection>
+              <StatusPodItem statusField="user" stageStatus={stageStatus} />
+            </InfoPodSection>
+          </InfoPod>
+        </span>
       </li>
       <li className={`${styles.lineItem} ${props.columns[4].className}`}>
-        <InfoPod>
-          <InfoPodSection>
-            <StatusPodItem statusField="qa" stageStatus={stageStatus} />
-          </InfoPodSection>
-        </InfoPod>
+        <span className={styles.cellLabel}>QA</span>
+        <span className={styles.cellContent}>
+          <InfoPod>
+            <InfoPodSection>
+              <StatusPodItem statusField="qa" stageStatus={stageStatus} />
+            </InfoPodSection>
+          </InfoPod>
+        </span>
       </li>
       <li className={`${styles.lineItem} ${props.columns[5].className}`}>
-        <InfoPod>
-          <InfoPodSection>
-            <StatusPodItem statusField="issue" stageStatus={stageStatus} />
-          </InfoPodSection>
-        </InfoPod>
+        <span className={styles.cellLabel}>Issues</span>
+        <span className={styles.cellContent}>
+          <InfoPod>
+            <InfoPodSection>
+              <StatusPodItem statusField="issue" stageStatus={stageStatus} />
+            </InfoPodSection>
+          </InfoPod>
+        </span>
       </li>
       <li className={`${styles.lineItem} ${props.columns[6].className}`}>
-        <Button
-          onClick={() => openEditor(props.runData.uid, props.stageNum)}
-          icon="start"
-        ></Button>
+        <span className={styles.cellLabel}>Open</span>
+        <span className={styles.cellContent}>
+          <Button
+            onClick={() => openEditor(props.runData.uid, props.stageNum)}
+            icon="start"
+          ></Button>
+        </span>
       </li>
     </ul>
   );

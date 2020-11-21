@@ -13,18 +13,20 @@
   border-top: 0.5rem solid var(--color-bg);
 }
 
-.colProduct {
-  flex: 1 1 auto;
-}
-.colStatus {
-  flex: 0 0 10rem;
-}
-.colProgress {
-  flex: 0 0 10rem;
-}
-.colSingle {
-  flex: 0 0 4rem;
-}
-.colIconButton {
-  flex: 0 0 4rem;
+@media (min-width: 768px) {
+  .colProduct {
+    flex: 1 1 auto;
+  }
+  .colStatus {
+    flex: 0 0 10rem;
+  }
+  .colProgress {
+    flex: 0 0 10rem;
+  }
+  .colSingle {
+    flex: 0 0 4rem;
+  }
+  .colIconButton {
+    flex: 0 0 4rem;
+  }
 }

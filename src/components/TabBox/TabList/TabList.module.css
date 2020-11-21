@@ -2,17 +2,30 @@
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+}
+@media (min-width: 768px) {
+  .list {
+    flex-direction: row;
+  }
 }
 
 .item {
-  margin: 0;
+  margin: 0 0 0.2rem 0;
   padding: 0;
   list-style-type: none;
-  margin-right: 0.2rem;
 }
 .item:last-child {
-  margin-right: 0;
+  margin-bottom: 0;
+}
+@media (min-width: 768px) {
+  .item {
+    margin-bottom: 0;
+    margin-right: 0.2rem;
+  }
+  .item:last-child {
+    margin-right: 0;
+  }
 }
 
 .itemActive {
