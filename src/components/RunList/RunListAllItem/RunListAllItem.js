@@ -1,16 +1,11 @@
 import React from "react";
 
-import Button from "../../Button/Button.js";
-import StageOverview from "../../StageOverview/StageOverview.js";
-import Modal from "../../Modal/Modal.js";
 import StageNav from "../../StageNav/StageNav";
 import RunTitle from "../RunTitle/RunTitle.js";
 
 import styles from "./RunListAllItem.module.css";
 
 function RunListAllItem(props) {
-  const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
-
   const run = props.runData;
 
   const openEditor = function (runUid, stageNum) {
@@ -21,19 +16,11 @@ function RunListAllItem(props) {
   return (
     <div>
       <header
-        onClick={() => setModalOverviewActive(run.uid)}
-      className={styles.itemHeader}>
-        <RunTitle>{run.productInfo.productName}</RunTitle>
+        // onClick={() => setModalOverviewActive(run.uid)}
+        className={styles.itemHeader}
+      >
+        <RunTitle runData={props.runData}>{run.productInfo.productName}</RunTitle>
       </header>
-
-      {modalOverviewActive === run.uid ? (
-        <Modal>
-          <Button onClick={() => setModalOverviewActive(null)}>Close</Button>
-          <StageOverview thisRunData={run}></StageOverview>
-        </Modal>
-      ) : (
-        <></>
-      )}
 
       <StageNav
         stageNameArr={props.stageNameArr}

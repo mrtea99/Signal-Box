@@ -17,6 +17,7 @@
   flex-direction: column;
   align-items: stretch;
   background-color: var(--color-bar);
+  border: var(--width-item-gap) solid var(--color-bar);
 }
 @media (min-width: 768px) {
   .progBar {
@@ -136,21 +137,18 @@
 } */
 
 .progBtnActive,
-.progBtn:focus {
+.progBtn:focus,
+.progBtn:hover {
   color: var(--color-text-active);
   background-color: var(--color-bg-active);
 }
 .progBtnActive::after,
-.progBtn:focus::after {
+.progBtn:focus::after,
+.progBtn:hover::after {
   border-left-color: var(--color-bg-active);
 }
 
-/* .progBtn:hover,
-.progBtn:focus {
-  background: var(--color-fg);
-} */
-/* 
-.progBtn:active {
+/* .progBtn:active {
   transform: scale(0.99);
 } */
 

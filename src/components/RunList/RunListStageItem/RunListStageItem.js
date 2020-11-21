@@ -27,7 +27,7 @@ function RunListStageItem(props) {
       <li
         className={`${styles.lineItem} ${styles.lineItemFull} ${props.columns[0].className}`}
       >
-        <RunTitle>{props.runData.productInfo.productName}</RunTitle>
+        <RunTitle runData={props.runData}>{props.runData.productInfo.productName}</RunTitle>
       </li>
       <li className={`${styles.lineItem} ${props.columns[1].className}`}>
         <span className={styles.cellLabel}>Status</span>
