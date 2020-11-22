@@ -188,12 +188,17 @@ function Stage(props) {
           />
         </div>
         <div className={styles.sessionView}>
-          <SessionDuring
-            activeSessionData={activeSessionData}
-            updateSession={updateSession}
-            thisStage={props.thisStage}
-            thisRunData={props.thisRunData}
-          />
+          {activeSessionData ? (
+            <SessionDuring
+              key="active"
+              activeSessionData={activeSessionData}
+              updateSession={updateSession}
+              thisStage={props.thisStage}
+              thisRunData={props.thisRunData}
+            />
+          ) : (
+            <SessionDuring key="placeholder" />
+          )}
         </div>
         <div className={styles.sessionControl}>
           <SessionControl
