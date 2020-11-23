@@ -1,20 +1,31 @@
 import React from "react";
 
+import FormItem from "../../FormItem/FormItem";
+
 function CheckOpenerForm(props) {
   return (
     <>
-      <div>
-        <label htmlFor="qa-description">QA Note:</label>
-        <textarea
-          id="qa-description"
-          name="qa-description"
-          onChange={(e) => props.setFormData({...props.formData, notes: "Requested: " + e.target.value})}
-        ></textarea>
-      </div>
+      <FormItem
+        label="QA Note:"
+        type="textarea"
+        ident="qa-description"
+        updateHandler={(value) => {
+          console.log(value);
+          props.setFormData({
+            ...props.formData,
+            notes: "Requested: " + value,
+          });
+        }}
+      ></FormItem>
       <div>
         <select
           value={props.formData.checker}
-          onChange={(e) => props.setFormData({...props.formData, checker: parseInt(e.target.value)})}
+          onChange={(e) =>
+            props.setFormData({
+              ...props.formData,
+              checker: parseInt(e.target.value),
+            })
+          }
         >
           <option value="1">User 1</option>
           <option value="2">User 2</option>
@@ -23,7 +34,9 @@ function CheckOpenerForm(props) {
       <div>
         <select
           value={props.formData.timeframe}
-          onChange={(e) => props.setFormData({...props.formData, timeframe: e.target.value})}
+          onChange={(e) =>
+            props.setFormData({ ...props.formData, timeframe: e.target.value })
+          }
         >
           <option value="now">Immediate</option>
           <option value="shift">Before next shift</option>

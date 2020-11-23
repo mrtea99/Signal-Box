@@ -16,7 +16,7 @@ function FormItem(props) {
           name={ident}
           {...fieldProps}
           onChange={(e) => updateHandler(e.target.value)}
-          value={fieldProps.value || ""}
+          // value={fieldProps.value || ""}
           className={`${styles.field} ${styles.fieldText}`}
         />
       );
