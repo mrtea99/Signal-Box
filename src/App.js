@@ -10,7 +10,7 @@ import RunInfoNew from "./components/RunInfoNew/RunInfoNew.js";
 import RunInfoChange from "./components/RunInfoChange/RunInfoChange.js";
 import Button from "./components/Button/Button.js";
 import TabBox from "./components/TabBox/TabBox";
-import FormItem from "./components/FormItem/FormItem";
+import SiteHeader from "./components/SiteHeader/SiteHeader";
 
 function App() {
   const savedRunData = () =>
@@ -83,28 +83,7 @@ function App() {
 
   return (
     <div className={styles.siteContainer}>
-      <header className={styles.siteHeader}>
-        <div className={styles.sidebarTrigger}>
-          <Button onClick={() => setSidebarActive(true)} icon="fix" />
-        </div>
-        <div>
-          {/* <select
-            value={activeUser}
-            onChange={(e) => setActiveUser(parseInt(e.target.value))}
-          >
-            <option value="1">User 1</option>
-            <option value="2">User 2</option>
-          </select> */}
-          <FormItem
-            type="select"
-            value={activeUser}
-            updateHandler={(value) => setActiveUser(parseInt(value))}
-          >
-            <option value="1">User 1</option>
-            <option value="2">User 2</option>
-          </FormItem>
-        </div>
-      </header>
+      <SiteHeader activeUser={activeUser} setActiveUser={setActiveUser} setSidebarActive={setSidebarActive} />
       <div className={styles.sitePage}>
         <SiteSidebar
           sidebarActive={sidebarActive}

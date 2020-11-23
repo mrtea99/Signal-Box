@@ -42,6 +42,7 @@ function RunEditor(props) {
     <>
       {thisRunData ? (
         <div className={`${styles.runEditor} ${styles.runEditorActive}`}>
+          <div className={styles.inner}>
           <header>
             <Button onClick={(e) => handleExitClick(e)} icon="previous" iconFirst>Exit</Button>
           </header>
@@ -92,6 +93,7 @@ function RunEditor(props) {
             />
           </div>
           <pre>{JSON.stringify(thisRunData)}</pre>
+          </div>
         </div>
       ) : (
         <div className={styles.runEditor}>

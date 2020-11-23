@@ -5,9 +5,9 @@ import styles from "./SiteSidebar.module.css";
 import Button from "../Button/Button.js";
 
 function SiteSidebar(props) {
-  const closeSidebar = function() {
+  const closeSidebar = function () {
     props.setSidebarActive(false);
-  }
+  };
 
   return (
     <div
@@ -17,10 +17,10 @@ function SiteSidebar(props) {
           : styles.siteSidebar
       }
     >
-      <img className={styles.siteLogo} alt="Mojo Spa Logo" src="./logo.svg" />
       <div className={styles.sidebarControl}>
-        <Button onClick={closeSidebar}>Close Sidebar</Button>
+        <Button onClick={closeSidebar} icon="cross" />
       </div>
+      <img className={styles.siteLogo} alt="Mojo Spa Logo" src="./logo.svg" />
     </div>
   );
 }

@@ -4,8 +4,9 @@
   flex: none;
   position: fixed;
   top: 0;
-  left: -80vw;
-  width: 80vw;
+  left: -20rem;
+  width: 100%;
+  max-width: 20rem;
   height: 100vh;
   z-index: 101;
   transition: left 0.5s;
@@ -14,7 +15,6 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-
 }
 
 .siteSidebarActive {
@@ -40,4 +40,10 @@
   max-width: 11rem;
   border: 0.3rem solid white;
   border-radius: 50%;
+}
+
+.sidebarControl {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }

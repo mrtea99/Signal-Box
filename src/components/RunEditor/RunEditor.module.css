@@ -13,7 +13,6 @@
   left: 0;
 
   background-color: var(--color-bg);
-  padding: 1rem;
   overflow: scroll;
   max-height: 100vh;
   transition: all 0.3s cubic-bezier(0.4, 0, 1, 1);
@@ -25,6 +24,12 @@
 
   top: 0vh;
   bottom: 0vh;
+}
+
+.inner {
+  margin: 0 auto;
+  padding: 1rem var(--width-site-padding);
+  max-width: var(--width-site);
 }
 
 .runInfo {
@@ -97,4 +102,9 @@
 .infoBox {
   flex-grow: 1;
   margin-bottom: 1em;
+}
+
+/* temp */
+.runEditor pre {
+  overflow: scroll;
 }
