@@ -38,7 +38,7 @@ function FormItem(props) {
 
   return (
     <div className={styles.itemWrap}>
-      <label className={styles.label} htmlFor={props.ident}>{props.label}:</label>
+      <label className={styles.label} htmlFor={props.ident}>{props.label}</label>
       {fieldElem}
     </div>
   );

@@ -60,7 +60,7 @@ function SessionDuring(props) {
                   handleFieldChange(e.target.value, setNoteData, "notes")
                 }
                 value={noteData}
-              ></FormItem>
+              />
 
               {props.thisStage === 1 ||
               props.thisStage === 2 ||
@@ -82,7 +82,7 @@ function SessionDuring(props) {
                     }
                     value={amount}
                     min="0"
-                  ></FormItem>
+                  />
 
                   <FormItem
                     type="number"
@@ -100,7 +100,7 @@ function SessionDuring(props) {
                     }
                     value={amountBad}
                     min="0"
-                  ></FormItem>
+                  />
                 </>
               ) : (
                 <></>

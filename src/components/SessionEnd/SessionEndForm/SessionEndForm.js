@@ -3,6 +3,7 @@ import React from "react";
 import Button from "../../Button/Button.js";
 import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
 import CheckOpenerForm from "../../CheckOpener/CheckOpenerForm/CheckOpenerForm.js";
+import FormItem from "../../FormItem/FormItem.js";
 
 function SessionEndForm(props) {
   // After Statuses
@@ -72,88 +73,74 @@ function SessionEndForm(props) {
 
   return (
     <form>
-      <div>
-        <label htmlFor={"sess-notes-step-" + props.thisStage}>Notes:</label>
-        <textarea
-          id={"sess-notes-step-" + props.thisStage}
-          onChange={(e) =>
-            handleFieldChange(e.target.value, setNoteData, "notes")
-          }
-          value={noteData}
-        />
-      </div>
+      <FormItem
+        type="textarea"
+        ident={"sess-notes-step-" + props.thisStage}
+        label="Note"
+        onChange={(e) =>
+          handleFieldChange(e.target.value, setNoteData, "notes")
+        }
+        value={noteData}
+      />
       {props.thisStage === 1 ||
       props.thisStage === 2 ||
       props.thisStage === 3 ? (
         <>
-          <div>
-            <label htmlFor={"sess-amount-step-" + props.thisStage}>
-              Completed {props.thisStage === 1 ? "Batches" : "Units"}:
-              {props.thisStage === 1
-                ? "(Target " + props.thisRunData.productInfo.batchQuantity + ")"
-                : ""}
-            </label>
-            <input
-              id={"sess-amount-step-" + props.thisStage}
-              type="number"
-              min="0"
-              onChange={(e) =>
-                handleFieldChange(parseInt(e.target.value), setAmount, "amount")
-              }
-              value={amount}
-            />
-          </div>
-          <div>
-            <label htmlFor={"sess-amount-bad-step-" + props.thisStage}>
-              Defective {props.thisStage === 1 ? "Batches" : "Units"}:
-            </label>
-            <input
-              id={"sess-amount-bad-step-" + props.thisStage}
-              type="number"
-              min="0"
-              onChange={(e) =>
-                handleFieldChange(
-                  parseInt(e.target.value),
-                  setAmountBad,
-                  "amountBad"
-                )
-              }
-              value={amountBad}
-            />
-          </div>
+          <FormItem
+            type="number"
+            ident={"sess-amount-step-" + props.thisStage}
+            label={"Completed " + (props.thisStage === 1 ? "Batches" : "Units")}
+            onChange={(e) =>
+              handleFieldChange(parseInt(e.target.value), setAmount, "amount")
+            }
+            value={amount}
+            min="0"
+          />
+          <FormItem
+            type="number"
+            ident={"sess-amount-bad-step-" + props.thisStage}
+            label={"Defective " + (props.thisStage === 1 ? "Batches" : "Units")}
+            onChange={(e) =>
+              handleFieldChange(
+                parseInt(e.target.value),
+                setAmountBad,
+                "amountBad"
+              )
+            }
+            value={amountBad}
+            min="0"
+          />
         </>
       ) : (
         <></>
       )}
       {props.thisStage === 1 || props.thisStage === 2 ? (
-        <>
-          <div>
-            <label htmlFor={"sess-average-weight-step-" + props.thisStage}>
-              Average {props.thisStage === 1 ? "Batch" : "Unit"} Weight:
-              {props.thisStage === 1
+        <FormItem
+          type="number"
+          ident={"sess-average-weight-step-" + props.thisStage}
+          label={`Average ${props.thisStage === 1 ? "Batch" : "Unit"} Weight:
+            ${
+              props.thisStage === 1
                 ? "(Target " + props.thisRunData.productInfo.batchWeight + ")"
-                : ""}
-              {props.thisStage === 2
+                : ""
+            }
+            ${
+              props.thisStage === 2
                 ? "(Target " +
                   props.thisRunData.productInfo.averageUnitWeight +
                   ")"
-                : ""}
-            </label>
-            <input
-              id={"sess-average-weight-step-" + props.thisStage}
-              type="number"
-              min="0"
-              onChange={(e) =>
-                handleFieldChange(
-                  parseInt(e.target.value),
-                  setAverageWeight,
-                  "averageWeight"
-                )
-              }
-              value={averageWeight}
-            />
-          </div>
-        </>
+                : ""
+            }`}
+          onChange={(e) =>
+            handleFieldChange(
+              parseInt(e.target.value),
+              setAverageWeight,
+              "averageWeight"
+            )
+          }
+          value={averageWeight}
+          min="0"
+        />
       ) : (
         <></>
       )}
@@ -177,7 +164,9 @@ function SessionEndForm(props) {
         <Button onClick={() => props.setFormActive(false)} color="cancel">
           Cancel
         </Button>
-        <Button onClick={handleEndClick} icon="stop">End Session</Button>
+        <Button onClick={handleEndClick} icon="stop">
+          End Session
+        </Button>
       </ButtonSpacer>
     </form>
   );

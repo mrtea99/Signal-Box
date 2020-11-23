@@ -1,6 +1,7 @@
 .itemWrap {
   display: flex;
   flex-direction: column;
+  margin-bottom: 0.5rem;
 }
 
 .label {
@@ -11,6 +12,7 @@
   display: inline-block;
   min-height: var(--size-touch-min);
   min-width: var(--size-touch-min);
+  border: 0;
 }
 
 .fieldText {
