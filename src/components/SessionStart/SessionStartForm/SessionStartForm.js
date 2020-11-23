@@ -2,6 +2,7 @@ import React from "react";
 
 import Button from "../../Button/Button.js";
 import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
+import FormItem from "../../FormItem/FormItem.js";
 
 const activityList = [
   ["Manufacturing", "Packaging"],
@@ -24,9 +25,9 @@ function SessionStartForm(props) {
     activityList[props.thisStage][0]
   );
   // Room temp (manu and cool)
-  const [temperature, setTemperature] = React.useState(null);
+  const [temperature, setTemperature] = React.useState(70);
   // Room humidity (manu and cool)
-  const [humidity, setHumidity] = React.useState(null);
+  const [humidity, setHumidity] = React.useState(50);
 
   const handleNewClick = function (e) {
     e.preventDefault();
@@ -73,58 +74,55 @@ function SessionStartForm(props) {
 
   return (
     <form>
-      <div>
-        <label htmlFor={"sess-activity-stage-" + props.thisStage}>
-          Activity:
-        </label>
-        <select
-          id={"sess-activity-stage-" + props.thisStage}
-          onChange={(e) => setActivityData(e.target.value)}
-          value={activityData}
-        >
-          {activityList[props.thisStage].map((activityType, index) => (
-            <option
-              key={"activity-" + index + "-stage-" + props.thisStage}
-              value={activityType}
-            >
-              {activityType}
-            </option>
-          ))}
-        </select>
-      </div>
+      <FormItem
+        type="select"
+        ident={"sess-activity-stage-" + props.thisStage}
+        label="Activity:"
+        updateHandler={(value) => setActivityData(value)}
+        value={activityData}
+      >
+        {activityList[props.thisStage].map((activityType, index) => (
+          <option
+            key={"activity-" + index + "-stage-" + props.thisStage}
+            value={activityType}
+          >
+            {activityType}
+          </option>
+        ))}
+      </FormItem>
       {props.thisStage === 1 ? (
         <>
-          <div>
-            <label htmlFor={"sess-temp-stage-" + props.thisStage}>
-              Room Temperature:
-            </label>
-            <input
-              id={"sess-temp-stage-" + props.thisStage}
-              type="number"
-              onChange={(e) => setTemperature(parseInt(e.target.value))}
-              min="0"
-              max="120"
-            />
-          </div>
-          <div>
-            <label htmlFor={"sess-humidity-stage-" + props.thisStage}>
-              Room Humidity:
-            </label>
-            <input
-              id={"sess-humidity-stage-" + props.thisStage}
-              type="number"
-              onChange={(e) => setHumidity(parseInt(e.target.value))}
-              min="0"
-              max="100"
-            />
-          </div>
+          <FormItem
+            type="number"
+            ident={"sess-temp-stage-" + props.thisStage}
+            label="Room Temperature:"
+            updateHandler={(value) => setTemperature(value)}
+            min="0"
+            max="120"
+            value={temperature}
+          />
+          <FormItem
+            type="number"
+            ident={"sess-humidity-stage-" + props.thisStage}
+            label="Room Humidity:"
+            updateHandler={(value) => setHumidity(value)}
+            min="0"
+            max="100"
+            value={humidity}
+          />
         </>
       ) : (
         <></>
       )}{" "}
       <ButtonSpacer>
-        <Button onClick={() => props.setFormActive(false)} color="cancel">Cancel</Button>
-        <Button onClick={handleNewClick} disabled={!validateForm()} icon="start">
+        <Button onClick={() => props.setFormActive(false)} color="cancel">
+          Cancel
+        </Button>
+        <Button
+          onClick={handleNewClick}
+          disabled={!validateForm()}
+          icon="start"
+        >
           Start New Session
         </Button>
       </ButtonSpacer>

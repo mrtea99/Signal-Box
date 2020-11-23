@@ -59,6 +59,7 @@
   padding: 0.5rem calc(var(--size-touch-min) + 1rem) 0.5rem 1rem;
   border-radius: 0;
   font-size: var(--text-normal);
+  line-height: 1.3em;
 }
 
 .fieldSelect::-ms-expand {
