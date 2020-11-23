@@ -17,7 +17,7 @@ function FormItem(props) {
           {...fieldProps}
           onChange={(e) => updateHandler(e.target.value)}
           value={fieldProps.value || ""}
-          className={`${fieldProps.className} ${styles.field} ${styles.fieldText}`}
+          className={`${styles.field} ${styles.fieldText}`}
         />
       );
       break;
@@ -42,7 +42,7 @@ function FormItem(props) {
             {...fieldProps}
             onChange={(e) => updateHandler(parseInt(e.target.value || 0))}
             value={fieldProps.value || 0}
-            className={`${fieldProps.className} ${styles.field} ${styles.fieldNumber}`}
+            className={`${styles.field} ${styles.fieldNumber}`}
           />
           <Button
             className={styles.fieldButton}
@@ -64,7 +64,7 @@ function FormItem(props) {
   }
 
   return (
-    <div className={styles.itemWrap}>
+    <div className={`${fieldProps.className} ${styles.itemWrap}`}>
       <label className={styles.label} htmlFor={props.ident}>
         {props.label}
       </label>

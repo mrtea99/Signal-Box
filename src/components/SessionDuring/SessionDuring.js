@@ -63,12 +63,13 @@ function SessionDuring(props) {
                 //   handleFieldChange(e.target.value, setNoteData, "notes")
                 // }
                 value={noteData}
+                className={styles.notesField}
               />
 
               {props.thisStage === 1 ||
               props.thisStage === 2 ||
               props.thisStage === 3 ? (
-                <>
+                <div className={styles.numberFieldsWrap}>
                   <FormItem
                     type="number"
                     ident={"sess-amount-step-" + props.thisStage}
@@ -81,6 +82,7 @@ function SessionDuring(props) {
                     }
                     value={amount}
                     min="0"
+                    className={styles.numberField}
                   />
 
                   <FormItem
@@ -95,8 +97,9 @@ function SessionDuring(props) {
                     }
                     value={amountBad}
                     min="0"
+                    className={styles.numberField}
                   />
-                </>
+                </div>
               ) : (
                 <></>
               )}

@@ -45,3 +45,24 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
+
+.notesField {
+  flex: 50% 1 1;
+  margin-right: 2rem;
+  max-width: 22rem;
+}
+
+.numberFieldsWrap {
+  flex: auto 1 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.numberField {
+  width: 10rem;
+  margin-right: 2rem;
+}
+.numberField:last-child {
+  margin-right: 0;
+}
