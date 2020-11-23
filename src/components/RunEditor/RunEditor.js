@@ -65,9 +65,7 @@ function RunEditor(props) {
                 </div>
                 <ButtonSpacer>
                   <Button onClick={handleEditInfoClick}>Info</Button>
-                  <Button onClick={() => setModalOverviewActive(true)}>
-                    Review
-                  </Button>
+                  <Button onClick={() => setModalOverviewActive(true)} icon="details" />
                 </ButtonSpacer>
                 {modalOverviewActive ? (
                   <Modal>

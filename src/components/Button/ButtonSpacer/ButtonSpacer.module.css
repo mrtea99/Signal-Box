@@ -1,3 +1,7 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+}
 .wrapper > * {
   margin-right: 0.75rem;
 }
@@ -5,7 +9,9 @@
   margin-right: 0;
 }
 
-
+.wrapperVert {
+  flex-direction: column;
+}
 .wrapperVert > * {
   margin-bottom: 0.75rem;
   margin-right: 0;
