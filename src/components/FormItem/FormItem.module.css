@@ -29,8 +29,10 @@
 }
 
 .fieldText {
-  min-height: 5rem;
+  min-height: 3.5rem;
   resize: none;
+  font-size: var(--text-normal);
+  font-family: var(--font-default);
 }
 
 .fieldNumber {

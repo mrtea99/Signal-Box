@@ -55,7 +55,7 @@ function SessionDuring(props) {
               <FormItem
                 type="textarea"
                 ident={"sess-notes-step-" + props.thisStage}
-                label="Note"
+                label="Notes:"
                 updateHandler={(value) =>
                   handleFieldChange(value, setNoteData, "notes")
                 }
@@ -73,10 +73,10 @@ function SessionDuring(props) {
                   <FormItem
                     type="number"
                     ident={"sess-amount-step-" + props.thisStage}
-                    label={
-                      "Completed " +
-                      (props.thisStage === 1 ? "Batches" : "Units")
-                    }
+                    label={`
+                      Completed ${
+                        props.thisStage === 1 ? "Batches" : "Units"
+                      }:`}
                     updateHandler={(value) =>
                       handleFieldChange(value, setAmount, "amount")
                     }
@@ -88,10 +88,10 @@ function SessionDuring(props) {
                   <FormItem
                     type="number"
                     ident={"sess-amount-bad-step-" + props.thisStage}
-                    label={
-                      "Defective " +
-                      (props.thisStage === 1 ? "Batches" : "Units")
-                    }
+                    label={`
+                      Defective ${
+                        props.thisStage === 1 ? "Batches" : "Units"
+                      }:`}
                     updateHandler={(value) =>
                       handleFieldChange(value, setAmountBad, "amountBad")
                     }
