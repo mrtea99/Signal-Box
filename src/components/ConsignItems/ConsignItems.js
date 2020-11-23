@@ -1,9 +1,10 @@
 import React from "react";
+
 import InfoPod from "../InfoPod/InfoPod.js";
 import InfoPodItem from "../InfoPod/InfoPodItem/InfoPodItem.js";
 import InfoPodSection from "../InfoPod/InfoPodSection/InfoPodSection.js";
-
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
+import styles from "./ConsignItems.module.css";
 
 function ConsignItems(props) {
   const [countGood, setCountGood] = React.useState(0);
@@ -120,7 +121,7 @@ function ConsignItems(props) {
   };
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <InfoPod fullWidth>
         <InfoPodSection
           layout="vert"
@@ -197,7 +198,7 @@ function ConsignItems(props) {
           />
         </div>
       </ModalControl>
-    </>
+    </div>
   );
 }
 
