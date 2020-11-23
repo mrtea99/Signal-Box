@@ -1,0 +1,24 @@
+.itemWrap {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  padding-bottom: 0.3rem;
+}
+
+.field {
+  display: inline-block;
+  min-height: var(--size-touch-min);
+  min-width: var(--size-touch-min);
+}
+
+.fieldText {
+  min-height: 5rem;
+  resize: none;
+}
+
+.fieldNumber {
+  text-align: center;
+  font-size: var(--text-larger);
+}

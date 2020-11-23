@@ -1,5 +1,7 @@
 import React from "react";
 
+import styles from "./FormItem.module.css";
+
 function FormItem(props) {
   const { ident, label, type, ...fieldProps } = props;
 
@@ -13,6 +15,7 @@ function FormItem(props) {
           name={ident}
           {...fieldProps}
           value={fieldProps.value || ""}
+          className={`${fieldProps.className} ${styles.field} ${styles.fieldText}`}
         />
       );
       break;
@@ -24,6 +27,7 @@ function FormItem(props) {
           name={ident}
           {...fieldProps}
           value={fieldProps.value || 0}
+          className={`${fieldProps.className} ${styles.field} ${styles.fieldNumber}`}
         />
       );
       break;
@@ -33,8 +37,8 @@ function FormItem(props) {
   }
 
   return (
-    <div>
-      <label htmlFor={props.ident}>{props.label}:</label>
+    <div className={styles.itemWrap}>
+      <label className={styles.label} htmlFor={props.ident}>{props.label}:</label>
       {fieldElem}
     </div>
   );
