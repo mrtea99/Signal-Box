@@ -10,7 +10,7 @@ function SiteHeader(props) {
     <header className={styles.siteHeader}>
       <div className={styles.inner}>
         <div className={styles.sidebarTrigger}>
-          <Button onClick={() => props.setSidebarActive(true)} icon="fix" />
+          <Button onClick={() => props.setSidebarActive(true)} icon="menu" />
         </div>
         <img className={styles.siteLogo} alt="Mojo Spa Logo" src="./logo.svg" />
         <div>

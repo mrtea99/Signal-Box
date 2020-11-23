@@ -2,7 +2,8 @@
   margin: 0;
   padding: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 @media (min-width: 768px) {
   .list {
@@ -14,17 +15,16 @@
   margin: 0 0 0.2rem 0;
   padding: 0;
   list-style-type: none;
+  margin-right: 0.2rem;
 }
 .item:last-child {
   margin-bottom: 0;
+  margin-right: 0;
+
 }
 @media (min-width: 768px) {
   .item {
     margin-bottom: 0;
-    margin-right: 0.2rem;
-  }
-  .item:last-child {
-    margin-right: 0;
   }
 }
 

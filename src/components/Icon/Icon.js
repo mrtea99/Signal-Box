@@ -15,6 +15,8 @@ import { ReactComponent as FileText } from "./file-text.svg";
 import { ReactComponent as Plus } from "./plus.svg";
 import { ReactComponent as Minus } from "./minus.svg";
 import { ReactComponent as User } from "./user.svg";
+import { ReactComponent as Cog } from "./cog.svg";
+import { ReactComponent as Menu } from "./menu.svg";
 
 function Icon(props) {
   const iconElem = function () {
@@ -49,6 +51,10 @@ function Icon(props) {
         return <Minus className={props.className} />;
       case "user":
         return <User className={props.className} />;
+      case "settings":
+        return <Cog className={props.className} />;
+      case "menu":
+        return <Menu className={props.className} />;
       default:
         return <></>;
     }

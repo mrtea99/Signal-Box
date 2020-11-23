@@ -44,7 +44,7 @@ function RunEditor(props) {
         <div className={`${styles.runEditor} ${styles.runEditorActive}`}>
           <div className={styles.inner}>
           <header>
-            <Button onClick={(e) => handleExitClick(e)} icon="previous" iconFirst>Exit</Button>
+            <Button onClick={(e) => handleExitClick(e)} icon="cross" iconFirst>Close</Button>
           </header>
           <div>
             <section className={styles.runInfo}>
