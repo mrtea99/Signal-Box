@@ -56,9 +56,12 @@ function SessionDuring(props) {
                 type="textarea"
                 ident={"sess-notes-step-" + props.thisStage}
                 label="Note"
-                onChange={(e) =>
-                  handleFieldChange(e.target.value, setNoteData, "notes")
+                updateHandler={(value) =>
+                  handleFieldChange(value, setNoteData, "notes")
                 }
+                // onChange={(e) =>
+                //   handleFieldChange(e.target.value, setNoteData, "notes")
+                // }
                 value={noteData}
               />
 
@@ -73,12 +76,8 @@ function SessionDuring(props) {
                       "Completed " +
                       (props.thisStage === 1 ? "Batches" : "Units")
                     }
-                    onChange={(e) =>
-                      handleFieldChange(
-                        parseInt(e.target.value),
-                        setAmount,
-                        "amount"
-                      )
+                    updateHandler={(value) =>
+                      handleFieldChange(value, setAmount, "amount")
                     }
                     value={amount}
                     min="0"
@@ -91,12 +90,8 @@ function SessionDuring(props) {
                       "Defective " +
                       (props.thisStage === 1 ? "Batches" : "Units")
                     }
-                    onChange={(e) =>
-                      handleFieldChange(
-                        parseInt(e.target.value),
-                        setAmountBad,
-                        "amountBad"
-                      )
+                    updateHandler={(value) =>
+                      handleFieldChange(value, setAmountBad, "amountBad")
                     }
                     value={amountBad}
                     min="0"

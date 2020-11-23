@@ -8,11 +8,22 @@
   padding-bottom: 0.3rem;
 }
 
+.fieldWrap {
+  display: flex;
+  flex-direction: row;
+}
+
 .field {
   display: inline-block;
   min-height: var(--size-touch-min);
   min-width: var(--size-touch-min);
   border: 0;
+  padding: 0.5rem;
+}
+
+.field:focus {
+  outline: 2px solid var(--color-pink-bright);
+  outline-offset: -2px;
 }
 
 .fieldText {

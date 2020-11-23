@@ -77,8 +77,8 @@ function SessionEndForm(props) {
         type="textarea"
         ident={"sess-notes-step-" + props.thisStage}
         label="Note"
-        onChange={(e) =>
-          handleFieldChange(e.target.value, setNoteData, "notes")
+        updateHandler={(value) =>
+          handleFieldChange(value, setNoteData, "notes")
         }
         value={noteData}
       />
@@ -90,8 +90,8 @@ function SessionEndForm(props) {
             type="number"
             ident={"sess-amount-step-" + props.thisStage}
             label={"Completed " + (props.thisStage === 1 ? "Batches" : "Units")}
-            onChange={(e) =>
-              handleFieldChange(parseInt(e.target.value), setAmount, "amount")
+            updateHandler={(value) =>
+              handleFieldChange(value, setAmount, "amount")
             }
             value={amount}
             min="0"
@@ -100,12 +100,8 @@ function SessionEndForm(props) {
             type="number"
             ident={"sess-amount-bad-step-" + props.thisStage}
             label={"Defective " + (props.thisStage === 1 ? "Batches" : "Units")}
-            onChange={(e) =>
-              handleFieldChange(
-                parseInt(e.target.value),
-                setAmountBad,
-                "amountBad"
-              )
+            updateHandler={(value) =>
+              handleFieldChange(value, setAmountBad, "amountBad")
             }
             value={amountBad}
             min="0"
@@ -131,12 +127,8 @@ function SessionEndForm(props) {
                   ")"
                 : ""
             }`}
-          onChange={(e) =>
-            handleFieldChange(
-              parseInt(e.target.value),
-              setAverageWeight,
-              "averageWeight"
-            )
+          updateHandler={(value) =>
+            handleFieldChange(value, setAverageWeight, "averageWeight")
           }
           value={averageWeight}
           min="0"
