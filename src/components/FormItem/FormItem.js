@@ -58,6 +58,17 @@ function FormItem(props) {
         </div>
       );
       break;
+    case "select":
+      fieldElem = (
+        <select
+          {...fieldProps}
+          onChange={(e) => updateHandler(e.target.value)}
+          className={`${styles.field} ${styles.fieldSelect}`}
+        >
+          {props.children}
+        </select>
+      );
+      break;
     default:
       fieldElem = null;
       break;

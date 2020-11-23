@@ -25,9 +25,11 @@
 
 .field:focus {
   outline: 2px solid var(--color-pink-bright);
-  outline-offset: -2px;
+  outline-offset: -3px;
 }
 
+
+/* textarea */
 .fieldText {
   min-height: 3.5rem;
   resize: none;
@@ -35,6 +37,7 @@
   font-family: var(--font-default);
 }
 
+/* number */
 .fieldNumber {
   text-align: center;
   font-size: var(--text-larger);
@@ -45,3 +48,5 @@
   -webkit-appearance: none;
   margin: 0;
 }
+
+/* select */

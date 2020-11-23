@@ -10,6 +10,7 @@ import RunInfoNew from "./components/RunInfoNew/RunInfoNew.js";
 import RunInfoChange from "./components/RunInfoChange/RunInfoChange.js";
 import Button from "./components/Button/Button.js";
 import TabBox from "./components/TabBox/TabBox";
+import FormItem from "./components/FormItem/FormItem";
 
 function App() {
   const savedRunData = () =>
@@ -87,13 +88,21 @@ function App() {
           <Button onClick={() => setSidebarActive(true)} icon="fix" />
         </div>
         <div>
-          <select
+          {/* <select
             value={activeUser}
             onChange={(e) => setActiveUser(parseInt(e.target.value))}
           >
             <option value="1">User 1</option>
             <option value="2">User 2</option>
-          </select>
+          </select> */}
+          <FormItem
+            type="select"
+            value={activeUser}
+            updateHandler={(value) => setActiveUser(parseInt(value))}
+          >
+            <option value="1">User 1</option>
+            <option value="2">User 2</option>
+          </FormItem>
         </div>
       </header>
       <div className={styles.sitePage}>
