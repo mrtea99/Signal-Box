@@ -1,5 +1,7 @@
 import React from "react";
-import Button from "../Button/Button";
+
+import Button from "../Button/Button.js";
+import Icon from "../Icon/Icon.js";
 
 import styles from "./FormItem.module.css";
 
@@ -60,13 +62,18 @@ function FormItem(props) {
       break;
     case "select":
       fieldElem = (
-        <select
-          {...fieldProps}
-          onChange={(e) => updateHandler(e.target.value)}
-          className={`${styles.field} ${styles.fieldSelect}`}
-        >
-          {props.children}
-        </select>
+        <div className={styles.fieldWrap}>
+          <select
+            {...fieldProps}
+            onChange={(e) => updateHandler(e.target.value)}
+            className={`${styles.field} ${styles.fieldSelect}`}
+          >
+            {props.children}
+          </select>
+          <span className={styles.fieldSelectBtn}>
+            <Icon name="start" className={styles.fieldSelectArrow} />
+          </span>
+        </div>
       );
       break;
     default:

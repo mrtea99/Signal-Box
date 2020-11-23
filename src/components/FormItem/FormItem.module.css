@@ -12,12 +12,14 @@
 .fieldWrap {
   display: flex;
   flex-direction: row;
+  position: relative;
 }
 
 .field {
   display: inline-block;
   min-height: var(--size-touch-min);
   min-width: var(--size-touch-min);
+  max-width: 100%;
   border: 0;
   padding: 0.5rem;
   flex-grow: 1;
@@ -27,7 +29,6 @@
   outline: 2px solid var(--color-pink-bright);
   outline-offset: -3px;
 }
-
 
 /* textarea */
 .fieldText {
@@ -50,3 +51,41 @@
 }
 
 /* select */
+.fieldSelect {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+
+  padding: 0.5rem calc(var(--size-touch-min) + 1rem) 0.5rem 1rem;
+  border-radius: 0;
+  font-size: var(--text-normal);
+}
+
+.fieldSelect::-ms-expand {
+  display: none;
+}
+
+.fieldSelect option {
+  font-weight: normal;
+}
+
+.fieldSelectBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: var(--size-touch-min);
+  background-color: var(--color-pink-bright);
+  pointer-events: none;
+}
+
+.fieldSelectArrow {
+  transform: rotate(90deg);
+}
+
+.fieldSelectArrow path {
+  fill: var(--color-white)
+}
