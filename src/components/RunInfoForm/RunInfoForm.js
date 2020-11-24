@@ -86,56 +86,53 @@ function RunInfoForm(props) {
   };
 
   return (
-    <>
-      <h3>{props.runData ? "Edit Run Info" : "Create New Run"}</h3>
-      <form>
-        <div>
-          <label>Product:</label>
-          <select
-            onChange={(e) => setTemplate(e.target.value)}
-            value={currentTemplate === null ? "default" : currentTemplate}
-          >
-            <option value="default" disabled="disabled">
-              Choose a template
+    <form>
+      <div>
+        <label>Product:</label>
+        <select
+          onChange={(e) => setTemplate(e.target.value)}
+          value={currentTemplate === null ? "default" : currentTemplate}
+        >
+          <option value="default" disabled="disabled">
+            Choose a template
+          </option>
+          {productTemplates.map((template, index) => (
+            <option key={template.productName} value={index}>
+              {template.productName}
             </option>
-            {productTemplates.map((template, index) => (
-              <option key={template.productName} value={index}>
-                {template.productName}
-              </option>
-            ))}
-          </select>
-        </div>
-        <div>
-          <label>Batch Quantity:</label>
-          <input
-            onChange={(e) => {
-              setBatchQuantity(parseInt(e.target.value));
-            }}
-            type="number"
-            defaultValue={batchQuantity}
-            min="0"
-          ></input>
-        </div>
-        <ButtonSpacer>
-          <Button
-            onClick={(e) => {
-              e.preventDefault();
-              props.handleCancel();
-            }}
-            color="cancel"
-          >
-            Cancel
-          </Button>
-          <Button
-            disabled={currentTemplate === null ? "disabled" : ""}
-            onClick={handleSubmit}
-          >
-            Save
-          </Button>
-        </ButtonSpacer>
-      </form>
+          ))}
+        </select>
+      </div>
+      <div>
+        <label>Batch Quantity:</label>
+        <input
+          onChange={(e) => {
+            setBatchQuantity(parseInt(e.target.value));
+          }}
+          type="number"
+          defaultValue={batchQuantity}
+          min="0"
+        ></input>
+      </div>
+      <ButtonSpacer align="right">
+        <Button
+          onClick={(e) => {
+            e.preventDefault();
+            props.handleCancel();
+          }}
+          color="cancel"
+        >
+          Cancel
+        </Button>
+        <Button
+          disabled={currentTemplate === null ? "disabled" : ""}
+          onClick={handleSubmit}
+        >
+          Save
+        </Button>
+      </ButtonSpacer>
       {/* <pre>{JSON.stringify(productTemplates[currentTemplate])}</pre> */}
-    </>
+    </form>
   );
 }
 

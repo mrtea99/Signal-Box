@@ -106,19 +106,21 @@ function ConsignItems(props) {
 
   const activityTotals = buildTotals();
 
-  const triggerCopy = function () {
-    const prefix = "Consign ";
+  let itemName;
+  switch (props.thisStage) {
+    case 1:
+      itemName = "Batches";
+      break;
+    case 2:
+    case 3:
+      itemName = "Units";
+      break;
+    default:
+      itemName = "Items";
+      break;
+  }
 
-    switch (props.thisStage) {
-      case 1:
-        return prefix + "Batches";
-      case 2:
-      case 3:
-        return prefix + "Units";
-      default:
-        return prefix + "Items";
-    }
-  };
+  const triggerCopy = "Consign " + itemName;
 
   return (
     <div className={styles.wrapper}>
@@ -138,33 +140,31 @@ function ConsignItems(props) {
         </InfoPodSection>
       </InfoPod>
       <ModalControl
-        triggerCopy={triggerCopy()}
+        title={triggerCopy}
+        triggerCopy={triggerCopy}
         handleSubmit={handleSubmit}
-        buttonAttrs={{ fillWidth: true, color: "complete", icon: "next" }}
+        buttonAttrs={{color: "complete", icon: "next" }}
       >
-        <div>
-          <h3>{triggerCopy()}</h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Activity</th>
-                <th>Items</th>
-                <th>Defective</th>
-              </tr>
-            </thead>
-            <tbody>
-              {activityTotals.map((activity, index) => {
-                return (
-                  <tr key={activity.name}>
-                    <td>{activity.name}</td>
-                    <td>{activity.amount}</td>
-                    <td>{activity.amountBad}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>Activity</th>
+              <th>{itemName}</th>
+              <th>Defective</th>
+            </tr>
+          </thead>
+          <tbody>
+            {activityTotals.map((activity, index) => {
+              return (
+                <tr key={activity.name}>
+                  <td>{activity.name}</td>
+                  <td>{activity.amount}</td>
+                  <td>{activity.amountBad}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
         <p>
           Consigned: {props.stageStatus.completionFraction}
           <br />

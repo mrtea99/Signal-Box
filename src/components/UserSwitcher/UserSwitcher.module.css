@@ -16,10 +16,15 @@
   color: var(--color-text);
   min-height: var(--size-touch-min);
   min-width: var(--size-touch-min);
-  padding: var(--height-pad-vert) var(--width-pad-outer) var(--height-pad-vert) calc(var(--width-pad-outer) + var(--width-pad-inner) + var(--size-icon));
+  padding: var(--height-pad-vert) calc(var(--width-pad-outer) + var(--width-pad-inner) + var(--size-icon)) var(--height-pad-vert) var(--width-pad-outer);
   font-size: var(--text-normal);
+  font-weight: bold;
   line-height: 1.3em;
   border: 0;
+  cursor: pointer;
+  white-space: normal;
+  max-width: 13rem;
+  text-align-last: right; 
 }
 .select::-ms-expand {
   display: none;
@@ -31,11 +36,12 @@
 
 .select option {
   font-weight: normal;
+  /* direction: rtl;  */
 }
 
 .iconWrapper {
   position: absolute;
-  left: 0;
+  right: 0;
   top: 0;
   bottom: 0;
   display: flex;

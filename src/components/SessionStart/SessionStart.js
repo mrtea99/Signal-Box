@@ -11,7 +11,7 @@ function SessionStart(props) {
     <>
       <Button onClick={() => setModalActive(true)} fillWidth icon="start">Start New Session</Button>
       {modalActive ? (
-        <Modal>
+        <Modal title="Start New Session">
           <SessionStartForm
             thisStage={props.thisStage}
             addSession={props.addSession}

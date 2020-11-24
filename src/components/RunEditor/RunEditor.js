@@ -83,7 +83,7 @@ function RunEditor(props) {
                     />
                   </ButtonSpacer>
                   {modalOverviewActive ? (
-                    <Modal>
+                    <Modal title="Run Overview">
                       <Button onClick={() => setModalOverviewActive(false)}>
                         Close
                       </Button>

@@ -33,7 +33,7 @@ function RunTitle(props) {
         icon="details"
       />
       {modalOverviewActive === props.runData.uid ? (
-        <Modal>
+        <Modal title="Run Overview">
           <Button onClick={() => setModalOverviewActive(null)}>Close</Button>
           <StageOverview thisRunData={props.runData}></StageOverview>
         </Modal>

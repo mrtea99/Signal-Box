@@ -268,6 +268,7 @@ function SessionList(props) {
               <td className={styles.contentItem}>
                 {session.notes && session.notes.length ? (
                   <ModalControl
+                    title="Session Notes"
                     triggerCopy={""}
                     buttonAttrs={{ icon: "details" }}
                   >

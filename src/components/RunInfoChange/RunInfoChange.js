@@ -23,17 +23,17 @@ function RunInfoChange(props) {
   return (
     <>
       {props.active ? (
-        <Modal>
-          <RunDelete
-            updateRunData={props.updateRunData}
-            uid={props.currentRunUid}
-            successCallback={() => props.setActive(false)}
-          />
+        <Modal title="Edit Run Info">
           <RunInfoForm
             runData={props.runData}
             currentRunUid={props.currentRunUid}
             handleSave={updateRunInfo}
             handleCancel={handleCancel}
+          />
+          <RunDelete
+            updateRunData={props.updateRunData}
+            uid={props.currentRunUid}
+            successCallback={() => props.setActive(false)}
           />
         </Modal>
       ) : (

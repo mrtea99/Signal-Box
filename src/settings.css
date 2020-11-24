@@ -7,6 +7,7 @@
   --color-grey-dark: #575253;
   --color-grey-light: #5d5758;
   --color-grey-bright: #6f7271;
+  --color-grey-transp: rgba(150, 150, 150, 0.8);
 
   --color-pink-bright: #ea407b;
   --color-pink: #eda3aa;
@@ -36,7 +37,8 @@
   --color-complete: var(--color-green);
 
   /* Fonts */
-  --font-default: 'Helvetica Neue', Helvetica, Arial, 'Lucida Grande', sans-serif;
+  --font-default: "Helvetica Neue", Helvetica, Arial, "Lucida Grande",
+    sans-serif;
 
   /* 12pt */
   --text-smaller: 0.8em;
@@ -59,4 +61,7 @@
   --width-site: var(--break-extra);
   --width-site-min: var(--break-phone);
   --width-site-padding: 1rem;
+
+  /* Z-Indexes */
+  --z-modal: 200;
 }

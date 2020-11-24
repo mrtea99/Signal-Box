@@ -35,6 +35,7 @@ function CheckCloser(props) {
         <></>
       ) : (
         <ModalControl
+          title="QA Check"
           handleSubmit={handleSubmit}
           triggerCopy={""}
           buttonAttrs={{ color: "qa", icon: "check" }}

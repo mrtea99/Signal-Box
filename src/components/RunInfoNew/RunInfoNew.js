@@ -57,7 +57,7 @@ function RunInfoNew(props) {
   return (
     <>
       {props.active ? (
-        <Modal>
+        <Modal title="Create New Run">
           <RunInfoForm handleSave={createRun} handleCancel={handleCancel} />
         </Modal>
       ) : (

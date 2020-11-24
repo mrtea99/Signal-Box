@@ -15,14 +15,16 @@ function ModalControl(props) {
     props.handleSubmit();
   };
 
+  const {fillWidth, ...saveBtnAttrs} = props.buttonAttrs;
+
   return (
     <>
       <Button {...props.buttonAttrs} onClick={() => setModalActive(true)}>{props.triggerCopy}</Button>
       {modalActive ? (
-        <Modal>
+        <Modal title={props.title}>
           {props.children}
           {props.handleSubmit ? (
-            <ButtonSpacer>
+            <ButtonSpacer align="right">
               <Button
                 onClick={(e) => {
                   e.preventDefault();
@@ -32,7 +34,7 @@ function ModalControl(props) {
               >
                 Cancel
               </Button>
-              <Button onClick={(e) => handleSubmit(e)}>Save</Button>
+              <Button onClick={(e) => handleSubmit(e)} {...saveBtnAttrs}>{props.triggerCopy || "Save"}</Button>
             </ButtonSpacer>
           ) : (
             <Button

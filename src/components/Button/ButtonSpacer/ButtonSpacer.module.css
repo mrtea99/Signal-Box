@@ -19,3 +19,7 @@
 .wrapperVert > *:last-child {
   margin-bottom: 0;
 }
+
+.wrapperRight {
+  justify-content: flex-end;
+}

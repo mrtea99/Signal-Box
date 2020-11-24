@@ -114,7 +114,7 @@ function SessionStartForm(props) {
       ) : (
         <></>
       )}{" "}
-      <ButtonSpacer>
+      <ButtonSpacer align="right">
         <Button onClick={() => props.setFormActive(false)} color="cancel">
           Cancel
         </Button>
