@@ -142,6 +142,7 @@ function StageActions(props) {
             stageStatus={stageStatus}
             updateStageActive={props.updateStageActive}
             addSession={props.addSession}
+            activeUser={props.activeUser}
           />
         </div>
       )}

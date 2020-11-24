@@ -185,6 +185,7 @@ function Stage(props) {
             setActiveStage={props.setActiveStage}
             updateRunData={props.updateRunData}
             addSession={addSession}
+            activeUser={props.activeUser}
           />
         </div>
         <div className={styles.sessionView}>

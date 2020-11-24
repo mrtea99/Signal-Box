@@ -4,6 +4,7 @@ import ModalControl from "../Modal/ModalControl/ModalControl.js";
 
 function CheckCloser(props) {
   const [description, setDescription] = React.useState("");
+  const [count, setCount] = React.useState(0);
   const [countBad, setCountBad] = React.useState(0);
 
   const handleSubmit = function () {
@@ -16,7 +17,7 @@ function CheckCloser(props) {
       {
         resolved: true,
         notes: newNote,
-        //amount: -Math.abs(countBad),
+        amount: count,
         amountBad: countBad,
       },
       props.thisStage,
@@ -25,6 +26,7 @@ function CheckCloser(props) {
 
     setDescription("");
     setCountBad(0);
+    setCount(0);
   };
 
   return (
@@ -32,12 +34,17 @@ function CheckCloser(props) {
       {props.session.resolved ? (
         <></>
       ) : (
-        <ModalControl handleSubmit={handleSubmit} triggerCopy={""} buttonAttrs={{color: "qa", icon: "check"}}>
+        <ModalControl
+          handleSubmit={handleSubmit}
+          triggerCopy={""}
+          buttonAttrs={{ color: "qa", icon: "check" }}
+        >
           <div>
             <p>{props.session.notes}</p>
             <p>Requested by: {props.session.user}</p>
             <p>Assigned to: {props.session.checker}</p>
             <p>Timeframe: {props.session.timeframe}</p>
+            <p>{props.session.notes}</p>
           </div>
           <div>
             <label htmlFor="check-description">Note:</label>
@@ -47,6 +54,17 @@ function CheckCloser(props) {
               name="check-description"
               onChange={(e) => setDescription("Checked: " + e.target.value)}
             ></textarea>
+          </div>
+          <div>
+            <label htmlFor="check-count">Passed:</label>
+            <br />
+            <input
+              type="number"
+              id="check-count"
+              name="check-count"
+              onChange={(e) => setCount(parseInt(e.target.value))}
+              value={count}
+            />
           </div>
           <div>
             <label htmlFor="check-count-bad">Defective:</label>

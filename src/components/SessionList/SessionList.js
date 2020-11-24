@@ -160,53 +160,6 @@ function SessionList(props) {
         </tr>
       </thead>
       <tbody>
-        <tr className={`${styles.itemRow} ${styles.itemRowTotals}`}>
-          <td className={styles.contentItem}></td>
-          <td className={styles.contentItem}>Overall</td>
-          <td className={styles.contentItem}>
-            {thisStageData.length ? (
-              <>
-                {formatDate(thisStageData[0].startTime)}
-                <br />
-                {formatTime(thisStageData[0].startTime)}
-              </>
-            ) : (
-              "-"
-            )}
-          </td>
-          {/* <td className={styles.contentItem}>{findTotalEndTime()}</td> */}
-          <td className={styles.contentItem}>
-            {newestEndTime ? (
-              <>{findTotalDuration()}</>
-            ) : (
-              <Repeater interval={333} callback={findTotalDuration} />
-            )}
-          </td>
-          {props.thisStage === 1 ||
-          props.thisStage === 2 ||
-          props.thisStage === 3 ? (
-            <>
-              <td className={styles.contentItem}>
-                {/* {findTotalCount("amount")} */}
-              </td>
-              <td className={styles.contentItem}>
-                {/* {findTotalCount("amountBad")} */}
-              </td>
-            </>
-          ) : (
-            <></>
-          )}
-          {/* {props.thisStage === 1 ||
-          props.thisStage === 2 ||
-          props.thisStage === 3 ? (
-            <td className={styles.contentItem}></td>
-          ) : (
-            <></>
-          )} */}
-          <td className={styles.contentItem}></td>
-          <td className={styles.contentItem}></td>
-          <td className={styles.contentItem}></td>
-        </tr>
         {thisStageData
           .slice(0)
           .reverse()
@@ -333,6 +286,53 @@ function SessionList(props) {
               </td>
             </tr>
           ))}
+        <tr className={`${styles.itemRow} ${styles.itemRowTotals}`}>
+          <td className={styles.contentItem}></td>
+          <td className={styles.contentItem}>Overall</td>
+          <td className={styles.contentItem}>
+            {thisStageData.length ? (
+              <>
+                {formatDate(thisStageData[0].startTime)}
+                <br />
+                {formatTime(thisStageData[0].startTime)}
+              </>
+            ) : (
+              "-"
+            )}
+          </td>
+          {/* <td className={styles.contentItem}>{findTotalEndTime()}</td> */}
+          <td className={styles.contentItem}>
+            {newestEndTime ? (
+              <>{findTotalDuration()}</>
+            ) : (
+              <Repeater interval={333} callback={findTotalDuration} />
+            )}
+          </td>
+          {props.thisStage === 1 ||
+          props.thisStage === 2 ||
+          props.thisStage === 3 ? (
+            <>
+              <td className={styles.contentItem}>
+                {/* {findTotalCount("amount")} */}
+              </td>
+              <td className={styles.contentItem}>
+                {/* {findTotalCount("amountBad")} */}
+              </td>
+            </>
+          ) : (
+            <></>
+          )}
+          {/* {props.thisStage === 1 ||
+          props.thisStage === 2 ||
+          props.thisStage === 3 ? (
+            <td className={styles.contentItem}></td>
+          ) : (
+            <></>
+          )} */}
+          <td className={styles.contentItem}></td>
+          <td className={styles.contentItem}></td>
+          <td className={styles.contentItem}></td>
+        </tr>
       </tbody>
     </table>
   );
