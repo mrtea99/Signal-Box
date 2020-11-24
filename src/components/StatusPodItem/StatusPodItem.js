@@ -2,6 +2,7 @@ import React from "react";
 
 import InfoPodItem from "../InfoPod/InfoPodItem/InfoPodItem.js";
 import Icon from "../Icon/Icon.js";
+import StatusLine from "./StatusLine/StatusLine.js";
 
 import styles from "./StatusPodItem.module.css";
 
@@ -64,6 +65,7 @@ function StatusPodItem(props) {
               styles["podItem" + props.stageStatus.stageStatusName]
             }`}
           >
+            {/* <StatusLine statuskey="Progress" statusValue={combinedCompletion()} /> */}
             {combinedCompletion()}
           </InfoPodItem>
         );
