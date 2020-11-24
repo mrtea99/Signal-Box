@@ -18,7 +18,7 @@ function SiteSidebar(props) {
       }
     >
       <div className={styles.sidebarControl}>
-        <Button onClick={closeSidebar} icon="cross" />
+        <Button onClick={closeSidebar} icon="cross" color="cancel" />
       </div>
       <img className={styles.siteLogo} alt="Mojo Spa Logo" src="./logo.svg" />
     </div>

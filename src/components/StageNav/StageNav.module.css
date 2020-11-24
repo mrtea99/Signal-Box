@@ -1,5 +1,5 @@
 .progBar {
-  --color-bar: var(--color-grey-light);
+  --color-bar: var(--color-grey-bright);
   --color-bg-active: var(--color-pink-bright);
   --color-text-active: var(--color-text);
   --color-bg-inactive: var(--color-grey-dark);
