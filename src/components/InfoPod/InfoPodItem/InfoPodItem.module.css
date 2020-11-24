@@ -43,6 +43,8 @@
 .itemFlag.itemVert {
   margin-left: 0;
   margin-top: calc(var(--core-size) * -1);
+  max-width: none;
+  min-width: none;
 }
 
 .itemFlagActive {
@@ -51,8 +53,6 @@
   padding-left: calc(var(--core-size) - var(--border-width));
 }
 .itemFlagActive.itemVert {
-  max-width: none;
-  min-width: none;
   padding-left: 0;
   max-height: 10rem;
   min-height: var(--flag-width);

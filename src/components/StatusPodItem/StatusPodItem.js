@@ -2,7 +2,7 @@ import React from "react";
 
 import InfoPodItem from "../InfoPod/InfoPodItem/InfoPodItem.js";
 import Icon from "../Icon/Icon.js";
-import StatusLine from "./StatusLine/StatusLine.js";
+// import StatusLine from "./StatusLine/StatusLine.js";
 
 import styles from "./StatusPodItem.module.css";
 

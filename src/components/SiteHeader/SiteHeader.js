@@ -1,7 +1,7 @@
 import React from "react";
 
 import Button from "../Button/Button.js";
-import FormItem from "../FormItem/FormItem";
+import UserSwitcher from "../UserSwitcher/UserSwitcher.js";
 
 import styles from "./SiteHeader.module.css";
 
@@ -12,16 +12,18 @@ function SiteHeader(props) {
         <div className={styles.sidebarTrigger}>
           <Button onClick={() => props.setSidebarActive(true)} icon="menu" />
         </div>
-        <img className={styles.siteLogo} alt="Mojo Spa Logo" src="./logo.svg" />
+        <div className={styles.siteLogoWrapper}>
+          <img
+            className={styles.siteLogo}
+            alt="Mojo Spa Logo"
+            src="./logo.svg"
+          />
+        </div>
         <div>
-          <FormItem
-            type="select"
-            value={props.activeUser}
-            updateHandler={(value) => props.setActiveUser(parseInt(value))}
-          >
-            <option value="1">User 1</option>
-            <option value="2">User 2</option>
-          </FormItem>
+          <UserSwitcher
+            activeUser={props.activeUser}
+            setActiveUser={props.setActiveUser}
+          />
         </div>
       </div>
     </header>

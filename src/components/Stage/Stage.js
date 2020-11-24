@@ -13,11 +13,7 @@ function Stage(props) {
 
   const stageActive = thisStageData.active;
 
-  const [activeSessionData, setActiveSessionData] = React.useState(() =>
-    findActiveSession()
-  );
-
-  function findActiveSession() {
+  const findActiveSession = function () {
     const sessionList = thisStageData["sessions"];
 
     if (sessionList.length) {
@@ -32,7 +28,8 @@ function Stage(props) {
       }
     }
     return null;
-  }
+  };
+  const activeSessionData = findActiveSession();
 
   const updateStageActive = function (newState, stage) {
     const stageData = props.thisRunData["stages"][stage];
@@ -90,14 +87,6 @@ function Stage(props) {
     newStageObj["sessions"] = newSessionList;
 
     props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
-
-    if (
-      sessionData.user === props.activeUser &&
-      sessionData.endTime === undefined &&
-      sessionData.type === "work"
-    ) {
-      setActiveSessionData(sessionData);
-    }
   };
 
   const updateSession = function (extraData, stage, sessionUid) {
@@ -127,11 +116,6 @@ function Stage(props) {
     } else {
       updateSession(endTime, stage, sessionData.sessionUid);
     }
-
-    if (sessionData.user === props.activeUser) {
-      setActiveSessionData(null);
-    }
-    // updateStageActive(true, stage + 1);
   };
 
   const getDifficulty = function () {

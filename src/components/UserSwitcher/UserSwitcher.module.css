@@ -1,0 +1,58 @@
+.main {
+  --size-icon: 1.6rem;
+  --width-pad-outer: 0.8rem;
+  --width-pad-inner: 0.6rem;
+  --height-pad-vert: 0.2rem;
+
+  position: relative;
+}
+
+.select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+
+  background-color: var(--color-grey-light);
+  color: var(--color-text);
+  min-height: var(--size-touch-min);
+  min-width: var(--size-touch-min);
+  padding: var(--height-pad-vert) var(--width-pad-outer) var(--height-pad-vert) calc(var(--width-pad-outer) + var(--width-pad-inner) + var(--size-icon));
+  font-size: var(--text-normal);
+  line-height: 1.3em;
+  border: 0;
+}
+.select::-ms-expand {
+  display: none;
+}
+.select:focus {
+  outline: 2px solid var(--color-white);
+  outline-offset: -2px;
+}
+
+.select option {
+  font-weight: normal;
+}
+
+.iconWrapper {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.icon {
+  border: 2px solid var(--color-white);
+  border-radius: 50%;
+  height: var(--size-icon);
+  width: var(--size-icon);
+  margin: 0 var(--width-pad-inner) 0 var(--width-pad-outer);
+}
+
+.icon path {
+  fill: var(--color-white);
+  transform: translateY(1px);/* temp fix for annoying svg */
+}

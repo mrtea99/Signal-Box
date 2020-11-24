@@ -26,6 +26,13 @@
   bottom: 0vh;
 }
 
+.controlBar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .inner {
   margin: 0 auto;
   padding: 1rem var(--width-site-padding);

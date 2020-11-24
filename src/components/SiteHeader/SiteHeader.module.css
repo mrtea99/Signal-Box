@@ -13,6 +13,7 @@
   display: flex;
   flex-grow: 1;
   flex-direction: row;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   padding: 0 var(--width-site-padding);
@@ -24,6 +25,9 @@
   }
 } */
 
+.siteLogoWrapper {
+  padding: 0.2rem;
+}
 .siteLogo {
   height: 3rem;
   width: 3rem;
@@ -33,13 +37,20 @@
 }
 
 @media (min-width: 768px) {
+  .siteLogoWrapper {
+    height: 3rem;
+    overflow: visible;
+    padding-top: 0.3rem;
+    padding-bottom: 0;
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+  }
   .siteLogo {
     height: 6rem;
     width: 6rem;
-    position: absolute;
-    top: 0.3rem;
-    left: 50%;
-    transform: translateX(-50%);
     border-width: 2px;
   }
 }

@@ -145,6 +145,7 @@ function App() {
               modalActive={modalChangeActive}
               setModalActive={setModalChangeActive}
               activeUser={activeUser}
+              setActiveUser={setActiveUser}
             />
             <RunInfoChange
               active={modalChangeActive}
