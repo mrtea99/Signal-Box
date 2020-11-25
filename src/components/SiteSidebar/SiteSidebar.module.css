@@ -4,8 +4,8 @@
   flex: none;
   position: fixed;
   top: 0;
-  /* left: -20rem; */
-  left: 0;
+  left: -20rem;
+  /* left: 0; */
   width: 100%;
   max-width: 20rem;
   height: 100vh;
