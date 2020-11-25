@@ -87,21 +87,34 @@ function FormItem(props) {
     case "radioGroup":
     case "toggleButton":
       labelElem = <p className={styles.label}>{props.label}</p>;
-      fieldElem = props.itemValues.map((itemValue, index) => {
-        return (
-          <React.Fragment key={ident + index}>
-            <label htmlFor={ident + index}>{props.itemLabels[index]}</label>
-            <input
-              type="radio"
-              name={ident}
-              id={ident + index}
-              value={itemValue}
-              checked={props.value === itemValue}
-              onChange={(e) => updateHandler(e.target.value)}
-            />
-          </React.Fragment>
-        );
-      });
+      fieldElem = (
+        <div
+          className={
+            type === "toggleButton" ? styles.toggleButton : styles.radioGroup
+          }
+        >
+          {props.itemValues.map((itemValue, index) => {
+            return (
+              <div key={ident + index} className={styles.radioItem}>
+                <input
+                  type="radio"
+                  name={ident}
+                  id={ident + index}
+                  value={itemValue}
+                  checked={props.value === itemValue}
+                  onChange={(e) => updateHandler(e.target.value)}
+                  className={styles.radioInput}
+                />
+                <label htmlFor={ident + index} className={styles.radioLabel}>
+                  <span className={styles.radioLabelText}>
+                    {props.itemLabels[index]}
+                  </span>
+                </label>
+              </div>
+            );
+          })}
+        </div>
+      );
       break;
     default:
       fieldElem = null;

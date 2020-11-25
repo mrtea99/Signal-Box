@@ -93,3 +93,80 @@
 .fieldSelectArrow path {
   fill: var(--color-white);
 }
+
+/* radio buttons */
+.radioGroup {
+  display: flex;
+  flex-direction: column;
+}
+.radioItem {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  margin-bottom: 0.5rem;
+}
+
+.radioInput,
+.radioLabel {
+  display: inline-block;
+  min-height: var(--size-touch-min);
+  min-width: var(--size-touch-min);
+}
+
+.radioInput {
+  padding: 1rem;
+}
+
+.radioLabel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  cursor: pointer;
+}
+
+.radioLabelText {
+  padding-left: 0.5rem;
+}
+
+/* toggle button */
+.toggleButton {
+  --width-toggle-border: 2px;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.toggleButton .radioItem {
+  margin-bottom: 0;
+}
+
+
+.toggleButton .radioInput {
+  display: none;
+}
+
+.toggleButton .radioLabel {
+  background-color: var(--color-white);
+  color: var(--color-text-alt);
+  flex-grow: 1;
+  flex-shrink: 0;
+  text-align: center;
+  border: var(--width-toggle-border) solid var(--color-pink-light);
+  margin-right: calc(var(--width-toggle-border) * -1);
+}
+.toggleButton .radioItem:last-child .radioLabel {
+  margin-right: 0;
+}
+
+
+.toggleButton .radioInput:checked + .radioLabel {
+  background-color: var(--color-pink-light);
+  color: var(--color-text-alt);
+  border-color: var(--color-pink);
+  text-shadow: 0px 0px 1px var(--color-text-alt);
+  z-index: 1;
+}
+
+.toggleButton .radioLabelText {
+  padding: 0.5rem;
+}
