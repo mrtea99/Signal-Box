@@ -8,6 +8,12 @@ import styles from "./FormItem.module.css";
 function FormItem(props) {
   const { ident, label, type, updateHandler, ...fieldProps } = props;
 
+  let labelElem = (
+    <label className={styles.label} htmlFor={props.ident}>
+      {props.label}
+    </label>
+  );
+
   let fieldElem;
 
   switch (type) {
@@ -64,6 +70,8 @@ function FormItem(props) {
       fieldElem = (
         <div className={styles.fieldWrap}>
           <select
+            id={ident}
+            name={ident}
             {...fieldProps}
             onChange={(e) => updateHandler(e.target.value)}
             className={`${styles.field} ${styles.fieldSelect}`}
@@ -76,6 +84,25 @@ function FormItem(props) {
         </div>
       );
       break;
+    case "radioGroup":
+    case "toggleButton":
+      labelElem = <p className={styles.label}>{props.label}</p>;
+      fieldElem = props.itemValues.map((itemValue, index) => {
+        return (
+          <React.Fragment key={ident + index}>
+            <label htmlFor={ident + index}>{props.itemLabels[index]}</label>
+            <input
+              type="radio"
+              name={ident}
+              id={ident + index}
+              value={itemValue}
+              checked={props.value === itemValue}
+              onChange={(e) => updateHandler(e.target.value)}
+            />
+          </React.Fragment>
+        );
+      });
+      break;
     default:
       fieldElem = null;
       break;
@@ -83,9 +110,7 @@ function FormItem(props) {
 
   return (
     <div className={`${fieldProps.className} ${styles.itemWrap}`}>
-      <label className={styles.label} htmlFor={props.ident}>
-        {props.label}
-      </label>
+      {labelElem}
       {fieldElem}
     </div>
   );
