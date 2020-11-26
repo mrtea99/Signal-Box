@@ -9,10 +9,10 @@ import Repeater from "./Repeater/Repeater.js";
 
 import styles from "./SessionList.module.css";
 
-import timeFormatContext from "../../contexts/timeFormatContext.js";
+import TimeFormatContext from "../../contexts/timeFormatContext.js";
 
 function SessionList(props) {
-  const timeFormat = useContext(timeFormatContext);
+  const timeFormat = useContext(TimeFormatContext);
 
   const thisStageData =
     props.thisRunData["stages"][props.thisStage]["sessions"];
@@ -48,11 +48,19 @@ function SessionList(props) {
       hour = addLeadingZero(dateHours);
     } else {
       if (dateHours < 12) {
-        hour = dateHours;
         afterWords = " AM";
       } else {
-        hour = dateHours - 12;
         afterWords = " PM";
+      }
+
+      if (dateHours > 12) {
+        hour = dateHours - 12;
+      } else {
+        hour = dateHours;
+      }
+
+      if (dateHours === 0) {
+        hour = 12;
       }
     }
 

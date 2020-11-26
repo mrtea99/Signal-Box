@@ -13,7 +13,7 @@ import TabBox from "./components/TabBox/TabBox";
 import SiteHeader from "./components/SiteHeader/SiteHeader";
 import SiteSettings from "./components/SiteSidebar/SiteSettings/SiteSettings.js";
 
-import timeFormatContext from "./contexts/timeFormatContext.js";
+import TimeFormatContext from "./contexts/timeFormatContext.js";
 
 function App() {
   const savedRunData = () =>
@@ -89,7 +89,7 @@ function App() {
   }, [timeFormat]);
 
   return (
-    <timeFormatContext.Provider value={timeFormat}>
+    <TimeFormatContext.Provider value={timeFormat}>
       <div className={styles.siteContainer}>
         <SiteHeader
           activeUser={activeUser}
@@ -180,7 +180,7 @@ function App() {
           </main>
         </div>
       </div>
-    </timeFormatContext.Provider>
+    </TimeFormatContext.Provider>
   );
 }
 
