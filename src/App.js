@@ -11,8 +11,9 @@ import RunInfoChange from "./components/RunInfoChange/RunInfoChange.js";
 import Button from "./components/Button/Button.js";
 import TabBox from "./components/TabBox/TabBox";
 import SiteHeader from "./components/SiteHeader/SiteHeader";
+import SiteSettings from "./components/SiteSidebar/SiteSettings/SiteSettings.js";
 
-import timeFormatContext from "./contexts/timeFormatContext.js"
+import timeFormatContext from "./contexts/timeFormatContext.js";
 
 function App() {
   const savedRunData = () =>
@@ -26,15 +27,8 @@ function App() {
 
   const [runData, setRunData] = React.useState(savedRunData);
   const [currentRunUid, setCurrentRunUid] = React.useState(savedCurrentRunUid);
-
   const [activeStage, setActiveStage] = React.useState(savedActiveStage);
-
   const [activeUser, setActiveUser] = React.useState(savedActiveUser);
-
-  const [modalNewActive, setModalNewActive] = React.useState(false);
-  const [modalChangeActive, setModalChangeActive] = React.useState(false);
-
-  const [sidebarActive, setSidebarActive] = React.useState(false);
 
   React.useEffect(() => {
     window.localStorage.setItem("runData", JSON.stringify(runData));
@@ -51,6 +45,10 @@ function App() {
   React.useEffect(() => {
     window.localStorage.setItem("activeUser", activeUser);
   }, [activeUser]);
+
+  const [modalNewActive, setModalNewActive] = React.useState(false);
+  const [modalChangeActive, setModalChangeActive] = React.useState(false);
+  const [sidebarActive, setSidebarActive] = React.useState(false);
 
   const updateRunData = function (uid, dataSection, dataKey, newValue) {
     if (dataSection === "delete") {
@@ -79,13 +77,19 @@ function App() {
 
   const handleAddClick = function (e) {
     e.preventDefault();
-
     setModalNewActive(true);
   };
 
+  // Site settings
+  const savedTimeFormat = () =>
+    window.localStorage.getItem("timeFormat") || "24h";
+  const [timeFormat, setTimeFormat] = React.useState(savedTimeFormat);
+  React.useEffect(() => {
+    window.localStorage.setItem("timeFormat", timeFormat);
+  }, [timeFormat]);
 
   return (
-    <timeFormatContext.Provider value={"12h"}>
+    <timeFormatContext.Provider value={timeFormat}>
       <div className={styles.siteContainer}>
         <SiteHeader
           activeUser={activeUser}
@@ -96,7 +100,12 @@ function App() {
           <SiteSidebar
             sidebarActive={sidebarActive}
             setSidebarActive={setSidebarActive}
-          />
+          >
+            <SiteSettings
+              timeFormat={timeFormat}
+              setTimeFormat={setTimeFormat}
+            />
+          </SiteSidebar>
           <main className={styles.siteContent}>
             <section>
               <menu className={styles.listControls}>

@@ -3,7 +3,6 @@ import React from "react";
 import styles from "./SiteSidebar.module.css";
 
 import Button from "../Button/Button.js";
-import SiteSettings from "./SiteSettings/SiteSettings.js";
 
 function SiteSidebar(props) {
   const closeSidebar = function () {
@@ -22,7 +21,7 @@ function SiteSidebar(props) {
         <Button onClick={closeSidebar} icon="cross" color="cancel" />
       </div>
       <img className={styles.siteLogo} alt="Mojo Spa Logo" src="./logo.svg" />
-      <SiteSettings />
+      {props.children}
     </div>
   );
 }

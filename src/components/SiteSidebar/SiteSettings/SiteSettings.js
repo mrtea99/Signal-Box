@@ -4,10 +4,11 @@ import FormItem from "../../FormItem/FormItem.js";
 
 import styles from "./SiteSettings.module.css";
 
-function SiteSettings() {
+function SiteSettings(props) {
   const [lang, setLang] = React.useState("en-us");
   const [unitSystem, setUnitSystem] = React.useState("metric");
-  const [timeFormat, setTimeFormat] = React.useState("24h");
+  // const [timeFormat, setTimeFormat] = React.useState("24h");
+  const [dateFormat, setDateFormat] = React.useState("ymd");
   const [siteTheme, setSiteTheme] = React.useState("dark");
   const [viewMode, setViewMode] = React.useState("full");
 
@@ -42,8 +43,18 @@ function SiteSettings() {
           ident="site-time-format"
           itemLabels={["24h", "12h"]}
           itemValues={["24h", "12h"]}
-          value={timeFormat}
-          updateHandler={setTimeFormat}
+          value={props.timeFormat}
+          updateHandler={props.setTimeFormat}
+        />
+        {/* Date Format */}
+        <FormItem
+          type="toggleButton"
+          label="Date Format:"
+          ident="site-date-format"
+          itemLabels={["YYYY-MM-DD", "YY-DD-MM"]}
+          itemValues={["ymd", "ydm"]}
+          value={dateFormat}
+          updateHandler={setDateFormat}
         />
         {/* Theme */}
         <FormItem
