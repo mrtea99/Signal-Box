@@ -9,10 +9,12 @@ import Repeater from "./Repeater/Repeater.js";
 
 import styles from "./SessionList.module.css";
 
-import TimeFormatContext from "../../contexts/timeFormatContext.js";
+import TimeFormatContext from "../../contexts/TimeFormatContext.js";
+import DateFormatContext from "../../contexts/DateFormatContext.js";
 
 function SessionList(props) {
   const timeFormat = useContext(TimeFormatContext);
+  const dateFormat = useContext(DateFormatContext);
 
   const thisStageData =
     props.thisRunData["stages"][props.thisStage]["sessions"];
@@ -28,11 +30,21 @@ function SessionList(props) {
   const formatDate = function (time) {
     const dateObj = new Date(time);
 
-    const year = dateObj.getFullYear();
+    const fullYear = dateObj.getFullYear();
+    const shortYear = dateObj.getFullYear();
     const month = addLeadingZero(dateObj.getMonth() + 1);
     const day = addLeadingZero(dateObj.getDate());
 
-    const dateString = `${year}-${month}-${day}`;
+    let dateString;
+    switch (dateFormat) {
+      default:
+      case 'ymd':
+        dateString = `${fullYear}-${month}-${day}`
+        break;
+      case 'mdy':
+        dateString = `${month}/${day}/${shortYear}`
+        break;
+    }
 
     return dateString;
   };

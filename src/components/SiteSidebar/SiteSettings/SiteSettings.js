@@ -7,7 +7,6 @@ import styles from "./SiteSettings.module.css";
 function SiteSettings(props) {
   const [lang, setLang] = React.useState("en-us");
   const [unitSystem, setUnitSystem] = React.useState("metric");
-  const [dateFormat, setDateFormat] = React.useState("ymd");
   const [siteTheme, setSiteTheme] = React.useState("dark");
   const [viewMode, setViewMode] = React.useState("full");
 
@@ -52,8 +51,8 @@ function SiteSettings(props) {
           ident="site-date-format"
           itemLabels={["YYYY-MM-DD", "MM-DD-YY"]}
           itemValues={["ymd", "mdy"]}
-          value={dateFormat}
-          updateHandler={setDateFormat}
+          value={props.dateFormat}
+          updateHandler={props.setDateFormat}
         />
         {/* Theme */}
         <FormItem
