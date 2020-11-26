@@ -75,11 +75,6 @@ function App() {
     setRunData(updatedRunData);
   };
 
-  const handleAddClick = function (e) {
-    e.preventDefault();
-    setModalNewActive(true);
-  };
-
   // Site settings
   const savedTimeFormat = () =>
     window.localStorage.getItem("timeFormat") || "24h";
@@ -111,7 +106,7 @@ function App() {
               <menu className={styles.listControls}>
                 <section className={styles.filterControls}></section>
                 <section className={styles.otherControls}>
-                  <Button onClick={handleAddClick} icon="plus">
+                  <Button onClick={() => setModalNewActive(true)} icon="plus">
                     New Run
                   </Button>
                   <RunInfoNew
@@ -144,17 +139,6 @@ function App() {
                   ),
                 }))}
               />
-
-              {/* {["all", 0, 1, 2, 3, 4].map((stage, index) => (
-              <RunList
-                key={index}
-                runData={runData}
-                setCurrentRunUid={setCurrentRunUid}
-                setActiveStage={setActiveStage}
-                activeUser={activeUser}
-                stageNum={stage}
-              />
-            ))} */}
             </section>
             <section className={styles.editorSection}>
               <RunEditor

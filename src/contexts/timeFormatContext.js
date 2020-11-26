@@ -1,5 +1,5 @@
 import React from "react";
 
-const contextTimeFormat = React.createContext("24h");
+const TimeFormatContext = React.createContext("24h");
 
-export default contextTimeFormat;
+export default TimeFormatContext;
