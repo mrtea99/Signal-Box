@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import TimeFormater from "../TimeFormater/TimeFormater.js";
 import Timer from "../Timer/Timer.js";
@@ -9,7 +9,11 @@ import Repeater from "./Repeater/Repeater.js";
 
 import styles from "./SessionList.module.css";
 
+import timeFormatContext from "../../contexts/timeFormatContext.js";
+
 function SessionList(props) {
+  const timeFormat = useContext(timeFormatContext);
+
   const thisStageData =
     props.thisRunData["stages"][props.thisStage]["sessions"];
 
@@ -36,11 +40,26 @@ function SessionList(props) {
   const formatTime = function (time) {
     const dateObj = new Date(time);
 
-    const hour = addLeadingZero(dateObj.getHours());
+    const dateHours = dateObj.getHours();
+    let hour;
+    let afterWords = "";
+
+    if (timeFormat === "24h") {
+      hour = addLeadingZero(dateHours);
+    } else {
+      if (dateHours < 12) {
+        hour = dateHours;
+        afterWords = " AM";
+      } else {
+        hour = dateHours - 12;
+        afterWords = " PM";
+      }
+    }
+
     const min = addLeadingZero(dateObj.getMinutes());
     const sec = addLeadingZero(dateObj.getSeconds());
 
-    return `${hour}:${min}:${sec}`;
+    return `${hour}:${min}:${sec}${afterWords}`;
   };
 
   const formatActivity = function (name) {
