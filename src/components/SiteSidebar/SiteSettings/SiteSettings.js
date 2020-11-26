@@ -20,7 +20,7 @@ function SiteSettings() {
           type="toggleButton"
           label="Language:"
           ident="site-lang"
-          itemLabels={["English", "Español"]}
+          itemLabels={["🏴󠁧󠁢󠁥󠁮󠁧󠁿 English", "🇪🇸 Español"]}
           itemValues={["en-us", "es-mx"]}
           value={lang}
           updateHandler={setLang}
