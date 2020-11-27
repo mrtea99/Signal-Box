@@ -5,18 +5,26 @@ import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
 import FormItem from "../../FormItem/FormItem.js";
 
 const activityList = [
-  ["Manufacturing", "Packaging"],
+  ["Material Check", "Create Blend/Base", "Misc", "Assisting"],
   [
-    "Manufacturing and Pouring",
-    "Create Blend",
-    "Create Base",
+    "Materials/Equip Prep",
     "Manufacturing",
-    "Pouring",
+    "Create Blend/Base",
+    "Cooling",
+    "Curing",
+    "Finishing Touches",
+    "Assisting",
   ],
-  // ["Unsupervised", "Supervised", "Finishing Touches"],
-  ["Packaging"],
-  ["Labeling", "Sealing", "Boxing"],
-  ["Stocking"],
+  [
+    "Packaging Prep",
+    "Packaging",
+    "Pouring",
+    "Cooling",
+    "Finishing Touches",
+    "Assisting",
+  ],
+  ["Labeling", "Sealing", "Boxing", "Assisting"],
+  ["Update Inventory", "Stock Wicker Park", "Stock Warehouse", "Misc"],
 ];
 
 function SessionStartForm(props) {
