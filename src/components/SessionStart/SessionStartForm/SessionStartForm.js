@@ -9,31 +9,31 @@ import UnitSystemContext from "../../../contexts/DateFormatContext.js";
 const activityList = [
   [
     { name: "Material Check" },
-    { name: "Create Blend/Base" },
+    { name: "Create Blend/Base", fields: ["atmos", "amounts", "weight", "qa"] },
     { name: "Misc" },
     { name: "Assisting" },
   ],
   [
     { name: "Materials/Equip Prep" },
-    { name: "Manufacturing" },
+    { name: "Manufacturing", fields: ["atmos", "amounts", "weight", "qa"] },
     { name: "Create Blend/Base" },
-    { name: "Cooling" },
-    { name: "Curing" },
+    { name: "Cooling", fields: ["atmos"] },
+    { name: "Curing", fields: ["atmos"] },
     { name: "Finishing Touches" },
     { name: "Assisting" },
   ],
   [
     { name: "Packaging Prep" },
-    { name: "Packaging" },
-    { name: "Pouring" },
-    { name: "Cooling" },
+    { name: "Packaging", fields: ["atmos", "amounts", "weight", "qa"] },
+    { name: "Pouring", fields: ["atmos", "amounts", "weight", "qa"] },
+    { name: "Cooling", fields: ["atmos"] },
     { name: "Finishing Touches" },
     { name: "Assisting" },
   ],
   [
-    { name: "Labeling" },
-    { name: "Sealing" },
-    { name: "Boxing" },
+    { name: "Labeling", fields: ["atmos", "amounts", "qa"] },
+    { name: "Sealing", fields: ["atmos", "amounts", "qa"] },
+    { name: "Boxing", fields: ["atmos", "amounts", "qa"] },
     { name: "Assisting" },
   ],
   [
@@ -105,8 +105,10 @@ function SessionStartForm(props) {
         type="select"
         ident={"sess-activity-stage-" + props.thisStage}
         label="Activity:"
-        updateHandler={(value) => setActivityData(activityList[props.thisStage][value])}
-        value={activityData.name}
+        updateHandler={(value) =>
+          setActivityData(activityList[props.thisStage][value])
+        }
+        value={activityList[props.thisStage].indexOf(activityData)}
       >
         {activityList[props.thisStage].map((activityType, index) => (
           <option
@@ -117,7 +119,7 @@ function SessionStartForm(props) {
           </option>
         ))}
       </FormItem>
-      {props.thisStage === 0 || props.thisStage === 1 ? (
+      {activityData.fields && activityData.fields.includes("atmos") ? (
         <>
           <FormItem
             type="number"
@@ -140,9 +142,7 @@ function SessionStartForm(props) {
             value={humidity}
           />
         </>
-      ) : (
-        <></>
-      )}{" "}
+      ) : null}
       <ButtonSpacer align="right">
         <Button onClick={() => props.setFormActive(false)} color="cancel">
           Cancel
