@@ -6,7 +6,6 @@ import styles from "./SiteSettings.module.css";
 
 function SiteSettings(props) {
   const [lang, setLang] = React.useState("en-us");
-  const [unitSystem, setUnitSystem] = React.useState("metric");
   const [siteTheme, setSiteTheme] = React.useState("dark");
   const [viewMode, setViewMode] = React.useState("full");
 
@@ -31,8 +30,8 @@ function SiteSettings(props) {
           ident="site-unit-system"
           itemLabels={["Metric", "U.S. Customary"]}
           itemValues={["metric", "us"]}
-          value={unitSystem}
-          updateHandler={setUnitSystem}
+          value={props.unitSystem}
+          updateHandler={props.setUnitSystem}
         />
         {/* Time Format */}
         <FormItem

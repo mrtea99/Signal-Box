@@ -89,8 +89,19 @@ function App() {
     window.localStorage.setItem("dateFormat", dateFormat);
   }, [dateFormat]);
 
+  const savedUnitSystem = () =>
+    window.localStorage.getItem("unitSystem") || "metric";
+  const [unitSystem, setUnitSystem] = React.useState(savedUnitSystem);
+  React.useEffect(() => {
+    window.localStorage.setItem("unitSystem", unitSystem);
+  }, [unitSystem]);
+
   return (
-    <GlobalContexts timeFormat={timeFormat} dateFormat={dateFormat}>
+    <GlobalContexts
+      timeFormat={timeFormat}
+      dateFormat={dateFormat}
+      unitSystem={unitSystem}
+    >
       <div className={styles.siteContainer}>
         <SiteHeader
           activeUser={activeUser}
@@ -107,6 +118,8 @@ function App() {
               setTimeFormat={setTimeFormat}
               dateFormat={dateFormat}
               setDateFormat={setDateFormat}
+              unitSystem={unitSystem}
+              setUnitSystem={setUnitSystem}
             />
           </SiteSidebar>
           <main className={styles.siteContent}>

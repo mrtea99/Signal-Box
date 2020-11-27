@@ -4,6 +4,8 @@ import Button from "../../Button/Button.js";
 import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
 import FormItem from "../../FormItem/FormItem.js";
 
+import UnitSystemContext from "../../../contexts/DateFormatContext.js";
+
 const activityList = [
   ["Material Check", "Create Blend/Base", "Misc", "Assisting"],
   [
@@ -28,6 +30,8 @@ const activityList = [
 ];
 
 function SessionStartForm(props) {
+  const unitSystem = React.useContext(UnitSystemContext);
+
   // Activity type (all)
   const [activityData, setActivityData] = React.useState(
     activityList[props.thisStage][0]
@@ -103,7 +107,7 @@ function SessionStartForm(props) {
           <FormItem
             type="number"
             ident={"sess-temp-stage-" + props.thisStage}
-            label="Room Temperature:"
+            label={`Room Temperature (°${unitSystem === 'metric' ? "C" : "F"}):`}
             updateHandler={(value) => setTemperature(value)}
             min="0"
             max="120"
