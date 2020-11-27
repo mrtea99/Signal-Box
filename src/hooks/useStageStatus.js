@@ -62,7 +62,7 @@ function useStageStatus(runData, stageNumber, activeUser) {
 
   let workActiveNames = "";
   workActiveSessions.forEach((session, index) => {
-    workActiveNames = workActiveNames + (index ? ", " : "") + session.activity;
+    workActiveNames = workActiveNames + (index ? ", " : "") + session.activity.name;
   });
 
   //Issues

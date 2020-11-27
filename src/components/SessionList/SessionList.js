@@ -218,7 +218,7 @@ function SessionList(props) {
               </td>
               <td className={`${styles.contentItem} ${styles.contentItemName}`}>
                 {session.type === "work"
-                  ? session.activity
+                  ? session.activity.name
                   : formatActivity(session.type)}
               </td>
               <td className={styles.contentItem}>

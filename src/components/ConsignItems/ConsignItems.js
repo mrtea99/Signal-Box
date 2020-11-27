@@ -79,7 +79,7 @@ function ConsignItems(props) {
           activityName = "QA";
           break;
         case "work":
-          activityName = session.activity;
+          activityName = session.activity.name;
           break;
         default:
           return false;

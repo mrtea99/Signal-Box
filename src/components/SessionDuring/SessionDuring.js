@@ -35,7 +35,7 @@ function SessionDuring(props) {
       {props.activeSessionData ? (
         <article className={styles.session}>
           <h4 className={styles.sessionTitle}>
-            {props.activeSessionData.activity} Session
+            {props.activeSessionData.activity.name} Session
           </h4>
           <div className={styles.readOnly}>
             <ul className={styles.readOnlyList}>
@@ -43,7 +43,7 @@ function SessionDuring(props) {
                 Start Time: {props.activeSessionData.startTime}
               </li>
               <li className={styles.rolKey}>
-                Activity: {props.activeSessionData.activity}
+                Activity: {props.activeSessionData.activity.name}
               </li>
             </ul>
             <Stopwatch>

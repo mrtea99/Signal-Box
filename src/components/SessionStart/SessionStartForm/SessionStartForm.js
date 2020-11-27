@@ -7,26 +7,41 @@ import FormItem from "../../FormItem/FormItem.js";
 import UnitSystemContext from "../../../contexts/DateFormatContext.js";
 
 const activityList = [
-  ["Material Check", "Create Blend/Base", "Misc", "Assisting"],
   [
-    "Materials/Equip Prep",
-    "Manufacturing",
-    "Create Blend/Base",
-    "Cooling",
-    "Curing",
-    "Finishing Touches",
-    "Assisting",
+    { name: "Material Check" },
+    { name: "Create Blend/Base" },
+    { name: "Misc" },
+    { name: "Assisting" },
   ],
   [
-    "Packaging Prep",
-    "Packaging",
-    "Pouring",
-    "Cooling",
-    "Finishing Touches",
-    "Assisting",
+    { name: "Materials/Equip Prep" },
+    { name: "Manufacturing" },
+    { name: "Create Blend/Base" },
+    { name: "Cooling" },
+    { name: "Curing" },
+    { name: "Finishing Touches" },
+    { name: "Assisting" },
   ],
-  ["Labeling", "Sealing", "Boxing", "Assisting"],
-  ["Update Inventory", "Stock Wicker Park", "Stock Warehouse", "Misc"],
+  [
+    { name: "Packaging Prep" },
+    { name: "Packaging" },
+    { name: "Pouring" },
+    { name: "Cooling" },
+    { name: "Finishing Touches" },
+    { name: "Assisting" },
+  ],
+  [
+    { name: "Labeling" },
+    { name: "Sealing" },
+    { name: "Boxing" },
+    { name: "Assisting" },
+  ],
+  [
+    { name: "Update Inventory" },
+    { name: "Stock Wicker Park" },
+    { name: "Stock Warehouse" },
+    { name: "Misc" },
+  ],
 ];
 
 function SessionStartForm(props) {
@@ -90,24 +105,26 @@ function SessionStartForm(props) {
         type="select"
         ident={"sess-activity-stage-" + props.thisStage}
         label="Activity:"
-        updateHandler={(value) => setActivityData(value)}
-        value={activityData}
+        updateHandler={(value) => setActivityData(activityList[props.thisStage][value])}
+        value={activityData.name}
       >
         {activityList[props.thisStage].map((activityType, index) => (
           <option
             key={"activity-" + index + "-stage-" + props.thisStage}
-            value={activityType}
+            value={index}
           >
-            {activityType}
+            {activityType.name}
           </option>
         ))}
       </FormItem>
-      {props.thisStage === 1 ? (
+      {props.thisStage === 0 || props.thisStage === 1 ? (
         <>
           <FormItem
             type="number"
             ident={"sess-temp-stage-" + props.thisStage}
-            label={`Room Temperature (°${unitSystem === 'metric' ? "C" : "F"}):`}
+            label={`Room Temperature (°${
+              unitSystem === "metric" ? "C" : "F"
+            }):`}
             updateHandler={(value) => setTemperature(value)}
             min="0"
             max="120"
@@ -116,7 +133,7 @@ function SessionStartForm(props) {
           <FormItem
             type="number"
             ident={"sess-humidity-stage-" + props.thisStage}
-            label="Room Humidity:"
+            label="Room Humidity (%):"
             updateHandler={(value) => setHumidity(value)}
             min="0"
             max="100"
