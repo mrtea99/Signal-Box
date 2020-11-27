@@ -49,7 +49,7 @@ function SiteSettings(props) {
           type="toggleButton"
           label="Date Format:"
           ident="site-date-format"
-          itemLabels={["YYYY-MM-DD", "MM-DD-YY"]}
+          itemLabels={["YYYY-MM-DD", "MM/DD/YY"]}
           itemValues={["ymd", "mdy"]}
           value={props.dateFormat}
           updateHandler={props.setDateFormat}

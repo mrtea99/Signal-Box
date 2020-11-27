@@ -31,18 +31,18 @@ function SessionList(props) {
     const dateObj = new Date(time);
 
     const fullYear = dateObj.getFullYear();
-    const shortYear = dateObj.getFullYear();
+    const shortYear = fullYear.toString().slice(-2);
     const month = addLeadingZero(dateObj.getMonth() + 1);
     const day = addLeadingZero(dateObj.getDate());
 
     let dateString;
     switch (dateFormat) {
       default:
-      case 'ymd':
-        dateString = `${fullYear}-${month}-${day}`
+      case "ymd":
+        dateString = `${fullYear}-${month}-${day}`;
         break;
-      case 'mdy':
-        dateString = `${month}/${day}/${shortYear}`
+      case "mdy":
+        dateString = `${month}/${day}/${shortYear}`;
         break;
     }
 
@@ -56,24 +56,28 @@ function SessionList(props) {
     let hour;
     let afterWords = "";
 
-    if (timeFormat === "24h") {
-      hour = addLeadingZero(dateHours);
-    } else {
-      if (dateHours < 12) {
-        afterWords = " AM";
-      } else {
-        afterWords = " PM";
-      }
+    switch (timeFormat) {
+      default:
+      case "24h":
+        hour = addLeadingZero(dateHours);
+        break;
+      case "12h":
+        if (dateHours < 12) {
+          afterWords = " AM";
+        } else {
+          afterWords = " PM";
+        }
 
-      if (dateHours > 12) {
-        hour = dateHours - 12;
-      } else {
-        hour = dateHours;
-      }
+        if (dateHours > 12) {
+          hour = dateHours - 12;
+        } else {
+          hour = dateHours;
+        }
 
-      if (dateHours === 0) {
-        hour = 12;
-      }
+        if (dateHours === 0) {
+          hour = 12;
+        }
+        break;
     }
 
     const min = addLeadingZero(dateObj.getMinutes());
