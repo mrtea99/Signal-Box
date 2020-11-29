@@ -5,10 +5,10 @@
   position: fixed;
   top: 0;
   left: -20rem;
-  /* left: 0; */
   width: 100%;
   max-width: 20rem;
   height: 100vh;
+  /* z-index: 1001; */
   z-index: 101;
   transition: left 0.5s;
   padding: 1rem;

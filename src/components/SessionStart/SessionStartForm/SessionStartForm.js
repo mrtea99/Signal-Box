@@ -3,20 +3,19 @@ import React from "react";
 import Button from "../../Button/Button.js";
 import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
 import FormItem from "../../FormItem/FormItem.js";
-
-import UnitSystemContext from "../../../contexts/DateFormatContext.js";
+import TemperatureField from "../../FormItem/TemperatureField/TemperatureField.js";
 
 const activityList = [
   [
     { name: "Material Check" },
-    { name: "Create Blend/Base", fields: ["atmos", "amounts", "weight", "qa"] },
+    { name: "Create Blend / Base", fields: ["atmos", "amounts", "weight", "qa"] },
     { name: "Misc" },
     { name: "Assisting" },
   ],
   [
-    { name: "Materials/Equip Prep" },
+    { name: "Materials / Equip Prep" },
     { name: "Manufacturing", fields: ["atmos", "amounts", "weight", "qa"] },
-    { name: "Create Blend/Base" },
+    { name: "Create Blend / Base" },
     { name: "Cooling", fields: ["atmos"] },
     { name: "Curing", fields: ["atmos"] },
     { name: "Finishing Touches" },
@@ -45,8 +44,6 @@ const activityList = [
 ];
 
 function SessionStartForm(props) {
-  const unitSystem = React.useContext(UnitSystemContext);
-
   // Activity type (all)
   const [activityData, setActivityData] = React.useState(
     activityList[props.thisStage][0]
@@ -81,10 +78,10 @@ function SessionStartForm(props) {
   };
 
   const validateForm = function () {
-    if (props.thisStage === 1) {
+    if (activityData.fields && activityData.fields.includes("atmos")) {
       if (
         typeof temperature === "number" &&
-        temperature >= 0 &&
+        temperature >= 32 &&
         temperature <= 120 &&
         typeof humidity === "number" &&
         humidity >= 0 &&
@@ -121,15 +118,10 @@ function SessionStartForm(props) {
       </FormItem>
       {activityData.fields && activityData.fields.includes("atmos") ? (
         <>
-          <FormItem
-            type="number"
+          <TemperatureField
             ident={"sess-temp-stage-" + props.thisStage}
-            label={`Room Temperature (°${
-              unitSystem === "metric" ? "C" : "F"
-            }):`}
+            label={"Room Temperature"}
             updateHandler={(value) => setTemperature(value)}
-            min="0"
-            max="120"
             value={temperature}
           />
           <FormItem
