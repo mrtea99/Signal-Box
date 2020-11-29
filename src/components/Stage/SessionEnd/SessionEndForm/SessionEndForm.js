@@ -11,6 +11,12 @@ import UnitSystemContext from "../../../../contexts/DateFormatContext.js";
 function SessionEndForm(props) {
   const unitSystem = React.useContext(UnitSystemContext);
 
+  const showAmounts = props.activeSessionData.activity.fields.includes(
+    "amounts"
+  );
+  const showWeight = props.activeSessionData.activity.fields.includes("weight");
+  const showQa = props.activeSessionData.activity.fields.includes("qa");
+
   // After Statuses
   // Notes (all)
   const [noteData, setNoteData] = React.useState(
@@ -18,19 +24,19 @@ function SessionEndForm(props) {
   );
   // Amount made (manu, pack, label)
   const [amount, setAmount] = React.useState(
-    props.activeSessionData["amount"] || 0
+    props.activeSessionData["amount"] || (showAmounts ? 0 : null)
   );
   // Amount Bad (manu, pack, label)
   const [amountBad, setAmountBad] = React.useState(
-    props.activeSessionData["amountBad"] || 0
+    props.activeSessionData["amountBad"] || (showAmounts ? 0 : null)
   );
   // Average unit/batch weight (manu, pack)
   const [averageWeight, setAverageWeight] = React.useState(
-    props.activeSessionData["averageWeight"] || 0
+    props.activeSessionData["averageWeight"] || (showWeight ? 0 : null)
   );
 
   const [skipQa, setSkipQa] = React.useState(
-    props.thisStage === 0 || props.thisStage === 4 ? true : false
+    props.thisStage === 0 || props.thisStage === 4 || !showQa ? true : false
   );
 
   const [qaFormData, setQaFormData] = React.useState({
@@ -76,6 +82,30 @@ function SessionEndForm(props) {
     setState(value);
   };
 
+  const weightLabel = function (stageNum, system) {
+    let itemName = "";
+    let targetWeight;
+
+    switch (stageNum) {
+      case 1:
+        itemName = "Batch";
+        targetWeight = props.thisRunData.productInfo.batchWeight;
+        break;
+      case 2:
+        itemName = "Unit";
+        targetWeight = props.thisRunData.productInfo.averageUnitWeight;
+        break;
+      default:
+        return "Weight";
+    }
+
+    return `Average ${itemName} Weight (Target: ${
+      unitSystem === "metric"
+        ? Math.round(targetWeight / 0.035274) + "g"
+        : targetWeight + "ozm"
+    })`;
+  };
+
   return (
     <form>
       <FormItem
@@ -87,9 +117,8 @@ function SessionEndForm(props) {
         }
         value={noteData}
       />
-      {props.thisStage === 1 ||
-      props.thisStage === 2 ||
-      props.thisStage === 3 ? (
+
+      {showAmounts ? (
         <>
           <FormItem
             type="number"
@@ -112,82 +141,43 @@ function SessionEndForm(props) {
             min="0"
           />
         </>
-      ) : (
-        <></>
-      )}
-      {props.thisStage === 1 || props.thisStage === 2 ? (
+      ) : null}
+
+      {showWeight ? (
         <WeightField
           ident={"sess-average-weight-step-" + props.thisStage}
-          label={`Average ${props.thisStage === 1 ? "Batch" : "Unit"} Weight 
-            ${
-              props.thisStage === 1
-                ? "(Target " +
-                  (unitSystem === "metric"
-                    ? Math.round(
-                        props.thisRunData.productInfo.batchWeight / 0.035274
-                      ) + "g"
-                    : props.thisRunData.productInfo.batchWeight + "ozm") +
-                  ")"
-                : ""
-            }
-            ${
-              props.thisStage === 2
-                ? "(Target " +
-                  (unitSystem === "metric"
-                    ? Math.round(
-                        props.thisRunData.productInfo.averageUnitWeight /
-                          0.035274
-                      ) + "g"
-                    : props.thisRunData.productInfo.averageUnitWeight + "ozm") +
-                  ")"
-                : ""
-            }`}
+          label={weightLabel(props.thisStage, unitSystem)}
           updateHandler={(value) =>
             handleFieldChange(value, setAverageWeight, "averageWeight")
           }
           value={averageWeight}
         />
-      ) : (
-        // <FormItem
-        //   type="number"
-        //   ident={"sess-average-weight-step-" + props.thisStage}
-        // label={`Average ${props.thisStage === 1 ? "Batch" : "Unit"} Weight:
-        //   ${
-        //     props.thisStage === 1
-        //       ? "(Target " + props.thisRunData.productInfo.batchWeight + ")"
-        //       : ""
-        //   }
-        //   ${
-        //     props.thisStage === 2
-        //       ? "(Target " +
-        //         props.thisRunData.productInfo.averageUnitWeight +
-        //         ")"
-        //       : ""
-        //   }`}
-        //   updateHandler={(value) =>
-        //     handleFieldChange(value, setAverageWeight, "averageWeight")
-        //   }
-        //   value={averageWeight}
-        //   min="0"
-        // />
-        <></>
-      )}
-      <div>
-        <label htmlFor="sess-skip-qa">Skip Qa</label>
-        <input
-          id="sess-skip-qa"
-          name="sess-skip-qa"
-          type="checkbox"
-          checked={skipQa}
-          onChange={(e) => setSkipQa(e.target.checked)}
-        />
-      </div>
+      ) : null}
 
-      {skipQa ? (
-        <p>QA Skipped</p>
-      ) : (
-        <CheckOpenerForm formData={qaFormData} setFormData={setQaFormData} />
-      )}
+      {showQa ? (
+        <>
+          <div>
+            <label htmlFor="sess-skip-qa">Skip Qa</label>
+            <input
+              id="sess-skip-qa"
+              name="sess-skip-qa"
+              type="checkbox"
+              checked={skipQa}
+              onChange={(e) => setSkipQa(e.target.checked)}
+            />
+          </div>
+
+          {skipQa ? (
+            <p>QA Skipped</p>
+          ) : (
+            <CheckOpenerForm
+              formData={qaFormData}
+              setFormData={setQaFormData}
+            />
+          )}
+        </>
+      ) : null}
+
       <ButtonSpacer align="right">
         <Button onClick={() => props.setFormActive(false)} color="cancel">
           Cancel

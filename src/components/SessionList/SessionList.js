@@ -267,10 +267,14 @@ function SessionList(props) {
               props.thisStage === 3 ? (
                 <>
                   <td className={styles.contentItem}>
-                    {session.amount === undefined ? "-" : session.amount}
+                    {session.amount === undefined || session.amount === null
+                      ? "-"
+                      : session.amount}
                   </td>
                   <td className={styles.contentItem}>
-                    {session.amountBad === undefined ? "-" : session.amountBad}
+                    {session.amountBad === undefined || session.amount === null
+                      ? "-"
+                      : session.amountBad}
                   </td>
                 </>
               ) : (

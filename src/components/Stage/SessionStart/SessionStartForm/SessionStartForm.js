@@ -7,39 +7,42 @@ import TemperatureField from "../../../FormItem/TemperatureField/TemperatureFiel
 
 const activityList = [
   [
-    { name: "Material Check" },
-    { name: "Create Blend / Base", fields: ["atmos", "amounts", "weight", "qa"] },
-    { name: "Misc" },
-    { name: "Assisting" },
+    { name: "Material Check", fields: [] },
+    {
+      name: "Create Blend / Base",
+      fields: ["atmos", "amounts", "weight", "qa"],
+    },
+    { name: "Misc", fields: [] },
+    { name: "Assisting", fields: [] },
   ],
   [
-    { name: "Materials / Equip Prep" },
+    { name: "Materials / Equip Prep", fields: [] },
     { name: "Manufacturing", fields: ["atmos", "amounts", "weight", "qa"] },
-    { name: "Create Blend / Base" },
+    { name: "Create Blend / Base", fields: [] },
     { name: "Cooling", fields: ["atmos"] },
     { name: "Curing", fields: ["atmos"] },
-    { name: "Finishing Touches" },
-    { name: "Assisting" },
+    { name: "Finishing Touches", fields: [] },
+    { name: "Assisting", fields: [] },
   ],
   [
-    { name: "Packaging Prep" },
+    { name: "Packaging Prep", fields: [] },
     { name: "Packaging", fields: ["atmos", "amounts", "weight", "qa"] },
     { name: "Pouring", fields: ["atmos", "amounts", "weight", "qa"] },
     { name: "Cooling", fields: ["atmos"] },
-    { name: "Finishing Touches" },
-    { name: "Assisting" },
+    { name: "Finishing Touches", fields: [] },
+    { name: "Assisting", fields: [] },
   ],
   [
     { name: "Labeling", fields: ["atmos", "amounts", "qa"] },
     { name: "Sealing", fields: ["atmos", "amounts", "qa"] },
     { name: "Boxing", fields: ["atmos", "amounts", "qa"] },
-    { name: "Assisting" },
+    { name: "Assisting", fields: [] },
   ],
   [
-    { name: "Update Inventory" },
-    { name: "Stock Wicker Park" },
-    { name: "Stock Warehouse" },
-    { name: "Misc" },
+    { name: "Update Inventory", fields: [] },
+    { name: "Stock Wicker Park", fields: [] },
+    { name: "Stock Warehouse", fields: [] },
+    { name: "Misc", fields: [] },
   ],
 ];
 

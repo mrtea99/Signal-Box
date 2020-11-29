@@ -11,7 +11,7 @@ function SessionEnd(props) {
     <>
       <Button onClick={() => setModalActive(true)} fillWidth icon="stop">End Session</Button>
       {modalActive ? (
-        <Modal title="End Session">
+        <Modal title={`End ${props.activeSessionData.activity.name} Session`}>
           <SessionEndForm
             setFormActive={setModalActive}
             addSession={props.addSession}

@@ -4,7 +4,6 @@ import FormItem from "../../FormItem/FormItem.js";
 import Timer from "../../Timer/Timer.js";
 import Stopwatch from "./Stopwatch/Stopwatch.js";
 
-
 import styles from "./SessionDuring.module.css";
 
 function SessionDuring(props) {
@@ -63,11 +62,7 @@ function SessionDuring(props) {
                 value={noteData}
                 className={styles.notesField}
               />
-  {/* {props.activeSessionData.activity.fields &&
-              props.activeSessionData.activity.fields.includes("amounts") ? ( */}
-              {props.thisStage === 1 ||
-              props.thisStage === 2 ||
-              props.thisStage === 3 ? (
+              {props.activeSessionData.activity.fields.includes("amounts") ? (
                 <div className={styles.numberFieldsWrap}>
                   <FormItem
                     type="number"
@@ -99,9 +94,7 @@ function SessionDuring(props) {
                     className={styles.numberField}
                   />
                 </div>
-              ) : (
-                <></>
-              )}
+              ) : null}
             </form>
           </div>
         </article>
