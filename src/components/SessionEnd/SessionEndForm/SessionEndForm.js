@@ -4,8 +4,13 @@ import Button from "../../Button/Button.js";
 import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
 import CheckOpenerForm from "../../CheckOpener/CheckOpenerForm/CheckOpenerForm.js";
 import FormItem from "../../FormItem/FormItem.js";
+import WeightField from "../../FormItem/WeightField/WeightField.js";
+
+import UnitSystemContext from "../../../contexts/DateFormatContext.js";
 
 function SessionEndForm(props) {
+  const unitSystem = React.useContext(UnitSystemContext);
+
   // After Statuses
   // Notes (all)
   const [noteData, setNoteData] = React.useState(
@@ -111,19 +116,29 @@ function SessionEndForm(props) {
         <></>
       )}
       {props.thisStage === 1 || props.thisStage === 2 ? (
-        <FormItem
-          type="number"
+        <WeightField
           ident={"sess-average-weight-step-" + props.thisStage}
-          label={`Average ${props.thisStage === 1 ? "Batch" : "Unit"} Weight:
+          label={`Average ${props.thisStage === 1 ? "Batch" : "Unit"} Weight 
             ${
               props.thisStage === 1
-                ? "(Target " + props.thisRunData.productInfo.batchWeight + ")"
+                ? "(Target " +
+                  (unitSystem === "metric"
+                    ? Math.round(
+                        props.thisRunData.productInfo.batchWeight / 0.035274
+                      ) + "g"
+                    : props.thisRunData.productInfo.batchWeight + "ozm") +
+                  ")"
                 : ""
             }
             ${
               props.thisStage === 2
                 ? "(Target " +
-                  props.thisRunData.productInfo.averageUnitWeight +
+                  (unitSystem === "metric"
+                    ? Math.round(
+                        props.thisRunData.productInfo.averageUnitWeight /
+                          0.035274
+                      ) + "g"
+                    : props.thisRunData.productInfo.averageUnitWeight + "ozm") +
                   ")"
                 : ""
             }`}
@@ -131,9 +146,30 @@ function SessionEndForm(props) {
             handleFieldChange(value, setAverageWeight, "averageWeight")
           }
           value={averageWeight}
-          min="0"
         />
       ) : (
+        // <FormItem
+        //   type="number"
+        //   ident={"sess-average-weight-step-" + props.thisStage}
+        // label={`Average ${props.thisStage === 1 ? "Batch" : "Unit"} Weight:
+        //   ${
+        //     props.thisStage === 1
+        //       ? "(Target " + props.thisRunData.productInfo.batchWeight + ")"
+        //       : ""
+        //   }
+        //   ${
+        //     props.thisStage === 2
+        //       ? "(Target " +
+        //         props.thisRunData.productInfo.averageUnitWeight +
+        //         ")"
+        //       : ""
+        //   }`}
+        //   updateHandler={(value) =>
+        //     handleFieldChange(value, setAverageWeight, "averageWeight")
+        //   }
+        //   value={averageWeight}
+        //   min="0"
+        // />
         <></>
       )}
       <div>

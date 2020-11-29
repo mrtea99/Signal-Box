@@ -4,7 +4,7 @@ import FormItem from "../../FormItem/FormItem.js";
 
 import UnitSystemContext from "../../../contexts/DateFormatContext.js";
 
-function TemperatureField(props) {
+function WeightField(props) {
   const unitSystem = React.useContext(UnitSystemContext);
 
   const updateConverter = function (metricValue) {
@@ -12,12 +12,19 @@ function TemperatureField(props) {
     props.updateHandler(usValue);
   };
 
+  const roundValue = function (value) {
+    const roundedValue = value; //Math.round((value + Number.EPSILON) * 100) / 100
+    return roundedValue;
+  };
+
   const convertValue = function (value, sourceSystem) {
+    const gramOunceRatio = 0.035274;
+
     let convertedValue;
     if (sourceSystem === "metric") {
-      convertedValue = Math.round((value * 9) / 5 + 32);
+      convertedValue = roundValue(value * gramOunceRatio);
     } else {
-      convertedValue = Math.round(((value - 32) * 5) / 9);
+      convertedValue = roundValue(value / gramOunceRatio);
     }
     return convertedValue;
   };
@@ -26,24 +33,22 @@ function TemperatureField(props) {
     <>
       {unitSystem === "metric" ? (
         <FormItem
-          key={props.ident + "C"}
+          key={props.ident + "g"}
           type="number"
           ident={props.ident}
-          label={`${props.label} (°C):`}
+          label={`${props.label} (g):`}
           updateHandler={updateConverter}
           min="0"
-          max="50"
           value={convertValue(props.value, "us")}
         />
       ) : (
         <FormItem
-          key={props.ident + "F"}
+          key={props.ident + "oz"}
           type="number"
           ident={props.ident}
-          label={`${props.label} (°F):`}
+          label={`${props.label} (ozm):`}
           updateHandler={props.updateHandler}
-          min="32"
-          max="120"
+          min="0"
           value={props.value}
         />
       )}
@@ -51,4 +56,4 @@ function TemperatureField(props) {
   );
 }
 
-export default TemperatureField;
+export default WeightField;
