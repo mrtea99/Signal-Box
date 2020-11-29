@@ -1,10 +1,11 @@
 import React from "react";
-import FormItem from "../FormItem/FormItem.js";
 
-import Timer from "../Timer/Timer.js";
+import FormItem from "../../FormItem/FormItem.js";
+import Timer from "../../Timer/Timer.js";
+import Stopwatch from "./Stopwatch/Stopwatch.js";
+
 
 import styles from "./SessionDuring.module.css";
-import Stopwatch from "./Stopwatch/Stopwatch.js";
 
 function SessionDuring(props) {
   // After Statuses
@@ -59,13 +60,11 @@ function SessionDuring(props) {
                 updateHandler={(value) =>
                   handleFieldChange(value, setNoteData, "notes")
                 }
-                // onChange={(e) =>
-                //   handleFieldChange(e.target.value, setNoteData, "notes")
-                // }
                 value={noteData}
                 className={styles.notesField}
               />
-
+  {/* {props.activeSessionData.activity.fields &&
+              props.activeSessionData.activity.fields.includes("amounts") ? ( */}
               {props.thisStage === 1 ||
               props.thisStage === 2 ||
               props.thisStage === 3 ? (

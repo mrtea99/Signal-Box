@@ -4,7 +4,7 @@ import SessionControl from "./SessionControl/SessionControl.js";
 import SessionList from "../SessionList/SessionList.js";
 import StageStatus from "../StageStatus/StageStatus.js";
 import StageActions from "./StageActions/StageActions.js";
-import SessionDuring from "../SessionDuring/SessionDuring.js";
+import SessionDuring from "./SessionDuring/SessionDuring.js";
 
 import styles from "./Stage.module.css";
 

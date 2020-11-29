@@ -1,9 +1,9 @@
 import React from "react";
 
-import Button from "../../Button/Button.js";
-import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
-import FormItem from "../../FormItem/FormItem.js";
-import TemperatureField from "../../FormItem/TemperatureField/TemperatureField.js";
+import Button from "../../../Button/Button.js";
+import ButtonSpacer from "../../../Button/ButtonSpacer/ButtonSpacer.js";
+import FormItem from "../../../FormItem/FormItem.js";
+import TemperatureField from "../../../FormItem/TemperatureField/TemperatureField.js";
 
 const activityList = [
   [
