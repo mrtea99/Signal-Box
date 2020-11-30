@@ -2,6 +2,7 @@ import React from "react";
 
 import Button from "../Button/Button.js";
 import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
+import FormItem from "../FormItem/FormItem.js";
 
 const productTemplates = [
   {
@@ -87,33 +88,32 @@ function RunInfoForm(props) {
 
   return (
     <form>
-      <div>
-        <label>Product:</label>
-        <select
-          onChange={(e) => setTemplate(e.target.value)}
-          value={currentTemplate === null ? "default" : currentTemplate}
-        >
-          <option value="default" disabled="disabled">
-            Choose a template
+      <FormItem
+        label="Product:"
+        type="select"
+        updateHandler={(value) => {
+          setTemplate(value);
+        }}
+        value={currentTemplate === null ? "default" : currentTemplate}
+      >
+        <option value="default" disabled="disabled">
+          Choose a template
+        </option>
+        {productTemplates.map((template, index) => (
+          <option key={template.productName} value={index}>
+            {template.productName}
           </option>
-          {productTemplates.map((template, index) => (
-            <option key={template.productName} value={index}>
-              {template.productName}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div>
-        <label>Batch Quantity:</label>
-        <input
-          onChange={(e) => {
-            setBatchQuantity(parseInt(e.target.value));
-          }}
-          type="number"
-          defaultValue={batchQuantity}
-          min="0"
-        ></input>
-      </div>
+        ))}
+      </FormItem>
+      <FormItem
+        label="Batch Quantity:"
+        type="number"
+        updateHandler={(value) => {
+          setBatchQuantity(parseInt(value));
+        }}
+        value={batchQuantity}
+        min="0"
+      />
       <ButtonSpacer align="right">
         <Button
           onClick={(e) => {
