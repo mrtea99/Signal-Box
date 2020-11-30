@@ -63,9 +63,9 @@ function SessionList(props) {
         break;
       case "12h":
         if (dateHours < 12) {
-          afterWords = " AM";
+          afterWords = "am";
         } else {
-          afterWords = " PM";
+          afterWords = "pm";
         }
 
         if (dateHours > 12) {
