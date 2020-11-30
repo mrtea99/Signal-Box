@@ -1,6 +1,7 @@
 import React from "react";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
+import FormItem from "../FormItem/FormItem.js";
 
 function CheckCloser(props) {
   const [description, setDescription] = React.useState("");
@@ -45,39 +46,34 @@ function CheckCloser(props) {
             <p>Requested by: {props.session.user}</p>
             <p>Assigned to: {props.session.checker}</p>
             <p>Timeframe: {props.session.timeframe}</p>
-            <p>{props.session.notes}</p>
+            <p>Raising Note: {props.session.notes}</p>
           </div>
-          <div>
-            <label htmlFor="check-description">Note:</label>
-            <br />
-            <textarea
-              id="check-description"
-              name="check-description"
-              onChange={(e) => setDescription("Checked: " + e.target.value)}
-            ></textarea>
-          </div>
-          <div>
-            <label htmlFor="check-count">Passed:</label>
-            <br />
-            <input
-              type="number"
-              id="check-count"
-              name="check-count"
-              onChange={(e) => setCount(parseInt(e.target.value))}
-              value={count}
-            />
-          </div>
-          <div>
-            <label htmlFor="check-count-bad">Defective:</label>
-            <br />
-            <input
-              type="number"
-              id="check-count-bad"
-              name="check-count-bad"
-              onChange={(e) => setCountBad(parseInt(e.target.value))}
-              value={countBad}
-            />
-          </div>
+
+          <FormItem
+            label="Checker Note:"
+            type="textarea"
+            ident="check-description"
+            updateHandler={(value) => {
+              setDescription("Checked: " + value);
+            }}
+          />
+
+          <FormItem
+            type="number"
+            ident={"check-count"}
+            label={"Passed:"}
+            updateHandler={(value) => setCount(parseInt(value))}
+            value={count}
+            min="0"
+          />
+          <FormItem
+            type="number"
+            ident={"check-count-bad"}
+            label={"Failed:"}
+            updateHandler={(value) => setCountBad(parseInt(value))}
+            value={countBad}
+            min="0"
+          />
         </ModalControl>
       )}
     </>
