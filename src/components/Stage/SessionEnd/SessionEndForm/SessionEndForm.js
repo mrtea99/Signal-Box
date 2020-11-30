@@ -156,16 +156,13 @@ function SessionEndForm(props) {
 
       {showQa ? (
         <>
-          <div>
-            <label htmlFor="sess-skip-qa">Skip Qa</label>
-            <input
-              id="sess-skip-qa"
-              name="sess-skip-qa"
-              type="checkbox"
-              checked={skipQa}
-              onChange={(e) => setSkipQa(e.target.checked)}
-            />
-          </div>
+          <FormItem
+            label="Skip Qa"
+            type="checkbox"
+            ident="sess-skip-qa"
+            updateHandler={(value) => setSkipQa(value)}
+            checked={skipQa}
+          />
 
           {skipQa ? (
             <p>QA Skipped</p>

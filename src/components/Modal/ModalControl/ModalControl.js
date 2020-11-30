@@ -20,14 +20,18 @@ function ModalControl(props) {
 
     setModalActive(false);
 
-    props.handleCancel();
+    if (props.handleCancel) {
+      props.handleCancel();
+    }
   };
 
-  const {fillWidth, ...saveBtnAttrs} = props.buttonAttrs;
+  const { fillWidth, ...saveBtnAttrs } = props.buttonAttrs;
 
   return (
     <>
-      <Button {...props.buttonAttrs} onClick={() => setModalActive(true)}>{props.triggerCopy}</Button>
+      <Button {...props.buttonAttrs} onClick={() => setModalActive(true)}>
+        {props.triggerCopy}
+      </Button>
       {modalActive ? (
         <Modal title={props.title}>
           {props.children}
@@ -35,18 +39,20 @@ function ModalControl(props) {
             <ButtonSpacer align="right">
               <Button
                 onClick={(e) => {
-                  handleCancel(e)
+                  handleCancel(e);
                 }}
                 color="cancel"
               >
                 Cancel
               </Button>
-              <Button onClick={(e) => handleSubmit(e)} {...saveBtnAttrs}>{props.triggerCopy || "Save"}</Button>
+              <Button onClick={(e) => handleSubmit(e)} {...saveBtnAttrs}>
+                {props.triggerCopy || "Save"}
+              </Button>
             </ButtonSpacer>
           ) : (
             <Button
               onClick={(e) => {
-                handleCancel(e)
+                handleCancel(e);
               }}
             >
               Close

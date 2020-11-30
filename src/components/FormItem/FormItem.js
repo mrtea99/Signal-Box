@@ -116,6 +116,26 @@ function FormItem(props) {
         </div>
       );
       break;
+    case "checkbox":
+      labelElem = null;
+      fieldElem = (
+        <div className={styles.fieldWrap}>
+          <input
+            type="checkbox"
+            name={ident}
+            id={ident}
+            onChange={(e) => updateHandler(e.target.checked)}
+            className={styles.checkboxInput}
+            {...fieldProps}
+          />
+          <label htmlFor={ident} className={styles.radioLabel}>
+            <span className={styles.radioLabelText}>
+              {props.label}
+            </span>
+          </label>
+        </div>
+      );
+      break;
     default:
       fieldElem = null;
       break;

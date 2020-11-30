@@ -169,3 +169,11 @@
 .toggleButton .radioLabelText {
   padding: 0.5rem;
 }
+
+
+/* checkboxes */
+.checkboxInput {
+  min-height: var(--size-touch-min);
+  min-width: var(--size-touch-min);
+}
+

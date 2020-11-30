@@ -43,15 +43,13 @@ function FlagOpener(props) {
           }}
         />
 
-        <div>
-          <label htmlFor="issue-blocker">Blocker:</label>
-          <input
-            onChange={(e) => setIsBlocker(e.target.checked)}
-            type="checkbox"
-            id="issue-blocker"
-            name="issue-blocker"
-          />
-        </div>
+        <FormItem
+          label="Blocker"
+          type="checkbox"
+          ident="issue-blocker"
+          updateHandler={(value) => setIsBlocker(value)}
+          checked={isBlocker}
+        />
       </form>
     </ModalControl>
   );
