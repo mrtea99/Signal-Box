@@ -30,6 +30,7 @@
 .sessionHolder {
   display: flex;
   flex-direction: column;
+  margin-bottom: 3rem;
 }
 
 @media (min-width: 768px) {

@@ -6,6 +6,7 @@ import FlagCloser from "../FlagCloser/FlagCloser.js";
 import CheckCloser from "../CheckCloser/CheckCloser.js";
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import Repeater from "./Repeater/Repeater.js";
+import TableHeader from "../TableHeader/TableHeader.js";
 
 import styles from "./SessionList.module.css";
 
@@ -160,68 +161,66 @@ function SessionList(props) {
   //   return total;
   // };
 
+  // const itemName = props.thisStage === 1 ? "Batches" : "Units";
+  let itemName;
+  switch (props.thisStage) {
+    case 1:
+      itemName = "Batches";
+      break;
+    case 2:
+    case 3:
+      itemName = "Units";
+      break;
+    default:
+      itemName = "Items";
+      break;
+  }
+
+  const columns = [
+    { copy: "№", className: styles.colNumber },
+    { copy: "Activity", className: styles.colActivity },
+    { copy: "Start Time", className: styles.colStartTime },
+    { copy: "Duration", className: styles.colDuration },
+    { copy: itemName, className: styles.colItemsGood },
+    { copy: "Defective", className: styles.colItemsBad },
+    { copy: "Technician", className: styles.colTech },
+    { copy: "Action", className: styles.colAction },
+    { copy: "Info", className: styles.colInfo },
+  ];
+
   return (
-    <table className={styles.container}>
-      <thead className={styles.header}>
-        <tr>
-          <th className={styles.headerItem}>№</th>
-          <th className={styles.headerItem}>Activity</th>
-          <th className={styles.headerItem}>Start Time</th>
-          {/* <th className={styles.headerItem}>Finish Time</th> */}
-          <th className={styles.headerItem}>Duration</th>
-          {props.thisStage === 1 ? (
-            <th className={`${styles.headerItem} ${styles.headerItemItems}`}>
-              Batches
-            </th>
-          ) : (
-            <></>
-          )}
-          {props.thisStage === 2 || props.thisStage === 3 ? (
-            <th className={`${styles.headerItem} ${styles.headerItemItems}`}>
-              Units
-            </th>
-          ) : (
-            <></>
-          )}
-          {props.thisStage === 1 ||
-          props.thisStage === 2 ||
-          props.thisStage === 3 ? (
-            <th className={styles.headerItem}>Defective</th>
-          ) : (
-            <></>
-          )}
-          {/* {props.thisStage === 1 ||
-          props.thisStage === 2 ||
-          props.thisStage === 3 ? (
-            <th className={styles.headerItem}>Data</th>
-          ) : (
-            <></>
-          )} */}
-          <th className={styles.headerItem}>Technician</th>
-          <th className={styles.headerItem}>Action</th>
-          <th className={styles.headerItem}>Note</th>
-        </tr>
-      </thead>
-      <tbody>
+    <div className={styles.wrapper}>
+      <header className={styles.tableHeader}>
+        <TableHeader items={columns} />
+      </header>
+      <div>
         {thisStageData
           .slice(0)
           .reverse()
           .map((session, index) => (
-            <tr
-              key={session.sessionUid + index}
-              className={`${styles.itemRow} ${
-                styles["itemRow--" + session.type]
+            <div
+              className={`${styles.tableItemRow} ${
+                styles["tableItemRow--" + session.type]
+              } ${
+                session.resolved
+                  ? styles.tableItemRowResolved
+                  : styles.tableItemRowUnresolved
               }`}
+              key={index}
             >
-              <td className={styles.contentItem}>
+              <div className={`${styles.tableContentItem} ${styles.colNumber}`}>
                 {thisStageData.length - index}
-              </td>
-              <td className={`${styles.contentItem} ${styles.contentItemName}`}>
+              </div>
+              <div
+                className={`${styles.tableContentItem} ${styles.colActivity}`}
+              >
                 {session.type === "work"
                   ? session.activity.name
                   : formatActivity(session.type)}
-              </td>
-              <td className={styles.contentItem}>
+              </div>
+              <div
+                className={`${styles.tableContentItem} ${styles.colStartTime}`}
+              >
                 <time dateTime={new Date(session.startTime).toISOString()}>
                   <span className={styles.date}>
                     {formatDate(session.startTime)}
@@ -231,23 +230,10 @@ function SessionList(props) {
                     {formatTime(session.startTime)}
                   </span>
                 </time>
-              </td>
-              {/* <td className={styles.contentItem}>
-                {session.endTime ? (
-                  <time dateTime={new Date(session.endTime).toISOString()}>
-                    <span className={styles.date}>
-                      {formatDate(session.endTime)}
-                    </span>
-                    <br />
-                    <span className={styles.time}>
-                      {formatTime(session.endTime)}
-                    </span>
-                  </time>
-                ) : (
-                  "-"
-                )}
-              </td> */}
-              <td className={styles.contentItem}>
+              </div>
+              <div
+                className={`${styles.tableContentItem} ${styles.colDuration}`}
+              >
                 {session.endTime ? (
                   session.startTime === session.endTime ? (
                     "-"
@@ -261,38 +247,25 @@ function SessionList(props) {
                 ) : (
                   <Timer startTime={session.startTime} />
                 )}
-              </td>
-              {props.thisStage === 1 ||
-              props.thisStage === 2 ||
-              props.thisStage === 3 ? (
-                <>
-                  <td className={styles.contentItem}>
-                    {session.amount === undefined || session.amount === null
-                      ? "-"
-                      : session.amount}
-                  </td>
-                  <td className={styles.contentItem}>
-                    {session.amountBad === undefined || session.amount === null
-                      ? "-"
-                      : session.amountBad}
-                  </td>
-                </>
-              ) : (
-                <></>
-              )}
-              {/* {props.thisStage === 1 ||
-              props.thisStage === 2 ||
-              props.thisStage === 3 ? (
-                <td className={styles.contentItem}>
-                  {session.temperature ? <>Temp: {session.temperature}°C<br /></> : <></>}
-                  {session.humidity ? <>Humidity: {session.humidity}%<br /></> : <></>}
-                  {session.averageWeight ? <>Avg Weight: {session.averageWeight}<br /></> : <></>}
-                </td>
-              ) : (
-                <></>
-              )} */}
-              <td className={styles.contentItem}>{session.user}</td>
-              <td className={styles.contentItem}>
+              </div>
+              <div
+                className={`${styles.tableContentItem} ${styles.colItemsGood}`}
+              >
+                {session.amount === undefined || session.amount === null
+                  ? "-"
+                  : session.amount}
+              </div>
+              <div
+                className={`${styles.tableContentItem} ${styles.colItemsBad}`}
+              >
+                {session.amountBad === undefined || session.amount === null
+                  ? "-"
+                  : session.amountBad}
+              </div>
+              <div className={`${styles.tableContentItem} ${styles.colTech}`}>
+                {session.user}
+              </div>
+              <div className={`${styles.tableContentItem} ${styles.colAction}`}>
                 {session.type === "issue" ? (
                   <FlagCloser
                     thisStage={props.thisStage}
@@ -311,8 +284,8 @@ function SessionList(props) {
                 ) : (
                   <></>
                 )}
-              </td>
-              <td className={styles.contentItem}>
+              </div>
+              <div className={`${styles.tableContentItem} ${styles.colInfo}`}>
                 {session.notes && session.notes.length ? (
                   <ModalControl
                     title="Session Notes"
@@ -331,13 +304,18 @@ function SessionList(props) {
                 ) : (
                   <></>
                 )}
-              </td>
-            </tr>
+              </div>
+            </div>
           ))}
-        <tr className={`${styles.itemRow} ${styles.itemRowTotals}`}>
-          <td className={styles.contentItem}></td>
-          <td className={styles.contentItem}>Overall</td>
-          <td className={styles.contentItem}>
+
+        <div className={`${styles.tableItemRow} ${styles.tableItemRowTotals}`}>
+          <div
+            className={`${styles.tableContentItem} ${styles.colNumber}`}
+          ></div>
+          <div className={`${styles.tableContentItem} ${styles.colActivity}`}>
+            Overall
+          </div>
+          <div className={`${styles.tableContentItem} ${styles.colStartTime}`}>
             {thisStageData.length ? (
               <>
                 {formatDate(thisStageData[0].startTime)}
@@ -347,42 +325,28 @@ function SessionList(props) {
             ) : (
               "-"
             )}
-          </td>
-          {/* <td className={styles.contentItem}>{findTotalEndTime()}</td> */}
-          <td className={styles.contentItem}>
+          </div>
+          <div className={`${styles.tableContentItem} ${styles.colDuration}`}>
             {newestEndTime ? (
               <>{findTotalDuration()}</>
             ) : (
               <Repeater interval={333} callback={findTotalDuration} />
             )}
-          </td>
-          {props.thisStage === 1 ||
-          props.thisStage === 2 ||
-          props.thisStage === 3 ? (
-            <>
-              <td className={styles.contentItem}>
-                {/* {findTotalCount("amount")} */}
-              </td>
-              <td className={styles.contentItem}>
-                {/* {findTotalCount("amountBad")} */}
-              </td>
-            </>
-          ) : (
-            <></>
-          )}
-          {/* {props.thisStage === 1 ||
-          props.thisStage === 2 ||
-          props.thisStage === 3 ? (
-            <td className={styles.contentItem}></td>
-          ) : (
-            <></>
-          )} */}
-          <td className={styles.contentItem}></td>
-          <td className={styles.contentItem}></td>
-          <td className={styles.contentItem}></td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+          <div
+            className={`${styles.tableContentItem} ${styles.colItemsGood}`}
+          ></div>
+          <div
+            className={`${styles.tableContentItem} ${styles.colItemsBad}`}
+          ></div>
+          <div className={`${styles.tableContentItem} ${styles.colTech}`}></div>
+          <div
+            className={`${styles.tableContentItem} ${styles.colAction}`}
+          ></div>
+          <div className={`${styles.tableContentItem} ${styles.colInfo}`}></div>
+        </div>
+      </div>
+    </div>
   );
 }
 
