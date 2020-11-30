@@ -1,6 +1,7 @@
 import React from "react";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
+import FormItem from "../FormItem/FormItem.js";
 
 function FlagOpener(props) {
   const [description, setDescription] = React.useState("");
@@ -33,14 +34,15 @@ function FlagOpener(props) {
       buttonAttrs={{ fillWidth: true, color: "issue", icon: "issue" }}
     >
       <form>
-        <div>
-          <label htmlFor="issue-description">Issue Description:</label>
-          <textarea
-            id="issue-description"
-            name="issue-description"
-            onChange={(e) => setDescription("Issue: " + e.target.value)}
-          ></textarea>
-        </div>
+        <FormItem
+          label="Issue Description:"
+          type="textarea"
+          ident="issue-description"
+          updateHandler={(value) => {
+            setDescription("Issue: " + value);
+          }}
+        />
+
         <div>
           <label htmlFor="issue-blocker">Blocker:</label>
           <input

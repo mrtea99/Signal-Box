@@ -1,4 +1,5 @@
 import React from "react";
+import FormItem from "../FormItem/FormItem.js";
 
 import InfoPod from "../InfoPod/InfoPod.js";
 import InfoPodItem from "../InfoPod/InfoPodItem/InfoPodItem.js";
@@ -9,6 +10,12 @@ import styles from "./ConsignItems.module.css";
 function ConsignItems(props) {
   const [countGood, setCountGood] = React.useState(0);
   const [countBad, setCountBad] = React.useState(0);
+
+  const resetState = function () {
+    console.log('reset')
+    setCountGood(0);
+    setCountBad(0);
+  };
 
   const handleSubmit = function () {
     let updateGoodField = "";
@@ -65,6 +72,12 @@ function ConsignItems(props) {
     };
 
     props.addSession(newSession, newSessionUid, props.thisStage);
+
+    resetState();
+  };
+
+  const handleCancel = function () {
+    resetState();
   };
 
   const buildTotals = function () {
@@ -139,11 +152,13 @@ function ConsignItems(props) {
           </InfoPodItem>
         </InfoPodSection>
       </InfoPod>
+
       <ModalControl
         title={triggerCopy}
         triggerCopy={triggerCopy}
         handleSubmit={handleSubmit}
-        buttonAttrs={{color: "complete", icon: "next" }}
+        handleCancel={handleCancel}
+        buttonAttrs={{ color: "complete", icon: "next" }}
       >
         <table>
           <thead>
@@ -171,32 +186,28 @@ function ConsignItems(props) {
           Remaining:{" "}
           {props.stageStatus.targetItemCount - props.stageStatus.itemCount}
         </p>
-        <div>
-          <label htmlFor="consign-items">Consignment amount:</label>
-          <input
-            type="number"
-            onChange={(e) => {
-              setCountGood(parseInt(e.target.value));
-            }}
-            min="0"
-            name="consign-items"
-            id="consign-items"
-            defaultValue="0"
-          />
-        </div>
-        <div>
-          <label htmlFor="consign-items">Defective amount:</label>
-          <input
-            type="number"
-            onChange={(e) => {
-              setCountBad(parseInt(e.target.value));
-            }}
-            min="0"
-            name="consign-items"
-            id="consign-items"
-            defaultValue="0"
-          />
-        </div>
+
+        <FormItem
+          label="Consignment amount:"
+          type="number"
+          ident="consign-items"
+          updateHandler={(value) => {
+            setCountGood(parseInt(value));
+          }}
+          min="0"
+          value={countGood}
+        />
+
+        <FormItem
+          label="Defective amount:"
+          type="number"
+          ident="consign-items-bad"
+          updateHandler={(value) => {
+            setCountBad(parseInt(value));
+          }}
+          min="0"
+          value={countBad}
+        />
       </ModalControl>
     </div>
   );

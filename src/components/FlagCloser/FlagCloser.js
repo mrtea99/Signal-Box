@@ -1,6 +1,7 @@
 import React from "react";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
+import FormItem from "../FormItem/FormItem.js";
 
 function FlagCloser(props) {
   const [description, setDescription] = React.useState("");
@@ -36,14 +37,15 @@ function FlagCloser(props) {
             <p>Raised by: {props.session.user}</p>
             <p>{props.session.blocker ? "Blocker" : ""}</p>
           </div>
-          <div>
-            <label htmlFor="fix-description">Fix Description:</label>
-            <textarea
-              id="fix-description"
-              name="fix-description"
-              onChange={(e) => setDescription("Fix: " + e.target.value)}
-            ></textarea>
-          </div>
+
+          <FormItem
+            label="Fix Description:"
+            type="textarea"
+            ident="fix-description"
+            updateHandler={(value) => {
+              setDescription("Fix: " + value);
+            }}
+          />
         </ModalControl>
       )}
     </>

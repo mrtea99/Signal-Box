@@ -15,6 +15,14 @@ function ModalControl(props) {
     props.handleSubmit();
   };
 
+  const handleCancel = function (e) {
+    e.preventDefault();
+
+    setModalActive(false);
+
+    props.handleCancel();
+  };
+
   const {fillWidth, ...saveBtnAttrs} = props.buttonAttrs;
 
   return (
@@ -27,8 +35,7 @@ function ModalControl(props) {
             <ButtonSpacer align="right">
               <Button
                 onClick={(e) => {
-                  e.preventDefault();
-                  setModalActive(false);
+                  handleCancel(e)
                 }}
                 color="cancel"
               >
@@ -39,8 +46,7 @@ function ModalControl(props) {
           ) : (
             <Button
               onClick={(e) => {
-                e.preventDefault();
-                setModalActive(false);
+                handleCancel(e)
               }}
             >
               Close
