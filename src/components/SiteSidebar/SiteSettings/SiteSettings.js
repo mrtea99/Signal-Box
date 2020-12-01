@@ -4,8 +4,19 @@ import FormItem from "../../FormItem/FormItem.js";
 
 import styles from "./SiteSettings.module.css";
 
+import i18n from "../../../i18n.js";
+import { withTranslation } from "react-i18next";
+
 function SiteSettings(props) {
-  const [lang, setLang] = React.useState("en-us");
+  const savedLanguage = () =>
+    window.localStorage.getItem("language") || "en-us";
+  const [lang, setLang] = React.useState(savedLanguage);
+  const changeLang = function (newLang) {
+    setLang(newLang);
+    window.localStorage.setItem("language", newLang);
+    i18n.changeLanguage(newLang);
+  };
+
   const [siteTheme, setSiteTheme] = React.useState("dark");
   const [viewMode, setViewMode] = React.useState("full");
 
@@ -21,7 +32,7 @@ function SiteSettings(props) {
           itemLabels={["🏴󠁧󠁢󠁥󠁮󠁧󠁿 English", "🇪🇸 Español"]}
           itemValues={["en-us", "es-mx"]}
           value={lang}
-          updateHandler={setLang}
+          updateHandler={changeLang}
         />
         {/* Units */}
         <FormItem
@@ -78,4 +89,4 @@ function SiteSettings(props) {
   );
 }
 
-export default SiteSettings;
+export default withTranslation()(SiteSettings);

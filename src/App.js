@@ -14,7 +14,11 @@ import SiteHeader from "./components/SiteHeader/SiteHeader";
 import SiteSettings from "./components/SiteSidebar/SiteSettings/SiteSettings.js";
 import GlobalContexts from "./components/GlobalContexts/GlobalContexts";
 
+import { useTranslation } from 'react-i18next';
+
 function App() {
+  const { t } = useTranslation();
+
   const savedRunData = () =>
     JSON.parse(window.localStorage.getItem("runData")) || [];
   const savedCurrentRunUid = () =>
@@ -128,7 +132,7 @@ function App() {
                 <section className={styles.filterControls}></section>
                 <section className={styles.otherControls}>
                   <Button onClick={() => setModalNewActive(true)} icon="plus">
-                    New Run
+                  {t('New Run')}
                   </Button>
                   <RunInfoNew
                     active={modalNewActive}
