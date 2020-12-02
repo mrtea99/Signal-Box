@@ -100,6 +100,9 @@ function App() {
     window.localStorage.setItem("unitSystem", unitSystem);
   }, [unitSystem]);
 
+
+
+  
   return (
     <GlobalContexts
       timeFormat={timeFormat}

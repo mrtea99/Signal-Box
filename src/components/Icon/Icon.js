@@ -12,6 +12,7 @@ import { ReactComponent as ArrowLeft } from "./arrow-left.svg";
 import { ReactComponent as Search } from "./search.svg";
 import { ReactComponent as Wrench } from "./wrench.svg";
 import { ReactComponent as FileText } from "./file-text.svg";
+import { ReactComponent as Profile } from "./profile.svg";
 import { ReactComponent as Plus } from "./plus.svg";
 import { ReactComponent as Minus } from "./minus.svg";
 import { ReactComponent as User } from "./user.svg";
@@ -45,6 +46,8 @@ function Icon(props) {
         return <Wrench className={props.className} />;
       case "details":
         return <FileText className={props.className} />;
+      case "detailsAlt":
+        return <Profile className={props.className} />;
       case "plus":
         return <Plus className={props.className} />;
       case "minus":

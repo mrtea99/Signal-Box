@@ -24,7 +24,6 @@ function SessionList(props) {
     if (number < 10) {
       number = "0" + number;
     }
-
     return number;
   };
 
@@ -114,31 +113,12 @@ function SessionList(props) {
     }
   };
 
-  let newestEndTime = 0;
+  let allResolved = true;
   for (let i = 0; i < thisStageData.length; i++) {
-    if (thisStageData[i].endTime === undefined) {
-      newestEndTime = 0;
-      break;
-    } else {
-      if (thisStageData[i].endTime > newestEndTime) {
-        newestEndTime = thisStageData[i].endTime;
-      }
+    if (thisStageData[i].resolved === false) {
+      allResolved = false;
     }
   }
-
-  // const findTotalEndTime = function () {
-  //   if (newestEndTime === 0) {
-  //     return "-";
-  //   } else {
-  //     return (
-  //       <>
-  //         {formatDate(newestEndTime)}
-  //         <br />
-  //         {formatTime(newestEndTime)}
-  //       </>
-  //     );
-  //   }
-  // };
 
   const findTotalDuration = function () {
     let totalDuration = 0;
@@ -174,20 +154,6 @@ function SessionList(props) {
       </>
     );
   };
-
-  // const findTotalCount = function (propertyName) {
-  //   let total = 0;
-
-  //   for (let i = 0; i < thisStageData.length; i++) {
-  //     const sessionValue = thisStageData[i][propertyName];
-
-  //     if (sessionValue) {
-  //       total = total + sessionValue;
-  //     }
-  //   }
-
-  //   return total;
-  // };
 
   // const itemName = props.thisStage === 1 ? "Batches" : "Units";
   let itemName;
@@ -296,7 +262,12 @@ function SessionList(props) {
                 <ModalControl
                   title="Session Details"
                   triggerCopy={""}
-                  buttonAttrs={{ icon: "details" }}
+                  buttonAttrs={{
+                    icon:
+                      session.notes && session.notes.length
+                        ? "detailsAlt"
+                        : "details",
+                  }}
                 >
                   <h3>
                     {session.type === "work"
@@ -360,8 +331,8 @@ function SessionList(props) {
             )}
           </div>
           <div className={`${styles.contentItem} ${styles.colDuration}`}>
-            {newestEndTime ? (
-              <>{findTotalDuration()}</>
+            {allResolved ? (
+              findTotalDuration()
             ) : (
               <Repeater interval={333} callback={findTotalDuration} />
             )}
