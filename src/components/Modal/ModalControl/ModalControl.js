@@ -25,7 +25,7 @@ function ModalControl(props) {
     }
   };
 
-  const { fillWidth, ...saveBtnAttrs } = props.buttonAttrs;
+  const { fillWidth, ...saveBtnAttrs } = props.buttonAttrs || false;
 
   return (
     <>

@@ -9,12 +9,13 @@ import RunEditor from "./components/RunEditor/RunEditor.js";
 import RunInfoNew from "./components/RunInfoNew/RunInfoNew.js";
 import RunInfoChange from "./components/RunInfoChange/RunInfoChange.js";
 import Button from "./components/Button/Button.js";
-import TabBox from "./components/TabBox/TabBox";
-import SiteHeader from "./components/SiteHeader/SiteHeader";
+import TabBox from "./components/TabBox/TabBox.js";
+import SiteHeader from "./components/SiteHeader/SiteHeader.js";
 import SiteSettings from "./components/SiteSidebar/SiteSettings/SiteSettings.js";
-import GlobalContexts from "./components/GlobalContexts/GlobalContexts";
+import GlobalContexts from "./components/GlobalContexts/GlobalContexts.js";
+import RunFilter from "./components/RunFilter/RunFilter.js";
 
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from "react-i18next";
 
 function App() {
   const { t } = useTranslation();
@@ -100,9 +101,6 @@ function App() {
     window.localStorage.setItem("unitSystem", unitSystem);
   }, [unitSystem]);
 
-
-
-  
   return (
     <GlobalContexts
       timeFormat={timeFormat}
@@ -132,10 +130,12 @@ function App() {
           <main className={styles.siteContent}>
             <section>
               <menu className={styles.listControls}>
-                <section className={styles.filterControls}></section>
+                <section className={styles.filterControls}>
+                  <RunFilter runData={runData} />
+                </section>
                 <section className={styles.otherControls}>
                   <Button onClick={() => setModalNewActive(true)} icon="plus">
-                  {t('New Run')}
+                    {t("New Run")}
                   </Button>
                   <RunInfoNew
                     active={modalNewActive}

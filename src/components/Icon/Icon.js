@@ -18,6 +18,7 @@ import { ReactComponent as Minus } from "./minus.svg";
 import { ReactComponent as User } from "./user.svg";
 import { ReactComponent as Cog } from "./cog.svg";
 import { ReactComponent as Menu } from "./menu.svg";
+import { ReactComponent as Filter } from "./filter.svg";
 
 function Icon(props) {
   const iconElem = function () {
@@ -58,6 +59,8 @@ function Icon(props) {
         return <Cog className={props.className} />;
       case "menu":
         return <Menu className={props.className} />;
+      case "filter":
+        return <Filter className={props.className} />;
       default:
         return null;
     }
