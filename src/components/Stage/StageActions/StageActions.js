@@ -42,7 +42,8 @@ function StageActions(props) {
               <div>
                 {stageStatus.issueActive || stageStatus.qaActive ? (
                   <p>
-                    Cannot complete until qa is complete and issues are resolved
+                    Cannot complete stage until qa is complete and issues are
+                    resolved
                   </p>
                 ) : (
                   <>
@@ -112,24 +113,24 @@ function StageActions(props) {
         ) : (
           <div>
             {stageStatus.stageStatusName === "pending" ? (
-              <p>
+              <div>
                 <Button
                   onClick={() => props.updateStageActive(true, props.thisStage)}
                   fillWidth
                 >
                   Start stage
                 </Button>
-              </p>
+              </div>
             ) : (
-              <p>
-                Stage {stageStatus.stageStatusName}
+              <div>
+                <h3>Stage {stageStatus.stageStatusName}</h3>
                 <Button
                   onClick={() => props.updateStageActive(true, props.thisStage)}
                   fillWidth
                 >
                   Undo
                 </Button>
-              </p>
+              </div>
             )}
           </div>
         )

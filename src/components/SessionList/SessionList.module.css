@@ -1,22 +1,22 @@
-.wrapper {
+.container {
   width: 100%;
   background-color: var(--color-bg);
   border: 0.5rem solid var(--color-bg);
-  min-width: 60rem;
+  /* min-width: 60rem; */
 }
 
-.tableHeader {
+.header {
   display: none;
 }
 @media (min-width: 768px) {
-  .tableHeader {
+  .header {
     display: block;
   }
 }
 
 @media (min-width: 768px) {
   .colNumber {
-    flex: 0 0 4rem;
+    flex: 0 0 1.5rem;
   }
   .colActivity {
     flex: 1 1 auto;
@@ -26,16 +26,16 @@
     flex: 0 0 7rem;
   }
   .colDuration {
-    flex: 0 0 7rem;
+    flex: 0 0 5.5rem;
   }
   .colItemsGood {
-    flex: 0 0 5rem;
+    flex: 0 0 4.5rem;
   }
   .colItemsBad {
-    flex: 0 0 5rem;
+    flex: 0 0 4.5rem;
   }
   .colTech {
-    flex: 0 0 10rem;
+    flex: 0 0 8rem;
   }
   .colAction {
     flex: 0 0 4rem;
@@ -45,55 +45,103 @@
   }
 }
 
-.tableItemRow {
+.itemRow {
   background-color: var(--color-fg);
-  /* border-top: 0.5rem solid var(--color-bg); */
-  margin-top: 0.5rem;
+  margin: 0.3rem 0 0 0;
+  padding: 0;
   display: flex;
-  flex-direction: row;
-  /* flex-wrap: wrap; */
-  justify-content: space-between;
-  align-items: center;
-  border-left: 0.5rem solid transparent;
+  flex-direction: column;
 }
 
-.tableItemRowUnresolved {
-  /* border-top: 0.3rem solid transparent; */
-  /* border-bottom: 0.3rem solid transparent; */
+@media (min-width: 768px) {
+  .itemRow {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    /* flex-wrap: wrap; */
+  }
+}
+
+.itemRowUnresolved {
   background-color: var(--color-grey-bright);
 }
 
-.tableItemRow--work {
-  border-color: var(--color-pink-bright);
+.itemRow--work .contentItem.colNumber {
+  background-color: var(--color-pink-bright);
 }
-.tableItemRow--qa {
-  border-color: var(--color-qa);
+.itemRow--qa .contentItem.colNumber {
+  background-color: var(--color-qa);
 }
-.tableItemRow--issue {
-  border-color: var(--color-issue);
+.itemRow--issue .contentItem.colNumber {
+  background-color: var(--color-issue);
 }
-.tableItemRow--activate,
-.tableItemRow--deactivate,
-.tableItemRow--consign {
-  border-color: var(--color-complete);
+.itemRow--activate .contentItem.colNumber,
+.itemRow--deactivate .contentItem.colNumber,
+.itemRow--consign .contentItem.colNumber {
+  background-color: var(--color-complete);
 }
 
-.tableItemRowTotals {
+.itemRowTotals {
   background-color: var(--color-grey-darker);
   color: var(--color-text);
 }
 
-.tableContentItem {
+.contentItem {
   text-align: center;
+  padding: 0.2rem;
+  list-style-type: none;
+  margin: 0;
+
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
   align-items: center;
-  padding: 0.2rem;
-  min-height: calc(var(--size-touch-min) + (2 * 0.2rem));
+}
+.contentItem.colNumber {
+  font-size: 0.6em;
+  justify-content: center;
+}
+.contentItem.colActivity {
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .contentItem {
+    min-height: calc(var(--size-touch-min) + (2 * 0.2rem));
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .date,
 .time {
   white-space: nowrap;
+}
+
+.cellLabel {
+  display: block;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  flex-basis: 50%;
+}
+@media (min-width: 768px) {
+  .cellLabel {
+    display: none;
+  }
+}
+
+.cellContent {
+  display: block;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+@media (min-width: 768px) {
+  .cellContent {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
 }

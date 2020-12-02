@@ -189,8 +189,8 @@ function SessionList(props) {
   ];
 
   return (
-    <div className={styles.wrapper}>
-      <header className={styles.tableHeader}>
+    <div className={styles.container}>
+      <header className={styles.header}>
         <TableHeader items={columns} />
       </header>
       <div>
@@ -198,42 +198,41 @@ function SessionList(props) {
           .slice(0)
           .reverse()
           .map((session, index) => (
-            <div
-              className={`${styles.tableItemRow} ${
-                styles["tableItemRow--" + session.type]
+            <ul
+              className={`${styles.itemRow} ${
+                styles["itemRow--" + session.type]
               } ${
                 session.resolved
-                  ? styles.tableItemRowResolved
-                  : styles.tableItemRowUnresolved
+                  ? styles.itemRowResolved
+                  : styles.itemRowUnresolved
               }`}
               key={index}
             >
-              <div className={`${styles.tableContentItem} ${styles.colNumber}`}>
+              <li className={`${styles.contentItem} ${styles.colNumber}`}>
                 {thisStageData.length - index}
-              </div>
-              <div
-                className={`${styles.tableContentItem} ${styles.colActivity}`}
-              >
+              </li>
+              <li className={`${styles.contentItem} ${styles.colActivity}`}>
                 {session.type === "work"
                   ? session.activity.name
                   : formatActivity(session.type)}
-              </div>
-              <div
-                className={`${styles.tableContentItem} ${styles.colStartTime}`}
-              >
-                <time dateTime={new Date(session.startTime).toISOString()}>
-                  <span className={styles.date}>
-                    {formatDate(session.startTime)}
-                  </span>
-                  <br />
-                  <span className={styles.time}>
-                    {formatTime(session.startTime)}
-                  </span>
-                </time>
-              </div>
-              <div
-                className={`${styles.tableContentItem} ${styles.colDuration}`}
-              >
+              </li>
+              <li className={`${styles.contentItem} ${styles.colStartTime}`}>
+                <span className={styles.cellLabel}>Start Time:</span>
+                <span className={styles.cellContent}>
+                  <time dateTime={new Date(session.startTime).toISOString()}>
+                    <span className={styles.date}>
+                      {formatDate(session.startTime)}
+                    </span>
+                    <br />
+                    <span className={styles.time}>
+                      {formatTime(session.startTime)}
+                    </span>
+                  </time>
+                </span>
+              </li>
+              <li className={`${styles.contentItem} ${styles.colDuration}`}>
+              <span className={styles.cellLabel}>Duration:</span>
+                <span className={styles.cellContent}>
                 {session.endTime ? (
                   session.startTime === session.endTime ? (
                     "-"
@@ -247,25 +246,25 @@ function SessionList(props) {
                 ) : (
                   <Timer startTime={session.startTime} />
                 )}
-              </div>
-              <div
-                className={`${styles.tableContentItem} ${styles.colItemsGood}`}
-              >
-                {session.amount === undefined || session.amount === null
+                </span>
+              </li>
+              <li className={`${styles.contentItem} ${styles.colItemsGood}`}>
+                <span className={styles.cellLabel}>{itemName}:</span>
+                <span className={styles.cellContent}>{session.amount === undefined || session.amount === null
                   ? "-"
-                  : session.amount}
-              </div>
-              <div
-                className={`${styles.tableContentItem} ${styles.colItemsBad}`}
-              >
-                {session.amountBad === undefined || session.amount === null
+                  : session.amount}</span>
+              </li>
+              <li className={`${styles.contentItem} ${styles.colItemsBad}`}>
+              <span className={styles.cellLabel}>Defective:</span>
+                <span className={styles.cellContent}>{session.amountBad === undefined || session.amount === null
                   ? "-"
-                  : session.amountBad}
-              </div>
-              <div className={`${styles.tableContentItem} ${styles.colTech}`}>
-                {session.user}
-              </div>
-              <div className={`${styles.tableContentItem} ${styles.colAction}`}>
+                  : session.amountBad}</span>
+              </li>
+              <li className={`${styles.contentItem} ${styles.colTech}`}>
+              <span className={styles.cellLabel}>Technician:</span>
+                <span className={styles.cellContent}>{session.user}</span>
+              </li>
+              <li className={`${styles.contentItem} ${styles.colAction}`}>
                 {session.type === "issue" ? (
                   <FlagCloser
                     thisStage={props.thisStage}
@@ -284,8 +283,8 @@ function SessionList(props) {
                 ) : (
                   <></>
                 )}
-              </div>
-              <div className={`${styles.tableContentItem} ${styles.colInfo}`}>
+              </li>
+              <li className={`${styles.contentItem} ${styles.colInfo}`}>
                 {session.notes && session.notes.length ? (
                   <ModalControl
                     title="Session Notes"
@@ -304,18 +303,16 @@ function SessionList(props) {
                 ) : (
                   <></>
                 )}
-              </div>
-            </div>
+              </li>
+            </ul>
           ))}
 
-        <div className={`${styles.tableItemRow} ${styles.tableItemRowTotals}`}>
-          <div
-            className={`${styles.tableContentItem} ${styles.colNumber}`}
-          ></div>
-          <div className={`${styles.tableContentItem} ${styles.colActivity}`}>
+        <div className={`${styles.itemRow} ${styles.itemRowTotals}`}>
+          <div className={`${styles.contentItem} ${styles.colNumber}`}></div>
+          <div className={`${styles.contentItem} ${styles.colActivity}`}>
             Overall
           </div>
-          <div className={`${styles.tableContentItem} ${styles.colStartTime}`}>
+          <div className={`${styles.contentItem} ${styles.colStartTime}`}>
             {thisStageData.length ? (
               <>
                 {formatDate(thisStageData[0].startTime)}
@@ -326,24 +323,18 @@ function SessionList(props) {
               "-"
             )}
           </div>
-          <div className={`${styles.tableContentItem} ${styles.colDuration}`}>
+          <div className={`${styles.contentItem} ${styles.colDuration}`}>
             {newestEndTime ? (
               <>{findTotalDuration()}</>
             ) : (
               <Repeater interval={333} callback={findTotalDuration} />
             )}
           </div>
-          <div
-            className={`${styles.tableContentItem} ${styles.colItemsGood}`}
-          ></div>
-          <div
-            className={`${styles.tableContentItem} ${styles.colItemsBad}`}
-          ></div>
-          <div className={`${styles.tableContentItem} ${styles.colTech}`}></div>
-          <div
-            className={`${styles.tableContentItem} ${styles.colAction}`}
-          ></div>
-          <div className={`${styles.tableContentItem} ${styles.colInfo}`}></div>
+          <div className={`${styles.contentItem} ${styles.colItemsGood}`}></div>
+          <div className={`${styles.contentItem} ${styles.colItemsBad}`}></div>
+          <div className={`${styles.contentItem} ${styles.colTech}`}></div>
+          <div className={`${styles.contentItem} ${styles.colAction}`}></div>
+          <div className={`${styles.contentItem} ${styles.colInfo}`}></div>
         </div>
       </div>
     </div>

@@ -54,6 +54,7 @@ function Stage(props) {
       startTime: Date.now(),
       endTime: Date.now(),
       user: props.activeUser,
+      resolved: true,
     };
 
     addSession(newSession, newSessionUid, stage);
