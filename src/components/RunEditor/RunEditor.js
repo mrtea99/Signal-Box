@@ -89,9 +89,7 @@ function RunEditor(props) {
                       </Button>
                       <StageOverview thisRunData={thisRunData}></StageOverview>
                     </Modal>
-                  ) : (
-                    <></>
-                  )}
+                  ) : null}
                 </div>
               </section>
 

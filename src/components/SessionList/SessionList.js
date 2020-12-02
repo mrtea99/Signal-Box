@@ -283,18 +283,14 @@ function SessionList(props) {
                     session={session}
                     endSession={props.endSession}
                   />
-                ) : (
-                  <></>
-                )}
+                ) : null}
                 {session.type === "qa" ? (
                   <CheckCloser
                     thisStage={props.thisStage}
                     session={session}
                     endSession={props.endSession}
                   />
-                ) : (
-                  <></>
-                )}
+                ) : null}
               </li>
               <li className={`${styles.contentItem} ${styles.colInfo}`}>
                 <ModalControl

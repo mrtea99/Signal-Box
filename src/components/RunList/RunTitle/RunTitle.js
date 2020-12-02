@@ -37,9 +37,7 @@ function RunTitle(props) {
           <Button onClick={() => setModalOverviewActive(null)}>Close</Button>
           <StageOverview thisRunData={props.runData}></StageOverview>
         </Modal>
-      ) : (
-        <></>
-      )}
+      ) : null}
     </div>
   );
 }

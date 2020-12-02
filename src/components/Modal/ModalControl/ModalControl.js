@@ -59,9 +59,7 @@ function ModalControl(props) {
             </Button>
           )}
         </Modal>
-      ) : (
-        <></>
-      )}
+      ) : null}
     </>
   );
 }

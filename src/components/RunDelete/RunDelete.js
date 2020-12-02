@@ -33,9 +33,7 @@ function RunDelete(props) {
             </Button>
           </ButtonSpacer>
         </Modal>
-      ) : (
-        <></>
-      )}
+      ) : null}
     </>
   );
 }

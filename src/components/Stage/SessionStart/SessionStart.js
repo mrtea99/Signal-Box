@@ -9,7 +9,9 @@ function SessionStart(props) {
 
   return (
     <>
-      <Button onClick={() => setModalActive(true)} fillWidth icon="start">Start New Session</Button>
+      <Button onClick={() => setModalActive(true)} fillWidth icon="start">
+        Start New Session
+      </Button>
       {modalActive ? (
         <Modal title="Start New Session">
           <SessionStartForm
@@ -19,9 +21,7 @@ function SessionStart(props) {
             setFormActive={setModalActive}
           />
         </Modal>
-      ) : (
-        <></>
-      )}
+      ) : null}
     </>
   );
 }

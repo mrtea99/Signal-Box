@@ -56,7 +56,7 @@ function Icon(props) {
       case "menu":
         return <Menu className={props.className} />;
       default:
-        return <></>;
+        return null;
     }
   };
 

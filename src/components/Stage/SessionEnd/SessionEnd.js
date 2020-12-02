@@ -9,7 +9,9 @@ function SessionEnd(props) {
 
   return (
     <>
-      <Button onClick={() => setModalActive(true)} fillWidth icon="stop">End Session</Button>
+      <Button onClick={() => setModalActive(true)} fillWidth icon="stop">
+        End Session
+      </Button>
       {modalActive ? (
         <Modal title={`End ${props.activeSessionData.activity.name} Session`}>
           <SessionEndForm
@@ -21,9 +23,7 @@ function SessionEnd(props) {
             thisRunData={props.thisRunData}
           />
         </Modal>
-      ) : (
-        <></>
-      )}
+      ) : null}
     </>
   );
 }

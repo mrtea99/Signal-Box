@@ -23,9 +23,7 @@ function FlagCloser(props) {
 
   return (
     <>
-      {props.session.resolved ? (
-        <></>
-      ) : (
+      {props.session.resolved ? null : (
         <ModalControl
           title="Fix Issue"
           handleSubmit={handleSubmit}

@@ -32,9 +32,7 @@ function CheckCloser(props) {
 
   return (
     <>
-      {props.session.resolved ? (
-        <></>
-      ) : (
+      {props.session.resolved ? null : (
         <ModalControl
           title="QA Check"
           handleSubmit={handleSubmit}

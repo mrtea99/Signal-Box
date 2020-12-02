@@ -86,9 +86,7 @@ function StageActions(props) {
                                 &amp; go to next stage
                               </Button>
                             </>
-                          ) : (
-                            <></>
-                          )}
+                          ) : null}
                           <br />
                           <Button
                             onClick={() => {
@@ -100,15 +98,11 @@ function StageActions(props) {
                           </Button>
                         </ButtonSpacer>
                       </Modal>
-                    ) : (
-                      <></>
-                    )}
+                    ) : null}
                   </>
                 )}
               </div>
-            ) : (
-              <></>
-            )}
+            ) : null}
           </>
         ) : (
           <div>

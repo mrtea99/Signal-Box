@@ -4,7 +4,7 @@ import Modal from "../Modal/Modal.js";
 import RunInfoForm from "../RunInfoForm/RunInfoForm.js";
 
 function RunInfoNew(props) {
-  const createRun = function(productTemplateData) {
+  const createRun = function (productTemplateData) {
     let newData = [...props.runData];
 
     //Build new run object here
@@ -42,17 +42,17 @@ function RunInfoNew(props) {
         {
           sessions: [],
           active: true,
-        }
+        },
       ],
     };
     newData.push(newRun);
     props.setRunData(newData);
     props.setActive(false);
-  }
+  };
 
-  const handleCancel = function() {
+  const handleCancel = function () {
     props.setActive(false);
-  }
+  };
 
   return (
     <>
@@ -60,9 +60,7 @@ function RunInfoNew(props) {
         <Modal title="Create New Run">
           <RunInfoForm handleSave={createRun} handleCancel={handleCancel} />
         </Modal>
-      ) : (
-        <></>
-      )}
+      ) : null}
     </>
   );
 }

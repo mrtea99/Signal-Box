@@ -41,9 +41,7 @@ function SessionControl(props) {
             />
           </ButtonSpacer>
         </div>
-      ) : (
-        <></>
-      )}
+      ) : null}
     </>
   );
 }

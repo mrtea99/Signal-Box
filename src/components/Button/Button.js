@@ -41,9 +41,7 @@ function Button(props) {
         <span className={styles.iconWrapper}>
           <Icon name={props.icon} className={styles.icon}></Icon>
         </span>
-      ) : (
-        <></>
-      )}
+      ) : null}
     </button>
   );
 }
