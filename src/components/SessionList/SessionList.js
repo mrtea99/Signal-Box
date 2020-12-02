@@ -87,6 +87,16 @@ function SessionList(props) {
     return `${hour}:${min}:${sec}${afterWords}`;
   };
 
+  const formatDateTime = function (date) {
+    return (
+      <time dateTime={new Date(date).toISOString()}>
+        <span className={styles.date}>{formatDate(date)}</span>
+        <br />
+        <span className={styles.time}>{formatTime(date)}</span>
+      </time>
+    );
+  };
+
   const formatActivity = function (name) {
     switch (name) {
       case "qa":
@@ -145,6 +155,24 @@ function SessionList(props) {
     }
 
     return <TimeFormater rawTime={totalDuration} />;
+  };
+
+  const formatDuration = function (session) {
+    return (
+      <>
+        {session.endTime ? (
+          session.startTime === session.endTime ? (
+            "-"
+          ) : (
+            <TimeFormater
+              rawTime={new Date(session.endTime) - new Date(session.startTime)}
+            />
+          )
+        ) : (
+          <Timer startTime={session.startTime} />
+        )}
+      </>
+    );
   };
 
   // const findTotalCount = function (propertyName) {
@@ -219,49 +247,33 @@ function SessionList(props) {
               <li className={`${styles.contentItem} ${styles.colStartTime}`}>
                 <span className={styles.cellLabel}>Start Time:</span>
                 <span className={styles.cellContent}>
-                  <time dateTime={new Date(session.startTime).toISOString()}>
-                    <span className={styles.date}>
-                      {formatDate(session.startTime)}
-                    </span>
-                    <br />
-                    <span className={styles.time}>
-                      {formatTime(session.startTime)}
-                    </span>
-                  </time>
+                  {formatDateTime(session.startTime)}
                 </span>
               </li>
               <li className={`${styles.contentItem} ${styles.colDuration}`}>
-              <span className={styles.cellLabel}>Duration:</span>
+                <span className={styles.cellLabel}>Duration:</span>
                 <span className={styles.cellContent}>
-                {session.endTime ? (
-                  session.startTime === session.endTime ? (
-                    "-"
-                  ) : (
-                    <TimeFormater
-                      rawTime={
-                        new Date(session.endTime) - new Date(session.startTime)
-                      }
-                    />
-                  )
-                ) : (
-                  <Timer startTime={session.startTime} />
-                )}
+                  {formatDuration(session)}
                 </span>
               </li>
               <li className={`${styles.contentItem} ${styles.colItemsGood}`}>
                 <span className={styles.cellLabel}>{itemName}:</span>
-                <span className={styles.cellContent}>{session.amount === undefined || session.amount === null
-                  ? "-"
-                  : session.amount}</span>
+                <span className={styles.cellContent}>
+                  {session.amount === undefined || session.amount === null
+                    ? "-"
+                    : session.amount}
+                </span>
               </li>
               <li className={`${styles.contentItem} ${styles.colItemsBad}`}>
-              <span className={styles.cellLabel}>Defective:</span>
-                <span className={styles.cellContent}>{session.amountBad === undefined || session.amount === null
-                  ? "-"
-                  : session.amountBad}</span>
+                <span className={styles.cellLabel}>Defective:</span>
+                <span className={styles.cellContent}>
+                  {session.amountBad === undefined || session.amount === null
+                    ? "-"
+                    : session.amountBad}
+                </span>
               </li>
               <li className={`${styles.contentItem} ${styles.colTech}`}>
-              <span className={styles.cellLabel}>Technician:</span>
+                <span className={styles.cellLabel}>Technician:</span>
                 <span className={styles.cellContent}>{session.user}</span>
               </li>
               <li className={`${styles.contentItem} ${styles.colAction}`}>
@@ -285,24 +297,52 @@ function SessionList(props) {
                 )}
               </li>
               <li className={`${styles.contentItem} ${styles.colInfo}`}>
-                {session.notes && session.notes.length ? (
-                  <ModalControl
-                    title="Session Notes"
-                    triggerCopy={""}
-                    buttonAttrs={{ icon: "details" }}
-                  >
-                    {session.notes.split("\n").map((item, key) => {
-                      return (
-                        <span key={key}>
-                          {item}
-                          <br />
-                        </span>
-                      );
-                    })}
-                  </ModalControl>
-                ) : (
-                  <></>
-                )}
+                <ModalControl
+                  title="Session Details"
+                  triggerCopy={""}
+                  buttonAttrs={{ icon: "details" }}
+                >
+                  <h3>
+                    {session.type === "work"
+                      ? session.activity.name
+                      : formatActivity(session.type)}
+                  </h3>
+                  <p>Session ID: {session.sessionUid}</p>
+                  <p>
+                    Resolved: {session.resolved ? "Resolved" : "Unresolved"}
+                  </p>
+                  <p>Start Time: {formatDateTime(session.startTime)}</p>
+                  {session.endTime ? (
+                    <p>End Time: {formatDateTime(session.startTime)}</p>
+                  ) : null}
+                  <p>Duration: {formatDuration(session)}</p>
+                  <p>Technician: {session.user}</p>
+                  <p>
+                    {itemName}: {session.amount}
+                  </p>
+                  <p>Defective: {session.amountBad}</p>
+                  {/* <p>averageweight</p> */}
+                  {session.notes && session.notes.length ? (
+                    <p>
+                      Notes:
+                      <br />
+                      {session.notes.split("\n").map((item, key) => {
+                        return (
+                          <span key={key}>
+                            {item}
+                            <br />
+                          </span>
+                        );
+                      })}
+                    </p>
+                  ) : null}
+                  {session.type === "qa" ? (
+                    <>
+                      <p>Checker: {session.checker}</p>
+                      <p>Timeframe: {session.timeframe}</p>
+                    </>
+                  ) : null}
+                </ModalControl>
               </li>
             </ul>
           ))}
