@@ -4,6 +4,8 @@ import TableHeader from "../TableHeader/TableHeader.js";
 import RunListAllItem from "./RunListAllItem/RunListAllItem.js";
 import RunListStageItem from "./RunListStageItem/RunListStageItem.js";
 
+import useStageStatus from "../../hooks/useStageStatus.js";
+
 import styles from "./RunList.module.css";
 
 function RunList(props) {
@@ -28,14 +30,29 @@ function RunList(props) {
     ];
   }
 
+  let filteredRunData = props.runData;
+
+  // Only show runs edited by users listed in an array
+  if (props.filters.showUser && props.stageNum !== "all") {
+    filteredRunData = filteredRunData.filter((run) => {
+      let userSession = false;
+      run.stages[props.stageNum].sessions.forEach((session) => {
+        if (props.filters.showUser.includes(session.user)) {
+          userSession = true;
+        }
+      });
+      return userSession;
+    });
+  }
+
   return (
     <div>
       <header className={styles.header}>
         <TableHeader items={columns} />
       </header>
       <div>
-        {props.runData.length ? (
-          props.runData.map((run, index) =>
+        {filteredRunData.length ? (
+          filteredRunData.map((run, index) =>
             props.stageNum === "all" ? (
               <div className={styles.itemRow} key={index}>
                 <RunListAllItem

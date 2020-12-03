@@ -101,6 +101,10 @@ function App() {
     window.localStorage.setItem("unitSystem", unitSystem);
   }, [unitSystem]);
 
+  const runFilters = {}
+
+  // const runFilters = {showUser: [activeUser]}
+
   return (
     <GlobalContexts
       timeFormat={timeFormat}
@@ -163,6 +167,7 @@ function App() {
                       setActiveStage={setActiveStage}
                       activeUser={activeUser}
                       stageNum={index === 0 ? "all" : index - 1}
+                      filters={runFilters}
                     />
                   ),
                 }))}
