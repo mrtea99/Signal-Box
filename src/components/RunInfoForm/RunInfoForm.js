@@ -21,6 +21,9 @@ const productTemplates = [
     merchandising: 90,
     lowInventoryTrigger: 0,
     duplicate: 1,
+    expirationDuration: 12,
+    recipeLink: "http://www.example.com",
+    storageLocation: "top shelf",
   },
   {
     productName: "Product Two",
@@ -38,6 +41,9 @@ const productTemplates = [
     merchandising: 0,
     lowInventoryTrigger: 0,
     duplicate: 1,
+    expirationDuration: 6,
+    recipeLink: "http://www.example.com",
+    storageLocation: "bottom shelf",
   },
 ];
 

@@ -11,7 +11,6 @@ function RunInfoNew(props) {
     const newRun = {
       uid: Date.now(),
       activeStage: 0,
-      completion: null,
       consignedManufacturing: 0,
       defectiveManufacturing: 0,
       consignedPackaging: 0,

@@ -30,6 +30,117 @@ function SessionDuring(props) {
     );
   };
 
+  const expiryCalc = function (start, months) {
+    // const st
+    const startDate = new Date(start);
+    const expiryDate = new Date(
+      startDate.setMonth(startDate.getMonth() + months)
+    );
+
+    return expiryDate.getTime();
+  };
+
+  const readOnlyFields = function () {
+    switch (props.thisStage) {
+      case 0:
+      case 1:
+        if (
+          props.thisStage === 1 ||
+          props.activeSessionData.activity.name === "Create Blend / Base"
+        ) {
+          return (
+            <>
+              <li className={styles.rolKey}>
+                Target Total Weight:{" "}
+                {props.thisRunData.productInfo.batchWeight *
+                  props.thisRunData.productInfo.batchQuantity}
+                ozm
+              </li>
+              <li className={styles.rolKey}>
+                Link To Recipe:{" "}
+                <a href={props.thisRunData.productInfo.recipeLink}>Link</a>
+              </li>
+            </>
+          );
+        } else {
+          return (
+            <>
+              <li className={styles.rolKey}>Shopify Inventory: TODO</li>
+              <li className={styles.rolKey}>
+                Difficulty:{" "}
+                <ul>
+                  <li>Prep: {props.thisRunData.productInfo.prepDiffilculty}</li>
+                  <li>
+                    Craft:{" "}
+                    {props.thisRunData.productInfo.manufacturingDifficulty}
+                  </li>
+                  <li>
+                    Package:{" "}
+                    {props.thisRunData.productInfo.packagingDiffilculty}
+                  </li>
+                  <li>
+                    Label: {props.thisRunData.productInfo.labelingDifficulty}
+                  </li>
+                  {/* <li>
+                    Stock: {props.thisRunData.productInfo.stockingDifficulty}
+                  </li> */}
+                </ul>
+              </li>
+            </>
+          );
+        }
+      case 2:
+        return (
+          <>
+            <li className={styles.rolKey}>
+              Target Unit Quantity:{" "}
+              {props.thisRunData.consignedManufacturing *
+                props.thisRunData.productInfo.unitsPerBatch}
+            </li>
+            <li className={styles.rolKey}>
+              Target Unit Weight:{" "}
+              {props.thisRunData.productInfo.averageUnitWeight}
+            </li>
+          </>
+        );
+      case 3:
+        return (
+          <>
+            <li className={styles.rolKey}>
+              Target Unit Quantity: {props.thisRunData.consignedPackaging}
+            </li>
+            <li className={styles.rolKey}>
+              Expiration Date:{" "}
+              {expiryCalc(
+                props.thisRunData.stages[1].sessions[0].startTime,
+                props.thisRunData.productInfo.expirationDuration
+              )}
+            </li>
+            <li className={styles.rolKey}>Batch ID: TODO</li>
+          </>
+        );
+      case 4:
+        return (
+          <>
+            <li className={styles.rolKey}>
+              Total Units: {props.thisRunData.consignedLabeling}
+            </li>
+            {/* <li className={styles.rolKey}>Wicker Park Stock Amount:</li> */}
+            <li className={styles.rolKey}>
+              Warehouse Storage Location:{" "}
+              {props.thisRunData.productInfo.storageLocation}
+            </li>
+            <li className={styles.rolKey}>
+              Shopify sales channel availability: TODO
+            </li>
+            <li className={styles.rolKey}>Shopify inventory: TODO</li>
+          </>
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
     <>
       {props.activeSessionData ? (
@@ -39,17 +150,27 @@ function SessionDuring(props) {
           </h4>
           <div className={styles.readOnly}>
             <ul className={styles.readOnlyList}>
-              <li className={styles.rolKey}>
+              {/* <li className={styles.rolKey}>
                 Start Time: {props.activeSessionData.startTime}
-              </li>
-              <li className={styles.rolKey}>
-                Activity: {props.activeSessionData.activity.name}
-              </li>
+              </li> */}
+              {/* <li className={styles.rolKey}>
+            Activity: {props.activeSessionData.activity.name}
+          </li> */}
+              {/* <li className={styles.rolKey}>
+            Difficulty:
+          </li> */}
+              {props.activeSessionData.activity.notes ? (
+                <li className={styles.rolKey}>
+                  Notes: ${props.activeSessionData.activity.notes}
+                </li>
+              ) : null}
+              {readOnlyFields()}
             </ul>
             <Stopwatch>
               <Timer startTime={props.activeSessionData.startTime} />
             </Stopwatch>
           </div>
+
           <div className={styles.userInput}>
             <form className={styles.userInputForm}>
               <FormItem

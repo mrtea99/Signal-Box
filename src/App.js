@@ -101,9 +101,9 @@ function App() {
     window.localStorage.setItem("unitSystem", unitSystem);
   }, [unitSystem]);
 
-  const runFilters = {}
+  const runFilters = {};
 
-  // const runFilters = {showUser: [activeUser]}
+  // const runFilters = { showUser: [activeUser], showUnresolvedQa: true };
 
   return (
     <GlobalContexts

@@ -58,23 +58,6 @@ function Stage(props) {
     };
 
     addSession(newSession, newSessionUid, stage);
-
-    // //Update run completion
-    // let chainInactive = 0;
-    // for (let i = 0; i < props.thisRunData["stages"].length; i++) {
-    //   if (!props.thisRunData["stages"][i].active) {
-    //     chainInactive = i;
-    //   } else {
-    //     if (i === 0) {
-    //       chainInactive = null;
-    //     } else {
-    //       chainInactive = i - 1;
-    //     }
-    //     break;
-    //   }
-    // }
-    //
-    // props.updateRunData(props.currentRunUid, null, "completion", chainInactive);
   };
 
   const addSession = function (sessionData, newSessionUid, stage) {
@@ -129,10 +112,10 @@ function Stage(props) {
       case 1:
         difficulty = props.thisRunData.productInfo.manufacturingDifficulty;
         break;
-      case 3:
+      case 2:
         difficulty = props.thisRunData.productInfo.packagingDiffilculty;
         break;
-      case 4:
+      case 3:
         difficulty = props.thisRunData.productInfo.labelingDifficulty;
         break;
       default:

@@ -4,7 +4,7 @@ import TableHeader from "../TableHeader/TableHeader.js";
 import RunListAllItem from "./RunListAllItem/RunListAllItem.js";
 import RunListStageItem from "./RunListStageItem/RunListStageItem.js";
 
-import useStageStatus from "../../hooks/useStageStatus.js";
+// import useStageStatus from "../../hooks/useStageStatus.js";
 
 import styles from "./RunList.module.css";
 
@@ -42,6 +42,22 @@ function RunList(props) {
         }
       });
       return userSession;
+    });
+  }
+
+  // Show runs with unresolved QA sessions
+  if (props.filters.showUnresolvedQa && props.stageNum !== "all") {
+    filteredRunData = filteredRunData.filter((run) => {
+      let unresolvedQa = false;
+
+      // console.log(useStageStatus(run, props.stageNum))
+
+      run.stages[props.stageNum].sessions.forEach((session) => {
+        if (session.type === "qa" && !session.resolved) {
+          unresolvedQa = true;
+        }
+      });
+      return unresolvedQa;
     });
   }
 
