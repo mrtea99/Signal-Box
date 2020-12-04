@@ -27,22 +27,43 @@ function Button(props) {
     styleClasses += " " + styles.iconOnly;
   }
 
+  const OuterElem = function (btnProps) {
+    if (props.href) {
+      return (
+        <a
+          className={styleClasses}
+          href={props.href}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {btnProps.children}
+        </a>
+      );
+    } else {
+      return (
+        <button
+          className={styleClasses}
+          disabled={props.disabled}
+          onClick={(e) => {
+            e.preventDefault();
+            props.onClick(e);
+          }}
+        >
+          {btnProps.children}
+        </button>
+      );
+    }
+  };
+
   return (
-    <button
-      className={styleClasses}
-      disabled={props.disabled}
-      onClick={(e) => {
-        e.preventDefault();
-        props.onClick(e);
-      }}
-    >
+    <OuterElem>
       <span className={styles.copy}>{props.children}</span>
       {props.icon ? (
         <span className={styles.iconWrapper}>
           <Icon name={props.icon} className={styles.icon}></Icon>
         </span>
       ) : null}
-    </button>
+    </OuterElem>
   );
 }
 

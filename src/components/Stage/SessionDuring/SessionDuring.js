@@ -5,6 +5,7 @@ import Timer from "../../Timer/Timer.js";
 import Stopwatch from "./Stopwatch/Stopwatch.js";
 
 import styles from "./SessionDuring.module.css";
+import Button from "../../Button/Button.js";
 
 function SessionDuring(props) {
   // After Statuses
@@ -58,7 +59,7 @@ function SessionDuring(props) {
               </li>
               <li className={styles.rolKey}>
                 Link To Recipe:{" "}
-                <a href={props.thisRunData.productInfo.recipeLink}>Link</a>
+                <Button href={props.thisRunData.productInfo.recipeLink}>Recipe</Button>
               </li>
             </>
           );
