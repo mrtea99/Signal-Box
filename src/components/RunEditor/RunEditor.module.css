@@ -2,15 +2,11 @@
 
 .runEditor {
   position: fixed;
-  /* top: 0;
-  left: 100vw;
-  right: -100vw;
-  bottom: 0; */
-
   top: 100vh;
   right: 0;
   bottom: -100vh;
   left: 0;
+  opacity: 0;
 
   background-color: var(--color-bg);
   overflow: scroll;
@@ -19,11 +15,9 @@
 }
 
 .runEditorActive {
-  /* left: 0vw;
-  right: 0vw; */
-
   top: 0vh;
   bottom: 0vh;
+  opacity: 1;
 }
 
 .controlBar {
