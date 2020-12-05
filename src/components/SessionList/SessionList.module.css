@@ -14,37 +14,6 @@
   }
 }
 
-@media (min-width: 768px) {
-  .colNumber {
-    flex: 0 0 1.5rem;
-  }
-  .colActivity {
-    flex: 1 1 auto;
-    /* min-width: 20rem; */
-  }
-  .colStartTime {
-    flex: 0 0 7rem;
-  }
-  .colDuration {
-    flex: 0 0 5.5rem;
-  }
-  .colItemsGood {
-    flex: 0 0 4.5rem;
-  }
-  .colItemsBad {
-    flex: 0 0 4.5rem;
-  }
-  .colTech {
-    flex: 0 0 8rem;
-  }
-  .colAction {
-    flex: 0 0 4rem;
-  }
-  .colInfo {
-    flex: 0 0 4rem;
-  }
-}
-
 .itemRow {
   background-color: var(--color-fg);
   margin: 0.3rem 0 0 0;
@@ -114,6 +83,45 @@
     align-items: center;
   }
 }
+
+
+@media (min-width: 768px) {
+  .colNumber {
+    width: 1.5rem;
+  }
+  .colActivity {
+    flex: 1 1 auto;
+    width: auto;
+    /* min-width: 10rem; */
+  }
+  .colStartTime {
+    width: 7rem;
+  }
+  .colDuration {
+    width: 5.5rem;
+  }
+  .colItemsGood {
+    width: 4.5rem;
+  }
+  .colItemsBad {
+    width: 4.5rem;
+  }
+  .colTech {
+    width: 8rem;
+  }
+  .colAction {
+    width: 4rem;
+  }
+  .colInfo {
+    width: 4rem;
+  }
+
+  .colFixed {
+    flex: 0 0 auto;
+  }
+
+}
+
 
 .date,
 .time {

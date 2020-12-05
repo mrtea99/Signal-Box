@@ -171,15 +171,21 @@ function SessionList(props) {
   }
 
   const columns = [
-    { copy: "№", className: styles.colNumber },
+    { copy: "№", className: `${styles.colNumber} ${styles.colFixed}` },
     { copy: "Activity", className: styles.colActivity },
-    { copy: "Start Time", className: styles.colStartTime },
-    { copy: "Duration", className: styles.colDuration },
-    { copy: itemName, className: styles.colItemsGood },
-    { copy: "Defective", className: styles.colItemsBad },
-    { copy: "Technician", className: styles.colTech },
-    { copy: "Action", className: styles.colAction },
-    { copy: "Info", className: styles.colInfo },
+    {
+      copy: "Start Time",
+      className: `${styles.colStartTime} ${styles.colFixed}`,
+    },
+    { copy: "Duration", className: `${styles.colDuration} ${styles.colFixed}` },
+    { copy: itemName, className: `${styles.colItemsGood} ${styles.colFixed}` },
+    {
+      copy: "Defective",
+      className: `${styles.colItemsBad} ${styles.colFixed}`,
+    },
+    { copy: "Technician", className: `${styles.colTech} ${styles.colFixed}` },
+    { copy: "Action", className: `${styles.colAction} ${styles.colFixed}` },
+    { copy: "Info", className: `${styles.colInfo} ${styles.colFixed}` },
   ];
 
   return (
@@ -202,7 +208,7 @@ function SessionList(props) {
               }`}
               key={index}
             >
-              <li className={`${styles.contentItem} ${styles.colNumber}`}>
+              <li className={`${styles.contentItem} ${styles.colNumber} ${styles.colFixed}`}>
                 {thisStageData.length - index}
               </li>
               <li className={`${styles.contentItem} ${styles.colActivity}`}>
@@ -210,19 +216,19 @@ function SessionList(props) {
                   ? session.activity.name
                   : formatActivity(session.type)}
               </li>
-              <li className={`${styles.contentItem} ${styles.colStartTime}`}>
+              <li className={`${styles.contentItem} ${styles.colStartTime} ${styles.colFixed}`}>
                 <span className={styles.cellLabel}>Start Time:</span>
                 <span className={styles.cellContent}>
                   {formatDateTime(session.startTime)}
                 </span>
               </li>
-              <li className={`${styles.contentItem} ${styles.colDuration}`}>
+              <li className={`${styles.contentItem} ${styles.colDuration} ${styles.colFixed}`}>
                 <span className={styles.cellLabel}>Duration:</span>
                 <span className={styles.cellContent}>
                   {formatDuration(session)}
                 </span>
               </li>
-              <li className={`${styles.contentItem} ${styles.colItemsGood}`}>
+              <li className={`${styles.contentItem} ${styles.colItemsGood} ${styles.colFixed}`}>
                 <span className={styles.cellLabel}>{itemName}:</span>
                 <span className={styles.cellContent}>
                   {session.amount === undefined || session.amount === null
@@ -230,7 +236,7 @@ function SessionList(props) {
                     : session.amount}
                 </span>
               </li>
-              <li className={`${styles.contentItem} ${styles.colItemsBad}`}>
+              <li className={`${styles.contentItem} ${styles.colItemsBad} ${styles.colFixed}`}>
                 <span className={styles.cellLabel}>Defective:</span>
                 <span className={styles.cellContent}>
                   {session.amountBad === undefined || session.amount === null
@@ -238,11 +244,11 @@ function SessionList(props) {
                     : session.amountBad}
                 </span>
               </li>
-              <li className={`${styles.contentItem} ${styles.colTech}`}>
+              <li className={`${styles.contentItem} ${styles.colTech} ${styles.colFixed}`}>
                 <span className={styles.cellLabel}>Technician:</span>
                 <span className={styles.cellContent}>{session.user}</span>
               </li>
-              <li className={`${styles.contentItem} ${styles.colAction}`}>
+              <li className={`${styles.contentItem} ${styles.colAction} ${styles.colFixed}`}>
                 {session.type === "issue" ? (
                   <FlagCloser
                     thisStage={props.thisStage}
@@ -258,7 +264,7 @@ function SessionList(props) {
                   />
                 ) : null}
               </li>
-              <li className={`${styles.contentItem} ${styles.colInfo}`}>
+              <li className={`${styles.contentItem} ${styles.colInfo} ${styles.colFixed}`}>
                 <ModalControl
                   title="Session Details"
                   triggerCopy={""}

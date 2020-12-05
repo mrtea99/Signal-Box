@@ -48,6 +48,7 @@
   border: none;
   padding: 0.4rem calc((var(--width-arr-spacing) * 2) + var(--height-bar))
     0.4rem calc(var(--width-button-pad) + (var(--height-bar-half) * 0.6));
+  /* min-height: var(--size-touch-min); */
   min-height: var(--height-bar);
   margin: 0;
   text-decoration: none;
