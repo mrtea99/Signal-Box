@@ -1,10 +1,11 @@
 import React from "react";
 
-import StageControl from "../StageControl/StageControl.js";
+import Stage from "../Stage/Stage.js";
+import StageNav from "../StageNav/StageNav.js";
+// import TableHeader from "../TableHeader/TableHeader.js";
 import StageOverview from "../StageOverview/StageOverview.js";
 import Modal from "../Modal/Modal.js";
 import Button from "../Button/Button.js";
-// import FormItem from "../FormItem/FormItem.js";
 
 import styles from "./RunEditor.module.css";
 import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
@@ -16,15 +17,6 @@ function RunEditor(props) {
   const thisRunData = props.runData.find(
     (obj) => obj.uid === props.currentRunUid
   );
-
-  // const handleChange = function (dataSection, dataKey, e) {
-  //   props.updateRunData(
-  //     props.currentRunUid,
-  //     dataSection,
-  //     dataKey,
-  //     e.target.value
-  //   );
-  // };
 
   const handleEditInfoClick = function (e) {
     e.preventDefault();
@@ -38,6 +30,8 @@ function RunEditor(props) {
     props.setCurrentRunUid(null);
     props.setActiveStage(0);
   };
+
+  const stageNameArr = ["Prep", "Craft", "Package", "Label", "Stock"];
 
   return (
     <>
@@ -93,15 +87,39 @@ function RunEditor(props) {
                 </div>
               </section>
 
-              <StageControl
+              {/* <TableHeader
+                items={[
+                  { copy: "Prep" },
+                  { copy: "Craft" },
+                  { copy: "Package" },
+                  { copy: "Label" },
+                  { copy: "Stock" },
+                ]}
+              /> */}
+
+              <StageNav
+                stageNameArr={stageNameArr}
+                currentRunUid={props.currentRunUid}
+                activeStage={props.activeStage}
+                buttonCallback={props.setActiveStage}
+                updateRunData={props.updateRunData}
                 thisRunData={thisRunData}
-                runData={props.runData}
+                activeUser={props.activeUser}
+                stageLabels
+                showActive
+              />
+
+              <Stage
+                key={props.currentRunUid + stageNameArr[props.activeStage]}
+                thisStage={props.activeStage}
+                stageName={stageNameArr[props.activeStage]}
+                activeStage={props.activeStage}
+                thisRunData={thisRunData}
                 currentRunUid={props.currentRunUid}
                 updateRunData={props.updateRunData}
-                activeStage={props.activeStage}
-                setActiveStage={props.setActiveStage}
                 activeUser={props.activeUser}
                 setCurrentRunUid={props.setCurrentRunUid}
+                setActiveStage={props.setActiveStage}
               />
             </div>
             <pre>{JSON.stringify(thisRunData)}</pre>
