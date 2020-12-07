@@ -27,7 +27,9 @@ function RunListStageItem(props) {
       <li
         className={`${styles.lineItem} ${styles.lineItemFull} ${props.columns[0].className}`}
       >
-        <RunTitle runData={props.runData}>{props.runData.productInfo.productName}</RunTitle>
+        <RunTitle runData={props.runData}>
+          {props.runData.productInfo.productName}
+        </RunTitle>
       </li>
       <li className={`${styles.lineItem} ${props.columns[1].className}`}>
         <span className={styles.cellLabel}>Status</span>
@@ -48,7 +50,6 @@ function RunListStageItem(props) {
         <span className={styles.cellContent}>
           <InfoPod>
             <InfoPodSection
-              // layout="vert"
               flags={[
                 <StatusPodItem
                   key="progress"
@@ -92,9 +93,26 @@ function RunListStageItem(props) {
         <span className={styles.cellLabel}>Issues</span>
         <span className={styles.cellContent}>
           <InfoPod>
-            <InfoPodSection>
-              <StatusPodItem statusField="issue" stageStatus={stageStatus} />
-            </InfoPodSection>
+            {stageStatus.blockerActive ? (
+              <InfoPodSection
+                flags={[
+                  <StatusPodItem
+                    key="issue"
+                    statusField="issue"
+                    stageStatus={stageStatus}
+                  />,
+                ]}
+              >
+                <StatusPodItem
+                  statusField="blocker"
+                  stageStatus={stageStatus}
+                />
+              </InfoPodSection>
+            ) : (
+              <InfoPodSection>
+                <StatusPodItem statusField="issue" stageStatus={stageStatus} />
+              </InfoPodSection>
+            )}
           </InfoPod>
         </span>
       </li>
