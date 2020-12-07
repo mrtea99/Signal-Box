@@ -140,6 +140,19 @@ function StatusPodItem(props) {
           );
         }
         return null;
+      case "blocker":
+        if (props.stageStatus.blockerActive || props.type === "flag") {
+          return (
+            <InfoPodItem
+              {...itemProps}
+              active={props.stageStatus.blockerActive}
+              className={styles.flagBlocker}
+            >
+              <Icon name="blocker" className={styles.icon}></Icon>
+            </InfoPodItem>
+          );
+        }
+        return null;
       default:
         return null;
     }

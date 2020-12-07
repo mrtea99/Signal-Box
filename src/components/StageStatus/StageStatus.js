@@ -33,6 +33,11 @@ function StageStatus(props) {
             statusField="issue"
             stageStatus={stageStatus}
           />,
+          <StatusPodItem
+            key="blocker"
+            statusField="blocker"
+            stageStatus={stageStatus}
+          />,
           <StatusPodItem key="qa" statusField="qa" stageStatus={stageStatus} />,
           <StatusPodItem
             key="user"

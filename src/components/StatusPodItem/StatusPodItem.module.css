@@ -11,6 +11,9 @@
 .flagIssue {
   background-color: var(--color-issue);
 }
+.flagBlocker {
+  background-color: var(--color-blocker);
+}
 .flagQa {
   background-color: var(--color-qa);
 }

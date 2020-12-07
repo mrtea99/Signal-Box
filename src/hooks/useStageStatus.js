@@ -67,11 +67,21 @@ function useStageStatus(runData, stageNumber, activeUser) {
 
   //Issues
   const issueSessions = allSessions.filter((session) => {
-    return session.type === "issue";
+    return session.type === "issue" && !session.blocker;
   });
   const issueTotal = issueSessions.length;
 
   const issueActive = issueSessions.filter((session) => {
+    return session.resolved === false;
+  }).length;
+
+  //Blockers
+  const blockerSessions = allSessions.filter((session) => {
+    return session.type === "issue" && session.blocker;
+  });
+  const blockerTotal = blockerSessions.length;
+
+  const blockerActive = blockerSessions.filter((session) => {
     return session.resolved === false;
   }).length;
 
@@ -226,22 +236,24 @@ function useStageStatus(runData, stageNumber, activeUser) {
   const statusNames = getStatus();
 
   return {
-    stageActive: stageActive,
+    stageActive,
     stageStatusName: statusNames[0],
     stageStatusNext: statusNames[1],
-    workTotal: workTotal,
-    workActive: workActive,
-    workActiveNames: workActiveNames,
-    issueTotal: issueTotal,
-    issueActive: issueActive,
-    qaTotal: qaTotal,
-    qaActive: qaActive,
-    userTotal: userTotal,
-    userActive: userActive,
-    itemCount: itemCount,
-    targetItemCount: targetItemCount,
-    completionFraction: completionFraction,
-    completionPercentage: completionPercentage,
+    workTotal,
+    workActive,
+    workActiveNames,
+    issueTotal,
+    issueActive,
+    blockerTotal,
+    blockerActive,
+    qaTotal,
+    qaActive,
+    userTotal,
+    userActive,
+    itemCount,
+    targetItemCount,
+    completionFraction,
+    completionPercentage,
   };
 }
 
