@@ -12,13 +12,17 @@ function StatusPodItem(props) {
   const { statusField, stageStatus, stageNum, ...itemProps } = props;
 
   const getLabel = function () {
-    if (props.stageStatus.workActive) {
-      return props.stageStatus.workActiveNames;
+    if (props.stageStatus.blockerActive) {
+      return "Blocked";
     } else {
-      return (
-        props.stageStatus.stageStatusName.charAt(0).toUpperCase() +
-        props.stageStatus.stageStatusName.slice(1)
-      );
+      if (props.stageStatus.workActive) {
+        return props.stageStatus.workActiveNames;
+      } else {
+        return (
+          props.stageStatus.stageStatusName.charAt(0).toUpperCase() +
+          props.stageStatus.stageStatusName.slice(1)
+        );
+      }
     }
   };
 
@@ -26,7 +30,8 @@ function StatusPodItem(props) {
     if (
       props.stageStatus.stageStatusName === "ready" ||
       props.stageStatus.stageStatusName === "started" ||
-      props.stageStatus.stageStatusName === "working"
+      props.stageStatus.stageStatusName === "working" ||
+      props.stageStatus.stageStatusName === "blocked"
     ) {
       if (props.stageNum === 0 || props.stageNum === 4) {
         return props.stageStatus.workTotal;

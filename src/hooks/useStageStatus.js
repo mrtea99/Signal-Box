@@ -62,7 +62,8 @@ function useStageStatus(runData, stageNumber, activeUser) {
 
   let workActiveNames = "";
   workActiveSessions.forEach((session, index) => {
-    workActiveNames = workActiveNames + (index ? ", " : "") + session.activity.name;
+    workActiveNames =
+      workActiveNames + (index ? ", " : "") + session.activity.name;
   });
 
   //Issues
@@ -206,30 +207,34 @@ function useStageStatus(runData, stageNumber, activeUser) {
 
   //Status v3
   const getStatus = function () {
-    if (stageActive) {
-      if (targetItemCount) {
-        if (workActive) {
-          return ["working"];
-        } else {
-          if (
-            completionPercentage === 100 &&
-            issueActive === 0 &&
-            qaActive === 0
-          ) {
-            return ["complete"];
+    if (blockerActive) {
+      return ["blocked"]
+    } else {
+      if (stageActive) {
+        if (targetItemCount) {
+          if (workActive) {
+            return ["working"];
           } else {
-            if (allSessions.length) {
-              return ["started"];
+            if (
+              completionPercentage === 100 &&
+              issueActive === 0 &&
+              qaActive === 0
+            ) {
+              return ["complete"];
             } else {
-              return ["ready"];
+              if (allSessions.length) {
+                return ["started"];
+              } else {
+                return ["ready"];
+              }
             }
           }
+        } else {
+          return ["pending"];
         }
       } else {
-        return ["pending"];
+        return ["complete"];
       }
-    } else {
-      return ["complete"];
     }
   };
 

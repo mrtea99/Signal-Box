@@ -7,6 +7,9 @@
 .podItemcomplete {
   background-color: var(--color-complete);
 }
+.podItemblocked {
+  background-color: var(--color-blocker);
+}
 
 .flagIssue {
   background-color: var(--color-issue);
