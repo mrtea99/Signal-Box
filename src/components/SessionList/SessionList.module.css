@@ -44,6 +44,9 @@
 .itemRow--issue .contentItem.colNumber {
   background-color: var(--color-issue);
 }
+.itemRow--blocker .contentItem.colNumber {
+  background-color: var(--color-blocker);
+}
 .itemRow--activate .contentItem.colNumber,
 .itemRow--deactivate .contentItem.colNumber,
 .itemRow--consign .contentItem.colNumber {

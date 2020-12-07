@@ -96,12 +96,14 @@ function SessionList(props) {
     );
   };
 
-  const formatActivity = function (name) {
-    switch (name) {
+  const formatActivity = function (session) {
+    switch (session.type) {
+      case "work":
+        return session.activity.name;
       case "qa":
         return "QA Check";
       case "issue":
-        return "Issue";
+        return session.blocker ? "Blocker" : "Issue";
       case "deactivate":
         return "Complete Stage";
       case "activate":
@@ -200,7 +202,9 @@ function SessionList(props) {
           .map((session, index) => (
             <ul
               className={`${styles.itemRow} ${
-                styles["itemRow--" + session.type]
+                styles[
+                  "itemRow--" + (session.blocker ? "blocker" : session.type)
+                ]
               } ${
                 session.resolved
                   ? styles.itemRowResolved
@@ -208,27 +212,33 @@ function SessionList(props) {
               }`}
               key={index}
             >
-              <li className={`${styles.contentItem} ${styles.colNumber} ${styles.colFixed}`}>
+              <li
+                className={`${styles.contentItem} ${styles.colNumber} ${styles.colFixed}`}
+              >
                 {thisStageData.length - index}
               </li>
               <li className={`${styles.contentItem} ${styles.colActivity}`}>
-                {session.type === "work"
-                  ? session.activity.name
-                  : formatActivity(session.type)}
+                {formatActivity(session)}
               </li>
-              <li className={`${styles.contentItem} ${styles.colStartTime} ${styles.colFixed}`}>
+              <li
+                className={`${styles.contentItem} ${styles.colStartTime} ${styles.colFixed}`}
+              >
                 <span className={styles.cellLabel}>Start Time:</span>
                 <span className={styles.cellContent}>
                   {formatDateTime(session.startTime)}
                 </span>
               </li>
-              <li className={`${styles.contentItem} ${styles.colDuration} ${styles.colFixed}`}>
+              <li
+                className={`${styles.contentItem} ${styles.colDuration} ${styles.colFixed}`}
+              >
                 <span className={styles.cellLabel}>Duration:</span>
                 <span className={styles.cellContent}>
                   {formatDuration(session)}
                 </span>
               </li>
-              <li className={`${styles.contentItem} ${styles.colItemsGood} ${styles.colFixed}`}>
+              <li
+                className={`${styles.contentItem} ${styles.colItemsGood} ${styles.colFixed}`}
+              >
                 <span className={styles.cellLabel}>{itemName}:</span>
                 <span className={styles.cellContent}>
                   {session.amount === undefined || session.amount === null
@@ -236,7 +246,9 @@ function SessionList(props) {
                     : session.amount}
                 </span>
               </li>
-              <li className={`${styles.contentItem} ${styles.colItemsBad} ${styles.colFixed}`}>
+              <li
+                className={`${styles.contentItem} ${styles.colItemsBad} ${styles.colFixed}`}
+              >
                 <span className={styles.cellLabel}>Defective:</span>
                 <span className={styles.cellContent}>
                   {session.amountBad === undefined || session.amount === null
@@ -244,16 +256,25 @@ function SessionList(props) {
                     : session.amountBad}
                 </span>
               </li>
-              <li className={`${styles.contentItem} ${styles.colTech} ${styles.colFixed}`}>
+              <li
+                className={`${styles.contentItem} ${styles.colTech} ${styles.colFixed}`}
+              >
                 <span className={styles.cellLabel}>Technician:</span>
-                <span className={styles.cellContent}>{session.user}</span>
+                <span className={styles.cellContent}>
+                  {/* {session.user} */}
+                  {/* todo get actual name */}
+                  {session.user === 1 ? "Jesus Sandoval" : "Amanda Kezios"}
+                </span>
               </li>
-              <li className={`${styles.contentItem} ${styles.colAction} ${styles.colFixed}`}>
+              <li
+                className={`${styles.contentItem} ${styles.colAction} ${styles.colFixed}`}
+              >
                 {session.type === "issue" ? (
                   <FlagCloser
                     thisStage={props.thisStage}
                     session={session}
                     endSession={props.endSession}
+                    updateSession={props.updateSession}
                   />
                 ) : null}
                 {session.type === "qa" ? (
@@ -264,7 +285,9 @@ function SessionList(props) {
                   />
                 ) : null}
               </li>
-              <li className={`${styles.contentItem} ${styles.colInfo} ${styles.colFixed}`}>
+              <li
+                className={`${styles.contentItem} ${styles.colInfo} ${styles.colFixed}`}
+              >
                 <ModalControl
                   title="Session Details"
                   triggerCopy={""}

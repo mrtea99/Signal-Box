@@ -84,6 +84,8 @@ function Stage(props) {
       (obj) => obj.sessionUid === sessionUid
     );
 
+    console.log(activeSessionObj)
+
     Object.assign(activeSessionObj, extraData);
 
     newStageObj["sessions"] = newSessionList;
@@ -186,6 +188,7 @@ function Stage(props) {
         thisStage={props.thisStage}
         thisRunData={props.thisRunData}
         endSession={endSession}
+        updateSession={updateSession}
       />
     </section>
   );
