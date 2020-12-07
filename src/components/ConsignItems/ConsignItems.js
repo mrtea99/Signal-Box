@@ -12,7 +12,6 @@ function ConsignItems(props) {
   const [countBad, setCountBad] = React.useState(0);
 
   const resetState = function () {
-    console.log('reset')
     setCountGood(0);
     setCountBad(0);
   };

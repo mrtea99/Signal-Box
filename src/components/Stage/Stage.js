@@ -84,8 +84,6 @@ function Stage(props) {
       (obj) => obj.sessionUid === sessionUid
     );
 
-    console.log(activeSessionObj)
-
     Object.assign(activeSessionObj, extraData);
 
     newStageObj["sessions"] = newSessionList;

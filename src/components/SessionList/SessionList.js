@@ -271,6 +271,7 @@ function SessionList(props) {
               >
                 {session.type === "issue" ? (
                   <FlagCloser
+                    key={session.sessionUid}
                     thisStage={props.thisStage}
                     session={session}
                     endSession={props.endSession}
@@ -279,6 +280,7 @@ function SessionList(props) {
                 ) : null}
                 {session.type === "qa" ? (
                   <CheckCloser
+                    key={session.sessionUid}
                     thisStage={props.thisStage}
                     session={session}
                     endSession={props.endSession}

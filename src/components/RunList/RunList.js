@@ -50,8 +50,6 @@ function RunList(props) {
     filteredRunData = filteredRunData.filter((run) => {
       let unresolvedQa = false;
 
-      // console.log(useStageStatus(run, props.stageNum))
-
       run.stages[props.stageNum].sessions.forEach((session) => {
         if (session.type === "qa" && !session.resolved) {
           unresolvedQa = true;
