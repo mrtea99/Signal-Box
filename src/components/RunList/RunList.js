@@ -33,27 +33,37 @@ function RunList(props) {
   let filteredRunData = [...props.runData];
 
   // Only show runs edited by users listed in an array
-  if (props.filters.showUser && props.filters.showUser.length && props.stageNum !== "all") {
+  if (props.filters.showUser && props.filters.showUser.length) {
     filteredRunData = filteredRunData.filter((run) => {
       let userSession = false;
-      run.stages[props.stageNum].sessions.forEach((session) => {
-        if (props.filters.showUser.includes(session.user)) {
-          userSession = true;
-        }
+      const visibleStages =
+        props.stageNum === "all" ? run.stages : [run.stages[props.stageNum]];
+
+      visibleStages.forEach((stage) => {
+        stage.sessions.forEach((session) => {
+          if (props.filters.showUser.includes(session.user)) {
+            userSession = true;
+          }
+        });
       });
+
       return userSession;
     });
   }
 
   // Show runs with unresolved QA sessions
-  if (props.filters.showUnresolvedQa && props.stageNum !== "all") {
+  if (props.filters.showUnresolvedQa) {
     filteredRunData = filteredRunData.filter((run) => {
       let unresolvedQa = false;
+      const visibleStages =
+        props.stageNum === "all" ? run.stages : [run.stages[props.stageNum]];
 
-      run.stages[props.stageNum].sessions.forEach((session) => {
-        if (session.type === "qa" && !session.resolved) {
-          unresolvedQa = true;
-        }
+      visibleStages.forEach((stage) => {
+        stage.sessions.forEach((session) => {
+          if (session.type === "qa" && !session.resolved) {
+            unresolvedQa = true;
+          }
+        });
       });
       return unresolvedQa;
     });
