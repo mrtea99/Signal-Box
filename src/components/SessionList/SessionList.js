@@ -210,7 +210,7 @@ function SessionList(props) {
                   ? styles.itemRowResolved
                   : styles.itemRowUnresolved
               }`}
-              key={index}
+              key={session.sessionUid}
             >
               <li
                 className={`${styles.contentItem} ${styles.colNumber} ${styles.colFixed}`}

@@ -68,7 +68,7 @@ function RunList(props) {
         {filteredRunData.length ? (
           filteredRunData.map((run, index) =>
             props.stageNum === "all" ? (
-              <div className={styles.itemRow} key={index}>
+              <div className={styles.itemRow} key={run.uid}>
                 <RunListAllItem
                   runData={run}
                   activeUser={props.activeUser}
@@ -80,7 +80,7 @@ function RunList(props) {
                 />
               </div>
             ) : (
-              <div className={styles.itemRow} key={index}>
+              <div className={styles.itemRow} key={run.uid}>
                 <RunListStageItem
                   runData={run}
                   stageNum={props.stageNum}
