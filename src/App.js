@@ -101,9 +101,10 @@ function App() {
     window.localStorage.setItem("unitSystem", unitSystem);
   }, [unitSystem]);
 
-  const runFilters = {};
-
-  // const runFilters = { showUser: [activeUser], showUnresolvedQa: true };
+  const [runFilters, setRunFilters] = React.useState({
+    showUser: [],
+    showUnresolvedQa: false,
+  });
 
   return (
     <GlobalContexts
@@ -135,7 +136,12 @@ function App() {
             <section>
               <menu className={styles.listControls}>
                 <section className={styles.filterControls}>
-                  <RunFilter runData={runData} />
+                  <RunFilter
+                    runData={runData}
+                    runFilters={runFilters}
+                    setRunFilters={setRunFilters}
+                    activeUser={activeUser}
+                  />
                 </section>
                 <section className={styles.otherControls}>
                   <Button onClick={() => setModalNewActive(true)} icon="plus">

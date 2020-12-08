@@ -30,10 +30,10 @@ function RunList(props) {
     ];
   }
 
-  let filteredRunData = props.runData;
+  let filteredRunData = [...props.runData];
 
   // Only show runs edited by users listed in an array
-  if (props.filters.showUser && props.stageNum !== "all") {
+  if (props.filters.showUser && props.filters.showUser.length && props.stageNum !== "all") {
     filteredRunData = filteredRunData.filter((run) => {
       let userSession = false;
       run.stages[props.stageNum].sessions.forEach((session) => {
