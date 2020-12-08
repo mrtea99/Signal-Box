@@ -50,12 +50,23 @@
   width: 100%;
 }
 
+
 .hasIcon {
   text-align: left;
   justify-content: space-between;
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
+
+.featured {
+  text-align: center;
+  flex-direction: column;
+  padding-bottom: 0.5rem;
+}
+.featured .iconWrapper {
+  margin: var(--width-icon-spacing) 0 0 0;
+}
+
 .iconFirst {
   flex-direction: row-reverse;
 }

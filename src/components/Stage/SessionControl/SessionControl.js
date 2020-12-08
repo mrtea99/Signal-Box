@@ -20,12 +20,14 @@ function SessionControl(props) {
               thisStage={props.thisStage}
               activeSessionData={props.activeSessionData}
               thisRunData={props.thisRunData}
+              className={styles.sessionControl}
             />
           ) : (
             <SessionStart
               thisStage={props.thisStage}
               addSession={props.addSession}
               activeUser={props.activeUser}
+              className={styles.sessionControl}
             />
           )}
           <ButtonSpacer direction="vert">

@@ -17,6 +17,9 @@ function Button(props) {
       ];
   }
 
+  if (props.featured) {
+    styleClasses += " " + styles.featured;
+  }
   if (props.icon) {
     styleClasses += " " + styles.hasIcon;
   }

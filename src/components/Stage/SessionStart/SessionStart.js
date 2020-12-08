@@ -8,8 +8,13 @@ function SessionStart(props) {
   const [modalActive, setModalActive] = React.useState(false);
 
   return (
-    <>
-      <Button onClick={() => setModalActive(true)} fillWidth icon="start">
+    <div className={props.className}>
+      <Button
+        onClick={() => setModalActive(true)}
+        fillWidth
+        icon="start"
+        featured
+      >
         Start New Session
       </Button>
       {modalActive ? (
@@ -22,7 +27,7 @@ function SessionStart(props) {
           />
         </Modal>
       ) : null}
-    </>
+    </div>
   );
 }
 

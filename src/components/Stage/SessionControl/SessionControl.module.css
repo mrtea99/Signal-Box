@@ -4,3 +4,7 @@
   flex-direction: column;
   justify-content: space-between;
 }
+
+.sessionControl {
+  margin-bottom: 0.75rem;
+}

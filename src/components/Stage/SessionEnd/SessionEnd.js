@@ -8,8 +8,13 @@ function SessionEnd(props) {
   const [modalActive, setModalActive] = React.useState(false);
 
   return (
-    <>
-      <Button onClick={() => setModalActive(true)} fillWidth icon="stop">
+    <div className={props.className}>
+      <Button
+        onClick={() => setModalActive(true)}
+        fillWidth
+        icon="stop"
+        featured
+      >
         End Session
       </Button>
       {modalActive ? (
@@ -24,7 +29,7 @@ function SessionEnd(props) {
           />
         </Modal>
       ) : null}
-    </>
+    </div>
   );
 }
 

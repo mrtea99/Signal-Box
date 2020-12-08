@@ -351,22 +351,28 @@ function SessionList(props) {
             Overall
           </div>
           <div className={`${styles.contentItem} ${styles.colStartTime}`}>
-            {thisStageData.length ? (
-              <>
-                {formatDate(thisStageData[0].startTime)}
-                <br />
-                {formatTime(thisStageData[0].startTime)}
-              </>
-            ) : (
-              "-"
-            )}
+            <span className={styles.cellLabel}>Start Time:</span>
+            <span className={styles.cellContent}>
+              {thisStageData.length ? (
+                <>
+                  {formatDate(thisStageData[0].startTime)}
+                  <br />
+                  {formatTime(thisStageData[0].startTime)}
+                </>
+              ) : (
+                "-"
+              )}
+            </span>
           </div>
           <div className={`${styles.contentItem} ${styles.colDuration}`}>
-            {allResolved ? (
-              findTotalDuration()
-            ) : (
-              <Repeater interval={333} callback={findTotalDuration} />
-            )}
+            <span className={styles.cellLabel}>Duration:</span>
+            <span className={styles.cellContent}>
+              {allResolved ? (
+                findTotalDuration()
+              ) : (
+                <Repeater interval={333} callback={findTotalDuration} />
+              )}
+            </span>
           </div>
           <div className={`${styles.contentItem} ${styles.colItemsGood}`}></div>
           <div className={`${styles.contentItem} ${styles.colItemsBad}`}></div>
