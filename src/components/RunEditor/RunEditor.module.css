@@ -2,11 +2,12 @@
 
 .runEditor {
   position: fixed;
-  top: 100vh;
+  top: 20vh;
   right: 0;
-  bottom: -100vh;
+  bottom: -20vh;
   left: 0;
   opacity: 0;
+  pointer-events: none;
 
   background-color: var(--color-bg);
   overflow: scroll;
@@ -18,6 +19,7 @@
   top: 0vh;
   bottom: 0vh;
   opacity: 1;
+  pointer-events: all;
 }
 
 .controlBar {

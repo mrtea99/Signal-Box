@@ -59,7 +59,9 @@ function SessionDuring(props) {
               </li>
               <li className={styles.rolKey}>
                 Link To Recipe:{" "}
-                <Button href={props.thisRunData.productInfo.recipeLink}>Recipe</Button>
+                <Button href={props.thisRunData.productInfo.recipeLink}>
+                  Recipe
+                </Button>
               </li>
             </>
           );
@@ -76,8 +78,7 @@ function SessionDuring(props) {
                     {props.thisRunData.productInfo.manufacturingDifficulty}
                   </li>
                   <li>
-                    Package:{" "}
-                    {props.thisRunData.productInfo.packagingDifficulty}
+                    Package: {props.thisRunData.productInfo.packagingDifficulty}
                   </li>
                   <li>
                     Label: {props.thisRunData.productInfo.labelingDifficulty}
@@ -99,8 +100,7 @@ function SessionDuring(props) {
                 props.thisRunData.productInfo.unitsPerBatch}
             </li>
             <li className={styles.rolKey}>
-              Target Unit Weight:{" "}
-              {props.thisRunData.productInfo.unitWeight} ozm
+              Target Unit Weight: {props.thisRunData.productInfo.unitWeight} ozm
             </li>
           </>
         );
@@ -118,7 +118,9 @@ function SessionDuring(props) {
                 props.thisRunData.productInfo.expirationDuration
               )}
             </li>
-              <li className={styles.rolKey}>Batch ID: {props.thisRunData.runId}</li>
+            <li className={styles.rolKey}>
+              Batch ID: {props.thisRunData.runId}
+            </li>
           </>
         );
       case 4:
