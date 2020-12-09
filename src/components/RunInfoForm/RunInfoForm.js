@@ -6,44 +6,52 @@ import FormItem from "../FormItem/FormItem.js";
 
 const productTemplates = [
   {
+    baseName: "Soap Base",
+    baseType: "Common Base",
+    baseSKU: "BN00002",
+    baseVariation: "White Vegetable Glycerine Soap",
+    baseVariationSKU: "BV00001",
     productName: "Product One",
     productSKU: "MS00423",
     productCategory: "Bodycare",
     productSubcategory: "Body Scrubs",
-    averageBatchQuantity: 18,
-    averageUnitWeight: 5.9,
-    batchWeight: 106,
     unitsPerBatch: 100,
-    prepDiffilculty: "Easy",
+    unitWeight: 5.9,
+    batchWeight: 106,
+    prepDifficulty: "Easy",
     manufacturingDifficulty: "Easy",
-    packagingDiffilculty: "Easy",
+    packagingDifficulty: "Easy",
     labelingDifficulty: "Easy",
+    stockDifficulty: "N/A",
     merchandising: 90,
     lowInventoryTrigger: 0,
-    duplicate: 1,
-    expirationDuration: 12,
-    recipeLink: "http://www.example.com",
+    expirationDuration: 12,    
     storageLocation: "top shelf",
+    recipeLink: "http://www.example.com",
   },
   {
+    baseName: "Amazing After Shave Body Oil For Women",
+    baseType: "Product Base",
+    baseSKU: "BN00004",
+    baseVariation: "N/A",
+    baseVariationSKU: "N/A",
     productName: "Product Two",
     productSKU: "MS00425",
     productCategory: "Soy Massage Candles",
     productSubcategory: "Glass Jar Candles",
-    averageBatchQuantity: 10,
-    averageUnitWeight: 7.1,
-    batchWeight: 70.4,
     unitsPerBatch: 150,
-    prepDiffilculty: "Medium",
+    unitWeight: 7.1,
+    batchWeight: 70.4,
+    prepDifficulty: "Medium",
     manufacturingDifficulty: "Medium",
-    packagingDiffilculty: "Hard",
+    packagingDifficulty: "Hard",
     labelingDifficulty: "Easy",
+    stockDifficulty: "N/A",
     merchandising: 0,
-    lowInventoryTrigger: 0,
-    duplicate: 1,
+    lowInventoryTrigger: 20,
     expirationDuration: 6,
-    recipeLink: "http://www.example.com",
     storageLocation: "bottom shelf",
+    recipeLink: "http://www.example.com",
   },
 ];
 
@@ -79,7 +87,7 @@ function RunInfoForm(props) {
     const thisRunData = props.runData.find(
       (obj) => obj.uid === props.currentRunUid
     );
-    const currentQuantity = thisRunData.productInfo.batchQuantity;
+    const currentQuantity = thisRunData.batchQuantity;
     return currentQuantity;
   });
 
@@ -87,9 +95,9 @@ function RunInfoForm(props) {
     e.preventDefault();
 
     let productInfo = { ...productTemplates[currentTemplate] };
-    productInfo.batchQuantity = batchQuantity;
+    // productInfo.batchQuantity = batchQuantity;
 
-    props.handleSave(productInfo);
+    props.handleSave(productInfo, {batchQuantity: batchQuantity});
   };
 
   return (

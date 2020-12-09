@@ -185,7 +185,7 @@ function SessionList(props) {
       copy: "Defective",
       className: `${styles.colItemsBad} ${styles.colFixed}`,
     },
-    { copy: "Technician", className: `${styles.colTech} ${styles.colFixed}` },
+    { copy: "Creator", className: `${styles.colTech} ${styles.colFixed}` },
     { copy: "Action", className: `${styles.colAction} ${styles.colFixed}` },
     { copy: "Info", className: `${styles.colInfo} ${styles.colFixed}` },
   ];

@@ -15,7 +15,7 @@ function useStageStatus(runData, stageNumber, activeUser) {
       break;
     case 1:
       itemCount = runData.consignedManufacturing;
-      targetItemCount = runData.productInfo.batchQuantity;
+      targetItemCount = runData.batchQuantity;
       break;
     case 2:
       itemCount = runData.consignedPackaging;

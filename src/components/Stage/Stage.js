@@ -104,23 +104,29 @@ function Stage(props) {
 
   const getDifficulty = function () {
     let difficulty = "";
+    const defaultDifficulty = "N/A";
 
     switch (props.thisStage) {
       case 0:
-        difficulty = props.thisRunData.productInfo.prepDiffilculty;
+        difficulty = props.thisRunData.productInfo.prepDifficulty;
         break;
       case 1:
         difficulty = props.thisRunData.productInfo.manufacturingDifficulty;
         break;
       case 2:
-        difficulty = props.thisRunData.productInfo.packagingDiffilculty;
+        difficulty = props.thisRunData.productInfo.packagingDifficulty;
         break;
       case 3:
         difficulty = props.thisRunData.productInfo.labelingDifficulty;
         break;
+      case 4:
+        difficulty = props.thisRunData.productInfo.stockDifficulty;
+        break;
       default:
-        difficulty = "N/A";
+        difficulty = defaultDifficulty;
     }
+
+    difficulty = difficulty && difficulty.length ? difficulty : defaultDifficulty;
 
     return difficulty;
   };

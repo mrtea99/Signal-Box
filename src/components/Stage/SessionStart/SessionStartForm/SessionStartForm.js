@@ -18,7 +18,7 @@ const activityList = [
   [
     { name: "Materials / Equip Prep", fields: [] },
     { name: "Manufacturing", fields: ["atmos", "amounts", "weight", "qa"] },
-    { name: "Create Blend / Base", fields: [] },
+    { name: "Create Blend / Base", fields: ["atmos", "amounts", "weight", "qa"] },
     { name: "Cooling", fields: ["atmos"] },
     { name: "Curing", fields: ["atmos"] },
     { name: "Finishing Touches", fields: [] },

@@ -54,7 +54,7 @@ function SessionDuring(props) {
               <li className={styles.rolKey}>
                 Target Total Weight:{" "}
                 {props.thisRunData.productInfo.batchWeight *
-                  props.thisRunData.productInfo.batchQuantity}
+                  props.thisRunData.batchQuantity}
                 ozm
               </li>
               <li className={styles.rolKey}>
@@ -70,14 +70,14 @@ function SessionDuring(props) {
               <li className={styles.rolKey}>
                 Difficulty:{" "}
                 <ul>
-                  <li>Prep: {props.thisRunData.productInfo.prepDiffilculty}</li>
+                  <li>Prep: {props.thisRunData.productInfo.prepDifficulty}</li>
                   <li>
                     Craft:{" "}
                     {props.thisRunData.productInfo.manufacturingDifficulty}
                   </li>
                   <li>
                     Package:{" "}
-                    {props.thisRunData.productInfo.packagingDiffilculty}
+                    {props.thisRunData.productInfo.packagingDifficulty}
                   </li>
                   <li>
                     Label: {props.thisRunData.productInfo.labelingDifficulty}
@@ -100,7 +100,7 @@ function SessionDuring(props) {
             </li>
             <li className={styles.rolKey}>
               Target Unit Weight:{" "}
-              {props.thisRunData.productInfo.averageUnitWeight}
+              {props.thisRunData.productInfo.unitWeight} ozm
             </li>
           </>
         );
@@ -113,11 +113,12 @@ function SessionDuring(props) {
             <li className={styles.rolKey}>
               Expiration Date:{" "}
               {expiryCalc(
+                //needs to be month plus one
                 props.thisRunData.stages[1].sessions[0].startTime,
                 props.thisRunData.productInfo.expirationDuration
               )}
             </li>
-            <li className={styles.rolKey}>Batch ID: TODO</li>
+              <li className={styles.rolKey}>Batch ID: {props.thisRunData.uid}</li>
           </>
         );
       case 4:

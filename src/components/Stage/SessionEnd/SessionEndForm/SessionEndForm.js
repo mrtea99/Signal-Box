@@ -93,7 +93,7 @@ function SessionEndForm(props) {
         break;
       case 2:
         itemName = "Unit";
-        targetWeight = props.thisRunData.productInfo.averageUnitWeight;
+        targetWeight = props.thisRunData.productInfo.unitWeight;
         break;
       default:
         return "Weight";
