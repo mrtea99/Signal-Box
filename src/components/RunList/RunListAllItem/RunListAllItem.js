@@ -16,7 +16,7 @@ function RunListAllItem(props) {
   return (
     <div>
       <header
-        // onClick={() => setModalOverviewActive(run.uid)}
+        // onClick={() => setModalOverviewActive(run.runId)}
         className={styles.itemHeader}
       >
         <RunTitle runData={props.runData}>{run.productInfo.productName}</RunTitle>
@@ -26,7 +26,7 @@ function RunListAllItem(props) {
         stageNameArr={props.stageNameArr}
         currentRunUid={props.currentRunUid}
         activeStage={props.activeStage}
-        buttonCallback={(newIndex) => openEditor(run.uid, newIndex)}
+        buttonCallback={(newIndex) => openEditor(run.runId, newIndex)}
         updateRunData={props.updateRunData}
         thisRunData={run}
         activeUser={props.activeUser}

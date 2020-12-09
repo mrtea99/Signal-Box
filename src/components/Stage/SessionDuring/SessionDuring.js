@@ -118,7 +118,7 @@ function SessionDuring(props) {
                 props.thisRunData.productInfo.expirationDuration
               )}
             </li>
-              <li className={styles.rolKey}>Batch ID: {props.thisRunData.uid}</li>
+              <li className={styles.rolKey}>Batch ID: {props.thisRunData.runId}</li>
           </>
         );
       case 4:

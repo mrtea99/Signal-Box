@@ -25,7 +25,7 @@ const productTemplates = [
     stockDifficulty: "N/A",
     merchandising: 90,
     lowInventoryTrigger: 0,
-    expirationDuration: 12,    
+    expirationDuration: 12,
     storageLocation: "top shelf",
     recipeLink: "http://www.example.com",
   },
@@ -62,7 +62,7 @@ function RunInfoForm(props) {
     }
 
     const runData = props.runData.find(
-      (obj) => obj.uid === props.currentRunUid
+      (obj) => obj.runId === props.currentRunUid
     );
     return runData;
   })[0];
@@ -85,7 +85,7 @@ function RunInfoForm(props) {
     }
 
     const thisRunData = props.runData.find(
-      (obj) => obj.uid === props.currentRunUid
+      (obj) => obj.runId === props.currentRunUid
     );
     const currentQuantity = thisRunData.batchQuantity;
     return currentQuantity;
@@ -95,9 +95,8 @@ function RunInfoForm(props) {
     e.preventDefault();
 
     let productInfo = { ...productTemplates[currentTemplate] };
-    // productInfo.batchQuantity = batchQuantity;
 
-    props.handleSave(productInfo, {batchQuantity: batchQuantity});
+    props.handleSave(productInfo, batchQuantity);
   };
 
   return (

@@ -59,7 +59,7 @@ function App() {
       deleteRun(uid);
     } else {
       const updatedRunData = runData.map((run) => {
-        if (run.uid === uid) {
+        if (run.runId === uid) {
           //A new object should be created and returned here, but this is working for the time being
           if (dataSection !== null) {
             run[dataSection][dataKey] = newValue;
@@ -75,7 +75,7 @@ function App() {
   };
 
   const deleteRun = function (uid) {
-    const updatedRunData = runData.filter((run) => uid !== run.uid);
+    const updatedRunData = runData.filter((run) => uid !== run.runId);
     setRunData(updatedRunData);
   };
 

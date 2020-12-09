@@ -15,7 +15,7 @@ function RunEditor(props) {
   const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
 
   const thisRunData = props.runData.find(
-    (obj) => obj.uid === props.currentRunUid
+    (obj) => obj.runId === props.currentRunUid
   );
 
   const handleEditInfoClick = function (e) {
@@ -59,7 +59,7 @@ function RunEditor(props) {
                     {thisRunData.productInfo.productName}
                   </h3>
                   <h4 className={styles.runInfoItem}>
-                    Run ID: {thisRunData.runInfo.runId}
+                    Run ID: {thisRunData.runId}
                   </h4>
                 </div>
                 <div className={`${styles.runInfoSec} ${styles.runInfoRun}`}>

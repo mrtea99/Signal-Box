@@ -21,7 +21,7 @@ function RunDelete(props) {
             </Button>
             <Button
               onClick={() => {
-                props.updateRunData(props.uid, "delete");
+                props.updateRunData(props.runId, "delete");
                 setModalActive(false);
                 if (props.successCallback) {
                   props.successCallback();

@@ -4,13 +4,12 @@ import Modal from "../Modal/Modal.js";
 import RunInfoForm from "../RunInfoForm/RunInfoForm.js";
 
 function RunInfoNew(props) {
-  const createRun = function (productTemplateData, baseData) {
+  const createRun = function (productTemplateData, batchQuantity) {
     let newData = [...props.runData];
 
     //Build new run object here
     const newRun = {
-      ...baseData,
-      uid: Date.now(),
+      runId: Date.now(),
       activeStage: 0,
       consignedManufacturing: 0,
       defectiveManufacturing: 0,
@@ -18,9 +17,6 @@ function RunInfoNew(props) {
       defectivePackaging: 0,
       consignedLabeling: 0,
       defectiveLabeling: 0,
-      runInfo: {
-        runId: new Date().getUTCMilliseconds(),
-      },
       productInfo: productTemplateData,
       stages: [
         {
@@ -44,6 +40,7 @@ function RunInfoNew(props) {
           active: true,
         },
       ],
+      batchQuantity: batchQuantity,
     };
     newData.push(newRun);
     props.setRunData(newData);

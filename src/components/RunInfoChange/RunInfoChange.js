@@ -5,12 +5,19 @@ import RunInfoForm from "../RunInfoForm/RunInfoForm.js";
 import RunDelete from "../RunDelete/RunDelete.js";
 
 function RunInfoChange(props) {
-  const updateRunInfo = function (productTemplateData) {
+  const updateRunInfo = function (productTemplateData, batchQuantity) {
     props.updateRunData(
       props.currentRunUid,
       null,
       "productInfo",
       productTemplateData
+    );
+
+    props.updateRunData(
+      props.currentRunUid,
+      null,
+      "batchQuantity",
+      batchQuantity
     );
 
     props.setActive(false);
@@ -32,7 +39,7 @@ function RunInfoChange(props) {
           />
           <RunDelete
             updateRunData={props.updateRunData}
-            uid={props.currentRunUid}
+            runId={props.currentRunUid}
             successCallback={() => props.setActive(false)}
           />
         </Modal>
