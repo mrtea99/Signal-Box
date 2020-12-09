@@ -2,7 +2,7 @@ import React from "react";
 
 import FormItem from "../../FormItem/FormItem.js";
 
-import UnitSystemContext from "../../../contexts/DateFormatContext.js";
+import UnitSystemContext from "../../../contexts/UnitSystemContext.js";
 
 function TemperatureField(props) {
   const unitSystem = React.useContext(UnitSystemContext);
