@@ -60,7 +60,7 @@ function RunList(props) {
 
       visibleStages.forEach((stage) => {
         stage.sessions.forEach((session) => {
-          if (session.type === "qa" && !session.resolved) {
+          if (session.type === "qa" && !session.endTime) {
             unresolvedQa = true;
           }
         });

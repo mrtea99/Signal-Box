@@ -56,17 +56,16 @@ function SessionEndForm(props) {
         sessionUid: newSessionUid,
         type: "qa",
         startTime: Date.now(),
+        endTime: null,
         user: props.activeUser,
-        resolved: false,
         ...qaFormData,
       };
 
-      props.addSession(newSession, newSessionUid, props.thisStage);
+      props.addSession(newSession, props.thisStage);
     }
 
     //End Session
     const extraData = {
-      resolved: true,
       notes: noteData,
       amount: amount,
       amountBad: amountBad,

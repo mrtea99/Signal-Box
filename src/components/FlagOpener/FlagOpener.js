@@ -14,13 +14,13 @@ function FlagOpener(props) {
       sessionUid: newSessionUid,
       type: "issue",
       startTime: Date.now(),
+      endTime: null,
       user: props.activeUser,
-      resolved: false,
       blocker: isBlocker,
       notes: description,
     };
 
-    props.addSession(newSession, newSessionUid, props.thisStage);
+    props.addSession(newSession, props.thisStage);
 
     setDescription("");
     setIsBlocker(false);

@@ -117,7 +117,7 @@ function SessionList(props) {
 
   let allResolved = true;
   for (let i = 0; i < thisStageData.length; i++) {
-    if (thisStageData[i].resolved === false) {
+    if (!thisStageData[i].endTime) {
       allResolved = false;
     }
   }
@@ -126,13 +126,13 @@ function SessionList(props) {
     let totalDuration = 0;
 
     for (let i = 0; i < thisStageData.length; i++) {
-      if (thisStageData[i].endTime === undefined) {
-        totalDuration =
-          totalDuration + (Date.now() - thisStageData[i].startTime);
-      } else {
+      if (thisStageData[i].endTime) {
         totalDuration =
           totalDuration +
           (thisStageData[i].endTime - thisStageData[i].startTime);
+      } else {
+        totalDuration =
+          totalDuration + (Date.now() - thisStageData[i].startTime);
       }
     }
 
@@ -206,7 +206,7 @@ function SessionList(props) {
                   "itemRow--" + (session.blocker ? "blocker" : session.type)
                 ]
               } ${
-                session.resolved
+                session.endTime
                   ? styles.itemRowResolved
                   : styles.itemRowUnresolved
               }`}
@@ -307,7 +307,7 @@ function SessionList(props) {
                   </h3>
                   <p>Session ID: {session.sessionUid}</p>
                   <p>
-                    Resolved: {session.resolved ? "Resolved" : "Unresolved"}
+                    Resolved: {session.endTime ? "Resolved" : "Unresolved"}
                   </p>
                   <p>Start Time: {formatDateTime(session.startTime)}</p>
                   {session.endTime ? (

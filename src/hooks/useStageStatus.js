@@ -56,7 +56,7 @@ function useStageStatus(runData, stageNumber, activeUser) {
   const workTotal = workSessions.length;
 
   const workActiveSessions = workSessions.filter((session) => {
-    return session.resolved === false;
+    return !session.endTime;
   });
   const workActive = workActiveSessions.length;
 
@@ -73,7 +73,7 @@ function useStageStatus(runData, stageNumber, activeUser) {
   const issueTotal = issueSessions.length;
 
   const issueActive = issueSessions.filter((session) => {
-    return session.resolved === false;
+    return !session.endTime;
   }).length;
 
   //Blockers
@@ -83,7 +83,7 @@ function useStageStatus(runData, stageNumber, activeUser) {
   const blockerTotal = blockerSessions.length;
 
   const blockerActive = blockerSessions.filter((session) => {
-    return session.resolved === false;
+    return !session.endTime;
   }).length;
 
   //QA
@@ -93,7 +93,7 @@ function useStageStatus(runData, stageNumber, activeUser) {
   const qaTotal = qaSessions.length;
 
   const qaActive = qaSessions.filter((session) => {
-    return session.resolved === false;
+    return !session.endTime;
   }).length;
 
   //User
@@ -107,7 +107,7 @@ function useStageStatus(runData, stageNumber, activeUser) {
     userTotal = userSessions.length;
 
     userActive = userSessions.filter((session) => {
-      return session.type === "work" && session.resolved === false;
+      return session.type === "work" && !session.endTime;
     }).length;
   }
 

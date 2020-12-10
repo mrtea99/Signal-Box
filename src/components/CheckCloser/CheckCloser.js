@@ -16,7 +16,6 @@ function CheckCloser(props) {
 
     props.endSession(
       {
-        resolved: true,
         notes: newNote,
         amount: count,
         amountBad: countBad,
@@ -32,7 +31,7 @@ function CheckCloser(props) {
 
   return (
     <>
-      {props.session.resolved ? null : (
+      {props.session.endTime ? null : (
         <ModalControl
           title="QA Check"
           handleSubmit={handleSubmit}

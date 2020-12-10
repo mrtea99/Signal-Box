@@ -20,7 +20,7 @@ function Stage(props) {
       for (let i = 0; i < sessionList.length; i++) {
         if (
           sessionList[i].user === props.activeUser &&
-          sessionList[i].resolved === false &&
+          !sessionList[i].endTime &&
           sessionList[i].type === "work"
         ) {
           return sessionList[i];
@@ -54,13 +54,12 @@ function Stage(props) {
       startTime: Date.now(),
       endTime: Date.now(),
       user: props.activeUser,
-      resolved: true,
     };
 
-    addSession(newSession, newSessionUid, stage);
+    addSession(newSession, stage);
   };
 
-  const addSession = function (sessionData, newSessionUid, stage) {
+  const addSession = function (sessionData, stage) {
     const stageData = props.thisRunData["stages"][stage];
     const sessionList = stageData["sessions"];
 

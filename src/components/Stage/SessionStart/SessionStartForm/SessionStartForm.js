@@ -64,8 +64,8 @@ function SessionStartForm(props) {
     const newSession = {
       sessionUid: newSessionUid,
       type: "work",
-      resolved: false,
       startTime: Date.now(),
+      endTime: null,
       activity: activityData,
       user: props.activeUser,
     };
@@ -75,7 +75,7 @@ function SessionStartForm(props) {
       newSession.humidity = humidity;
     }
 
-    props.addSession(newSession, newSessionUid, props.thisStage);
+    props.addSession(newSession, props.thisStage);
 
     props.setFormActive(false);
   };

@@ -17,7 +17,7 @@ function FlagCloser(props) {
 
     if (resolved) {
       props.endSession(
-        { resolved: true, notes: newNote, blocker: blocker },
+        { notes: newNote, blocker: blocker },
         props.thisStage,
         props.session
       );
@@ -40,7 +40,7 @@ function FlagCloser(props) {
 
   return (
     <>
-      {props.session.resolved ? null : (
+      {props.session.endTime ? null : (
         <ModalControl
           title="Update Issue"
           handleSubmit={handleSubmit}

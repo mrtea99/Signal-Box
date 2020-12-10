@@ -64,13 +64,12 @@ function ConsignItems(props) {
       type: "consign",
       startTime: Date.now(),
       endTime: Date.now(),
-      resolved: true,
       user: props.activeUser,
       amount: countGood,
       amountBad: countBad,
     };
 
-    props.addSession(newSession, newSessionUid, props.thisStage);
+    props.addSession(newSession, props.thisStage);
 
     resetState();
   };

@@ -21,12 +21,12 @@ function CheckOpener(props) {
       sessionUid: newSessionUid,
       type: "qa",
       startTime: Date.now(),
+      endTime: null,
       user: props.activeUser,
-      resolved: false,
       ...formData,
     };
 
-    props.addSession(newSession, newSessionUid, props.thisStage);
+    props.addSession(newSession, props.thisStage);
   };
 
   return (
