@@ -276,6 +276,7 @@ function SessionList(props) {
                     session={session}
                     endSession={props.endSession}
                     updateSession={props.updateSession}
+                    activeUser={props.activeUser}
                   />
                 ) : null}
                 {session.type === "qa" ? (

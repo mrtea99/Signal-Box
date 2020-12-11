@@ -192,6 +192,7 @@ function Stage(props) {
         thisRunData={props.thisRunData}
         endSession={endSession}
         updateSession={updateSession}
+        activeUser={props.activeUser}
       />
     </section>
   );

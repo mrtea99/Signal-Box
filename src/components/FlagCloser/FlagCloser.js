@@ -9,7 +9,7 @@ function FlagCloser(props) {
   const [blocker, setBlocker] = React.useState(props.session.blocker);
 
   const handleSubmit = function () {
-    const labeledDescription = (resolved ? "Fix: " : "Update: ") + description;
+    const labeledDescription = (resolved ? "Fix" : "Update") + " [" + Date.now() + " " + props.activeUser + "]: " + description;
     const newNote =
       props.session.notes && props.session.notes.length
         ? props.session.notes + "\n" + labeledDescription
