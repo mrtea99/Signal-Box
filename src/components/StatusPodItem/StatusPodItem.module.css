@@ -11,6 +11,9 @@
   background-color: var(--color-blocker);
 }
 
+.flagNote {
+  background-color: var(--color-note);
+}
 .flagIssue {
   background-color: var(--color-issue);
 }

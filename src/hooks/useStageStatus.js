@@ -66,9 +66,19 @@ function useStageStatus(runData, stageNumber, activeUser) {
       workActiveNames + (index ? ", " : "") + session.activity.name;
   });
 
-  //Issues
+  //Flag Notes
+  const noteSessions = allSessions.filter((session) => {
+    return session.type === "issue" && session.amount === 0;
+  });
+  const noteTotal = noteSessions.length;
+
+  const noteActive = noteSessions.filter((session) => {
+    return !session.endTime;
+  }).length;
+
+  //Flag Issues
   const issueSessions = allSessions.filter((session) => {
-    return session.type === "issue" && !session.blocker;
+    return session.type === "issue" && session.amount === 1;
   });
   const issueTotal = issueSessions.length;
 
@@ -76,9 +86,9 @@ function useStageStatus(runData, stageNumber, activeUser) {
     return !session.endTime;
   }).length;
 
-  //Blockers
+  //Flag Blockers
   const blockerSessions = allSessions.filter((session) => {
-    return session.type === "issue" && session.blocker;
+    return session.type === "issue" && session.amount === 2;
   });
   const blockerTotal = blockerSessions.length;
 
@@ -247,6 +257,8 @@ function useStageStatus(runData, stageNumber, activeUser) {
     workTotal,
     workActive,
     workActiveNames,
+    noteTotal,
+    noteActive,
     issueTotal,
     issueActive,
     blockerTotal,

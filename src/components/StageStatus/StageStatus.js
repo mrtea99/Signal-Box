@@ -29,6 +29,11 @@ function StageStatus(props) {
       <InfoPodSection layout={props.layout}
         flags={[
           <StatusPodItem
+            key="note"
+            statusField="note"
+            stageStatus={stageStatus}
+          />,
+          <StatusPodItem
             key="issue"
             statusField="issue"
             stageStatus={stageStatus}

@@ -32,6 +32,7 @@
 
   --color-cancel: var(--color-grey-darker);
   --color-qa: var(--color-blue);
+  --color-note: var(--color-pink);
   --color-issue: var(--color-orange);
   --color-blocker: var(--color-red);
   --color-complete: var(--color-green);

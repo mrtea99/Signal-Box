@@ -41,6 +41,9 @@
 .itemRow--qa .contentItem.colNumber {
   background-color: var(--color-qa);
 }
+.itemRow--note .contentItem.colNumber {
+  background-color: var(--color-note);
+}
 .itemRow--issue .contentItem.colNumber {
   background-color: var(--color-issue);
 }

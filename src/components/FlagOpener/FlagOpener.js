@@ -5,7 +5,7 @@ import FormItem from "../FormItem/FormItem.js";
 
 function FlagOpener(props) {
   const [description, setDescription] = React.useState("");
-  const [isBlocker, setIsBlocker] = React.useState(false);
+  const [priority, setPriority] = React.useState(0);
 
   const handleSubmit = function () {
     const newSessionUid = Date.now();
@@ -16,21 +16,40 @@ function FlagOpener(props) {
       startTime: Date.now(),
       endTime: null,
       user: props.activeUser,
-      blocker: isBlocker,
+      amount: priority,
       notes: description,
     };
 
     props.addSession(newSession, props.thisStage);
 
     setDescription("");
-    setIsBlocker(false);
+    setPriority(0);
   };
+
+  const handleCancel = function() {
+    setDescription("");
+    setPriority(0);
+  }
+
+  // const translatePriority = function (count) {
+  //   switch (count) {
+  //     case 0:
+  //       return "note";
+  //     case 1:
+  //       return "issue";
+  //     case 2:
+  //       return "blocker";
+  //     default:
+  //       return "N/A";
+  //   }
+  // };
 
   return (
     <ModalControl
-      title="Report Issue"
+      title="Raise Flag"
       handleSubmit={handleSubmit}
-      triggerCopy={"Report Issue"}
+      handleCancel={handleCancel}
+      triggerCopy={"Raise Flag"}
       buttonAttrs={{ fillWidth: true, color: "issue", icon: "issue" }}
     >
       <form>
@@ -43,13 +62,26 @@ function FlagOpener(props) {
           }}
         />
 
-        <FormItem
+        {/* <FormItem
           label="Blocker"
           type="checkbox"
           ident="issue-blocker"
-          updateHandler={(value) => setIsBlocker(value)}
+          updateHandler={(value) => {value ? setIsBlocker(2) : setIsBlocker(3)}}
           checked={isBlocker}
-        />
+        /> */}
+
+        <FormItem
+          label="Priority"
+          type="select"
+          ident="flag-blocker"
+          updateHandler={(value) => {
+            setPriority(parseInt(value));
+          }}
+        >
+          <option value="0">Note</option>
+          <option value="1">Issue</option>
+          <option value="2">Blocker</option>
+        </FormItem>
       </form>
     </ModalControl>
   );

@@ -96,6 +96,19 @@ function SessionList(props) {
     );
   };
 
+  const translatePriority = function (count, caps) {
+    switch (count) {
+      case 0:
+        return caps ? "Note" : "note";
+      case 1:
+        return caps ? "Issue" : "issue";
+      case 2:
+        return caps ? "Blocker" : "blocker";
+      default:
+        return "N/A";
+    }
+  };
+
   const formatActivity = function (session) {
     switch (session.type) {
       case "work":
@@ -103,7 +116,7 @@ function SessionList(props) {
       case "qa":
         return "QA Check";
       case "issue":
-        return session.blocker ? "Blocker" : "Issue";
+        return "Flag: " + translatePriority(session.amount, true)
       case "deactivate":
         return "Complete Stage";
       case "activate":
@@ -203,7 +216,7 @@ function SessionList(props) {
             <ul
               className={`${styles.itemRow} ${
                 styles[
-                  "itemRow--" + (session.blocker ? "blocker" : session.type)
+                  "itemRow--" + (session.type === "issue" ? translatePriority(session.amount, false) : session.type)
                 ]
               } ${
                 session.endTime
@@ -241,7 +254,7 @@ function SessionList(props) {
               >
                 <span className={styles.cellLabel}>{itemName}:</span>
                 <span className={styles.cellContent}>
-                  {session.amount === undefined || session.amount === null
+                  {session.amount === undefined || session.amount === null || session.type === "issue"
                     ? "-"
                     : session.amount}
                 </span>

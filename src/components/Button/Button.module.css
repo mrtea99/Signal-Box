@@ -84,6 +84,9 @@
 .colorQa {
   background-color: var(--color-qa);
 }
+.colorNote {
+  background-color: var(--color-note);
+}
 .colorIssue {
   background-color: var(--color-issue);
 }

@@ -6,10 +6,17 @@ import FormItem from "../FormItem/FormItem.js";
 function FlagCloser(props) {
   const [description, setDescription] = React.useState("");
   const [resolved, setResolved] = React.useState(false);
-  const [blocker, setBlocker] = React.useState(props.session.blocker);
+  const [priority, setPriority] = React.useState(props.session.amount);
 
   const handleSubmit = function () {
-    const labeledDescription = (resolved ? "Fix" : "Update") + " [" + Date.now() + " " + props.activeUser + "]: " + description;
+    const labeledDescription =
+      (resolved ? "Fix" : "Update") +
+      " [" +
+      Date.now() +
+      " " +
+      props.activeUser +
+      "]: " +
+      description;
     const newNote =
       props.session.notes && props.session.notes.length
         ? props.session.notes + "\n" + labeledDescription
@@ -17,13 +24,13 @@ function FlagCloser(props) {
 
     if (resolved) {
       props.endSession(
-        { notes: newNote, blocker: blocker },
+        { notes: newNote, amount: priority },
         props.thisStage,
         props.session
       );
     } else {
       props.updateSession(
-        { notes: newNote, blocker: blocker },
+        { notes: newNote, amount: priority },
         props.thisStage,
         props.session.sessionUid
       );
@@ -35,19 +42,32 @@ function FlagCloser(props) {
   const handleCancel = function () {
     setDescription("");
     setResolved(false);
-    setBlocker(props.session.blocker);
+    setPriority(props.session.amount);
+  };
+
+  const translatePriority = function (count, caps) {
+    switch (count) {
+      case 0:
+        return caps ? "Note" : "note";
+      case 1:
+        return caps ? "Issue" : "issue";
+      case 2:
+        return caps ? "Blocker" : "blocker";
+      default:
+        return "N/A";
+    }
   };
 
   return (
     <>
       {props.session.endTime ? null : (
         <ModalControl
-          title="Update Issue"
+          title={"Update " + translatePriority(priority, true)}
           handleSubmit={handleSubmit}
           handleCancel={handleCancel}
           triggerCopy={""}
           buttonAttrs={{
-            color: props.session.blocker ? "blocker" : "issue",
+            color: translatePriority(props.session.amount),
             icon: "fix",
           }}
         >
@@ -65,21 +85,34 @@ function FlagCloser(props) {
                 );
               })}
             </p>
-            {/* <p>{props.session.blocker ? "Blocker" : ""}</p> */}
           </div>
 
-          <FormItem
+          {/* <FormItem
             label="Blocker"
             type="checkbox"
             ident="fix-blocker"
             updateHandler={(value) => {
-              setBlocker(value);
+              value ? setPriority(1) : setPriority(2) ;
             }}
-            checked={blocker}
-          />
+            checked={priority === 2}
+          /> */}
 
           <FormItem
-            label="Issue Resolved"
+            label="Priority"
+            type="select"
+            ident="flag-blocker"
+            updateHandler={(value) => {
+              setPriority(parseInt(value));
+            }}
+            value={priority}
+          >
+            <option value="0">Note</option>
+            <option value="1">Issue</option>
+            <option value="2">Blocker</option>
+          </FormItem>
+
+          <FormItem
+            label="Resolved"
             type="checkbox"
             ident="fix-resolved"
             updateHandler={(value) => {

@@ -132,6 +132,19 @@ function StatusPodItem(props) {
           );
         }
         return null;
+      case "note":
+        if (props.stageStatus.noteActive || props.type === "flag") {
+          return (
+            <InfoPodItem
+              {...itemProps}
+              active={props.stageStatus.noteActive}
+              className={styles.flagNote}
+            >
+              <Icon name="details" className={styles.icon}></Icon>
+            </InfoPodItem>
+          );
+        }
+        return null;
       case "issue":
         if (props.stageStatus.issueActive || props.type === "flag") {
           return (
