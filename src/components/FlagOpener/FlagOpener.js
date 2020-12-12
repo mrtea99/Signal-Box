@@ -5,14 +5,14 @@ import FormItem from "../FormItem/FormItem.js";
 
 function FlagOpener(props) {
   const [description, setDescription] = React.useState("");
-  const [priority, setPriority] = React.useState(0);
+  const [priority, setPriority] = React.useState(1);
 
   const handleSubmit = function () {
     const newSessionUid = Date.now();
 
     const newSession = {
       sessionUid: newSessionUid,
-      type: "issue",
+      type: "flag",
       startTime: Date.now(),
       endTime: null,
       user: props.activeUser,
@@ -22,14 +22,13 @@ function FlagOpener(props) {
 
     props.addSession(newSession, props.thisStage);
 
-    setDescription("");
-    setPriority(0);
+    handleCancel();
   };
 
-  const handleCancel = function() {
+  const handleCancel = function () {
     setDescription("");
-    setPriority(0);
-  }
+    setPriority(1);
+  };
 
   // const translatePriority = function (count) {
   //   switch (count) {
@@ -53,15 +52,6 @@ function FlagOpener(props) {
       buttonAttrs={{ fillWidth: true, color: "issue", icon: "issue" }}
     >
       <form>
-        <FormItem
-          label="Issue Description:"
-          type="textarea"
-          ident="issue-description"
-          updateHandler={(value) => {
-            setDescription("Issue: " + value);
-          }}
-        />
-
         {/* <FormItem
           label="Blocker"
           type="checkbox"
@@ -70,7 +60,7 @@ function FlagOpener(props) {
           checked={isBlocker}
         /> */}
 
-        <FormItem
+        {/* <FormItem
           label="Priority"
           type="select"
           ident="flag-blocker"
@@ -81,7 +71,28 @@ function FlagOpener(props) {
           <option value="0">Note</option>
           <option value="1">Issue</option>
           <option value="2">Blocker</option>
-        </FormItem>
+        </FormItem> */}
+
+        <FormItem
+          label="Priority:"
+          type="toggleButton"
+          ident="flag-priority"
+          itemLabels={["Note", "Issue", "Blocker"]}
+          itemValues={["0", "1", "2"]}
+          value={priority.toString()}
+          updateHandler={(value) => {
+            setPriority(parseInt(value));
+          }}
+        />
+
+        <FormItem
+          label="Description:"
+          type="textarea"
+          ident="issue-description"
+          updateHandler={(value) => {
+            setDescription("Reported: " + value);
+          }}
+        />
       </form>
     </ModalControl>
   );

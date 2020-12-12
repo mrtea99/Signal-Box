@@ -115,7 +115,7 @@ function SessionList(props) {
         return session.activity.name;
       case "qa":
         return "QA Check";
-      case "issue":
+      case "flag":
         return "Flag: " + translatePriority(session.amount, true)
       case "deactivate":
         return "Complete Stage";
@@ -216,7 +216,7 @@ function SessionList(props) {
             <ul
               className={`${styles.itemRow} ${
                 styles[
-                  "itemRow--" + (session.type === "issue" ? translatePriority(session.amount, false) : session.type)
+                  "itemRow--" + (session.type === "flag" ? translatePriority(session.amount, false) : session.type)
                 ]
               } ${
                 session.endTime
@@ -254,7 +254,7 @@ function SessionList(props) {
               >
                 <span className={styles.cellLabel}>{itemName}:</span>
                 <span className={styles.cellContent}>
-                  {session.amount === undefined || session.amount === null || session.type === "issue"
+                  {session.amount === undefined || session.amount === null || session.type === "flag"
                     ? "-"
                     : session.amount}
                 </span>
@@ -282,7 +282,7 @@ function SessionList(props) {
               <li
                 className={`${styles.contentItem} ${styles.colAction} ${styles.colFixed}`}
               >
-                {session.type === "issue" ? (
+                {session.type === "flag" ? (
                   <FlagCloser
                     key={session.sessionUid}
                     thisStage={props.thisStage}

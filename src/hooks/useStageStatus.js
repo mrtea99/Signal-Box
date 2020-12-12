@@ -68,7 +68,7 @@ function useStageStatus(runData, stageNumber, activeUser) {
 
   //Flag Notes
   const noteSessions = allSessions.filter((session) => {
-    return session.type === "issue" && session.amount === 0;
+    return session.type === "flag" && session.amount === 0;
   });
   const noteTotal = noteSessions.length;
 
@@ -78,7 +78,7 @@ function useStageStatus(runData, stageNumber, activeUser) {
 
   //Flag Issues
   const issueSessions = allSessions.filter((session) => {
-    return session.type === "issue" && session.amount === 1;
+    return session.type === "flag" && session.amount === 1;
   });
   const issueTotal = issueSessions.length;
 
@@ -88,7 +88,7 @@ function useStageStatus(runData, stageNumber, activeUser) {
 
   //Flag Blockers
   const blockerSessions = allSessions.filter((session) => {
-    return session.type === "issue" && session.amount === 2;
+    return session.type === "flag" && session.amount === 2;
   });
   const blockerTotal = blockerSessions.length;
 

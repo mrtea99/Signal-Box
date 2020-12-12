@@ -124,7 +124,7 @@ function FlagCloser(props) {
           <FormItem
             label={resolved ? "Fix Description:" : "Update Note:"}
             type="textarea"
-            ident="issue-note"
+            ident="flag-note"
             updateHandler={(value) => {
               setDescription(value);
             }}

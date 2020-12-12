@@ -40,7 +40,7 @@ function StageActions(props) {
           <>
             {stageStatus.stageStatusName !== "working" ? (
               <div>
-                {stageStatus.issueActive || stageStatus.qaActive ? (
+                {stageStatus.issueActive || stageStatus.blockerActive || stageStatus.qaActive ? (
                   <p>
                     Cannot complete stage until qa is complete and issues are
                     resolved

@@ -128,7 +128,7 @@ function RunListStageItem(props) {
         </span>
       </li>
       <li className={`${styles.lineItem} ${props.columns[5].className}`}>
-        <span className={styles.cellLabel}>Issues</span>
+        <span className={styles.cellLabel}>Flags</span>
         <span className={styles.cellContent}>
           {highestFlag(stageStatus) ? (
             <InfoPod>
