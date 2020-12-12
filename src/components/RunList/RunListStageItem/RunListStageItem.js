@@ -22,6 +22,44 @@ function RunListStageItem(props) {
     props.setActiveStage(stageNum);
   };
 
+  const highestFlag = function (stageStatus) {
+    if (stageStatus.blockerActive) {
+      return "blocker";
+    }
+    if (stageStatus.issueActive) {
+      return "issue";
+    }
+    if (stageStatus.noteActive) {
+      return "note";
+    }
+    return false;
+  };
+
+  const flagFlags = function (stageStatus, highestFlag) {
+    let flagArr = [];
+
+    if (stageStatus.noteActive && highestFlag !== "note") {
+      flagArr.push(
+        <StatusPodItem
+          key="note"
+          statusField="note"
+          stageStatus={stageStatus}
+        />
+      );
+    }
+    if (stageStatus.issueActive && highestFlag !== "issue") {
+      flagArr.push(
+        <StatusPodItem
+          key="issue"
+          statusField="issue"
+          stageStatus={stageStatus}
+        />
+      );
+    }
+
+    return flagArr;
+  };
+
   return (
     <ul className={styles.line}>
       <li
@@ -92,28 +130,19 @@ function RunListStageItem(props) {
       <li className={`${styles.lineItem} ${props.columns[5].className}`}>
         <span className={styles.cellLabel}>Issues</span>
         <span className={styles.cellContent}>
-          <InfoPod>
-            {stageStatus.blockerActive ? (
+          {highestFlag(stageStatus) ? (
+            <InfoPod>
               <InfoPodSection
-                flags={[
-                  <StatusPodItem
-                    key="issue"
-                    statusField="issue"
-                    stageStatus={stageStatus}
-                  />,
-                ]}
+                flags={flagFlags(stageStatus, highestFlag(stageStatus))}
+                layout="vert"
               >
                 <StatusPodItem
-                  statusField="blocker"
+                  statusField={highestFlag(stageStatus)}
                   stageStatus={stageStatus}
                 />
               </InfoPodSection>
-            ) : (
-              <InfoPodSection>
-                <StatusPodItem statusField="issue" stageStatus={stageStatus} />
-              </InfoPodSection>
-            )}
-          </InfoPod>
+            </InfoPod>
+          ) : null}
         </span>
       </li>
       <li className={`${styles.lineItem} ${props.columns[6].className}`}>

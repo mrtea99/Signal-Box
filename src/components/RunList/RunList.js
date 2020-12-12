@@ -25,7 +25,7 @@ function RunList(props) {
       { copy: "Progress", className: styles.colProgress },
       { copy: "User", className: styles.colSingle },
       { copy: "QA", className: styles.colSingle },
-      { copy: "Issues", className: styles.colSingle },
+      { copy: "Flags", className: styles.colSingle },
       { copy: "Open", className: styles.colIconButton },
     ];
   }

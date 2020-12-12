@@ -49,7 +49,7 @@ function FlagOpener(props) {
       title="Raise Flag"
       handleSubmit={handleSubmit}
       handleCancel={handleCancel}
-      triggerCopy={"Raise Flag"}
+      triggerCopy={"Flag Problem"}
       buttonAttrs={{ fillWidth: true, color: "issue", icon: "issue" }}
     >
       <form>
