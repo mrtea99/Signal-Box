@@ -4,6 +4,8 @@ import Button from "../Button/Button.js";
 import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
 import FormItem from "../FormItem/FormItem.js";
 
+import styles from "./RunInfoForm.module.css";
+
 const productTemplates = [
   {
     baseName: "Soap Base",
@@ -72,11 +74,11 @@ function RunInfoForm(props) {
       return null;
     }
 
-    const currentProductName = thisRunData.productInfo.productName;
+    const currentProductSKU = thisRunData.productInfo.productSKU;
     const templateIndex = productTemplates.findIndex(
-      (obj) => obj.productName === currentProductName
+      (obj) => obj.productSKU === currentProductSKU
     );
-    return templateIndex.toString();
+    return templateIndex;
   });
 
   const [batchQuantity, setBatchQuantity] = React.useState(() => {
@@ -101,32 +103,67 @@ function RunInfoForm(props) {
 
   return (
     <form>
-      <FormItem
-        label="Product:"
-        type="select"
-        updateHandler={(value) => {
-          setTemplate(value);
-        }}
-        value={currentTemplate === null ? "default" : currentTemplate}
-      >
-        <option value="default" disabled="disabled">
-          Choose a template
-        </option>
-        {productTemplates.map((template, index) => (
-          <option key={template.productName} value={index}>
-            {template.productName}
-          </option>
-        ))}
-      </FormItem>
-      <FormItem
-        label="Batch Quantity:"
-        type="number"
-        updateHandler={(value) => {
-          setBatchQuantity(parseInt(value));
-        }}
-        value={batchQuantity}
-        min="0"
-      />
+      <div className={styles.formMain}>
+        <div className={styles.userFields}>
+          <FormItem
+            label="Product:"
+            type="select"
+            updateHandler={(value) => {
+              setTemplate(parseInt(value));
+            }}
+            value={currentTemplate === null ? "default" : currentTemplate}
+          >
+            <option value="default" disabled="disabled">
+              Choose a template
+            </option>
+            {productTemplates.map((template, index) => (
+              <option key={template.productName} value={index}>
+                {template.productName}
+              </option>
+            ))}
+          </FormItem>
+          {productTemplates[currentTemplate] ? (
+            <>
+              <FormItem
+                label="Batch Quantity:"
+                type="number"
+                updateHandler={(value) => {
+                  setBatchQuantity(parseInt(value));
+                }}
+                value={batchQuantity}
+                min="0"
+              />
+              <p>
+                Unit Quantity:{" "}
+                {batchQuantity *
+                  productTemplates[currentTemplate].unitsPerBatch}
+              </p>
+            </>
+          ) : null}
+        </div>
+
+        <div className={styles.readOnly}>
+          <h3 className={styles.readOnlyTitle}>Product Info:</h3>
+          <ul>
+            {productTemplates[currentTemplate] ? (
+              <>
+                <li>
+                  <strong>SKU</strong>:{" "}
+                  {productTemplates[currentTemplate].productSKU}
+                </li>
+                <li>
+                  <strong>Base Name</strong>:{" "}
+                  {productTemplates[currentTemplate].baseName}
+                </li>
+                <li>
+                  <strong>Base Type</strong>:{" "}
+                  {productTemplates[currentTemplate].baseType}
+                </li>
+              </>
+            ) : null}
+          </ul>
+        </div>
+      </div>
       <ButtonSpacer align="right">
         <Button
           onClick={(e) => {

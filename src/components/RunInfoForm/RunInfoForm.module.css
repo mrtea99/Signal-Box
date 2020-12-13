@@ -1,0 +1,22 @@
+.formMain {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 1rem;
+}
+
+.userFields, .readOnly {
+  min-width: 20rem;
+}
+
+.userFields {
+  margin-right: 1rem;
+}
+
+.readOnly {
+  background-color: var(--color-fg);
+  padding: 0.5rem;
+}
+
+.readOnlyTitle {
+  margin: 0;
+}
