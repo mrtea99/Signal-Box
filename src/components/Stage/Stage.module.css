@@ -70,14 +70,3 @@
     min-height: 16rem;
   }
 }
-
-/* Temp */
-.sessionControl {
-  order: 1;
-}
-.stageControl {
-  order: 3;
-}
-.sessionView {
-  order: 2;
-}

@@ -125,7 +125,8 @@ function Stage(props) {
         difficulty = defaultDifficulty;
     }
 
-    difficulty = difficulty && difficulty.length ? difficulty : defaultDifficulty;
+    difficulty =
+      difficulty && difficulty.length ? difficulty : defaultDifficulty;
 
     return difficulty;
   };
@@ -141,6 +142,31 @@ function Stage(props) {
         </h4>
       </header>
       <div className={styles.sessionHolder}>
+        <div className={styles.sessionControl}>
+          <SessionControl
+            addSession={addSession}
+            updateSession={updateSession}
+            endSession={endSession}
+            thisStage={props.thisStage}
+            activeSessionData={activeSessionData}
+            activeUser={props.activeUser}
+            stageActive={stageActive}
+            thisRunData={props.thisRunData}
+          />
+        </div>
+        <div className={styles.sessionView}>
+          {activeSessionData ? (
+            <SessionDuring
+              key="active"
+              activeSessionData={activeSessionData}
+              updateSession={updateSession}
+              thisStage={props.thisStage}
+              thisRunData={props.thisRunData}
+            />
+          ) : (
+            <SessionDuring key="placeholder" />
+          )}
+        </div>
         <div className={styles.stageControl}>
           <StageStatus
             runData={props.thisRunData}
@@ -159,31 +185,6 @@ function Stage(props) {
             updateRunData={props.updateRunData}
             addSession={addSession}
             activeUser={props.activeUser}
-          />
-        </div>
-        <div className={styles.sessionView}>
-          {activeSessionData ? (
-            <SessionDuring
-              key="active"
-              activeSessionData={activeSessionData}
-              updateSession={updateSession}
-              thisStage={props.thisStage}
-              thisRunData={props.thisRunData}
-            />
-          ) : (
-            <SessionDuring key="placeholder" />
-          )}
-        </div>
-        <div className={styles.sessionControl}>
-          <SessionControl
-            addSession={addSession}
-            updateSession={updateSession}
-            endSession={endSession}
-            thisStage={props.thisStage}
-            activeSessionData={activeSessionData}
-            activeUser={props.activeUser}
-            stageActive={stageActive}
-            thisRunData={props.thisRunData}
           />
         </div>
       </div>
