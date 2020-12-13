@@ -19,11 +19,11 @@ function CheckOpenerForm(props) {
       <FormItem
         type="select"
         label="Asignee:"
-        value={props.formData.checker}
+        value={props.formData.secondaryUser}
         updateHandler={(value) =>
           props.setFormData({
             ...props.formData,
-            checker: parseInt(value),
+            secondaryUser: parseInt(value),
           })
         }
       >

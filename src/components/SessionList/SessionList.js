@@ -116,7 +116,7 @@ function SessionList(props) {
       case "qa":
         return "QA Check";
       case "flag":
-        return "Flag: " + translatePriority(session.amount, true)
+        return "Flag: " + translatePriority(session.amount, true);
       case "deactivate":
         return "Complete Stage";
       case "activate":
@@ -198,7 +198,7 @@ function SessionList(props) {
       copy: "Defective",
       className: `${styles.colItemsBad} ${styles.colFixed}`,
     },
-    { copy: "Creator", className: `${styles.colTech} ${styles.colFixed}` },
+    { copy: "Users", className: `${styles.colTech} ${styles.colFixed}` },
     { copy: "Action", className: `${styles.colAction} ${styles.colFixed}` },
     { copy: "Info", className: `${styles.colInfo} ${styles.colFixed}` },
   ];
@@ -216,7 +216,10 @@ function SessionList(props) {
             <ul
               className={`${styles.itemRow} ${
                 styles[
-                  "itemRow--" + (session.type === "flag" ? translatePriority(session.amount, false) : session.type)
+                  "itemRow--" +
+                    (session.type === "flag"
+                      ? translatePriority(session.amount, false)
+                      : session.type)
                 ]
               } ${
                 session.endTime
@@ -254,7 +257,9 @@ function SessionList(props) {
               >
                 <span className={styles.cellLabel}>{itemName}:</span>
                 <span className={styles.cellContent}>
-                  {session.amount === undefined || session.amount === null || session.type === "flag"
+                  {session.amount === undefined ||
+                  session.amount === null ||
+                  session.type === "flag"
                     ? "-"
                     : session.amount}
                 </span>
@@ -277,6 +282,11 @@ function SessionList(props) {
                   {/* {session.user} */}
                   {/* todo get actual name */}
                   {session.user === 1 ? "Jesus Sandoval" : "Amanda Kezios"}
+                  {session.secondaryUser
+                    ? " / " + (session.user === 1
+                      ? "Jesus Sandoval"
+                      : "Amanda Kezios")
+                    : null}
                 </span>
               </li>
               <li
@@ -320,9 +330,7 @@ function SessionList(props) {
                       : formatActivity(session.type)}
                   </h3>
                   <p>Session ID: {session.sessionUid}</p>
-                  <p>
-                    Resolved: {session.endTime ? "Resolved" : "Unresolved"}
-                  </p>
+                  <p>Resolved: {session.endTime ? "Resolved" : "Unresolved"}</p>
                   <p>Start Time: {formatDateTime(session.startTime)}</p>
                   {session.endTime ? (
                     <p>End Time: {formatDateTime(session.startTime)}</p>
