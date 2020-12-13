@@ -3,9 +3,10 @@ import React from "react";
 import FormItem from "../../FormItem/FormItem.js";
 import Timer from "../../Timer/Timer.js";
 import Stopwatch from "./Stopwatch/Stopwatch.js";
+import Button from "../../Button/Button.js";
 
 import styles from "./SessionDuring.module.css";
-import Button from "../../Button/Button.js";
+import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
 
 function SessionDuring(props) {
   // After Statuses
@@ -41,14 +42,18 @@ function SessionDuring(props) {
     return expiryDate.getTime();
   };
 
+  const showRecipe = function () {
+    return (
+      props.thisStage === 1 ||
+      props.activeSessionData.activity.name === "Create Blend / Base"
+    );
+  };
+
   const readOnlyFields = function () {
     switch (props.thisStage) {
       case 0:
       case 1:
-        if (
-          props.thisStage === 1 ||
-          props.activeSessionData.activity.name === "Create Blend / Base"
-        ) {
+        if (showRecipe()) {
           return (
             <>
               <li className={styles.rolKey}>
@@ -57,12 +62,12 @@ function SessionDuring(props) {
                   props.thisRunData.batchQuantity}
                 ozm
               </li>
-              <li className={styles.rolKey}>
+              {/* <li className={styles.rolKey}>
                 Link To Recipe:{" "}
                 <Button href={props.thisRunData.productInfo.recipeLink}>
                   Recipe
                 </Button>
-              </li>
+              </li> */}
             </>
           );
         } else {
@@ -170,9 +175,21 @@ function SessionDuring(props) {
               ) : null}
               {readOnlyFields()}
             </ul>
-            <Stopwatch>
-              <Timer startTime={props.activeSessionData.startTime} />
-            </Stopwatch>
+            <div>
+              <ButtonSpacer direction="vert">
+                <Stopwatch>
+                  <Timer startTime={props.activeSessionData.startTime} />
+                </Stopwatch>
+                {showRecipe() ? (
+                  <Button
+                    href={props.thisRunData.productInfo.recipeLink}
+                    fillWidth
+                  >
+                    Recipe
+                  </Button>
+                ) : null}
+              </ButtonSpacer>
+            </div>
           </div>
 
           <div className={styles.userInput}>
