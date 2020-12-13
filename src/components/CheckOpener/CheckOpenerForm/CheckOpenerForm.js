@@ -1,6 +1,7 @@
 import React from "react";
 
 import FormItem from "../../FormItem/FormItem.js";
+import UserSelect from "../../FormItem/UserSelect/UserSelect.js";
 
 function CheckOpenerForm(props) {
   return (
@@ -16,20 +17,17 @@ function CheckOpenerForm(props) {
           });
         }}
       />
-      <FormItem
-        type="select"
-        label="Asignee:"
-        value={props.formData.secondaryUser}
+      <UserSelect
+        label="Assistor:"
+        ident={"sess-assistor-stage-" + props.thisStage}
         updateHandler={(value) =>
           props.setFormData({
             ...props.formData,
-            secondaryUser: parseInt(value),
+            secondaryUser: value,
           })
         }
-      >
-        <option value="1">User 1</option>
-        <option value="2">User 2</option>
-      </FormItem>
+        value={props.formData.secondaryUser}
+      />
       <FormItem
         type="select"
         label="Timeframe:"

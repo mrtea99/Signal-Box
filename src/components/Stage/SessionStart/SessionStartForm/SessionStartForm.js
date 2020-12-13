@@ -4,6 +4,7 @@ import Button from "../../../Button/Button.js";
 import ButtonSpacer from "../../../Button/ButtonSpacer/ButtonSpacer.js";
 import FormItem from "../../../FormItem/FormItem.js";
 import TemperatureField from "../../../FormItem/TemperatureField/TemperatureField.js";
+import UserSelect from "../../../FormItem/UserSelect/UserSelect.js";
 
 const activityList = [
   [
@@ -18,7 +19,10 @@ const activityList = [
   [
     { name: "Materials / Equip Prep", fields: [] },
     { name: "Manufacturing", fields: ["atmos", "amounts", "weight", "qa"] },
-    { name: "Create Blend / Base", fields: ["atmos", "amounts", "weight", "qa"] },
+    {
+      name: "Create Blend / Base",
+      fields: ["atmos", "amounts", "weight", "qa"],
+    },
     { name: "Cooling", fields: ["atmos"] },
     { name: "Curing", fields: ["atmos"] },
     { name: "Finishing Touches", fields: [] },
@@ -55,6 +59,8 @@ function SessionStartForm(props) {
   const [temperature, setTemperature] = React.useState(70);
   // Room humidity (manu and cool)
   const [humidity, setHumidity] = React.useState(50);
+  //Assistor
+  const [assistor, setAssistor] = React.useState(null);
 
   const handleNewClick = function (e) {
     e.preventDefault();
@@ -68,6 +74,7 @@ function SessionStartForm(props) {
       endTime: null,
       activity: activityData,
       user: props.activeUser,
+      secondaryUser: assistor,
     };
 
     if (props.thisStage === 1) {
@@ -119,6 +126,12 @@ function SessionStartForm(props) {
           </option>
         ))}
       </FormItem>
+      <UserSelect
+        label="Assistor:"
+        ident={"sess-assistor-stage-" + props.thisStage}
+        updateHandler={setAssistor}
+        value={assistor}
+      />
       {activityData.fields && activityData.fields.includes("atmos") ? (
         <>
           <TemperatureField
