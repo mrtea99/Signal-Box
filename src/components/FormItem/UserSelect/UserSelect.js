@@ -14,9 +14,11 @@ const userData = [
 ];
 
 function UserSelect(props) {
+  const { excludedUsers, ...itemProps } = props;
+
   return (
     <FormItem
-      {...props}
+      {...itemProps}
       type="select"
       value={props.value ? props.value : ""}
       updateHandler={(value) => {
@@ -30,11 +32,13 @@ function UserSelect(props) {
       <option key="default" value="">
         None
       </option>
-      {userData.map((user) => (
-        <option key={user.uid} value={user.uid}>
-          {user.displayName}
-        </option>
-      ))}
+      {userData.map((user) =>
+        excludedUsers && excludedUsers.includes(user.uid) ? null : (
+          <option key={user.uid} value={user.uid}>
+            {user.displayName}
+          </option>
+        )
+      )}
     </FormItem>
   );
 }

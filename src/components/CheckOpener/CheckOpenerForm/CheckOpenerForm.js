@@ -18,7 +18,7 @@ function CheckOpenerForm(props) {
         }}
       />
       <UserSelect
-        label="Assistor:"
+        label="Checker:"
         ident={"sess-assistor-stage-" + props.thisStage}
         updateHandler={(value) =>
           props.setFormData({

@@ -27,7 +27,7 @@ function App() {
   const savedActiveStage = () =>
     parseInt(window.localStorage.getItem("activeStage"), 10) || 0;
   const savedActiveUser = () =>
-    parseInt(window.localStorage.getItem("activeUser"), 10) || 1;
+    window.localStorage.getItem("activeUser") || "1";
 
   const [runData, setRunData] = React.useState(savedRunData);
   const [currentRunUid, setCurrentRunUid] = React.useState(savedCurrentRunUid);

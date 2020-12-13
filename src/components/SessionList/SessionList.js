@@ -281,9 +281,9 @@ function SessionList(props) {
                 <span className={styles.cellContent}>
                   {/* {session.user} */}
                   {/* todo get actual name */}
-                  {session.user === 1 ? "Jesus Sandoval" : "Amanda Kezios"}
+                  {session.user === "1" ? "Jesus Sandoval" : "Amanda Kezios"}
                   {session.secondaryUser
-                    ? " / " + (session.user === 1
+                    ? " / " + (session.secondaryUser === "1"
                       ? "Jesus Sandoval"
                       : "Amanda Kezios")
                     : null}

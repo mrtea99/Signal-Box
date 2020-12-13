@@ -10,7 +10,7 @@ function UserSwitcher(props) {
       <select
         type="select"
         value={props.activeUser}
-        onChange={(e) => props.setActiveUser(parseInt(e.target.value))}
+        onChange={(e) => props.setActiveUser(e.target.value)}
         className={styles.select}
       >
         <option value="1">Jesus Sandoval</option>

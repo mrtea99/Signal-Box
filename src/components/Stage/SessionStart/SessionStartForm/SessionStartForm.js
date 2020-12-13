@@ -131,6 +131,7 @@ function SessionStartForm(props) {
         ident={"sess-assistor-stage-" + props.thisStage}
         updateHandler={setAssistor}
         value={assistor}
+        excludedUsers={[props.activeUser]}
       />
       {activityData.fields && activityData.fields.includes("atmos") ? (
         <>
