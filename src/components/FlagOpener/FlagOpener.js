@@ -18,6 +18,7 @@ function FlagOpener(props) {
       user: props.activeUser,
       amount: priority,
       notes: description,
+      status: "active",
     };
 
     props.addSession(newSession, props.thisStage);

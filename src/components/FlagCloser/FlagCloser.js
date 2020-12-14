@@ -5,12 +5,12 @@ import FormItem from "../FormItem/FormItem.js";
 
 function FlagCloser(props) {
   const [description, setDescription] = React.useState("");
-  const [resolved, setResolved] = React.useState(false);
+  const [status, setStatus] = React.useState(props.session.status);
   const [priority, setPriority] = React.useState(props.session.amount);
 
   const handleSubmit = function () {
     const labeledDescription =
-      (resolved ? "Fix" : "Update") +
+      (status === "resolved" ? "Fix" : "Update") +
       " [" +
       Date.now() +
       " " +
@@ -22,7 +22,7 @@ function FlagCloser(props) {
         ? props.session.notes + "\n" + labeledDescription
         : labeledDescription;
 
-    if (resolved) {
+    if (status === "resolved") {
       props.endSession(
         { notes: newNote, amount: priority },
         props.thisStage,
@@ -30,7 +30,7 @@ function FlagCloser(props) {
       );
     } else {
       props.updateSession(
-        { notes: newNote, amount: priority },
+        { notes: newNote, amount: priority, status: status },
         props.thisStage,
         props.session.sessionUid
       );
@@ -41,7 +41,7 @@ function FlagCloser(props) {
 
   const handleCancel = function () {
     setDescription("");
-    setResolved(false);
+    setStatus(props.session.status);
     setPriority(props.session.amount);
   };
 
@@ -88,17 +88,7 @@ function FlagCloser(props) {
           </div>
 
           {/* <FormItem
-            label="Blocker"
-            type="checkbox"
-            ident="fix-blocker"
-            updateHandler={(value) => {
-              value ? setPriority(1) : setPriority(2) ;
-            }}
-            checked={priority === 2}
-          /> */}
-
-          <FormItem
-            label="Priority"
+            label="Priority:"
             type="select"
             ident="flag-blocker"
             updateHandler={(value) => {
@@ -109,9 +99,21 @@ function FlagCloser(props) {
             <option value="0">Note</option>
             <option value="1">Issue</option>
             <option value="2">Blocker</option>
-          </FormItem>
+          </FormItem> */}
 
           <FormItem
+            label="Priority:"
+            type="toggleButton"
+            ident="flag-priority"
+            itemLabels={["Note", "Issue", "Blocker"]}
+            itemValues={["0", "1", "2"]}
+            value={priority.toString()}
+            updateHandler={(value) => {
+              setPriority(parseInt(value));
+            }}
+          />
+
+          {/* <FormItem
             label="Resolved"
             type="checkbox"
             ident="fix-resolved"
@@ -119,10 +121,22 @@ function FlagCloser(props) {
               setResolved(value);
             }}
             value={resolved}
+          /> */}
+
+          <FormItem
+            label="Status:"
+            type="toggleButton"
+            ident="flag-status"
+            itemLabels={["Active", "Waiting", "Resolved"]}
+            itemValues={["active", "waiting", "resolved"]}
+            value={status}
+            updateHandler={(value) => {
+              setStatus(value);
+            }}
           />
 
           <FormItem
-            label={resolved ? "Fix Description:" : "Update Note:"}
+            label={status === "resolved" ? "Fix Description:" : "Update Note:"}
             type="textarea"
             ident="flag-note"
             updateHandler={(value) => {
