@@ -17,9 +17,6 @@ function SiteSettings(props) {
     i18n.changeLanguage(newLang);
   };
 
-  const [siteTheme, setSiteTheme] = React.useState("dark");
-  // const [viewMode, setViewMode] = React.useState("full");
-
   return (
     <div className={styles.wrapper}>
       <h3 className={styles.title}>Site Settings:</h3>
@@ -71,8 +68,8 @@ function SiteSettings(props) {
           ident="site-theme"
           itemLabels={["Dark", "Light"]}
           itemValues={["dark", "light"]}
-          value={siteTheme}
-          updateHandler={setSiteTheme}
+          value={props.siteTheme}
+          updateHandler={props.setSiteTheme}
         />
         {/* View mode */}
         <FormItem

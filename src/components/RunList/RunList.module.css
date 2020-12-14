@@ -10,7 +10,7 @@
 
 .itemRow {
   background-color: var(--color-fg);
-  border-top: 0.5rem solid var(--color-bg);
+  margin-top: 0.5rem;
 }
 
 @media (min-width: 768px) {

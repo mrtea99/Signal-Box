@@ -101,6 +101,12 @@ function App() {
     window.localStorage.setItem("unitSystem", unitSystem);
   }, [unitSystem]);
 
+  const savesSiteTheme = () => window.localStorage.getItem("siteTheme") || "dark";
+  const [siteTheme, setSiteTheme] = React.useState(savesSiteTheme);
+  React.useEffect(() => {
+    window.localStorage.setItem("siteTheme", siteTheme);
+  }, [siteTheme]);
+
   const savedViewMode = () => window.localStorage.getItem("viewMode") || "full";
   const [viewMode, setViewMode] = React.useState(savedViewMode);
   React.useEffect(() => {
@@ -117,9 +123,10 @@ function App() {
       timeFormat={timeFormat}
       dateFormat={dateFormat}
       unitSystem={unitSystem}
+      siteTheme={siteTheme}
       viewMode={viewMode}
     >
-      <div className={styles.siteContainer}>
+      <div className={`${styles.siteContainer} ${siteTheme === "light" ? styles.siteContainerLight : null}`}>
         <SiteHeader
           activeUser={activeUser}
           setActiveUser={setActiveUser}
@@ -137,6 +144,8 @@ function App() {
               setDateFormat={setDateFormat}
               unitSystem={unitSystem}
               setUnitSystem={setUnitSystem}
+              siteTheme={siteTheme}
+              setSiteTheme={setSiteTheme}
               viewMode={viewMode}
               setViewMode={setViewMode}
             />
