@@ -29,15 +29,17 @@ function StageNav(props) {
             >
               {stage}
             </span>
-
-            <span className={styles.status}>
-              <StageStatus
-                runData={props.thisRunData}
-                stageNum={index}
-                activeUser={props.activeUser}
-                label={props.sessionLabels}
-              />
-            </span>
+            {props.hideStatus}
+            {props.hideStatus ? null : (
+              <span className={styles.status}>
+                <StageStatus
+                  runData={props.thisRunData}
+                  stageNum={index}
+                  activeUser={props.activeUser}
+                  label={props.sessionLabels}
+                />
+              </span>
+            )}
           </button>
         </li>
       ))}

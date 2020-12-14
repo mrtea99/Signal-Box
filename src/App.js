@@ -101,6 +101,12 @@ function App() {
     window.localStorage.setItem("unitSystem", unitSystem);
   }, [unitSystem]);
 
+  const savedViewMode = () => window.localStorage.getItem("viewMode") || "full";
+  const [viewMode, setViewMode] = React.useState(savedViewMode);
+  React.useEffect(() => {
+    window.localStorage.setItem("viewMode", viewMode);
+  }, [viewMode]);
+
   const [runFilters, setRunFilters] = React.useState({
     showUser: [],
     showUnresolvedQa: false,
@@ -111,6 +117,7 @@ function App() {
       timeFormat={timeFormat}
       dateFormat={dateFormat}
       unitSystem={unitSystem}
+      viewMode={viewMode}
     >
       <div className={styles.siteContainer}>
         <SiteHeader
@@ -130,6 +137,8 @@ function App() {
               setDateFormat={setDateFormat}
               unitSystem={unitSystem}
               setUnitSystem={setUnitSystem}
+              viewMode={viewMode}
+              setViewMode={setViewMode}
             />
           </SiteSidebar>
           <main className={styles.siteContent}>

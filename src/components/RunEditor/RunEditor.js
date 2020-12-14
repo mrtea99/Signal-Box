@@ -6,12 +6,16 @@ import StageNav from "../StageNav/StageNav.js";
 import StageOverview from "../StageOverview/StageOverview.js";
 import Modal from "../Modal/Modal.js";
 import Button from "../Button/Button.js";
-
-import styles from "./RunEditor.module.css";
 import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
 import UserSwitcher from "../UserSwitcher/UserSwitcher.js";
 
+import styles from "./RunEditor.module.css";
+
+import ViewModeContext from "../../contexts/ViewModeContext.js";
+
 function RunEditor(props) {
+  const viewMode = React.useContext(ViewModeContext);
+
   const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
 
   const thisRunData = props.runData.find(
@@ -107,6 +111,7 @@ function RunEditor(props) {
                 activeUser={props.activeUser}
                 stageLabels
                 showActive
+                hideStatus={viewMode === "simple"}
               />
 
               <Stage

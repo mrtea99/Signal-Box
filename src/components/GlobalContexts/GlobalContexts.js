@@ -3,13 +3,16 @@ import React from "react";
 import TimeFormatContext from "../../contexts/TimeFormatContext.js";
 import DateFormatContext from "../../contexts/DateFormatContext.js";
 import UnitSystemContext from "../../contexts/UnitSystemContext.js";
+import ViewModeContext from "../../contexts/ViewModeContext.js";
 
 function GlobalContexts(props) {
   return (
     <TimeFormatContext.Provider value={props.timeFormat}>
       <DateFormatContext.Provider value={props.dateFormat}>
         <UnitSystemContext.Provider value={props.unitSystem}>
-          {props.children}
+          <ViewModeContext.Provider value={props.viewMode}>
+            {props.children}
+          </ViewModeContext.Provider>
         </UnitSystemContext.Provider>
       </DateFormatContext.Provider>
     </TimeFormatContext.Provider>

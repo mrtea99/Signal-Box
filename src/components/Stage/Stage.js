@@ -8,7 +8,12 @@ import SessionDuring from "./SessionDuring/SessionDuring.js";
 
 import styles from "./Stage.module.css";
 
+import ViewModeContext from "../../contexts/ViewModeContext.js";
+
 function Stage(props) {
+  const viewMode = React.useContext(ViewModeContext);
+  const simpleMode = viewMode === "simple";
+
   const thisStageData = props.thisRunData["stages"][props.thisStage];
 
   const stageActive = thisStageData.active;
@@ -168,14 +173,16 @@ function Stage(props) {
           )}
         </div>
         <div className={styles.stageControl}>
-          <StageStatus
-            runData={props.thisRunData}
-            stageNum={props.thisStage}
-            label
-            activeUser={props.activeUser}
-            layout="vert"
-            fullWidth
-          />
+          {simpleMode ? null : (
+            <StageStatus
+              runData={props.thisRunData}
+              stageNum={props.thisStage}
+              label
+              activeUser={props.activeUser}
+              layout="vert"
+              fullWidth
+            />
+          )}
           <StageActions
             updateStageActive={updateStageActive}
             thisRunData={props.thisRunData}
@@ -188,13 +195,15 @@ function Stage(props) {
           />
         </div>
       </div>
-      <SessionList
-        thisStage={props.thisStage}
-        thisRunData={props.thisRunData}
-        endSession={endSession}
-        updateSession={updateSession}
-        activeUser={props.activeUser}
-      />
+      {simpleMode ? null : (
+        <SessionList
+          thisStage={props.thisStage}
+          thisRunData={props.thisRunData}
+          endSession={endSession}
+          updateSession={updateSession}
+          activeUser={props.activeUser}
+        />
+      )}
     </section>
   );
 }

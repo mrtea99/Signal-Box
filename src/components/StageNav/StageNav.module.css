@@ -171,6 +171,7 @@
   .btnLabel {
     display: none;
     padding-bottom: 0.3rem;
+    padding-right: 0;
   }
   .showLabel {
     display: block;

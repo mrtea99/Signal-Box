@@ -18,7 +18,7 @@ function SiteSettings(props) {
   };
 
   const [siteTheme, setSiteTheme] = React.useState("dark");
-  const [viewMode, setViewMode] = React.useState("full");
+  // const [viewMode, setViewMode] = React.useState("full");
 
   return (
     <div className={styles.wrapper}>
@@ -74,15 +74,15 @@ function SiteSettings(props) {
           value={siteTheme}
           updateHandler={setSiteTheme}
         />
-        {/* Simple mode */}
+        {/* View mode */}
         <FormItem
           type="toggleButton"
           label="View Mode:"
           ident="site-view-mode"
           itemLabels={["Full", "Simple"]}
           itemValues={["full", "simple"]}
-          value={viewMode}
-          updateHandler={setViewMode}
+          value={props.viewMode}
+          updateHandler={props.setViewMode}
         />
       </form>
     </div>
