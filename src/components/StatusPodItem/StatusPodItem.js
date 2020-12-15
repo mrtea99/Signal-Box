@@ -27,21 +27,20 @@ function StatusPodItem(props) {
   };
 
   const combinedCompletion = function () {
-    if (
-      props.stageStatus.stageStatusName === "ready" ||
-      props.stageStatus.stageStatusName === "started" ||
-      props.stageStatus.stageStatusName === "working" ||
-      props.stageStatus.stageStatusName === "blocked"
-    ) {
-      if (props.stageNum === 0 || props.stageNum === 4) {
-        return props.stageStatus.workTotal;
-      } else {
-        return props.stageStatus.completionPercentage + "%";
-      }
-    }
-
     if (props.stageStatus.stageStatusName === "complete") {
       return <Checkmark className={styles.icon} />;
+    } else {
+      if (
+        props.stageStatus.stageStatusName !== "pending" ||
+        props.stageStatus.workTotal > 0 ||
+        props.stageStatus.completionPercentage > 0
+      ) {
+        if (props.stageNum === 0 || props.stageNum === 4) {
+          return props.stageStatus.workTotal;
+        } else {
+          return props.stageStatus.completionPercentage + "%";
+        }
+      }
     }
 
     return "";
