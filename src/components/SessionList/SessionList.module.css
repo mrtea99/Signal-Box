@@ -79,6 +79,8 @@
 }
 .contentItem.colActivity {
   justify-content: center;
+  font-weight: bold;
+  font-size: 1.1em;
 }
 
 @media (min-width: 768px) {

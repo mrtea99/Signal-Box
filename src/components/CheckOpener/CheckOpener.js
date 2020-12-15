@@ -4,13 +4,9 @@ import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import CheckOpenerForm from "./CheckOpenerForm/CheckOpenerForm.js";
 
 function CheckOpener(props) {
-  // const [description, setDescription] = React.useState("");
-  // const [checker, setChecker] = React.useState(1);
-  // const [timeframe, setTimeframe] = React.useState("now");
-
   const [formData, setFormData] = React.useState({
     notes: "",
-    checker: 1,
+    checker: null,
     timeframe: "now",
   });
 

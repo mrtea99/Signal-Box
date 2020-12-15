@@ -41,7 +41,7 @@ function SessionEndForm(props) {
 
   const [qaFormData, setQaFormData] = React.useState({
     notes: "",
-    checker: 1,
+    checker: null,
     timeframe: "now",
   });
 
@@ -98,6 +98,7 @@ function SessionEndForm(props) {
         return "Weight";
     }
 
+    //todo abstract metric conversion
     return `Average ${itemName} Weight (Target: ${
       unitSystem === "metric"
         ? Math.round(targetWeight / 0.035274) + "g"
