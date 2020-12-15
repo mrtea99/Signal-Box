@@ -101,8 +101,8 @@ function SessionEndForm(props) {
     //todo abstract metric conversion
     return `Average ${itemName} Weight (Target: ${
       unitSystem === "metric"
-        ? Math.round(targetWeight / 0.035274) + "g"
-        : targetWeight + "ozm"
+        ? Math.round(targetWeight / 0.035274) + " g"
+        : targetWeight + " ozm"
     })`;
   };
 

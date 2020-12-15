@@ -7,6 +7,8 @@ import Button from "../../Button/Button.js";
 
 import styles from "./SessionDuring.module.css";
 import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
+import DataList from "../../DataList/DataList.js";
+import DataListItem from "../../DataList/DataListItem/DataListItem.js";
 
 function SessionDuring(props) {
   // After Statuses
@@ -55,94 +57,96 @@ function SessionDuring(props) {
       case 1:
         if (showRecipe()) {
           return (
-            <>
-              <li className={styles.rolKey}>
-                Target Total Weight:{" "}
-                {props.thisRunData.productInfo.batchWeight *
-                  props.thisRunData.batchQuantity}
-                ozm
-              </li>
-              {/* <li className={styles.rolKey}>
-                Link To Recipe:{" "}
-                <Button href={props.thisRunData.productInfo.recipeLink}>
-                  Recipe
-                </Button>
-              </li> */}
-            </>
+            <DataListItem
+              dataKey="Target Total Weight"
+              dataValue={`${
+                props.thisRunData.productInfo.batchWeight *
+                props.thisRunData.batchQuantity
+              } ozm`}
+            />
           );
         } else {
           return (
             <>
-              <li className={styles.rolKey}>Shopify Inventory: TODO</li>
-              <li className={styles.rolKey}>
-                Difficulty:{" "}
-                <ul>
-                  <li>Prep: {props.thisRunData.productInfo.prepDifficulty}</li>
-                  <li>
-                    Craft:{" "}
-                    {props.thisRunData.productInfo.manufacturingDifficulty}
-                  </li>
-                  <li>
-                    Package: {props.thisRunData.productInfo.packagingDifficulty}
-                  </li>
-                  <li>
-                    Label: {props.thisRunData.productInfo.labelingDifficulty}
-                  </li>
-                  {/* <li>
-                    Stock: {props.thisRunData.productInfo.stockingDifficulty}
-                  </li> */}
-                </ul>
-              </li>
+              <DataListItem dataKey="Shopify Inventory" dataValue="TODO" />
+              <DataListItem
+                dataKey="Difficulty"
+                dataValue={
+                  <ul>
+                    <li>
+                      Prep: {props.thisRunData.productInfo.prepDifficulty}
+                    </li>
+                    <li>
+                      Craft:{" "}
+                      {props.thisRunData.productInfo.manufacturingDifficulty}
+                    </li>
+                    <li>
+                      Package:{" "}
+                      {props.thisRunData.productInfo.packagingDifficulty}
+                    </li>
+                    <li>
+                      Label: {props.thisRunData.productInfo.labelingDifficulty}
+                    </li>
+                  </ul>
+                }
+              />
             </>
           );
         }
       case 2:
         return (
           <>
-            <li className={styles.rolKey}>
-              Target Unit Quantity:{" "}
-              {props.thisRunData.consignedManufacturing *
-                props.thisRunData.productInfo.unitsPerBatch}
-            </li>
-            <li className={styles.rolKey}>
-              Target Unit Weight: {props.thisRunData.productInfo.unitWeight} ozm
-            </li>
+            <DataListItem
+              dataKey="Target Unit Quantity"
+              dataValue={
+                props.thisRunData.consignedManufacturing *
+                props.thisRunData.productInfo.unitsPerBatch
+              }
+            />
+            <DataListItem
+              dataKey="Target Unit Weight"
+              dataValue={`${props.thisRunData.productInfo.unitWeight} ozm`}
+            />
           </>
         );
       case 3:
         return (
           <>
-            <li className={styles.rolKey}>
-              Target Unit Quantity: {props.thisRunData.consignedPackaging}
-            </li>
-            <li className={styles.rolKey}>
-              Expiration Date:{" "}
-              {expiryCalc(
+            <DataListItem
+              dataKey="Target Unit Quantity"
+              dataValue={props.thisRunData.consignedPackaging}
+            />
+            <DataListItem
+              dataKey="Expiration Date"
+              dataValue={expiryCalc(
                 //needs to be month plus one
                 props.thisRunData.stages[1].sessions[0].startTime,
                 props.thisRunData.productInfo.expirationDuration
               )}
-            </li>
-            <li className={styles.rolKey}>
-              Batch ID: {props.thisRunData.runId}
-            </li>
+            />
+            <DataListItem
+              dataKey="Run ID"
+              dataValue={props.thisRunData.runId}
+            />
           </>
         );
       case 4:
         return (
           <>
-            <li className={styles.rolKey}>
-              Total Units: {props.thisRunData.consignedLabeling}
-            </li>
-            {/* <li className={styles.rolKey}>Wicker Park Stock Amount:</li> */}
-            <li className={styles.rolKey}>
-              Warehouse Storage Location:{" "}
-              {props.thisRunData.productInfo.storageLocation}
-            </li>
-            <li className={styles.rolKey}>
-              Shopify sales channel availability: TODO
-            </li>
-            <li className={styles.rolKey}>Shopify inventory: TODO</li>
+            <DataListItem
+              dataKey="Total Units"
+              dataValue={props.thisRunData.consignedLabeling}
+            />
+            <DataListItem dataKey="Wicker Park Stock Amount" dataValue="TODO" />
+            <DataListItem
+              dataKey="Warehouse Storage Location"
+              dataValue={props.thisRunData.productInfo.storageLocation}
+            />
+            <DataListItem
+              dataKey="Shopify Sales Channel Availability"
+              dataValue="TODO"
+            />
+            <DataListItem dataKey="Shopify inventory" dataValue="TODO" />
           </>
         );
       default:
@@ -158,23 +162,9 @@ function SessionDuring(props) {
             {props.activeSessionData.activity.name} Session
           </h4>
           <div className={styles.readOnly}>
-            <ul className={styles.readOnlyList}>
-              {/* <li className={styles.rolKey}>
-                Start Time: {props.activeSessionData.startTime}
-              </li> */}
-              {/* <li className={styles.rolKey}>
-            Activity: {props.activeSessionData.activity.name}
-          </li> */}
-              {/* <li className={styles.rolKey}>
-            Difficulty:
-          </li> */}
-              {props.activeSessionData.activity.notes ? (
-                <li className={styles.rolKey}>
-                  Notes: ${props.activeSessionData.activity.notes}
-                </li>
-              ) : null}
+            <DataList className={styles.readOnlyList}>
               {readOnlyFields()}
-            </ul>
+            </DataList>
             <div>
               <ButtonSpacer direction="vert">
                 <Stopwatch>
