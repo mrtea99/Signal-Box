@@ -77,7 +77,7 @@ function SessionDuring(props) {
                       Prep: {props.thisRunData.productInfo.prepDifficulty}
                     </li>
                     <li>
-                      Craft:{" "}
+                      Manufacture:{" "}
                       {props.thisRunData.productInfo.manufacturingDifficulty}
                     </li>
                     <li>

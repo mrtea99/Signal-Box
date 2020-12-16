@@ -13,7 +13,7 @@ function RunList(props) {
   if (props.stageNum === "all") {
     columns = [
       { copy: "Prep" },
-      { copy: "Craft" },
+      { copy: "Manufacture" },
       { copy: "Package" },
       { copy: "Label" },
       { copy: "Stock" },

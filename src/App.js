@@ -177,7 +177,7 @@ function App() {
                 boxes={[
                   "All",
                   "Prep",
-                  "Craft",
+                  "Manufacture",
                   "Package",
                   "Label",
                   "Stock",

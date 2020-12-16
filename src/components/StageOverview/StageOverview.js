@@ -6,7 +6,7 @@ import StageStatus from "../StageStatus/StageStatus.js";
 function StageOverview(props) {
   const stageNameArr = [
     "Preparation",
-    "Manufacturing",
+    "Manufacture",
     "Packaging",
     "Labeling",
     "Stocking",

@@ -35,7 +35,7 @@ function RunEditor(props) {
     props.setActiveStage(0);
   };
 
-  const stageNameArr = ["Prep", "Craft", "Package", "Label", "Stock"];
+  const stageNameArr = ["Prep", "Manufacture", "Package", "Label", "Stock"];
 
   return (
     <>
@@ -94,7 +94,7 @@ function RunEditor(props) {
               {/* <TableHeader
                 items={[
                   { copy: "Prep" },
-                  { copy: "Craft" },
+                  { copy: "Manufacture" },
                   { copy: "Package" },
                   { copy: "Label" },
                   { copy: "Stock" },
