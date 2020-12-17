@@ -15,6 +15,7 @@ import ViewModeContext from "../../contexts/ViewModeContext.js";
 
 function RunEditor(props) {
   const viewMode = React.useContext(ViewModeContext);
+  const simpleMode = viewMode === "simple";
 
   const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
 
@@ -50,10 +51,12 @@ function RunEditor(props) {
               >
                 Close
               </Button>
-              <UserSwitcher
-                activeUser={props.activeUser}
-                setActiveUser={props.setActiveUser}
-              />
+              {simpleMode ? null : (
+                <UserSwitcher
+                  activeUser={props.activeUser}
+                  setActiveUser={props.setActiveUser}
+                />
+              )}
             </header>
             <div>
               <section className={styles.runInfo}>
@@ -62,33 +65,41 @@ function RunEditor(props) {
                   <h3 className={styles.runInfoName}>
                     {thisRunData.productInfo.productName}
                   </h3>
-                  <h4 className={styles.runInfoItem}>
-                    Run ID: {thisRunData.runId}
-                  </h4>
-                </div>
-                <div className={`${styles.runInfoSec} ${styles.runInfoRun}`}>
-                  <div className={styles.infoBox}>
-                    <h4 className={styles.runInfoItem}>Status: In Progress</h4>
+                  {simpleMode ? null : (
                     <h4 className={styles.runInfoItem}>
-                      Batches: {thisRunData.batchQuantity}
+                      Run ID: {thisRunData.runId}
                     </h4>
-                  </div>
-                  <ButtonSpacer>
-                    <Button onClick={handleEditInfoClick}>Info</Button>
-                    <Button
-                      onClick={() => setModalOverviewActive(true)}
-                      icon="details"
-                    />
-                  </ButtonSpacer>
-                  {modalOverviewActive ? (
-                    <Modal title="Run Overview">
-                      <Button onClick={() => setModalOverviewActive(false)}>
-                        Close
-                      </Button>
-                      <StageOverview thisRunData={thisRunData}></StageOverview>
-                    </Modal>
-                  ) : null}
+                  )}
                 </div>
+                {simpleMode ? null : (
+                  <div className={`${styles.runInfoSec} ${styles.runInfoRun}`}>
+                    <div className={styles.infoBox}>
+                      <h4 className={styles.runInfoItem}>
+                        Status: In Progress
+                      </h4>
+                      <h4 className={styles.runInfoItem}>
+                        Batches: {thisRunData.batchQuantity}
+                      </h4>
+                    </div>
+                    <ButtonSpacer>
+                      <Button onClick={handleEditInfoClick}>Info</Button>
+                      <Button
+                        onClick={() => setModalOverviewActive(true)}
+                        icon="details"
+                      />
+                    </ButtonSpacer>
+                    {modalOverviewActive ? (
+                      <Modal title="Run Overview">
+                        <Button onClick={() => setModalOverviewActive(false)}>
+                          Close
+                        </Button>
+                        <StageOverview
+                          thisRunData={thisRunData}
+                        ></StageOverview>
+                      </Modal>
+                    ) : null}
+                  </div>
+                )}
               </section>
 
               {/* <TableHeader
