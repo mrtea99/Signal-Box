@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Button from "../Button/Button.js";
 import UserSwitcher from "../UserSwitcher/UserSwitcher.js";
@@ -28,6 +29,12 @@ function SiteHeader(props) {
       </div>
     </header>
   );
+}
+
+SiteHeader.propTypes = {
+  activeUser: PropTypes.string,
+  setActiveUser: PropTypes.func,
+  setSidebarActive: PropTypes.func
 }
 
 export default SiteHeader;
