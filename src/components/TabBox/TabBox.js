@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import TabList from "./TabList/TabList.js";
 
@@ -18,5 +19,9 @@ function TabBox(props) {
     </div>
   );
 }
+
+TabBox.propTypes = {
+  boxes: PropTypes.array.isRequired,
+};
 
 export default TabBox;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Stage from "../Stage/Stage.js";
 import StageNav from "../StageNav/StageNav.js";
@@ -129,7 +130,6 @@ function RunEditor(props) {
                 key={props.currentRunUid + stageNameArr[props.activeStage]}
                 thisStage={props.activeStage}
                 stageName={stageNameArr[props.activeStage]}
-                activeStage={props.activeStage}
                 thisRunData={thisRunData}
                 currentRunUid={props.currentRunUid}
                 updateRunData={props.updateRunData}
@@ -149,5 +149,17 @@ function RunEditor(props) {
     </>
   );
 }
+
+RunEditor.propTypes = {
+  runData: PropTypes.array.isRequired,
+  currentRunUid: PropTypes.number,
+  setModalActive: PropTypes.func.isRequired,
+  setCurrentRunUid: PropTypes.func.isRequired,
+  setActiveStage: PropTypes.func.isRequired,
+  activeUser: PropTypes.string.isRequired,
+  setActiveUser: PropTypes.func.isRequired,
+  activeStage: PropTypes.number.isRequired,
+  updateRunData: PropTypes.func.isRequired,
+};
 
 export default RunEditor;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import StageStatus from "../StageStatus/StageStatus.js";
 
@@ -46,5 +47,18 @@ function StageNav(props) {
     </ul>
   );
 }
+
+StageNav.propTypes = {
+  buttonCallback: PropTypes.func.isRequired,
+  stageNameArr: PropTypes.array.isRequired,
+  currentRunUid: PropTypes.number,
+  activeStage: PropTypes.number,
+  showActive: PropTypes.bool,
+  stageLabels: PropTypes.bool,
+  sessionLabels: PropTypes.bool,
+  hideStatus: PropTypes.bool,
+  thisRunData: PropTypes.object.isRequired,
+  activeUser: PropTypes.string.isRequired,
+};
 
 export default StageNav;

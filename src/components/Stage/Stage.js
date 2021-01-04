@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import SessionControl from "./SessionControl/SessionControl.js";
 import SessionList from "../SessionList/SessionList.js";
@@ -207,5 +208,16 @@ function Stage(props) {
     </section>
   );
 }
+
+Stage.propTypes = {
+  thisRunData: PropTypes.object.isRequired,
+  thisStage: PropTypes.number.isRequired,
+  activeUser: PropTypes.string.isRequired,
+  currentRunUid: PropTypes.number.isRequired,
+  updateRunData: PropTypes.func.isRequired,
+  stageName: PropTypes.string.isRequired,
+  setCurrentRunUid: PropTypes.func.isRequired,
+  setActiveStage: PropTypes.func.isRequired,
+};
 
 export default Stage;

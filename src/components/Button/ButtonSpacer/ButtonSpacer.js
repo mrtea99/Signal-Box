@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styles from "./ButtonSpacer.module.css";
 
 function ButtonSpacer(props) {
@@ -12,5 +13,10 @@ function ButtonSpacer(props) {
     </div>
   );
 }
+
+ButtonSpacer.propTypes = {
+  direction: PropTypes.oneOf(["vert", "horiz"]),
+  align: PropTypes.oneOf(["left", "right"])
+};
 
 export default ButtonSpacer;

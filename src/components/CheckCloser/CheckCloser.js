@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import FormItem from "../FormItem/FormItem.js";
@@ -77,4 +78,11 @@ function CheckCloser(props) {
   );
 }
 
+CheckCloser.propTypes = {
+  session: PropTypes.object.isRequired,
+  endSession: PropTypes.func.isRequired,
+  thisStage: PropTypes.number.isRequired,
+};
+
 export default CheckCloser;
+

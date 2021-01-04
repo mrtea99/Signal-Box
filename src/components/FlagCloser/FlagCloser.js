@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import FormItem from "../FormItem/FormItem.js";
@@ -148,5 +149,13 @@ function FlagCloser(props) {
     </>
   );
 }
+
+FlagCloser.propTypes = {
+  session: PropTypes.object.isRequired,
+  activeUser: PropTypes.string.isRequired,
+  endSession: PropTypes.func.isRequired,
+  thisStage: PropTypes.number.isRequired,
+  updateSession: PropTypes.func.isRequired,
+};
 
 export default FlagCloser;

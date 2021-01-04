@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import TimeFormater from "../TimeFormater/TimeFormater";
 
 function Timer(props) {
@@ -25,5 +26,9 @@ function Timer(props) {
 
   return <TimeFormater rawTime={duration} />;
 }
+
+Timer.propTypes = {
+  startTime: PropTypes.number.isRequired,
+};
 
 export default Timer;

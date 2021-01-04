@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Button from "../../../Button/Button.js";
 import ButtonSpacer from "../../../Button/ButtonSpacer/ButtonSpacer.js";
@@ -170,6 +171,7 @@ function SessionEndForm(props) {
             <CheckOpenerForm
               formData={qaFormData}
               setFormData={setQaFormData}
+              thisStage={props.thisStage}
             />
           )}
         </>
@@ -186,5 +188,15 @@ function SessionEndForm(props) {
     </form>
   );
 }
+
+SessionEndForm.propTypes = {
+  activeSessionData: PropTypes.object.isRequired,
+  thisStage: PropTypes.number.isRequired,
+  activeUser: PropTypes.string.isRequired,
+  addSession: PropTypes.func.isRequired,
+  endSession: PropTypes.func.isRequired,
+  setFormActive: PropTypes.func.isRequired,
+  thisRunData: PropTypes.object.isRequired,
+};
 
 export default SessionEndForm;

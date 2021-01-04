@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Button from "../../Button/Button.js";
 import StageOverview from "../../StageOverview/StageOverview.js";
@@ -25,6 +26,7 @@ function RunTitle(props) {
   return (
     <div className={`${styles.itemInfo}`}>
       <h3 className={styles.itemTitle}>
+        {/* todo: remove this temp data */}
         {/* {props.children} -{" "} */}
         {exampleProducts[props.runData.runId.toString().charAt(12)]}
       </h3>
@@ -41,5 +43,9 @@ function RunTitle(props) {
     </div>
   );
 }
+
+RunTitle.propTypes = {
+  runData: PropTypes.object.isRequired,
+};
 
 export default RunTitle;

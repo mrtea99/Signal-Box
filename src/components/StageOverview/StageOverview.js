@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import SessionList from "../SessionList/SessionList.js";
 import StageStatus from "../StageStatus/StageStatus.js";
@@ -31,5 +32,9 @@ function StageOverview(props) {
     </article>
   );
 }
+
+StageOverview.propTypes = {
+  thisRunData: PropTypes.object.isRequired,
+};
 
 export default StageOverview;

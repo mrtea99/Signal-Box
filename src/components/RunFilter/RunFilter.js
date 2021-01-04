@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import FormItem from "../FormItem/FormItem.js";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
@@ -36,12 +37,21 @@ function RunFilter(props) {
             updateHandler={(value) => {
               updateFilters("showUser", value ? [props.activeUser] : []);
             }}
-            checked={props.runFilters["showUser"] && props.runFilters["showUser"].includes(props.activeUser)}
+            checked={
+              props.runFilters["showUser"] &&
+              props.runFilters["showUser"].includes(props.activeUser)
+            }
           />
         </form>
       </ModalControl>
     </div>
   );
 }
+
+RunFilter.propTypes = {
+  activeUser: PropTypes.string.isRequired,
+  runFilters: PropTypes.object.isRequired,
+  setRunFilters: PropTypes.func.isRequired,
+};
 
 export default RunFilter;

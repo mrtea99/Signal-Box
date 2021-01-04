@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import SessionStart from "../SessionStart/SessionStart.js";
 import SessionEnd from "../SessionEnd/SessionEnd.js";
@@ -21,6 +22,7 @@ function SessionControl(props) {
               activeSessionData={props.activeSessionData}
               thisRunData={props.thisRunData}
               className={styles.sessionControl}
+              activeUser={props.activeUser}
             />
           ) : (
             <SessionStart
@@ -47,5 +49,15 @@ function SessionControl(props) {
     </>
   );
 }
+
+SessionControl.propTypes = {
+  stageActive: PropTypes.bool.isRequired,
+  activeSessionData: PropTypes.object,
+  addSession: PropTypes.func.isRequired,
+  endSession: PropTypes.func.isRequired,
+  thisStage: PropTypes.number.isRequired,
+  thisRunData: PropTypes.object.isRequired,
+  activeUser: PropTypes.string.isRequired,
+};
 
 export default SessionControl;

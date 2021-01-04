@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import styles from "./InfoPod.module.css";
 
@@ -13,5 +14,10 @@ function InfoPod(props) {
     </span>
   );
 }
+
+InfoPod.propTypes = {
+  fullWidth: PropTypes.bool,
+  children: PropTypes.node,
+};
 
 export default InfoPod;

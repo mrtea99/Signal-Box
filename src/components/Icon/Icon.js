@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { ReactComponent as Play } from "./play.svg";
 import { ReactComponent as Stop } from "./stop.svg";
@@ -68,5 +69,10 @@ function Icon(props) {
 
   return <>{iconElem()}</>;
 }
+
+Icon.propTypes = {
+  name: PropTypes.string.isRequired,
+  className: PropTypes.string,
+};
 
 export default Icon;

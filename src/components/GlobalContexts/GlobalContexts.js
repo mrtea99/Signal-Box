@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import TimeFormatContext from "../../contexts/TimeFormatContext.js";
 import DateFormatContext from "../../contexts/DateFormatContext.js";
@@ -12,7 +13,7 @@ function GlobalContexts(props) {
       <DateFormatContext.Provider value={props.dateFormat}>
         <UnitSystemContext.Provider value={props.unitSystem}>
           <ViewModeContext.Provider value={props.viewMode}>
-            <SiteThemeContext.Provider value={props.viewMode}>
+            <SiteThemeContext.Provider value={props.siteTheme}>
               {props.children}
             </SiteThemeContext.Provider>
           </ViewModeContext.Provider>
@@ -21,5 +22,14 @@ function GlobalContexts(props) {
     </TimeFormatContext.Provider>
   );
 }
+
+GlobalContexts.propTypes = {
+  unitSystem: PropTypes.oneOf(["metric", "us"]).isRequired,
+  timeFormat: PropTypes.oneOf(["24h", "12h"]).isRequired,
+  dateFormat: PropTypes.oneOf(["ymd", "mdy"]).isRequired,
+  siteTheme: PropTypes.oneOf(["dark", "light"]).isRequired,
+  viewMode: PropTypes.oneOf(["full", "simple"]).isRequired,
+  children: PropTypes.node,
+};
 
 export default GlobalContexts;

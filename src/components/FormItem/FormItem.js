@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Button from "../Button/Button.js";
 import Icon from "../Icon/Icon.js";
@@ -129,9 +130,7 @@ function FormItem(props) {
             {...fieldProps}
           />
           <label htmlFor={ident} className={styles.radioLabel}>
-            <span className={styles.radioLabelText}>
-              {props.label}
-            </span>
+            <span className={styles.radioLabelText}>{props.label}</span>
           </label>
         </div>
       );
@@ -148,5 +147,16 @@ function FormItem(props) {
     </div>
   );
 }
+
+FormItem.propTypes = {
+  ident: PropTypes.string.isRequired,
+  label: PropTypes.string,
+  type: PropTypes.string.isRequired,
+  updateHandler: PropTypes.func.isRequired,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  min: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  max: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  className: PropTypes.string,
+};
 
 export default FormItem;

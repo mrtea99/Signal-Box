@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import TableHeader from "../TableHeader/TableHeader.js";
 import RunListAllItem from "./RunListAllItem/RunListAllItem.js";
@@ -109,5 +110,15 @@ function RunList(props) {
     </div>
   );
 }
+
+RunList.propTypes = {
+  stageNum: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(["all"])])
+    .isRequired,
+  runData: PropTypes.array.isRequired,
+  filters: PropTypes.object.isRequired,
+  activeUser: PropTypes.string.isRequired,
+  setCurrentRunUid: PropTypes.func.isRequired,
+  setActiveStage: PropTypes.func.isRequired,
+};
 
 export default RunList;

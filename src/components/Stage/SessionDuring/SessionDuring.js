@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import FormItem from "../../FormItem/FormItem.js";
 import Timer from "../../Timer/Timer.js";
@@ -236,5 +237,12 @@ function SessionDuring(props) {
     </>
   );
 }
+
+SessionDuring.propTypes = {
+  activeSessionData: PropTypes.object,
+  updateSession: PropTypes.func,
+  thisStage: PropTypes.number,
+  thisRunData: PropTypes.object,
+};
 
 export default SessionDuring;

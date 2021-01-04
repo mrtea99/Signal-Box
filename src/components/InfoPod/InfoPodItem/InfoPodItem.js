@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import styles from "./InfoPodItem.module.css";
 
@@ -21,5 +22,14 @@ function InfoPodItem(props) {
     </span>
   );
 }
+
+InfoPodItem.propTypes = {
+  className: PropTypes.string,
+  coreStyle: PropTypes.string,
+  type: PropTypes.oneOf(["flag", "core"]),
+  active: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
+  layout: PropTypes.oneOf(["horiz", "vert"]),
+  children: PropTypes.node,
+};
 
 export default InfoPodItem;

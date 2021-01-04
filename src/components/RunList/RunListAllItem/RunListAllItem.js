@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import StageNav from "../../StageNav/StageNav";
 import RunTitle from "../RunTitle/RunTitle.js";
@@ -19,7 +20,9 @@ function RunListAllItem(props) {
         // onClick={() => setModalOverviewActive(run.runId)}
         className={styles.itemHeader}
       >
-        <RunTitle runData={props.runData}>{run.productInfo.productName}</RunTitle>
+        <RunTitle runData={props.runData}>
+          {run.productInfo.productName}
+        </RunTitle>
       </header>
 
       <StageNav
@@ -27,7 +30,6 @@ function RunListAllItem(props) {
         currentRunUid={props.currentRunUid}
         activeStage={props.activeStage}
         buttonCallback={(newIndex) => openEditor(run.runId, newIndex)}
-        updateRunData={props.updateRunData}
         thisRunData={run}
         activeUser={props.activeUser}
         sessionLabels
@@ -36,5 +38,14 @@ function RunListAllItem(props) {
     </div>
   );
 }
+
+RunListAllItem.propTypes = {
+  runData: PropTypes.object.isRequired,
+  setCurrentRunUid: PropTypes.func.isRequired,
+  setActiveStage: PropTypes.func.isRequired,
+  stageNameArr: PropTypes.array.isRequired,
+  currentRunUid: PropTypes.number,
+  activeUser: PropTypes.string.isRequired,
+};
 
 export default RunListAllItem;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import styles from "./SiteSidebar.module.css";
 
@@ -25,5 +26,11 @@ function SiteSidebar(props) {
     </div>
   );
 }
+
+SiteSidebar.propTypes = {
+  setSidebarActive: PropTypes.func.isRequired,
+  sidebarActive: PropTypes.bool.isRequired,
+  children: PropTypes.node,
+};
 
 export default SiteSidebar;

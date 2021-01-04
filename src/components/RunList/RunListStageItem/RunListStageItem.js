@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import useStageStatus from "../../../hooks/useStageStatus.js";
 
@@ -157,5 +158,14 @@ function RunListStageItem(props) {
     </ul>
   );
 }
+
+RunListStageItem.propTypes = {
+  runData: PropTypes.object.isRequired,
+  stageNum: PropTypes.number.isRequired,
+  activeUser: PropTypes.string.isRequired,
+  setCurrentRunUid: PropTypes.func.isRequired,
+  setActiveStage: PropTypes.func.isRequired,
+  columns: PropTypes.array.isRequired,
+};
 
 export default RunListStageItem;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import FormItem from "../../FormItem/FormItem.js";
 import UserSelect from "../../FormItem/UserSelect/UserSelect.js";
@@ -44,4 +45,11 @@ function CheckOpenerForm(props) {
   );
 }
 
+CheckOpenerForm.propTypes = {
+  setFormData: PropTypes.func.isRequired,
+  formData: PropTypes.object.isRequired,
+  thisStage: PropTypes.number.isRequired,
+};
+
 export default CheckOpenerForm;
+

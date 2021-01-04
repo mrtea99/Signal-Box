@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import styles from "./TabList.module.css";
 
@@ -22,6 +23,12 @@ function TabList(props) {
       ))}
     </ul>
   );
+}
+
+TabList.propTypes = {
+  tabs: PropTypes.array.isRequired,
+  activeTab: PropTypes.number,
+  indexCallback: PropTypes.func.isRequired
 }
 
 export default TabList;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Modal from "../Modal/Modal.js";
 import RunInfoForm from "../RunInfoForm/RunInfoForm.js";
@@ -67,5 +68,12 @@ function RunInfoNew(props) {
     </>
   );
 }
+
+RunInfoNew.propTypes = {
+  runData: PropTypes.array.isRequired,
+  setRunData: PropTypes.func.isRequired,
+  setActive: PropTypes.func.isRequired,
+  active: PropTypes.bool.isRequired,
+};
 
 export default RunInfoNew;

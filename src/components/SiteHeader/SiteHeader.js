@@ -37,4 +37,7 @@ SiteHeader.propTypes = {
   setSidebarActive: PropTypes.func
 }
 
+SiteHeader.propTypes = {
+}
+
 export default SiteHeader;

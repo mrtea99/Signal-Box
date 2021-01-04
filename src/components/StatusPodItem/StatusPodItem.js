@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import InfoPodItem from "../InfoPod/InfoPodItem/InfoPodItem.js";
 import Icon from "../Icon/Icon.js";
@@ -177,5 +178,20 @@ function StatusPodItem(props) {
 
   return <>{findElem()}</>;
 }
+
+StatusPodItem.propTypes = {
+  stageStatus: PropTypes.object.isRequired,
+  stageNum: PropTypes.number,
+  statusField: PropTypes.oneOf([
+    "label",
+    "completion",
+    "completionFraction",
+    "user",
+    "qa",
+    "note",
+    "issue",
+    "blocker",
+  ]),
+};
 
 export default StatusPodItem;

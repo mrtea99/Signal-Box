@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 function TimeFormater(props) {
   let seconds = Math.floor((props.rawTime / 1000) % 60);
@@ -15,5 +16,9 @@ function TimeFormater(props) {
     </>
   );
 }
+
+TimeFormater.propTypes = {
+  rawTime: PropTypes.number.isRequired,
+};
 
 export default TimeFormater;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Button from "../Button/Button.js";
 import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
@@ -113,7 +114,7 @@ function RunInfoForm(props) {
             }}
             value={currentTemplate === null ? "default" : currentTemplate}
           >
-            <option value="default" disabled="disabled">
+            <option value="default" disabled>
               Choose a template
             </option>
             {productTemplates.map((template, index) => (
@@ -175,7 +176,7 @@ function RunInfoForm(props) {
           Cancel
         </Button>
         <Button
-          disabled={currentTemplate === null ? "disabled" : ""}
+          disabled={currentTemplate === null ? true : false}
           onClick={handleSubmit}
         >
           Save
@@ -185,5 +186,12 @@ function RunInfoForm(props) {
     </form>
   );
 }
+
+RunInfoForm.propTypes = {
+  runData: PropTypes.array,
+  currentRunUid: PropTypes.number,
+  handleSave: PropTypes.func.isRequired,
+  handleCancel: PropTypes.func.isRequired,
+};
 
 export default RunInfoForm;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import CheckOpenerForm from "./CheckOpenerForm/CheckOpenerForm.js";
@@ -33,10 +34,21 @@ function CheckOpener(props) {
       buttonAttrs={{ fillWidth: true, color: "qa", icon: "qa" }}
     >
       <form>
-        <CheckOpenerForm formData={formData} setFormData={setFormData} />
+        <CheckOpenerForm
+          formData={formData}
+          setFormData={setFormData}
+          thisStage={props.thisStage}
+        />
       </form>
     </ModalControl>
   );
 }
 
+CheckOpener.propTypes = {
+  activeUser: PropTypes.string.isRequired,
+  addSession: PropTypes.func.isRequired,
+  thisStage: PropTypes.number.isRequired,
+};
+
 export default CheckOpener;
+

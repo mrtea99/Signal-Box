@@ -407,4 +407,7 @@ function SessionList(props) {
   );
 }
 
+SessionList.propTypes = {
+}
+
 export default SessionList;

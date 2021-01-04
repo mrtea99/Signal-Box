@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Button from "../Button/Button.js";
 import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
@@ -37,5 +38,11 @@ function RunDelete(props) {
     </>
   );
 }
+
+RunDelete.propTypes = {
+  updateRunData: PropTypes.func.isRequired,
+  runId: PropTypes.number.isRequired,
+  successCallback: PropTypes.func,
+};
 
 export default RunDelete;

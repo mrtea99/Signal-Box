@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Button from "../../../Button/Button.js";
 import ButtonSpacer from "../../../Button/ButtonSpacer/ButtonSpacer.js";
@@ -167,5 +168,12 @@ function SessionStartForm(props) {
     </form>
   );
 }
+
+SessionStartForm.propTypes = {
+  thisStage: PropTypes.number.isRequired,
+  activeUser: PropTypes.string.isRequired,
+  addSession: PropTypes.func.isRequired,
+  setFormActive: PropTypes.func.isRequired,
+};
 
 export default SessionStartForm;

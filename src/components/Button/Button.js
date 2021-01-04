@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Icon from "../Icon/Icon";
 import styles from "./Button.module.css";
 
@@ -69,5 +70,17 @@ function Button(props) {
     </OuterElem>
   );
 }
+
+Button.propTypes = {
+  fillWidth: PropTypes.bool,
+  featured: PropTypes.bool,
+  iconFirst: PropTypes.bool,
+  color: PropTypes.string,
+  icon: PropTypes.string,
+  children: PropTypes.node,
+  href: PropTypes.string,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func,
+};
 
 export default Button;

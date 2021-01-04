@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Button from "../../Button/Button.js";
 import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
@@ -63,5 +64,14 @@ function ModalControl(props) {
     </>
   );
 }
+
+ModalControl.propTypes = {
+  title: PropTypes.string.isRequired,
+  handleSubmit: PropTypes.func,
+  handleCancel: PropTypes.func,
+  buttonAttrs: PropTypes.object,
+  triggerCopy: PropTypes.string,
+  children: PropTypes.node,
+};
 
 export default ModalControl;

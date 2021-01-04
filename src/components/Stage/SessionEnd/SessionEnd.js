@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import Button from "../../Button/Button.js";
 import Modal from "../../Modal/Modal.js";
@@ -26,11 +27,22 @@ function SessionEnd(props) {
             thisStage={props.thisStage}
             activeSessionData={props.activeSessionData}
             thisRunData={props.thisRunData}
+            activeUser={props.activeUser}
           />
         </Modal>
       ) : null}
     </div>
   );
 }
+
+SessionEnd.propTypes = {
+  className: PropTypes.string,
+  activeSessionData: PropTypes.object.isRequired,
+  addSession: PropTypes.func.isRequired,
+  endSession: PropTypes.func.isRequired,
+  thisStage: PropTypes.number.isRequired,
+  thisRunData: PropTypes.object.isRequired,
+  activeUser: PropTypes.string.isRequired,
+};
 
 export default SessionEnd;

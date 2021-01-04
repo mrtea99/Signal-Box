@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import FormItem from "../FormItem/FormItem.js";
 
 import InfoPod from "../InfoPod/InfoPod.js";
@@ -210,5 +211,15 @@ function ConsignItems(props) {
     </div>
   );
 }
+
+ConsignItems.propTypes = {
+  thisStage: PropTypes.number.isRequired,
+  updateRunData: PropTypes.func.isRequired,
+  thisRunData: PropTypes.object.isRequired,
+  updateStageActive: PropTypes.func.isRequired,
+  activeUser: PropTypes.string.isRequired,
+  addSession: PropTypes.func.isRequired,
+  stageStatus: PropTypes.object.isRequired,
+};
 
 export default ConsignItems;

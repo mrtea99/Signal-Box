@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import useStageStatus from "../../../hooks/useStageStatus.js";
 
@@ -40,7 +41,9 @@ function StageActions(props) {
           <>
             {stageStatus.stageStatusName !== "working" ? (
               <div>
-                {stageStatus.issueActive || stageStatus.blockerActive || stageStatus.qaActive ? (
+                {stageStatus.issueActive ||
+                stageStatus.blockerActive ||
+                stageStatus.qaActive ? (
                   <p>
                     Cannot complete stage until qa is complete and issues are
                     resolved
@@ -144,5 +147,16 @@ function StageActions(props) {
     </div>
   );
 }
+
+StageActions.propTypes = {
+  thisRunData: PropTypes.object.isRequired,
+  thisStage: PropTypes.number.isRequired,
+  updateStageActive: PropTypes.func.isRequired,
+  setCurrentRunUid: PropTypes.func.isRequired,
+  setActiveStage: PropTypes.func.isRequired,
+  updateRunData: PropTypes.func.isRequired,
+  addSession: PropTypes.func.isRequired,
+  activeUser: PropTypes.string.isRequired,
+};
 
 export default StageActions;

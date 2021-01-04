@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import FormItem from "../FormItem";
 
@@ -42,5 +43,10 @@ function UserSelect(props) {
     </FormItem>
   );
 }
+
+UserSelect.propTypes = {
+  value: PropTypes.string,
+  updateHandler: PropTypes.func.isRequired,
+};
 
 export default UserSelect;

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import InfoPod from "../InfoPod/InfoPod.js";
 import InfoPodSection from "../InfoPod/InfoPodSection/InfoPodSection.js";
@@ -7,8 +8,6 @@ import StatusPodItem from "../StatusPodItem/StatusPodItem.js";
 import useStageStatus from "../../hooks/useStageStatus.js";
 
 function StageStatus(props) {
-
-
   const stageStatus = useStageStatus(
     props.runData,
     props.stageNum,
@@ -26,7 +25,8 @@ function StageStatus(props) {
           />
         </InfoPodSection>
       ) : null}
-      <InfoPodSection layout={props.layout}
+      <InfoPodSection
+        layout={props.layout}
         flags={[
           <StatusPodItem
             key="note"
@@ -61,5 +61,14 @@ function StageStatus(props) {
     </InfoPod>
   );
 }
+
+StageStatus.propTypes = {
+  runData: PropTypes.object.isRequired,
+  stageNum: PropTypes.number.isRequired,
+  activeUser: PropTypes.string.isRequired,
+  fullWidth: PropTypes.bool,
+  label: PropTypes.bool,
+  layout: PropTypes.oneOf(["horiz", "vert"]),
+};
 
 export default StageStatus;

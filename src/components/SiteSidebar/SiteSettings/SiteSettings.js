@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import FormItem from "../../FormItem/FormItem.js";
 
@@ -85,5 +86,18 @@ function SiteSettings(props) {
     </div>
   );
 }
+
+SiteSettings.propTypes = {
+  unitSystem: PropTypes.oneOf(["metric", "us"]).isRequired,
+  setUnitSystem: PropTypes.func.isRequired,
+  timeFormat: PropTypes.oneOf(["24h", "12h"]).isRequired,
+  setTimeFormat: PropTypes.func.isRequired,
+  dateFormat: PropTypes.oneOf(["ymd", "mdy"]).isRequired,
+  setDateFormat: PropTypes.func.isRequired,
+  siteTheme: PropTypes.oneOf(["dark", "light"]).isRequired,
+  setSiteTheme: PropTypes.func.isRequired,
+  viewMode: PropTypes.oneOf(["full", "simple"]).isRequired,
+  setViewMode: PropTypes.func.isRequired,
+};
 
 export default withTranslation()(SiteSettings);

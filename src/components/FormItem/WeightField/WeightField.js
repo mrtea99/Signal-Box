@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import FormItem from "../../FormItem/FormItem.js";
 
@@ -55,5 +56,12 @@ function WeightField(props) {
     </>
   );
 }
+
+WeightField.propTypes = {
+  updateHandler: PropTypes.func.isRequired,
+  ident: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  value: PropTypes.number.isRequired,
+};
 
 export default WeightField;
