@@ -5,8 +5,6 @@ import TableHeader from "../TableHeader/TableHeader.js";
 import RunListAllItem from "./RunListAllItem/RunListAllItem.js";
 import RunListStageItem from "./RunListStageItem/RunListStageItem.js";
 
-// import useStageStatus from "../../hooks/useStageStatus.js";
-
 import styles from "./RunList.module.css";
 
 function RunList(props) {

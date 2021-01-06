@@ -5,10 +5,10 @@ import InfoPod from "../InfoPod/InfoPod.js";
 import InfoPodSection from "../InfoPod/InfoPodSection/InfoPodSection.js";
 import StatusPodItem from "../StatusPodItem/StatusPodItem.js";
 
-import useStageStatus from "../../hooks/useStageStatus.js";
+import getStageStatus from "../../utils/getStageStatus.js";
 
 function StageStatus(props) {
-  const stageStatus = useStageStatus(
+  const stageStatus = getStageStatus(
     props.runData,
     props.stageNum,
     props.activeUser

@@ -1,4 +1,4 @@
-function useStageStatus(runData, stageNumber, activeUser) {
+function getStageStatus(runData, stageNumber, activeUser) {
   const stagesData = runData["stages"];
 
   const stageActive = stagesData[stageNumber].active;
@@ -274,4 +274,4 @@ function useStageStatus(runData, stageNumber, activeUser) {
   };
 }
 
-export default useStageStatus;
+export default getStageStatus;

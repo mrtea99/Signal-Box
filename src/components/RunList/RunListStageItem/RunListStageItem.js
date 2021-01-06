@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import useStageStatus from "../../../hooks/useStageStatus.js";
+import getStageStatus from "../../../utils/getStageStatus.js";
 
 import InfoPod from "../../InfoPod/InfoPod.js";
 import InfoPodSection from "../../InfoPod/InfoPodSection/InfoPodSection.js";
@@ -12,7 +12,7 @@ import RunTitle from "../RunTitle/RunTitle.js";
 import styles from "./RunListStageItem.module.css";
 
 function RunListStageItem(props) {
-  const stageStatus = useStageStatus(
+  const stageStatus = getStageStatus(
     props.runData,
     props.stageNum,
     props.activeUser

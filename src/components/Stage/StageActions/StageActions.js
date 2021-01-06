@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import useStageStatus from "../../../hooks/useStageStatus.js";
+import getStageStatus from "../../../utils/getStageStatus.js";
 
 import Button from "../../Button/Button.js";
 import Modal from "../../Modal/Modal.js";
@@ -11,7 +11,7 @@ import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
 import styles from "./StageActions.module.css";
 
 function StageActions(props) {
-  const stageStatus = useStageStatus(props.thisRunData, props.thisStage);
+  const stageStatus = getStageStatus(props.thisRunData, props.thisStage);
 
   const [modalActive, setModalActive] = React.useState(false);
 
