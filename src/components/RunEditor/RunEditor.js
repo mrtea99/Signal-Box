@@ -12,6 +12,8 @@ import UserSwitcher from "../UserSwitcher/UserSwitcher.js";
 
 import styles from "./RunEditor.module.css";
 
+import stageNames from "../../data/stageNames.json";
+
 import ViewModeContext from "../../contexts/ViewModeContext.js";
 
 function RunEditor(props) {
@@ -36,8 +38,6 @@ function RunEditor(props) {
     props.setCurrentRunUid(null);
     props.setActiveStage(0);
   };
-
-  const stageNameArr = ["Prep", "Manufacture", "Package", "Label", "Stock"];
 
   return (
     <>
@@ -104,17 +104,12 @@ function RunEditor(props) {
               </section>
 
               {/* <TableHeader
-                items={[
-                  { copy: "Prep" },
-                  { copy: "Manufacture" },
-                  { copy: "Package" },
-                  { copy: "Label" },
-                  { copy: "Stock" },
-                ]}
+                items={stageNames.map((stageName) => ({
+                  copy: stageName,
+                }))}
               /> */}
 
               <StageNav
-                stageNameArr={stageNameArr}
                 currentRunUid={props.currentRunUid}
                 activeStage={props.activeStage}
                 buttonCallback={props.setActiveStage}
@@ -127,9 +122,9 @@ function RunEditor(props) {
               />
 
               <Stage
-                key={props.currentRunUid + stageNameArr[props.activeStage]}
+                key={props.currentRunUid + stageNames[props.activeStage]}
                 thisStage={props.activeStage}
-                stageName={stageNameArr[props.activeStage]}
+                stageName={stageNames[props.activeStage]}
                 thisRunData={thisRunData}
                 currentRunUid={props.currentRunUid}
                 updateRunData={props.updateRunData}

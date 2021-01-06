@@ -7,16 +7,14 @@ import RunListStageItem from "./RunListStageItem/RunListStageItem.js";
 
 import styles from "./RunList.module.css";
 
+import stageNames from "../../data/stageNames.json";
+
 function RunList(props) {
   let columns;
   if (props.stageNum === "all") {
-    columns = [
-      { copy: "Prep" },
-      { copy: "Manufacture" },
-      { copy: "Package" },
-      { copy: "Label" },
-      { copy: "Stock" },
-    ];
+    columns = stageNames.map((stageName) => ({
+      copy: stageName,
+    }));
   } else {
     columns = [
       { copy: "Product", className: styles.colProduct },

@@ -5,6 +5,8 @@ import StageStatus from "../StageStatus/StageStatus.js";
 
 import styles from "./StageNav.module.css";
 
+import stageNames from "../../data/stageNames.json";
+
 function StageNav(props) {
   const handleNavList = function (stageIndex, e) {
     e.preventDefault();
@@ -13,7 +15,7 @@ function StageNav(props) {
 
   return (
     <ul className={styles.progBar}>
-      {props.stageNameArr.map((stage, index) => (
+      {stageNames.map((stage, index) => (
         <li key={props.currentRunUid + stage} className={styles.progItem}>
           <button
             className={`${styles.progBtn} ${
@@ -50,7 +52,6 @@ function StageNav(props) {
 
 StageNav.propTypes = {
   buttonCallback: PropTypes.func.isRequired,
-  stageNameArr: PropTypes.array.isRequired,
   currentRunUid: PropTypes.number,
   activeStage: PropTypes.number,
   showActive: PropTypes.bool,

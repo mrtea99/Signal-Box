@@ -15,6 +15,8 @@ import SiteSettings from "./components/SiteSidebar/SiteSettings/SiteSettings.js"
 import GlobalContexts from "./components/GlobalContexts/GlobalContexts.js";
 import RunFilter from "./components/RunFilter/RunFilter.js";
 
+import stageNames from "./data/stageNames.json";
+
 import { useTranslation } from "react-i18next";
 
 function App() {
@@ -101,7 +103,8 @@ function App() {
     window.localStorage.setItem("unitSystem", unitSystem);
   }, [unitSystem]);
 
-  const savesSiteTheme = () => window.localStorage.getItem("siteTheme") || "dark";
+  const savesSiteTheme = () =>
+    window.localStorage.getItem("siteTheme") || "dark";
   const [siteTheme, setSiteTheme] = React.useState(savesSiteTheme);
   React.useEffect(() => {
     window.localStorage.setItem("siteTheme", siteTheme);
@@ -126,7 +129,11 @@ function App() {
       siteTheme={siteTheme}
       viewMode={viewMode}
     >
-      <div className={`${styles.siteContainer} ${siteTheme === "light" ? styles.siteContainerLight : null}`}>
+      <div
+        className={`${styles.siteContainer} ${
+          siteTheme === "light" ? styles.siteContainerLight : null
+        }`}
+      >
         <SiteHeader
           activeUser={activeUser}
           setActiveUser={setActiveUser}
@@ -174,14 +181,7 @@ function App() {
                 </section>
               </menu>
               <TabBox
-                boxes={[
-                  "All",
-                  "Prep",
-                  "Manufacture",
-                  "Package",
-                  "Label",
-                  "Stock",
-                ].map((stage, index) => ({
+                boxes={["All", ...stageNames].map((stage, index) => ({
                   label: stage,
                   content: (
                     <RunList

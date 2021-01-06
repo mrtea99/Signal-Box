@@ -4,14 +4,10 @@ import PropTypes from "prop-types";
 import SessionList from "../SessionList/SessionList.js";
 import StageStatus from "../StageStatus/StageStatus.js";
 
+import stageNames from "../../data/stageNames.json";
+
 function StageOverview(props) {
-  const stageNameArr = [
-    "Preparation",
-    "Manufacture",
-    "Packaging",
-    "Labeling",
-    "Stocking",
-  ];
+  const stageNameArr = stageNames;
 
   return (
     <article>

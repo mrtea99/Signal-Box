@@ -11,6 +11,8 @@ import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
 import DataList from "../../DataList/DataList.js";
 import DataListItem from "../../DataList/DataListItem/DataListItem.js";
 
+import stageNames from "../../../data/stageNames.json";
+
 function SessionDuring(props) {
   // After Statuses
   // Notes (all)
@@ -75,18 +77,20 @@ function SessionDuring(props) {
                 dataValue={
                   <ul>
                     <li>
-                      Prep: {props.thisRunData.productInfo.prepDifficulty}
+                      {stageNames[0]}:{" "}
+                      {props.thisRunData.productInfo.prepDifficulty}
                     </li>
                     <li>
-                      Manufacture:{" "}
+                      {stageNames[1]}:{" "}
                       {props.thisRunData.productInfo.manufacturingDifficulty}
                     </li>
                     <li>
-                      Package:{" "}
+                      {stageNames[2]}:{" "}
                       {props.thisRunData.productInfo.packagingDifficulty}
                     </li>
                     <li>
-                      Label: {props.thisRunData.productInfo.labelingDifficulty}
+                      {stageNames[3]}:{" "}
+                      {props.thisRunData.productInfo.labelingDifficulty}
                     </li>
                   </ul>
                 }
