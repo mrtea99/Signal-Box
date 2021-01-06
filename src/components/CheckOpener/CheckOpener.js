@@ -7,15 +7,14 @@ import CheckOpenerForm from "./CheckOpenerForm/CheckOpenerForm.js";
 function CheckOpener(props) {
   const [formData, setFormData] = React.useState({
     notes: "",
-    checker: null,
     timeframe: "now",
   });
 
   const handleSubmit = function () {
-    const newSessionUid = Date.now();
+    const newsessionId = Date.now();
 
     const newSession = {
-      sessionUid: newSessionUid,
+      sessionId: newsessionId,
       type: "qa",
       startTime: Date.now(),
       endTime: null,

@@ -226,7 +226,7 @@ function SessionList(props) {
                   ? styles.itemRowResolved
                   : styles.itemRowUnresolved
               }`}
-              key={session.sessionUid}
+              key={session.sessionId}
             >
               <li
                 className={`${styles.contentItem} ${styles.colNumber} ${styles.colFixed}`}
@@ -294,7 +294,7 @@ function SessionList(props) {
               >
                 {session.type === "flag" ? (
                   <FlagCloser
-                    key={session.sessionUid}
+                    key={session.sessionId}
                     thisStage={props.thisStage}
                     session={session}
                     endSession={props.endSession}
@@ -304,7 +304,7 @@ function SessionList(props) {
                 ) : null}
                 {session.type === "qa" ? (
                   <CheckCloser
-                    key={session.sessionUid}
+                    key={session.sessionId}
                     thisStage={props.thisStage}
                     session={session}
                     endSession={props.endSession}
@@ -329,7 +329,7 @@ function SessionList(props) {
                       ? session.activity.name
                       : formatActivity(session.type)}
                   </h3>
-                  <p>Session ID: {session.sessionUid}</p>
+                  <p>Session ID: {session.sessionId}</p>
                   <p>Resolved: {session.endTime ? "Resolved" : "Unresolved"}</p>
                   <p>Start Time: {formatDateTime(session.startTime)}</p>
                   {session.endTime ? (
@@ -358,7 +358,7 @@ function SessionList(props) {
                   ) : null}
                   {session.type === "qa" ? (
                     <>
-                      <p>Checker: {session.checker}</p>
+                      <p>Checker: {session.secondaryUser}</p>
                       <p>Timeframe: {session.timeframe}</p>
                     </>
                   ) : null}

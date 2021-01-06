@@ -33,7 +33,7 @@ function FlagCloser(props) {
       props.updateSession(
         { notes: newNote, amount: priority, status: status },
         props.thisStage,
-        props.session.sessionUid
+        props.session.sessionId
       );
     }
 

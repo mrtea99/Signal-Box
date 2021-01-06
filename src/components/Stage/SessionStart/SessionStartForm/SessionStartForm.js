@@ -66,10 +66,10 @@ function SessionStartForm(props) {
   const handleNewClick = function (e) {
     e.preventDefault();
 
-    const newSessionUid = Date.now();
+    const newsessionId = Date.now();
 
     const newSession = {
-      sessionUid: newSessionUid,
+      sessionId: newsessionId,
       type: "work",
       startTime: Date.now(),
       endTime: null,

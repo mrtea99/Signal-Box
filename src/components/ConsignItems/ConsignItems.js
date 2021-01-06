@@ -58,10 +58,10 @@ function ConsignItems(props) {
     }
 
     //Add session
-    const newSessionUid = Date.now();
+    const newsessionId = Date.now();
 
     const newSession = {
-      sessionUid: newSessionUid,
+      sessionId: newsessionId,
       type: "consign",
       startTime: Date.now(),
       endTime: Date.now(),

@@ -51,10 +51,10 @@ function Stage(props) {
     props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
 
     //Add event item to sessionlist
-    const newSessionUid = Date.now();
+    const newsessionId = Date.now();
 
     const newSession = {
-      sessionUid: newSessionUid,
+      sessionId: newsessionId,
       type: newState ? "activate" : "deactivate",
       activity: newState,
       startTime: Date.now(),
@@ -78,7 +78,7 @@ function Stage(props) {
     props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
   };
 
-  const updateSession = function (extraData, stage, sessionUid) {
+  const updateSession = function (extraData, stage, sessionId) {
     const stageData = props.thisRunData["stages"][stage];
     const sessionList = stageData["sessions"];
 
@@ -86,7 +86,7 @@ function Stage(props) {
     let newSessionList = [...sessionList];
 
     const activeSessionObj = newSessionList.find(
-      (obj) => obj.sessionUid === sessionUid
+      (obj) => obj.sessionId === sessionId
     );
 
     Object.assign(activeSessionObj, extraData);
@@ -101,9 +101,9 @@ function Stage(props) {
 
     if (extraData) {
       Object.assign(extraData, endTime);
-      updateSession(extraData, stage, sessionData.sessionUid);
+      updateSession(extraData, stage, sessionData.sessionId);
     } else {
-      updateSession(endTime, stage, sessionData.sessionUid);
+      updateSession(endTime, stage, sessionData.sessionId);
     }
   };
 

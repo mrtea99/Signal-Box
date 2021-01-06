@@ -42,7 +42,6 @@ function SessionEndForm(props) {
 
   const [qaFormData, setQaFormData] = React.useState({
     notes: "",
-    checker: null,
     timeframe: "now",
   });
 
@@ -51,10 +50,10 @@ function SessionEndForm(props) {
 
     //Start QA Session
     if (!skipQa) {
-      const newSessionUid = Date.now();
+      const newsessionId = Date.now();
 
       const newSession = {
-        sessionUid: newSessionUid,
+        sessionId: newsessionId,
         type: "qa",
         startTime: Date.now(),
         endTime: null,

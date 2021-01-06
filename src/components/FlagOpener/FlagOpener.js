@@ -9,10 +9,10 @@ function FlagOpener(props) {
   const [priority, setPriority] = React.useState(1);
 
   const handleSubmit = function () {
-    const newSessionUid = Date.now();
+    const newsessionId = Date.now();
 
     const newSession = {
-      sessionUid: newSessionUid,
+      sessionId: newsessionId,
       type: "flag",
       startTime: Date.now(),
       endTime: null,

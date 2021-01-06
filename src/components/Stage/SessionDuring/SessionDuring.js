@@ -31,7 +31,7 @@ function SessionDuring(props) {
     props.updateSession(
       { [dataKey]: value },
       props.thisStage,
-      props.activeSessionData.sessionUid
+      props.activeSessionData.sessionId
     );
   };
 
