@@ -26,7 +26,6 @@ function RunListAllItem(props) {
       </header>
 
       <StageNav
-        stageNameArr={props.stageNameArr}
         currentRunUid={props.currentRunUid}
         activeStage={props.activeStage}
         buttonCallback={(newIndex) => openEditor(run.runId, newIndex)}
@@ -43,7 +42,6 @@ RunListAllItem.propTypes = {
   runData: PropTypes.object.isRequired,
   setCurrentRunUid: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,
-  stageNameArr: PropTypes.array.isRequired,
   currentRunUid: PropTypes.number,
   activeUser: PropTypes.string.isRequired,
 };

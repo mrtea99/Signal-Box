@@ -7,11 +7,9 @@ import StageStatus from "../StageStatus/StageStatus.js";
 import stageNames from "../../data/stageNames.json";
 
 function StageOverview(props) {
-  const stageNameArr = stageNames;
-
   return (
     <article>
-      {stageNameArr.map((stageName, index) => (
+      {stageNames.map((stageName, index) => (
         <section key={stageName}>
           <h3>
             {stageName}

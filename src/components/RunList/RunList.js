@@ -81,9 +81,6 @@ function RunList(props) {
                   activeUser={props.activeUser}
                   setCurrentRunUid={props.setCurrentRunUid}
                   setActiveStage={props.setActiveStage}
-                  stageNameArr={columns.map((col) => {
-                    return col.copy;
-                  })}
                 />
               </div>
             ) : (
