@@ -150,7 +150,7 @@ function RunListStageItem(props) {
         <span className={styles.cellLabel}>Open</span>
         <span className={styles.cellContent}>
           <Button
-            onClick={() => openEditor(props.runData.runId, props.stageNum)}
+            onClick={() => openEditor(props.runData.id, props.stageNum)}
             icon="start"
           ></Button>
         </span>

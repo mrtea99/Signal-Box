@@ -131,7 +131,7 @@ function SessionDuring(props) {
             />
             <DataListItem
               dataKey="Run ID"
-              dataValue={props.thisRunData.runId}
+              dataValue={props.thisRunData.id}
             />
           </>
         );

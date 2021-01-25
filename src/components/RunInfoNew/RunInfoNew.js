@@ -10,45 +10,43 @@ function RunInfoNew(props) {
 
     //Build new run object here
     const newRun = {
-      runId: Date.now(),
-      status: "Pending",
+      id: Date.now(),
+      productName: productTemplateData.productName,
+      productSKU: productTemplateData.productSKU,
+      status: "Not Started",
+      outputType: "Product",
       priority: 1,
-      flag: true,
       targetStartDate: 0,
       batchQuantity: batchQuantity,
+      activePrep: true,
       consignedManufacturing: 0,
       defectiveManufacturing: 0,
       consignedPackaging: 0,
       defectivePackaging: 0,
       consignedLabeling: 0,
       defectiveLabeling: 0,
-      // totalDuration: 0,
-      // firstStartTime: 0,
-      // lastEndTime: 0,
+      activeStocking: true,
+      archived: 0,
       productInfo: productTemplateData,
       stages: [
         {
           sessions: [],
-          active: true,
         },
         {
           sessions: [],
-          active: true,
         },
         {
           sessions: [],
-          active: true,
         },
         {
           sessions: [],
-          active: true,
         },
         {
           sessions: [],
-          active: true,
         },
       ],
     };
+
     newData.push(newRun);
     props.setRunData(newData);
     props.setActive(false);

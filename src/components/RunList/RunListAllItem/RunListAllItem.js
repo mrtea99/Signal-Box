@@ -17,7 +17,7 @@ function RunListAllItem(props) {
   return (
     <div>
       <header
-        // onClick={() => setModalOverviewActive(run.runId)}
+        // onClick={() => setModalOverviewActive(run.id)}
         className={styles.itemHeader}
       >
         <RunTitle runData={props.runData}>
@@ -28,7 +28,7 @@ function RunListAllItem(props) {
       <StageNav
         currentRunUid={props.currentRunUid}
         activeStage={props.activeStage}
-        buttonCallback={(newIndex) => openEditor(run.runId, newIndex)}
+        buttonCallback={(newIndex) => openEditor(run.id, newIndex)}
         thisRunData={run}
         activeUser={props.activeUser}
         sessionLabels

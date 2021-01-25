@@ -65,7 +65,7 @@ function RunInfoForm(props) {
     }
 
     const runData = props.runData.find(
-      (obj) => obj.runId === props.currentRunUid
+      (obj) => obj.id === props.currentRunUid
     );
     return runData;
   })[0];
@@ -88,7 +88,7 @@ function RunInfoForm(props) {
     }
 
     const thisRunData = props.runData.find(
-      (obj) => obj.runId === props.currentRunUid
+      (obj) => obj.id === props.currentRunUid
     );
     const currentQuantity = thisRunData.batchQuantity;
     return currentQuantity;

@@ -40,7 +40,7 @@ function RunInfoChange(props) {
           />
           <RunDelete
             updateRunData={props.updateRunData}
-            runId={props.currentRunUid}
+            currentRunUid={props.currentRunUid}
             successCallback={() => props.setActive(false)}
           />
         </Modal>

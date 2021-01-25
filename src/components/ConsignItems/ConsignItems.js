@@ -40,13 +40,13 @@ function ConsignItems(props) {
     }
 
     props.updateRunData(
-      props.thisRunData.runId,
+      props.thisRunData.id,
       null,
       updateGoodField,
       (props.thisRunData[updateGoodField] += countGood)
     );
     props.updateRunData(
-      props.thisRunData.runId,
+      props.thisRunData.id,
       null,
       updateBadField,
       (props.thisRunData[updateBadField] += countBad)

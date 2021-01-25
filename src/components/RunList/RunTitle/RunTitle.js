@@ -28,13 +28,13 @@ function RunTitle(props) {
       <h3 className={styles.itemTitle}>
         {/* todo: remove this temp data */}
         {/* {props.children} -{" "} */}
-        {exampleProducts[props.runData.runId.toString().charAt(12)]}
+        {exampleProducts[props.runData.id.toString().charAt(12)]}
       </h3>
       <Button
-        onClick={() => setModalOverviewActive(props.runData.runId)}
+        onClick={() => setModalOverviewActive(props.runData.id)}
         icon="details"
       />
-      {modalOverviewActive === props.runData.runId ? (
+      {modalOverviewActive === props.runData.id ? (
         <Modal title="Run Overview">
           <Button onClick={() => setModalOverviewActive(null)}>Close</Button>
           <StageOverview thisRunData={props.runData}></StageOverview>

@@ -17,7 +17,19 @@ function Stage(props) {
 
   const thisStageData = props.thisRunData["stages"][props.thisStage];
 
-  const stageActive = thisStageData.active;
+  // const stageActive = thisStageData.active;
+  let activeProp;
+  switch (props.thisStage) {
+    case 0:
+      activeProp = "activePrep";
+      break;
+    case 4:
+      activeProp = "activeStocking";
+      break;
+    default:
+      break;
+  }
+  const stageActive = activeProp ? props.thisRunData[activeProp] : true;
 
   const findActiveSession = function () {
     const sessionList = thisStageData["sessions"];
@@ -38,17 +50,36 @@ function Stage(props) {
   const activeSessionData = findActiveSession();
 
   const updateStageActive = function (newState, stage) {
-    const stageData = props.thisRunData["stages"][stage];
+    // const stageData = props.thisRunData["stages"][stage];
 
-    if (stageData.active === newState) {
-      return false;
+    // if (stageData.active === newState) {
+    //   return false;
+    // }
+
+    // let newStageObj = { ...stageData };
+
+    // newStageObj.active = newState;
+
+    // props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
+
+    let activeProperty;
+    switch (props.thisStage) {
+      case 0:
+        activeProperty = "activePrep";
+        break;
+      case 4:
+        activeProperty = "activeStocking";
+        break;
+      default:
+        return false;
     }
+    const stageState = props.thisRunData[activeProperty];
 
-    let newStageObj = { ...stageData };
-
-    newStageObj.active = newState;
-
-    props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
+    if (stageState === newState) {
+      return false;
+    } else {
+      props.updateRunData(props.currentRunUid, null, activeProp, newState);
+    }
 
     //Add event item to sessionlist
     const newsessionId = Date.now();

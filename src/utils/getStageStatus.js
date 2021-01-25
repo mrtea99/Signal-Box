@@ -1,7 +1,18 @@
 function getStageStatus(runData, stageNumber, activeUser) {
   const stagesData = runData["stages"];
 
-  const stageActive = stagesData[stageNumber].active;
+  // const stageActive = stagesData[stageNumber].active;
+  let stageActive;
+  switch (stageNumber) {
+    case 0:
+      stageActive = runData.activePrep;
+      break;
+    case 4:
+      stageActive = runData.activeStocking;
+      break;
+    default:
+      stageActive = true;
+  }
 
   const allSessions = stagesData[stageNumber]["sessions"];
 
@@ -218,7 +229,7 @@ function getStageStatus(runData, stageNumber, activeUser) {
   //Status v3
   const getStatus = function () {
     if (blockerActive) {
-      return ["blocked"]
+      return ["blocked"];
     } else {
       if (stageActive) {
         if (targetItemCount) {

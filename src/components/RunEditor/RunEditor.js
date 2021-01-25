@@ -23,7 +23,7 @@ function RunEditor(props) {
   const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
 
   const thisRunData = props.runData.find(
-    (obj) => obj.runId === props.currentRunUid
+    (obj) => obj.id === props.currentRunUid
   );
 
   const handleEditInfoClick = function (e) {
@@ -68,7 +68,7 @@ function RunEditor(props) {
                   </h3>
                   {simpleMode ? null : (
                     <h4 className={styles.runInfoItem}>
-                      Run ID: {thisRunData.runId}
+                      Run ID: {thisRunData.id}
                     </h4>
                   )}
                 </div>
