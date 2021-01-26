@@ -7,6 +7,8 @@ import FormItem from "../../../FormItem/FormItem.js";
 import TemperatureField from "../../../FormItem/TemperatureField/TemperatureField.js";
 import UserSelect from "../../../FormItem/UserSelect/UserSelect.js";
 
+import stageNames from "../../../../data/stageNames.json";
+
 const activityList = [
   [
     { name: "Material Check", fields: [] },
@@ -70,6 +72,7 @@ function SessionStartForm(props) {
 
     const newSession = {
       sessionId: newsessionId,
+      stage: stageNames[props.thisStage],
       type: "work",
       startTime: Date.now(),
       endTime: null,

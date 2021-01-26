@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import FormItem from "../FormItem/FormItem.js";
 
+import getItemType from "../../utils/getItemType.js";
+
 function CheckCloser(props) {
   const [description, setDescription] = React.useState("");
   const [count, setCount] = React.useState(0);
@@ -19,6 +21,7 @@ function CheckCloser(props) {
       {
         notes: newNote,
         amount: count,
+        amountType: getItemType(props.thisStage),
         amountBad: countBad,
       },
       props.thisStage,
@@ -85,4 +88,3 @@ CheckCloser.propTypes = {
 };
 
 export default CheckCloser;
-

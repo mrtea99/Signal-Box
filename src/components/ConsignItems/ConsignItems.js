@@ -8,6 +8,8 @@ import InfoPodSection from "../InfoPod/InfoPodSection/InfoPodSection.js";
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import styles from "./ConsignItems.module.css";
 
+import getItemType from "../../utils/getItemType.js";
+
 function ConsignItems(props) {
   const [countGood, setCountGood] = React.useState(0);
   const [countBad, setCountBad] = React.useState(0);
@@ -67,6 +69,7 @@ function ConsignItems(props) {
       endTime: Date.now(),
       user: props.activeUser,
       amount: countGood,
+      amountType: getItemType(props.thisStage),
       amountBad: countBad,
     };
 

@@ -9,6 +9,8 @@ import WeightField from "../../../FormItem/WeightField/WeightField.js";
 
 import UnitSystemContext from "../../../../contexts/DateFormatContext.js";
 
+import getItemType from "../../../../utils/getItemType.js";
+
 function SessionEndForm(props) {
   const unitSystem = React.useContext(UnitSystemContext);
 
@@ -68,6 +70,7 @@ function SessionEndForm(props) {
     const extraData = {
       notes: noteData,
       amount: amount,
+      amountType: getItemType(props.thisStage),
       amountBad: amountBad,
       averageWeight: averageWeight,
     };

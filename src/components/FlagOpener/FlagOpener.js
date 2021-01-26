@@ -18,6 +18,7 @@ function FlagOpener(props) {
       endTime: null,
       user: props.activeUser,
       amount: priority,
+      amountType: "Priority",
       notes: description,
       status: "active",
     };
