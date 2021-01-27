@@ -46,7 +46,7 @@ function SessionEndForm(props) {
 
   const [qaFormData, setQaFormData] = React.useState({
     notes: "",
-    timeframe: "now",
+    extra: "now",
   });
 
   const handleEndClick = function (e) {

@@ -46,7 +46,7 @@ function CheckCloser(props) {
             <p>{props.session.notes}</p>
             <p>Creator: {props.session.user}</p>
             <p>Assignee: {props.session.secondaryUser}</p>
-            <p>Timeframe: {props.session.timeframe}</p>
+            <p>Timeframe: {props.session.extra}</p>
             <p>Raising Note: {props.session.notes}</p>
           </div>
 

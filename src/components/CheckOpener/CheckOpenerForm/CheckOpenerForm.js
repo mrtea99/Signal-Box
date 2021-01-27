@@ -32,9 +32,9 @@ function CheckOpenerForm(props) {
       <FormItem
         type="select"
         label="Timeframe:"
-        value={props.formData.timeframe}
+        value={props.formData.extra}
         updateHandler={(value) =>
-          props.setFormData({ ...props.formData, timeframe: value })
+          props.setFormData({ ...props.formData, extra: value })
         }
       >
         <option value="now">Immediate</option>

@@ -7,7 +7,7 @@ import CheckOpenerForm from "./CheckOpenerForm/CheckOpenerForm.js";
 function CheckOpener(props) {
   const [formData, setFormData] = React.useState({
     notes: "",
-    timeframe: "now",
+    extra: "now",
   });
 
   const handleSubmit = function () {

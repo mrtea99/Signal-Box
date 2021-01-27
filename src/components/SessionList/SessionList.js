@@ -359,7 +359,7 @@ function SessionList(props) {
                   {session.type === "qa" ? (
                     <>
                       <p>Checker: {session.secondaryUser}</p>
-                      <p>Timeframe: {session.timeframe}</p>
+                      <p>Timeframe: {session.extra}</p>
                     </>
                   ) : null}
                 </ModalControl>
