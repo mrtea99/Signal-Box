@@ -11,6 +11,8 @@ import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
 import DataList from "../../DataList/DataList.js";
 import DataListItem from "../../DataList/DataListItem/DataListItem.js";
 
+import getItemType from "../../../utils/getItemType.js";
+
 import stageNames from "../../../data/stageNames.json";
 
 function SessionDuring(props) {
@@ -27,6 +29,8 @@ function SessionDuring(props) {
   const [amountBad, setAmountBad] = React.useState(
     props.activeSessionData ? props.activeSessionData["amountBad"] || 0 : null
   );
+
+  const itemType = getItemType(props.thisStage);
 
   const handleFieldChange = function (value, setState, dataKey) {
     setState(value);
@@ -129,10 +133,7 @@ function SessionDuring(props) {
                 props.thisRunData.productInfo.expirationDuration
               )}
             />
-            <DataListItem
-              dataKey="Run ID"
-              dataValue={props.thisRunData.id}
-            />
+            <DataListItem dataKey="Run ID" dataValue={props.thisRunData.id} />
           </>
         );
       case 4:
@@ -204,10 +205,7 @@ function SessionDuring(props) {
                   <FormItem
                     type="number"
                     ident={"sess-amount-step-" + props.thisStage}
-                    label={`
-                      Completed ${
-                        props.thisStage === 1 ? "Batches" : "Units"
-                      }:`}
+                    label={`Completed ${itemType}:`}
                     updateHandler={(value) =>
                       handleFieldChange(value, setAmount, "amount")
                     }
@@ -219,10 +217,7 @@ function SessionDuring(props) {
                   <FormItem
                     type="number"
                     ident={"sess-amount-bad-step-" + props.thisStage}
-                    label={`
-                      Defective ${
-                        props.thisStage === 1 ? "Batches" : "Units"
-                      }:`}
+                    label={`Defective ${itemType}:`}
                     updateHandler={(value) =>
                       handleFieldChange(value, setAmountBad, "amountBad")
                     }

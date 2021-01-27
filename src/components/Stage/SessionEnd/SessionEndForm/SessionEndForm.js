@@ -14,6 +14,8 @@ import getItemType from "../../../../utils/getItemType.js";
 function SessionEndForm(props) {
   const unitSystem = React.useContext(UnitSystemContext);
 
+  const itemType = getItemType(props.thisStage);
+
   const showAmounts = props.activeSessionData.activity.fields.includes(
     "amounts"
   );
@@ -70,7 +72,7 @@ function SessionEndForm(props) {
     const extraData = {
       notes: noteData,
       amount: amount,
-      amountType: getItemType(props.thisStage),
+      amountType: itemType,
       amountBad: amountBad,
       averageWeight: averageWeight,
     };
@@ -126,7 +128,7 @@ function SessionEndForm(props) {
           <FormItem
             type="number"
             ident={"sess-amount-step-" + props.thisStage}
-            label={"Completed " + (props.thisStage === 1 ? "Batches" : "Units")}
+            label={"Completed " + itemType}
             updateHandler={(value) =>
               handleFieldChange(value, setAmount, "amount")
             }
@@ -136,7 +138,7 @@ function SessionEndForm(props) {
           <FormItem
             type="number"
             ident={"sess-amount-bad-step-" + props.thisStage}
-            label={"Defective " + (props.thisStage === 1 ? "Batches" : "Units")}
+            label={"Defective " + itemType}
             updateHandler={(value) =>
               handleFieldChange(value, setAmountBad, "amountBad")
             }
