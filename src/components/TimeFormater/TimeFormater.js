@@ -12,7 +12,8 @@ function TimeFormater(props) {
 
   return (
     <>
-      {hours}:{minutes}:{seconds}
+      {hours}:{minutes}
+      {/* :{seconds} */}
     </>
   );
 }

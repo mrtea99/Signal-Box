@@ -128,7 +128,7 @@ function SessionDuring(props) {
             <DataListItem
               dataKey="Expiration Date"
               dataValue={expiryCalc(
-                //needs to be month plus one
+                //todo: start time needs to be current month plus one
                 props.thisRunData.stages[1].sessions[0].startTime,
                 props.thisRunData.productInfo.expirationDuration
               )}
