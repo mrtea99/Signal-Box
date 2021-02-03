@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import TimeFormater from "../TimeFormater/TimeFormater.js";
+import TimeFormater from "../DurationFormatter/DurationFormatter.js";
 import Timer from "../Timer/Timer.js";
 import FlagCloser from "../FlagCloser/FlagCloser.js";
 import CheckCloser from "../CheckCloser/CheckCloser.js";

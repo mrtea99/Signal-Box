@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import styles from "./TimeFormater.module.css";
+import styles from "./DurationFormatter.module.css";
 
-function TimeFormater(props) {
-  let seconds = Math.floor((props.rawTime / 1000) % 60);
-  let minutes = Math.floor((props.rawTime / (1000 * 60)) % 60);
+function DurationFormatter(props) {
   let hours = Math.floor(props.rawTime / (1000 * 60 * 60));
+  let minutes = Math.floor((props.rawTime / (1000 * 60)) % 60);
+  // let seconds = Math.floor((props.rawTime / 1000) % 60);
 
   hours = hours < 10 ? "0" + hours : hours;
   minutes = minutes < 10 ? "0" + minutes : minutes;
-  seconds = seconds < 10 ? "0" + seconds : seconds;
+  // seconds = seconds < 10 ? "0" + seconds : seconds;
 
   return (
     <span className="duration">
@@ -22,9 +22,9 @@ function TimeFormater(props) {
   );
 }
 
-TimeFormater.propTypes = {
+DurationFormatter.propTypes = {
   rawTime: PropTypes.number.isRequired,
   ticking: PropTypes.bool,
 };
 
-export default TimeFormater;
+export default DurationFormatter;

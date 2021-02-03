@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TimeFormater from "../TimeFormater/TimeFormater";
+import TimeFormater from "../DurationFormatter/DurationFormatter";
 
 function Timer(props) {
   const startTime = React.useState(new Date(props.startTime))[0];
