@@ -277,15 +277,16 @@ function SessionList(props) {
               <li
                 className={`${styles.contentItem} ${styles.colTech} ${styles.colFixed}`}
               >
-                <span className={styles.cellLabel}>Technician:</span>
+                <span className={styles.cellLabel}>Users:</span>
                 <span className={styles.cellContent}>
                   {/* {session.user} */}
                   {/* todo get actual name */}
                   {session.user === "1" ? "Jesus Sandoval" : "Amanda Kezios"}
                   {session.secondaryUser
-                    ? " / " + (session.secondaryUser === "1"
-                      ? "Jesus Sandoval"
-                      : "Amanda Kezios")
+                    ? " / " +
+                      (session.secondaryUser === "1"
+                        ? "Jesus Sandoval"
+                        : "Amanda Kezios")
                     : null}
                 </span>
               </li>
@@ -407,7 +408,6 @@ function SessionList(props) {
   );
 }
 
-SessionList.propTypes = {
-}
+SessionList.propTypes = {};
 
 export default SessionList;

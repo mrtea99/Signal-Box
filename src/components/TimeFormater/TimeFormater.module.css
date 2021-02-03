@@ -1,0 +1,13 @@
+.duration {
+  white-space: nowrap;
+}
+
+.separatorTicking {
+  animation: blinker 1s step-start 0s infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}

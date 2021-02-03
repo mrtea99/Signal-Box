@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import styles from "./TimeFormater.module.css";
+
 function TimeFormater(props) {
   let seconds = Math.floor((props.rawTime / 1000) % 60);
   let minutes = Math.floor((props.rawTime / (1000 * 60)) % 60);
@@ -11,15 +13,18 @@ function TimeFormater(props) {
   seconds = seconds < 10 ? "0" + seconds : seconds;
 
   return (
-    <>
-      {hours}:{minutes}
+    <span className="duration">
+      {hours}
+      <span className={props.ticking ? styles.separatorTicking : ""}>:</span>
+      {minutes}
       {/* :{seconds} */}
-    </>
+    </span>
   );
 }
 
 TimeFormater.propTypes = {
   rawTime: PropTypes.number.isRequired,
+  ticking: PropTypes.bool,
 };
 
 export default TimeFormater;
