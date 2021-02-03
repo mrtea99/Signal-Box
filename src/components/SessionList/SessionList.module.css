@@ -131,11 +131,6 @@
 }
 
 
-.date,
-.time {
-  white-space: nowrap;
-}
-
 .cellLabel {
   display: block;
   text-transform: uppercase;

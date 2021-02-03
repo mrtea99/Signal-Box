@@ -7,94 +7,15 @@ import CheckCloser from "../CheckCloser/CheckCloser.js";
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import Repeater from "./Repeater/Repeater.js";
 import TableHeader from "../TableHeader/TableHeader.js";
+import DateTimeFormatter from "../DateTimeFormatter/DateTimeFormatter.js";
+
+import getItemType from "../../utils/getItemType.js";
 
 import styles from "./SessionList.module.css";
 
-import TimeFormatContext from "../../contexts/TimeFormatContext.js";
-import DateFormatContext from "../../contexts/DateFormatContext.js";
-
 function SessionList(props) {
-  const timeFormat = useContext(TimeFormatContext);
-  const dateFormat = useContext(DateFormatContext);
-
   const thisStageData =
     props.thisRunData["stages"][props.thisStage]["sessions"];
-
-  const addLeadingZero = function (number) {
-    if (number < 10) {
-      number = "0" + number;
-    }
-    return number;
-  };
-
-  const formatDate = function (time) {
-    const dateObj = new Date(time);
-
-    const fullYear = dateObj.getFullYear();
-    const shortYear = fullYear.toString().slice(-2);
-    const month = addLeadingZero(dateObj.getMonth() + 1);
-    const day = addLeadingZero(dateObj.getDate());
-
-    let dateString;
-    switch (dateFormat) {
-      default:
-      case "ymd":
-        dateString = `${fullYear}-${month}-${day}`;
-        break;
-      case "mdy":
-        dateString = `${month}/${day}/${shortYear}`;
-        break;
-    }
-
-    return dateString;
-  };
-
-  const formatTime = function (time) {
-    const dateObj = new Date(time);
-
-    const dateHours = dateObj.getHours();
-    let hour;
-    let afterWords = "";
-
-    switch (timeFormat) {
-      default:
-      case "24h":
-        hour = addLeadingZero(dateHours);
-        break;
-      case "12h":
-        if (dateHours < 12) {
-          afterWords = "am";
-        } else {
-          afterWords = "pm";
-        }
-
-        if (dateHours > 12) {
-          hour = dateHours - 12;
-        } else {
-          hour = dateHours;
-        }
-
-        if (dateHours === 0) {
-          hour = 12;
-        }
-        break;
-    }
-
-    const min = addLeadingZero(dateObj.getMinutes());
-    const sec = addLeadingZero(dateObj.getSeconds());
-
-    return `${hour}:${min}:${sec}${afterWords}`;
-  };
-
-  const formatDateTime = function (date) {
-    return (
-      <time dateTime={new Date(date).toISOString()}>
-        <span className={styles.date}>{formatDate(date)}</span>
-        <br />
-        <span className={styles.time}>{formatTime(date)}</span>
-      </time>
-    );
-  };
 
   const translatePriority = function (count, caps) {
     switch (count) {
@@ -170,20 +91,7 @@ function SessionList(props) {
     );
   };
 
-  // const itemName = props.thisStage === 1 ? "Batches" : "Units";
-  let itemName;
-  switch (props.thisStage) {
-    case 1:
-      itemName = "Batches";
-      break;
-    case 2:
-    case 3:
-      itemName = "Units";
-      break;
-    default:
-      itemName = "Items";
-      break;
-  }
+  let itemName = getItemType(props.thisStage);
 
   const columns = [
     { copy: "№", className: `${styles.colNumber} ${styles.colFixed}` },
@@ -241,7 +149,7 @@ function SessionList(props) {
               >
                 <span className={styles.cellLabel}>Start Time:</span>
                 <span className={styles.cellContent}>
-                  {formatDateTime(session.startTime)}
+                  <DateTimeFormatter date={session.startTime} />
                 </span>
               </li>
               <li
@@ -332,9 +240,13 @@ function SessionList(props) {
                   </h3>
                   <p>Session ID: {session.sessionId}</p>
                   <p>Resolved: {session.endTime ? "Resolved" : "Unresolved"}</p>
-                  <p>Start Time: {formatDateTime(session.startTime)}</p>
+                  <p>
+                    Start Time: <DateTimeFormatter date={session.startTime} />
+                  </p>
                   {session.endTime ? (
-                    <p>End Time: {formatDateTime(session.startTime)}</p>
+                    <p>
+                      End Time: <DateTimeFormatter date={session.endTime} />
+                    </p>
                   ) : null}
                   <p>Duration: {formatDuration(session)}</p>
                   <p>Technician: {session.user}</p>
@@ -377,11 +289,10 @@ function SessionList(props) {
             <span className={styles.cellLabel}>Start Time:</span>
             <span className={styles.cellContent}>
               {thisStageData.length ? (
-                <>
-                  {formatDate(thisStageData[0].startTime)}
-                  <br />
-                  {formatTime(thisStageData[0].startTime)}
-                </>
+                <DateTimeFormatter
+                  date={thisStageData[0].startTime}
+                  splitLines="true"
+                />
               ) : (
                 "-"
               )}
