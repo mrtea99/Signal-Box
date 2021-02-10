@@ -57,8 +57,12 @@ function StatusPodItem(props) {
             className={`${
               styles["podItem" + props.stageStatus.stageStatusName]
             }`}
+            icon="settings"
+            name="Status"
+            value={getLabel()}
+            priority="value"
           >
-            {getLabel()}
+            {/* {getLabel()} */}
           </InfoPodItem>
         );
       case "completion":
@@ -69,9 +73,12 @@ function StatusPodItem(props) {
             className={`${
               styles["podItem" + props.stageStatus.stageStatusName]
             }`}
+            icon="settings"
+            name="Progress"
+            value={combinedCompletion()}
+            priority="value"
           >
-            {/* <StatusLine statuskey="Progress" statusValue={combinedCompletion()} /> */}
-            {combinedCompletion()}
+            {/* {combinedCompletion()} */}
           </InfoPodItem>
         );
       case "completionFraction":
@@ -89,16 +96,24 @@ function StatusPodItem(props) {
               className={`${
                 styles["podItem" + props.stageStatus.stageStatusName]
               }`}
-            >
-              {props.stageStatus.itemCount +
+              icon="settings"
+              name="Progress"
+              value={
+                props.stageStatus.itemCount +
                 "/" +
-                props.stageStatus.targetItemCount}
+                props.stageStatus.targetItemCount
+              }
+              priority="value"
+            >
+              {/* {props.stageStatus.itemCount +
+                "/" +
+                props.stageStatus.targetItemCount} */}
             </InfoPodItem>
           );
         }
         return null;
       case "user":
-        if (props.stageStatus.userTotal || props.type === "flag") {
+        if (props.stageStatus.userTotal || props.type === "bubble") {
           return (
             <InfoPodItem
               {...itemProps}
@@ -110,63 +125,83 @@ function StatusPodItem(props) {
                   ? styles.podItemcomplete
                   : ""
               }`}
+              icon="user"
+              name="Your Sessions"
+              value={props.stageStatus.userTotal}
+              priority="icon"
             >
-              <Icon
+              {/* <Icon
                 name="user"
                 className={`${styles.icon} ${styles.iconUser}`}
-              ></Icon>
+              ></Icon> */}
             </InfoPodItem>
           );
         }
         return null;
       case "qa":
-        if (props.stageStatus.qaActive || props.type === "flag") {
+        if (props.stageStatus.qaActive || props.type === "bubble") {
           return (
             <InfoPodItem
               {...itemProps}
               active={props.stageStatus.qaActive}
               className={styles.flagQa}
+              icon="qa"
+              name="QA Requests"
+              value={props.stageStatus.qaActive}
+              priority="icon"
             >
-              <Icon name="qa" className={styles.icon}></Icon>
+              {/* <Icon name="qa" className={styles.icon}></Icon> */}
             </InfoPodItem>
           );
         }
         return null;
       case "note":
-        if (props.stageStatus.noteActive || props.type === "flag") {
+        if (props.stageStatus.noteActive || props.type === "bubble") {
           return (
             <InfoPodItem
               {...itemProps}
               active={props.stageStatus.noteActive}
               className={styles.flagNote}
+              icon="details"
+              name="Notes"
+              value={props.stageStatus.noteActive}
+              priority="icon"
             >
-              <Icon name="details" className={styles.icon}></Icon>
+              {/* <Icon name="details" className={styles.icon}></Icon> */}
             </InfoPodItem>
           );
         }
         return null;
       case "issue":
-        if (props.stageStatus.issueActive || props.type === "flag") {
+        if (props.stageStatus.issueActive || props.type === "bubble") {
           return (
             <InfoPodItem
               {...itemProps}
               active={props.stageStatus.issueActive}
               className={styles.flagIssue}
+              icon="issue"
+              name="Issues"
+              value={props.stageStatus.issueActive}
+              priority="icon"
             >
-              <Icon name="issue" className={styles.icon}></Icon>
+              {/* <Icon name="issue" className={styles.icon}></Icon> */}
             </InfoPodItem>
           );
         }
         return null;
       case "blocker":
-        if (props.stageStatus.blockerActive || props.type === "flag") {
+        if (props.stageStatus.blockerActive || props.type === "bubble") {
           return (
             <InfoPodItem
               {...itemProps}
               active={props.stageStatus.blockerActive}
               className={styles.flagBlocker}
+              icon="blocker"
+              name="Blockers"
+              value={props.stageStatus.blockerActive}
+              priority="icon"
             >
-              <Icon name="blocker" className={styles.icon}></Icon>
+              {/* <Icon name="blocker" className={styles.icon}></Icon> */}
             </InfoPodItem>
           );
         }

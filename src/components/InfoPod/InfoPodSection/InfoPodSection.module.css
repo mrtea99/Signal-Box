@@ -14,10 +14,10 @@
   flex-direction: column;
 }
 
-.flags {
+.bubbles {
   display: flex;
   flex-direction: row-reverse;
 }
-.flagsVert {
+.bubblesVert {
   flex-direction: column-reverse;
 }

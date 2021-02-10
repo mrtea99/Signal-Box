@@ -19,6 +19,7 @@ function StageStatus(props) {
       {props.label ? (
         <InfoPodSection>
           <StatusPodItem
+            key="label"
             coreStyle="label"
             statusField="label"
             stageStatus={stageStatus}
@@ -27,7 +28,7 @@ function StageStatus(props) {
       ) : null}
       <InfoPodSection
         layout={props.layout}
-        flags={[
+        bubbles={[
           <StatusPodItem
             key="note"
             statusField="note"

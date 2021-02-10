@@ -71,7 +71,7 @@ function DateTimeFormatter(props) {
     }
 
     const min = addLeadingZero(dateObj.getMinutes());
-    const sec = addLeadingZero(dateObj.getSeconds());
+    // const sec = addLeadingZero(dateObj.getSeconds());
 
     // return `${hour}:${min}:${sec}${afterWords}`;
     return `${hour}:${min}${afterWords}`;

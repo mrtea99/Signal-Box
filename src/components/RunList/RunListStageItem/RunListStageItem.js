@@ -89,7 +89,7 @@ function RunListStageItem(props) {
         <span className={styles.cellContent}>
           <InfoPod>
             <InfoPodSection
-              flags={[
+              bubbles={[
                 <StatusPodItem
                   key="progress"
                   statusField="completionFraction"
@@ -134,7 +134,7 @@ function RunListStageItem(props) {
           {highestFlag(stageStatus) ? (
             <InfoPod>
               <InfoPodSection
-                flags={flagFlags(stageStatus, highestFlag(stageStatus))}
+                bubbles={flagFlags(stageStatus, highestFlag(stageStatus))}
                 layout="vert"
               >
                 <StatusPodItem

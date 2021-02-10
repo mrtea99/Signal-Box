@@ -18,13 +18,13 @@ function InfoPodSection(props) {
           )
         : ""}
       <span
-        className={`${styles.flags} ${
-          layout === "vert" ? styles.flagsVert : styles.flagsHoriz
+        className={`${styles.bubbles} ${
+          layout === "vert" ? styles.bubblesVert : styles.bubblesHoriz
         }`}
       >
-        {props.flags
-          ? props.flags.map((flag, index) =>
-              React.cloneElement(flag, { type: "flag", layout: layout })
+        {props.bubbles
+          ? props.bubbles.map((bubble, index) =>
+              React.cloneElement(bubble, { type: "bubble", layout: layout })
             )
           : ""}
       </span>
@@ -34,7 +34,7 @@ function InfoPodSection(props) {
 
 InfoPodSection.propTypes = {
   layout: PropTypes.oneOf(["vert", "horiz"]),
-  flags: PropTypes.array,
+  bubbles: PropTypes.array,
   children: PropTypes.node,
 };
 

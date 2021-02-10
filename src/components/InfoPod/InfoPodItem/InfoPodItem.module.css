@@ -1,7 +1,7 @@
 .item {
   --border-width: 2px; /* Pixels used to prevent rounding errors */
   --core-size: 1.6em;
-  --flag-width: calc(((var(--core-size)) * 2) - var(--border-width));
+  --bubble-width: calc(((var(--core-size)) * 2) - var(--border-width));
   --speed-change: 0.5s;
   --easing-change: ease;
 
@@ -29,7 +29,7 @@
   width: 100%;
 }
 
-.itemFlag {
+.itemBubble {
   margin-left: calc(var(--core-size) * -1);
   border-radius: calc(var(--core-size) / 2);
   max-width: var(--core-size);
@@ -40,25 +40,24 @@
   z-index: 9;
 }
 
-.itemFlag.itemVert {
+.itemBubble.itemVert {
   margin-left: 0;
   margin-top: calc(var(--core-size) * -1);
   max-width: none;
   min-width: none;
 }
 
-.itemFlagActive {
+.itemBubbleActive {
   max-width: 10rem;
-  min-width: var(--flag-width);
+  min-width: var(--bubble-width);
   padding-left: calc(var(--core-size) - var(--border-width));
 }
-.itemFlagActive.itemVert {
+.itemBubbleActive.itemVert {
   padding-left: 0;
   max-height: 10rem;
-  min-height: var(--flag-width);
+  min-height: var(--bubble-width);
   padding-top: calc(var(--core-size) - var(--border-width));
 }
-
 
 .inner {
   vertical-align: middle;
@@ -67,9 +66,37 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
+}
+
+.innerVert {
+  justify-content: space-between;
+  padding: 0 0.5em;
 }
 
 .innerText {
   padding-left: 0.4em;
   padding-right: 0.4em;
+}
+
+.icon {
+  max-height: 0.8em;
+  max-width: 0.8em;
+}
+.icon path {
+  fill: var(--color-white);
+}
+
+.iconUser {
+  max-height: none;
+  max-width: none;
+  transform: scale(1.6) translateY(0.1em);
+}
+
+.name {
+  font-weight: normal;
+}
+
+.nameWithIcon {
+  padding-left: 0.4em;
 }

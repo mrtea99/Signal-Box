@@ -1,23 +1,56 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import Icon from "../../Icon/Icon.js";
+
 import styles from "./InfoPodItem.module.css";
 
 function InfoPodItem(props) {
+  const showIcon =
+    props.icon &&
+    ((props.layout === "horiz" && props.priority === "icon") ||
+      props.layout === "vert")
+      ? true
+      : false;
+
   return (
     <span
-      className={`${props.className} ${styles.item} ${
-        props.coreStyle === "label" ? styles.itemLabel : ""
-      } ${props.type === "flag" ? styles.itemFlag : ""} ${
-        props.type === "flag" && props.active ? styles.itemFlagActive : ""
-      } ${props.layout === "vert" ? styles.itemVert : styles.itemHoriz}`}
+      className={`
+      ${props.className} ${styles.item} 
+      ${props.coreStyle === "label" ? styles.itemLabel : ""}
+      ${props.type === "bubble" ? styles.itemBubble : ""}
+      ${props.type === "bubble" && props.active ? styles.itemBubbleActive : ""}
+      ${props.layout === "vert" ? styles.itemVert : styles.itemHoriz}
+      `}
     >
       <span
         className={`${styles.inner} ${
-          typeof props.children === "string" ? styles.innerText : ""
-        }`}
+          props.layout === "vert" ? styles.innerVert : ""
+        } ${!showIcon ? styles.innerText : ""}`}
       >
-        {props.children}
+        <span>
+          {showIcon ? (
+            <Icon
+              name={props.icon ? props.icon : null}
+              className={`${styles.icon} ${
+                props.icon === "user" ? styles.iconUser : ""
+              }`}
+            ></Icon>
+          ) : null}
+          {props.layout === "vert" ? (
+            <span
+              className={`${styles.name} ${
+                showIcon ? styles.nameWithIcon : ""
+              }`}
+            >
+              {props.name}:
+            </span>
+          ) : null}
+        </span>
+        {(props.layout === "horiz" && props.priority === "value") ||
+        props.layout === "vert" ? (
+          <span>{props.value}</span>
+        ) : null}
       </span>
     </span>
   );
@@ -26,10 +59,13 @@ function InfoPodItem(props) {
 InfoPodItem.propTypes = {
   className: PropTypes.string,
   coreStyle: PropTypes.string,
-  type: PropTypes.oneOf(["flag", "core"]),
+  type: PropTypes.oneOf(["bubble", "core"]),
   active: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
   layout: PropTypes.oneOf(["horiz", "vert"]),
-  children: PropTypes.node,
+  icon: PropTypes.string,
+  name: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  priority: PropTypes.oneOf(["icon", "value"]),
 };
 
 export default InfoPodItem;

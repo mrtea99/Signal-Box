@@ -142,15 +142,25 @@ function ConsignItems(props) {
       <InfoPod fullWidth>
         <InfoPodSection
           layout="vert"
-          flags={[
-            <InfoPodItem active key={"remaining"}>
-              Remaining:{" "}
-              {props.stageStatus.targetItemCount - props.stageStatus.itemCount}
+          bubbles={[
+            <InfoPodItem
+              active
+              key={"remaining"}
+              name="Remaining"
+              value={
+                props.stageStatus.targetItemCount - props.stageStatus.itemCount
+              }
+            >
+              {/* Remaining:{" "}
+              {props.stageStatus.targetItemCount - props.stageStatus.itemCount} */}
             </InfoPodItem>,
           ]}
         >
-          <InfoPodItem>
-            Consigned: {props.stageStatus.completionFraction}
+          <InfoPodItem
+            name="Consigned"
+            value={props.stageStatus.completionFraction}
+          >
+            {/* Consigned: {props.stageStatus.completionFraction} */}
           </InfoPodItem>
         </InfoPodSection>
       </InfoPod>
