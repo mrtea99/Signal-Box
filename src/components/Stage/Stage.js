@@ -213,6 +213,7 @@ function Stage(props) {
               activeUser={props.activeUser}
               layout="vert"
               fullWidth
+              viewMode="full"
             />
           )}
           <StageActions

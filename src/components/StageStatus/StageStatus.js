@@ -28,6 +28,7 @@ function StageStatus(props) {
       ) : null}
       <InfoPodSection
         layout={props.layout}
+        viewMode={props.viewMode}
         bubbles={[
           <StatusPodItem
             key="note"

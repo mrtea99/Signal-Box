@@ -142,6 +142,7 @@ function ConsignItems(props) {
       <InfoPod fullWidth>
         <InfoPodSection
           layout="vert"
+          viewMode="full"
           bubbles={[
             <InfoPodItem
               active

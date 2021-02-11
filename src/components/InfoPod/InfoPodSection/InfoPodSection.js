@@ -14,7 +14,7 @@ function InfoPodSection(props) {
     >
       {props.children
         ? React.Children.toArray(props.children).map((child, index) =>
-            React.cloneElement(child, { type: "core", layout: layout })
+            React.cloneElement(child, { type: "core", layout: layout, viewMode: props.viewMode })
           )
         : ""}
       <span
@@ -24,7 +24,7 @@ function InfoPodSection(props) {
       >
         {props.bubbles
           ? props.bubbles.map((bubble, index) =>
-              React.cloneElement(bubble, { type: "bubble", layout: layout })
+              React.cloneElement(bubble, { type: "bubble", layout: layout, viewMode: props.viewMode })
             )
           : ""}
       </span>
