@@ -135,6 +135,20 @@ function FormItem(props) {
         </div>
       );
       break;
+    case "date":
+      fieldElem = (
+        <div className={styles.fieldWrap}>
+          <input
+            type="date"
+            name={ident}
+            id={ident}
+            onChange={(e) => updateHandler(e.target.valueAsNumber)}
+            // className={styles.checkboxInput}
+            {...fieldProps}
+          />
+        </div>
+      );
+      break;
     default:
       fieldElem = null;
       break;
