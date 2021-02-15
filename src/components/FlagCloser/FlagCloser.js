@@ -6,7 +6,7 @@ import FormItem from "../FormItem/FormItem.js";
 
 function FlagCloser(props) {
   const [description, setDescription] = React.useState("");
-  const [status, setStatus] = React.useState(props.session.status);
+  const [status, setStatus] = React.useState(props.session.extra);
   const [priority, setPriority] = React.useState(props.session.amount);
 
   const handleSubmit = function () {
@@ -31,7 +31,7 @@ function FlagCloser(props) {
       );
     } else {
       props.updateSession(
-        { notes: newNote, amount: priority, status: status },
+        { notes: newNote, amount: priority, extra: status },
         props.thisStage,
         props.session.sessionId
       );
@@ -42,7 +42,7 @@ function FlagCloser(props) {
 
   const handleCancel = function () {
     setDescription("");
-    setStatus(props.session.status);
+    setStatus(props.session.extra);
     setPriority(props.session.amount);
   };
 
