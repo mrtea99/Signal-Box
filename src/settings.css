@@ -21,6 +21,8 @@
 
   --color-green: #04ab5b;
 
+  --color-purple: #ad3dff;
+
   /* Color reassignments */
   --color-text: var(--color-white);
   --color-text-alt: var(--color-grey-dark);
@@ -31,8 +33,9 @@
   --color-fg: var(--color-grey-light);
 
   --color-cancel: var(--color-grey-darker);
-  --color-qa: var(--color-blue);
+  --color-qa: var(--color-purple);
   --color-note: var(--color-pink);
+  --color-assign: var(--color-blue);
   --color-issue: var(--color-orange);
   --color-blocker: var(--color-red);
   --color-complete: var(--color-green);

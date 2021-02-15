@@ -20,6 +20,7 @@ import { ReactComponent as User } from "./user.svg";
 import { ReactComponent as Cog } from "./cog.svg";
 import { ReactComponent as Menu } from "./menu.svg";
 import { ReactComponent as Filter } from "./filter.svg";
+import { ReactComponent as StarFull } from "./star-full.svg";
 
 function Icon(props) {
   const iconElem = function () {
@@ -62,6 +63,8 @@ function Icon(props) {
         return <Menu className={props.className} />;
       case "filter":
         return <Filter className={props.className} />;
+      case "assign":
+        return <StarFull className={props.className} />;
       default:
         return null;
     }

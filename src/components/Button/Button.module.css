@@ -97,6 +97,9 @@
 .colorComplete {
   background-color: var(--color-complete);
 }
+.colorAssign {
+  background-color: var(--color-assign);
+}
 
 /* Copy */
 /* .copy {

@@ -42,7 +42,6 @@ function SessionDuring(props) {
   };
 
   const expiryCalc = function (start, months) {
-    // const st
     const startDate = new Date(start);
     const expiryDate = new Date(
       startDate.setMonth(startDate.getMonth() + months)
