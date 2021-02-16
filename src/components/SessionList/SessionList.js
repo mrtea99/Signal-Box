@@ -44,6 +44,8 @@ function SessionList(props) {
         return "Undo Complete Stage";
       case "consign":
         return "Consignment";
+      case "assign":
+        return "Assignment";
       default:
         return "Activity";
     }
@@ -60,13 +62,15 @@ function SessionList(props) {
     let totalDuration = 0;
 
     for (let i = 0; i < thisStageData.length; i++) {
-      if (thisStageData[i].endTime) {
-        totalDuration =
-          totalDuration +
-          (thisStageData[i].endTime - thisStageData[i].startTime);
-      } else {
-        totalDuration =
-          totalDuration + (Date.now() - thisStageData[i].startTime);
+      if (thisStageData[i].type !== "assign") {
+        if (thisStageData[i].endTime) {
+          totalDuration =
+            totalDuration +
+            (thisStageData[i].endTime - thisStageData[i].startTime);
+        } else {
+          totalDuration =
+            totalDuration + (Date.now() - thisStageData[i].startTime);
+        }
       }
     }
 

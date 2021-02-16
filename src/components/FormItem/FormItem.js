@@ -143,7 +143,7 @@ function FormItem(props) {
             name={ident}
             id={ident}
             onChange={(e) => updateHandler(e.target.valueAsNumber)}
-            // className={styles.checkboxInput}
+            className={`${styles.field} ${styles.fieldDate}`}
             {...fieldProps}
           />
         </div>

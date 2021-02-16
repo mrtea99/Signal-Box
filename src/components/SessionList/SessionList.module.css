@@ -38,6 +38,9 @@
 .itemRow--work .contentItem.colNumber {
   background-color: var(--color-pink-bright);
 }
+.itemRow--assign .contentItem.colNumber {
+  background-color: var(--color-assign);
+}
 .itemRow--qa .contentItem.colNumber {
   background-color: var(--color-qa);
 }
