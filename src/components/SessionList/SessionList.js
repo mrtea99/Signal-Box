@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 
 import TimeFormater from "../DurationFormatter/DurationFormatter.js";
 import Timer from "../Timer/Timer.js";
@@ -295,7 +296,7 @@ function SessionList(props) {
               {thisStageData.length ? (
                 <DateTimeFormatter
                   date={thisStageData[0].startTime}
-                  splitLines="true"
+                  splitLines={true}
                 />
               ) : (
                 "-"
@@ -323,6 +324,12 @@ function SessionList(props) {
   );
 }
 
-SessionList.propTypes = {};
+SessionList.propTypes = {
+  thisRunData: PropTypes.object.isRequired,
+  thisStage: PropTypes.number.isRequired,
+  endSession: PropTypes.func.isRequired,
+  updateSession: PropTypes.func.isRequired,
+  activeUser: PropTypes.string.isRequired,
+};
 
 export default SessionList;

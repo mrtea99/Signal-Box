@@ -20,7 +20,7 @@ function RunListAllItem(props) {
         // onClick={() => setModalOverviewActive(run.id)}
         className={styles.itemHeader}
       >
-        <RunTitle runData={props.runData}>
+        <RunTitle runData={props.runData} activeUser={props.activeUser} >
           {run.productInfo.productName}
         </RunTitle>
       </header>

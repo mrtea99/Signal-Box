@@ -66,7 +66,7 @@ function RunListStageItem(props) {
       <li
         className={`${styles.lineItem} ${styles.lineItemFull} ${props.columns[0].className}`}
       >
-        <RunTitle runData={props.runData}>
+        <RunTitle runData={props.runData} activeUser={props.activeUser}>
           {props.runData.productInfo.productName}
         </RunTitle>
       </li>

@@ -20,6 +20,11 @@ function AssignmentOpener(props) {
 
 
   const handleSubmit = function () {
+    //basic validation
+    if (assignee === null || startDate === null) {
+      return false;
+    }
+
     const newsessionId = Date.now();
 
     const newSession = {

@@ -37,7 +37,10 @@ function RunTitle(props) {
       {modalOverviewActive === props.runData.id ? (
         <Modal title="Run Overview">
           <Button onClick={() => setModalOverviewActive(null)}>Close</Button>
-          <StageOverview thisRunData={props.runData}></StageOverview>
+          <StageOverview
+            thisRunData={props.runData}
+            activeUser={props.activeUser}
+          ></StageOverview>
         </Modal>
       ) : null}
     </div>
@@ -46,6 +49,7 @@ function RunTitle(props) {
 
 RunTitle.propTypes = {
   runData: PropTypes.object.isRequired,
+  activeUser: PropTypes.string.isRequired,
 };
 
 export default RunTitle;

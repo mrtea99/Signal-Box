@@ -32,6 +32,7 @@ function CheckOpenerForm(props) {
       <FormItem
         type="select"
         label="Timeframe:"
+        ident={"sess-timeframe-stage-" + props.thisStage}
         value={props.formData.extra}
         updateHandler={(value) =>
           props.setFormData({ ...props.formData, extra: value })

@@ -41,7 +41,7 @@ function RunDelete(props) {
 
 RunDelete.propTypes = {
   updateRunData: PropTypes.func.isRequired,
-  runId: PropTypes.number.isRequired,
+  currentRunUid: PropTypes.number.isRequired,
   successCallback: PropTypes.func,
 };
 

@@ -18,9 +18,16 @@ function StageOverview(props) {
               runData={props.thisRunData}
               stageNum={index}
               label={true}
+              activeUser={props.activeUser}
             />
           </h3>
-          <SessionList thisStage={index} thisRunData={props.thisRunData} />
+          <SessionList
+            thisStage={index}
+            thisRunData={props.thisRunData}
+            endSession={props.endSession}
+            updateSession={props.updateSession}
+            activeUser={props.activeUser}
+          />
         </section>
       ))}
     </article>
@@ -29,6 +36,7 @@ function StageOverview(props) {
 
 StageOverview.propTypes = {
   thisRunData: PropTypes.object.isRequired,
+  activeUser: PropTypes.string.isRequired,
 };
 
 export default StageOverview;

@@ -109,6 +109,7 @@ function RunInfoForm(props) {
           <FormItem
             label="Product:"
             type="select"
+            ident="product"
             updateHandler={(value) => {
               setTemplate(parseInt(value));
             }}
@@ -128,6 +129,7 @@ function RunInfoForm(props) {
               <FormItem
                 label="Batch Quantity:"
                 type="number"
+                ident="quantity"
                 updateHandler={(value) => {
                   setBatchQuantity(parseInt(value));
                 }}

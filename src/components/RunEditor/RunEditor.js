@@ -96,6 +96,7 @@ function RunEditor(props) {
                         </Button>
                         <StageOverview
                           thisRunData={thisRunData}
+                          activeUser={props.activeUser}
                         ></StageOverview>
                       </Modal>
                     ) : null}
