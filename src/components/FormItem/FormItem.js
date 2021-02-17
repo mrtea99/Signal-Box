@@ -145,6 +145,7 @@ function FormItem(props) {
             onChange={(e) => updateHandler(e.target.valueAsNumber)}
             className={`${styles.field} ${styles.fieldDate}`}
             {...fieldProps}
+            value={new Date(fieldProps.value).toISOString().substr(0, 10)}
           />
         </div>
       );

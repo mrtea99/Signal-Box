@@ -14,10 +14,8 @@ function AssignmentOpener(props) {
 
   const [description, setDescription] = React.useState("");
   const [assignee, setAssignee] = React.useState(null);
-  const [startDate, setStartDate] = React.useState(null);
+  const [startDate, setStartDate] = React.useState(Date.now());
   const [startTime, setStartTime] = React.useState(shiftTimes[0]);
-
-
 
   const handleSubmit = function () {
     //basic validation
@@ -45,7 +43,7 @@ function AssignmentOpener(props) {
   const handleCancel = function () {
     setDescription("");
     setAssignee(null);
-    setStartDate(null);
+    setStartDate(Date.now());
     setStartTime(shiftTimes[0]);
   };
 
@@ -71,6 +69,7 @@ function AssignmentOpener(props) {
           updateHandler={(value) => {
             setDescription(value);
           }}
+          value={description}
         />
         <FormItem
           label="Planned Start Date:"
@@ -79,6 +78,7 @@ function AssignmentOpener(props) {
           updateHandler={(value) => {
             setStartDate(value);
           }}
+          value={startDate}
         />
 
         <FormItem
