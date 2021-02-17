@@ -137,35 +137,38 @@ function ConsignItems(props) {
 
   const triggerCopy = "Consign " + itemName;
 
+  const consInfoPod = (
+    <InfoPod fullWidth>
+      <InfoPodSection
+        layout="vert"
+        viewMode="full"
+        bubbles={[
+          <InfoPodItem
+            active
+            key={"remaining"}
+            name="Remaining"
+            value={
+              props.stageStatus.targetItemCount - props.stageStatus.itemCount
+            }
+          >
+            {/* Remaining:{" "}
+        {props.stageStatus.targetItemCount - props.stageStatus.itemCount} */}
+          </InfoPodItem>,
+        ]}
+      >
+        <InfoPodItem
+          name="Consigned"
+          value={props.stageStatus.completionFraction}
+        >
+          {/* Consigned: {props.stageStatus.completionFraction} */}
+        </InfoPodItem>
+      </InfoPodSection>
+    </InfoPod>
+  );
+
   return (
     <div className={styles.wrapper}>
-      <InfoPod fullWidth>
-        <InfoPodSection
-          layout="vert"
-          viewMode="full"
-          bubbles={[
-            <InfoPodItem
-              active
-              key={"remaining"}
-              name="Remaining"
-              value={
-                props.stageStatus.targetItemCount - props.stageStatus.itemCount
-              }
-            >
-              {/* Remaining:{" "}
-              {props.stageStatus.targetItemCount - props.stageStatus.itemCount} */}
-            </InfoPodItem>,
-          ]}
-        >
-          <InfoPodItem
-            name="Consigned"
-            value={props.stageStatus.completionFraction}
-          >
-            {/* Consigned: {props.stageStatus.completionFraction} */}
-          </InfoPodItem>
-        </InfoPodSection>
-      </InfoPod>
-
+      {consInfoPod}
       <ModalControl
         title={triggerCopy}
         triggerCopy={triggerCopy}
@@ -193,12 +196,7 @@ function ConsignItems(props) {
             })}
           </tbody>
         </table>
-        <p>
-          Consigned: {props.stageStatus.completionFraction}
-          <br />
-          Remaining:{" "}
-          {props.stageStatus.targetItemCount - props.stageStatus.itemCount}
-        </p>
+        {consInfoPod}
 
         <FormItem
           label="Consignment amount:"
