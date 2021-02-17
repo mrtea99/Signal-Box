@@ -40,6 +40,7 @@ function CheckCloser(props) {
           title="QA Check"
           handleSubmit={handleSubmit}
           triggerCopy={""}
+          submitCopy={"Complete"}
           buttonAttrs={{ color: "qa", icon: "check" }}
         >
           <div>

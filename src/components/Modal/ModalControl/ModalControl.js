@@ -47,7 +47,7 @@ function ModalControl(props) {
                 Cancel
               </Button>
               <Button onClick={(e) => handleSubmit(e)} {...saveBtnAttrs}>
-                {props.triggerCopy || "Save"}
+                {props.submitCopy || props.triggerCopy || "Save"}
               </Button>
             </ButtonSpacer>
           ) : (
