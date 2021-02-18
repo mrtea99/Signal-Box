@@ -9,6 +9,7 @@ import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import Repeater from "./Repeater/Repeater.js";
 import TableHeader from "../TableHeader/TableHeader.js";
 import DateTimeFormatter from "../DateTimeFormatter/DateTimeFormatter.js";
+import AssignmentCloser from "../AssignmentCloser/AssignmentCloser.js";
 
 import getItemType from "../../utils/getItemType.js";
 
@@ -214,6 +215,14 @@ function SessionList(props) {
                     endSession={props.endSession}
                     updateSession={props.updateSession}
                     activeUser={props.activeUser}
+                  />
+                ) : null}
+                {session.type === "assign" ? (
+                  <AssignmentCloser
+                    key={session.sessionId}
+                    thisStage={props.thisStage}
+                    session={session}
+                    endSession={props.endSession}
                   />
                 ) : null}
                 {session.type === "qa" ? (

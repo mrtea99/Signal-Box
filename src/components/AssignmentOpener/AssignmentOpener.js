@@ -1,9 +1,10 @@
 import React from "react";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
-import FormItem from "../FormItem/FormItem.js";
-import UserSelect from "../FormItem/UserSelect/UserSelect.js";
-import PagedModal from "../Modal/PagedModal/PagedModal.js";
+// import FormItem from "../FormItem/FormItem.js";
+// import UserSelect from "../FormItem/UserSelect/UserSelect.js";
+// import PagedModal from "../Modal/PagedModal/PagedModal.js";
+import AssignmentOpenerForm from "./AssignmentOpenerForm/AssignmentOpenerForm.js";
 
 function AssignmentOpener(props) {
   const millisecondsPerHour = 3600000;
@@ -13,27 +14,37 @@ function AssignmentOpener(props) {
     millisecondsPerHour * 15,
   ];
 
-  const [description, setDescription] = React.useState("");
-  const [assignee, setAssignee] = React.useState(null);
-  const [startDate, setStartDate] = React.useState(Date.now());
-  const [startTime, setStartTime] = React.useState(shiftTimes[0]);
+  //Calculate time at midnight today, so shift time can be added to it
+  const dateNow = new Date();
+  const timeToToday = new Date(
+    dateNow.getFullYear(),
+    dateNow.getMonth(),
+    dateNow.getDate(),
+    0,
+    0,
+    0
+  ).getTime();
+
+  const defaultFormData = {
+    description: "",
+    assignee: null,
+    startDate: timeToToday,
+    startTime: shiftTimes[0],
+  };
+
+  const [formData, setFormData] = React.useState(defaultFormData);
 
   const handleSubmit = function () {
-    //basic validation
-    if (assignee === null || startDate === null) {
-      return false;
-    }
-
     const newsessionId = Date.now();
 
     const newSession = {
       sessionId: newsessionId,
       type: "assign",
-      startTime: startDate + startTime,
+      startTime: formData.startDate + formData.startTime,
       endTime: null,
       user: props.activeUser,
-      secondaryUser: assignee,
-      notes: description,
+      secondaryUser: formData.assignee,
+      notes: formData.description,
     };
 
     props.addSession(newSession, props.thisStage);
@@ -42,15 +53,12 @@ function AssignmentOpener(props) {
   };
 
   const handleCancel = function () {
-    setDescription("");
-    setAssignee(null);
-    setStartDate(Date.now());
-    setStartTime(shiftTimes[0]);
+    setFormData(defaultFormData);
   };
 
   return (
     <>
-      <PagedModal
+      {/* <PagedModal
         title="Assign Stage"
         handleSubmit={handleSubmit}
         handleCancel={handleCancel}
@@ -62,7 +70,7 @@ function AssignmentOpener(props) {
           <React.Fragment key="key3">Page3</React.Fragment>,
           <React.Fragment key="key4">Page4 </React.Fragment>,
         ]}
-      ></PagedModal>
+      ></PagedModal> */}
 
       <ModalControl
         title="Assign Stage"
@@ -72,41 +80,11 @@ function AssignmentOpener(props) {
         buttonAttrs={{ fillWidth: true, color: "assign", icon: "assign" }}
       >
         <form>
-          <UserSelect
-            label="Assignee:"
-            ident={"assignee-" + props.thisStage}
-            updateHandler={(value) => setAssignee(value)}
-            value={assignee}
-          />
-          <FormItem
-            label="Notes:"
-            type="textarea"
-            ident="assignment-notes"
-            updateHandler={(value) => {
-              setDescription(value);
-            }}
-            value={description}
-          />
-          <FormItem
-            label="Planned Start Date:"
-            type="date"
-            ident="assignment-date"
-            updateHandler={(value) => {
-              setStartDate(value);
-            }}
-            value={startDate}
-          />
-
-          <FormItem
-            label="Planned Start Time:"
-            type="toggleButton"
-            ident="assignment-time"
-            itemLabels={["Morning", "Noon", "Afternoon"]}
-            itemValues={shiftTimes}
-            value={startTime}
-            updateHandler={(value) => {
-              setStartTime(parseInt(value));
-            }}
+          <AssignmentOpenerForm
+            formData={formData}
+            setFormData={setFormData}
+            thisStage={props.thisStage}
+            shiftTimes={shiftTimes}
           />
         </form>
       </ModalControl>
