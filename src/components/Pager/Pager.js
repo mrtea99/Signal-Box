@@ -3,22 +3,15 @@ import PropTypes from "prop-types";
 
 import Button from "../Button/Button.js";
 
-{/* <Pager
-pages={[
-  <React.Fragment key="key1">Page1</React.Fragment>,
-  <React.Fragment key="key2">Page2</React.Fragment>,
-  <React.Fragment key="key3">Page3</React.Fragment>,
-  <React.Fragment key="key4">Page4</React.Fragment>,
-]}
->
-Test
-</Pager> */}
-
-
 function Pager(props) {
-  const [pageNumber, setPageNumber] = React.useState(
-    props.pageNumber !== undefined ? props.pageNumber : 0
-  );
+  const [pageNumberChild, setPageNumberChild] = React.useState(0);
+
+  const pageNumber =
+    props.pageNumber !== undefined ? props.pageNumber : pageNumberChild;
+  const setPageNumber =
+    props.setPageNumber !== undefined
+      ? props.setPageNumber
+      : setPageNumberChild;
 
   return (
     <>
