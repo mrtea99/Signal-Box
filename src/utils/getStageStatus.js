@@ -132,6 +132,32 @@ function getStageStatus(runData, stageNumber, activeUser) {
     }).length;
   }
 
+  //Assignments
+  const assignSessions = allSessions.filter((session) => {
+    return session.type === "assign";
+  });
+  const assignTotal = assignSessions.length;
+
+  const assignActive = assignSessions.filter((session) => {
+    return !session.endTime;
+  }).length;
+
+  let assignUserTotal = 0;
+  let assignUserActive = 0;
+
+  if (activeUser) {
+    const assignUserSessions = assignSessions.filter((session) => {
+      return session.secondaryUser === activeUser;
+    });
+    assignUserTotal = assignUserSessions.length;
+
+    assignUserActive = assignUserSessions.filter((session) => {
+      return !session.endTime;
+    }).length;
+  }
+
+  
+
   // let prevStarted = false;
   // let allPrevInactive = false;
 
@@ -278,6 +304,10 @@ function getStageStatus(runData, stageNumber, activeUser) {
     qaActive,
     userTotal,
     userActive,
+    assignTotal,
+    assignActive,
+    assignUserTotal,
+    assignUserActive,
     itemCount,
     targetItemCount,
     completionFraction,

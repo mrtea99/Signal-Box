@@ -23,6 +23,9 @@
 .flagQa {
   background-color: var(--color-qa);
 }
+.flagAssign {
+  background-color: var(--color-assign);
+}
 
 
 /* .icon {

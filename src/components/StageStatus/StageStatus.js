@@ -47,6 +47,11 @@ function StageStatus(props) {
           />,
           <StatusPodItem key="qa" statusField="qa" stageStatus={stageStatus} />,
           <StatusPodItem
+            key="assign"
+            statusField="assign"
+            stageStatus={stageStatus}
+          />,
+          <StatusPodItem
             key="user"
             statusField="user"
             stageStatus={stageStatus}

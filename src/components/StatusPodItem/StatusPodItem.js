@@ -136,6 +136,21 @@ function StatusPodItem(props) {
           );
         }
         return null;
+      case "assign":
+        if (props.stageStatus.qaActive || props.type === "bubble") {
+          return (
+            <InfoPodItem
+              {...itemProps}
+              active={props.stageStatus.assignActive}
+              className={props.stageStatus.assignUserActive ? styles.flagAssign : ""}
+              icon="assign"
+              name="Assignments"
+              value={props.stageStatus.assignActive}
+              priority="icon"
+            />
+          );
+        }
+        return null;
       case "qa":
         if (props.stageStatus.qaActive || props.type === "bubble") {
           return (
