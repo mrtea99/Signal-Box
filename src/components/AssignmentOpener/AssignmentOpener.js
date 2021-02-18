@@ -45,6 +45,7 @@ function AssignmentOpener(props) {
       user: props.activeUser,
       secondaryUser: formData.assignee,
       notes: formData.description,
+      extra: "active",
     };
 
     props.addSession(newSession, props.thisStage);

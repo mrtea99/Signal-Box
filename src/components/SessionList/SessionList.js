@@ -222,6 +222,7 @@ function SessionList(props) {
                     key={session.sessionId}
                     thisStage={props.thisStage}
                     session={session}
+                    updateSession={props.updateSession}
                     endSession={props.endSession}
                   />
                 ) : null}
