@@ -30,18 +30,16 @@ function CheckOpenerForm(props) {
         value={props.formData.secondaryUser}
       />
       <FormItem
-        type="select"
         label="Timeframe:"
+        type="toggleButton"
         ident={"sess-timeframe-stage-" + props.thisStage}
+        itemLabels={["Immediate", "Before next shift", "Before next day"]}
+        itemValues={["now", "shift", "day"]}
         value={props.formData.extra}
-        updateHandler={(value) =>
-          props.setFormData({ ...props.formData, extra: value })
-        }
-      >
-        <option value="now">Immediate</option>
-        <option value="shift">Before next shift</option>
-        <option value="day">Before next day</option>
-      </FormItem>
+        updateHandler={(value) => {
+          props.setFormData({ ...props.formData, extra: value });
+        }}
+      />
     </>
   );
 }
@@ -53,4 +51,3 @@ CheckOpenerForm.propTypes = {
 };
 
 export default CheckOpenerForm;
-
