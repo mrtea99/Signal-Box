@@ -137,7 +137,7 @@ function StatusPodItem(props) {
         }
         return null;
       case "assign":
-        if (props.stageStatus.qaActive || props.type === "bubble") {
+        if (props.stageStatus.assignActive || props.type === "bubble") {
           return (
             <InfoPodItem
               {...itemProps}
@@ -236,6 +236,7 @@ StatusPodItem.propTypes = {
     "completionFraction",
     "user",
     "qa",
+    "assign",
     "note",
     "issue",
     "blocker",

@@ -112,9 +112,30 @@ function RunListStageItem(props) {
         <span className={styles.cellLabel}>User</span>
         <span className={styles.cellContent}>
           <InfoPod>
-            <InfoPodSection>
-              <StatusPodItem statusField="user" stageStatus={stageStatus} />
-            </InfoPodSection>
+            {stageStatus.userTotal ? (
+              <InfoPodSection
+                layout="vert"
+                bubbles={
+                  stageStatus.assignActive
+                    ? [
+                        <StatusPodItem
+                          key="assign"
+                          statusField="assign"
+                          stageStatus={stageStatus}
+                        />,
+                      ]
+                    : null
+                }
+              >
+                <StatusPodItem statusField="user" stageStatus={stageStatus} />
+              </InfoPodSection>
+            ) : (
+              <StatusPodItem
+                key="assign"
+                statusField="assign"
+                stageStatus={stageStatus}
+              />
+            )}
           </InfoPod>
         </span>
       </li>

@@ -123,7 +123,9 @@ function getStageStatus(runData, stageNumber, activeUser) {
 
   if (activeUser) {
     const userSessions = allSessions.filter((session) => {
-      return session.user === activeUser;
+      return (
+        session.user === activeUser || session.secondaryUser === activeUser
+      );
     });
     userTotal = userSessions.length;
 
@@ -155,8 +157,6 @@ function getStageStatus(runData, stageNumber, activeUser) {
       return !session.endTime;
     }).length;
   }
-
-  
 
   // let prevStarted = false;
   // let allPrevInactive = false;

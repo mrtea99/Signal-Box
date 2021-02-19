@@ -48,6 +48,10 @@ function AssignmentOpenerForm(props) {
   );
 }
 
-AssignmentOpenerForm.propTypes = {};
+AssignmentOpenerForm.propTypes = {
+  setFormData: PropTypes.func.isRequired,
+  formData: PropTypes.object.isRequired,
+  thisStage: PropTypes.number.isRequired,
+};
 
 export default AssignmentOpenerForm;
