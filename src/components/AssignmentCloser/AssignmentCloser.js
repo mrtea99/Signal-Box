@@ -37,7 +37,7 @@ function AssignmentCloser(props) {
     if (status === "resolved") {
       props.endSession(
         {
-          notes: formData.notes,
+          notes: formData.description,
           secondaryUser: formData.assignee,
           startTime: formData.startDate + formData.startTime,
           extra: status,
@@ -48,7 +48,7 @@ function AssignmentCloser(props) {
     } else {
       props.updateSession(
         {
-          notes: formData.notes,
+          notes: formData.description,
           secondaryUser: formData.assignee,
           startTime: formData.startDate + formData.startTime,
         },

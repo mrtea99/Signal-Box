@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import SessionStartForm from "./SessionStartForm/SessionStartForm.js";
 import Button from "../../Button/Button.js";
 import Modal from "../../Modal/Modal.js";
+import AssignmentList from "../../AssignmentOpener/AssignmentList/AssignmentList.js";
 
 function SessionStart(props) {
   const [modalActive, setModalActive] = React.useState(false);
@@ -20,6 +21,11 @@ function SessionStart(props) {
       </Button>
       {modalActive ? (
         <Modal title="Start New Session">
+          <AssignmentList
+            runData={props.thisRunData}
+            stageNum={props.thisStage}
+            activeUser={props.activeUser}
+          />
           <SessionStartForm
             thisStage={props.thisStage}
             addSession={props.addSession}
@@ -37,6 +43,7 @@ SessionStart.propTypes = {
   thisStage: PropTypes.number.isRequired,
   addSession: PropTypes.func.isRequired,
   activeUser: PropTypes.string.isRequired,
+  thisRunData: PropTypes.object.isRequired,
 };
 
 export default SessionStart;
