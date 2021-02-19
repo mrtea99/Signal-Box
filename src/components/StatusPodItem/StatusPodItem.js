@@ -2,10 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import InfoPodItem from "../InfoPod/InfoPodItem/InfoPodItem.js";
+import Icon from "../Icon/Icon.js";
 
 import styles from "./StatusPodItem.module.css";
-
-import { ReactComponent as Checkmark } from "./checkmark.svg";
 
 function StatusPodItem(props) {
   const { statusField, stageStatus, stageNum, ...itemProps } = props;
@@ -27,7 +26,8 @@ function StatusPodItem(props) {
 
   const combinedCompletion = function () {
     if (props.stageStatus.stageStatusName === "complete") {
-      return <Checkmark className={styles.icon} />;
+      // return <Icon 
+      return <Icon name="tick" className={styles.icon} />;
     } else {
       if (
         props.stageStatus.stageStatusName !== "pending" ||

@@ -3,7 +3,7 @@
 }
 
 .separatorTicking {
-  animation: blinker 1s step-start 0s infinite;
+  animation: blinker 2s step-start 0s infinite;
 }
 
 @keyframes blinker {

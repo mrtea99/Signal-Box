@@ -63,7 +63,7 @@ InfoPodItem.propTypes = {
   layout: PropTypes.oneOf(["horiz", "vert"]),
   icon: PropTypes.string,
   name: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.node]),
   priority: PropTypes.oneOf(["icon", "value"]),
   viewMode: PropTypes.oneOf(["full", "basic"]),
 };
