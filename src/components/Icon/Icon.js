@@ -35,6 +35,8 @@ function Icon(props) {
         return <Cross className={props.className} />;
       case "qa":
         return <Bookmark className={props.className} />;
+      case "note":
+        return <FileText className={props.className} />;
       case "issue":
         return <Warning className={props.className} />;
       case "blocker":

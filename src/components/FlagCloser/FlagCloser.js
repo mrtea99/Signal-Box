@@ -69,7 +69,7 @@ function FlagCloser(props) {
           triggerCopy={""}
           buttonAttrs={{
             color: translatePriority(props.session.amount),
-            icon: "fix",
+            icon: translatePriority(props.session.amount),
           }}
         >
           <div>

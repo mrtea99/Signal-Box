@@ -76,6 +76,7 @@ function AssignmentCloser(props) {
           submitCopy={"Save"}
           buttonAttrs={{ color: "assign", icon: "assign" }}
         >
+          <p>Assigner: {props.session.user}</p>
           <AssignmentOpenerForm
             formData={formData}
             setFormData={setFormData}
