@@ -7,49 +7,17 @@ import FormItem from "../../../FormItem/FormItem.js";
 import TemperatureField from "../../../FormItem/TemperatureField/TemperatureField.js";
 import UserSelect from "../../../FormItem/UserSelect/UserSelect.js";
 
-import stageNames from "../../../../data/stageNames.json";
 import activityList from "../../../../data/activities.json";
 
 function SessionStartForm(props) {
-  // Activity type (all)
-  const [activityData, setActivityData] = React.useState(
-    activityList[props.thisStage][0]
-  );
-  // Room temp (manu and cool)
   const [temperature, setTemperature] = React.useState(70);
-  // Room humidity (manu and cool)
   const [humidity, setHumidity] = React.useState(50);
-  //Assistor
-  const [assistor, setAssistor] = React.useState(null);
-
-  const handleNewClick = function (e) {
-    e.preventDefault();
-
-    const newsessionId = Date.now();
-
-    const newSession = {
-      sessionId: newsessionId,
-      stage: stageNames[props.thisStage],
-      type: "work",
-      startTime: Date.now(),
-      endTime: null,
-      activity: activityData,
-      user: props.activeUser,
-      secondaryUser: assistor,
-    };
-
-    if (props.thisStage === 1) {
-      newSession.temperature = temperature;
-      newSession.humidity = humidity;
-    }
-
-    props.addSession(newSession, props.thisStage);
-
-    props.setFormActive(false);
-  };
 
   const validateForm = function () {
-    if (activityData.fields && activityData.fields.includes("atmos")) {
+    if (
+      props.formData.activity.fields &&
+      props.formData.activity.fields.includes("atmos")
+    ) {
       if (
         typeof temperature === "number" &&
         temperature >= 32 &&
@@ -67,6 +35,10 @@ function SessionStartForm(props) {
     }
   };
 
+  const updateAssistor = function (assistorName) {
+    props.setFormData({ ...props.formData, assistor: assistorName });
+  };
+
   return (
     <form>
       <FormItem
@@ -74,9 +46,12 @@ function SessionStartForm(props) {
         ident={"sess-activity-stage-" + props.thisStage}
         label="Activity:"
         updateHandler={(value) =>
-          setActivityData(activityList[props.thisStage][value])
+          props.setFormData({
+            ...props.formData,
+            activity: activityList[props.thisStage][value],
+          })
         }
-        value={activityList[props.thisStage].indexOf(activityData)}
+        value={activityList[props.thisStage].indexOf(props.formData.activity)}
       >
         {activityList[props.thisStage].map((activityType, index) => (
           <option
@@ -90,11 +65,12 @@ function SessionStartForm(props) {
       <UserSelect
         label="Assistor:"
         ident={"sess-assistor-stage-" + props.thisStage}
-        updateHandler={setAssistor}
-        value={assistor}
+        updateHandler={updateAssistor}
+        value={props.formData.assistor || null}
         excludedUsers={[props.activeUser]}
       />
-      {activityData.fields && activityData.fields.includes("atmos") ? (
+      {props.formData.activity.fields &&
+      props.formData.activity.fields.includes("atmos") ? (
         <>
           <TemperatureField
             ident={"sess-temp-stage-" + props.thisStage}
@@ -114,11 +90,11 @@ function SessionStartForm(props) {
         </>
       ) : null}
       <ButtonSpacer align="right">
-        <Button onClick={() => props.setFormActive(false)} color="cancel">
+        <Button onClick={() => props.handleCancel()} color="cancel">
           Cancel
         </Button>
         <Button
-          onClick={handleNewClick}
+          onClick={props.handleNewClick}
           disabled={!validateForm()}
           icon="start"
         >
@@ -130,10 +106,10 @@ function SessionStartForm(props) {
 }
 
 SessionStartForm.propTypes = {
-  thisStage: PropTypes.number.isRequired,
-  activeUser: PropTypes.string.isRequired,
-  addSession: PropTypes.func.isRequired,
-  setFormActive: PropTypes.func.isRequired,
+  // thisStage: PropTypes.number.isRequired,
+  // activeUser: PropTypes.string.isRequired,
+  // addSession: PropTypes.func.isRequired,
+  // setFormActive: PropTypes.func.isRequired,
 };
 
 export default SessionStartForm;

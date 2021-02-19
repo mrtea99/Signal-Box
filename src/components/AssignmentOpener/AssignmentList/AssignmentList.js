@@ -13,7 +13,20 @@ function AssignmentList(props) {
       return session.type === "assign" && !session.endTime;
     }
   );
-  console.log(assignSessions);
+
+  const markResolved = function (checked, sessionId) {
+    if (checked) {
+      props.setResolvedAssignments([...props.resolvedAssignments, sessionId]);
+    } else {
+      const oldAssignments = [...props.resolvedAssignments];
+      const index = oldAssignments.indexOf(sessionId);
+      if (index > -1) {
+        oldAssignments.splice(index, 1);
+      }
+      props.setResolvedAssignments(oldAssignments);
+    }
+  };
+
   return (
     <ul>
       {assignSessions.map((session) =>
@@ -33,7 +46,7 @@ function AssignmentList(props) {
                 type="checkbox"
                 ident={`resolve-assignment-${session.sessionId}`}
                 updateHandler={(value) => {
-                  // setResolved(value);
+                  markResolved(value, session.sessionId);
                 }}
                 // checked={session.secondaryUser === props.activeUser ? true : false}
               />
