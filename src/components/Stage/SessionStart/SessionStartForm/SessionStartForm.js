@@ -8,50 +8,7 @@ import TemperatureField from "../../../FormItem/TemperatureField/TemperatureFiel
 import UserSelect from "../../../FormItem/UserSelect/UserSelect.js";
 
 import stageNames from "../../../../data/stageNames.json";
-
-const activityList = [
-  [
-    { name: "Material Check", fields: [] },
-    {
-      name: "Create Blend / Base",
-      fields: ["atmos", "amounts", "weight", "qa"],
-    },
-    { name: "Misc", fields: [] },
-    { name: "Assisting", fields: [] },
-  ],
-  [
-    { name: "Materials / Equip Prep", fields: [] },
-    { name: "Manufacturing", fields: ["atmos", "amounts", "weight", "qa"] },
-    {
-      name: "Create Blend / Base",
-      fields: ["atmos", "amounts", "weight", "qa"],
-    },
-    { name: "Cooling", fields: ["atmos"] },
-    { name: "Curing", fields: ["atmos"] },
-    { name: "Finishing Touches", fields: [] },
-    { name: "Assisting", fields: [] },
-  ],
-  [
-    { name: "Packaging Prep", fields: [] },
-    { name: "Packaging", fields: ["atmos", "amounts", "weight", "qa"] },
-    { name: "Pouring", fields: ["atmos", "amounts", "weight", "qa"] },
-    { name: "Cooling", fields: ["atmos"] },
-    { name: "Finishing Touches", fields: [] },
-    { name: "Assisting", fields: [] },
-  ],
-  [
-    { name: "Labeling", fields: ["atmos", "amounts", "qa"] },
-    { name: "Sealing", fields: ["atmos", "amounts", "qa"] },
-    { name: "Boxing", fields: ["atmos", "amounts", "qa"] },
-    { name: "Assisting", fields: [] },
-  ],
-  [
-    { name: "Update Inventory", fields: [] },
-    { name: "Stock Wicker Park", fields: [] },
-    { name: "Stock Warehouse", fields: [] },
-    { name: "Misc", fields: [] },
-  ],
-];
+import activityList from "../../../../data/activities.json";
 
 function SessionStartForm(props) {
   // Activity type (all)
