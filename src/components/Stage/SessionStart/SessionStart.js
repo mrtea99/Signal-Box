@@ -16,9 +16,7 @@ function SessionStart(props) {
     activity: activityList[props.thisStage][0],
   });
 
-  const [resolvedAssignments, setResolvedAssignments] = React.useState([])
-
-  const handleNewClick = function (e) {
+  const handleSubmit = function (e) {
     e.preventDefault();
 
     const newsessionId = Date.now();
@@ -34,21 +32,41 @@ function SessionStart(props) {
       secondaryUser: formData.assistor,
     };
 
-    //todo: update to atmos table
-    // if (props.thisStage === 1) {
-    //   newSession.temperature = temperature;
-    //   newSession.humidity = humidity;
-    // }
-
     props.addSession(newSession, props.thisStage);
+
+    resolvedAssignments.forEach((sessionId) => {
+      props.updateSession({ endTime: Date.now() }, props.thisStage, sessionId);
+    });
 
     setModalActive(false);
   };
 
   const handleCancel = function () {
     setFormData({ activity: activityList[props.thisStage][0] });
+    setResolvedAssignments(defaultResolved);
     setModalActive(false);
   };
+
+  const assignSessions = props.thisRunData.stages[
+    props.thisStage
+  ].sessions.filter((session) => {
+    return (
+      session.type === "assign" &&
+      !session.endTime &&
+      (session.secondaryUser === props.activeUser ||
+        session.secondaryUser === null)
+    );
+  });
+
+  let defaultResolved = [];
+  assignSessions.forEach((session) => {
+    if (session.secondaryUser === props.activeUser) {
+      defaultResolved.push(session.sessionId);
+    }
+  });
+  const [resolvedAssignments, setResolvedAssignments] = React.useState(
+    defaultResolved
+  );
 
   return (
     <div className={props.className}>
@@ -63,9 +81,7 @@ function SessionStart(props) {
       {modalActive ? (
         <Modal title="Start New Session">
           <AssignmentList
-            runData={props.thisRunData}
-            stageNum={props.thisStage}
-            activeUser={props.activeUser}
+            assignSessions={assignSessions}
             resolvedAssignments={resolvedAssignments}
             setResolvedAssignments={setResolvedAssignments}
           />
@@ -74,7 +90,7 @@ function SessionStart(props) {
             addSession={props.addSession}
             activeUser={props.activeUser}
             handleCancel={handleCancel}
-            handleNewClick={handleNewClick}
+            handleNewClick={handleSubmit}
             formData={formData}
             setFormData={setFormData}
           />
@@ -88,6 +104,7 @@ SessionStart.propTypes = {
   className: PropTypes.string,
   thisStage: PropTypes.number.isRequired,
   addSession: PropTypes.func.isRequired,
+  updateSession: PropTypes.func.isRequired,
   activeUser: PropTypes.string.isRequired,
   thisRunData: PropTypes.object.isRequired,
 };

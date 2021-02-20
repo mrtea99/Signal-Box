@@ -8,12 +8,6 @@ import FormItem from "../../FormItem/FormItem";
 // import styles from "./AssignmentList.module.css";
 
 function AssignmentList(props) {
-  const assignSessions = props.runData.stages[props.stageNum].sessions.filter(
-    (session) => {
-      return session.type === "assign" && !session.endTime;
-    }
-  );
-
   const markResolved = function (checked, sessionId) {
     if (checked) {
       props.setResolvedAssignments([...props.resolvedAssignments, sessionId]);
@@ -29,39 +23,36 @@ function AssignmentList(props) {
 
   return (
     <ul>
-      {assignSessions.map((session) =>
-        session.secondaryUser === props.activeUser ||
-        session.secondaryUser === null ? (
-          <li key={session.sessionId}>
-            <DataList>
-              <DataListItem
-                dataKey="Assignee"
-                dataValue={session.secondaryUser || "None"}
-              />
-              <DataListItem dataKey="Note" dataValue={session.notes} />
-            </DataList>
-            <form>
-              <FormItem
-                label="Resolve"
-                type="checkbox"
-                ident={`resolve-assignment-${session.sessionId}`}
-                updateHandler={(value) => {
-                  markResolved(value, session.sessionId);
-                }}
-                // checked={session.secondaryUser === props.activeUser ? true : false}
-              />
-            </form>
-          </li>
-        ) : null
-      )}
+      {props.assignSessions.map((session) => (
+        <li key={session.sessionId}>
+          <DataList>
+            <DataListItem
+              dataKey="Assignee"
+              dataValue={session.secondaryUser || "None"}
+            />
+            <DataListItem dataKey="Note" dataValue={session.notes} />
+          </DataList>
+          <form>
+            <FormItem
+              label="Resolve"
+              type="checkbox"
+              ident={`resolve-assignment-${session.sessionId}`}
+              updateHandler={(value) => {
+                markResolved(value, session.sessionId);
+              }}
+              checked={props.resolvedAssignments.includes(session.sessionId)}
+            />
+          </form>
+        </li>
+      ))}
     </ul>
   );
 }
 
 AssignmentList.propTypes = {
-  runData: PropTypes.object.isRequired,
-  stageNum: PropTypes.number.isRequired,
-  activeUser: PropTypes.string.isRequired,
+  assignSessions: PropTypes.array.isRequired,
+  resolvedAssignments: PropTypes.array.isRequired,
+  setResolvedAssignments: PropTypes.func.isRequired,
 };
 
 export default AssignmentList;

@@ -29,6 +29,7 @@ function SessionControl(props) {
             <SessionStart
               thisStage={props.thisStage}
               addSession={props.addSession}
+              updateSession={props.updateSession}
               activeUser={props.activeUser}
               className={styles.sessionControl}
               thisRunData={props.thisRunData}
@@ -62,6 +63,7 @@ SessionControl.propTypes = {
   activeSessionData: PropTypes.object,
   addSession: PropTypes.func.isRequired,
   endSession: PropTypes.func.isRequired,
+  updateSession: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
   thisRunData: PropTypes.object.isRequired,
   activeUser: PropTypes.string.isRequired,
