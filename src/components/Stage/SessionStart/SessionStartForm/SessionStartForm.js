@@ -106,10 +106,12 @@ function SessionStartForm(props) {
 }
 
 SessionStartForm.propTypes = {
-  // thisStage: PropTypes.number.isRequired,
-  // activeUser: PropTypes.string.isRequired,
-  // addSession: PropTypes.func.isRequired,
-  // setFormActive: PropTypes.func.isRequired,
+  thisStage: PropTypes.number.isRequired,
+  formData: PropTypes.object.isRequired,
+  setFormData: PropTypes.func.isRequired,
+  handleNewClick: PropTypes.func.isRequired,
+  handleCancel: PropTypes.func.isRequired,
+  activeUser: PropTypes.number.isRequired,
 };
 
 export default SessionStartForm;
