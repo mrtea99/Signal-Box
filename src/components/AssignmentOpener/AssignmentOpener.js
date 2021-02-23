@@ -3,7 +3,7 @@ import React from "react";
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 // import FormItem from "../FormItem/FormItem.js";
 // import UserSelect from "../FormItem/UserSelect/UserSelect.js";
-// import PagedModal from "../Modal/PagedModal/PagedModal.js";
+import PagedModal from "../Modal/PagedModal/PagedModal.js";
 import AssignmentOpenerForm from "./AssignmentOpenerForm/AssignmentOpenerForm.js";
 
 function AssignmentOpener(props) {
@@ -59,7 +59,7 @@ function AssignmentOpener(props) {
 
   return (
     <>
-      {/* <PagedModal
+      <ModalControl
         title="Assign Stage"
         handleSubmit={handleSubmit}
         handleCancel={handleCancel}
@@ -71,7 +71,7 @@ function AssignmentOpener(props) {
           <React.Fragment key="key3">Page3</React.Fragment>,
           <React.Fragment key="key4">Page4 </React.Fragment>,
         ]}
-      ></PagedModal> */}
+      />
 
       <ModalControl
         title="Assign Stage"

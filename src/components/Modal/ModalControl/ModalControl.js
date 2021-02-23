@@ -4,9 +4,11 @@ import PropTypes from "prop-types";
 import Button from "../../Button/Button.js";
 import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
 import Modal from "../../Modal/Modal.js";
+import Pager from "../../Pager/Pager.js";
 
 function ModalControl(props) {
   const [modalActive, setModalActive] = React.useState(false);
+  const [pageNumber, setPageNumber] = React.useState(0);
 
   const handleSubmit = function (e) {
     e.preventDefault();
@@ -20,6 +22,7 @@ function ModalControl(props) {
     e.preventDefault();
 
     setModalActive(false);
+    setPageNumber(0);
 
     if (props.handleCancel) {
       props.handleCancel();
@@ -28,6 +31,27 @@ function ModalControl(props) {
 
   const { fillWidth, ...saveBtnAttrs } = props.buttonAttrs || false;
 
+  const submitButton = function () {
+    return (
+      <Button onClick={(e) => handleSubmit(e)} {...saveBtnAttrs}>
+        {props.submitCopy || props.triggerCopy || "Save"}
+      </Button>
+    );
+  };
+
+  const cancelButton = function () {
+    return (
+      <Button
+        onClick={(e) => {
+          handleCancel(e);
+        }}
+        color="cancel"
+      >
+        Cancel
+      </Button>
+    );
+  };
+
   return (
     <>
       <Button {...props.buttonAttrs} onClick={() => setModalActive(true)}>
@@ -35,29 +59,32 @@ function ModalControl(props) {
       </Button>
       {modalActive ? (
         <Modal title={props.title}>
-          {props.children}
-          {props.handleSubmit ? (
-            <ButtonSpacer align="right">
-              <Button
-                onClick={(e) => {
-                  handleCancel(e);
-                }}
-                color="cancel"
+          {props.pages ? (
+            <>
+              <Pager
+                pages={props.pages}
+                pageNumber={pageNumber}
+                setPageNumber={setPageNumber}
               >
-                Cancel
-              </Button>
-              <Button onClick={(e) => handleSubmit(e)} {...saveBtnAttrs}>
-                {props.submitCopy || props.triggerCopy || "Save"}
-              </Button>
-            </ButtonSpacer>
+                Test
+              </Pager>
+              {props.handleSubmit && pageNumber === props.pages.length - 1 ? (
+                <>{submitButton()}</>
+              ) : null}
+              <>{cancelButton()}</>
+            </>
           ) : (
-            <Button
-              onClick={(e) => {
-                handleCancel(e);
-              }}
-            >
-              Close
-            </Button>
+            <>
+              {props.children}
+              {props.handleSubmit ? (
+                <ButtonSpacer align="right">
+                  <>{cancelButton()}</>
+                  <>{submitButton()}</>
+                </ButtonSpacer>
+              ) : (
+                <>{cancelButton()}</>
+              )}
+            </>
           )}
         </Modal>
       ) : null}
@@ -72,6 +99,7 @@ ModalControl.propTypes = {
   buttonAttrs: PropTypes.object,
   triggerCopy: PropTypes.string,
   children: PropTypes.node,
+  pages: PropTypes.array,
 };
 
 export default ModalControl;
