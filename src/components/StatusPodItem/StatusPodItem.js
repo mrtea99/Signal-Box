@@ -71,7 +71,7 @@ function StatusPodItem(props) {
             className={`${
               styles["podItem" + props.stageStatus.stageStatusName]
             }`}
-            icon="settings"
+            icon="progress"
             name="Progress"
             value={combinedCompletion()}
             priority="value"
@@ -94,7 +94,7 @@ function StatusPodItem(props) {
               className={`${
                 styles["podItem" + props.stageStatus.stageStatusName]
               }`}
-              icon="settings"
+              icon="progress"
               name="Progress"
               value={
                 props.stageStatus.itemCount +

@@ -21,52 +21,58 @@ import { ReactComponent as Cog } from "./cog.svg";
 import { ReactComponent as Menu } from "./menu.svg";
 import { ReactComponent as Filter } from "./filter.svg";
 import { ReactComponent as StarFull } from "./star-full.svg";
+import { ReactComponent as PieChart } from "./pie-chart.svg";
 
 function Icon(props) {
+  const {name, className} = props;
+  const attrs = {className}
+
   const iconElem = function () {
-    switch (props.name) {
+    switch (name) {
       case "start":
-        return <Play className={props.className} />;
+        return <Play {...attrs} />;
       case "stop":
-        return <Stop className={props.className} />;
+        return <Stop {...attrs} />;
       case "tick":
-        return <Checkmark className={props.className} />;
+        return <Checkmark {...attrs} />;
       case "cross":
-        return <Cross className={props.className} />;
+        return <Cross {...attrs} />;
       case "qa":
-        return <Bookmark className={props.className} />;
+        return <Bookmark {...attrs} />;
       case "note":
-        return <FileText className={props.className} />;
+        return <FileText {...attrs} />;
       case "issue":
-        return <Warning className={props.className} />;
+        return <Warning {...attrs} />;
       case "blocker":
-        return <Notification className={props.className} />;
+        return <Notification {...attrs} />;
       case "next":
-        return <ArrowRight className={props.className} />;
+        return <ArrowRight {...attrs} />;
       case "previous":
-        return <ArrowLeft className={props.className} />;
+        return <ArrowLeft {...attrs} />;
       case "check":
-        return <Search className={props.className} />;
+        return <Search {...attrs} />;
       case "fix":
-        return <Wrench className={props.className} />;
+        return <Wrench {...attrs} />;
       case "details":
-        return <FileText className={props.className} />;
+        return <FileText {...attrs} />;
       case "detailsAlt":
-        return <Profile className={props.className} />;
+        return <Profile {...attrs} />;
       case "plus":
-        return <Plus className={props.className} />;
+        return <Plus {...attrs} />;
       case "minus":
-        return <Minus className={props.className} />;
+        return <Minus {...attrs} />;
       case "user":
-        return <User className={props.className} />;
+        return <User {...attrs} />;
       case "settings":
-        return <Cog className={props.className} />;
+        return <Cog {...attrs} />;
       case "menu":
-        return <Menu className={props.className} />;
+        return <Menu {...attrs} />;
       case "filter":
-        return <Filter className={props.className} />;
+        return <Filter {...attrs} />;
       case "assign":
-        return <StarFull className={props.className} />;
+        return <StarFull {...attrs} />;
+      case "progress":
+        return <PieChart {...attrs} />;
       default:
         return null;
     }

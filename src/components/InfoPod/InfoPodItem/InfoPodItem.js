@@ -28,7 +28,7 @@ function InfoPodItem(props) {
           fullViewMode ? styles.innerVert : ""
         } ${!showIcon ? styles.innerText : ""}`}
       >
-        <span>
+        <span className={styles.key}>
           {showIcon ? (
             <Icon
               name={props.icon ? props.icon : null}
