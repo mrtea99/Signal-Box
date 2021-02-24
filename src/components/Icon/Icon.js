@@ -22,10 +22,14 @@ import { ReactComponent as Menu } from "./menu.svg";
 import { ReactComponent as Filter } from "./filter.svg";
 import { ReactComponent as StarFull } from "./star-full.svg";
 import { ReactComponent as PieChart } from "./pie-chart.svg";
+import { ReactComponent as Spinner8 } from "./spinner8.svg";
+
+import styles from "./Icon.module.css";
 
 function Icon(props) {
-  const {name, className} = props;
-  const attrs = {className}
+  let { name, className } = props;
+  className = `${className} ${styles.icon}`
+  const attrs = { className };
 
   const iconElem = function () {
     switch (name) {
@@ -73,6 +77,8 @@ function Icon(props) {
         return <StarFull {...attrs} />;
       case "progress":
         return <PieChart {...attrs} />;
+      case "spinner":
+        return <Spinner8 {...attrs} />;
       default:
         return null;
     }

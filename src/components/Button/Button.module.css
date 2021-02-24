@@ -118,7 +118,3 @@
   min-height: 1.6rem;
   min-width: 1.6rem;
 }
-
-.icon path {
-  fill: var(--color-copy);
-}

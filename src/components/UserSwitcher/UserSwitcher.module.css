@@ -59,6 +59,5 @@
 }
 
 .icon path {
-  fill: var(--color-white);
   transform: translateY(1px);/* temp fix for annoying svg */
 }

@@ -90,10 +90,6 @@
   transform: rotate(90deg);
 }
 
-.fieldSelectArrow path {
-  fill: var(--color-white);
-}
-
 /* radio buttons */
 .radioGroup {
   display: flex;

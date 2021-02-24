@@ -1,0 +1,11 @@
+.icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+}
+
+.icon path {
+  stroke-width: 0;
+  stroke: currentColor;
+  fill: currentColor;
+}

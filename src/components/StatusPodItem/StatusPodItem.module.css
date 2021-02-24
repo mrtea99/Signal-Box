@@ -26,17 +26,3 @@
 .flagAssign {
   background-color: var(--color-assign);
 }
-
-.icon {
-  max-height: 0.8em;
-  max-width: 0.8em;
-}
-.icon path {
-  fill: var(--color-white);
-}
-
-/* .iconUser {
-  max-height: none;
-  max-width: none;
-  transform: scale(1.6) translateY(0.1em);
-} */

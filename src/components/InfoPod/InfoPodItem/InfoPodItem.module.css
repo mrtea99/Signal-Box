@@ -88,9 +88,6 @@
   max-height: 0.8em;
   max-width: 0.8em;
 }
-.icon path {
-  fill: var(--color-white);
-}
 
 .iconUser {
   transform: scale(1.9) translateY(0.1em);
