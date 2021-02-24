@@ -111,7 +111,7 @@ SessionStartForm.propTypes = {
   setFormData: PropTypes.func.isRequired,
   handleNewClick: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
-  activeUser: PropTypes.number.isRequired,
+  activeUser: PropTypes.string.isRequired,
 };
 
 export default SessionStartForm;

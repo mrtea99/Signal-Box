@@ -19,17 +19,19 @@ function Pager(props) {
         return index === pageNumber ? page : null;
       })}
       <br />
-      {pageNumber > 0 ? (
+      {/* {pageNumber > 0 ? ( */}
         <Button
+          disabled={pageNumber === 0}
           onClick={() =>
             setPageNumber(pageNumber > 0 ? pageNumber - 1 : pageNumber)
           }
         >
           Prev
         </Button>
-      ) : null}
-      {pageNumber < props.pages.length - 1 ? (
+      {/* ) : null} */}
+      {/* {pageNumber < props.pages.length - 1 ? ( */}
         <Button
+          disabled={pageNumber === props.pages.length - 1}
           onClick={() =>
             setPageNumber(
               pageNumber < props.pages.length - 1 ? pageNumber + 1 : pageNumber
@@ -38,7 +40,7 @@ function Pager(props) {
         >
           Next
         </Button>
-      ) : null}
+      {/* ) : null} */}
     </>
   );
 }

@@ -1,0 +1,38 @@
+.assList {
+  list-style-type: none;
+  margin: 0 0 0.5rem 0;
+  padding: 0;
+}
+
+.assItem {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  background-color: var(--color-grey-bright);
+  
+  margin-top: 0.3rem;
+}
+
+.main {
+  padding: 0.5rem;
+}
+
+/* .colMain {
+  
+} */
+
+.action {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0;
+}
+
+.colAction {
+  width: 5rem;
+  flex: 0 0 auto;
+}
+
+.checkbox {
+  margin: 0;
+}

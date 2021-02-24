@@ -7,7 +7,7 @@ import Icon from "../Icon/Icon.js";
 import styles from "./FormItem.module.css";
 
 function FormItem(props) {
-  const { ident, label, type, updateHandler, ...fieldProps } = props;
+  const { ident, label, type, updateHandler, hideLabel, ...fieldProps } = props;
 
   let labelElem = (
     <label className={styles.label} htmlFor={props.ident}>
@@ -126,12 +126,14 @@ function FormItem(props) {
             name={ident}
             id={ident}
             onChange={(e) => updateHandler(e.target.checked)}
-            className={styles.checkboxInput}
             {...fieldProps}
+            className={`${styles.checkboxInput} ${fieldProps.className}`}
           />
-          <label htmlFor={ident} className={styles.radioLabel}>
-            <span className={styles.radioLabelText}>{props.label}</span>
-          </label>
+          {!props.hideLabel ? (
+            <label htmlFor={ident} className={styles.radioLabel}>
+              <span className={styles.radioLabelText}>{props.label}</span>
+            </label>
+          ) : null}
         </div>
       );
       break;
@@ -157,7 +159,7 @@ function FormItem(props) {
 
   return (
     <div className={`${fieldProps.className} ${styles.itemWrap}`}>
-      {labelElem}
+      {!props.hideLabel ? labelElem : null}
       {fieldElem}
     </div>
   );
@@ -172,6 +174,7 @@ FormItem.propTypes = {
   min: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   max: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   className: PropTypes.string,
+  hideLabel: PropTypes.bool,
 };
 
 export default FormItem;

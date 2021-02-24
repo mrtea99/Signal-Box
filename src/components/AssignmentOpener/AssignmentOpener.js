@@ -58,38 +58,22 @@ function AssignmentOpener(props) {
   };
 
   return (
-    <>
-      <ModalControl
-        title="Assign Stage"
-        handleSubmit={handleSubmit}
-        handleCancel={handleCancel}
-        triggerCopy={"Assign Stage"}
-        buttonAttrs={{ fillWidth: true, color: "assign", icon: "assign" }}
-        pages={[
-          <React.Fragment key="key1">Page1</React.Fragment>,
-          <React.Fragment key="key2">Page2</React.Fragment>,
-          <React.Fragment key="key3">Page3</React.Fragment>,
-          <React.Fragment key="key4">Page4 </React.Fragment>,
-        ]}
-      />
-
-      <ModalControl
-        title="Assign Stage"
-        handleSubmit={handleSubmit}
-        handleCancel={handleCancel}
-        triggerCopy={"Assign Stage"}
-        buttonAttrs={{ fillWidth: true, color: "assign", icon: "assign" }}
-      >
-        <form>
-          <AssignmentOpenerForm
-            formData={formData}
-            setFormData={setFormData}
-            thisStage={props.thisStage}
-            shiftTimes={shiftTimes}
-          />
-        </form>
-      </ModalControl>
-    </>
+    <ModalControl
+      title="Assign Stage"
+      handleSubmit={handleSubmit}
+      handleCancel={handleCancel}
+      triggerCopy={"Assign Stage"}
+      buttonAttrs={{ fillWidth: true, color: "assign", icon: "assign" }}
+    >
+      <form>
+        <AssignmentOpenerForm
+          formData={formData}
+          setFormData={setFormData}
+          thisStage={props.thisStage}
+          shiftTimes={shiftTimes}
+        />
+      </form>
+    </ModalControl>
   );
 }
 

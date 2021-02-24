@@ -16,6 +16,11 @@ function SessionStart(props) {
     activity: activityList[props.thisStage][0],
   });
 
+  const handleOpen = function () {
+    setResolvedAssignments(findDefaultResolved());
+    setModalActive(true);
+  };
+
   const handleSubmit = function (e) {
     e.preventDefault();
 
@@ -43,7 +48,6 @@ function SessionStart(props) {
 
   const handleCancel = function () {
     setFormData({ activity: activityList[props.thisStage][0] });
-    setResolvedAssignments(defaultResolved);
     setModalActive(false);
   };
 
@@ -58,24 +62,23 @@ function SessionStart(props) {
     );
   });
 
-  let defaultResolved = [];
-  assignSessions.forEach((session) => {
-    if (session.secondaryUser === props.activeUser) {
-      defaultResolved.push(session.sessionId);
-    }
-  });
+  const findDefaultResolved = function () {
+    let defaultResolved = [];
+    assignSessions.forEach((session) => {
+      if (session.secondaryUser === props.activeUser) {
+        defaultResolved.push(session.sessionId);
+      }
+    });
+    return defaultResolved;
+  };
+
   const [resolvedAssignments, setResolvedAssignments] = React.useState(
-    defaultResolved
+    findDefaultResolved()
   );
 
   return (
     <div className={props.className}>
-      <Button
-        onClick={() => setModalActive(true)}
-        fillWidth
-        icon="start"
-        featured
-      >
+      <Button onClick={() => handleOpen()} fillWidth icon="start" featured>
         Start New Session
       </Button>
       {modalActive ? (

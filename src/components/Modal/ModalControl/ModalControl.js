@@ -33,7 +33,7 @@ function ModalControl(props) {
 
   const submitButton = function () {
     return (
-      <Button onClick={(e) => handleSubmit(e)} {...saveBtnAttrs}>
+      <Button {...saveBtnAttrs} onClick={(e) => handleSubmit(e)}>
         {props.submitCopy || props.triggerCopy || "Save"}
       </Button>
     );
@@ -52,6 +52,20 @@ function ModalControl(props) {
     );
   };
 
+  /* <ModalControl
+        title="Assign Stage"
+        handleSubmit={handleSubmit}
+        handleCancel={handleCancel}
+        triggerCopy={"Assign Stage"}
+        buttonAttrs={{ fillWidth: true, color: "assign", icon: "assign" }}
+        pages={[
+          <React.Fragment key="key1">Page1</React.Fragment>,
+          <React.Fragment key="key2">Page2</React.Fragment>,
+          <React.Fragment key="key3">Page3</React.Fragment>,
+          <React.Fragment key="key4">Page4 </React.Fragment>,
+        ]}
+      /> */
+
   return (
     <>
       <Button {...props.buttonAttrs} onClick={() => setModalActive(true)}>
@@ -68,10 +82,13 @@ function ModalControl(props) {
               >
                 Test
               </Pager>
-              {props.handleSubmit && pageNumber === props.pages.length - 1 ? (
-                <>{submitButton()}</>
-              ) : null}
-              <>{cancelButton()}</>
+              <br />
+              <ButtonSpacer align="right">
+                <>{cancelButton()}</>
+                {props.handleSubmit && pageNumber === props.pages.length - 1 ? (
+                  <>{submitButton()}</>
+                ) : null}
+              </ButtonSpacer>
             </>
           ) : (
             <>
