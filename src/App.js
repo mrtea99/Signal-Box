@@ -23,10 +23,10 @@ import { useTranslation } from "react-i18next";
 function App() {
   const { t } = useTranslation();
 
-  const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
-    setTimeout(() => setLoading(false), 1000);
+    setTimeout(() => setLoading(false), 3000);
   });
 
   const savedRunData = () =>
