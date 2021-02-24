@@ -3,7 +3,6 @@ import React from "react";
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 // import FormItem from "../FormItem/FormItem.js";
 // import UserSelect from "../FormItem/UserSelect/UserSelect.js";
-import PagedModal from "../Modal/PagedModal/PagedModal.js";
 import AssignmentOpenerForm from "./AssignmentOpenerForm/AssignmentOpenerForm.js";
 
 function AssignmentOpener(props) {
