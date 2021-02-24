@@ -14,6 +14,7 @@ import SiteHeader from "./components/SiteHeader/SiteHeader.js";
 import SiteSettings from "./components/SiteSidebar/SiteSettings/SiteSettings.js";
 import GlobalContexts from "./components/GlobalContexts/GlobalContexts.js";
 import RunFilter from "./components/RunFilter/RunFilter.js";
+import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
 
 import stageNames from "./data/stageNames.json";
 
@@ -21,6 +22,12 @@ import { useTranslation } from "react-i18next";
 
 function App() {
   const { t } = useTranslation();
+
+  const [loading, setLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    setTimeout(() => setLoading(false), 3000);
+  });
 
   const savedRunData = () =>
     JSON.parse(window.localStorage.getItem("runData")) || [];
@@ -122,106 +129,115 @@ function App() {
   });
 
   return (
-    <GlobalContexts
-      timeFormat={timeFormat}
-      dateFormat={dateFormat}
-      unitSystem={unitSystem}
-      siteTheme={siteTheme}
-      viewMode={viewMode}
-    >
-      <div
-        className={`${styles.siteContainer} ${
-          siteTheme === "light" ? styles.siteContainerLight : null
-        }`}
-      >
-        <SiteHeader
-          activeUser={activeUser}
-          setActiveUser={setActiveUser}
-          setSidebarActive={setSidebarActive}
-        />
-        <div className={styles.sitePage}>
-          <SiteSidebar
-            sidebarActive={sidebarActive}
-            setSidebarActive={setSidebarActive}
+    <>
+      {loading ? (
+        <LoadingScreen />
+      ) : (
+        <GlobalContexts
+          timeFormat={timeFormat}
+          dateFormat={dateFormat}
+          unitSystem={unitSystem}
+          siteTheme={siteTheme}
+          viewMode={viewMode}
+        >
+          <div
+            className={`${styles.siteContainer} ${
+              siteTheme === "light" ? styles.siteContainerLight : null
+            }`}
           >
-            <SiteSettings
-              timeFormat={timeFormat}
-              setTimeFormat={setTimeFormat}
-              dateFormat={dateFormat}
-              setDateFormat={setDateFormat}
-              unitSystem={unitSystem}
-              setUnitSystem={setUnitSystem}
-              siteTheme={siteTheme}
-              setSiteTheme={setSiteTheme}
-              viewMode={viewMode}
-              setViewMode={setViewMode}
+            <SiteHeader
+              activeUser={activeUser}
+              setActiveUser={setActiveUser}
+              setSidebarActive={setSidebarActive}
             />
-          </SiteSidebar>
-          <main className={styles.siteContent}>
-            <section>
-              <menu className={styles.listControls}>
-                <section className={styles.filterControls}>
-                  <RunFilter
+            <div className={styles.sitePage}>
+              <SiteSidebar
+                sidebarActive={sidebarActive}
+                setSidebarActive={setSidebarActive}
+              >
+                <SiteSettings
+                  timeFormat={timeFormat}
+                  setTimeFormat={setTimeFormat}
+                  dateFormat={dateFormat}
+                  setDateFormat={setDateFormat}
+                  unitSystem={unitSystem}
+                  setUnitSystem={setUnitSystem}
+                  siteTheme={siteTheme}
+                  setSiteTheme={setSiteTheme}
+                  viewMode={viewMode}
+                  setViewMode={setViewMode}
+                />
+              </SiteSidebar>
+              <main className={styles.siteContent}>
+                <section>
+                  <menu className={styles.listControls}>
+                    <section className={styles.filterControls}>
+                      <RunFilter
+                        runData={runData}
+                        runFilters={runFilters}
+                        setRunFilters={setRunFilters}
+                        activeUser={activeUser}
+                      />
+                    </section>
+                    <section className={styles.otherControls}>
+                      <Button
+                        onClick={() => setModalNewActive(true)}
+                        icon="plus"
+                      >
+                        {t("New Run")}
+                      </Button>
+                      <RunInfoNew
+                        active={modalNewActive}
+                        setActive={setModalNewActive}
+                        runData={runData}
+                        setRunData={setRunData}
+                      />
+                    </section>
+                  </menu>
+                  <TabBox
+                    boxes={["All", ...stageNames].map((stage, index) => ({
+                      label: stage,
+                      content: (
+                        <RunList
+                          key={stage}
+                          runData={runData}
+                          setCurrentRunUid={setCurrentRunUid}
+                          setActiveStage={setActiveStage}
+                          activeUser={activeUser}
+                          stageNum={index === 0 ? "all" : index - 1}
+                          filters={runFilters}
+                        />
+                      ),
+                    }))}
+                  />
+                </section>
+                <section className={styles.editorSection}>
+                  <RunEditor
                     runData={runData}
-                    runFilters={runFilters}
-                    setRunFilters={setRunFilters}
+                    currentRunUid={currentRunUid}
+                    setCurrentRunUid={setCurrentRunUid}
+                    activeStage={activeStage}
+                    setActiveStage={setActiveStage}
+                    updateRunData={updateRunData}
+                    modalActive={modalChangeActive}
+                    setModalActive={setModalChangeActive}
                     activeUser={activeUser}
+                    setActiveUser={setActiveUser}
                   />
-                </section>
-                <section className={styles.otherControls}>
-                  <Button onClick={() => setModalNewActive(true)} icon="plus">
-                    {t("New Run")}
-                  </Button>
-                  <RunInfoNew
-                    active={modalNewActive}
-                    setActive={setModalNewActive}
+                  <RunInfoChange
+                    active={modalChangeActive}
+                    setActive={setModalChangeActive}
+                    currentRunUid={currentRunUid}
                     runData={runData}
-                    setRunData={setRunData}
+                    updateRunData={updateRunData}
                   />
                 </section>
-              </menu>
-              <TabBox
-                boxes={["All", ...stageNames].map((stage, index) => ({
-                  label: stage,
-                  content: (
-                    <RunList
-                      key={stage}
-                      runData={runData}
-                      setCurrentRunUid={setCurrentRunUid}
-                      setActiveStage={setActiveStage}
-                      activeUser={activeUser}
-                      stageNum={index === 0 ? "all" : index - 1}
-                      filters={runFilters}
-                    />
-                  ),
-                }))}
-              />
-            </section>
-            <section className={styles.editorSection}>
-              <RunEditor
-                runData={runData}
-                currentRunUid={currentRunUid}
-                setCurrentRunUid={setCurrentRunUid}
-                activeStage={activeStage}
-                setActiveStage={setActiveStage}
-                updateRunData={updateRunData}
-                modalActive={modalChangeActive}
-                setModalActive={setModalChangeActive}
-                activeUser={activeUser}
-                setActiveUser={setActiveUser}
-              />
-              <RunInfoChange
-                active={modalChangeActive}
-                setActive={setModalChangeActive}
-                currentRunUid={currentRunUid}
-                runData={runData}
-                updateRunData={updateRunData}
-              />
-            </section>
-          </main>
-        </div>
-      </div>
-    </GlobalContexts>
+              </main>
+            </div>
+          </div>
+        </GlobalContexts>
+      )}
+    </>
   );
 }
 
