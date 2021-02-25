@@ -43,10 +43,11 @@ function StageActions(props) {
               <div>
                 {stageStatus.issueActive ||
                 stageStatus.blockerActive ||
-                stageStatus.qaActive ? (
+                stageStatus.qaActive ||
+                stageStatus.assignActive ? (
                   <p>
-                    Cannot complete stage until qa is complete and issues are
-                    resolved
+                    Cannot complete stage until all QA, Assignment, and Flag
+                    sessions are resolved
                   </p>
                 ) : (
                   <>

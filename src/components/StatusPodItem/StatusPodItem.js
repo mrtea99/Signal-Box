@@ -26,7 +26,6 @@ function StatusPodItem(props) {
 
   const combinedCompletion = function () {
     if (props.stageStatus.stageStatusName === "complete") {
-      // return <Icon 
       return <Icon name="tick" className={styles.icon} />;
     } else {
       if (

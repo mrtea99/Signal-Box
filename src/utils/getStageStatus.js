@@ -265,7 +265,8 @@ function getStageStatus(runData, stageNumber, activeUser) {
             if (
               completionPercentage === 100 &&
               issueActive === 0 &&
-              qaActive === 0
+              qaActive === 0 &&
+              assignActive === 0
             ) {
               return ["complete"];
             } else {
