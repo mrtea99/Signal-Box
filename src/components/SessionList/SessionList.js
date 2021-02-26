@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import TimeFormater from "../DurationFormatter/DurationFormatter.js";
-import Timer from "../Timer/Timer.js";
+import DurationFormatter from "../DurationFormatter/DurationFormatter.js";
 import FlagCloser from "../FlagCloser/FlagCloser.js";
 import CheckCloser from "../CheckCloser/CheckCloser.js";
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
@@ -10,48 +9,20 @@ import Repeater from "./Repeater/Repeater.js";
 import TableHeader from "../TableHeader/TableHeader.js";
 import DateTimeFormatter from "../DateTimeFormatter/DateTimeFormatter.js";
 import AssignmentCloser from "../AssignmentCloser/AssignmentCloser.js";
+import SessionDetails from "./SessionDetails/SessionDetails.js";
 
 import getItemType from "../../utils/getItemType.js";
+import getSessionName from "../../utils/getSessionName.js";
+import getFlagName from "../../utils/getFlagName.js";
 
 import styles from "./SessionList.module.css";
+import SessionDuration from "./SessionDuration/SessionDuration.js";
 
 function SessionList(props) {
   const thisStageData =
     props.thisRunData["stages"][props.thisStage]["sessions"];
 
-  const translatePriority = function (count, caps) {
-    switch (count) {
-      case 0:
-        return caps ? "Note" : "note";
-      case 1:
-        return caps ? "Issue" : "issue";
-      case 2:
-        return caps ? "Blocker" : "blocker";
-      default:
-        return "N/A";
-    }
-  };
-
-  const formatActivity = function (session) {
-    switch (session.type) {
-      case "work":
-        return session.activity.name;
-      case "qa":
-        return "QA Check";
-      case "flag":
-        return "Flag: " + translatePriority(session.amount, true);
-      case "deactivate":
-        return "Complete Stage";
-      case "activate":
-        return "Undo Complete Stage";
-      case "consign":
-        return "Consignment";
-      case "assign":
-        return "Assignment";
-      default:
-        return "Activity";
-    }
-  };
+  const itemName = getItemType(props.thisStage);
 
   let allResolved = true;
   for (let i = 0; i < thisStageData.length; i++) {
@@ -76,28 +47,8 @@ function SessionList(props) {
       }
     }
 
-    return <TimeFormater rawTime={totalDuration} />;
+    return <DurationFormatter rawTime={totalDuration} />;
   };
-
-  const formatDuration = function (session) {
-    return (
-      <>
-        {session.endTime ? (
-          session.startTime === session.endTime ? (
-            "-"
-          ) : (
-            <TimeFormater
-              rawTime={new Date(session.endTime) - new Date(session.startTime)}
-            />
-          )
-        ) : (
-          <Timer startTime={session.startTime} />
-        )}
-      </>
-    );
-  };
-
-  let itemName = getItemType(props.thisStage);
 
   const columns = [
     { copy: "№", className: `${styles.colNumber} ${styles.colFixed}` },
@@ -132,7 +83,7 @@ function SessionList(props) {
                 styles[
                   "itemRow--" +
                     (session.type === "flag"
-                      ? translatePriority(session.amount, false)
+                      ? getFlagName(session.amount, false)
                       : session.type)
                 ]
               } ${
@@ -148,7 +99,7 @@ function SessionList(props) {
                 {thisStageData.length - index}
               </li>
               <li className={`${styles.contentItem} ${styles.colActivity}`}>
-                {formatActivity(session)}
+                {getSessionName(session)}
               </li>
               <li
                 className={`${styles.contentItem} ${styles.colStartTime} ${styles.colFixed}`}
@@ -163,7 +114,7 @@ function SessionList(props) {
               >
                 <span className={styles.cellLabel}>Duration:</span>
                 <span className={styles.cellContent}>
-                  {formatDuration(session)}
+                  <SessionDuration session={session} />
                 </span>
               </li>
               <li
@@ -248,48 +199,10 @@ function SessionList(props) {
                         : "details",
                   }}
                 >
-                  <h3>
-                    {session.type === "work"
-                      ? session.activity.name
-                      : formatActivity(session.type)}
-                  </h3>
-                  <p>Session ID: {session.sessionId}</p>
-                  <p>Resolved: {session.endTime ? "Resolved" : "Unresolved"}</p>
-                  <p>
-                    Start Time: <DateTimeFormatter date={session.startTime} />
-                  </p>
-                  {session.endTime ? (
-                    <p>
-                      End Time: <DateTimeFormatter date={session.endTime} />
-                    </p>
-                  ) : null}
-                  <p>Duration: {formatDuration(session)}</p>
-                  <p>Technician: {session.user}</p>
-                  <p>
-                    {itemName}: {session.amount}
-                  </p>
-                  <p>Defective: {session.amountBad}</p>
-                  {/* <p>averageweight</p> */}
-                  {session.notes && session.notes.length ? (
-                    <p>
-                      Notes:
-                      <br />
-                      {session.notes.split("\n").map((item, key) => {
-                        return (
-                          <span key={key}>
-                            {item}
-                            <br />
-                          </span>
-                        );
-                      })}
-                    </p>
-                  ) : null}
-                  {session.type === "qa" ? (
-                    <>
-                      <p>Checker: {session.secondaryUser}</p>
-                      <p>Timeframe: {session.extra}</p>
-                    </>
-                  ) : null}
+                  <SessionDetails
+                    session={session}
+                    thisStage={props.thisStage}
+                  />
                 </ModalControl>
               </li>
             </ul>

@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import TimeFormater from "../DurationFormatter/DurationFormatter";
+import DurationFormatter from "../DurationFormatter/DurationFormatter";
 
 function Timer(props) {
   const startTime = React.useState(new Date(props.startTime))[0];
@@ -24,7 +24,7 @@ function Timer(props) {
     return diffTime;
   }
 
-  return <TimeFormater rawTime={duration} ticking={true} />;
+  return <DurationFormatter rawTime={duration} ticking={true} />;
 }
 
 Timer.propTypes = {
