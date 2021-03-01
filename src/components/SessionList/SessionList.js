@@ -73,142 +73,147 @@ function SessionList(props) {
       <header className={styles.header}>
         <TableHeader items={columns} />
       </header>
-      <div>
+      <ul className={styles.sessionList}>
         {thisStageData
           .slice(0)
           .reverse()
           .map((session, index) => (
-            <ul
-              className={`${styles.itemRow} ${
-                styles[
-                  "itemRow--" +
-                    (session.type === "flag"
-                      ? getFlagName(session.amount, false)
-                      : session.type)
-                ]
-              } ${
-                session.endTime
-                  ? styles.itemRowResolved
-                  : styles.itemRowUnresolved
-              }`}
-              key={session.sessionId}
+            <li
+              className={styles.sessionListItem}
+              key={"sli-" + session.sessionId}
             >
-              <li
-                className={`${styles.contentItem} ${styles.colNumber} ${styles.colFixed}`}
+              <ul
+                className={`${styles.itemRow} ${
+                  styles[
+                    "itemRow--" +
+                      (session.type === "flag"
+                        ? getFlagName(session.amount, false)
+                        : session.type)
+                  ]
+                } ${
+                  session.endTime
+                    ? styles.itemRowResolved
+                    : styles.itemRowUnresolved
+                }`}
+                key={session.sessionId}
               >
-                {thisStageData.length - index}
-              </li>
-              <li className={`${styles.contentItem} ${styles.colActivity}`}>
-                {getSessionName(session)}
-              </li>
-              <li
-                className={`${styles.contentItem} ${styles.colStartTime} ${styles.colFixed}`}
-              >
-                <span className={styles.cellLabel}>Start Time:</span>
-                <span className={styles.cellContent}>
-                  <DateTimeFormatter date={session.startTime} />
-                </span>
-              </li>
-              <li
-                className={`${styles.contentItem} ${styles.colDuration} ${styles.colFixed}`}
-              >
-                <span className={styles.cellLabel}>Duration:</span>
-                <span className={styles.cellContent}>
-                  <SessionDuration session={session} />
-                </span>
-              </li>
-              <li
-                className={`${styles.contentItem} ${styles.colItemsGood} ${styles.colFixed}`}
-              >
-                <span className={styles.cellLabel}>{itemName}:</span>
-                <span className={styles.cellContent}>
-                  {session.amount === undefined ||
-                  session.amount === null ||
-                  session.type === "flag"
-                    ? "-"
-                    : session.amount}
-                </span>
-              </li>
-              <li
-                className={`${styles.contentItem} ${styles.colItemsBad} ${styles.colFixed}`}
-              >
-                <span className={styles.cellLabel}>Defective:</span>
-                <span className={styles.cellContent}>
-                  {session.amountBad === undefined || session.amount === null
-                    ? "-"
-                    : session.amountBad}
-                </span>
-              </li>
-              <li
-                className={`${styles.contentItem} ${styles.colTech} ${styles.colFixed}`}
-              >
-                <span className={styles.cellLabel}>Users:</span>
-                <span className={styles.cellContent}>
-                  {/* {session.user} */}
-                  {/* todo get actual name */}
-                  {session.user === "1" ? "Jesus Sandoval" : "Amanda Kezios"}
-                  {session.secondaryUser
-                    ? " / " +
-                      (session.secondaryUser === "1"
-                        ? "Jesus Sandoval"
-                        : "Amanda Kezios")
-                    : null}
-                </span>
-              </li>
-              <li
-                className={`${styles.contentItem} ${styles.colAction} ${styles.colFixed}`}
-              >
-                {session.type === "flag" ? (
-                  <FlagCloser
-                    key={session.sessionId}
-                    thisStage={props.thisStage}
-                    session={session}
-                    endSession={props.endSession}
-                    updateSession={props.updateSession}
-                    activeUser={props.activeUser}
-                  />
-                ) : null}
-                {session.type === "assign" ? (
-                  <AssignmentCloser
-                    key={session.sessionId}
-                    thisStage={props.thisStage}
-                    session={session}
-                    updateSession={props.updateSession}
-                    endSession={props.endSession}
-                  />
-                ) : null}
-                {session.type === "qa" ? (
-                  <CheckCloser
-                    key={session.sessionId}
-                    thisStage={props.thisStage}
-                    session={session}
-                    endSession={props.endSession}
-                  />
-                ) : null}
-              </li>
-              <li
-                className={`${styles.contentItem} ${styles.colInfo} ${styles.colFixed}`}
-              >
-                <ModalControl
-                  title="Session Details"
-                  triggerCopy={""}
-                  buttonAttrs={{
-                    icon:
-                      session.notes && session.notes.length
-                        ? "detailsAlt"
-                        : "details",
-                  }}
+                <li
+                  className={`${styles.contentItem} ${styles.colNumber} ${styles.colFixed}`}
                 >
-                  <SessionDetails
-                    session={session}
-                    thisStage={props.thisStage}
-                  />
-                </ModalControl>
-              </li>
-            </ul>
+                  {thisStageData.length - index}
+                </li>
+                <li className={`${styles.contentItem} ${styles.colActivity}`}>
+                  {getSessionName(session)}
+                </li>
+                <li
+                  className={`${styles.contentItem} ${styles.colStartTime} ${styles.colFixed}`}
+                >
+                  <span className={styles.cellLabel}>Start Time:</span>
+                  <span className={styles.cellContent}>
+                    <DateTimeFormatter date={session.startTime} />
+                  </span>
+                </li>
+                <li
+                  className={`${styles.contentItem} ${styles.colDuration} ${styles.colFixed}`}
+                >
+                  <span className={styles.cellLabel}>Duration:</span>
+                  <span className={styles.cellContent}>
+                    <SessionDuration session={session} />
+                  </span>
+                </li>
+                <li
+                  className={`${styles.contentItem} ${styles.colItemsGood} ${styles.colFixed}`}
+                >
+                  <span className={styles.cellLabel}>{itemName}:</span>
+                  <span className={styles.cellContent}>
+                    {session.amount === undefined ||
+                    session.amount === null ||
+                    session.type === "flag"
+                      ? "-"
+                      : session.amount}
+                  </span>
+                </li>
+                <li
+                  className={`${styles.contentItem} ${styles.colItemsBad} ${styles.colFixed}`}
+                >
+                  <span className={styles.cellLabel}>Defective:</span>
+                  <span className={styles.cellContent}>
+                    {session.amountBad === undefined || session.amount === null
+                      ? "-"
+                      : session.amountBad}
+                  </span>
+                </li>
+                <li
+                  className={`${styles.contentItem} ${styles.colTech} ${styles.colFixed}`}
+                >
+                  <span className={styles.cellLabel}>Users:</span>
+                  <span className={styles.cellContent}>
+                    {/* {session.user} */}
+                    {/* todo get actual name */}
+                    {session.user === "1" ? "Jesus Sandoval" : "Amanda Kezios"}
+                    {session.secondaryUser
+                      ? " / " +
+                        (session.secondaryUser === "1"
+                          ? "Jesus Sandoval"
+                          : "Amanda Kezios")
+                      : null}
+                  </span>
+                </li>
+                <li
+                  className={`${styles.contentItem} ${styles.colAction} ${styles.colFixed}`}
+                >
+                  {session.type === "flag" ? (
+                    <FlagCloser
+                      key={session.sessionId}
+                      thisStage={props.thisStage}
+                      session={session}
+                      endSession={props.endSession}
+                      updateSession={props.updateSession}
+                      activeUser={props.activeUser}
+                    />
+                  ) : null}
+                  {session.type === "assign" ? (
+                    <AssignmentCloser
+                      key={session.sessionId}
+                      thisStage={props.thisStage}
+                      session={session}
+                      updateSession={props.updateSession}
+                      endSession={props.endSession}
+                    />
+                  ) : null}
+                  {session.type === "qa" ? (
+                    <CheckCloser
+                      key={session.sessionId}
+                      thisStage={props.thisStage}
+                      session={session}
+                      endSession={props.endSession}
+                    />
+                  ) : null}
+                </li>
+                <li
+                  className={`${styles.contentItem} ${styles.colInfo} ${styles.colFixed}`}
+                >
+                  <ModalControl
+                    title="Session Details"
+                    triggerCopy={""}
+                    buttonAttrs={{
+                      icon:
+                        session.notes && session.notes.length
+                          ? "detailsAlt"
+                          : "details",
+                    }}
+                  >
+                    <SessionDetails
+                      session={session}
+                      thisStage={props.thisStage}
+                    />
+                  </ModalControl>
+                </li>
+              </ul>
+            </li>
           ))}
 
-        <div className={`${styles.itemRow} ${styles.itemRowTotals}`}>
+        <li className={`${styles.itemRow} ${styles.itemRowTotals}`}>
           <div className={`${styles.contentItem} ${styles.colNumber}`}></div>
           <div className={`${styles.contentItem} ${styles.colActivity}`}>
             Overall
@@ -241,8 +246,8 @@ function SessionList(props) {
           <div className={`${styles.contentItem} ${styles.colTech}`}></div>
           <div className={`${styles.contentItem} ${styles.colAction}`}></div>
           <div className={`${styles.contentItem} ${styles.colInfo}`}></div>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
   );
 }

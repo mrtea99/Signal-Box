@@ -14,6 +14,12 @@
   }
 }
 
+.sessionList {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
 .itemRow {
   background-color: var(--color-fg);
   margin: 0.3rem 0 0 0;
@@ -95,7 +101,6 @@
   }
 }
 
-
 @media (min-width: 768px) {
   .colNumber {
     width: 1.5rem;
@@ -130,9 +135,7 @@
   .colFixed {
     flex: 0 0 auto;
   }
-
 }
-
 
 .cellLabel {
   display: block;
