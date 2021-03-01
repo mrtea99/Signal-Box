@@ -1,0 +1,108 @@
+
+.itemRow {
+  background-color: var(--color-fg);
+  margin: 0.3rem 0 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 768px) {
+  .itemRow {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+    /* flex-wrap: wrap; */
+  }
+}
+
+.itemRowUnresolved {
+  background-color: var(--color-grey-bright);
+}
+
+.itemRow--work .contentItem.colNumber {
+  background-color: var(--color-pink-bright);
+}
+.itemRow--assign .contentItem.colNumber {
+  background-color: var(--color-assign);
+}
+.itemRow--qa .contentItem.colNumber {
+  background-color: var(--color-qa);
+}
+.itemRow--note .contentItem.colNumber {
+  background-color: var(--color-note);
+}
+.itemRow--issue .contentItem.colNumber {
+  background-color: var(--color-issue);
+}
+.itemRow--blocker .contentItem.colNumber {
+  background-color: var(--color-blocker);
+}
+.itemRow--activate .contentItem.colNumber,
+.itemRow--deactivate .contentItem.colNumber,
+.itemRow--consign .contentItem.colNumber {
+  background-color: var(--color-complete);
+}
+
+.itemRowTotals {
+  background-color: var(--color-grey-darker);
+  color: var(--color-text);
+}
+
+.contentItem {
+  text-align: center;
+  padding: 0.2rem;
+  list-style-type: none;
+  margin: 0;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.contentItem.colNumber {
+  font-size: 0.6em;
+  justify-content: center;
+}
+.contentItem.colActivity {
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.1em;
+}
+
+@media (min-width: 768px) {
+  .contentItem {
+    min-height: calc(var(--size-touch-min) + (2 * 0.2rem));
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+.cellLabel {
+  display: block;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  flex-basis: 50%;
+}
+@media (min-width: 768px) {
+  .cellLabel {
+    display: none;
+  }
+}
+
+.cellContent {
+  display: block;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+}
+@media (min-width: 768px) {
+  .cellContent {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+}
