@@ -1,0 +1,30 @@
+.item {
+  padding-bottom: 0.2rem;
+  display: flex;
+}
+.item:last-child {
+  padding-bottom: 0;
+}
+
+.cell {
+  padding: 0.5rem;
+  display: inline-block;
+}
+
+.key {
+  font-weight: bold;
+  width: 5rem;
+  text-align: right;
+  background-color: var(--color-grey-bright);
+}
+
+@media (min-width: 768px) {
+  .key {
+    width: 11rem;
+  }
+}
+
+.value {
+  flex-grow: 1;
+  background-color: var(--color-grey-darker);
+}
