@@ -21,6 +21,7 @@
 @media (min-width: 768px) {
   .key {
     width: 11rem;
+    flex-shrink: 0;
   }
 }
 

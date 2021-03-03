@@ -6,6 +6,8 @@ import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
 import FormItem from "../FormItem/FormItem.js";
 
 import styles from "./RunInfoForm.module.css";
+import DataList from "../DataList/DataList.js";
+import DataListItem from "../DataList/DataListItem/DataListItem.js";
 
 const productTemplates = [
   {
@@ -64,9 +66,7 @@ function RunInfoForm(props) {
       return {};
     }
 
-    const runData = props.runData.find(
-      (obj) => obj.id === props.currentRunUid
-    );
+    const runData = props.runData.find((obj) => obj.id === props.currentRunUid);
     return runData;
   })[0];
 
@@ -147,24 +147,22 @@ function RunInfoForm(props) {
 
         <div className={styles.readOnly}>
           <h3 className={styles.readOnlyTitle}>Product Info:</h3>
-          <ul>
-            {productTemplates[currentTemplate] ? (
-              <>
-                <li>
-                  <strong>SKU</strong>:{" "}
-                  {productTemplates[currentTemplate].productSKU}
-                </li>
-                <li>
-                  <strong>Base Name</strong>:{" "}
-                  {productTemplates[currentTemplate].baseName}
-                </li>
-                <li>
-                  <strong>Base Type</strong>:{" "}
-                  {productTemplates[currentTemplate].baseType}
-                </li>
-              </>
-            ) : null}
-          </ul>
+          {productTemplates[currentTemplate] ? (
+            <DataList>
+              <DataListItem
+                dataKey="SKU"
+                dataValue={productTemplates[currentTemplate].productSKU}
+              />
+              <DataListItem
+                dataKey="Base Name"
+                dataValue={productTemplates[currentTemplate].baseName}
+              />
+              <DataListItem
+                dataKey="Base Type"
+                dataValue={productTemplates[currentTemplate].baseType}
+              />
+            </DataList>
+          ) : null}
         </div>
       </div>
       <ButtonSpacer align="right">
