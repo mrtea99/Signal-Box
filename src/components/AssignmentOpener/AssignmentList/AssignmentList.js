@@ -1,12 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import DataList from "../../DataList/DataList";
-import DataListItem from "../../DataList/DataListItem/DataListItem";
 import FormItem from "../../FormItem/FormItem";
 import TableHeader from "../../TableHeader/TableHeader.js";
 
 import styles from "./AssignmentList.module.css";
+import AssignmentCloser from "../../AssignmentCloser/AssignmentCloser";
 
 function AssignmentList(props) {
   const markResolved = function (checked, sessionId) {
@@ -24,7 +23,8 @@ function AssignmentList(props) {
 
   const columns = [
     { copy: "Assignment", className: styles.colMain },
-    { copy: "Resolve", className: styles.colAction },
+    { copy: "Edit", className: styles.colAction },
+    { copy: "Resolve", className: styles.colResolve },
   ];
 
   return (
@@ -37,18 +37,24 @@ function AssignmentList(props) {
             {props.assignSessions.map((session) => (
               <li key={session.sessionId} className={styles.assItem}>
                 <div className={`${styles.colMain} ${styles.main}`}>
-                  <DataList>
-                    <DataListItem
-                      dataKey="Assignee"
-                      dataValue={
-                        // `John Smith (${session.secondaryUser})`
-                        session.secondaryUser || "None"
-                      }
-                    />
-                    <DataListItem dataKey="Note" dataValue={session.notes} />
-                  </DataList>
+                  <h3 className={styles.itemTitle}>
+                    Assignee:{" "}
+                    {
+                      // `John Smith (${session.secondaryUser})`
+                      session.secondaryUser || "None"
+                    }
+                  </h3>
+                  <p className={styles.itemNote}>{session.notes}</p>
                 </div>
-                <div className={`${styles.colAction} ${styles.action}`}>
+                <div className={`${styles.colAction} ${styles.resolve}`}>
+                  <AssignmentCloser
+                    session={session}
+                    updateSession={props.updateSession}
+                    endSession={props.endSession}
+                    thisStage={props.thisStage}
+                  />
+                </div>
+                <div className={`${styles.colResolve} ${styles.resolve}`}>
                   <form>
                     <FormItem
                       label="Resolve"
@@ -78,6 +84,9 @@ AssignmentList.propTypes = {
   assignSessions: PropTypes.array.isRequired,
   resolvedAssignments: PropTypes.array.isRequired,
   setResolvedAssignments: PropTypes.func.isRequired,
+  updateSession: PropTypes.func.isRequired,
+  endSession: PropTypes.func.isRequired,
+  thisStage: PropTypes.number.isRequired,
 };
 
 export default AssignmentList;

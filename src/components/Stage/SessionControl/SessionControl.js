@@ -33,6 +33,7 @@ function SessionControl(props) {
               activeUser={props.activeUser}
               className={styles.sessionControl}
               thisRunData={props.thisRunData}
+              endSession={props.endSession}
             />
           )}
           <ButtonSpacer direction="vert">

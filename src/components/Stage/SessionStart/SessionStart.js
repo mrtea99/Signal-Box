@@ -87,6 +87,9 @@ function SessionStart(props) {
             assignSessions={assignSessions}
             resolvedAssignments={resolvedAssignments}
             setResolvedAssignments={setResolvedAssignments}
+            thisStage={props.thisStage}
+            updateSession={props.updateSession}
+            endSession={props.endSession}
           />
           <SessionStartForm
             thisStage={props.thisStage}
@@ -108,6 +111,7 @@ SessionStart.propTypes = {
   thisStage: PropTypes.number.isRequired,
   addSession: PropTypes.func.isRequired,
   updateSession: PropTypes.func.isRequired,
+  endSession: PropTypes.func.isRequired,
   activeUser: PropTypes.string.isRequired,
   thisRunData: PropTypes.object.isRequired,
 };
