@@ -1,7 +1,13 @@
 .formMain {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   padding-bottom: 1rem;
+}
+
+@media (min-width: 768px) {
+  .formMain {
+    flex-direction: row;
+  }
 }
 
 .userFields, .readOnly {
@@ -15,8 +21,15 @@
 .readOnly {
   background-color: var(--color-fg);
   padding: 0.5rem;
+  width: 100%;
 }
 
 .readOnlyTitle {
   margin: 0;
+}
+
+@media (min-width: 768px) {
+  .readOnly {
+    width: 25rem;
+  }
 }

@@ -9,56 +9,7 @@ import styles from "./RunInfoForm.module.css";
 import DataList from "../DataList/DataList.js";
 import DataListItem from "../DataList/DataListItem/DataListItem.js";
 
-const productTemplates = [
-  {
-    baseName: "Soap Base",
-    baseType: "Common Base",
-    baseSKU: "BN00002",
-    baseVariation: "White Vegetable Glycerine Soap",
-    baseVariationSKU: "BV00001",
-    productName: "Product One",
-    productSKU: "MS00423",
-    productCategory: "Bodycare",
-    productSubcategory: "Body Scrubs",
-    unitsPerBatch: 100,
-    unitWeight: 5.9,
-    batchWeight: 106,
-    prepDifficulty: "Easy",
-    manufacturingDifficulty: "Easy",
-    packagingDifficulty: "Easy",
-    labelingDifficulty: "Easy",
-    stockDifficulty: "N/A",
-    merchandising: 90,
-    lowInventoryTrigger: 0,
-    expirationDuration: 12,
-    storageLocation: "top shelf",
-    recipeLink: "http://www.example.com",
-  },
-  {
-    baseName: "Amazing After Shave Body Oil For Women",
-    baseType: "Product Base",
-    baseSKU: "BN00004",
-    baseVariation: "N/A",
-    baseVariationSKU: "N/A",
-    productName: "Product Two",
-    productSKU: "MS00425",
-    productCategory: "Soy Massage Candles",
-    productSubcategory: "Glass Jar Candles",
-    unitsPerBatch: 150,
-    unitWeight: 7.1,
-    batchWeight: 70.4,
-    prepDifficulty: "Medium",
-    manufacturingDifficulty: "Medium",
-    packagingDifficulty: "Hard",
-    labelingDifficulty: "Easy",
-    stockDifficulty: "N/A",
-    merchandising: 0,
-    lowInventoryTrigger: 20,
-    expirationDuration: 6,
-    storageLocation: "bottom shelf",
-    recipeLink: "http://www.example.com",
-  },
-];
+import productTemplates from "../../data/productTemplates.json";
 
 function RunInfoForm(props) {
   const thisRunData = React.useState(() => {
