@@ -61,6 +61,12 @@ function App() {
   const [modalNewActive, setModalNewActive] = React.useState(false);
   const [sidebarActive, setSidebarActive] = React.useState(false);
 
+  const createRun = function (newRunData) {
+    let newData = [...runData];
+    newData.push(newRunData);
+    setRunData(newData);
+  };
+
   const updateRunData = function (uid, dataSection, dataKey, newValue) {
     if (dataSection === "delete") {
       deleteRun(uid);
@@ -187,8 +193,7 @@ function App() {
                       <RunInfoNew
                         active={modalNewActive}
                         setActive={setModalNewActive}
-                        runData={runData}
-                        setRunData={setRunData}
+                        createRun={createRun}
                       />
                     </section>
                   </menu>

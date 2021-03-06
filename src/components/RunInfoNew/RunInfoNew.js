@@ -12,26 +12,18 @@ import productTemplates from "../../data/productTemplates.json";
 function RunInfoNew(props) {
   const mode = props.currentRunUid ? "change" : "new";
 
-  const thisRunData = React.useState(() => {
-    if (!props.runData) {
-      return {};
-    }
-
-    return props.runData.find((obj) => obj.id === props.currentRunUid);
-  })[0];
-
   const [currentTemplate, setCurrentTemplate] = React.useState(() => {
-    if (!thisRunData) {
+    if (!props.thisRunData) {
       return null;
     }
 
     return productTemplates.findIndex(
-      (obj) => obj.productSKU === thisRunData.productInfo.productSKU
+      (obj) => obj.productSKU === props.thisRunData.productInfo.productSKU
     );
   });
 
   const [batchQuantity, setBatchQuantity] = React.useState(
-    thisRunData ? thisRunData.batchQuantity : 1
+    props.thisRunData ? props.thisRunData.batchQuantity : 1
   );
 
   const handleSubmit = function (e) {
@@ -43,8 +35,6 @@ function RunInfoNew(props) {
   };
 
   const createRun = function (productTemplateData, batchQuantity) {
-    let newData = [...props.runData];
-
     //Build new run object here
     const newRun = {
       id: Date.now(),
@@ -84,8 +74,7 @@ function RunInfoNew(props) {
       ],
     };
 
-    newData.push(newRun);
-    props.setRunData(newData);
+    props.createRun(newRun);
 
     handleCancel();
   };
@@ -156,8 +145,8 @@ function RunInfoNew(props) {
 RunInfoNew.propTypes = {
   setActive: PropTypes.func.isRequired,
   active: PropTypes.bool.isRequired,
-  runData: PropTypes.array.isRequired,
-  setRunData: PropTypes.func,
+  createRun: PropTypes.func,
+  thisRunData: PropTypes.object,
   updateRunData: PropTypes.func,
   currentRunUid: PropTypes.number,
 };

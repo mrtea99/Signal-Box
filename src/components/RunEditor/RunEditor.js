@@ -91,7 +91,7 @@ function RunEditor(props) {
                         active={modalChangeActive}
                         setActive={setModalChangeActive}
                         currentRunUid={props.currentRunUid}
-                        runData={props.runData}
+                        thisRunData={thisRunData}
                         updateRunData={props.updateRunData}
                       />
 
