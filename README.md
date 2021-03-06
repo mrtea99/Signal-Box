@@ -2,7 +2,7 @@
 
 <!-- Screnshot -->
 
-Project Pan is a production run manager built for the beauty company Mojo Spa.
+Signal Box is a production run manager built for a beauty product company. It tracks the progress of each product from manufacturing to stocking. Progress, Activities, QA requests, issues and assignments are all managed for each stage.
 
 ### Built Using
 
@@ -11,7 +11,7 @@ Project Pan is a production run manager built for the beauty company Mojo Spa.
 
 ### Project Name
 
-[Pan](https://en.wikipedia.org/wiki/Pan_(god)) is the greek god of shepherds, as this app shepherds its users through the production process.
+A [Signal Box](https://en.wikipedia.org/wiki/Signalling_control) controls the movement of trains through a given section of a railway, just as the products are guided through the production process.
 
 ## Getting Started
 
