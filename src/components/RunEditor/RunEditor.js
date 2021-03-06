@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import Stage from "../Stage/Stage.js";
 import StageNav from "../StageNav/StageNav.js";
-// import TableHeader from "../TableHeader/TableHeader.js";
+import RunInfoNew from "../RunInfoNew/RunInfoNew.js";
 import StageOverview from "../StageOverview/StageOverview.js";
 import Modal from "../Modal/Modal.js";
 import Button from "../Button/Button.js";
@@ -21,16 +21,17 @@ function RunEditor(props) {
   const simpleMode = viewMode === "simple";
 
   const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
+  const [modalChangeActive, setModalChangeActive] = React.useState(false);
 
   const thisRunData = props.runData.find(
     (obj) => obj.id === props.currentRunUid
   );
 
-  const handleEditInfoClick = function (e) {
-    e.preventDefault();
+  // const handleEditInfoClick = function (e) {
+  //   e.preventDefault();
 
-    props.setModalActive(true);
-  };
+  //   props.setModalActive(true);
+  // };
 
   const handleExitClick = function (e) {
     e.preventDefault();
@@ -83,7 +84,17 @@ function RunEditor(props) {
                       </h4>
                     </div>
                     <ButtonSpacer>
-                      <Button onClick={handleEditInfoClick}>Info</Button>
+                      <Button onClick={() => setModalChangeActive(true)}>
+                        Info
+                      </Button>
+                      <RunInfoNew
+                        active={modalChangeActive}
+                        setActive={setModalChangeActive}
+                        currentRunUid={props.currentRunUid}
+                        runData={props.runData}
+                        updateRunData={props.updateRunData}
+                      />
+
                       <Button
                         onClick={() => setModalOverviewActive(true)}
                         icon="details"
@@ -149,7 +160,7 @@ function RunEditor(props) {
 RunEditor.propTypes = {
   runData: PropTypes.array.isRequired,
   currentRunUid: PropTypes.number,
-  setModalActive: PropTypes.func.isRequired,
+  // setModalActive: PropTypes.func.isRequired,
   setCurrentRunUid: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,
   activeUser: PropTypes.string.isRequired,

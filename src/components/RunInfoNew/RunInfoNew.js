@@ -2,11 +2,45 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import Modal from "../Modal/Modal.js";
-import RunInfoForm from "../RunInfoForm/RunInfoForm.js";
+import RunInfoForm from "./RunInfoForm/RunInfoForm.js";
 import RunDelete from "../RunDelete/RunDelete.js";
+import Button from "../Button/Button.js";
+import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
+
+import productTemplates from "../../data/productTemplates.json";
 
 function RunInfoNew(props) {
   const mode = props.currentRunUid ? "change" : "new";
+
+  const thisRunData = React.useState(() => {
+    if (!props.runData) {
+      return {};
+    }
+
+    return props.runData.find((obj) => obj.id === props.currentRunUid);
+  })[0];
+
+  const [currentTemplate, setCurrentTemplate] = React.useState(() => {
+    if (!thisRunData) {
+      return null;
+    }
+
+    return productTemplates.findIndex(
+      (obj) => obj.productSKU === thisRunData.productInfo.productSKU
+    );
+  });
+
+  const [batchQuantity, setBatchQuantity] = React.useState(
+    thisRunData ? thisRunData.batchQuantity : 1
+  );
+
+  const handleSubmit = function (e) {
+    let productInfo = { ...productTemplates[currentTemplate] };
+
+    mode === "new"
+      ? createRun(productInfo, batchQuantity)
+      : updateRunInfo(productInfo, batchQuantity);
+  };
 
   const createRun = function (productTemplateData, batchQuantity) {
     let newData = [...props.runData];
@@ -52,7 +86,8 @@ function RunInfoNew(props) {
 
     newData.push(newRun);
     props.setRunData(newData);
-    props.setActive(false);
+
+    handleCancel();
   };
 
   const updateRunInfo = function (productTemplateData, batchQuantity) {
@@ -70,7 +105,7 @@ function RunInfoNew(props) {
       batchQuantity
     );
 
-    props.setActive(false);
+    handleCancel();
   };
 
   const handleCancel = function () {
@@ -81,23 +116,37 @@ function RunInfoNew(props) {
     <>
       {props.active ? (
         <Modal title="Create New Run">
-          {mode === "new" ? (
-            <RunInfoForm handleSave={createRun} handleCancel={handleCancel} />
-          ) : (
-            <>
-              <RunInfoForm
-                runData={props.runData}
-                currentRunUid={props.currentRunUid}
-                handleSave={updateRunInfo}
-                handleCancel={handleCancel}
-              />
+          <RunInfoForm
+            currentTemplate={currentTemplate}
+            setCurrentTemplate={setCurrentTemplate}
+            batchQuantity={batchQuantity}
+            setBatchQuantity={setBatchQuantity}
+          />
+
+          <ButtonSpacer align="right">
+            {mode === "change" ? (
               <RunDelete
                 updateRunData={props.updateRunData}
                 currentRunUid={props.currentRunUid}
                 successCallback={() => props.setActive(false)}
               />
-            </>
-          )}
+            ) : null}
+            <Button
+              onClick={(e) => {
+                e.preventDefault();
+                handleCancel();
+              }}
+              color="cancel"
+            >
+              Cancel
+            </Button>
+            <Button
+              disabled={currentTemplate === null ? true : false}
+              onClick={handleSubmit}
+            >
+              {mode === "new" ? "Create New Run" : "Save"}
+            </Button>
+          </ButtonSpacer>
         </Modal>
       ) : null}
     </>

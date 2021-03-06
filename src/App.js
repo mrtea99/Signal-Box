@@ -59,7 +59,6 @@ function App() {
   }, [activeUser]);
 
   const [modalNewActive, setModalNewActive] = React.useState(false);
-  const [modalChangeActive, setModalChangeActive] = React.useState(false);
   const [sidebarActive, setSidebarActive] = React.useState(false);
 
   const updateRunData = function (uid, dataSection, dataKey, newValue) {
@@ -218,17 +217,8 @@ function App() {
                     activeStage={activeStage}
                     setActiveStage={setActiveStage}
                     updateRunData={updateRunData}
-                    modalActive={modalChangeActive}
-                    setModalActive={setModalChangeActive}
                     activeUser={activeUser}
                     setActiveUser={setActiveUser}
-                  />
-                  <RunInfoNew
-                    active={modalChangeActive}
-                    setActive={setModalChangeActive}
-                    currentRunUid={currentRunUid}
-                    runData={runData}
-                    updateRunData={updateRunData}
                   />
                 </section>
               </main>
