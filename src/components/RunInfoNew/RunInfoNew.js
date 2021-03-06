@@ -3,8 +3,11 @@ import PropTypes from "prop-types";
 
 import Modal from "../Modal/Modal.js";
 import RunInfoForm from "../RunInfoForm/RunInfoForm.js";
+import RunDelete from "../RunDelete/RunDelete.js";
 
 function RunInfoNew(props) {
+  const mode = props.currentRunUid ? "change" : "new";
+
   const createRun = function (productTemplateData, batchQuantity) {
     let newData = [...props.runData];
 
@@ -52,6 +55,24 @@ function RunInfoNew(props) {
     props.setActive(false);
   };
 
+  const updateRunInfo = function (productTemplateData, batchQuantity) {
+    props.updateRunData(
+      props.currentRunUid,
+      null,
+      "productInfo",
+      productTemplateData
+    );
+
+    props.updateRunData(
+      props.currentRunUid,
+      null,
+      "batchQuantity",
+      batchQuantity
+    );
+
+    props.setActive(false);
+  };
+
   const handleCancel = function () {
     props.setActive(false);
   };
@@ -60,7 +81,23 @@ function RunInfoNew(props) {
     <>
       {props.active ? (
         <Modal title="Create New Run">
-          <RunInfoForm handleSave={createRun} handleCancel={handleCancel} />
+          {mode === "new" ? (
+            <RunInfoForm handleSave={createRun} handleCancel={handleCancel} />
+          ) : (
+            <>
+              <RunInfoForm
+                runData={props.runData}
+                currentRunUid={props.currentRunUid}
+                handleSave={updateRunInfo}
+                handleCancel={handleCancel}
+              />
+              <RunDelete
+                updateRunData={props.updateRunData}
+                currentRunUid={props.currentRunUid}
+                successCallback={() => props.setActive(false)}
+              />
+            </>
+          )}
         </Modal>
       ) : null}
     </>
@@ -68,10 +105,12 @@ function RunInfoNew(props) {
 }
 
 RunInfoNew.propTypes = {
-  runData: PropTypes.array.isRequired,
-  setRunData: PropTypes.func.isRequired,
   setActive: PropTypes.func.isRequired,
   active: PropTypes.bool.isRequired,
+  runData: PropTypes.array.isRequired,
+  setRunData: PropTypes.func,
+  updateRunData: PropTypes.func,
+  currentRunUid: PropTypes.number,
 };
 
 export default RunInfoNew;
