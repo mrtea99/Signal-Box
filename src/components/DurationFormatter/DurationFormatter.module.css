@@ -3,11 +3,23 @@
 }
 
 .separatorTicking {
-  animation: blinker 2s step-start 0s infinite;
+  animation: smoothBlinker 2s ease 0s infinite;
 }
 
-@keyframes blinker {
+@keyframes smoothBlinker {
+  0% {
+    opacity: 1;
+  }
+  46% {
+    opacity: 1;
+  }
   50% {
     opacity: 0;
+  }
+  96% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
