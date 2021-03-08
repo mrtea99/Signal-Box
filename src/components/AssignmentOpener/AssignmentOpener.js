@@ -2,9 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
-import AssignmentBatcher from "./AssignmentBatcher/AssignmentBatcher.js";
-// import FormItem from "../FormItem/FormItem.js";
-// import UserSelect from "../FormItem/UserSelect/UserSelect.js";
 import AssignmentOpenerForm from "./AssignmentOpenerForm/AssignmentOpenerForm.js";
 
 function AssignmentOpener(props) {
