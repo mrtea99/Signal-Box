@@ -6,7 +6,7 @@ import styles from "./App.module.css";
 import SiteSidebar from "./components/SiteSidebar/SiteSidebar.js";
 import RunList from "./components/RunList/RunList.js";
 import RunEditor from "./components/RunEditor/RunEditor.js";
-import RunInfoNew from "./components/RunInfoNew/RunInfoNew.js";
+import RunInfoNew from "./components/RunInfo/RunInfo.js";
 import Button from "./components/Button/Button.js";
 import TabBox from "./components/TabBox/TabBox.js";
 import SiteHeader from "./components/SiteHeader/SiteHeader.js";

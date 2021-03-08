@@ -101,10 +101,12 @@ function RunInfoNew(props) {
     props.setActive(false);
   };
 
+  const modalTitle = mode === "new" ? "Create New Run" : "Edit Run Info"
+
   return (
     <>
       {props.active ? (
-        <Modal title="Create New Run">
+        <Modal title={modalTitle}>
           <RunInfoForm
             currentTemplate={currentTemplate}
             setCurrentTemplate={setCurrentTemplate}
