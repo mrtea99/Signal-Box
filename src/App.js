@@ -194,6 +194,7 @@ function App() {
                         active={modalNewActive}
                         setActive={setModalNewActive}
                         createRun={createRun}
+                        activeUser={activeUser}
                       />
                     </section>
                   </menu>

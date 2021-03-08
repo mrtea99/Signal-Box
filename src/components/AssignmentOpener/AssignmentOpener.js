@@ -1,6 +1,8 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
+import AssignmentBatcher from "./AssignmentBatcher/AssignmentBatcher.js";
 // import FormItem from "../FormItem/FormItem.js";
 // import UserSelect from "../FormItem/UserSelect/UserSelect.js";
 import AssignmentOpenerForm from "./AssignmentOpenerForm/AssignmentOpenerForm.js";
@@ -75,5 +77,11 @@ function AssignmentOpener(props) {
     </ModalControl>
   );
 }
+
+AssignmentOpener.propTypes = {
+  thisStage: PropTypes.number.isRequired,
+  activeUser: PropTypes.string.isRequired,
+  addSession: PropTypes.func.isRequired,
+};
 
 export default AssignmentOpener;

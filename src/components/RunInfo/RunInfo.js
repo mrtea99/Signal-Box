@@ -6,11 +6,16 @@ import RunInfoForm from "./RunInfoForm/RunInfoForm.js";
 import RunDelete from "../RunDelete/RunDelete.js";
 import Button from "../Button/Button.js";
 import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
+import AssignmentBatcher from "../AssignmentOpener/AssignmentBatcher/AssignmentBatcher.js";
 
 import productTemplates from "../../data/productTemplates.json";
 
 function RunInfoNew(props) {
   const mode = props.currentRunUid ? "change" : "new";
+  const defaultBatchedAssignments = [[], [], [], [], []];
+
+  //temp
+  // props.setActive(true);
 
   const [currentTemplate, setCurrentTemplate] = React.useState(() => {
     if (!props.thisRunData) {
@@ -25,6 +30,8 @@ function RunInfoNew(props) {
   const [batchQuantity, setBatchQuantity] = React.useState(
     props.thisRunData ? props.thisRunData.batchQuantity : 1
   );
+
+  const [batchedAssignments, setBatchedAssignments] = React.useState(defaultBatchedAssignments);
 
   const handleSubmit = function (e) {
     let productInfo = { ...productTemplates[currentTemplate] };
@@ -57,19 +64,19 @@ function RunInfoNew(props) {
       productInfo: productTemplateData,
       stages: [
         {
-          sessions: [],
+          sessions: batchedAssignments[0],
         },
         {
-          sessions: [],
+          sessions: batchedAssignments[1],
         },
         {
-          sessions: [],
+          sessions: batchedAssignments[2],
         },
         {
-          sessions: [],
+          sessions: batchedAssignments[3],
         },
         {
-          sessions: [],
+          sessions: batchedAssignments[4],
         },
       ],
     };
@@ -99,9 +106,10 @@ function RunInfoNew(props) {
 
   const handleCancel = function () {
     props.setActive(false);
+    setBatchedAssignments(defaultBatchedAssignments)
   };
 
-  const modalTitle = mode === "new" ? "Create New Run" : "Edit Run Info"
+  const modalTitle = mode === "new" ? "Create New Run" : "Edit Run Info";
 
   return (
     <>
@@ -113,6 +121,14 @@ function RunInfoNew(props) {
             batchQuantity={batchQuantity}
             setBatchQuantity={setBatchQuantity}
           />
+
+          {mode === "new" ? (
+            <AssignmentBatcher
+              batchedAssignments={batchedAssignments}
+              setBatchedAssignments={setBatchedAssignments}
+              activeUser={props.activeUser}
+            />
+          ) : null}
 
           <ButtonSpacer align="right">
             {mode === "change" ? (
@@ -151,6 +167,7 @@ RunInfoNew.propTypes = {
   thisRunData: PropTypes.object,
   updateRunData: PropTypes.func,
   currentRunUid: PropTypes.number,
+  activeUser: PropTypes.string,
 };
 
 export default RunInfoNew;
