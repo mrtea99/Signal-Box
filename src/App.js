@@ -109,10 +109,17 @@ function App() {
 
   // Filters state
   //-----------------------------------------------------------
-  const [runFilters, setRunFilters] = React.useState({
+  const defaultRunFilters = {
     showUser: [],
     showUnresolvedQa: false,
-  });
+  };
+
+  const savedRunFilters = () =>
+    JSON.parse(window.localStorage.getItem("runFilters") || defaultRunFilters);
+  const [runFilters, setRunFilters] = React.useState(savedRunFilters);
+  React.useEffect(() => {
+    window.localStorage.setItem("runFilters", JSON.stringify(runFilters));
+  }, [runFilters]);
 
   // Run creation and editing functions
   //-----------------------------------------------------------
