@@ -21,11 +21,11 @@ import { useTranslation } from "react-i18next";
 
 function App() {
   // i18n
-  //-----------------------------------------------------------
+  //==============================================================================
   const { t } = useTranslation();
 
   // Loading Screen
-  //-----------------------------------------------------------
+  //==============================================================================
   const [loading, setLoading] = React.useState(false);
 
   //temp fake loading time
@@ -34,7 +34,7 @@ function App() {
   });
 
   // Backend onload data
-  //-----------------------------------------------------------
+  //==============================================================================
   // Data for all runs - needs to replaced with API call
   const savedRunData = () =>
     JSON.parse(window.localStorage.getItem("runData")) || [];
@@ -44,7 +44,7 @@ function App() {
   }, [runData]);
 
   // Frontend onload data
-  //-----------------------------------------------------------
+  //==============================================================================
   const savedCurrentRunUid = () =>
     parseInt(window.localStorage.getItem("currentRunUid"), 10) || null;
   const [currentRunUid, setCurrentRunUid] = React.useState(savedCurrentRunUid);
@@ -67,48 +67,57 @@ function App() {
   }, [activeUser]);
 
   // Site settings
-  //=====================================
+  //-------------------------------------
+  const defaultSiteSettings = {
+    timeFormat: "24h",
+    dateFormat: "ymd",
+    unitSystem: "metric",
+    siteTheme: "dark",
+    viewMode: "full",
+  };
+
   const savedTimeFormat = () =>
-    window.localStorage.getItem("timeFormat") || "24h";
+    window.localStorage.getItem("timeFormat") ||
+    defaultSiteSettings["timeFormat"];
   const [timeFormat, setTimeFormat] = React.useState(savedTimeFormat);
   React.useEffect(() => {
     window.localStorage.setItem("timeFormat", timeFormat);
   }, [timeFormat]);
 
   const savedDateFormat = () =>
-    window.localStorage.getItem("dateFormat") || "ymd";
+    window.localStorage.getItem("dateFormat") ||
+    defaultSiteSettings["dateFormat"];
   const [dateFormat, setDateFormat] = React.useState(savedDateFormat);
   React.useEffect(() => {
     window.localStorage.setItem("dateFormat", dateFormat);
   }, [dateFormat]);
 
   const savedUnitSystem = () =>
-    window.localStorage.getItem("unitSystem") || "metric";
+    window.localStorage.getItem("unitSystem") ||
+    defaultSiteSettings["unitSystem"];
   const [unitSystem, setUnitSystem] = React.useState(savedUnitSystem);
   React.useEffect(() => {
     window.localStorage.setItem("unitSystem", unitSystem);
   }, [unitSystem]);
 
-  const savesSiteTheme = () =>
-    window.localStorage.getItem("siteTheme") || "dark";
-  const [siteTheme, setSiteTheme] = React.useState(savesSiteTheme);
+  const savedSiteTheme = () =>
+    window.localStorage.getItem("siteTheme") ||
+    defaultSiteSettings["siteTheme"];
+  const [siteTheme, setSiteTheme] = React.useState(savedSiteTheme);
   React.useEffect(() => {
     window.localStorage.setItem("siteTheme", siteTheme);
   }, [siteTheme]);
 
-  const savedViewMode = () => window.localStorage.getItem("viewMode") || "full";
+  const savedViewMode = () =>
+    window.localStorage.getItem("viewMode") ||
+    defaultSiteSettings["viewMode"];
   const [viewMode, setViewMode] = React.useState(savedViewMode);
   React.useEffect(() => {
     window.localStorage.setItem("viewMode", viewMode);
   }, [viewMode]);
 
-  // UI state
-  //-----------------------------------------------------------
-  const [sidebarActive, setSidebarActive] = React.useState(false);
-  const [modalNewActive, setModalNewActive] = React.useState(false);
-
-  // Filters state
-  //-----------------------------------------------------------
+  // Filters
+  //-------------------------------------
   const defaultRunFilters = {
     showUser: [],
     showUnresolvedQa: false,
@@ -121,8 +130,13 @@ function App() {
     window.localStorage.setItem("runFilters", JSON.stringify(runFilters));
   }, [runFilters]);
 
+  // UI state
+  //==============================================================================
+  const [sidebarActive, setSidebarActive] = React.useState(false);
+  const [modalNewActive, setModalNewActive] = React.useState(false);
+
   // Run creation and editing functions
-  //-----------------------------------------------------------
+  //==============================================================================
   const createRun = function (newRunData) {
     let newData = [...runData];
     newData.push(newRunData);
@@ -155,7 +169,7 @@ function App() {
   };
 
   // Render
-  //-----------------------------------------------------------
+  //==============================================================================
   return (
     <>
       {loading ? (
