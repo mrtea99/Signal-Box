@@ -109,8 +109,7 @@ function App() {
   }, [siteTheme]);
 
   const savedViewMode = () =>
-    window.localStorage.getItem("viewMode") ||
-    defaultSiteSettings["viewMode"];
+    window.localStorage.getItem("viewMode") || defaultSiteSettings["viewMode"];
   const [viewMode, setViewMode] = React.useState(savedViewMode);
   React.useEffect(() => {
     window.localStorage.setItem("viewMode", viewMode);
@@ -124,7 +123,7 @@ function App() {
   };
 
   const savedRunFilters = () =>
-    JSON.parse(window.localStorage.getItem("runFilters") || defaultRunFilters);
+    JSON.parse(window.localStorage.getItem("runFilters")) || defaultRunFilters;
   const [runFilters, setRunFilters] = React.useState(savedRunFilters);
   React.useEffect(() => {
     window.localStorage.setItem("runFilters", JSON.stringify(runFilters));
