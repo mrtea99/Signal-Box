@@ -20,79 +20,54 @@ import stageNames from "./data/stageNames.json";
 import { useTranslation } from "react-i18next";
 
 function App() {
+  // i18n
+  //-----------------------------------------------------------
   const { t } = useTranslation();
 
+  // Loading Screen
+  //-----------------------------------------------------------
   const [loading, setLoading] = React.useState(false);
 
+  //temp fake loading time
   React.useEffect(() => {
     setTimeout(() => setLoading(false), 3000);
   });
 
+  // Backend onload data
+  //-----------------------------------------------------------
+  // Data for all runs - needs to replaced with API call
   const savedRunData = () =>
     JSON.parse(window.localStorage.getItem("runData")) || [];
-  const savedCurrentRunUid = () =>
-    parseInt(window.localStorage.getItem("currentRunUid"), 10) || null;
-  const savedActiveStage = () =>
-    parseInt(window.localStorage.getItem("activeStage"), 10) || 0;
-  const savedActiveUser = () =>
-    window.localStorage.getItem("activeUser") || "1";
-
   const [runData, setRunData] = React.useState(savedRunData);
-  const [currentRunUid, setCurrentRunUid] = React.useState(savedCurrentRunUid);
-  const [activeStage, setActiveStage] = React.useState(savedActiveStage);
-  const [activeUser, setActiveUser] = React.useState(savedActiveUser);
-
   React.useEffect(() => {
     window.localStorage.setItem("runData", JSON.stringify(runData));
   }, [runData]);
 
+  // Frontend onload data
+  //-----------------------------------------------------------
+  const savedCurrentRunUid = () =>
+    parseInt(window.localStorage.getItem("currentRunUid"), 10) || null;
+  const [currentRunUid, setCurrentRunUid] = React.useState(savedCurrentRunUid);
   React.useEffect(() => {
     window.localStorage.setItem("currentRunUid", currentRunUid);
   }, [currentRunUid]);
 
+  const savedActiveStage = () =>
+    parseInt(window.localStorage.getItem("activeStage"), 10) || 0;
+  const [activeStage, setActiveStage] = React.useState(savedActiveStage);
   React.useEffect(() => {
     window.localStorage.setItem("activeStage", activeStage);
   }, [activeStage]);
 
+  const savedActiveUser = () =>
+    window.localStorage.getItem("activeUser") || "1";
+  const [activeUser, setActiveUser] = React.useState(savedActiveUser);
   React.useEffect(() => {
     window.localStorage.setItem("activeUser", activeUser);
   }, [activeUser]);
 
-  const [modalNewActive, setModalNewActive] = React.useState(false);
-  const [sidebarActive, setSidebarActive] = React.useState(false);
-
-  const createRun = function (newRunData) {
-    let newData = [...runData];
-    newData.push(newRunData);
-    setRunData(newData);
-  };
-
-  const updateRunData = function (uid, dataSection, dataKey, newValue) {
-    if (dataSection === "delete") {
-      deleteRun(uid);
-    } else {
-      const updatedRunData = runData.map((run) => {
-        if (run.id === uid) {
-          //A new object should be created and returned here, but this is working for the time being
-          if (dataSection !== null) {
-            run[dataSection][dataKey] = newValue;
-          } else {
-            run[dataKey] = newValue;
-          }
-          return run;
-        }
-        return run;
-      });
-      setRunData(updatedRunData);
-    }
-  };
-
-  const deleteRun = function (uid) {
-    const updatedRunData = runData.filter((run) => uid !== run.id);
-    setRunData(updatedRunData);
-  };
-
   // Site settings
+  //=====================================
   const savedTimeFormat = () =>
     window.localStorage.getItem("timeFormat") || "24h";
   const [timeFormat, setTimeFormat] = React.useState(savedTimeFormat);
@@ -127,11 +102,50 @@ function App() {
     window.localStorage.setItem("viewMode", viewMode);
   }, [viewMode]);
 
+  // UI state
+  //-----------------------------------------------------------
+  const [sidebarActive, setSidebarActive] = React.useState(false);
+  const [modalNewActive, setModalNewActive] = React.useState(false);
   const [runFilters, setRunFilters] = React.useState({
     showUser: [],
     showUnresolvedQa: false,
   });
 
+  // Run creation and editing functions
+  //-----------------------------------------------------------
+  const createRun = function (newRunData) {
+    let newData = [...runData];
+    newData.push(newRunData);
+    setRunData(newData);
+  };
+
+  const updateRunData = function (uid, dataSection, dataKey, newValue) {
+    if (dataSection === "delete") {
+      deleteRun(uid);
+    } else {
+      const updatedRunData = runData.map((run) => {
+        if (run.id === uid) {
+          //A new object should be created and returned here, but this is working for the time being
+          if (dataSection !== null) {
+            run[dataSection][dataKey] = newValue;
+          } else {
+            run[dataKey] = newValue;
+          }
+          return run;
+        }
+        return run;
+      });
+      setRunData(updatedRunData);
+    }
+  };
+
+  const deleteRun = function (uid) {
+    const updatedRunData = runData.filter((run) => uid !== run.id);
+    setRunData(updatedRunData);
+  };
+
+  // Render
+  //-----------------------------------------------------------
   return (
     <>
       {loading ? (

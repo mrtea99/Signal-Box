@@ -18,7 +18,14 @@ import getItemType from "../../../utils/getItemType.js";
 import styles from "./SessionItem.module.css";
 
 function SessionItem(props) {
-  const { session, itemCount, overview, thisStageData, thisStage, columns } = props;
+  const {
+    session,
+    itemCount,
+    overview,
+    thisStageData,
+    thisStage,
+    columns,
+  } = props;
 
   const itemName = getItemType(thisStage);
 
@@ -71,7 +78,9 @@ function SessionItem(props) {
             {itemCount}
           </li>
           {/* name ---------- */}
-          <li className={`${styles.contentItem} ${styles.colActivity} ${columns[1].className}`}>
+          <li
+            className={`${styles.contentItem} ${styles.colActivity} ${columns[1].className}`}
+          >
             {getSessionName(session)}
           </li>
           {/* start time ---------- */}
@@ -185,24 +194,32 @@ function SessionItem(props) {
         </ul>
       ) : (
         <ul className={`${styles.itemRow} ${styles.itemRowTotals}`}>
-          <li className={`${styles.contentItem} ${styles.colNumber} ${columns[0].className}`}></li>
-          <li className={`${styles.contentItem} ${styles.colActivity} ${columns[1].className}`}>
+          <li
+            className={`${styles.contentItem} ${styles.colNumber} ${columns[0].className}`}
+          ></li>
+          <li
+            className={`${styles.contentItem} ${styles.colActivity} ${columns[1].className}`}
+          >
             Overall
           </li>
-          <li className={`${styles.contentItem} ${styles.colStartTime} ${columns[2].className}`}>
+          <li
+            className={`${styles.contentItem} ${styles.colStartTime} ${columns[2].className}`}
+          >
             <span className={styles.cellLabel}>Start Time:</span>
             <span className={styles.cellContent}>
               {thisStageData.length ? (
                 <DateTimeFormatter
                   date={thisStageData[0].startTime}
-                  splitLines={true}
+                  splitLines
                 />
               ) : (
                 "-"
               )}
             </span>
           </li>
-          <li className={`${styles.contentItem} ${styles.colDuration} ${columns[3].className}`}>
+          <li
+            className={`${styles.contentItem} ${styles.colDuration} ${columns[3].className}`}
+          >
             <span className={styles.cellLabel}>Duration:</span>
             <span className={styles.cellContent}>
               {allResolved ? (
@@ -212,11 +229,21 @@ function SessionItem(props) {
               )}
             </span>
           </li>
-          <li className={`${styles.contentItem} ${styles.colItemsGood} ${columns[4].className}`}></li>
-          <li className={`${styles.contentItem} ${styles.colItemsBad} ${columns[5].className}`}></li>
-          <li className={`${styles.contentItem} ${styles.colTech} ${columns[6].className}`}></li>
-          <li className={`${styles.contentItem} ${styles.colAction} ${columns[7].className}`}></li>
-          <li className={`${styles.contentItem} ${styles.colInfo} ${columns[8].className}`}></li>
+          <li
+            className={`${styles.contentItem} ${styles.colItemsGood} ${columns[4].className}`}
+          ></li>
+          <li
+            className={`${styles.contentItem} ${styles.colItemsBad} ${columns[5].className}`}
+          ></li>
+          <li
+            className={`${styles.contentItem} ${styles.colTech} ${columns[6].className}`}
+          ></li>
+          <li
+            className={`${styles.contentItem} ${styles.colAction} ${columns[7].className}`}
+          ></li>
+          <li
+            className={`${styles.contentItem} ${styles.colInfo} ${columns[8].className}`}
+          ></li>
         </ul>
       )}
     </>

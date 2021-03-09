@@ -66,7 +66,7 @@ function AssignmentList(props) {
                       checked={props.resolvedAssignments.includes(
                         session.sessionId
                       )}
-                      hideLabel={true}
+                      hideLabel
                       className={styles.checkbox}
                     />
                   </form>

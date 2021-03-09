@@ -112,17 +112,24 @@ function SessionDetails(props) {
         ) : null}
 
         {/* Unit amounts */}
-        {session.type === "work" || (session.type === "qa" && session.endTime) ? (
+        {session.type === "work" ||
+        (session.type === "qa" && session.endTime) ? (
           <>
-            <DataListItem dataKey={itemName} dataValue={session.amount || "-"} />
-            <DataListItem dataKey="Defective" dataValue={session.amountBad || "-"} />
+            <DataListItem
+              dataKey={itemName}
+              dataValue={session.amount || "-"}
+            />
+            <DataListItem
+              dataKey="Defective"
+              dataValue={session.amountBad || "-"}
+            />
           </>
         ) : null}
 
         {/* Notes */}
         {session.notes && session.notes.length ? (
           <DataListItem
-            newLine={true}
+            newLine
             dataKey="Notes"
             dataValue={session.notes.split("\n").map((item, key) => {
               return (

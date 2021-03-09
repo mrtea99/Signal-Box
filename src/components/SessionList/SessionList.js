@@ -59,11 +59,7 @@ function SessionList(props) {
             </li>
           ))}
 
-        <SessionItem
-          overview={true}
-          thisStageData={thisStageData}
-          columns={columns}
-        />
+        <SessionItem overview thisStageData={thisStageData} columns={columns} />
       </ul>
     </div>
   );

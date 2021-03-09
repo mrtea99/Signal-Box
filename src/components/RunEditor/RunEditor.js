@@ -27,12 +27,6 @@ function RunEditor(props) {
     (obj) => obj.id === props.currentRunUid
   );
 
-  // const handleEditInfoClick = function (e) {
-  //   e.preventDefault();
-
-  //   props.setModalActive(true);
-  // };
-
   const handleExitClick = function (e) {
     e.preventDefault();
 
@@ -130,7 +124,7 @@ function RunEditor(props) {
                 activeUser={props.activeUser}
                 stageLabels
                 showActive
-                hideStatus={viewMode === "simple"}
+                hideStatus={simpleMode}
               />
 
               <Stage
@@ -160,7 +154,6 @@ function RunEditor(props) {
 RunEditor.propTypes = {
   runData: PropTypes.array.isRequired,
   currentRunUid: PropTypes.number,
-  // setModalActive: PropTypes.func.isRequired,
   setCurrentRunUid: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,
   activeUser: PropTypes.string.isRequired,

@@ -24,7 +24,7 @@ function Timer(props) {
     return diffTime;
   }
 
-  return <DurationFormatter rawTime={duration} ticking={true} />;
+  return <DurationFormatter rawTime={duration} ticking />;
 }
 
 Timer.propTypes = {

@@ -17,7 +17,7 @@ function StageOverview(props) {
             <StageStatus
               runData={props.thisRunData}
               stageNum={index}
-              label={true}
+              label
               activeUser={props.activeUser}
             />
           </h3>
