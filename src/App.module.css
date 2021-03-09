@@ -1,7 +1,3 @@
-body {
-  background-color: #000000;
-}
-
 .siteContainer {
   min-height: 100vh;
   display: flex;
@@ -16,10 +12,7 @@ body {
 }
 
 .sitePage {
-  /* overflow: auto; */
   max-width: var(--width-site);
-  
-  /* margin: 0 auto; */
   flex-grow: 1;
   display: flex;
   flex-direction: row;
@@ -40,15 +33,8 @@ body {
   display: flex;
 }
 .filterControls {
-  flex-grow: 1
+  flex-grow: 1;
 }
 .otherControls {
-  flex-grow: 0
-}
-
-
-
-.editorSection {
-  z-index: 200;
-  position: relative;
+  flex-grow: 0;
 }

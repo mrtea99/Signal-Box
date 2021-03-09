@@ -67,5 +67,6 @@
   --width-site-padding: 1rem;
 
   /* Z-Indexes */
+  --z-editor: 200;
   --z-modal: 200;
 }

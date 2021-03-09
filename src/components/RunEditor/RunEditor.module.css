@@ -1,11 +1,10 @@
-@import "../../settings.css";
-
 .runEditor {
   position: fixed;
   top: 20vh;
   right: 0;
   bottom: -20vh;
   left: 0;
+  z-index: var(--z-editor);
   opacity: 0;
   pointer-events: none;
 
@@ -100,7 +99,6 @@
     padding-left: 1em;
   }
 }
-
 
 .infoBox {
   flex-grow: 1;

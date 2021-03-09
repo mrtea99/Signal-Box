@@ -1,21 +1,24 @@
 @import-normalize;
-@import './settings.css';
+@import "./settings.css";
 
 html {
   box-sizing: border-box;
 }
 
+*,
+:after,
+:before {
+  box-sizing: inherit;
+}
+
 body {
+  background-color: var(--color-black);
+  margin: 0;
   color: var(--color-text);
   font-family: var(--font-default);
   font-size: 16px;
-  margin: 0;
 }
 
 #root {
   min-height: 100vh;
-}
-
-*, :after, :before {
-  box-sizing: inherit;
 }

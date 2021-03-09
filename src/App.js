@@ -106,6 +106,9 @@ function App() {
   //-----------------------------------------------------------
   const [sidebarActive, setSidebarActive] = React.useState(false);
   const [modalNewActive, setModalNewActive] = React.useState(false);
+
+  // Filters state
+  //-----------------------------------------------------------
   const [runFilters, setRunFilters] = React.useState({
     showUser: [],
     showUnresolvedQa: false,
@@ -229,7 +232,7 @@ function App() {
                     }))}
                   />
                 </section>
-                <section className={styles.editorSection}>
+                <section>
                   <RunEditor
                     runData={runData}
                     currentRunUid={currentRunUid}
