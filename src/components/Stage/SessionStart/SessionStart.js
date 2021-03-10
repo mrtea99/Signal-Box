@@ -43,6 +43,10 @@ function SessionStart(props) {
       props.updateSession({ endTime: Date.now() }, props.thisStage, sessionId);
     });
 
+    if (props.thisRunData.status === "Not Started") {
+      props.updateRunData(props.thisRunData.id, null, "status", "In Progress");
+    }
+
     setModalActive(false);
   };
 
@@ -114,6 +118,7 @@ SessionStart.propTypes = {
   endSession: PropTypes.func.isRequired,
   activeUser: PropTypes.string.isRequired,
   thisRunData: PropTypes.object.isRequired,
+  updateRunData: PropTypes.func.isRequired,
 };
 
 export default SessionStart;

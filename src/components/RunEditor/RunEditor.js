@@ -71,7 +71,7 @@ function RunEditor(props) {
                   <div className={`${styles.runInfoSec} ${styles.runInfoRun}`}>
                     <div className={styles.infoBox}>
                       <h4 className={styles.runInfoItem}>
-                        Status: In Progress
+                        Status: {thisRunData.status}
                       </h4>
                       <h4 className={styles.runInfoItem}>
                         Batches: {thisRunData.batchQuantity}

@@ -7,12 +7,14 @@ import RunDelete from "../RunDelete/RunDelete.js";
 import Button from "../Button/Button.js";
 import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
 import AssignmentBatcher from "../AssignmentOpener/AssignmentBatcher/AssignmentBatcher.js";
+import FormItem from "../FormItem/FormItem.js";
 
 import productTemplates from "../../data/productTemplates.json";
 
 function RunInfoNew(props) {
   const mode = props.currentRunUid ? "change" : "new";
   const defaultBatchedAssignments = [[], [], [], [], []];
+  const runStatuses = ["Not Started", "In Progress", "Complete", "Archived"];
 
   //temp
   // props.setActive(true);
@@ -31,7 +33,13 @@ function RunInfoNew(props) {
     props.thisRunData ? props.thisRunData.batchQuantity : 1
   );
 
-  const [batchedAssignments, setBatchedAssignments] = React.useState(defaultBatchedAssignments);
+  const [batchedAssignments, setBatchedAssignments] = React.useState(
+    defaultBatchedAssignments
+  );
+
+  const [runStatus, setRunStatus] = React.useState(
+    props.thisRunData ? props.thisRunData.status : runStatuses[0]
+  );
 
   const handleSubmit = function (e) {
     let productInfo = { ...productTemplates[currentTemplate] };
@@ -47,7 +55,7 @@ function RunInfoNew(props) {
       id: Date.now(),
       productName: productTemplateData.productName,
       productSKU: productTemplateData.productSKU,
-      status: "Not Started",
+      status: runStatus,
       outputType: "Product",
       priority: 1,
       targetStartDate: 0,
@@ -101,12 +109,19 @@ function RunInfoNew(props) {
       batchQuantity
     );
 
+    props.updateRunData(
+      props.currentRunUid,
+      null,
+      "status",
+      runStatus
+    );
+
     handleCancel();
   };
 
   const handleCancel = function () {
     props.setActive(false);
-    setBatchedAssignments(defaultBatchedAssignments)
+    setBatchedAssignments(defaultBatchedAssignments);
   };
 
   const modalTitle = mode === "new" ? "Create New Run" : "Edit Run Info";
@@ -129,6 +144,18 @@ function RunInfoNew(props) {
               activeUser={props.activeUser}
             />
           ) : null}
+
+          <FormItem
+            label="Run Status:"
+            type="toggleButton"
+            ident="flag-status"
+            itemLabels={runStatuses}
+            itemValues={runStatuses}
+            value={runStatus}
+            updateHandler={(value) => {
+              setRunStatus(value);
+            }}
+          />
 
           <ButtonSpacer align="right">
             {mode === "change" ? (
