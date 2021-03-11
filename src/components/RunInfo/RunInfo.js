@@ -12,14 +12,16 @@ import FormItem from "../FormItem/FormItem.js";
 import productTemplates from "../../data/productTemplates.json";
 
 function RunInfoNew(props) {
-  const mode = props.currentRunUid ? "change" : "new";
-  const defaultBatchedAssignments = [[], [], [], [], []];
-  const runStatuses = ["Not Started", "In Progress", "Complete", "Archived"];
-
-  //temp
+  // Temp open on page load for testing
   // props.setActive(true);
 
-  const [currentTemplate, setCurrentTemplate] = React.useState(() => {
+  const mode = props.currentRunUid ? "change" : "new";
+  const runStatuses = ["Not Started", "In Progress", "Complete", "Archived"];
+  const modalTitle = mode === "new" ? "Create New Run" : "Edit Run Info";
+
+  //Form State
+  //----------------------------------------
+  const defaultCurrentTemplate = () => {
     if (!props.thisRunData) {
       return null;
     }
@@ -27,19 +29,29 @@ function RunInfoNew(props) {
     return productTemplates.findIndex(
       (obj) => obj.productSKU === props.thisRunData.productInfo.productSKU
     );
-  });
-
-  const [batchQuantity, setBatchQuantity] = React.useState(
-    props.thisRunData ? props.thisRunData.batchQuantity : 1
+  };
+  const [currentTemplate, setCurrentTemplate] = React.useState(
+    defaultCurrentTemplate
   );
 
+  const defaultBatchQuantity = props.thisRunData
+    ? props.thisRunData.batchQuantity
+    : 1;
+  const [batchQuantity, setBatchQuantity] = React.useState(
+    defaultBatchQuantity
+  );
+
+  const defaultBatchedAssignments = [[], [], [], [], []];
   const [batchedAssignments, setBatchedAssignments] = React.useState(
     defaultBatchedAssignments
   );
 
-  const [runStatus, setRunStatus] = React.useState(
-    props.thisRunData ? props.thisRunData.status : runStatuses[0]
-  );
+  const defaultRunStatus = props.thisRunData
+    ? props.thisRunData.status
+    : runStatuses[0];
+  const [runStatus, setRunStatus] = React.useState(defaultRunStatus);
+
+  //----------------------------------------
 
   const handleSubmit = function (e) {
     let productInfo = { ...productTemplates[currentTemplate] };
@@ -47,6 +59,16 @@ function RunInfoNew(props) {
     mode === "new"
       ? createRun(productInfo, batchQuantity)
       : updateRunInfo(productInfo, batchQuantity);
+  };
+
+  const handleCancel = function () {
+    props.setActive(false);
+
+    //Reset Form State
+    setCurrentTemplate(defaultCurrentTemplate);
+    setBatchQuantity(defaultBatchQuantity);
+    setBatchedAssignments(defaultBatchedAssignments);
+    setRunStatus(defaultRunStatus);
   };
 
   const createRun = function (productTemplateData, batchQuantity) {
@@ -109,22 +131,10 @@ function RunInfoNew(props) {
       batchQuantity
     );
 
-    props.updateRunData(
-      props.currentRunUid,
-      null,
-      "status",
-      runStatus
-    );
+    props.updateRunData(props.currentRunUid, null, "status", runStatus);
 
     handleCancel();
   };
-
-  const handleCancel = function () {
-    props.setActive(false);
-    setBatchedAssignments(defaultBatchedAssignments);
-  };
-
-  const modalTitle = mode === "new" ? "Create New Run" : "Edit Run Info";
 
   return (
     <>
