@@ -12,7 +12,8 @@
   font-family: var(--font-default);
   cursor: pointer;
   text-align: center;
-  transition: background-color 250ms ease-in-out, transform 150ms ease;
+  transition: background-color 250ms ease-in-out, box-shadow 250ms ease-in-out, outline 250ms ease-in-out,
+    transform 150ms ease;
   -webkit-appearance: none;
   -moz-appearance: none;
 
@@ -26,16 +27,20 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  outline: 1px solid transparent;
+  box-shadow: 0 0 0 0 var(--color-grey-transp);
 }
 
 .button:hover,
 .button:focus {
   background: var(--color-grey-bright);
+  box-shadow: 0 0 0.05rem 0.05rem var(--color-grey-transp);
 }
 
 .button:focus {
-  outline: 1px solid #fff;
-  outline-offset: -4px;
+  outline: 1px solid var(--color-white);
+  outline-offset: -0.1rem;
 }
 
 .button:active {
@@ -49,7 +54,6 @@
 .buttonFillWidth {
   width: 100%;
 }
-
 
 .hasIcon {
   text-align: left;
@@ -70,7 +74,7 @@
 .iconFirst {
   flex-direction: row-reverse;
 }
-.iconFirst .iconWrapper  {
+.iconFirst .iconWrapper {
   margin-right: var(--width-icon-spacing);
   margin-left: 0;
 }
