@@ -12,26 +12,46 @@ import styles from "./Stage.module.css";
 import ViewModeContext from "../../contexts/ViewModeContext.js";
 
 function Stage(props) {
-  const viewMode = React.useContext(ViewModeContext);
-  const simpleMode = viewMode === "simple";
+  const simpleMode = React.useContext(ViewModeContext) === "simple";
 
   const thisStageData = props.thisRunData["stages"][props.thisStage];
 
-  // const stageActive = thisStageData.active;
-  let activeProp;
-  switch (props.thisStage) {
-    case 0:
-      activeProp = "activePrep";
-      break;
-    case 4:
-      activeProp = "activeStocking";
-      break;
-    default:
-      break;
-  }
-  const stageActive = activeProp ? props.thisRunData[activeProp] : true;
+  // Stage Difficulty
+  //-------------------------------------
+  const getDifficulty = function (stageNum) {
+    let difficulty = "";
+    const defaultDifficulty = "N/A";
 
-  const findActiveSession = function () {
+    switch (stageNum) {
+      case 0:
+        difficulty = props.thisRunData.productInfo.prepDifficulty;
+        break;
+      case 1:
+        difficulty = props.thisRunData.productInfo.manufacturingDifficulty;
+        break;
+      case 2:
+        difficulty = props.thisRunData.productInfo.packagingDifficulty;
+        break;
+      case 3:
+        difficulty = props.thisRunData.productInfo.labelingDifficulty;
+        break;
+      case 4:
+        difficulty = props.thisRunData.productInfo.stockDifficulty;
+        break;
+      default:
+        difficulty = defaultDifficulty;
+    }
+
+    difficulty =
+      difficulty && difficulty.length ? difficulty : defaultDifficulty;
+
+    return difficulty;
+  };
+
+
+  // Active work session
+  //-------------------------------------
+  const findActiveWorkSession = function () {
     const sessionList = thisStageData["sessions"];
 
     if (sessionList.length) {
@@ -47,54 +67,53 @@ function Stage(props) {
     }
     return null;
   };
-  const activeSessionData = findActiveSession();
+  const activeSessionData = findActiveWorkSession();
 
-  const updateStageActive = function (newState, stage) {
-    // const stageData = props.thisRunData["stages"][stage];
-
-    // if (stageData.active === newState) {
-    //   return false;
-    // }
-
-    // let newStageObj = { ...stageData };
-
-    // newStageObj.active = newState;
-
-    // props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
-
-    let activeProperty;
-    switch (props.thisStage) {
+  // Find current stage's active status
+  //-------------------------------------
+  // Prep and Stocking active state are stored in run properties,
+  // other stages are always active
+  const getStageActiveProp = function (stageNum) {
+    switch (stageNum) {
       case 0:
-        activeProperty = "activePrep";
-        break;
+        return "activePrep";
       case 4:
-        activeProperty = "activeStocking";
-        break;
+        return "activeStocking";
       default:
-        return false;
+        return null;
     }
+  };
+  const activeProp = getStageActiveProp(props.thisStage);
+  const stageActive = activeProp ? props.thisRunData[activeProp] : true;
+
+
+  // Change a stage's active state
+  //-------------------------------------
+  const updateStageActive = function (newState, stage) {
+    // Update correct active stage property in run if there is one
+    const activeProperty = getStageActiveProp(stage);
     const stageState = props.thisRunData[activeProperty];
 
-    if (stageState === newState) {
+    if (stageState === newState || activeProperty === null) {
       return false;
     } else {
-      props.updateRunData(props.currentRunUid, null, activeProp, newState);
+      props.updateRunData(props.currentRunUid, null, activeProperty, newState);
     }
 
-    //Add event item to sessionlist
-    const newsessionId = Date.now();
-
+    //Add event item to session list
     const newSession = {
-      sessionId: newsessionId,
+      sessionId: Date.now(),
       type: newState ? "activate" : "deactivate",
       activity: newState,
       startTime: Date.now(),
       endTime: Date.now(),
       user: props.activeUser,
     };
-
     addSession(newSession, stage);
   };
+
+  // Session creation and editing functions
+  //==============================================================================
 
   const addSession = function (sessionData, stage) {
     const stageData = props.thisRunData["stages"][stage];
@@ -138,35 +157,8 @@ function Stage(props) {
     }
   };
 
-  const getDifficulty = function () {
-    let difficulty = "";
-    const defaultDifficulty = "N/A";
-
-    switch (props.thisStage) {
-      case 0:
-        difficulty = props.thisRunData.productInfo.prepDifficulty;
-        break;
-      case 1:
-        difficulty = props.thisRunData.productInfo.manufacturingDifficulty;
-        break;
-      case 2:
-        difficulty = props.thisRunData.productInfo.packagingDifficulty;
-        break;
-      case 3:
-        difficulty = props.thisRunData.productInfo.labelingDifficulty;
-        break;
-      case 4:
-        difficulty = props.thisRunData.productInfo.stockDifficulty;
-        break;
-      default:
-        difficulty = defaultDifficulty;
-    }
-
-    difficulty =
-      difficulty && difficulty.length ? difficulty : defaultDifficulty;
-
-    return difficulty;
-  };
+  // Render
+  //==============================================================================
 
   return (
     <section className={styles.stage}>
@@ -175,7 +167,7 @@ function Stage(props) {
           <h2 className={styles.stageTitle}>{props.stageName}</h2>
         </div>
         <h4 className={styles.stageDifficulty}>
-          Difficulty: {getDifficulty()}
+          Difficulty: {getDifficulty(props.thisStage)}
         </h4>
       </header>
       <div className={styles.sessionHolder}>
