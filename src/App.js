@@ -1,7 +1,4 @@
 import React from "react";
-import "./App.css";
-
-import styles from "./App.module.css";
 
 import SiteSidebar from "./components/SiteSidebar/SiteSidebar.js";
 import RunList from "./components/RunList/RunList.js";
@@ -19,6 +16,8 @@ import stageNames from "./data/stageNames.json";
 
 import { useTranslation } from "react-i18next";
 
+import styles from "./App.module.css";
+
 function App() {
   // i18n
   //==============================================================================
@@ -26,7 +25,9 @@ function App() {
 
   // Loading Screen
   //==============================================================================
-  const [loading, setLoading] = React.useState(false);
+  const disableLoadingScreen = true;
+
+  const [loading, setLoading] = React.useState(!disableLoadingScreen);
 
   //temp fake loading time
   React.useEffect(() => {

@@ -21,7 +21,6 @@ function RunEditor(props) {
   const simpleMode = viewMode === "simple";
 
   const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
-  const [modalChangeActive, setModalChangeActive] = React.useState(false);
 
   const thisRunData = props.runData.find(
     (obj) => obj.id === props.currentRunUid
@@ -78,12 +77,7 @@ function RunEditor(props) {
                       </h4>
                     </div>
                     <ButtonSpacer>
-                      <Button onClick={() => setModalChangeActive(true)}>
-                        Info
-                      </Button>
                       <RunInfoNew
-                        active={modalChangeActive}
-                        setActive={setModalChangeActive}
                         currentRunUid={props.currentRunUid}
                         thisRunData={thisRunData}
                         updateRunData={props.updateRunData}

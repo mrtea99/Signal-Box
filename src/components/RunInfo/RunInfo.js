@@ -13,11 +13,13 @@ import productTemplates from "../../data/productTemplates.json";
 
 function RunInfoNew(props) {
   // Temp open on page load for testing
-  // props.setActive(true);
+  // setActive(true);
 
   const mode = props.currentRunUid ? "change" : "new";
   const runStatuses = ["Not Started", "In Progress", "Complete", "Archived"];
   const modalTitle = mode === "new" ? "Create New Run" : "Edit Run Info";
+
+  const [active, setActive] = React.useState(false);
 
   //Form State
   //----------------------------------------
@@ -51,9 +53,21 @@ function RunInfoNew(props) {
     : runStatuses[0];
   const [runStatus, setRunStatus] = React.useState(defaultRunStatus);
 
+  const resetFormState = function () {
+    setCurrentTemplate(defaultCurrentTemplate);
+    setBatchQuantity(defaultBatchQuantity);
+    setBatchedAssignments(defaultBatchedAssignments);
+    setRunStatus(defaultRunStatus);
+  };
+
   //----------------------------------------
 
-  const handleSubmit = function (e) {
+  const handleOpen = function () {
+    resetFormState();
+    setActive(true);
+  };
+
+  const handleSubmit = function () {
     let productInfo = { ...productTemplates[currentTemplate] };
 
     mode === "new"
@@ -62,13 +76,11 @@ function RunInfoNew(props) {
   };
 
   const handleCancel = function () {
-    props.setActive(false);
+    closeModal();
+  };
 
-    //Reset Form State
-    setCurrentTemplate(defaultCurrentTemplate);
-    setBatchQuantity(defaultBatchQuantity);
-    setBatchedAssignments(defaultBatchedAssignments);
-    setRunStatus(defaultRunStatus);
+  const closeModal = function () {
+    setActive(false);
   };
 
   const createRun = function (productTemplateData, batchQuantity) {
@@ -113,7 +125,7 @@ function RunInfoNew(props) {
 
     props.createRun(newRun);
 
-    handleCancel();
+    closeModal();
   };
 
   const updateRunInfo = function (productTemplateData, batchQuantity) {
@@ -133,12 +145,13 @@ function RunInfoNew(props) {
 
     props.updateRunData(props.currentRunUid, null, "status", runStatus);
 
-    handleCancel();
+    closeModal();
   };
 
   return (
     <>
-      {props.active ? (
+      <Button onClick={() => handleOpen()}>Info</Button>
+      {active ? (
         <Modal title={modalTitle}>
           <RunInfoForm
             currentTemplate={currentTemplate}
@@ -172,7 +185,7 @@ function RunInfoNew(props) {
               <RunDelete
                 updateRunData={props.updateRunData}
                 currentRunUid={props.currentRunUid}
-                successCallback={() => props.setActive(false)}
+                successCallback={() => closeModal()}
               />
             ) : null}
             <Button
@@ -198,8 +211,6 @@ function RunInfoNew(props) {
 }
 
 RunInfoNew.propTypes = {
-  setActive: PropTypes.func.isRequired,
-  active: PropTypes.bool.isRequired,
   createRun: PropTypes.func,
   thisRunData: PropTypes.object,
   updateRunData: PropTypes.func,
