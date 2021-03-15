@@ -4,7 +4,7 @@ import SiteSidebar from "./components/SiteSidebar/SiteSidebar.js";
 import RunList from "./components/RunList/RunList.js";
 import RunEditor from "./components/RunEditor/RunEditor.js";
 import RunInfoNew from "./components/RunInfo/RunInfo.js";
-import Button from "./components/Button/Button.js";
+// import Button from "./components/Button/Button.js";
 import TabBox from "./components/TabBox/TabBox.js";
 import SiteHeader from "./components/SiteHeader/SiteHeader.js";
 import SiteSettings from "./components/SiteSidebar/SiteSettings/SiteSettings.js";
@@ -14,14 +14,14 @@ import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
 
 import stageNames from "./data/stageNames.json";
 
-import { useTranslation } from "react-i18next";
+// import { useTranslation } from "react-i18next";
 
 import styles from "./App.module.css";
 
 function App() {
   // i18n
   //==============================================================================
-  const { t } = useTranslation();
+  // const { t } = useTranslation();
 
   // Loading Screen
   //==============================================================================
@@ -222,12 +222,12 @@ function App() {
                       />
                     </section>
                     <section className={styles.otherControls}>
-                      <Button
+                      {/* <Button
                         onClick={() => setModalNewActive(true)}
                         icon="plus"
                       >
                         {t("New Run")}
-                      </Button>
+                      </Button> */}
                       <RunInfoNew
                         active={modalNewActive}
                         setActive={setModalNewActive}

@@ -150,7 +150,13 @@ function RunInfoNew(props) {
 
   return (
     <>
-      <Button onClick={() => handleOpen()}>Info</Button>
+      {mode === "new" ? (
+        <Button onClick={() => handleOpen()} icon="plus">
+          New Run
+        </Button>
+      ) : (
+        <Button onClick={() => handleOpen()}>Info</Button>
+      )}
       {active ? (
         <Modal title={modalTitle}>
           <RunInfoForm
