@@ -6,6 +6,8 @@ import InfoPod from "../InfoPod/InfoPod.js";
 import InfoPodItem from "../InfoPod/InfoPodItem/InfoPodItem.js";
 import InfoPodSection from "../InfoPod/InfoPodSection/InfoPodSection.js";
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
+import ActivityTotals from "./ActivityTotals/ActivityTotals.js";
+
 import styles from "./ConsignItems.module.css";
 
 import getItemType from "../../utils/getItemType.js";
@@ -82,45 +84,6 @@ function ConsignItems(props) {
     resetState();
   };
 
-  const buildTotals = function () {
-    const allSessions = props.thisRunData.stages[props.thisStage]["sessions"];
-
-    let totalsData = [{ name: "QA", amount: 0, amountBad: 0 }];
-
-    allSessions.forEach((session, index) => {
-      let activityName;
-      switch (session.type) {
-        case "qa":
-          activityName = "QA";
-          break;
-        case "work":
-          activityName = session.activity.name;
-          break;
-        default:
-          return false;
-      }
-
-      const activityDataOld = totalsData.find(
-        (activity) => activity.name === activityName
-      );
-
-      if (activityDataOld) {
-        activityDataOld.amount += session.amount || 0;
-        activityDataOld.amountBad += session.amountBad || 0;
-      } else {
-        totalsData.push({
-          name: activityName,
-          amount: session.amount || 0,
-          amountBad: session.amountBad || 0,
-        });
-      }
-    });
-
-    return totalsData;
-  };
-
-  const activityTotals = buildTotals();
-
   let itemName;
   switch (props.thisStage) {
     case 1:
@@ -171,26 +134,11 @@ function ConsignItems(props) {
         handleCancel={handleCancel}
         buttonAttrs={{ color: "complete", icon: "next" }}
       >
-        <table>
-          <thead>
-            <tr>
-              <th>Activity</th>
-              <th>{itemName}</th>
-              <th>Defective</th>
-            </tr>
-          </thead>
-          <tbody>
-            {activityTotals.map((activity, index) => {
-              return (
-                <tr key={activity.name}>
-                  <td>{activity.name}</td>
-                  <td>{activity.amount}</td>
-                  <td>{activity.amountBad}</td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <ActivityTotals
+          thisRunData={props.thisRunData}
+          thisStage={props.thisStage}
+          itemName={itemName}
+        />
         {consInfoPod}
 
         <FormItem
