@@ -1,13 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import TableHeader from "../../TableHeader/TableHeader";
+
+import styles from "./ActivityTotals.module.css";
+
 const ActivityTotals = function (props) {
   const buildTotals = function () {
-    const allSessions = props.thisRunData.stages[props.thisStage]["sessions"];
-
     let totalsData = [{ name: "QA", amount: 0, amountBad: 0 }];
 
-    allSessions.forEach((session, index) => {
+    props.sessions.forEach((session, index) => {
       let activityName;
       switch (session.type) {
         case "qa":
@@ -41,33 +43,32 @@ const ActivityTotals = function (props) {
 
   const activityTotals = buildTotals();
 
+  const columns = [
+    { copy: "Activity", className: styles.colActivity },
+    { copy: props.itemName || "Item", className: styles.colItem },
+    { copy: "Defective", className: styles.colDefective },
+  ];
+
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Activity</th>
-          <th>{props.itemName || 'Item'}</th>
-          <th>Defective</th>
-        </tr>
-      </thead>
-      <tbody>
+    <>
+      <TableHeader items={columns} />
+      <ul className={styles.activityList}>
         {activityTotals.map((activity, index) => {
           return (
-            <tr key={activity.name}>
-              <td>{activity.name}</td>
-              <td>{activity.amount}</td>
-              <td>{activity.amountBad}</td>
-            </tr>
+            <li key={activity.name} className={styles.activityItem}>
+              <div className={styles.colActivity}>{activity.name}</div>
+              <div className={styles.colItem}>{activity.amount}</div>
+              <div className={styles.colDefective}>{activity.amountBad}</div>
+            </li>
           );
         })}
-      </tbody>
-    </table>
+      </ul>
+    </>
   );
 };
 
 ActivityTotals.propTypes = {
-  thisStage: PropTypes.number.isRequired,
-  thisRunData: PropTypes.object.isRequired,
+  sessions: PropTypes.array.isRequired,
   itemName: PropTypes.string,
 };
 
