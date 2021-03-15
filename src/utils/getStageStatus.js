@@ -1,7 +1,7 @@
 function getStageStatus(runData, stageNumber, activeUser) {
-  const stagesData = runData["stages"];
+  const allSessions = runData["stages"][stageNumber]["sessions"];
 
-  // const stageActive = stagesData[stageNumber].active;
+  // Stage Active Status
   let stageActive;
   switch (stageNumber) {
     case 0:
@@ -14,9 +14,7 @@ function getStageStatus(runData, stageNumber, activeUser) {
       stageActive = true;
   }
 
-  const allSessions = stagesData[stageNumber]["sessions"];
-
-  //Items
+  // Items
   let itemCount = 0;
   let targetItemCount = 0;
 
@@ -44,7 +42,7 @@ function getStageStatus(runData, stageNumber, activeUser) {
       break;
   }
 
-  //Completion progress
+  // Completion progress
   let completionFraction;
   let completionPercentage;
 
@@ -60,7 +58,7 @@ function getStageStatus(runData, stageNumber, activeUser) {
     }
   }
 
-  //Work
+  // Work
   const workSessions = allSessions.filter((session) => {
     return session.type === "work";
   });
@@ -77,7 +75,7 @@ function getStageStatus(runData, stageNumber, activeUser) {
       workActiveNames + (index ? ", " : "") + session.activity.name;
   });
 
-  //Flag Notes
+  // Flag Notes
   const noteSessions = allSessions.filter((session) => {
     return session.type === "flag" && session.amount === 0;
   });
@@ -87,7 +85,7 @@ function getStageStatus(runData, stageNumber, activeUser) {
     return !session.endTime;
   }).length;
 
-  //Flag Issues
+  // Flag Issues
   const issueSessions = allSessions.filter((session) => {
     return session.type === "flag" && session.amount === 1;
   });
@@ -97,7 +95,7 @@ function getStageStatus(runData, stageNumber, activeUser) {
     return !session.endTime;
   }).length;
 
-  //Flag Blockers
+  // Flag Blockers
   const blockerSessions = allSessions.filter((session) => {
     return session.type === "flag" && session.amount === 2;
   });
@@ -107,7 +105,7 @@ function getStageStatus(runData, stageNumber, activeUser) {
     return !session.endTime;
   }).length;
 
-  //QA
+  // QA
   const qaSessions = allSessions.filter((session) => {
     return session.type === "qa";
   });
@@ -117,7 +115,7 @@ function getStageStatus(runData, stageNumber, activeUser) {
     return !session.endTime;
   }).length;
 
-  //User
+  // User
   let userTotal = 0;
   let userActive = 0;
 
@@ -134,7 +132,7 @@ function getStageStatus(runData, stageNumber, activeUser) {
     }).length;
   }
 
-  //Assignments
+  // Assignments
   const assignSessions = allSessions.filter((session) => {
     return session.type === "assign";
   });
@@ -158,101 +156,7 @@ function getStageStatus(runData, stageNumber, activeUser) {
     }).length;
   }
 
-  // let prevStarted = false;
-  // let allPrevInactive = false;
-
-  // if (stageNumber === 0) {
-  //   prevStarted = true;
-  // } else {
-  //   const prevSessions = stagesData[stageNumber - 1]["sessions"];
-  //   if (prevSessions.length && areSessionsEnded(prevSessions)) {
-  //     prevStarted = true;
-  //   }
-  // }
-
-  // if (
-  //   stageNumber === 0 ||
-  //   (runData.completion !== null && stageNumber - 1 <= runData.completion)
-  // ) {
-  //   allPrevInactive = true;
-  // }
-
-  // function getStatus() {
-  //   if (stageActive.includes(true)) {
-  //     if (sessionsEnded.includes(false)) {
-  //       return ["working"];
-  //     } else {
-  //       //Work out what the next status will be if set to inactive
-  //       let nextStatus = "";
-  //       if (allPrevInactive) {
-  //         if (sessionCount) {
-  //           nextStatus = "complete";
-  //         } else {
-  //           nextStatus = "skipped";
-  //         }
-  //       } else {
-  //         if (sessionCount || prevStarted) {
-  //           nextStatus = "paused";
-  //         } else {
-  //           nextStatus = "pending";
-  //         }
-  //       }
-
-  //       if (sessionCount) {
-  //         return ["started", nextStatus];
-  //       } else {
-  //         return ["ready", nextStatus];
-  //       }
-  //     }
-  //   } else {
-  //     //Inactive States
-  //     if (allPrevInactive) {
-  //       if (sessionCount) {
-  //         return ["complete"];
-  //       } else {
-  //         return ["skipped"];
-  //       }
-  //     } else {
-  //       if (sessionCount || prevStarted) {
-  //         return ["paused"];
-  //       } else {
-  //         return ["pending"];
-  //       }
-  //     }
-  //   }
-  // }
-
-  // //Temporary simplified status
-  // function getStatus() {
-  //   if (stageActive) {
-  //     if (workActive) {
-  //       return ["working"];
-  //     } else {
-  //       //Work out what the next status will be if set to inactive
-  //       let nextStatus = "";
-  //       if (workTotal) {
-  //         nextStatus = "complete";
-  //       } else {
-  //         nextStatus = "pending";
-  //       }
-
-  //       if (workTotal) {
-  //         return ["ready", nextStatus]; //started
-  //       } else {
-  //         return ["ready", nextStatus]; //ready
-  //       }
-  //     }
-  //   } else {
-  //     //Inactive States
-  //     if (workTotal) {
-  //       return ["complete"];
-  //     } else {
-  //       return ["pending"];
-  //     }
-  //   }
-  // }
-
-  //Status v3
+  // Status
   const getStatus = function () {
     if (blockerActive) {
       return ["blocked"];

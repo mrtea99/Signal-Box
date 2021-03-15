@@ -44,6 +44,13 @@ function App() {
     window.localStorage.setItem("runData", JSON.stringify(runData));
   }, [runData]);
 
+  const savedSessionData = () =>
+    JSON.parse(window.localStorage.getItem("sessionData")) || [];
+  const [sessionData, setSessionData] = React.useState(savedSessionData);
+  React.useEffect(() => {
+    window.localStorage.setItem("sessionData", JSON.stringify(sessionData));
+  }, [sessionData]);
+
   // Frontend onload data
   //==============================================================================
   const savedCurrentRunUid = () =>

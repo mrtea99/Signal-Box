@@ -150,18 +150,13 @@ function ConsignItems(props) {
             value={
               props.stageStatus.targetItemCount - props.stageStatus.itemCount
             }
-          >
-            {/* Remaining:{" "}
-        {props.stageStatus.targetItemCount - props.stageStatus.itemCount} */}
-          </InfoPodItem>,
+          />,
         ]}
       >
         <InfoPodItem
           name="Consigned"
           value={props.stageStatus.completionFraction}
-        >
-          {/* Consigned: {props.stageStatus.completionFraction} */}
-        </InfoPodItem>
+        />
       </InfoPodSection>
     </InfoPod>
   );

@@ -113,7 +113,6 @@ function RunEditor(props) {
                 currentRunUid={props.currentRunUid}
                 activeStage={props.activeStage}
                 buttonCallback={props.setActiveStage}
-                updateRunData={props.updateRunData}
                 thisRunData={thisRunData}
                 activeUser={props.activeUser}
                 stageLabels
@@ -133,7 +132,7 @@ function RunEditor(props) {
                 setActiveStage={props.setActiveStage}
               />
             </div>
-            <pre>{JSON.stringify(thisRunData)}</pre>
+            {/* <pre>{JSON.stringify(thisRunData)}</pre> */}
           </div>
         </div>
       ) : (
