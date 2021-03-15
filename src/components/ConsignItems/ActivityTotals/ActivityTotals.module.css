@@ -11,6 +11,15 @@
   align-items: stretch;
   background-color: var(--color-grey-bright);
   margin-top: 0.2rem;
+  padding: 0.5rem 0;
+}
+.activityItemQa {
+  background-color: var(--color-qa);
+}
+
+.activityName {
+  font-weight: bold;
+  padding: 0 0.5rem;
 }
 
 .colActivity {

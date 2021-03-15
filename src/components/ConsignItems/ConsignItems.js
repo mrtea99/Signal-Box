@@ -134,9 +134,10 @@ function ConsignItems(props) {
         handleCancel={handleCancel}
         buttonAttrs={{ color: "complete", icon: "next" }}
       >
-        <h4>Activity Summary:</h4>
+        <h4>Activity Totals:</h4>
         <ActivityTotals
           sessions={props.thisRunData.stages[props.thisStage]["sessions"]}
+          thisStage={props.thisStage}
           itemName={itemName}
         />
         <h4>Consignments Summary:</h4>
