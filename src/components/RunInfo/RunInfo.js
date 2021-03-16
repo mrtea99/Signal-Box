@@ -90,7 +90,7 @@ function RunInfoNew(props) {
       productName: productTemplateData.productName,
       productSKU: productTemplateData.productSKU,
       status: runStatus,
-      outputType: "Product",
+      outputType: productTemplateData.outputType,
       priority: 1,
       targetStartDate: 0,
       batchQuantity: batchQuantity,

@@ -20,8 +20,9 @@
     "merchandising": 90,
     "lowInventoryTrigger": 0,
     "expirationDuration": 12,
-    "storageLocation": "top shelf",
-    "recipeLink": "http://www.example.com"
+    "storageLocation": "Front Room",
+    "recipeLink": "http://www.example.com",
+    "outputType": "Product"
   },
   {
     "baseName": "Amazing After Shave Body Oil For Women",
@@ -44,7 +45,8 @@
     "merchandising": 0,
     "lowInventoryTrigger": 20,
     "expirationDuration": 6,
-    "storageLocation": "bottom shelf",
-    "recipeLink": "http://www.example.com"
+    "storageLocation": "Wicker Park Store",
+    "recipeLink": "http://www.example.com",
+    "outputType": "Product"
   }
 ]
