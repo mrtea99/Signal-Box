@@ -1,21 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import FormItem from "../FormItem";
 
-const userData = [
-  {
-    displayName: "Jesus Sandoval",
-    uid: 1,
-  },
-  {
-    displayName: "Amanda Kezios",
-    uid: 2,
-  },
-];
-
 function UserSelect(props) {
   const { excludedUsers, ...itemProps } = props;
+
+  const userList = useSelector((state) => state.users.usersList);
 
   return (
     <FormItem
@@ -33,10 +25,10 @@ function UserSelect(props) {
       <option key="default" value="">
         None
       </option>
-      {userData.map((user) =>
-        excludedUsers && excludedUsers.includes(user.uid) ? null : (
-          <option key={user.uid} value={user.uid}>
-            {user.displayName}
+      {userList.map((user) =>
+        excludedUsers && excludedUsers.includes(user.id) ? null : (
+          <option key={user.id} value={user.id}>
+            {user.title}
           </option>
         )
       )}
