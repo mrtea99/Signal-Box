@@ -21,10 +21,7 @@ function SiteHeader(props) {
           />
         </div>
         <div>
-          <UserSwitcher
-            activeUser={props.activeUser}
-            setActiveUser={props.setActiveUser}
-          />
+          <UserSwitcher />
         </div>
       </div>
     </header>
@@ -32,12 +29,9 @@ function SiteHeader(props) {
 }
 
 SiteHeader.propTypes = {
-  activeUser: PropTypes.string,
-  setActiveUser: PropTypes.func,
-  setSidebarActive: PropTypes.func
-}
+  setSidebarActive: PropTypes.func,
+};
 
-SiteHeader.propTypes = {
-}
+SiteHeader.propTypes = {};
 
 export default SiteHeader;

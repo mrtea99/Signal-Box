@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
 
 import SiteSidebar from "./components/SiteSidebar/SiteSidebar.js";
 import RunList from "./components/RunList/RunList.js";
@@ -18,10 +19,15 @@ import stageNames from "./data/stageNames.json";
 
 import styles from "./App.module.css";
 
+// import {users}
+
 function App() {
   // i18n
   //==============================================================================
   // const { t } = useTranslation();
+
+  // Redux
+  //==============================================================================
 
   // Loading Screen
   //==============================================================================
@@ -69,10 +75,8 @@ function App() {
 
   const savedActiveUser = () =>
     window.localStorage.getItem("activeUser") || "1";
-  const [activeUser, setActiveUser] = React.useState(savedActiveUser);
-  React.useEffect(() => {
-    window.localStorage.setItem("activeUser", activeUser);
-  }, [activeUser]);
+  useDispatch({ title: "users/setCurrentUser", payload: savedActiveUser });
+  const activeUser = useSelector((state) => state.users.currentUser);
 
   // Site settings
   //-------------------------------------
@@ -196,7 +200,6 @@ function App() {
           >
             <SiteHeader
               activeUser={activeUser}
-              setActiveUser={setActiveUser}
               setSidebarActive={setSidebarActive}
             />
             <div className={styles.sitePage}>
@@ -269,7 +272,6 @@ function App() {
                     setActiveStage={setActiveStage}
                     updateRunData={updateRunData}
                     activeUser={activeUser}
-                    setActiveUser={setActiveUser}
                   />
                 </section>
               </main>

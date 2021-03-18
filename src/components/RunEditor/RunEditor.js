@@ -46,12 +46,7 @@ function RunEditor(props) {
               >
                 Close
               </Button>
-              {simpleMode ? null : (
-                <UserSwitcher
-                  activeUser={props.activeUser}
-                  setActiveUser={props.setActiveUser}
-                />
-              )}
+              {simpleMode ? null : <UserSwitcher />}
             </header>
             <div>
               <section className={styles.runInfo}>
@@ -150,7 +145,6 @@ RunEditor.propTypes = {
   setCurrentRunUid: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,
   activeUser: PropTypes.string.isRequired,
-  setActiveUser: PropTypes.func.isRequired,
   activeStage: PropTypes.number.isRequired,
   updateRunData: PropTypes.func.isRequired,
 };

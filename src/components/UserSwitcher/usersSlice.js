@@ -5,8 +5,8 @@ export const usersSlice = createSlice({
   initialState: {
     currentUser: 1,
     usersList: [
-      { id: 1, title: "Jason Kezios" },
-      { id: 2, title: "Jesus Sandoval" },
+      { id: 1, title: "User One" },
+      { id: 2, title: "User Two" },
     ],
   },
   reducers: {
