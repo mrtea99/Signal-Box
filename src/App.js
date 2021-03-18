@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import SiteSidebar from "./components/SiteSidebar/SiteSidebar.js";
 import RunList from "./components/RunList/RunList.js";
@@ -28,6 +28,7 @@ function App() {
 
   // Redux
   //==============================================================================
+  const dispatch = useDispatch();
 
   // Loading Screen
   //==============================================================================
@@ -73,9 +74,16 @@ function App() {
     window.localStorage.setItem("activeStage", activeStage);
   }, [activeStage]);
 
-  const savedActiveUser = () =>
-    window.localStorage.getItem("activeUser") || "1";
-  useDispatch({ title: "users/setCurrentUser", payload: savedActiveUser });
+  // React.useEffect(() => {
+  //   dispatch({
+  //     type: "users/setCurrentUser",
+  //     payload: window.localStorage.getItem("activeUser") || 1,
+  //   });
+  // }, [dispatch]);
+  const activeUser = useSelector((state) => state.users.currentUser);
+  React.useEffect(() => {
+    window.localStorage.setItem("activeUser", activeUser);
+  }, [activeUser]);
 
   // Site settings
   //-------------------------------------
@@ -197,9 +205,7 @@ function App() {
               siteTheme === "light" ? styles.siteContainerLight : null
             }`}
           >
-            <SiteHeader
-              setSidebarActive={setSidebarActive}
-            />
+            <SiteHeader setSidebarActive={setSidebarActive} />
             <div className={styles.sitePage}>
               <SiteSidebar
                 sidebarActive={sidebarActive}

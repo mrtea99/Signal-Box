@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const usersSlice = createSlice({
   name: "users",
   initialState: {
-    currentUser: 1,
+    currentUser: window.localStorage.getItem("activeUser") || 1,
     usersList: [
       { id: 1, title: "User One" },
       { id: 2, title: "User Two" },
