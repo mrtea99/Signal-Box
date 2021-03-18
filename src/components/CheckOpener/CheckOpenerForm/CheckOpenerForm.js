@@ -24,7 +24,7 @@ function CheckOpenerForm(props) {
         updateHandler={(value) =>
           props.setFormData({
             ...props.formData,
-            secondaryUser: value,
+            secondaryUser: parseInt(value),
           })
         }
         value={props.formData.secondaryUser}

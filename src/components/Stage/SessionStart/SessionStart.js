@@ -37,7 +37,7 @@ function SessionStart(props) {
       endTime: null,
       activity: formData.activity,
       user: activeUser,
-      secondaryUser: formData.assistor,
+      secondaryUser: parseInt(formData.assistor),
     };
 
     props.addSession(newSession, props.thisStage);

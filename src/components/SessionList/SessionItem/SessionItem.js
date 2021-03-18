@@ -10,6 +10,7 @@ import ModalControl from "../../Modal/ModalControl/ModalControl.js";
 import SessionDetails from "../SessionDetails/SessionDetails.js";
 import DurationFormatter from "../../DurationFormatter/DurationFormatter.js";
 import Repeater from "../Repeater/Repeater.js";
+import UserName from "../../UserSwitcher/UserName/UserName.js";
 
 import getFlagName from "../../../utils/getFlagName.js";
 import getSessionName from "../../../utils/getSessionName.js";
@@ -131,15 +132,13 @@ function SessionItem(props) {
           >
             <span className={styles.cellLabel}>Users:</span>
             <span className={styles.cellContent}>
-              {/* {session.user} */}
-              {/* todo get actual name */}
-              {session.user === "1" ? "Jesus Sandoval" : "Amanda Kezios"}
-              {session.secondaryUser
-                ? " / " +
-                  (session.secondaryUser === "1"
-                    ? "Jesus Sandoval"
-                    : "Amanda Kezios")
-                : null}
+              <UserName userId={session.user} />
+              {session.secondaryUser ? (
+                <>
+                  {" / "}
+                  <UserName userId={session.secondaryUser} />
+                </>
+              ) : null}
             </span>
           </li>
           {/* action ---------- */}

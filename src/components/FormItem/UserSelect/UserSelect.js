@@ -37,7 +37,7 @@ function UserSelect(props) {
 }
 
 UserSelect.propTypes = {
-  value: PropTypes.string,
+  value: PropTypes.number,
   updateHandler: PropTypes.func.isRequired,
 };
 

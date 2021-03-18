@@ -18,7 +18,10 @@ function UserSwitcher(props) {
         type="select"
         value={activeUser}
         onChange={(e) =>
-          dispatch({ type: "users/setCurrentUser", payload: e.target.value })
+          dispatch({
+            type: "users/setCurrentUser",
+            payload: parseInt(e.target.value),
+          })
         }
         className={styles.select}
       >
