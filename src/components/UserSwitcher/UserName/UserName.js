@@ -11,7 +11,7 @@ function UserName(props) {
 
   return (
     <>
-      {/* {typeof(props.userId) === "string" ? "string!" : null} */}
+      {typeof(props.userId) === "string" ? "string!" : null}
       {userData === undefined ? "User ID not found" : userData.title}
     </>
   );

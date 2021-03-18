@@ -28,7 +28,7 @@ function App() {
 
   // Redux
   //==============================================================================
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // Loading Screen
   //==============================================================================
@@ -77,7 +77,7 @@ function App() {
   // React.useEffect(() => {
   //   dispatch({
   //     type: "users/setCurrentUser",
-  //     payload: window.localStorage.getItem("activeUser") || 1,
+  //     payload: parseInt(window.localStorage.getItem("activeUser")) || 1,
   //   });
   // }, [dispatch]);
   const activeUser = useSelector((state) => state.users.currentUser);
