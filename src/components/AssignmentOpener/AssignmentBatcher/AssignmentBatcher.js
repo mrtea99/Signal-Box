@@ -35,7 +35,6 @@ function AssignmentBatcher(props) {
           <li key={`assign-${stageName}`}>
             <h4>{stageName}</h4>
             <AssignmentOpener
-              activeUser={props.activeUser}
               thisStage={stageNumber}
               addSession={addAssignment}
             />
@@ -69,7 +68,6 @@ function AssignmentBatcher(props) {
 AssignmentBatcher.propTypes = {
   batchedAssignments: PropTypes.array.isRequired,
   setBatchedAssignments: PropTypes.func.isRequired,
-  activeUser: PropTypes.string.isRequired,
 };
 
 export default AssignmentBatcher;

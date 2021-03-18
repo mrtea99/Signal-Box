@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import getStageStatus from "../../../utils/getStageStatus.js";
 
@@ -12,11 +13,9 @@ import RunTitle from "../RunTitle/RunTitle.js";
 import styles from "./RunListStageItem.module.css";
 
 function RunListStageItem(props) {
-  const stageStatus = getStageStatus(
-    props.runData,
-    props.stageNum,
-    props.activeUser
-  );
+  const activeUser = useSelector((state) => state.users.currentUser);
+
+  const stageStatus = getStageStatus(props.runData, props.stageNum, activeUser);
 
   const openEditor = function (runUid, stageNum) {
     props.setCurrentRunUid(runUid);
@@ -66,7 +65,7 @@ function RunListStageItem(props) {
       <li
         className={`${styles.lineItem} ${styles.lineItemFull} ${props.columns[0].className}`}
       >
-        <RunTitle runData={props.runData} activeUser={props.activeUser}>
+        <RunTitle runData={props.runData}>
           {props.runData.productInfo.productName}
         </RunTitle>
       </li>
@@ -183,7 +182,6 @@ function RunListStageItem(props) {
 RunListStageItem.propTypes = {
   runData: PropTypes.object.isRequired,
   stageNum: PropTypes.number.isRequired,
-  activeUser: PropTypes.string.isRequired,
   setCurrentRunUid: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,
   columns: PropTypes.array.isRequired,

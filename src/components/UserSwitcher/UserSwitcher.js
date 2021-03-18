@@ -1,5 +1,5 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 
 import Icon from "../Icon/Icon.js";
@@ -49,9 +49,7 @@ function UserSwitcher(props) {
   );
 }
 
-UserSwitcher.propTypes = {
-  activeUser: PropTypes.string.isRequired,
-  setActiveUser: PropTypes.func.isRequired,
-};
+// UserSwitcher.propTypes = {
+// };
 
 export default UserSwitcher;

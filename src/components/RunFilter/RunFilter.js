@@ -1,10 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+
 import FormItem from "../FormItem/FormItem.js";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 
 function RunFilter(props) {
+  const activeUser = useSelector((state) => state.users.currentUser);
+
   const updateFilters = function (filterKey, filterValue) {
     let newFilters = { ...props.runFilters };
     newFilters[filterKey] = filterValue;
@@ -35,11 +39,11 @@ function RunFilter(props) {
             type="checkbox"
             ident="filter-user"
             updateHandler={(value) => {
-              updateFilters("showUser", value ? [props.activeUser] : []);
+              updateFilters("showUser", value ? [activeUser] : []);
             }}
             checked={
               props.runFilters["showUser"] &&
-              props.runFilters["showUser"].includes(props.activeUser)
+              props.runFilters["showUser"].includes(activeUser)
             }
           />
         </form>
@@ -49,7 +53,6 @@ function RunFilter(props) {
 }
 
 RunFilter.propTypes = {
-  activeUser: PropTypes.string.isRequired,
   runFilters: PropTypes.object.isRequired,
   setRunFilters: PropTypes.func.isRequired,
 };

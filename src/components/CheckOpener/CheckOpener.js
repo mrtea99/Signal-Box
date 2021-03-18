@@ -1,10 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import CheckOpenerForm from "./CheckOpenerForm/CheckOpenerForm.js";
 
 function CheckOpener(props) {
+  const activeUser = useSelector((state) => state.users.currentUser);
+
   const [formData, setFormData] = React.useState({
     notes: "",
     extra: "now",
@@ -18,7 +21,7 @@ function CheckOpener(props) {
       type: "qa",
       startTime: Date.now(),
       endTime: null,
-      user: props.activeUser,
+      user: activeUser,
       ...formData,
     };
 
@@ -44,10 +47,8 @@ function CheckOpener(props) {
 }
 
 CheckOpener.propTypes = {
-  activeUser: PropTypes.string.isRequired,
   addSession: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
 };
 
 export default CheckOpener;
-

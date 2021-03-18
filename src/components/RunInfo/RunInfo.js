@@ -170,7 +170,6 @@ function RunInfoNew(props) {
             <AssignmentBatcher
               batchedAssignments={batchedAssignments}
               setBatchedAssignments={setBatchedAssignments}
-              activeUser={props.activeUser}
             />
           ) : null}
 
@@ -221,7 +220,6 @@ RunInfoNew.propTypes = {
   thisRunData: PropTypes.object,
   updateRunData: PropTypes.func,
   currentRunUid: PropTypes.number,
-  activeUser: PropTypes.string,
 };
 
 export default RunInfoNew;

@@ -90,7 +90,6 @@ function RunEditor(props) {
                         </Button>
                         <StageOverview
                           thisRunData={thisRunData}
-                          activeUser={props.activeUser}
                         ></StageOverview>
                       </Modal>
                     ) : null}
@@ -109,7 +108,6 @@ function RunEditor(props) {
                 activeStage={props.activeStage}
                 buttonCallback={props.setActiveStage}
                 thisRunData={thisRunData}
-                activeUser={props.activeUser}
                 stageLabels
                 showActive
                 hideStatus={simpleMode}
@@ -122,7 +120,6 @@ function RunEditor(props) {
                 thisRunData={thisRunData}
                 currentRunUid={props.currentRunUid}
                 updateRunData={props.updateRunData}
-                activeUser={props.activeUser}
                 setCurrentRunUid={props.setCurrentRunUid}
                 setActiveStage={props.setActiveStage}
               />
@@ -144,7 +141,6 @@ RunEditor.propTypes = {
   currentRunUid: PropTypes.number,
   setCurrentRunUid: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,
-  activeUser: PropTypes.string.isRequired,
   activeStage: PropTypes.number.isRequired,
   updateRunData: PropTypes.func.isRequired,
 };

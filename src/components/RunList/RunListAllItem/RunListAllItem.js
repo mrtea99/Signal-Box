@@ -20,7 +20,7 @@ function RunListAllItem(props) {
         // onClick={() => setModalOverviewActive(run.id)}
         className={styles.itemHeader}
       >
-        <RunTitle runData={props.runData} activeUser={props.activeUser} >
+        <RunTitle runData={props.runData}>
           {run.productInfo.productName}
         </RunTitle>
       </header>
@@ -30,7 +30,6 @@ function RunListAllItem(props) {
         activeStage={props.activeStage}
         buttonCallback={(newIndex) => openEditor(run.id, newIndex)}
         thisRunData={run}
-        activeUser={props.activeUser}
         sessionLabels
         syntax="list"
       ></StageNav>
@@ -43,7 +42,6 @@ RunListAllItem.propTypes = {
   setCurrentRunUid: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,
   currentRunUid: PropTypes.number,
-  activeUser: PropTypes.string.isRequired,
 };
 
 export default RunListAllItem;

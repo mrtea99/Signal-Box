@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import SessionControl from "./SessionControl/SessionControl.js";
 import SessionList from "../SessionList/SessionList.js";
@@ -13,6 +14,8 @@ import ViewModeContext from "../../contexts/ViewModeContext.js";
 
 function Stage(props) {
   const simpleMode = React.useContext(ViewModeContext) === "simple";
+
+  const activeUser = useSelector((state) => state.users.currentUser);
 
   const thisStageData = props.thisRunData["stages"][props.thisStage];
 
@@ -48,7 +51,6 @@ function Stage(props) {
     return difficulty;
   };
 
-
   // Active work session
   //-------------------------------------
   const findActiveWorkSession = function () {
@@ -57,7 +59,7 @@ function Stage(props) {
     if (sessionList.length) {
       for (let i = 0; i < sessionList.length; i++) {
         if (
-          sessionList[i].user === props.activeUser &&
+          sessionList[i].user === activeUser &&
           !sessionList[i].endTime &&
           sessionList[i].type === "work"
         ) {
@@ -86,7 +88,6 @@ function Stage(props) {
   const activeProp = getStageActiveProp(props.thisStage);
   const stageActive = activeProp ? props.thisRunData[activeProp] : true;
 
-
   // Change a stage's active state
   //-------------------------------------
   const updateStageActive = function (newState, stage) {
@@ -107,7 +108,7 @@ function Stage(props) {
       activity: newState,
       startTime: Date.now(),
       endTime: Date.now(),
-      user: props.activeUser,
+      user: activeUser,
     };
     addSession(newSession, stage);
   };
@@ -178,7 +179,6 @@ function Stage(props) {
             endSession={endSession}
             thisStage={props.thisStage}
             activeSessionData={activeSessionData}
-            activeUser={props.activeUser}
             stageActive={stageActive}
             thisRunData={props.thisRunData}
             updateRunData={props.updateRunData}
@@ -203,7 +203,6 @@ function Stage(props) {
               runData={props.thisRunData}
               stageNum={props.thisStage}
               label
-              activeUser={props.activeUser}
               layout="vert"
               fullWidth
               viewMode="full"
@@ -217,7 +216,6 @@ function Stage(props) {
             setActiveStage={props.setActiveStage}
             updateRunData={props.updateRunData}
             addSession={addSession}
-            activeUser={props.activeUser}
           />
         </div>
       </div>
@@ -227,7 +225,6 @@ function Stage(props) {
           thisRunData={props.thisRunData}
           endSession={endSession}
           updateSession={updateSession}
-          activeUser={props.activeUser}
         />
       )}
     </section>
@@ -237,7 +234,6 @@ function Stage(props) {
 Stage.propTypes = {
   thisRunData: PropTypes.object.isRequired,
   thisStage: PropTypes.number.isRequired,
-  activeUser: PropTypes.string.isRequired,
   currentRunUid: PropTypes.number.isRequired,
   updateRunData: PropTypes.func.isRequired,
   stageName: PropTypes.string.isRequired,

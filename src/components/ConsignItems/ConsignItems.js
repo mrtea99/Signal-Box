@@ -1,7 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import FormItem from "../FormItem/FormItem.js";
+import { useSelector } from "react-redux";
 
+import FormItem from "../FormItem/FormItem.js";
 import InfoPod from "../InfoPod/InfoPod.js";
 import InfoPodItem from "../InfoPod/InfoPodItem/InfoPodItem.js";
 import InfoPodSection from "../InfoPod/InfoPodSection/InfoPodSection.js";
@@ -13,6 +14,8 @@ import styles from "./ConsignItems.module.css";
 import getItemType from "../../utils/getItemType.js";
 
 function ConsignItems(props) {
+  const activeUser = useSelector((state) => state.users.currentUser);
+
   const [countGood, setCountGood] = React.useState(0);
   const [countBad, setCountBad] = React.useState(0);
 
@@ -69,7 +72,7 @@ function ConsignItems(props) {
       type: "consign",
       startTime: Date.now(),
       endTime: Date.now(),
-      user: props.activeUser,
+      user: activeUser,
       amount: countGood,
       amountType: getItemType(props.thisStage),
       amountBad: countBad,
@@ -174,7 +177,6 @@ ConsignItems.propTypes = {
   updateRunData: PropTypes.func.isRequired,
   thisRunData: PropTypes.object.isRequired,
   updateStageActive: PropTypes.func.isRequired,
-  activeUser: PropTypes.string.isRequired,
   addSession: PropTypes.func.isRequired,
   stageStatus: PropTypes.object.isRequired,
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import Button from "../../../Button/Button.js";
 import ButtonSpacer from "../../../Button/ButtonSpacer/ButtonSpacer.js";
@@ -10,6 +11,8 @@ import UserSelect from "../../../FormItem/UserSelect/UserSelect.js";
 import activityList from "../../../../data/activities.json";
 
 function SessionStartForm(props) {
+  const activeUser = useSelector((state) => state.users.currentUser);
+
   const [temperature, setTemperature] = React.useState(70);
   const [humidity, setHumidity] = React.useState(50);
 
@@ -67,7 +70,7 @@ function SessionStartForm(props) {
         ident={"sess-assistor-stage-" + props.thisStage}
         updateHandler={updateAssistor}
         value={props.formData.assistor || null}
-        excludedUsers={[props.activeUser]}
+        excludedUsers={[activeUser]}
       />
       {props.formData.activity.fields &&
       props.formData.activity.fields.includes("atmos") ? (
@@ -111,7 +114,6 @@ SessionStartForm.propTypes = {
   setFormData: PropTypes.func.isRequired,
   handleNewClick: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
-  activeUser: PropTypes.string.isRequired,
 };
 
 export default SessionStartForm;

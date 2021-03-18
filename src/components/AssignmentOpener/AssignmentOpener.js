@@ -1,10 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import AssignmentOpenerForm from "./AssignmentOpenerForm/AssignmentOpenerForm.js";
 
 function AssignmentOpener(props) {
+  const activeUser = useSelector((state) => state.users.currentUser);
+
   const millisecondsPerHour = 3600000;
   const shiftTimes = [
     millisecondsPerHour * 9,
@@ -40,7 +43,7 @@ function AssignmentOpener(props) {
       type: "assign",
       startTime: formData.startDate + formData.startTime,
       endTime: null,
-      user: props.activeUser,
+      user: activeUser,
       secondaryUser: formData.assignee,
       notes: formData.description,
       extra: "active",
@@ -77,7 +80,6 @@ function AssignmentOpener(props) {
 
 AssignmentOpener.propTypes = {
   thisStage: PropTypes.number.isRequired,
-  activeUser: PropTypes.string.isRequired,
   addSession: PropTypes.func.isRequired,
 };
 

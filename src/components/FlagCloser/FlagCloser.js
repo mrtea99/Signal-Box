@@ -1,10 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import FormItem from "../FormItem/FormItem.js";
 
 function FlagCloser(props) {
+  const activeUser = useSelector((state) => state.users.currentUser);
+
   const [description, setDescription] = React.useState("");
   const [status, setStatus] = React.useState(props.session.extra);
   const [priority, setPriority] = React.useState(props.session.amount);
@@ -15,7 +18,7 @@ function FlagCloser(props) {
       " [" +
       Date.now() +
       " " +
-      props.activeUser +
+      activeUser +
       "]: " +
       description;
     const newNote =
@@ -152,7 +155,6 @@ function FlagCloser(props) {
 
 FlagCloser.propTypes = {
   session: PropTypes.object.isRequired,
-  activeUser: PropTypes.string.isRequired,
   endSession: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
   updateSession: PropTypes.func.isRequired,

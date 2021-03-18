@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import InfoPod from "../InfoPod/InfoPod.js";
 import InfoPodSection from "../InfoPod/InfoPodSection/InfoPodSection.js";
@@ -8,11 +9,9 @@ import StatusPodItem from "../StatusPodItem/StatusPodItem.js";
 import getStageStatus from "../../utils/getStageStatus.js";
 
 function StageStatus(props) {
-  const stageStatus = getStageStatus(
-    props.runData,
-    props.stageNum,
-    props.activeUser
-  );
+  const activeUser = useSelector((state) => state.users.currentUser);
+
+  const stageStatus = getStageStatus(props.runData, props.stageNum, activeUser);
 
   return (
     <InfoPod fullWidth={props.fullWidth}>
@@ -72,7 +71,6 @@ function StageStatus(props) {
 StageStatus.propTypes = {
   runData: PropTypes.object.isRequired,
   stageNum: PropTypes.number.isRequired,
-  activeUser: PropTypes.string.isRequired,
   fullWidth: PropTypes.bool,
   label: PropTypes.bool,
   layout: PropTypes.oneOf(["horiz", "vert"]),

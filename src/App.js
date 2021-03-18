@@ -1,10 +1,10 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import SiteSidebar from "./components/SiteSidebar/SiteSidebar.js";
 import RunList from "./components/RunList/RunList.js";
 import RunEditor from "./components/RunEditor/RunEditor.js";
-import RunInfoNew from "./components/RunInfo/RunInfo.js";
+import RunInfo from "./components/RunInfo/RunInfo.js";
 // import Button from "./components/Button/Button.js";
 import TabBox from "./components/TabBox/TabBox.js";
 import SiteHeader from "./components/SiteHeader/SiteHeader.js";
@@ -76,7 +76,6 @@ function App() {
   const savedActiveUser = () =>
     window.localStorage.getItem("activeUser") || "1";
   useDispatch({ title: "users/setCurrentUser", payload: savedActiveUser });
-  const activeUser = useSelector((state) => state.users.currentUser);
 
   // Site settings
   //-------------------------------------
@@ -199,7 +198,6 @@ function App() {
             }`}
           >
             <SiteHeader
-              activeUser={activeUser}
               setSidebarActive={setSidebarActive}
             />
             <div className={styles.sitePage}>
@@ -228,7 +226,6 @@ function App() {
                         runData={runData}
                         runFilters={runFilters}
                         setRunFilters={setRunFilters}
-                        activeUser={activeUser}
                       />
                     </section>
                     <section className={styles.otherControls}>
@@ -238,11 +235,10 @@ function App() {
                       >
                         {t("New Run")}
                       </Button> */}
-                      <RunInfoNew
+                      <RunInfo
                         active={modalNewActive}
                         setActive={setModalNewActive}
                         createRun={createRun}
-                        activeUser={activeUser}
                       />
                     </section>
                   </menu>
@@ -255,7 +251,6 @@ function App() {
                           runData={runData}
                           setCurrentRunUid={setCurrentRunUid}
                           setActiveStage={setActiveStage}
-                          activeUser={activeUser}
                           stageNum={index === 0 ? "all" : index - 1}
                           filters={runFilters}
                         />
@@ -271,7 +266,6 @@ function App() {
                     activeStage={activeStage}
                     setActiveStage={setActiveStage}
                     updateRunData={updateRunData}
-                    activeUser={activeUser}
                   />
                 </section>
               </main>

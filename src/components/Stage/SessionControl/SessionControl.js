@@ -23,14 +23,12 @@ function SessionControl(props) {
               activeSessionData={props.activeSessionData}
               thisRunData={props.thisRunData}
               className={styles.sessionControl}
-              activeUser={props.activeUser}
             />
           ) : (
             <SessionStart
               thisStage={props.thisStage}
               addSession={props.addSession}
               updateSession={props.updateSession}
-              activeUser={props.activeUser}
               className={styles.sessionControl}
               thisRunData={props.thisRunData}
               endSession={props.endSession}
@@ -41,17 +39,14 @@ function SessionControl(props) {
             <AssignmentOpener
               addSession={props.addSession}
               thisStage={props.thisStage}
-              activeUser={props.activeUser}
             />
             <CheckOpener
               addSession={props.addSession}
               thisStage={props.thisStage}
-              activeUser={props.activeUser}
             />
             <FlagOpener
               addSession={props.addSession}
               thisStage={props.thisStage}
-              activeUser={props.activeUser}
             />
           </ButtonSpacer>
         </div>
@@ -68,7 +63,6 @@ SessionControl.propTypes = {
   updateSession: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
   thisRunData: PropTypes.object.isRequired,
-  activeUser: PropTypes.string.isRequired,
   updateRunData: PropTypes.func.isRequired,
 };
 

@@ -27,7 +27,6 @@ function SessionEnd(props) {
             thisStage={props.thisStage}
             activeSessionData={props.activeSessionData}
             thisRunData={props.thisRunData}
-            activeUser={props.activeUser}
           />
         </Modal>
       ) : null}
@@ -42,7 +41,6 @@ SessionEnd.propTypes = {
   endSession: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
   thisRunData: PropTypes.object.isRequired,
-  activeUser: PropTypes.string.isRequired,
 };
 
 export default SessionEnd;

@@ -53,7 +53,6 @@ function SessionList(props) {
                 thisStage={props.thisStage}
                 endSession={props.endSession}
                 updateSession={props.updateSession}
-                activeUser={props.activeUser}
                 columns={columns}
               />
             </li>
@@ -70,7 +69,6 @@ SessionList.propTypes = {
   thisStage: PropTypes.number.isRequired,
   endSession: PropTypes.func.isRequired,
   updateSession: PropTypes.func.isRequired,
-  activeUser: PropTypes.string.isRequired,
 };
 
 export default SessionList;

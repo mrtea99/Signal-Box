@@ -38,7 +38,6 @@ function StageNav(props) {
                 <StageStatus
                   runData={props.thisRunData}
                   stageNum={index}
-                  activeUser={props.activeUser}
                   label={props.sessionLabels}
                 />
               </span>
@@ -59,7 +58,6 @@ StageNav.propTypes = {
   sessionLabels: PropTypes.bool,
   hideStatus: PropTypes.bool,
   thisRunData: PropTypes.object.isRequired,
-  activeUser: PropTypes.string.isRequired,
 };
 
 export default StageNav;

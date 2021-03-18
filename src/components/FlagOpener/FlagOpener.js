@@ -1,10 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
+
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import FormItem from "../FormItem/FormItem.js";
 
 function FlagOpener(props) {
+  const activeUser = useSelector((state) => state.users.currentUser);
+
   const [description, setDescription] = React.useState("");
   const [priority, setPriority] = React.useState(1);
 
@@ -16,7 +20,7 @@ function FlagOpener(props) {
       type: "flag",
       startTime: Date.now(),
       endTime: null,
-      user: props.activeUser,
+      user: activeUser,
       amount: priority,
       amountType: "Priority",
       notes: description,
@@ -102,7 +106,6 @@ function FlagOpener(props) {
 }
 
 FlagOpener.propTypes = {
-  activeUser: PropTypes.string.isRequired,
   addSession: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
 };

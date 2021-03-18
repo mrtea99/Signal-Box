@@ -39,7 +39,6 @@ function RunTitle(props) {
           <Button onClick={() => setModalOverviewActive(null)}>Close</Button>
           <StageOverview
             thisRunData={props.runData}
-            activeUser={props.activeUser}
           ></StageOverview>
         </Modal>
       ) : null}
@@ -49,7 +48,6 @@ function RunTitle(props) {
 
 RunTitle.propTypes = {
   runData: PropTypes.object.isRequired,
-  activeUser: PropTypes.string.isRequired,
 };
 
 export default RunTitle;

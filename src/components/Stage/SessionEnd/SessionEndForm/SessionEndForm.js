@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import Button from "../../../Button/Button.js";
 import ButtonSpacer from "../../../Button/ButtonSpacer/ButtonSpacer.js";
@@ -13,6 +14,8 @@ import getItemType from "../../../../utils/getItemType.js";
 
 function SessionEndForm(props) {
   const unitSystem = React.useContext(UnitSystemContext);
+
+  const activeUser = useSelector((state) => state.users.currentUser);
 
   const itemType = getItemType(props.thisStage);
 
@@ -61,7 +64,7 @@ function SessionEndForm(props) {
         type: "qa",
         startTime: Date.now(),
         endTime: null,
-        user: props.activeUser,
+        user: activeUser,
         ...qaFormData,
       };
 
@@ -196,7 +199,6 @@ function SessionEndForm(props) {
 SessionEndForm.propTypes = {
   activeSessionData: PropTypes.object.isRequired,
   thisStage: PropTypes.number.isRequired,
-  activeUser: PropTypes.string.isRequired,
   addSession: PropTypes.func.isRequired,
   endSession: PropTypes.func.isRequired,
   setFormActive: PropTypes.func.isRequired,

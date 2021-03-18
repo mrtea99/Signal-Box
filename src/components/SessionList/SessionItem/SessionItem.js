@@ -153,7 +153,6 @@ function SessionItem(props) {
                 session={session}
                 endSession={props.endSession}
                 updateSession={props.updateSession}
-                activeUser={props.activeUser}
               />
             ) : null}
             {session.type === "assign" ? (
@@ -256,7 +255,6 @@ SessionItem.propTypes = {
   thisStage: PropTypes.number,
   endSession: PropTypes.func,
   updateSession: PropTypes.func,
-  activeUser: PropTypes.string,
 };
 
 export default SessionItem;

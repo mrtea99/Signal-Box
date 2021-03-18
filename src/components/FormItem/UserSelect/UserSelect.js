@@ -6,11 +6,11 @@ import FormItem from "../FormItem";
 const userData = [
   {
     displayName: "Jesus Sandoval",
-    uid: "1",
+    uid: 1,
   },
   {
     displayName: "Amanda Kezios",
-    uid: "2",
+    uid: 2,
   },
 ];
 

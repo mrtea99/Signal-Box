@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import SessionStartForm from "./SessionStartForm/SessionStartForm.js";
 import Button from "../../Button/Button.js";
@@ -10,6 +11,8 @@ import stageNames from "../../../data/stageNames.json";
 import activityList from "../../../data/activities.json";
 
 function SessionStart(props) {
+  const activeUser = useSelector((state) => state.users.currentUser);
+
   const [modalActive, setModalActive] = React.useState(false);
 
   const [formData, setFormData] = React.useState({
@@ -33,7 +36,7 @@ function SessionStart(props) {
       startTime: Date.now(),
       endTime: null,
       activity: formData.activity,
-      user: props.activeUser,
+      user: activeUser,
       secondaryUser: formData.assistor,
     };
 
@@ -61,7 +64,7 @@ function SessionStart(props) {
     return (
       session.type === "assign" &&
       !session.endTime &&
-      (session.secondaryUser === props.activeUser ||
+      (session.secondaryUser === activeUser ||
         session.secondaryUser === null)
     );
   });
@@ -69,7 +72,7 @@ function SessionStart(props) {
   const findDefaultResolved = function () {
     let defaultResolved = [];
     assignSessions.forEach((session) => {
-      if (session.secondaryUser === props.activeUser) {
+      if (session.secondaryUser === activeUser) {
         defaultResolved.push(session.sessionId);
       }
     });
@@ -98,7 +101,6 @@ function SessionStart(props) {
           <SessionStartForm
             thisStage={props.thisStage}
             addSession={props.addSession}
-            activeUser={props.activeUser}
             handleCancel={handleCancel}
             handleNewClick={handleSubmit}
             formData={formData}
@@ -116,7 +118,6 @@ SessionStart.propTypes = {
   addSession: PropTypes.func.isRequired,
   updateSession: PropTypes.func.isRequired,
   endSession: PropTypes.func.isRequired,
-  activeUser: PropTypes.string.isRequired,
   thisRunData: PropTypes.object.isRequired,
   updateRunData: PropTypes.func.isRequired,
 };
