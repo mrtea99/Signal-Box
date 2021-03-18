@@ -5,6 +5,7 @@ import DateTimeFormatter from "../../DateTimeFormatter/DateTimeFormatter.js";
 import SessionDuration from "../../SessionList/SessionDuration/SessionDuration.js";
 import DataList from "../../DataList/DataList.js";
 import DataListItem from "../../DataList/DataListItem/DataListItem.js";
+import UserName from "../../UserSwitcher/UserName/UserName.js";
 
 import getItemType from "../../../utils/getItemType.js";
 import getSessionName from "../../../utils/getSessionName.js";
@@ -103,11 +104,14 @@ function SessionDetails(props) {
         )}
 
         {/* Users */}
-        <DataListItem dataKey={getUserKey(session)} dataValue={session.user} />
+        <DataListItem
+          dataKey={getUserKey(session)}
+          dataValue={<UserName userId={session.user} />}
+        />
         {session.secondaryUser ? (
           <DataListItem
             dataKey={getSecondaryUserKey(session)}
-            dataValue={session.secondaryUser}
+            dataValue={<UserName userId={session.secondaryUser} />}
           />
         ) : null}
 

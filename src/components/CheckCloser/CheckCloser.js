@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import FormItem from "../FormItem/FormItem.js";
+import UserName from "../UserSwitcher/UserName/UserName.js";
 
 import getItemType from "../../utils/getItemType.js";
 
@@ -45,8 +46,12 @@ function CheckCloser(props) {
         >
           <div>
             <p>{props.session.notes}</p>
-            <p>Creator: {props.session.user}</p>
-            <p>Assignee: {props.session.secondaryUser}</p>
+            <p>
+              Creator: <UserName userId={props.session.user} />
+            </p>
+            <p>
+              Assignee: <UserName userId={props.session.secondaryUser} />
+            </p>
             <p>Timeframe: {props.session.extra}</p>
             <p>Raising Note: {props.session.notes}</p>
           </div>

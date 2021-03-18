@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import FormItem from "../FormItem/FormItem.js";
+import UserName from "../UserSwitcher/UserName/UserName.js";
 
 function FlagCloser(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
@@ -76,7 +77,9 @@ function FlagCloser(props) {
           }}
         >
           <div>
-            <p>Raised by: {props.session.user}</p>
+            <p>
+              Raised by: <UserName userId={props.session.user} />
+            </p>
             <p>
               Notes:
               <br />

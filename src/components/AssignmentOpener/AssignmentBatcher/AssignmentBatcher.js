@@ -5,6 +5,7 @@ import AssignmentOpener from "../AssignmentOpener.js";
 import Button from "../../Button/Button.js";
 
 import stageNames from "../../../data/stageNames.json";
+import UserName from "../../UserSwitcher/UserName/UserName.js";
 
 function AssignmentBatcher(props) {
   const addAssignment = function (sessionData, stageNumber) {
@@ -21,7 +22,9 @@ function AssignmentBatcher(props) {
     let newBatch = [...props.batchedAssignments];
     let newBatchStage = [...newBatch[stageNumber]];
 
-    newBatchStage = newBatchStage.filter((batchedSession, index) => batchedSession.sessionId !== sessionId);
+    newBatchStage = newBatchStage.filter(
+      (batchedSession, index) => batchedSession.sessionId !== sessionId
+    );
 
     newBatch[stageNumber] = newBatchStage;
     props.setBatchedAssignments(newBatch);
@@ -42,7 +45,8 @@ function AssignmentBatcher(props) {
               {props.batchedAssignments[stageNumber].map(
                 (assignmentSession) => (
                   <li key={`assignment-${assignmentSession.sessionId}`}>
-                    {assignmentSession.secondaryUser || "None"}
+                    {<UserName userId={assignmentSession.secondaryUser} /> ||
+                      "None"}
                     <Button
                       onClick={() =>
                         removeAssignment(

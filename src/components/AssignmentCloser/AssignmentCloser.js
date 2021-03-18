@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import AssignmentOpenerForm from "../AssignmentOpener/AssignmentOpenerForm/AssignmentOpenerForm.js";
 import FormItem from "../FormItem/FormItem.js";
+import UserName from "../UserSwitcher/UserName/UserName.js";
 
 function AssignmentCloser(props) {
   const millisecondsPerHour = 3600000;
@@ -76,7 +77,9 @@ function AssignmentCloser(props) {
           submitCopy={"Save"}
           buttonAttrs={{ color: "assign", icon: "assign" }}
         >
-          <p>Assigner: {props.session.user}</p>
+          <p>
+            Assigner: <UserName userId={props.session.user} />
+          </p>
           <AssignmentOpenerForm
             formData={formData}
             setFormData={setFormData}
