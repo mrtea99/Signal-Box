@@ -10,7 +10,12 @@ import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
 
 import styles from "./SessionControl.module.css";
 
+import ViewModeContext from "../../../contexts/ViewModeContext.js";
+
 function SessionControl(props) {
+  const viewMode = React.useContext(ViewModeContext);
+  const simpleMode = viewMode === "simple";
+
   return (
     <>
       {props.stageActive ? (
@@ -36,10 +41,12 @@ function SessionControl(props) {
             />
           )}
           <ButtonSpacer direction="vert">
-            <AssignmentOpener
-              addSession={props.addSession}
-              thisStage={props.thisStage}
-            />
+            {!simpleMode ? (
+              <AssignmentOpener
+                addSession={props.addSession}
+                thisStage={props.thisStage}
+              />
+            ) : null}
             <CheckOpener
               addSession={props.addSession}
               thisStage={props.thisStage}

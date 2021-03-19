@@ -34,6 +34,14 @@ function StageActions(props) {
     props.updateStageActive(false, props.thisStage);
     setModalActive(false);
   };
+
+  const blockComplete = Boolean(
+    stageStatus.issueActive ||
+      stageStatus.blockerActive ||
+      stageStatus.qaActive ||
+      stageStatus.assignActive
+  );
+
   return (
     <div className={styles.stageActions}>
       {props.thisStage === 0 || props.thisStage === 4 ? (
@@ -41,70 +49,67 @@ function StageActions(props) {
           <>
             {stageStatus.stageStatusName !== "working" ? (
               <div>
-                {stageStatus.issueActive ||
-                stageStatus.blockerActive ||
-                stageStatus.qaActive ||
-                stageStatus.assignActive ? (
+                {blockComplete ? (
                   <p>
                     Cannot complete stage until all QA, Assignment, and Flag
-                    sessions are resolved
+                    sessions are resolved.
                   </p>
-                ) : (
-                  <>
-                    <Button
-                      onClick={() => {
-                        setModalActive(true);
-                      }}
-                      fillWidth
-                      color="complete"
-                      icon="tick"
-                    >
-                      {inactiveMessage(stageStatus.stageStatusNext)}
-                    </Button>
-                    {modalActive ? (
-                      <Modal>
-                        <ButtonSpacer direction="vert">
-                          <Button onClick={completeStage}>
-                            {inactiveMessage(stageStatus.stageStatusNext)}
-                          </Button>
-                          <br />
-                          <Button
-                            onClick={() => {
-                              completeStage();
-                              props.setCurrentRunUid(null);
-                            }}
-                          >
-                            {inactiveMessage(stageStatus.stageStatusNext)} &amp;
-                            exit
-                          </Button>
-                          {props.thisStage !== 4 ? (
-                            <>
-                              <br />
-                              <Button
-                                onClick={() => {
-                                  completeStage();
-                                  props.setActiveStage(props.thisStage + 1);
-                                }}
-                              >
-                                {inactiveMessage(stageStatus.stageStatusNext)}{" "}
-                                &amp; go to next stage
-                              </Button>
-                            </>
-                          ) : null}
-                          <br />
-                          <Button
-                            onClick={() => {
-                              setModalActive(false);
-                            }}
-                            color="cancel"
-                          >
-                            Cancel
-                          </Button>
-                        </ButtonSpacer>
-                      </Modal>
-                    ) : null}
-                  </>
-                )}
+                ) : null}
+                <>
+                  <Button
+                    onClick={() => {
+                      setModalActive(true);
+                    }}
+                    fillWidth
+                    color="complete"
+                    icon="tick"
+                    disabled={blockComplete}
+                  >
+                    {inactiveMessage(stageStatus.stageStatusNext)}
+                  </Button>
+                  {modalActive ? (
+                    <Modal>
+                      <ButtonSpacer direction="vert">
+                        <Button onClick={completeStage}>
+                          {inactiveMessage(stageStatus.stageStatusNext)}
+                        </Button>
+                        <br />
+                        <Button
+                          onClick={() => {
+                            completeStage();
+                            props.setCurrentRunUid(null);
+                          }}
+                        >
+                          {inactiveMessage(stageStatus.stageStatusNext)} &amp;
+                          exit
+                        </Button>
+                        {props.thisStage !== 4 ? (
+                          <>
+                            <br />
+                            <Button
+                              onClick={() => {
+                                completeStage();
+                                props.setActiveStage(props.thisStage + 1);
+                              }}
+                            >
+                              {inactiveMessage(stageStatus.stageStatusNext)}{" "}
+                              &amp; go to next stage
+                            </Button>
+                          </>
+                        ) : null}
+                        <br />
+                        <Button
+                          onClick={() => {
+                            setModalActive(false);
+                          }}
+                          color="cancel"
+                        >
+                          Cancel
+                        </Button>
+                      </ButtonSpacer>
+                    </Modal>
+                  ) : null}
+                </>
               </div>
             ) : null}
           </>
@@ -126,7 +131,7 @@ function StageActions(props) {
                   onClick={() => props.updateStageActive(true, props.thisStage)}
                   fillWidth
                 >
-                  Undo
+                  Undo Complete Stage
                 </Button>
               </div>
             )}

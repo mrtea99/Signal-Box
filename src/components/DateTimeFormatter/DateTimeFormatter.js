@@ -53,9 +53,9 @@ function DateTimeFormatter(props) {
         break;
       case "12h":
         if (dateHours < 12) {
-          afterWords = "am";
+          afterWords = " am";
         } else {
-          afterWords = "pm";
+          afterWords = " pm";
         }
 
         if (dateHours > 12) {

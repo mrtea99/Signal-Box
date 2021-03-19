@@ -18,6 +18,8 @@ import getItemType from "../../../utils/getItemType.js";
 
 import styles from "./SessionItem.module.css";
 
+import ViewModeContext from "../../../contexts/ViewModeContext.js";
+
 function SessionItem(props) {
   const {
     session,
@@ -27,6 +29,9 @@ function SessionItem(props) {
     thisStage,
     columns,
   } = props;
+
+  const viewMode = React.useContext(ViewModeContext);
+  const simpleMode = viewMode === "simple";
 
   const itemName = getItemType(thisStage);
 
@@ -154,7 +159,7 @@ function SessionItem(props) {
                 updateSession={props.updateSession}
               />
             ) : null}
-            {session.type === "assign" ? (
+            {session.type === "assign" && !simpleMode ? (
               <AssignmentCloser
                 key={session.sessionId}
                 thisStage={thisStage}
