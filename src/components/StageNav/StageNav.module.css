@@ -4,7 +4,7 @@
   --color-text-active: var(--color-text);
   --color-bg-inactive: var(--color-grey-dark);
   --color-text-inactive: var(--color-text);
-  --height-bar: 2.5rem;
+  --height-bar: var(--size-touch-min);
   --height-bar-half: calc(var(--height-bar) / 2);
   --time-anim: 250ms;
   --width-item-gap: 0.3rem;
@@ -172,6 +172,9 @@
     display: none;
     padding-bottom: 0.3rem;
     padding-right: 0;
+  }
+  .btnLabel:only-child {
+    padding-bottom: 0;
   }
   .showLabel {
     display: block;

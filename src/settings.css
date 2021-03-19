@@ -65,8 +65,11 @@
   --width-site: var(--break-extra);
   --width-site-min: var(--break-phone);
   --width-site-padding: 1rem;
+  --height-site-header: 3.1rem;
 
   /* Z-Indexes */
+  --z-site-header: 300;
+  --z-site-sidebar: 301;
   --z-editor: 200;
-  --z-modal: 200;
+  --z-modal: 400;
 }

@@ -1,11 +1,10 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import SiteSidebar from "./components/SiteSidebar/SiteSidebar.js";
 import RunList from "./components/RunList/RunList.js";
 import RunEditor from "./components/RunEditor/RunEditor.js";
 import RunInfo from "./components/RunInfo/RunInfo.js";
-// import Button from "./components/Button/Button.js";
 import TabBox from "./components/TabBox/TabBox.js";
 import SiteHeader from "./components/SiteHeader/SiteHeader.js";
 import SiteSettings from "./components/SiteSidebar/SiteSettings/SiteSettings.js";
@@ -235,12 +234,6 @@ function App() {
                       />
                     </section>
                     <section className={styles.otherControls}>
-                      {/* <Button
-                        onClick={() => setModalNewActive(true)}
-                        icon="plus"
-                      >
-                        {t("New Run")}
-                      </Button> */}
                       <RunInfo
                         active={modalNewActive}
                         setActive={setModalNewActive}

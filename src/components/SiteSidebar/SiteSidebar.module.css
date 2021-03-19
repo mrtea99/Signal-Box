@@ -8,8 +8,7 @@
   width: 100%;
   max-width: 20rem;
   height: 100vh;
-  /* z-index: 1001; */
-  z-index: 101;
+  z-index: var(--z-site-sidebar);
   transition: left 0.5s;
   padding: 1rem;
   display: flex;

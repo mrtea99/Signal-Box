@@ -8,7 +8,8 @@ import StageOverview from "../StageOverview/StageOverview.js";
 import Modal from "../Modal/Modal.js";
 import Button from "../Button/Button.js";
 import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
-import UserSwitcher from "../UserSwitcher/UserSwitcher.js";
+// import UserSwitcher from "../UserSwitcher/UserSwitcher.js";
+// import TableHeader from "../TableHeader/TableHeader.js";
 
 import styles from "./RunEditor.module.css";
 
@@ -46,7 +47,7 @@ function RunEditor(props) {
               >
                 Close
               </Button>
-              {simpleMode ? null : <UserSwitcher />}
+              {/* {simpleMode ? null : <UserSwitcher />} */}
             </header>
             <div>
               <section className={styles.runInfo}>

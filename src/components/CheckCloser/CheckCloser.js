@@ -50,7 +50,12 @@ function CheckCloser(props) {
               Creator: <UserName userId={props.session.user} />
             </p>
             <p>
-              Assignee: <UserName userId={props.session.secondaryUser} />
+              Assignee:{" "}
+              {props.session.secondaryUser ? (
+                <UserName userId={props.session.secondaryUser} />
+              ) : (
+                "None"
+              )}
             </p>
             <p>Timeframe: {props.session.extra}</p>
             <p>Raising Note: {props.session.notes}</p>

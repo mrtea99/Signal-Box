@@ -24,8 +24,10 @@
 }
 
 .siteContent {
+  position: relative;
   padding: 0 var(--width-site-padding);
   flex-grow: 1;
+  margin-top: var(--height-site-header);
 }
 
 .listControls {

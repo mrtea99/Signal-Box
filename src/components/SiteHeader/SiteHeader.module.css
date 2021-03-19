@@ -1,12 +1,11 @@
 .siteHeader {
-  min-height: 3.1rem;
+  min-height: var(--height-site-header);
   background-color: var(--color-pink);
   width: 100%;
-  z-index: 100;
-  /* z-index: 1000; */
+  z-index: var(--z-site-header);
   display: flex;
   justify-content: center;
-  position: relative;
+  position: fixed;
 }
 
 .inner {
@@ -19,12 +18,6 @@
   align-items: center;
   padding: 0 var(--width-site-padding);
 }
-
-/* @media (min-width: 768px) {
-  .sidebarTrigger {
-    display: none;
-  }
-} */
 
 .siteLogoWrapper {
   padding: 0.2rem;

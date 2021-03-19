@@ -15,7 +15,7 @@
 }
 
 .runEditorActive {
-  top: 0vh;
+  top: var(--height-site-header);
   bottom: 0vh;
   opacity: 1;
   pointer-events: all;

@@ -5,8 +5,8 @@ export const usersSlice = createSlice({
   initialState: {
     currentUser: parseInt(window.localStorage.getItem("activeUser")) || 1,
     usersList: [
-      { id: 1, title: "User One" },
-      { id: 2, title: "User Two" },
+      { id: 1, title: "Jesus Sandoval" },
+      { id: 2, title: "Amanda Kezios" },
     ],
   },
   reducers: {
