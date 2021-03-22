@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import SessionList from "../../SessionList/SessionList.js";
 import StageStatus from "../../StageStatus/StageStatus.js";
@@ -14,6 +14,8 @@ import ViewModeContext from "../../../contexts/ViewModeContext.js";
 
 function Stage(props) {
   const simpleMode = React.useContext(ViewModeContext) === "simple";
+
+  const dispatch = useDispatch();
 
   const activeUser = useSelector((state) => state.users.currentUser);
 
@@ -115,36 +117,26 @@ function Stage(props) {
 
   // Session creation and editing functions
   //==============================================================================
-
   const addSession = function (sessionData, stage) {
-    const stageData = props.thisRunData["stages"][stage];
-    const sessionList = stageData["sessions"];
-
-    let newStageObj = { ...stageData };
-    let newSessionList = [...sessionList];
-
-    newSessionList.push(sessionData);
-    newStageObj["sessions"] = newSessionList;
-
-    props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
+    const runId = props.currentRunUid;
+    dispatch({
+      type: "runs/addSession",
+      payload: { runId, stage, sessionData },
+    });
   };
 
   const updateSession = function (extraData, stage, sessionId) {
-    const stageData = props.thisRunData["stages"][stage];
-    const sessionList = stageData["sessions"];
+    const runId = props.currentRunUid;
 
-    let newStageObj = { ...stageData };
-    let newSessionList = [...sessionList];
-
-    const activeSessionObj = newSessionList.find(
-      (obj) => obj.sessionId === sessionId
-    );
-
-    Object.assign(activeSessionObj, extraData);
-
-    newStageObj["sessions"] = newSessionList;
-
-    props.updateRunData(props.currentRunUid, "stages", stage, newStageObj);
+    dispatch({
+      type: "runs/updateSession",
+      payload: {
+        runId,
+        stage,
+        sessionId,
+        extraData,
+      },
+    });
   };
 
   const endSession = function (extraData, stage, sessionData) {

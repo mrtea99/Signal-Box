@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import SiteSidebar from "./components/SiteSidebar/SiteSidebar.js";
 import RunList from "./components/RunList/RunList.js";
@@ -27,7 +27,7 @@ function App() {
 
   // Redux
   //==============================================================================
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   // Loading Screen
   //==============================================================================
@@ -43,19 +43,17 @@ function App() {
   // Backend onload data
   //==============================================================================
   // Data for all runs - needs to replaced with API call
-  const savedRunData = () =>
-    JSON.parse(window.localStorage.getItem("runData")) || [];
-  const [runData, setRunData] = React.useState(savedRunData);
+  // const savedRunData = () =>
+  //   JSON.parse(window.localStorage.getItem("runData")) || [];
+  // const [runData, setRunData] = React.useState(savedRunData);
+  // React.useEffect(() => {
+  //   window.localStorage.setItem("runData", JSON.stringify(runData));
+  // }, [runData]);
+
+  const runData = useSelector((state) => state.runs.runsList);
   React.useEffect(() => {
     window.localStorage.setItem("runData", JSON.stringify(runData));
   }, [runData]);
-
-  // const savedSessionData = () =>
-  //   JSON.parse(window.localStorage.getItem("sessionData")) || [];
-  // const [sessionData, setSessionData] = React.useState(savedSessionData);
-  // React.useEffect(() => {
-  //   window.localStorage.setItem("sessionData", JSON.stringify(sessionData));
-  // }, [sessionData]);
 
   // Frontend onload data
   //==============================================================================
@@ -154,30 +152,11 @@ function App() {
   // Run creation and editing functions
   //==============================================================================
   const createRun = function (newRunData) {
-    let newData = [...runData];
-    newData.push(newRunData);
-    setRunData(newData);
+    dispatch({ type: "runs/create", payload: newRunData });
   };
 
   const updateRunData = function (uid, dataSection, dataKey, newValue) {
-    if (dataSection === "delete") {
-      const updatedRunData = runData.filter((run) => uid !== run.id);
-      setRunData(updatedRunData);
-    } else {
-      const updatedRunData = runData.map((run) => {
-        if (run.id === uid) {
-          //A new object should be created and returned here, but this is working for the time being
-          if (dataSection !== null) {
-            run[dataSection][dataKey] = newValue;
-          } else {
-            run[dataKey] = newValue;
-          }
-          return run;
-        }
-        return run;
-      });
-      setRunData(updatedRunData);
-    }
+    dispatch({ type: "runs/update", payload: {uid, dataSection, dataKey, newValue} });
   };
 
   // Render
