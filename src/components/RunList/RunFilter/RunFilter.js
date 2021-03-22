@@ -2,9 +2,9 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
-import FormItem from "../FormItem/FormItem.js";
+import FormItem from "../../FormItem/FormItem.js";
 
-import ModalControl from "../Modal/ModalControl/ModalControl.js";
+import ModalControl from "../../Modal/ModalControl/ModalControl.js";
 
 function RunFilter(props) {
   const activeUser = useSelector((state) => state.users.currentUser);

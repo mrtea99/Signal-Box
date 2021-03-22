@@ -9,7 +9,7 @@ import TabBox from "./components/TabBox/TabBox.js";
 import SiteHeader from "./components/SiteHeader/SiteHeader.js";
 import SiteSettings from "./components/SiteSidebar/SiteSettings/SiteSettings.js";
 import GlobalContexts from "./components/GlobalContexts/GlobalContexts.js";
-import RunFilter from "./components/RunFilter/RunFilter.js";
+import RunFilter from "./components/RunList/RunFilter/RunFilter.js";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
 
 import stageNames from "./data/stageNames.json";

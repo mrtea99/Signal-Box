@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Button from "../Button/Button.js";
-import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
-import Modal from "../Modal/Modal.js";
+import Button from "../../Button/Button.js";
+import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
+import Modal from "../../Modal/Modal.js";
 
 function RunDelete(props) {
   const [modalActive, setModalActive] = React.useState(false);

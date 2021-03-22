@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import Modal from "../Modal/Modal.js";
 import RunInfoForm from "./RunInfoForm/RunInfoForm.js";
-import RunDelete from "../RunDelete/RunDelete.js";
+import RunDelete from "./RunDelete/RunDelete.js";
 import Button from "../Button/Button.js";
 import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
 import AssignmentBatcher from "../AssignmentOpener/AssignmentBatcher/AssignmentBatcher.js";
