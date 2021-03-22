@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 import InfoPod from "../InfoPod/InfoPod.js";
 import InfoPodSection from "../InfoPod/InfoPodSection/InfoPodSection.js";
-import StatusPodItem from "../StatusPodItem/StatusPodItem.js";
+import StatusPodItem from "./StatusPodItem/StatusPodItem.js";
 
 import getStageStatus from "../../utils/getStageStatus.js";
 

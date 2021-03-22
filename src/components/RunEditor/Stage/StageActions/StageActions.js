@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import getStageStatus from "../../../utils/getStageStatus.js";
+import getStageStatus from "../../../../utils/getStageStatus.js";
 
-import Button from "../../Button/Button.js";
-import Modal from "../../Modal/Modal.js";
-import ConsignItems from "../../ConsignItems/ConsignItems.js";
-import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
+import Button from "../../../Button/Button.js";
+import Modal from "../../../Modal/Modal.js";
+import ConsignItems from "../../../ConsignItems/ConsignItems.js";
+import ButtonSpacer from "../../../Button/ButtonSpacer/ButtonSpacer.js";
 
 import styles from "./StageActions.module.css";
 

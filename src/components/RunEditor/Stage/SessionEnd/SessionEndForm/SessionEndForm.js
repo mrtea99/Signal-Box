@@ -2,15 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
-import Button from "../../../Button/Button.js";
-import ButtonSpacer from "../../../Button/ButtonSpacer/ButtonSpacer.js";
-import CheckOpenerForm from "../../../CheckOpener/CheckOpenerForm/CheckOpenerForm.js";
-import FormItem from "../../../FormItem/FormItem.js";
-import WeightField from "../../../FormItem/WeightField/WeightField.js";
+import Button from "../../../../Button/Button.js";
+import ButtonSpacer from "../../../../Button/ButtonSpacer/ButtonSpacer.js";
+import CheckOpenerForm from "../../../../CheckOpener/CheckOpenerForm/CheckOpenerForm.js";
+import FormItem from "../../../../FormItem/FormItem.js";
+import WeightField from "../../../../FormItem/WeightField/WeightField.js";
 
-import UnitSystemContext from "../../../../contexts/DateFormatContext.js";
+import UnitSystemContext from "../../../../../contexts/DateFormatContext.js";
 
-import getItemType from "../../../../utils/getItemType.js";
+import getItemType from "../../../../../utils/getItemType.js";
 
 function SessionEndForm(props) {
   const unitSystem = React.useContext(UnitSystemContext);

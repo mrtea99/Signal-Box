@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Stage from "../Stage/Stage.js";
+import Stage from "./Stage/Stage.js";
 import StageNav from "../StageNav/StageNav.js";
 import RunInfoNew from "../RunInfo/RunInfo.js";
 import StageOverview from "../StageOverview/StageOverview.js";

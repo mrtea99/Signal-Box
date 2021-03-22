@@ -3,12 +3,12 @@ import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
 import SessionStartForm from "./SessionStartForm/SessionStartForm.js";
-import Button from "../../Button/Button.js";
-import Modal from "../../Modal/Modal.js";
-import AssignmentList from "../../AssignmentOpener/AssignmentList/AssignmentList.js";
+import Button from "../../../Button/Button.js";
+import Modal from "../../../Modal/Modal.js";
+import AssignmentList from "../../../AssignmentOpener/AssignmentList/AssignmentList.js";
 
-import stageNames from "../../../data/stageNames.json";
-import activityList from "../../../data/activities.json";
+import stageNames from "../../../../data/stageNames.json";
+import activityList from "../../../../data/activities.json";
 
 function SessionStart(props) {
   const activeUser = useSelector((state) => state.users.currentUser);

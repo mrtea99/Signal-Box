@@ -6,7 +6,7 @@ import getStageStatus from "../../../utils/getStageStatus.js";
 
 import InfoPod from "../../InfoPod/InfoPod.js";
 import InfoPodSection from "../../InfoPod/InfoPodSection/InfoPodSection.js";
-import StatusPodItem from "../../StatusPodItem/StatusPodItem.js";
+import StatusPodItem from "../../StageStatus/StatusPodItem/StatusPodItem.js";
 import Button from "../../Button/Button.js";
 import RunTitle from "../RunTitle/RunTitle.js";
 

@@ -2,13 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
-import Button from "../../../Button/Button.js";
-import ButtonSpacer from "../../../Button/ButtonSpacer/ButtonSpacer.js";
-import FormItem from "../../../FormItem/FormItem.js";
-import TemperatureField from "../../../FormItem/TemperatureField/TemperatureField.js";
-import UserSelect from "../../../FormItem/UserSelect/UserSelect.js";
+import Button from "../../../../Button/Button.js";
+import ButtonSpacer from "../../../../Button/ButtonSpacer/ButtonSpacer.js";
+import FormItem from "../../../../FormItem/FormItem.js";
+import TemperatureField from "../../../../FormItem/TemperatureField/TemperatureField.js";
+import UserSelect from "../../../../FormItem/UserSelect/UserSelect.js";
 
-import activityList from "../../../../data/activities.json";
+import activityList from "../../../../../data/activities.json";
 
 function SessionStartForm(props) {
   const activeUser = useSelector((state) => state.users.currentUser);

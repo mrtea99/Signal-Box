@@ -2,15 +2,15 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
+import SessionList from "../../SessionList/SessionList.js";
+import StageStatus from "../../StageStatus/StageStatus.js";
 import SessionControl from "./SessionControl/SessionControl.js";
-import SessionList from "../SessionList/SessionList.js";
-import StageStatus from "../StageStatus/StageStatus.js";
 import StageActions from "./StageActions/StageActions.js";
 import SessionDuring from "./SessionDuring/SessionDuring.js";
 
 import styles from "./Stage.module.css";
 
-import ViewModeContext from "../../contexts/ViewModeContext.js";
+import ViewModeContext from "../../../contexts/ViewModeContext.js";
 
 function Stage(props) {
   const simpleMode = React.useContext(ViewModeContext) === "simple";

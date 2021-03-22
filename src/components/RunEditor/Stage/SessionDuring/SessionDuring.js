@@ -1,19 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import FormItem from "../../FormItem/FormItem.js";
-import Timer from "../../Timer/Timer.js";
+import FormItem from "../../../FormItem/FormItem.js";
+import Timer from "../../../Timer/Timer.js";
 import Stopwatch from "./Stopwatch/Stopwatch.js";
-import Button from "../../Button/Button.js";
+import Button from "../../../Button/Button.js";
 
 import styles from "./SessionDuring.module.css";
-import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
-import DataList from "../../DataList/DataList.js";
-import DataListItem from "../../DataList/DataListItem/DataListItem.js";
+import ButtonSpacer from "../../../Button/ButtonSpacer/ButtonSpacer.js";
+import DataList from "../../../DataList/DataList.js";
+import DataListItem from "../../../DataList/DataListItem/DataListItem.js";
 
-import getItemType from "../../../utils/getItemType.js";
+import getItemType from "../../../../utils/getItemType.js";
 
-import stageNames from "../../../data/stageNames.json";
+import stageNames from "../../../../data/stageNames.json";
 
 function SessionDuring(props) {
   // After Statuses
