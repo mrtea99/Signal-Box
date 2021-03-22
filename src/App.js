@@ -150,7 +150,6 @@ function App() {
   // UI state
   //==============================================================================
   const [sidebarActive, setSidebarActive] = React.useState(false);
-  const [modalNewActive, setModalNewActive] = React.useState(false);
 
   // Run creation and editing functions
   //==============================================================================
@@ -162,7 +161,8 @@ function App() {
 
   const updateRunData = function (uid, dataSection, dataKey, newValue) {
     if (dataSection === "delete") {
-      deleteRun(uid);
+      const updatedRunData = runData.filter((run) => uid !== run.id);
+      setRunData(updatedRunData);
     } else {
       const updatedRunData = runData.map((run) => {
         if (run.id === uid) {
@@ -178,11 +178,6 @@ function App() {
       });
       setRunData(updatedRunData);
     }
-  };
-
-  const deleteRun = function (uid) {
-    const updatedRunData = runData.filter((run) => uid !== run.id);
-    setRunData(updatedRunData);
   };
 
   // Render
@@ -228,17 +223,12 @@ function App() {
                   <menu className={styles.listControls}>
                     <section className={styles.filterControls}>
                       <RunFilter
-                        runData={runData}
                         runFilters={runFilters}
                         setRunFilters={setRunFilters}
                       />
                     </section>
                     <section className={styles.otherControls}>
-                      <RunInfo
-                        active={modalNewActive}
-                        setActive={setModalNewActive}
-                        createRun={createRun}
-                      />
+                      <RunInfo createRun={createRun} />
                     </section>
                   </menu>
                   <TabBox
@@ -260,11 +250,11 @@ function App() {
                 <section>
                   <RunEditor
                     runData={runData}
+                    updateRunData={updateRunData}
                     currentRunUid={currentRunUid}
                     setCurrentRunUid={setCurrentRunUid}
                     activeStage={activeStage}
                     setActiveStage={setActiveStage}
-                    updateRunData={updateRunData}
                   />
                 </section>
               </main>
