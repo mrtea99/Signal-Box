@@ -7,7 +7,9 @@ export const runsSlice = createSlice({
   },
   reducers: {
     create: (state, action) => {
-      state.runsList.push(action.payload);
+      const newRun = action.payload;
+
+      state.runsList.push(newRun);
     },
     update: (state, action) => {
       const { runId, dataSection, dataKey, newValue } = action.payload;
@@ -28,6 +30,7 @@ export const runsSlice = createSlice({
     },
     delete: (state, action) => {
       const runId = action.payload;
+
       state.runsList = state.runsList.filter((run) => runId !== run.id);
     },
     addSession: (state, action) => {

@@ -25,9 +25,7 @@ function RunEditor(props) {
   const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
 
   const runsList = useSelector((state) => state.runs.runsList);
-  const thisRunData = runsList.find(
-    (obj) => obj.id === props.currentRunUid
-  );
+  const thisRunData = runsList.find((obj) => obj.id === props.currentRunUid);
 
   const handleExitClick = function (e) {
     e.preventDefault();

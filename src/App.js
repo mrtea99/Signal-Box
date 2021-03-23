@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 
 import SiteSidebar from "./components/SiteSidebar/SiteSidebar.js";
 import RunList from "./components/RunList/RunList.js";
@@ -24,10 +24,6 @@ function App() {
   // i18n
   //==============================================================================
   // const { t } = useTranslation();
-
-  // Redux
-  //==============================================================================
-  const dispatch = useDispatch();
 
   // Loading Screen
   //==============================================================================
