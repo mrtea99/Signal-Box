@@ -28,6 +28,12 @@ function RunInfoNew(props) {
   const createRun = function (newRunData) {
     dispatch({ type: "runs/create", payload: newRunData });
   };
+  const updateRun = function (runId, dataSection, dataKey, newValue) {
+    dispatch({
+      type: "runs/update",
+      payload: { runId, dataSection, dataKey, newValue },
+    });
+  };
 
   // Form State
   //----------------------------------------
@@ -140,21 +146,9 @@ function RunInfoNew(props) {
   };
 
   const updateRunInfo = function (productTemplateData, batchQuantity) {
-    props.updateRunData(
-      props.currentRunUid,
-      null,
-      "productInfo",
-      productTemplateData
-    );
-
-    props.updateRunData(
-      props.currentRunUid,
-      null,
-      "batchQuantity",
-      batchQuantity
-    );
-
-    props.updateRunData(props.currentRunUid, null, "status", runStatus);
+    updateRun(props.currentRunUid, null, "productInfo", productTemplateData);
+    updateRun(props.currentRunUid, null, "batchQuantity", batchQuantity);
+    updateRun(props.currentRunUid, null, "status", runStatus);
 
     closeModal();
   };
@@ -199,7 +193,7 @@ function RunInfoNew(props) {
           <ButtonSpacer align="right">
             {mode === "change" ? (
               <RunDelete
-                updateRunData={props.updateRunData}
+                updateRunData={updateRun}
                 currentRunUid={props.currentRunUid}
                 successCallback={() => closeModal()}
               />
@@ -228,7 +222,6 @@ function RunInfoNew(props) {
 
 RunInfoNew.propTypes = {
   thisRunData: PropTypes.object,
-  updateRunData: PropTypes.func,
   currentRunUid: PropTypes.number,
 };
 

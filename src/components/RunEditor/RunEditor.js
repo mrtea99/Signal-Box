@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import Stage from "./Stage/Stage.js";
 import StageNav from "../StageNav/StageNav.js";
-import RunInfoNew from "../RunInfo/RunInfo.js";
+import RunInfo from "../RunInfo/RunInfo.js";
 import StageOverview from "../StageOverview/StageOverview.js";
 import Modal from "../Modal/Modal.js";
 import Button from "../Button/Button.js";
@@ -23,7 +24,8 @@ function RunEditor(props) {
 
   const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
 
-  const thisRunData = props.runData.find(
+  const runsList = useSelector((state) => state.runs.runsList);
+  const thisRunData = runsList.find(
     (obj) => obj.id === props.currentRunUid
   );
 
@@ -73,10 +75,9 @@ function RunEditor(props) {
                       </h4>
                     </div>
                     <ButtonSpacer>
-                      <RunInfoNew
+                      <RunInfo
                         currentRunUid={props.currentRunUid}
                         thisRunData={thisRunData}
-                        updateRunData={props.updateRunData}
                       />
 
                       <Button
@@ -138,7 +139,6 @@ function RunEditor(props) {
 }
 
 RunEditor.propTypes = {
-  runData: PropTypes.array.isRequired,
   currentRunUid: PropTypes.number,
   setCurrentRunUid: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 
 import Button from "../../Button/Button.js";
 import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
@@ -7,6 +8,15 @@ import Modal from "../../Modal/Modal.js";
 
 function RunDelete(props) {
   const [modalActive, setModalActive] = React.useState(false);
+
+  const dispatch = useDispatch();
+  const deleteRun = function (runId) {
+    const dataSection = "delete";
+    dispatch({
+      type: "runs/update",
+      payload: { runId, dataSection },
+    });
+  };
 
   return (
     <>
@@ -22,7 +32,7 @@ function RunDelete(props) {
             </Button>
             <Button
               onClick={() => {
-                props.updateRunData(props.currentRunUid, "delete");
+                deleteRun(props.currentRunUid);
                 setModalActive(false);
                 if (props.successCallback) {
                   props.successCallback();
@@ -40,7 +50,6 @@ function RunDelete(props) {
 }
 
 RunDelete.propTypes = {
-  updateRunData: PropTypes.func.isRequired,
   currentRunUid: PropTypes.number.isRequired,
   successCallback: PropTypes.func,
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import TableHeader from "../TableHeader/TableHeader.js";
 import RunListAllItem from "./RunListAllItem/RunListAllItem.js";
@@ -10,6 +11,7 @@ import styles from "./RunList.module.css";
 import stageNames from "../../data/stageNames.json";
 
 function RunList(props) {
+
   let columns;
   if (props.stageNum === "all") {
     columns = stageNames.map((stageName) => ({
@@ -27,11 +29,12 @@ function RunList(props) {
     ];
   }
 
-  let filteredRunData = [...props.runData];
+  const runsList = useSelector((state) => state.runs.runsList);
+  let filteredRunsList = [...runsList];
 
   // Only show runs edited by users listed in an array
   if (props.filters.showUser && props.filters.showUser.length) {
-    filteredRunData = filteredRunData.filter((run) => {
+    filteredRunsList = filteredRunsList.filter((run) => {
       let userSession = false;
       const visibleStages =
         props.stageNum === "all" ? run.stages : [run.stages[props.stageNum]];
@@ -50,7 +53,7 @@ function RunList(props) {
 
   // Show runs with unresolved QA sessions
   if (props.filters.showUnresolvedQa) {
-    filteredRunData = filteredRunData.filter((run) => {
+    filteredRunsList = filteredRunsList.filter((run) => {
       let unresolvedQa = false;
       const visibleStages =
         props.stageNum === "all" ? run.stages : [run.stages[props.stageNum]];
@@ -72,8 +75,8 @@ function RunList(props) {
         <TableHeader items={columns} />
       </header>
       <div>
-        {filteredRunData.length ? (
-          filteredRunData.map((run, index) =>
+        {filteredRunsList.length ? (
+          filteredRunsList.map((run, index) =>
             props.stageNum === "all" ? (
               <div className={styles.itemRow} key={run.id}>
                 <RunListAllItem
@@ -105,7 +108,6 @@ function RunList(props) {
 RunList.propTypes = {
   stageNum: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(["all"])])
     .isRequired,
-  runData: PropTypes.array.isRequired,
   filters: PropTypes.object.isRequired,
   setCurrentRunUid: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,

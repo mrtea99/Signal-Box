@@ -144,10 +144,10 @@ function App() {
 
   // Run creation and editing functions
   //==============================================================================
-  const updateRunData = function (uid, dataSection, dataKey, newValue) {
+  const updateRunData = function (runId, dataSection, dataKey, newValue) {
     dispatch({
       type: "runs/update",
-      payload: { uid, dataSection, dataKey, newValue },
+      payload: { runId, dataSection, dataKey, newValue },
     });
   };
 
@@ -208,7 +208,6 @@ function App() {
                       content: (
                         <RunList
                           key={stage}
-                          runData={runData}
                           setCurrentRunUid={setCurrentRunUid}
                           setActiveStage={setActiveStage}
                           stageNum={index === 0 ? "all" : index - 1}
@@ -220,7 +219,6 @@ function App() {
                 </section>
                 <section>
                   <RunEditor
-                    runData={runData}
                     updateRunData={updateRunData}
                     currentRunUid={currentRunUid}
                     setCurrentRunUid={setCurrentRunUid}

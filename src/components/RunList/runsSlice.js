@@ -10,13 +10,13 @@ export const runsSlice = createSlice({
       state.runsList.push(action.payload);
     },
     update: (state, action) => {
-      const { uid, dataSection, dataKey, newValue } = action.payload;
+      const { runId, dataSection, dataKey, newValue } = action.payload;
 
       if (dataSection === "delete") {
-        state.runsList = state.runsList.filter((run) => uid !== run.id);
+        state.runsList = state.runsList.filter((run) => runId !== run.id);
       } else {
         const updatedRunData = state.runsList.map((run) => {
-          if (run.id === uid) {
+          if (run.id === runId) {
             if (dataSection !== null) {
               run[dataSection][dataKey] = newValue;
             } else {
