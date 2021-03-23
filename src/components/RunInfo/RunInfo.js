@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 
 import Modal from "../Modal/Modal.js";
 import RunInfoForm from "./RunInfoForm/RunInfoForm.js";
@@ -21,7 +22,14 @@ function RunInfoNew(props) {
 
   const [active, setActive] = React.useState(false);
 
-  //Form State
+  // Redux
+  //----------------------------------------
+  const dispatch = useDispatch();
+  const createRun = function (newRunData) {
+    dispatch({ type: "runs/create", payload: newRunData });
+  };
+
+  // Form State
   //----------------------------------------
   const defaultCurrentTemplate = () => {
     if (!props.thisRunData) {
@@ -71,7 +79,7 @@ function RunInfoNew(props) {
     let productInfo = { ...productTemplates[currentTemplate] };
 
     mode === "new"
-      ? createRun(productInfo, batchQuantity)
+      ? createRunInfo(productInfo, batchQuantity)
       : updateRunInfo(productInfo, batchQuantity);
   };
 
@@ -83,9 +91,8 @@ function RunInfoNew(props) {
     setActive(false);
   };
 
-  const createRun = function (productTemplateData, batchQuantity) {
-    //Build new run object here
-    const newRun = {
+  const buildRun = function (productTemplateData, batchQuantity) {
+    return {
       id: Date.now(),
       productName: productTemplateData.productName,
       productSKU: productTemplateData.productSKU,
@@ -122,8 +129,12 @@ function RunInfoNew(props) {
         },
       ],
     };
+  };
 
-    props.createRun(newRun);
+  const createRunInfo = function (productTemplateData, batchQuantity) {
+    const newRun = buildRun(productTemplateData, batchQuantity);
+
+    createRun(newRun);
 
     closeModal();
   };
@@ -216,7 +227,6 @@ function RunInfoNew(props) {
 }
 
 RunInfoNew.propTypes = {
-  createRun: PropTypes.func,
   thisRunData: PropTypes.object,
   updateRunData: PropTypes.func,
   currentRunUid: PropTypes.number,

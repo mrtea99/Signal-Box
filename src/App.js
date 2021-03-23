@@ -43,13 +43,6 @@ function App() {
   // Backend onload data
   //==============================================================================
   // Data for all runs - needs to replaced with API call
-  // const savedRunData = () =>
-  //   JSON.parse(window.localStorage.getItem("runData")) || [];
-  // const [runData, setRunData] = React.useState(savedRunData);
-  // React.useEffect(() => {
-  //   window.localStorage.setItem("runData", JSON.stringify(runData));
-  // }, [runData]);
-
   const runData = useSelector((state) => state.runs.runsList);
   React.useEffect(() => {
     window.localStorage.setItem("runData", JSON.stringify(runData));
@@ -151,12 +144,11 @@ function App() {
 
   // Run creation and editing functions
   //==============================================================================
-  const createRun = function (newRunData) {
-    dispatch({ type: "runs/create", payload: newRunData });
-  };
-
   const updateRunData = function (uid, dataSection, dataKey, newValue) {
-    dispatch({ type: "runs/update", payload: {uid, dataSection, dataKey, newValue} });
+    dispatch({
+      type: "runs/update",
+      payload: { uid, dataSection, dataKey, newValue },
+    });
   };
 
   // Render
@@ -207,7 +199,7 @@ function App() {
                       />
                     </section>
                     <section className={styles.otherControls}>
-                      <RunInfo createRun={createRun} />
+                      <RunInfo />
                     </section>
                   </menu>
                   <TabBox
