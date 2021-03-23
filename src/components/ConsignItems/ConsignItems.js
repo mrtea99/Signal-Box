@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import FormItem from "../FormItem/FormItem.js";
 import InfoPod from "../InfoPod/InfoPod.js";
@@ -22,6 +22,19 @@ function ConsignItems(props) {
   const resetState = function () {
     setCountGood(0);
     setCountBad(0);
+  };
+
+  const dispatch = useDispatch();
+  const updateRun = function (runId, dataSection, dataKey, newValue) {
+    dispatch({
+      type: "runs/update",
+      payload: {
+        runId,
+        dataSection,
+        dataKey,
+        newValue,
+      },
+    });
   };
 
   const handleSubmit = function () {
@@ -46,17 +59,17 @@ function ConsignItems(props) {
         break;
     }
 
-    props.updateRunData(
+    updateRun(
       props.thisRunData.id,
       null,
       updateGoodField,
-      (props.thisRunData[updateGoodField] += countGood)
+      props.thisRunData[updateGoodField] + countGood
     );
-    props.updateRunData(
+    updateRun(
       props.thisRunData.id,
       null,
       updateBadField,
-      (props.thisRunData[updateBadField] += countBad)
+      props.thisRunData[updateBadField] + countBad
     );
 
     //Force activate stocking stage
@@ -174,7 +187,6 @@ function ConsignItems(props) {
 
 ConsignItems.propTypes = {
   thisStage: PropTypes.number.isRequired,
-  updateRunData: PropTypes.func.isRequired,
   thisRunData: PropTypes.object.isRequired,
   updateStageActive: PropTypes.func.isRequired,
   addSession: PropTypes.func.isRequired,

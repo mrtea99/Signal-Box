@@ -142,7 +142,6 @@ function StageActions(props) {
           <ConsignItems
             thisRunData={props.thisRunData}
             thisStage={props.thisStage}
-            updateRunData={props.updateRunData}
             stageStatus={stageStatus}
             updateStageActive={props.updateStageActive}
             addSession={props.addSession}
@@ -159,7 +158,6 @@ StageActions.propTypes = {
   updateStageActive: PropTypes.func.isRequired,
   setCurrentRunUid: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,
-  updateRunData: PropTypes.func.isRequired,
   addSession: PropTypes.func.isRequired,
 };
 
