@@ -92,6 +92,13 @@ function Stage(props) {
 
   // Change a stage's active state
   //-------------------------------------
+  const updateRun = function (runId, dataSection, dataKey, newValue) {
+    dispatch({
+      type: "runs/update",
+      payload: { runId, dataSection, dataKey, newValue },
+    });
+  };
+
   const updateStageActive = function (newState, stage) {
     // Update correct active stage property in run if there is one
     const activeProperty = getStageActiveProp(stage);
@@ -100,7 +107,7 @@ function Stage(props) {
     if (stageState === newState || activeProperty === null) {
       return false;
     } else {
-      props.updateRunData(props.currentRunUid, null, activeProperty, newState);
+      updateRun(props.currentRunUid, null, activeProperty, newState);
     }
 
     //Add event item to session list
@@ -173,7 +180,6 @@ function Stage(props) {
             activeSessionData={activeSessionData}
             stageActive={stageActive}
             thisRunData={props.thisRunData}
-            updateRunData={props.updateRunData}
           />
         </div>
         <div className={styles.sessionView}>
@@ -226,7 +232,6 @@ Stage.propTypes = {
   thisRunData: PropTypes.object.isRequired,
   thisStage: PropTypes.number.isRequired,
   currentRunUid: PropTypes.number.isRequired,
-  updateRunData: PropTypes.func.isRequired,
   stageName: PropTypes.string.isRequired,
   setCurrentRunUid: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,

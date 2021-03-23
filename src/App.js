@@ -142,15 +142,6 @@ function App() {
   //==============================================================================
   const [sidebarActive, setSidebarActive] = React.useState(false);
 
-  // Run creation and editing functions
-  //==============================================================================
-  const updateRunData = function (runId, dataSection, dataKey, newValue) {
-    dispatch({
-      type: "runs/update",
-      payload: { runId, dataSection, dataKey, newValue },
-    });
-  };
-
   // Render
   //==============================================================================
   return (
@@ -219,7 +210,6 @@ function App() {
                 </section>
                 <section>
                   <RunEditor
-                    updateRunData={updateRunData}
                     currentRunUid={currentRunUid}
                     setCurrentRunUid={setCurrentRunUid}
                     activeStage={activeStage}

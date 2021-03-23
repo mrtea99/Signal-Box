@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import SessionStartForm from "./SessionStartForm/SessionStartForm.js";
 import Button from "../../../Button/Button.js";
@@ -18,6 +18,14 @@ function SessionStart(props) {
   const [formData, setFormData] = React.useState({
     activity: activityList[props.thisStage][0],
   });
+
+  const dispatch = useDispatch();
+  const updateRun = function (runId, dataSection, dataKey, newValue) {
+    dispatch({
+      type: "runs/update",
+      payload: { runId, dataSection, dataKey, newValue },
+    });
+  };
 
   const handleOpen = function () {
     setResolvedAssignments(findDefaultResolved());
@@ -47,7 +55,7 @@ function SessionStart(props) {
     });
 
     if (props.thisRunData.status === "Not Started") {
-      props.updateRunData(props.thisRunData.id, null, "status", "In Progress");
+      updateRun(props.thisRunData.id, null, "status", "In Progress");
     }
 
     setModalActive(false);
@@ -64,8 +72,7 @@ function SessionStart(props) {
     return (
       session.type === "assign" &&
       !session.endTime &&
-      (session.secondaryUser === activeUser ||
-        session.secondaryUser === null)
+      (session.secondaryUser === activeUser || session.secondaryUser === null)
     );
   });
 
@@ -119,7 +126,6 @@ SessionStart.propTypes = {
   updateSession: PropTypes.func.isRequired,
   endSession: PropTypes.func.isRequired,
   thisRunData: PropTypes.object.isRequired,
-  updateRunData: PropTypes.func.isRequired,
 };
 
 export default SessionStart;

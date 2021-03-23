@@ -10,7 +10,6 @@ export const runsSlice = createSlice({
       state.runsList.push(action.payload);
     },
     update: (state, action) => {
-      console.log(action.payload)
       const { runId, dataSection, dataKey, newValue } = action.payload;
 
       const updatedRunsList = state.runsList.map((run) => {

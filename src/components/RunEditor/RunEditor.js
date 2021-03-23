@@ -121,7 +121,6 @@ function RunEditor(props) {
                 stageName={stageNames[props.activeStage]}
                 thisRunData={thisRunData}
                 currentRunUid={props.currentRunUid}
-                updateRunData={props.updateRunData}
                 setCurrentRunUid={props.setCurrentRunUid}
                 setActiveStage={props.setActiveStage}
               />
@@ -143,7 +142,6 @@ RunEditor.propTypes = {
   setCurrentRunUid: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,
   activeStage: PropTypes.number.isRequired,
-  updateRunData: PropTypes.func.isRequired,
 };
 
 export default RunEditor;

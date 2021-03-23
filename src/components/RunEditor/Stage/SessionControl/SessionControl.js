@@ -37,7 +37,6 @@ function SessionControl(props) {
               className={styles.sessionControl}
               thisRunData={props.thisRunData}
               endSession={props.endSession}
-              updateRunData={props.updateRunData}
             />
           )}
           <ButtonSpacer direction="vert">
@@ -70,7 +69,6 @@ SessionControl.propTypes = {
   updateSession: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
   thisRunData: PropTypes.object.isRequired,
-  updateRunData: PropTypes.func.isRequired,
 };
 
 export default SessionControl;
