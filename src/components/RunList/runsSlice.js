@@ -12,22 +12,23 @@ export const runsSlice = createSlice({
     update: (state, action) => {
       const { runId, dataSection, dataKey, newValue } = action.payload;
 
-      if (dataSection === "delete") {
-        state.runsList = state.runsList.filter((run) => runId !== run.id);
-      } else {
-        const updatedRunData = state.runsList.map((run) => {
-          if (run.id === runId) {
-            if (dataSection !== null) {
-              run[dataSection][dataKey] = newValue;
-            } else {
-              run[dataKey] = newValue;
-            }
-            return run;
+      const updatedRunsList = state.runsList.map((run) => {
+        if (run.id === runId) {
+          if (dataSection !== null) {
+            run[dataSection][dataKey] = newValue;
+          } else {
+            run[dataKey] = newValue;
           }
           return run;
-        });
-        state.runsList = updatedRunData;
-      }
+        }
+        return run;
+      });
+
+      state.runsList = updatedRunsList;
+    },
+    delete: (state, action) => {
+      const runId = action.payload;
+      state.runsList = state.runsList.filter((run) => runId !== run.id);
     },
     addSession: (state, action) => {
       const { runId, stage, sessionData } = action.payload;

@@ -11,10 +11,9 @@ function RunDelete(props) {
 
   const dispatch = useDispatch();
   const deleteRun = function (runId) {
-    const dataSection = "delete";
     dispatch({
-      type: "runs/update",
-      payload: { runId, dataSection },
+      type: "runs/delete",
+      payload: runId,
     });
   };
 
