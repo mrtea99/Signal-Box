@@ -1,12 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import CheckOpenerForm from "./CheckOpenerForm/CheckOpenerForm.js";
 
+import stageNames from "../../data/stageNames.json";
+
+
 function CheckOpener(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = React.useState({
     notes: "",
@@ -18,6 +22,8 @@ function CheckOpener(props) {
 
     const newSession = {
       sessionId: newsessionId,
+      runId: props.currentRunUid,
+      stage: stageNames[props.thisStage],
       type: "qa",
       startTime: Date.now(),
       endTime: null,
@@ -25,7 +31,14 @@ function CheckOpener(props) {
       ...formData,
     };
 
-    props.addSession(newSession, props.thisStage);
+    dispatch({
+      type: "runs/addSession",
+      payload: {
+        runId: props.currentRunUid,
+        stage: props.thisStage,
+        sessionData: newSession,
+      },
+    });
   };
 
   return (
@@ -49,6 +62,7 @@ function CheckOpener(props) {
 CheckOpener.propTypes = {
   addSession: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
+  currentRunUid: PropTypes.number.isRequired,
 };
 
 export default CheckOpener;

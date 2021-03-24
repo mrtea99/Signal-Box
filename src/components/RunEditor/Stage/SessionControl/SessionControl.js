@@ -38,6 +38,7 @@ function SessionControl(props) {
               className={styles.sessionControl}
               thisRunData={props.thisRunData}
               endSession={props.endSession}
+              currentRunUid={props.currentRunUid}
             />
           )}
           <ButtonSpacer direction="vert">
@@ -45,15 +46,18 @@ function SessionControl(props) {
               <AssignmentOpener
                 addSession={props.addSession}
                 thisStage={props.thisStage}
+                currentRunUid={props.currentRunUid}
               />
             ) : null}
             <CheckOpener
               addSession={props.addSession}
               thisStage={props.thisStage}
+              currentRunUid={props.currentRunUid}
             />
             <FlagOpener
               addSession={props.addSession}
               thisStage={props.thisStage}
+              currentRunUid={props.currentRunUid}
             />
           </ButtonSpacer>
         </div>

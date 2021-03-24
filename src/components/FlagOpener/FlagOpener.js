@@ -1,13 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import FormItem from "../FormItem/FormItem.js";
 
+import stageNames from "../../data/stageNames.json";
+
 function FlagOpener(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
+  const dispatch = useDispatch();
 
   const [description, setDescription] = React.useState("");
   const [priority, setPriority] = React.useState(1);
@@ -17,6 +19,8 @@ function FlagOpener(props) {
 
     const newSession = {
       sessionId: newsessionId,
+      runId: props.currentRunUid,
+      stage: stageNames[props.thisStage],
       type: "flag",
       startTime: Date.now(),
       endTime: null,
@@ -27,7 +31,14 @@ function FlagOpener(props) {
       extra: "active",
     };
 
-    props.addSession(newSession, props.thisStage);
+    dispatch({
+      type: "runs/addSession",
+      payload: {
+        runId: props.currentRunUid,
+        stage: props.thisStage,
+        sessionData: newSession,
+      },
+    });
 
     handleCancel();
   };
@@ -108,6 +119,7 @@ function FlagOpener(props) {
 FlagOpener.propTypes = {
   addSession: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
+  currentRunUid: PropTypes.number.isRequired,
 };
 
 export default FlagOpener;

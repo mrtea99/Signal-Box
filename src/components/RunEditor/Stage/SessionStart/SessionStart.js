@@ -39,6 +39,7 @@ function SessionStart(props) {
 
     const newSession = {
       sessionId: newsessionId,
+      runId: props.currentRunUid,
       stage: stageNames[props.thisStage],
       type: "work",
       startTime: Date.now(),
@@ -48,7 +49,14 @@ function SessionStart(props) {
       secondaryUser: parseInt(formData.assistor),
     };
 
-    props.addSession(newSession, props.thisStage);
+    dispatch({
+      type: "runs/addSession",
+      payload: {
+        runId: props.currentRunUid,
+        stage: props.thisStage,
+        sessionData: newSession,
+      },
+    });
 
     resolvedAssignments.forEach((sessionId) => {
       props.updateSession({ endTime: Date.now() }, props.thisStage, sessionId);

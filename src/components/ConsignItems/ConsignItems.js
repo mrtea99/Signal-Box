@@ -13,6 +13,8 @@ import styles from "./ConsignItems.module.css";
 
 import getItemType from "../../utils/getItemType.js";
 
+import stageNames from "../../data/stageNames.json";
+
 function ConsignItems(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
 
@@ -82,6 +84,8 @@ function ConsignItems(props) {
 
     const newSession = {
       sessionId: newsessionId,
+      runId: props.currentRunUid,
+      stage: stageNames[props.thisStage],
       type: "consign",
       startTime: Date.now(),
       endTime: Date.now(),
@@ -91,7 +95,14 @@ function ConsignItems(props) {
       amountBad: countBad,
     };
 
-    props.addSession(newSession, props.thisStage);
+    dispatch({
+      type: "runs/addSession",
+      payload: {
+        runId: props.currentRunUid,
+        stage: props.thisStage,
+        sessionData: newSession,
+      },
+    });
 
     resetState();
   };
@@ -191,6 +202,7 @@ ConsignItems.propTypes = {
   updateStageActive: PropTypes.func.isRequired,
   addSession: PropTypes.func.isRequired,
   stageStatus: PropTypes.object.isRequired,
+  currentRunUid: PropTypes.number.isRequired,
 };
 
 export default ConsignItems;

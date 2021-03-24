@@ -214,6 +214,7 @@ function Stage(props) {
             setActiveStage={props.setActiveStage}
             addSession={addSession}
             updateStageActive={updateStageActive}
+            currentRunUid={props.currentRunUid}
           />
         </div>
       </div>

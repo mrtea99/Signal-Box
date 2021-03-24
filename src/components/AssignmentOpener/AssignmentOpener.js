@@ -1,12 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import AssignmentOpenerForm from "./AssignmentOpenerForm/AssignmentOpenerForm.js";
 
+import stageNames from "../../data/stageNames.json";
+
 function AssignmentOpener(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
+  const dispatch = useDispatch();
 
   const millisecondsPerHour = 3600000;
   const shiftTimes = [
@@ -40,6 +43,8 @@ function AssignmentOpener(props) {
 
     const newSession = {
       sessionId: newsessionId,
+      runId: props.currentRunUid,
+      stage: stageNames[props.thisStage],
       type: "assign",
       startTime: formData.startDate + formData.startTime,
       endTime: null,
@@ -49,7 +54,15 @@ function AssignmentOpener(props) {
       extra: "active",
     };
 
-    props.addSession(newSession, props.thisStage);
+    // props.addSession(newSession, props.thisStage);
+    dispatch({
+      type: "runs/addSession",
+      payload: {
+        runId: props.currentRunUid,
+        stage: props.thisStage,
+        sessionData: newSession,
+      },
+    });
 
     handleCancel();
   };
@@ -81,6 +94,7 @@ function AssignmentOpener(props) {
 AssignmentOpener.propTypes = {
   thisStage: PropTypes.number.isRequired,
   addSession: PropTypes.func.isRequired,
+  currentRunUid: PropTypes.number.isRequired,
 };
 
 export default AssignmentOpener;

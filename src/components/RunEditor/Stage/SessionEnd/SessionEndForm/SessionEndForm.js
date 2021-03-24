@@ -12,6 +12,8 @@ import UnitSystemContext from "../../../../../contexts/DateFormatContext.js";
 
 import getItemType from "../../../../../utils/getItemType.js";
 
+import stageNames from "../../../../../data/stageNames.json";
+
 function SessionEndForm(props) {
   const unitSystem = React.useContext(UnitSystemContext);
 
@@ -64,7 +66,7 @@ function SessionEndForm(props) {
       const newSession = {
         sessionId: newsessionId,
         runId: props.currentRunUid,
-        stage: props.thisStage,
+        stage: stageNames[props.thisStage],
         type: "qa",
         startTime: Date.now(),
         endTime: null,
