@@ -28,6 +28,7 @@ function SessionControl(props) {
               activeSessionData={props.activeSessionData}
               thisRunData={props.thisRunData}
               className={styles.sessionControl}
+              currentRunUid={props.currentRunUid}
             />
           ) : (
             <SessionStart
@@ -69,6 +70,7 @@ SessionControl.propTypes = {
   updateSession: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
   thisRunData: PropTypes.object.isRequired,
+  currentRunUid: PropTypes.number.isRequired,
 };
 
 export default SessionControl;

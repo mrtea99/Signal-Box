@@ -173,23 +173,24 @@ function Stage(props) {
       <div className={styles.sessionHolder}>
         <div className={styles.sessionControl}>
           <SessionControl
+            thisStage={props.thisStage}
+            stageActive={stageActive}
+            currentRunUid={props.currentRunUid}
+            thisRunData={props.thisRunData}
+            activeSessionData={activeSessionData}
             addSession={addSession}
             updateSession={updateSession}
             endSession={endSession}
-            thisStage={props.thisStage}
-            activeSessionData={activeSessionData}
-            stageActive={stageActive}
-            thisRunData={props.thisRunData}
           />
         </div>
         <div className={styles.sessionView}>
           {activeSessionData ? (
             <SessionDuring
               key="active"
-              activeSessionData={activeSessionData}
-              updateSession={updateSession}
               thisStage={props.thisStage}
               thisRunData={props.thisRunData}
+              activeSessionData={activeSessionData}
+              updateSession={updateSession}
             />
           ) : (
             <SessionDuring key="placeholder" />
@@ -207,12 +208,12 @@ function Stage(props) {
             />
           )}
           <StageActions
-            updateStageActive={updateStageActive}
-            thisRunData={props.thisRunData}
             thisStage={props.thisStage}
+            thisRunData={props.thisRunData}
             setCurrentRunUid={props.setCurrentRunUid}
             setActiveStage={props.setActiveStage}
             addSession={addSession}
+            updateStageActive={updateStageActive}
           />
         </div>
       </div>

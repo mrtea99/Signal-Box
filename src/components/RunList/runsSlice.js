@@ -7,9 +7,7 @@ export const runsSlice = createSlice({
   },
   reducers: {
     create: (state, action) => {
-      const newRun = action.payload;
-
-      state.runsList.push(newRun);
+      state.runsList.push(action.payload);
     },
     update: (state, action) => {
       const { runId, dataSection, dataKey, newValue } = action.payload;

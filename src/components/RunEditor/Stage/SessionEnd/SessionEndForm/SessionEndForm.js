@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import Button from "../../../../Button/Button.js";
 import ButtonSpacer from "../../../../Button/ButtonSpacer/ButtonSpacer.js";
@@ -24,6 +24,8 @@ function SessionEndForm(props) {
   );
   const showWeight = props.activeSessionData.activity.fields.includes("weight");
   const showQa = props.activeSessionData.activity.fields.includes("qa");
+
+  const dispatch = useDispatch();
 
   // After Statuses
   // Notes (all)
@@ -61,6 +63,8 @@ function SessionEndForm(props) {
 
       const newSession = {
         sessionId: newsessionId,
+        runId: props.currentRunUid,
+        stage: props.thisStage,
         type: "qa",
         startTime: Date.now(),
         endTime: null,
@@ -68,7 +72,14 @@ function SessionEndForm(props) {
         ...qaFormData,
       };
 
-      props.addSession(newSession, props.thisStage);
+      dispatch({
+        type: "runs/addSession",
+        payload: {
+          runId: props.currentRunUid,
+          stage: props.thisStage,
+          sessionData: newSession,
+        },
+      });
     }
 
     //End Session
@@ -203,6 +214,7 @@ SessionEndForm.propTypes = {
   endSession: PropTypes.func.isRequired,
   setFormActive: PropTypes.func.isRequired,
   thisRunData: PropTypes.object.isRequired,
+  currentRunUid: PropTypes.number.isRequired,
 };
 
 export default SessionEndForm;

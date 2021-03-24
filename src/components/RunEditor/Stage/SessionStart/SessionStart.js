@@ -107,7 +107,6 @@ function SessionStart(props) {
           />
           <SessionStartForm
             thisStage={props.thisStage}
-            addSession={props.addSession}
             handleCancel={handleCancel}
             handleNewClick={handleSubmit}
             formData={formData}
