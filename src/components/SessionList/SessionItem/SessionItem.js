@@ -156,7 +156,7 @@ function SessionItem(props) {
                 thisStage={thisStage}
                 session={session}
                 endSession={props.endSession}
-                updateSession={props.updateSession}
+                currentRunUid={props.currentRunUid}
               />
             ) : null}
             {session.type === "assign" && !simpleMode ? (
@@ -164,8 +164,8 @@ function SessionItem(props) {
                 key={session.sessionId}
                 thisStage={thisStage}
                 session={session}
-                updateSession={props.updateSession}
                 endSession={props.endSession}
+                currentRunUid={props.currentRunUid}
               />
             ) : null}
             {session.type === "qa" ? (
@@ -258,7 +258,7 @@ SessionItem.propTypes = {
   itemCount: PropTypes.number,
   thisStage: PropTypes.number,
   endSession: PropTypes.func,
-  updateSession: PropTypes.func,
+  currentRunUid: PropTypes.number.isRequired,
 };
 
 export default SessionItem;

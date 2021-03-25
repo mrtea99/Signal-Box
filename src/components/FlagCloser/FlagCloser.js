@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import FormItem from "../FormItem/FormItem.js";
@@ -12,6 +12,8 @@ function FlagCloser(props) {
   const [description, setDescription] = React.useState("");
   const [status, setStatus] = React.useState(props.session.extra);
   const [priority, setPriority] = React.useState(props.session.amount);
+
+  const dispatch = useDispatch();
 
   const handleSubmit = function () {
     const labeledDescription =
@@ -34,11 +36,15 @@ function FlagCloser(props) {
         props.session
       );
     } else {
-      props.updateSession(
-        { notes: newNote, amount: priority, extra: status },
-        props.thisStage,
-        props.session.sessionId
-      );
+      dispatch({
+        type: "runs/updateSession",
+        payload: {
+          runId: props.currentRunUid,
+          stage: props.thisStage,
+          sessionId: props.session.sessionId,
+          extraData: { notes: newNote, amount: priority, extra: status },
+        },
+      });
     }
 
     handleCancel();
@@ -160,7 +166,7 @@ FlagCloser.propTypes = {
   session: PropTypes.object.isRequired,
   endSession: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
-  updateSession: PropTypes.func.isRequired,
+  currentRunUid: PropTypes.number.isRequired,
 };
 
 export default FlagCloser;

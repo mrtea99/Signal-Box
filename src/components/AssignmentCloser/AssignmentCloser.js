@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import AssignmentOpenerForm from "../AssignmentOpener/AssignmentOpenerForm/AssignmentOpenerForm.js";
@@ -34,6 +35,8 @@ function AssignmentCloser(props) {
   const [formData, setFormData] = React.useState(defaultFormData);
   const [status, setStatus] = React.useState(props.session.extra);
 
+  const dispatch = useDispatch();
+
   const handleSubmit = function () {
     if (status === "resolved") {
       props.endSession(
@@ -47,15 +50,19 @@ function AssignmentCloser(props) {
         props.session
       );
     } else {
-      props.updateSession(
-        {
-          notes: formData.description,
-          secondaryUser: formData.assignee,
-          startTime: formData.startDate + formData.startTime,
+      dispatch({
+        type: "runs/updateSession",
+        payload: {
+          runId: props.currentRunUid,
+          stage: props.thisStage,
+          sessionId: props.session.sessionId,
+          extraData: {
+            notes: formData.description,
+            secondaryUser: formData.assignee,
+            startTime: formData.startDate + formData.startTime,
+          },
         },
-        props.thisStage,
-        props.session.sessionId
-      );
+      });
     }
 
     // handleCancel();
@@ -105,9 +112,9 @@ function AssignmentCloser(props) {
 
 AssignmentCloser.propTypes = {
   session: PropTypes.object.isRequired,
-  updateSession: PropTypes.func.isRequired,
   endSession: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
+  currentRunUid: PropTypes.number.isRequired,
 };
 
 export default AssignmentCloser;

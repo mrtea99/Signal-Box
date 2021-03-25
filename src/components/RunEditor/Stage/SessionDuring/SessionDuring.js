@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 
 import FormItem from "../../../FormItem/FormItem.js";
 import Timer from "../../../Timer/Timer.js";
@@ -32,13 +33,20 @@ function SessionDuring(props) {
 
   const itemType = getItemType(props.thisStage);
 
+  const dispatch = useDispatch();
+
   const handleFieldChange = function (value, setState, dataKey) {
     setState(value);
-    props.updateSession(
-      { [dataKey]: value },
-      props.thisStage,
-      props.activeSessionData.sessionId
-    );
+
+    dispatch({
+      type: "runs/updateSession",
+      payload: {
+        runId: props.currentRunUid,
+        stage: props.thisStage,
+        sessionId: props.activeSessionData.sessionId,
+        extraData: { [dataKey]: value },
+      },
+    });
   };
 
   const expiryCalc = function (start, months) {
@@ -238,9 +246,9 @@ function SessionDuring(props) {
 
 SessionDuring.propTypes = {
   activeSessionData: PropTypes.object,
-  updateSession: PropTypes.func,
   thisStage: PropTypes.number,
   thisRunData: PropTypes.object,
+  currentRunUid: PropTypes.number,
 };
 
 export default SessionDuring;

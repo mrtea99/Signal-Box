@@ -90,6 +90,7 @@ function RunEditor(props) {
                         </Button>
                         <StageOverview
                           thisRunData={thisRunData}
+                          currentRunUid={props.currentRunUid}
                         ></StageOverview>
                       </Modal>
                     ) : null}

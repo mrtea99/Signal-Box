@@ -181,7 +181,6 @@ function Stage(props) {
             currentRunUid={props.currentRunUid}
             thisRunData={props.thisRunData}
             activeSessionData={activeSessionData}
-            updateSession={updateSession}
             endSession={endSession}
           />
         </div>
@@ -192,7 +191,7 @@ function Stage(props) {
               thisStage={props.thisStage}
               thisRunData={props.thisRunData}
               activeSessionData={activeSessionData}
-              updateSession={updateSession}
+              currentRunUid={props.currentRunUid}
             />
           ) : (
             <SessionDuring key="placeholder" />
@@ -224,7 +223,7 @@ function Stage(props) {
           thisStage={props.thisStage}
           thisRunData={props.thisRunData}
           endSession={endSession}
-          updateSession={updateSession}
+          currentRunUid={props.currentRunUid}
         />
       )}
     </section>

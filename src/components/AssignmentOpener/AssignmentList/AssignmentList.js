@@ -49,9 +49,9 @@ function AssignmentList(props) {
                 <div className={`${styles.colAction} ${styles.resolve}`}>
                   <AssignmentCloser
                     session={session}
-                    updateSession={props.updateSession}
                     endSession={props.endSession}
                     thisStage={props.thisStage}
+                    currentRunUid={props.currentRunUid}
                   />
                 </div>
                 <div className={`${styles.colResolve} ${styles.resolve}`}>
@@ -84,9 +84,9 @@ AssignmentList.propTypes = {
   assignSessions: PropTypes.array.isRequired,
   resolvedAssignments: PropTypes.array.isRequired,
   setResolvedAssignments: PropTypes.func.isRequired,
-  updateSession: PropTypes.func.isRequired,
   endSession: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
+  currentRunUid: PropTypes.number.isRequired,
 };
 
 export default AssignmentList;

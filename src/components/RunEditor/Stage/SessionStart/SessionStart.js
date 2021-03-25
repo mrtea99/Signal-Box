@@ -59,7 +59,15 @@ function SessionStart(props) {
     });
 
     resolvedAssignments.forEach((sessionId) => {
-      props.updateSession({ endTime: Date.now() }, props.thisStage, sessionId);
+      dispatch({
+        type: "runs/updateSession",
+        payload: {
+          runId: props.currentRunUid,
+          stage: props.thisStage,
+          sessionId: sessionId,
+          extraData: { endTime: Date.now() },
+        },
+      });
     });
 
     if (props.thisRunData.status === "Not Started") {
@@ -110,8 +118,8 @@ function SessionStart(props) {
             resolvedAssignments={resolvedAssignments}
             setResolvedAssignments={setResolvedAssignments}
             thisStage={props.thisStage}
-            updateSession={props.updateSession}
             endSession={props.endSession}
+            currentRunUid={props.currentRunUid}
           />
           <SessionStartForm
             thisStage={props.thisStage}
@@ -129,9 +137,9 @@ function SessionStart(props) {
 SessionStart.propTypes = {
   className: PropTypes.string,
   thisStage: PropTypes.number.isRequired,
-  updateSession: PropTypes.func.isRequired,
   endSession: PropTypes.func.isRequired,
   thisRunData: PropTypes.object.isRequired,
+  currentRunUid: PropTypes.number.isRequired,
 };
 
 export default SessionStart;

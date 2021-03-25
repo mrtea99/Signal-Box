@@ -14,17 +14,14 @@ function StageOverview(props) {
           <h3>
             {stageName}
             {": "}
-            <StageStatus
-              runData={props.thisRunData}
-              stageNum={index}
-              label
-            />
+            <StageStatus runData={props.thisRunData} stageNum={index} label />
           </h3>
           <SessionList
             thisStage={index}
             thisRunData={props.thisRunData}
             endSession={props.endSession}
             updateSession={props.updateSession}
+            currentRunUid={props.currentRunUid}
           />
         </section>
       ))}
@@ -34,6 +31,7 @@ function StageOverview(props) {
 
 StageOverview.propTypes = {
   thisRunData: PropTypes.object.isRequired,
+  currentRunUid: PropTypes.number.isRequired,
 };
 
 export default StageOverview;
