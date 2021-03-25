@@ -94,13 +94,6 @@ function Stage(props) {
 
   // Change a stage's active state
   //-------------------------------------
-  const updateRun = function (runId, dataSection, dataKey, newValue) {
-    dispatch({
-      type: "runs/update",
-      payload: { runId, dataSection, dataKey, newValue },
-    });
-  };
-
   const updateStageActive = function (newState, stage) {
     // Update correct active stage property in run if there is one
     const activeProperty = getStageActiveProp(stage);
@@ -109,7 +102,15 @@ function Stage(props) {
     if (stageState === newState || activeProperty === null) {
       return false;
     } else {
-      updateRun(props.currentRunUid, null, activeProperty, newState);
+      dispatch({
+        type: "runs/update",
+        payload: {
+          runId: props.currentRunUid,
+          dataSection: null,
+          dataKey: activeProperty,
+          newValue: newState,
+        },
+      });
     }
 
     //Add event item to session list
@@ -140,7 +141,7 @@ function Stage(props) {
     <section className={styles.stage}>
       <header className={styles.stageHeader}>
         <div className={styles.stageTitleWrap}>
-          <h2 className={styles.stageTitle}>{props.stageName}</h2>
+          <h2 className={styles.stageTitle}>{props.thisStage}</h2>
         </div>
         <h4 className={styles.stageDifficulty}>
           Difficulty: {getDifficulty(props.thisStage)}
@@ -149,9 +150,9 @@ function Stage(props) {
       <div className={styles.sessionHolder}>
         <div className={styles.sessionControl}>
           <SessionControl
+            currentRunUid={props.currentRunUid}
             thisStage={props.thisStage}
             stageActive={stageActive}
-            currentRunUid={props.currentRunUid}
             thisRunData={props.thisRunData}
             activeSessionData={activeSessionData}
           />
@@ -160,10 +161,10 @@ function Stage(props) {
           {activeSessionData ? (
             <SessionDuring
               key="active"
+              currentRunUid={props.currentRunUid}
               thisStage={props.thisStage}
               thisRunData={props.thisRunData}
               activeSessionData={activeSessionData}
-              currentRunUid={props.currentRunUid}
             />
           ) : (
             <SessionDuring key="placeholder" />
@@ -172,8 +173,8 @@ function Stage(props) {
         <div className={styles.stageControl}>
           {simpleMode ? null : (
             <StageStatus
-              runData={props.thisRunData}
               stageNum={props.thisStage}
+              runData={props.thisRunData}
               label
               layout="vert"
               fullWidth
@@ -181,12 +182,12 @@ function Stage(props) {
             />
           )}
           <StageActions
-            thisStage={props.thisStage}
-            thisRunData={props.thisRunData}
-            setCurrentRunUid={props.setCurrentRunUid}
-            setActiveStage={props.setActiveStage}
-            updateStageActive={updateStageActive}
             currentRunUid={props.currentRunUid}
+            setCurrentRunUid={props.setCurrentRunUid}
+            thisStage={props.thisStage}
+            setActiveStage={props.setActiveStage}
+            thisRunData={props.thisRunData}
+            updateStageActive={updateStageActive}
           />
         </div>
       </div>
@@ -202,12 +203,11 @@ function Stage(props) {
 }
 
 Stage.propTypes = {
-  thisRunData: PropTypes.object.isRequired,
-  thisStage: PropTypes.number.isRequired,
   currentRunUid: PropTypes.number.isRequired,
-  stageName: PropTypes.string.isRequired,
   setCurrentRunUid: PropTypes.func.isRequired,
+  thisStage: PropTypes.number.isRequired,
   setActiveStage: PropTypes.func.isRequired,
+  thisRunData: PropTypes.object.isRequired,
 };
 
 export default Stage;

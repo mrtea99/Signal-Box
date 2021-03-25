@@ -14,7 +14,7 @@ import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
 
 import styles from "./RunEditor.module.css";
 
-import stageNames from "../../data/stageNames.json";
+// import stageNames from "../../data/stageNames.json";
 
 import ViewModeContext from "../../contexts/ViewModeContext.js";
 
@@ -115,13 +115,12 @@ function RunEditor(props) {
               />
 
               <Stage
-                key={props.currentRunUid + stageNames[props.activeStage]}
-                thisStage={props.activeStage}
-                stageName={stageNames[props.activeStage]}
-                thisRunData={thisRunData}
+                key={props.currentRunUid + props.activeStage}
                 currentRunUid={props.currentRunUid}
                 setCurrentRunUid={props.setCurrentRunUid}
+                thisStage={props.activeStage}
                 setActiveStage={props.setActiveStage}
+                thisRunData={thisRunData}
               />
             </div>
             {/* <pre>{JSON.stringify(thisRunData)}</pre> */}
@@ -139,8 +138,8 @@ function RunEditor(props) {
 RunEditor.propTypes = {
   currentRunUid: PropTypes.number,
   setCurrentRunUid: PropTypes.func.isRequired,
-  setActiveStage: PropTypes.func.isRequired,
   activeStage: PropTypes.number.isRequired,
+  setActiveStage: PropTypes.func.isRequired,
 };
 
 export default RunEditor;
