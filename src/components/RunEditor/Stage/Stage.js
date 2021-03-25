@@ -133,33 +133,6 @@ function Stage(props) {
     });
   };
 
-  // Session creation and editing functions
-  //==============================================================================
-  const updateSession = function (extraData, stage, sessionId) {
-    const runId = props.currentRunUid;
-
-    dispatch({
-      type: "runs/updateSession",
-      payload: {
-        runId,
-        stage,
-        sessionId,
-        extraData,
-      },
-    });
-  };
-
-  const endSession = function (extraData, stage, sessionData) {
-    const endTime = { endTime: Date.now() };
-
-    if (extraData) {
-      Object.assign(extraData, endTime);
-      updateSession(extraData, stage, sessionData.sessionId);
-    } else {
-      updateSession(endTime, stage, sessionData.sessionId);
-    }
-  };
-
   // Render
   //==============================================================================
 
@@ -181,7 +154,6 @@ function Stage(props) {
             currentRunUid={props.currentRunUid}
             thisRunData={props.thisRunData}
             activeSessionData={activeSessionData}
-            endSession={endSession}
           />
         </div>
         <div className={styles.sessionView}>
@@ -222,7 +194,6 @@ function Stage(props) {
         <SessionList
           thisStage={props.thisStage}
           thisRunData={props.thisRunData}
-          endSession={endSession}
           currentRunUid={props.currentRunUid}
         />
       )}

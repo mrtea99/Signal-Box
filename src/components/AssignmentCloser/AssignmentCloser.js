@@ -39,16 +39,20 @@ function AssignmentCloser(props) {
 
   const handleSubmit = function () {
     if (status === "resolved") {
-      props.endSession(
-        {
-          notes: formData.description,
-          secondaryUser: formData.assignee,
-          startTime: formData.startDate + formData.startTime,
-          extra: status,
+      dispatch({
+        type: "runs/endSession",
+        payload: {
+          runId: props.currentRunUid,
+          stage: props.thisStage,
+          sessionId: props.session.sessionId,
+          extraData: {
+            notes: formData.description,
+            secondaryUser: formData.assignee,
+            startTime: formData.startDate + formData.startTime,
+            extra: status,
+          },
         },
-        props.thisStage,
-        props.session
-      );
+      });
     } else {
       dispatch({
         type: "runs/updateSession",
@@ -112,7 +116,6 @@ function AssignmentCloser(props) {
 
 AssignmentCloser.propTypes = {
   session: PropTypes.object.isRequired,
-  endSession: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
   currentRunUid: PropTypes.number.isRequired,
 };

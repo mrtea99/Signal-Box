@@ -84,16 +84,22 @@ function SessionEndForm(props) {
       });
     }
 
-    //End Session
-    const extraData = {
-      notes: noteData,
-      amount: amount,
-      amountType: itemType,
-      amountBad: amountBad,
-      averageWeight: averageWeight,
-    };
-
-    props.endSession(extraData, props.thisStage, props.activeSessionData);
+    //End Work Session
+    dispatch({
+      type: "runs/endSession",
+      payload: {
+        runId: props.currentRunUid,
+        stage: props.thisStage,
+        sessionId: props.activeSessionData.sessionId,
+        extraData: {
+          notes: noteData,
+          amount: amount,
+          amountType: itemType,
+          amountBad: amountBad,
+          averageWeight: averageWeight,
+        },
+      },
+    });
 
     props.setFormActive(false);
   };
@@ -212,7 +218,6 @@ function SessionEndForm(props) {
 SessionEndForm.propTypes = {
   activeSessionData: PropTypes.object.isRequired,
   thisStage: PropTypes.number.isRequired,
-  endSession: PropTypes.func.isRequired,
   setFormActive: PropTypes.func.isRequired,
   thisRunData: PropTypes.object.isRequired,
   currentRunUid: PropTypes.number.isRequired,

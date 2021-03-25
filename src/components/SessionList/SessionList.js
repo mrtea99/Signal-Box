@@ -51,7 +51,6 @@ function SessionList(props) {
                 thisStageData={thisStageData}
                 itemCount={thisStageData.length - index}
                 thisStage={props.thisStage}
-                endSession={props.endSession}
                 columns={columns}
                 currentRunUid={props.currentRunUid}
               />
@@ -72,7 +71,6 @@ function SessionList(props) {
 SessionList.propTypes = {
   thisRunData: PropTypes.object.isRequired,
   thisStage: PropTypes.number.isRequired,
-  endSession: PropTypes.func.isRequired,
   currentRunUid: PropTypes.number.isRequired,
 };
 

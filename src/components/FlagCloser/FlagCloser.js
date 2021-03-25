@@ -30,11 +30,15 @@ function FlagCloser(props) {
         : labeledDescription;
 
     if (status === "resolved") {
-      props.endSession(
-        { notes: newNote, amount: priority },
-        props.thisStage,
-        props.session
-      );
+      dispatch({
+        type: "runs/endSession",
+        payload: {
+          runId: props.currentRunUid,
+          stage: props.thisStage,
+          sessionId: props.session.sessionId,
+          extraData: { notes: newNote, amount: priority },
+        },
+      });
     } else {
       dispatch({
         type: "runs/updateSession",
@@ -164,7 +168,6 @@ function FlagCloser(props) {
 
 FlagCloser.propTypes = {
   session: PropTypes.object.isRequired,
-  endSession: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
   currentRunUid: PropTypes.number.isRequired,
 };

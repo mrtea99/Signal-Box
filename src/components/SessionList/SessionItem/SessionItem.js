@@ -155,7 +155,6 @@ function SessionItem(props) {
                 key={session.sessionId}
                 thisStage={thisStage}
                 session={session}
-                endSession={props.endSession}
                 currentRunUid={props.currentRunUid}
               />
             ) : null}
@@ -164,7 +163,6 @@ function SessionItem(props) {
                 key={session.sessionId}
                 thisStage={thisStage}
                 session={session}
-                endSession={props.endSession}
                 currentRunUid={props.currentRunUid}
               />
             ) : null}
@@ -173,7 +171,7 @@ function SessionItem(props) {
                 key={session.sessionId}
                 thisStage={thisStage}
                 session={session}
-                endSession={props.endSession}
+                currentRunUid={props.currentRunUid}
               />
             ) : null}
           </li>
@@ -257,7 +255,6 @@ SessionItem.propTypes = {
   session: PropTypes.object,
   itemCount: PropTypes.number,
   thisStage: PropTypes.number,
-  endSession: PropTypes.func,
   currentRunUid: PropTypes.number.isRequired,
 };
 

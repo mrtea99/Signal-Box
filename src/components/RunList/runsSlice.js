@@ -1,5 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const changeSession = function (runId, stage, sessionId, extraData, state) {
+  const sessionToChange = state.runsList
+    .find((run) => run.id === runId)
+    .stages[stage].sessions.find((session) => session.sessionId === sessionId);
+
+  Object.assign(sessionToChange, extraData);
+};
+
 export const runsSlice = createSlice({
   name: "runs",
   initialState: {
@@ -43,13 +51,15 @@ export const runsSlice = createSlice({
     updateSession: (state, action) => {
       const { runId, stage, sessionId, extraData } = action.payload;
 
-      const sessionToChange = state.runsList
-        .find((run) => run.id === runId)
-        .stages[stage].sessions.find(
-          (session) => session.sessionId === sessionId
-        );
+      changeSession(runId, stage, sessionId, extraData, state);
+    },
+    endSession: (state, action) => {
+      const { runId, stage, sessionId, extraData } = action.payload;
 
-      Object.assign(sessionToChange, extraData);
+      let combinedExtra = extraData || {};
+      Object.assign(combinedExtra, { endTime: Date.now() });
+
+      changeSession(runId, stage, sessionId, combinedExtra, state);
     },
   },
 });

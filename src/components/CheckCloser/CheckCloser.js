@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useDispatch } from "react-redux";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import FormItem from "../FormItem/FormItem.js";
@@ -12,22 +13,28 @@ function CheckCloser(props) {
   const [count, setCount] = React.useState(0);
   const [countBad, setCountBad] = React.useState(0);
 
+  const dispatch = useDispatch();
+
   const handleSubmit = function () {
     const newNote =
       props.session.notes && props.session.notes.length
         ? props.session.notes + "\n" + description
         : description;
 
-    props.endSession(
-      {
-        notes: newNote,
-        amount: count,
-        amountType: getItemType(props.thisStage),
-        amountBad: countBad,
+    dispatch({
+      type: "runs/endSession",
+      payload: {
+        runId: props.currentRunUid,
+        stage: props.thisStage,
+        sessionId: props.session.sessionId,
+        extraData: {
+          notes: newNote,
+          amount: count,
+          amountType: getItemType(props.thisStage),
+          amountBad: countBad,
+        },
       },
-      props.thisStage,
-      props.session
-    );
+    });
 
     setDescription("");
     setCountBad(0);
@@ -94,8 +101,8 @@ function CheckCloser(props) {
 
 CheckCloser.propTypes = {
   session: PropTypes.object.isRequired,
-  endSession: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
+  currentRunUid: PropTypes.number.isRequired,
 };
 
 export default CheckCloser;

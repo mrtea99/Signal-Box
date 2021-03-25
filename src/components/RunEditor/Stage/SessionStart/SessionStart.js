@@ -118,7 +118,6 @@ function SessionStart(props) {
             resolvedAssignments={resolvedAssignments}
             setResolvedAssignments={setResolvedAssignments}
             thisStage={props.thisStage}
-            endSession={props.endSession}
             currentRunUid={props.currentRunUid}
           />
           <SessionStartForm
@@ -137,7 +136,6 @@ function SessionStart(props) {
 SessionStart.propTypes = {
   className: PropTypes.string,
   thisStage: PropTypes.number.isRequired,
-  endSession: PropTypes.func.isRequired,
   thisRunData: PropTypes.object.isRequired,
   currentRunUid: PropTypes.number.isRequired,
 };
