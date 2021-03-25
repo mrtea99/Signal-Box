@@ -12,6 +12,8 @@ import styles from "./Stage.module.css";
 
 import ViewModeContext from "../../../contexts/ViewModeContext.js";
 
+import stageNames from "../../../data/stageNames.json";
+
 function Stage(props) {
   const simpleMode = React.useContext(ViewModeContext) === "simple";
 
@@ -113,25 +115,26 @@ function Stage(props) {
     //Add event item to session list
     const newSession = {
       sessionId: Date.now(),
+      runId: props.currentRunUid,
+      stage: stageNames[stage],
       type: newState ? "activate" : "deactivate",
       activity: newState,
       startTime: Date.now(),
       endTime: Date.now(),
       user: activeUser,
     };
-    addSession(newSession, stage);
+    dispatch({
+      type: "runs/addSession",
+      payload: {
+        runId: props.currentRunUid,
+        stage: stage,
+        sessionData: newSession,
+      },
+    });
   };
 
   // Session creation and editing functions
   //==============================================================================
-  const addSession = function (sessionData, stage) {
-    const runId = props.currentRunUid;
-    dispatch({
-      type: "runs/addSession",
-      payload: { runId, stage, sessionData },
-    });
-  };
-
   const updateSession = function (extraData, stage, sessionId) {
     const runId = props.currentRunUid;
 
@@ -178,7 +181,6 @@ function Stage(props) {
             currentRunUid={props.currentRunUid}
             thisRunData={props.thisRunData}
             activeSessionData={activeSessionData}
-            addSession={addSession}
             updateSession={updateSession}
             endSession={endSession}
           />
@@ -212,7 +214,6 @@ function Stage(props) {
             thisRunData={props.thisRunData}
             setCurrentRunUid={props.setCurrentRunUid}
             setActiveStage={props.setActiveStage}
-            addSession={addSession}
             updateStageActive={updateStageActive}
             currentRunUid={props.currentRunUid}
           />

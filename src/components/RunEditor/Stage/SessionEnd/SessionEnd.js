@@ -22,7 +22,6 @@ function SessionEnd(props) {
         <Modal title={`End ${props.activeSessionData.activity.name} Session`}>
           <SessionEndForm
             setFormActive={setModalActive}
-            addSession={props.addSession}
             endSession={props.endSession}
             thisStage={props.thisStage}
             activeSessionData={props.activeSessionData}
@@ -38,7 +37,6 @@ function SessionEnd(props) {
 SessionEnd.propTypes = {
   className: PropTypes.string,
   activeSessionData: PropTypes.object.isRequired,
-  addSession: PropTypes.func.isRequired,
   endSession: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
   thisRunData: PropTypes.object.isRequired,

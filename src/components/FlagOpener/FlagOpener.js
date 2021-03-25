@@ -117,7 +117,6 @@ function FlagOpener(props) {
 }
 
 FlagOpener.propTypes = {
-  addSession: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
   currentRunUid: PropTypes.number.isRequired,
 };

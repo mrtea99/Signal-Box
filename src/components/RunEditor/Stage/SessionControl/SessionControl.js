@@ -22,7 +22,6 @@ function SessionControl(props) {
         <div className={styles.sessionActions}>
           {props.activeSessionData ? (
             <SessionEnd
-              addSession={props.addSession}
               endSession={props.endSession}
               thisStage={props.thisStage}
               activeSessionData={props.activeSessionData}
@@ -33,7 +32,6 @@ function SessionControl(props) {
           ) : (
             <SessionStart
               thisStage={props.thisStage}
-              addSession={props.addSession}
               updateSession={props.updateSession}
               className={styles.sessionControl}
               thisRunData={props.thisRunData}
@@ -44,18 +42,15 @@ function SessionControl(props) {
           <ButtonSpacer direction="vert">
             {!simpleMode ? (
               <AssignmentOpener
-                addSession={props.addSession}
                 thisStage={props.thisStage}
                 currentRunUid={props.currentRunUid}
               />
             ) : null}
             <CheckOpener
-              addSession={props.addSession}
               thisStage={props.thisStage}
               currentRunUid={props.currentRunUid}
             />
             <FlagOpener
-              addSession={props.addSession}
               thisStage={props.thisStage}
               currentRunUid={props.currentRunUid}
             />
@@ -69,7 +64,6 @@ function SessionControl(props) {
 SessionControl.propTypes = {
   stageActive: PropTypes.bool.isRequired,
   activeSessionData: PropTypes.object,
-  addSession: PropTypes.func.isRequired,
   endSession: PropTypes.func.isRequired,
   updateSession: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,

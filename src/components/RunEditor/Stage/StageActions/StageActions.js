@@ -144,7 +144,6 @@ function StageActions(props) {
             thisStage={props.thisStage}
             stageStatus={stageStatus}
             updateStageActive={props.updateStageActive}
-            addSession={props.addSession}
             currentRunUid={props.currentRunUid}
           />
         </div>
@@ -159,7 +158,6 @@ StageActions.propTypes = {
   updateStageActive: PropTypes.func.isRequired,
   setCurrentRunUid: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,
-  addSession: PropTypes.func.isRequired,
   currentRunUid: PropTypes.number.isRequired,
 };
 

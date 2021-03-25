@@ -129,7 +129,6 @@ function SessionStart(props) {
 SessionStart.propTypes = {
   className: PropTypes.string,
   thisStage: PropTypes.number.isRequired,
-  addSession: PropTypes.func.isRequired,
   updateSession: PropTypes.func.isRequired,
   endSession: PropTypes.func.isRequired,
   thisRunData: PropTypes.object.isRequired,

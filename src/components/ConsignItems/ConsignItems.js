@@ -200,7 +200,6 @@ ConsignItems.propTypes = {
   thisStage: PropTypes.number.isRequired,
   thisRunData: PropTypes.object.isRequired,
   updateStageActive: PropTypes.func.isRequired,
-  addSession: PropTypes.func.isRequired,
   stageStatus: PropTypes.object.isRequired,
   currentRunUid: PropTypes.number.isRequired,
 };

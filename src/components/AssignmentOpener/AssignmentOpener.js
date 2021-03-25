@@ -54,7 +54,6 @@ function AssignmentOpener(props) {
       extra: "active",
     };
 
-    // props.addSession(newSession, props.thisStage);
     dispatch({
       type: "runs/addSession",
       payload: {
@@ -93,7 +92,6 @@ function AssignmentOpener(props) {
 
 AssignmentOpener.propTypes = {
   thisStage: PropTypes.number.isRequired,
-  addSession: PropTypes.func.isRequired,
   currentRunUid: PropTypes.number.isRequired,
 };
 

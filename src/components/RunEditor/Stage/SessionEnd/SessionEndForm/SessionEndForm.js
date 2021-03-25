@@ -212,7 +212,6 @@ function SessionEndForm(props) {
 SessionEndForm.propTypes = {
   activeSessionData: PropTypes.object.isRequired,
   thisStage: PropTypes.number.isRequired,
-  addSession: PropTypes.func.isRequired,
   endSession: PropTypes.func.isRequired,
   setFormActive: PropTypes.func.isRequired,
   thisRunData: PropTypes.object.isRequired,
