@@ -13,7 +13,7 @@ import styles from "./ConsignItems.module.css";
 
 import getItemType from "../../utils/getItemType.js";
 
-import stageNames from "../../data/stageNames.json";
+// import stageNames from "../../data/stageNames.json";
 
 function ConsignItems(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
@@ -85,7 +85,8 @@ function ConsignItems(props) {
     const newSession = {
       sessionId: newsessionId,
       runId: props.currentRunUid,
-      stage: stageNames[props.thisStage],
+      // stage: stageNames[props.thisStage],
+      stage: props.thisStage,
       type: "consign",
       startTime: Date.now(),
       endTime: Date.now(),

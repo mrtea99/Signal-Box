@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import AssignmentOpenerForm from "./AssignmentOpenerForm/AssignmentOpenerForm.js";
 
-import stageNames from "../../data/stageNames.json";
+// import stageNames from "../../data/stageNames.json";
 
 function AssignmentOpener(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
@@ -44,7 +44,8 @@ function AssignmentOpener(props) {
     const newSession = {
       sessionId: newsessionId,
       runId: props.currentRunUid,
-      stage: stageNames[props.thisStage],
+      // stage: stageNames[props.thisStage],
+      stage: props.thisStage,
       type: "assign",
       startTime: formData.startDate + formData.startTime,
       endTime: null,

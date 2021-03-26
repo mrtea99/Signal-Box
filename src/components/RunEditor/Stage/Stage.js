@@ -117,7 +117,8 @@ function Stage(props) {
     const newSession = {
       sessionId: Date.now(),
       runId: props.currentRunUid,
-      stage: stageNames[stage],
+      // stage: stageNames[stage],
+      stage: stage,
       type: newState ? "activate" : "deactivate",
       activity: newState,
       startTime: Date.now(),

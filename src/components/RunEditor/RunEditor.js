@@ -41,7 +41,7 @@ function RunEditor(props) {
         <div className={`${styles.runEditor} ${styles.runEditorActive}`}>
           <div className={styles.inner}>
             <header className={styles.controlBar}>
-              <Button onClick={handleExitClick} icon="cross" iconFirst>
+              <Button onClick={() => handleExitClick()} icon="cross" iconFirst>
                 Close
               </Button>
               {/* {simpleMode ? null : <UserSwitcher />} */}

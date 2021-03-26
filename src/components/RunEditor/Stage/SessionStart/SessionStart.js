@@ -7,7 +7,7 @@ import Button from "../../../Button/Button.js";
 import Modal from "../../../Modal/Modal.js";
 import AssignmentList from "../../../AssignmentOpener/AssignmentList/AssignmentList.js";
 
-import stageNames from "../../../../data/stageNames.json";
+// import stageNames from "../../../../data/stageNames.json";
 import activityList from "../../../../data/activities.json";
 
 function SessionStart(props) {
@@ -40,7 +40,8 @@ function SessionStart(props) {
     const newSession = {
       sessionId: newsessionId,
       runId: props.currentRunUid,
-      stage: stageNames[props.thisStage],
+      // stage: stageNames[props.thisStage],
+      stage: props.thisStage,
       type: "work",
       startTime: Date.now(),
       endTime: null,

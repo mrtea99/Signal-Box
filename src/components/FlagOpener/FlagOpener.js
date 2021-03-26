@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import FormItem from "../FormItem/FormItem.js";
 
-import stageNames from "../../data/stageNames.json";
+// import stageNames from "../../data/stageNames.json";
 
 function FlagOpener(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
@@ -20,7 +20,8 @@ function FlagOpener(props) {
     const newSession = {
       sessionId: newsessionId,
       runId: props.currentRunUid,
-      stage: stageNames[props.thisStage],
+      // stage: stageNames[props.thisStage],
+      stage: props.thisStage,
       type: "flag",
       startTime: Date.now(),
       endTime: null,
