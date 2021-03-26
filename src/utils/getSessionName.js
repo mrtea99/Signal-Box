@@ -1,4 +1,4 @@
-import getFlagName from './getFlagName.js'
+import getFlagName from "./getFlagName.js";
 
 function getSessionName(session) {
   switch (session.type) {
@@ -13,7 +13,7 @@ function getSessionName(session) {
     case "activate":
       return "Undo Complete Stage";
     case "consign":
-      return "Consignment";
+      return `Consign ${session.stage === "Manufacture" ? "Batches" : "Units"}`;
     case "assign":
       return "Assignment";
     default:

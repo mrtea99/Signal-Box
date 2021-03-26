@@ -141,7 +141,7 @@ function Stage(props) {
     <section className={styles.stage}>
       <header className={styles.stageHeader}>
         <div className={styles.stageTitleWrap}>
-          <h2 className={styles.stageTitle}>{props.thisStage}</h2>
+          <h2 className={styles.stageTitle}>{stageNames[props.thisStage]}</h2>
         </div>
         <h4 className={styles.stageDifficulty}>
           Difficulty: {getDifficulty(props.thisStage)}
