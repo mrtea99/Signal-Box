@@ -43,7 +43,7 @@ function AssignmentOpener(props) {
 
     const newSession = {
       sessionId: newsessionId,
-      runId: props.currentRunUid,
+      runId: props.currentRunUid || null,
       // stage: stageNames[props.thisStage],
       stage: props.thisStage,
       type: "assign",
@@ -55,14 +55,18 @@ function AssignmentOpener(props) {
       extra: "active",
     };
 
-    dispatch({
-      type: "runs/addSession",
-      payload: {
-        runId: props.currentRunUid,
-        stage: props.thisStage,
-        sessionData: newSession,
-      },
-    });
+    if (props.addAssignment) {
+      props.addAssignment(newSession, props.thisStage);
+    } else {
+      dispatch({
+        type: "runs/addSession",
+        payload: {
+          runId: props.currentRunUid,
+          stage: props.thisStage,
+          sessionData: newSession,
+        },
+      });
+    }
 
     handleCancel();
   };
@@ -93,7 +97,8 @@ function AssignmentOpener(props) {
 
 AssignmentOpener.propTypes = {
   thisStage: PropTypes.number.isRequired,
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunUid: PropTypes.number,
+  addAssignment: PropTypes.func,
 };
 
 export default AssignmentOpener;

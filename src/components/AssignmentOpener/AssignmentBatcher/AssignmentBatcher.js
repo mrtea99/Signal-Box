@@ -39,7 +39,7 @@ function AssignmentBatcher(props) {
             <h4>{stageName}</h4>
             <AssignmentOpener
               thisStage={stageNumber}
-              addSession={addAssignment}
+              addAssignment={addAssignment}
             />
             <ul>
               {props.batchedAssignments[stageNumber].map(

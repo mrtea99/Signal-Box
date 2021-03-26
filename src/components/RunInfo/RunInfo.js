@@ -98,8 +98,17 @@ function RunInfoNew(props) {
   };
 
   const buildRun = function (productTemplateData, batchQuantity) {
+    const newRunId = Date.now();
+
+    // Add Run ID to batched assignments
+    const assignments = batchedAssignments.map((sessionList) => {
+      return sessionList.map((session) => {
+        return { ...session, runId: newRunId };
+      });
+    });
+
     return {
-      id: Date.now(),
+      id: newRunId,
       productName: productTemplateData.productName,
       productSKU: productTemplateData.productSKU,
       status: runStatus,
@@ -119,19 +128,19 @@ function RunInfoNew(props) {
       productInfo: productTemplateData,
       stages: [
         {
-          sessions: batchedAssignments[0],
+          sessions: assignments[0],
         },
         {
-          sessions: batchedAssignments[1],
+          sessions: assignments[1],
         },
         {
-          sessions: batchedAssignments[2],
+          sessions: assignments[2],
         },
         {
-          sessions: batchedAssignments[3],
+          sessions: assignments[3],
         },
         {
-          sessions: batchedAssignments[4],
+          sessions: assignments[4],
         },
       ],
     };
