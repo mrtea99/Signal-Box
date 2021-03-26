@@ -6,6 +6,7 @@ import TableHeader from "../../TableHeader/TableHeader.js";
 
 import styles from "./AssignmentList.module.css";
 import AssignmentCloser from "../../AssignmentCloser/AssignmentCloser";
+import UserName from "../../UserSwitcher/UserName/UserName";
 
 function AssignmentList(props) {
   const markResolved = function (checked, sessionId) {
@@ -39,10 +40,11 @@ function AssignmentList(props) {
                 <div className={`${styles.colMain} ${styles.main}`}>
                   <h3 className={styles.itemTitle}>
                     Assignee:{" "}
-                    {
-                      // `John Smith (${session.secondaryUser})`
-                      session.secondaryUser || "None"
-                    }
+                    {session.secondaryUser ? (
+                      <UserName userId={session.secondaryUser} />
+                    ) : (
+                      "None"
+                    )}
                   </h3>
                   <p className={styles.itemNote}>{session.notes}</p>
                 </div>
