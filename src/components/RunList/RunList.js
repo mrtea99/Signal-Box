@@ -8,10 +8,11 @@ import RunListStageItem from "./RunListStageItem/RunListStageItem.js";
 
 import styles from "./RunList.module.css";
 
+import { selectAllRuns } from "./runsSlice.js";
+
 import stageNames from "../../data/stageNames.json";
 
 function RunList(props) {
-
   let columns;
   if (props.stageNum === "all") {
     columns = stageNames.map((stageName) => ({
@@ -29,7 +30,7 @@ function RunList(props) {
     ];
   }
 
-  const runsList = useSelector((state) => state.runs.runsList);
+  const runsList = useSelector(selectAllRuns);
   let filteredRunsList = [...runsList];
 
   // Only show runs edited by users listed in an array

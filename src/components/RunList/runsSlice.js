@@ -64,6 +64,19 @@ export const runsSlice = createSlice({
   },
 });
 
-export const { create, update, addSession, updateSession } = runsSlice.actions;
+export const {
+  create,
+  update,
+  addSession,
+  updateSession,
+  endSession,
+} = runsSlice.actions;
 
 export default runsSlice.reducer;
+
+// Selectors
+//------------------------------------
+export const selectAllRuns = (state) => state.runs.runsList;
+
+export const selectRun = (state, runId) =>
+  state.runs.runsList.find((run) => run.id === runId);

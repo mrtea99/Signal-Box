@@ -12,6 +12,8 @@ import GlobalContexts from "./components/GlobalContexts/GlobalContexts.js";
 import RunFilter from "./components/RunList/RunFilter/RunFilter.js";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
 
+import { selectAllRuns } from "./components/RunList/runsSlice.js";
+
 import stageNames from "./data/stageNames.json";
 
 // import { useTranslation } from "react-i18next";
@@ -39,7 +41,7 @@ function App() {
   // Backend onload data
   //==============================================================================
   // Data for all runs - needs to replaced with API call
-  const runData = useSelector((state) => state.runs.runsList);
+  const runData = useSelector(selectAllRuns);
   React.useEffect(() => {
     window.localStorage.setItem("runData", JSON.stringify(runData));
   }, [runData]);

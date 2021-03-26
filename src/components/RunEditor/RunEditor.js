@@ -14,6 +14,8 @@ import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
 
 import styles from "./RunEditor.module.css";
 
+import { selectRun } from "../RunList/runsSlice.js";
+
 // import stageNames from "../../data/stageNames.json";
 
 import ViewModeContext from "../../contexts/ViewModeContext.js";
@@ -24,12 +26,11 @@ function RunEditor(props) {
 
   const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
 
-  const runsList = useSelector((state) => state.runs.runsList);
-  const thisRunData = runsList.find((obj) => obj.id === props.currentRunUid);
+  const thisRunData = useSelector((state) =>
+    selectRun(state, props.currentRunUid)
+  );
 
-  const handleExitClick = function (e) {
-    e.preventDefault();
-
+  const handleExitClick = function () {
     props.setCurrentRunUid(null);
     props.setActiveStage(0);
   };
@@ -40,11 +41,7 @@ function RunEditor(props) {
         <div className={`${styles.runEditor} ${styles.runEditorActive}`}>
           <div className={styles.inner}>
             <header className={styles.controlBar}>
-              <Button
-                onClick={(e) => handleExitClick(e)}
-                icon="cross"
-                iconFirst
-              >
+              <Button onClick={handleExitClick} icon="cross" iconFirst>
                 Close
               </Button>
               {/* {simpleMode ? null : <UserSwitcher />} */}
