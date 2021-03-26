@@ -255,7 +255,9 @@ SessionItem.propTypes = {
   session: PropTypes.object,
   itemCount: PropTypes.number,
   thisStage: PropTypes.number,
+  thisStageData: PropTypes.array,
   currentRunUid: PropTypes.number.isRequired,
+  columns: PropTypes.array.isRequired,
 };
 
 export default SessionItem;

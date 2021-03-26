@@ -25,8 +25,8 @@ const ActivityTotals = function (props) {
       }
 
       // If this activity doesn't include an amounts field, then don't add it to the list
-      if (props.thisStage && session.type === "work") {
-        const activityHasAmounts = activityList[props.thisStage]
+      if (session.stage && session.type === "work") {
+        const activityHasAmounts = activityList[session.stage]
           .find((obj) => {
             return obj.name === activityName;
           })
@@ -95,7 +95,6 @@ const ActivityTotals = function (props) {
 ActivityTotals.propTypes = {
   sessions: PropTypes.array.isRequired,
   itemName: PropTypes.string,
-  thisStage: PropTypes.number,
 };
 
 export default ActivityTotals;

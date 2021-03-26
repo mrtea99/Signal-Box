@@ -202,7 +202,6 @@ function RunInfoNew(props) {
           <ButtonSpacer align="right">
             {mode === "change" ? (
               <RunDelete
-                updateRunData={updateRun}
                 currentRunUid={props.currentRunUid}
                 successCallback={() => closeModal()}
               />
