@@ -11,6 +11,8 @@ import ActivityTotals from "./ActivityTotals/ActivityTotals.js";
 
 import styles from "./ConsignItems.module.css";
 
+import { selectStageSessions } from "../RunList/runsSlice.js";
+
 import getItemType from "../../utils/getItemType.js";
 
 // import stageNames from "../../data/stageNames.json";
@@ -38,6 +40,10 @@ function ConsignItems(props) {
       },
     });
   };
+
+  const stageSessions = useSelector((state) =>
+    selectStageSessions(state, props.currentRunUid, props.thisStage)
+  );
 
   const handleSubmit = function () {
     let updateGoodField = "";
@@ -163,10 +169,7 @@ function ConsignItems(props) {
         buttonAttrs={{ color: "complete", icon: "next" }}
       >
         <h4>Activity Totals:</h4>
-        <ActivityTotals
-          sessions={props.thisRunData.stages[props.thisStage]["sessions"]}
-          itemName={itemName}
-        />
+        <ActivityTotals sessions={stageSessions} itemName={itemName} />
         <h4>Consignments Summary:</h4>
         {consInfoPod}
         <h4>New Consignment:</h4>

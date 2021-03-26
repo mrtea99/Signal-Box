@@ -80,3 +80,8 @@ export const selectAllRuns = (state) => state.runs.runsList;
 
 export const selectRun = (state, runId) =>
   state.runs.runsList.find((run) => run.id === runId);
+
+export const selectStageSessions = (state, runId, stageNum) => {
+  return state.runs.runsList.find((run) => run.id === runId).stages[stageNum]
+    .sessions;
+};
