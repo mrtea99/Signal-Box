@@ -7,6 +7,8 @@ import Button from "../../../Button/Button.js";
 import Modal from "../../../Modal/Modal.js";
 import AssignmentList from "../../../AssignmentOpener/AssignmentList/AssignmentList.js";
 
+import { selectStageSessions } from "../../../RunList/runsSlice.js";
+
 // import stageNames from "../../../../data/stageNames.json";
 import activityList from "../../../../data/activities.json";
 
@@ -83,9 +85,10 @@ function SessionStart(props) {
     setModalActive(false);
   };
 
-  const assignSessions = props.thisRunData.stages[
-    props.thisStage
-  ].sessions.filter((session) => {
+  const stageSessions = useSelector((state) =>
+    selectStageSessions(state, props.currentRunUid, props.thisStage)
+  );
+  const assignSessions = stageSessions.filter((session) => {
     return (
       session.type === "assign" &&
       !session.endTime &&
