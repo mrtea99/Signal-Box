@@ -11,10 +11,16 @@ function CheckOpener(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
   const dispatch = useDispatch();
 
-  const [formData, setFormData] = React.useState({
+  const defaultFormData = {
     notes: "",
     extra: "now",
-  });
+  };
+
+  const [formData, setFormData] = React.useState(defaultFormData);
+
+  const resetFormData = function () {
+    setFormData(defaultFormData);
+  };
 
   const handleSubmit = function () {
     const newsessionId = Date.now();
@@ -39,12 +45,19 @@ function CheckOpener(props) {
         sessionData: newSession,
       },
     });
+
+    resetFormData();
+  };
+
+  const handleCancel = function () {
+    resetFormData();
   };
 
   return (
     <ModalControl
       title="Request QA Check"
       handleSubmit={handleSubmit}
+      handleCancel={handleCancel}
       triggerCopy={"Request QA Check"}
       buttonAttrs={{ fillWidth: true, color: "qa", icon: "qa" }}
     >

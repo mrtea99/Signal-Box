@@ -5,13 +5,29 @@ import { useDispatch } from "react-redux";
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import FormItem from "../FormItem/FormItem.js";
 import UserName from "../UserSwitcher/UserName/UserName.js";
+import UserSelect from "../FormItem/UserSelect/UserSelect.js";
 
 import getItemType from "../../utils/getItemType.js";
 
 function CheckCloser(props) {
-  const [description, setDescription] = React.useState("");
-  const [count, setCount] = React.useState(0);
-  const [countBad, setCountBad] = React.useState(0);
+  const defaultFormState = {
+    description: "",
+    count: 0,
+    countBad: 0,
+  };
+
+  const [description, setDescription] = React.useState(
+    defaultFormState.description
+  );
+  const [count, setCount] = React.useState(defaultFormState.count);
+  const [countBad, setCountBad] = React.useState(defaultFormState.countBad);
+  const [assignee, setAssignee] = React.useState(props.session.secondaryUser);
+
+  const resetFormstate = function () {
+    setDescription("");
+    setCountBad(0);
+    setCount(0);
+  };
 
   const dispatch = useDispatch();
 
@@ -32,13 +48,16 @@ function CheckCloser(props) {
           amount: count,
           amountType: getItemType(props.thisStage),
           amountBad: countBad,
+          secondaryUser: assignee,
         },
       },
     });
 
-    setDescription("");
-    setCountBad(0);
-    setCount(0);
+    resetFormstate();
+  };
+
+  const handleCancel = function () {
+    resetFormstate();
   };
 
   return (
@@ -47,6 +66,7 @@ function CheckCloser(props) {
         <ModalControl
           title="QA Check"
           handleSubmit={handleSubmit}
+          handleCancel={handleCancel}
           triggerCopy={""}
           submitCopy={"Resolve"}
           buttonAttrs={{ color: "qa", icon: "qa" }}
@@ -56,14 +76,12 @@ function CheckCloser(props) {
             <p>
               Creator: <UserName userId={props.session.user} />
             </p>
-            <p>
-              Assignee:{" "}
-              {props.session.secondaryUser ? (
-                <UserName userId={props.session.secondaryUser} />
-              ) : (
-                "None"
-              )}
-            </p>
+            <UserSelect
+              label="Assignee:"
+              ident={"assignee-" + props.thisStage}
+              updateHandler={(value) => setAssignee(parseInt(value))}
+              value={assignee}
+            />
             <p>Timeframe: {props.session.extra}</p>
             <p>Raising Note: {props.session.notes}</p>
           </div>
