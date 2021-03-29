@@ -11,7 +11,10 @@ function AssignmentOpenerForm(props) {
         label="Assignee:"
         ident={"assignee-" + props.thisStage}
         updateHandler={(value) =>
-          props.setFormData({ ...props.formData, assignee: parseInt(value) })
+          props.setFormData({
+            ...props.formData,
+            assignee: parseInt(value) || null,
+          })
         }
         value={props.formData.assignee}
       />

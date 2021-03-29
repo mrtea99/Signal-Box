@@ -50,7 +50,7 @@ function AssignmentOpener(props) {
       startTime: formData.startDate + formData.startTime,
       endTime: null,
       user: activeUser,
-      secondaryUser: parseInt(formData.assignee),
+      secondaryUser: parseInt(formData.assignee) || null,
       notes: formData.description,
       extra: "active",
     };

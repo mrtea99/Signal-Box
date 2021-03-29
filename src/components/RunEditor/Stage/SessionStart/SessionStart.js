@@ -16,18 +16,11 @@ function SessionStart(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
 
   const [modalActive, setModalActive] = React.useState(false);
-
   const [formData, setFormData] = React.useState({
     activity: activityList[props.thisStage][0],
   });
 
   const dispatch = useDispatch();
-  const updateRun = function (runId, dataSection, dataKey, newValue) {
-    dispatch({
-      type: "runs/update",
-      payload: { runId, dataSection, dataKey, newValue },
-    });
-  };
 
   const handleOpen = function () {
     setResolvedAssignments(findDefaultResolved());
@@ -73,8 +66,17 @@ function SessionStart(props) {
       });
     });
 
+    // If the run has "Not Started" staus then change it to "In Progress"
     if (props.thisRunData.status === "Not Started") {
-      updateRun(props.thisRunData.id, null, "status", "In Progress");
+      dispatch({
+        type: "runs/update",
+        payload: {
+          runId: props.thisRunData.id,
+          dataSection: null,
+          dataKey: "status",
+          newValue: "In Progress",
+        },
+      });
     }
 
     setModalActive(false);
