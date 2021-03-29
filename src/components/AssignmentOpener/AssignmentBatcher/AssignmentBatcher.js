@@ -3,9 +3,11 @@ import PropTypes from "prop-types";
 
 import AssignmentOpener from "../AssignmentOpener.js";
 import Button from "../../Button/Button.js";
+import UserName from "../../UserSwitcher/UserName/UserName.js";
+
+import styles from "./AssignmentBatcher.module.css";
 
 import stageNames from "../../../data/stageNames.json";
-import UserName from "../../UserSwitcher/UserName/UserName.js";
 
 function AssignmentBatcher(props) {
   const addAssignment = function (sessionData, stageNumber) {
@@ -33,20 +35,24 @@ function AssignmentBatcher(props) {
   return (
     <>
       <h3>Assignments:</h3>
-      <ul>
+      <ul className={styles.stageList}>
         {stageNames.map((stageName, stageNumber) => (
-          <li key={`assign-${stageName}`}>
-            <h4>{stageName}</h4>
-            <AssignmentOpener
-              thisStage={stageNumber}
-              addAssignment={addAssignment}
-            />
-            <ul>
+          <li key={`assign-${stageName}`} className={styles.stageItem}>
+            <h4 className={styles.stageName}>{stageName}</h4>
+            <ul className={styles.assList}>
               {props.batchedAssignments[stageNumber].map(
                 (assignmentSession) => (
-                  <li key={`assignment-${assignmentSession.sessionId}`}>
-                    {<UserName userId={assignmentSession.secondaryUser} /> ||
-                      "None"}
+                  <li
+                    key={`assignment-${assignmentSession.sessionId}`}
+                    className={styles.assignment}
+                  >
+                    <h5 className={styles.assName}>
+                      {assignmentSession.secondaryUser ? (
+                        <UserName userId={assignmentSession.secondaryUser} />
+                      ) : (
+                        "No Assignee"
+                      )}
+                    </h5>
                     <Button
                       onClick={() =>
                         removeAssignment(
@@ -55,13 +61,22 @@ function AssignmentBatcher(props) {
                         )
                       }
                       color="delete"
-                    >
-                      Delete
-                    </Button>
+                      icon="cross"
+                      className={styles.assDelete}
+                    />
                   </li>
                 )
               )}
             </ul>
+            <AssignmentOpener
+              thisStage={stageNumber}
+              addAssignment={addAssignment}
+              triggerCopy={"Add"}
+              buttonAttrs={{
+                color: "assign",
+                icon: "plus",
+              }}
+            />
           </li>
         ))}
       </ul>

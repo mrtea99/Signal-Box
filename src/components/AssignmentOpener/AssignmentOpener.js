@@ -80,8 +80,14 @@ function AssignmentOpener(props) {
       title="Assign Stage"
       handleSubmit={handleSubmit}
       handleCancel={handleCancel}
-      triggerCopy={"Assign Stage"}
-      buttonAttrs={{ fillWidth: true, color: "assign", icon: "assign" }}
+      triggerCopy={props.triggerCopy || "Assign Stage"}
+      buttonAttrs={
+        props.buttonAttrs || {
+          fillWidth: true,
+          color: "assign",
+          icon: "assign",
+        }
+      }
     >
       <form>
         <AssignmentOpenerForm
@@ -99,6 +105,8 @@ AssignmentOpener.propTypes = {
   thisStage: PropTypes.number.isRequired,
   currentRunUid: PropTypes.number,
   addAssignment: PropTypes.func,
+  triggerCopy: PropTypes.string,
+  buttonAttrs: PropTypes.object,
 };
 
 export default AssignmentOpener;

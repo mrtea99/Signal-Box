@@ -13,9 +13,6 @@ import FormItem from "../FormItem/FormItem.js";
 import productTemplates from "../../data/productTemplates.json";
 
 function RunInfoNew(props) {
-  // Temp open on page load for testing
-  // setActive(true);
-
   const mode = props.currentRunUid ? "change" : "new";
   const runStatuses = ["Not Started", "In Progress", "Complete", "Archived"];
   const modalTitle = mode === "new" ? "Create New Run" : "Edit Run Info";

@@ -1,0 +1,71 @@
+.stageList {
+  list-style-type: none;
+  margin: 0 0 2rem 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: var(--color-grey-light);
+  padding: 0.5rem;
+}
+
+.stageItem {
+  width: 100%;
+  background-color: var(--color-grey-bright);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .stageList {
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+  }
+
+  .stageItem {
+    margin-right: 1rem;
+    margin-bottom: 0;
+  }
+  .stageItem:last-child {
+    margin-right: 0;
+  }
+}
+
+.stageName {
+  margin: 0;
+  padding-bottom: 0.5rem;
+  background-color: var(--color-pink-bright);
+  padding: 0.3rem;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: var(--text-smaller);
+}
+
+.assList {
+  list-style-type: none;
+  margin: 0 0 0 0;
+  padding: 0.5rem 0.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.assignment {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 0 1rem 0;
+}
+.assignment:last-child {
+  padding-bottom: 0;
+}
+
+.assName {
+  margin: 0;
+  padding: 0 1em 0 0;
+  font-weight: normal;
+  font-size: 1rem;
+}
