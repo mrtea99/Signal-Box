@@ -20,8 +20,6 @@ import stageNames from "./data/stageNames.json";
 
 import styles from "./App.module.css";
 
-// import {users}
-
 function App() {
   // i18n
   //==============================================================================

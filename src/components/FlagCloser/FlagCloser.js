@@ -9,9 +9,23 @@ import UserName from "../UserSwitcher/UserName/UserName.js";
 function FlagCloser(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
 
-  const [description, setDescription] = React.useState("");
-  const [status, setStatus] = React.useState(props.session.extra);
-  const [priority, setPriority] = React.useState(props.session.amount);
+  const defaultFormData = {
+    description: props.session.note || "",
+    status: props.session.extra,
+    priority: props.session.amount,
+  };
+
+  const [description, setDescription] = React.useState(
+    defaultFormData.description
+  );
+  const [status, setStatus] = React.useState(defaultFormData.status);
+  const [priority, setPriority] = React.useState(defaultFormData.priority);
+
+  const resetFormData = function () {
+    setDescription(defaultFormData.description);
+    setStatus(defaultFormData.status);
+    setPriority(defaultFormData.priority);
+  };
 
   const dispatch = useDispatch();
 
@@ -51,13 +65,15 @@ function FlagCloser(props) {
       });
     }
 
-    handleCancel();
+    resetFormData();
   };
 
   const handleCancel = function () {
-    setDescription("");
-    setStatus(props.session.extra);
-    setPriority(props.session.amount);
+    resetFormData();
+  };
+
+  const handleOpen = function () {
+    resetFormData();
   };
 
   const translatePriority = function (count, caps) {
@@ -80,6 +96,7 @@ function FlagCloser(props) {
           title={"Update " + translatePriority(priority, true)}
           handleSubmit={handleSubmit}
           handleCancel={handleCancel}
+          handleOpen={handleOpen}
           triggerCopy={""}
           buttonAttrs={{
             color: translatePriority(props.session.amount),
