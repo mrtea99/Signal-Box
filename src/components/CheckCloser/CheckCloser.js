@@ -12,8 +12,10 @@ import getItemType from "../../utils/getItemType.js";
 function CheckCloser(props) {
   const defaultFormState = {
     description: "",
-    count: 0,
-    countBad: 0,
+    count: props.session.amount || 0,
+    countBad: props.session.amountBad || 0,
+    assignee: props.session.secondaryUser,
+    status: "active",
   };
 
   const [description, setDescription] = React.useState(
@@ -21,12 +23,15 @@ function CheckCloser(props) {
   );
   const [count, setCount] = React.useState(defaultFormState.count);
   const [countBad, setCountBad] = React.useState(defaultFormState.countBad);
-  const [assignee, setAssignee] = React.useState(props.session.secondaryUser);
+  const [assignee, setAssignee] = React.useState(defaultFormState.assignee);
+  const [status, setStatus] = React.useState(defaultFormState.status);
 
-  const resetFormstate = function () {
-    setDescription("");
-    setCountBad(0);
-    setCount(0);
+  const resetFormState = function () {
+    setDescription(defaultFormState.description);
+    setCount(defaultFormState.count);
+    setCountBad(defaultFormState.countBad);
+    setAssignee(defaultFormState.assignee);
+    setStatus(defaultFormState.status);
   };
 
   const dispatch = useDispatch();
@@ -37,27 +42,45 @@ function CheckCloser(props) {
         ? props.session.notes + "\n" + description
         : description;
 
-    dispatch({
-      type: "runs/endSession",
-      payload: {
-        runId: props.currentRunUid,
-        stage: props.thisStage,
-        sessionId: props.session.sessionId,
-        extraData: {
-          notes: newNote,
-          amount: count,
-          amountType: getItemType(props.thisStage),
-          amountBad: countBad,
-          secondaryUser: assignee,
-        },
-      },
-    });
+    const extraData = {
+      notes: newNote,
+      amount: count,
+      amountType: getItemType(props.thisStage),
+      amountBad: countBad,
+      secondaryUser: assignee,
+    };
 
-    resetFormstate();
+    if (status === "resolved") {
+      dispatch({
+        type: "runs/endSession",
+        payload: {
+          runId: props.currentRunUid,
+          stage: props.thisStage,
+          sessionId: props.session.sessionId,
+          extraData,
+        },
+      });
+    } else {
+      dispatch({
+        type: "runs/updateSession",
+        payload: {
+          runId: props.currentRunUid,
+          stage: props.thisStage,
+          sessionId: props.session.sessionId,
+          extraData,
+        },
+      });
+    }
+
+    resetFormState();
   };
 
   const handleCancel = function () {
-    resetFormstate();
+    resetFormState();
+  };
+
+  const handleOpen = function () {
+    resetFormState();
   };
 
   return (
@@ -67,8 +90,9 @@ function CheckCloser(props) {
           title="QA Check"
           handleSubmit={handleSubmit}
           handleCancel={handleCancel}
+          handleOpen={handleOpen}
           triggerCopy={""}
-          submitCopy={"Resolve"}
+          submitCopy={"Save"}
           buttonAttrs={{ color: "qa", icon: "qa" }}
         >
           <div>
@@ -110,6 +134,17 @@ function CheckCloser(props) {
             updateHandler={(value) => setCountBad(parseInt(value))}
             value={countBad}
             min="0"
+          />
+          <FormItem
+            label="Status:"
+            type="toggleButton"
+            ident="assignment-status"
+            itemLabels={["Active", "Resolved"]}
+            itemValues={["active", "resolved"]}
+            value={status}
+            updateHandler={(value) => {
+              setStatus(value);
+            }}
           />
         </ModalControl>
       )}

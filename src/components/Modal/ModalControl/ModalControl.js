@@ -10,22 +10,28 @@ function ModalControl(props) {
   const [modalActive, setModalActive] = React.useState(false);
   const [pageNumber, setPageNumber] = React.useState(0);
 
-  const handleSubmit = function (e) {
-    e.preventDefault();
-
+  const handleSubmit = function () {
     setModalActive(false);
 
-    props.handleSubmit();
+    if (props.handleSubmit) {
+      props.handleSubmit();
+    }
   };
 
-  const handleCancel = function (e) {
-    e.preventDefault();
-
+  const handleCancel = function () {
     setModalActive(false);
     setPageNumber(0);
 
     if (props.handleCancel) {
       props.handleCancel();
+    }
+  };
+
+  const handleOpen = function () {
+    setModalActive(true);
+
+    if (props.handleOpen) {
+      props.handleOpen();
     }
   };
 
@@ -68,7 +74,7 @@ function ModalControl(props) {
 
   return (
     <>
-      <Button {...props.buttonAttrs} onClick={() => setModalActive(true)}>
+      <Button {...props.buttonAttrs} onClick={(e) => handleOpen(e)}>
         {props.triggerCopy}
       </Button>
       {modalActive ? (
