@@ -16,7 +16,11 @@ import getItemType from "../../../../utils/getItemType.js";
 
 import stageNames from "../../../../data/stageNames.json";
 
+import UnitSystemContext from "../../../../contexts/UnitSystemContext";
+
 function SessionDuring(props) {
+  const unitSystem = React.useContext(UnitSystemContext);
+
   // After Statuses
   // Notes (all)
   const [noteData, setNoteData] = React.useState(
@@ -70,13 +74,18 @@ function SessionDuring(props) {
       case 0:
       case 1:
         if (showRecipe()) {
+          const weightOz =
+            props.thisRunData.productInfo.batchWeight *
+            props.thisRunData.batchQuantity;
+
+          const weightGrams = weightOz * 28.3495; // todo replace conversion with util
+
           return (
             <DataListItem
               dataKey="Target Total Weight"
-              dataValue={`${
-                props.thisRunData.productInfo.batchWeight *
-                props.thisRunData.batchQuantity
-              } ozm`}
+              dataValue={
+                unitSystem === "metric" ? `${weightGrams} g` : `${weightOz} oz`
+              }
             />
           );
         } else {

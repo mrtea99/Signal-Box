@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 import FormItem from "../../FormItem/FormItem.js";
 
-import UnitSystemContext from "../../../contexts/DateFormatContext.js";
+import UnitSystemContext from "../../../contexts/UnitSystemContext.js";
 
 function WeightField(props) {
   const unitSystem = React.useContext(UnitSystemContext);
@@ -37,7 +37,7 @@ function WeightField(props) {
           key={props.ident + "g"}
           type="number"
           ident={props.ident}
-          label={`${props.label} (g):`}
+          label={`${props.label} (grams):`}
           updateHandler={updateConverter}
           min="0"
           value={convertValue(props.value, "us")}
@@ -47,7 +47,7 @@ function WeightField(props) {
           key={props.ident + "oz"}
           type="number"
           ident={props.ident}
-          label={`${props.label} (ozm):`}
+          label={`${props.label} (ounces):`}
           updateHandler={props.updateHandler}
           min="0"
           value={props.value}
