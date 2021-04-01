@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import getStageStatus from "../../../../utils/getStageStatus.js";
 
@@ -10,8 +11,13 @@ import ButtonSpacer from "../../../Button/ButtonSpacer/ButtonSpacer.js";
 
 import styles from "./StageActions.module.css";
 
+import { selectRun } from "../../../RunList/runsSlice.js";
+
 function StageActions(props) {
-  const stageStatus = getStageStatus(props.thisRunData, props.thisStage);
+  const thisRunData = useSelector((state) =>
+    selectRun(state, props.currentRunUid)
+  );
+  const stageStatus = getStageStatus(thisRunData, props.thisStage);
 
   const [modalActive, setModalActive] = React.useState(false);
 
@@ -152,7 +158,6 @@ function StageActions(props) {
 }
 
 StageActions.propTypes = {
-  thisRunData: PropTypes.object.isRequired,
   thisStage: PropTypes.number.isRequired,
   updateStageActive: PropTypes.func.isRequired,
   setCurrentRunUid: PropTypes.func.isRequired,

@@ -1,16 +1,20 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import TableHeader from "../TableHeader/TableHeader.js";
+import SessionItem from "./SessionItem/SessionItem.js";
 
 import getItemType from "../../utils/getItemType.js";
 
 import styles from "./SessionList.module.css";
-import SessionItem from "./SessionItem/SessionItem.js";
+
+import { selectStageSessions } from "../RunList/runsSlice.js";
 
 function SessionList(props) {
-  const thisStageData =
-    props.thisRunData["stages"][props.thisStage]["sessions"];
+  const thisStageData = useSelector((state) =>
+    selectStageSessions(state, props.currentRunUid, props.thisStage)
+  );
 
   const itemName = getItemType(props.thisStage);
 

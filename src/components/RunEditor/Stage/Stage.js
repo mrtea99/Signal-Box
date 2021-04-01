@@ -189,7 +189,6 @@ function Stage(props) {
             setCurrentRunUid={props.setCurrentRunUid}
             thisStage={props.thisStage}
             setActiveStage={props.setActiveStage}
-            thisRunData={props.thisRunData}
             updateStageActive={updateStageActive}
           />
         </div>
