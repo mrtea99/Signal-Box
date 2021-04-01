@@ -14,14 +14,14 @@ import ViewModeContext from "../../../contexts/ViewModeContext.js";
 
 import stageNames from "../../../data/stageNames.json";
 
+import { selectStageSessions } from "../../RunList/runsSlice.js";
+
 function Stage(props) {
   const simpleMode = React.useContext(ViewModeContext) === "simple";
 
   const dispatch = useDispatch();
 
   const activeUser = useSelector((state) => state.users.currentUser);
-
-  const thisStageData = props.thisRunData["stages"][props.thisStage];
 
   // Stage Difficulty
   //-------------------------------------
@@ -57,17 +57,19 @@ function Stage(props) {
 
   // Active work session
   //-------------------------------------
-  const findActiveWorkSession = function () {
-    const sessionList = thisStageData["sessions"];
+  const stageSessions = useSelector((state) =>
+    selectStageSessions(state, props.currentRunUid, props.thisStage)
+  );
 
-    if (sessionList.length) {
-      for (let i = 0; i < sessionList.length; i++) {
+  const findActiveWorkSession = function () {
+    if (stageSessions.length) {
+      for (let i = 0; i < stageSessions.length; i++) {
         if (
-          sessionList[i].user === activeUser &&
-          !sessionList[i].endTime &&
-          sessionList[i].type === "work"
+          stageSessions[i].user === activeUser &&
+          !stageSessions[i].endTime &&
+          stageSessions[i].type === "work"
         ) {
-          return sessionList[i];
+          return stageSessions[i];
         }
       }
     }
