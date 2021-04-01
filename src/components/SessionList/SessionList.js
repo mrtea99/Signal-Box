@@ -72,7 +72,6 @@ function SessionList(props) {
 }
 
 SessionList.propTypes = {
-  thisRunData: PropTypes.object.isRequired,
   thisStage: PropTypes.number.isRequired,
   currentRunUid: PropTypes.number.isRequired,
 };

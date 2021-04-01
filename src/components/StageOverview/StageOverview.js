@@ -22,9 +22,6 @@ function StageOverview(props) {
           </h3>
           <SessionList
             thisStage={index}
-            thisRunData={props.thisRunData}
-            endSession={props.endSession}
-            updateSession={props.updateSession}
             currentRunUid={props.currentRunUid}
           />
         </section>

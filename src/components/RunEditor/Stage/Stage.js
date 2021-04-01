@@ -196,7 +196,6 @@ function Stage(props) {
       {simpleMode ? null : (
         <SessionList
           thisStage={props.thisStage}
-          thisRunData={props.thisRunData}
           currentRunUid={props.currentRunUid}
         />
       )}
