@@ -7,6 +7,7 @@ Signal Box is a production run manager built for a beauty product company. It tr
 ### Built Using
 
 * React
+* Redux
 * CSS Modules
 
 ### Project Name
