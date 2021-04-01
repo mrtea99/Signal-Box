@@ -176,8 +176,8 @@ function Stage(props) {
         <div className={styles.stageControl}>
           {simpleMode ? null : (
             <StageStatus
+              currentRunUid={props.currentRunUid}
               stageNum={props.thisStage}
-              runData={props.thisRunData}
               label
               layout="vert"
               fullWidth

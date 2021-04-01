@@ -36,7 +36,7 @@ function StageNav(props) {
             {props.hideStatus ? null : (
               <span className={styles.status}>
                 <StageStatus
-                  runData={props.thisRunData}
+                  currentRunUid={props.currentRunUid}
                   stageNum={index}
                   label={props.sessionLabels}
                 />

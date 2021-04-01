@@ -14,7 +14,11 @@ function StageOverview(props) {
           <h3>
             {stageName}
             {": "}
-            <StageStatus runData={props.thisRunData} stageNum={index} label />
+            <StageStatus
+              currentRunUid={props.currentRunUid}
+              stageNum={index}
+              label
+            />
           </h3>
           <SessionList
             thisStage={index}

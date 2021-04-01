@@ -11,13 +11,20 @@ import ButtonSpacer from "../../../Button/ButtonSpacer/ButtonSpacer.js";
 
 import styles from "./StageActions.module.css";
 
-import { selectRun } from "../../../RunList/runsSlice.js";
+import { selectRun, selectStageSessions } from "../../../RunList/runsSlice.js";
 
 function StageActions(props) {
   const thisRunData = useSelector((state) =>
     selectRun(state, props.currentRunUid)
   );
-  const stageStatus = getStageStatus(thisRunData, props.thisStage);
+  const thisStageSessions = useSelector((state) =>
+    selectStageSessions(state, props.currentRunUid, props.thisStage)
+  );
+  const stageStatus = getStageStatus(
+    thisRunData,
+    thisStageSessions,
+    props.thisStage
+  );
 
   const [modalActive, setModalActive] = React.useState(false);
 

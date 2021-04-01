@@ -1,6 +1,4 @@
-function getStageStatus(runData, stageNumber, activeUser) {
-  const allSessions = runData["stages"][stageNumber]["sessions"];
-
+function getStageStatus(runData, allSessions, stageNumber, activeUser) {
   // Stage Active Status
   let stageActive;
   switch (stageNumber) {

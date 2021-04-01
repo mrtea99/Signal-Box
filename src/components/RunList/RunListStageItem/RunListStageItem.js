@@ -11,11 +11,24 @@ import Button from "../../Button/Button.js";
 import RunTitle from "../RunTitle/RunTitle.js";
 
 import styles from "./RunListStageItem.module.css";
+import { selectRun, selectStageSessions } from "../runsSlice.js";
 
 function RunListStageItem(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
 
-  const stageStatus = getStageStatus(props.runData, props.stageNum, activeUser);
+  const thisRunData = useSelector((state) =>
+    selectRun(state, props.currentRunUid)
+  );
+  const thisStageSessions = useSelector((state) =>
+    selectStageSessions(state, props.currentRunUid, props.stageNum)
+  );
+
+  const stageStatus = getStageStatus(
+    thisRunData,
+    thisStageSessions,
+    props.stageNum,
+    activeUser
+  );
 
   const openEditor = function (runUid, stageNum) {
     props.setCurrentRunUid(runUid);
@@ -65,8 +78,8 @@ function RunListStageItem(props) {
       <li
         className={`${styles.lineItem} ${styles.lineItemFull} ${props.columns[0].className}`}
       >
-        <RunTitle runData={props.runData}>
-          {props.runData.productInfo.productName}
+        <RunTitle runData={thisRunData}>
+          {thisRunData.productInfo.productName}
         </RunTitle>
       </li>
       <li className={`${styles.lineItem} ${props.columns[1].className}`}>
@@ -170,7 +183,7 @@ function RunListStageItem(props) {
         <span className={styles.cellLabel}>Open</span>
         <span className={styles.cellContent}>
           <Button
-            onClick={() => openEditor(props.runData.id, props.stageNum)}
+            onClick={() => openEditor(props.setCurrentRunUid, props.stageNum)}
             icon="start"
           ></Button>
         </span>
@@ -185,6 +198,7 @@ RunListStageItem.propTypes = {
   setCurrentRunUid: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,
   columns: PropTypes.array.isRequired,
+  currentRunUid: PropTypes.number.isRequired,
 };
 
 export default RunListStageItem;

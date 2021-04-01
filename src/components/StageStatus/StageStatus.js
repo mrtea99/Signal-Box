@@ -7,11 +7,23 @@ import InfoPodSection from "../InfoPod/InfoPodSection/InfoPodSection.js";
 import StatusPodItem from "./StatusPodItem/StatusPodItem.js";
 
 import getStageStatus from "../../utils/getStageStatus.js";
+import { selectRun, selectStageSessions } from "../RunList/runsSlice.js";
 
 function StageStatus(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
 
-  const stageStatus = getStageStatus(props.runData, props.stageNum, activeUser);
+  const thisStageData = useSelector((state) =>
+    selectRun(state, props.currentRunUid)
+  );
+  const thisStageSessions = useSelector((state) =>
+    selectStageSessions(state, props.currentRunUid, props.stageNum)
+  );
+  const stageStatus = getStageStatus(
+    thisStageData,
+    thisStageSessions,
+    props.stageNum,
+    activeUser
+  );
 
   return (
     <InfoPod fullWidth={props.fullWidth}>
@@ -69,11 +81,11 @@ function StageStatus(props) {
 }
 
 StageStatus.propTypes = {
-  runData: PropTypes.object.isRequired,
   stageNum: PropTypes.number.isRequired,
   fullWidth: PropTypes.bool,
   label: PropTypes.bool,
   layout: PropTypes.oneOf(["horiz", "vert"]),
+  currentRunUid: PropTypes.number.isRequired,
 };
 
 export default StageStatus;
