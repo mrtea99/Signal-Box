@@ -140,11 +140,10 @@ function StageActions(props) {
       ) : (
         <div>
           <ConsignItems
-            thisRunData={props.thisRunData}
+            currentRunUid={props.currentRunUid}
             thisStage={props.thisStage}
             stageStatus={stageStatus}
             updateStageActive={props.updateStageActive}
-            currentRunUid={props.currentRunUid}
           />
         </div>
       )}

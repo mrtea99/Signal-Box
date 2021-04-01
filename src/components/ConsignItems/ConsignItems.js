@@ -11,7 +11,7 @@ import ActivityTotals from "./ActivityTotals/ActivityTotals.js";
 
 import styles from "./ConsignItems.module.css";
 
-import { selectStageSessions } from "../RunList/runsSlice.js";
+import { selectStageSessions, selectRun } from "../RunList/runsSlice.js";
 
 import getItemType from "../../utils/getItemType.js";
 
@@ -19,6 +19,9 @@ import getItemType from "../../utils/getItemType.js";
 
 function ConsignItems(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
+  const thisRunData = useSelector((state) =>
+    selectRun(state, props.currentRunUid)
+  );
 
   const [countGood, setCountGood] = React.useState(0);
   const [countBad, setCountBad] = React.useState(0);
@@ -68,16 +71,16 @@ function ConsignItems(props) {
     }
 
     updateRun(
-      props.thisRunData.id,
+      thisRunData.id,
       null,
       updateGoodField,
-      props.thisRunData[updateGoodField] + countGood
+      thisRunData[updateGoodField] + countGood
     );
     updateRun(
-      props.thisRunData.id,
+      thisRunData.id,
       null,
       updateBadField,
-      props.thisRunData[updateBadField] + countBad
+      thisRunData[updateBadField] + countBad
     );
 
     //Force activate stocking stage
@@ -201,7 +204,6 @@ function ConsignItems(props) {
 
 ConsignItems.propTypes = {
   thisStage: PropTypes.number.isRequired,
-  thisRunData: PropTypes.object.isRequired,
   updateStageActive: PropTypes.func.isRequired,
   stageStatus: PropTypes.object.isRequired,
   currentRunUid: PropTypes.number.isRequired,
