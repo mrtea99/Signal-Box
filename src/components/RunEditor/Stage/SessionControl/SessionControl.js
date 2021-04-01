@@ -24,7 +24,6 @@ function SessionControl(props) {
             <SessionEnd
               thisStage={props.thisStage}
               activeSessionData={props.activeSessionData}
-              thisRunData={props.thisRunData}
               className={styles.sessionControl}
               currentRunUid={props.currentRunUid}
             />
@@ -32,7 +31,6 @@ function SessionControl(props) {
             <SessionStart
               thisStage={props.thisStage}
               className={styles.sessionControl}
-              thisRunData={props.thisRunData}
               currentRunUid={props.currentRunUid}
             />
           )}
@@ -62,7 +60,6 @@ SessionControl.propTypes = {
   stageActive: PropTypes.bool.isRequired,
   activeSessionData: PropTypes.object,
   thisStage: PropTypes.number.isRequired,
-  thisRunData: PropTypes.object.isRequired,
   currentRunUid: PropTypes.number.isRequired,
 };
 

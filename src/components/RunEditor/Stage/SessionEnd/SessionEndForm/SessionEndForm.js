@@ -12,12 +12,18 @@ import UnitSystemContext from "../../../../../contexts/UnitSystemContext.js";
 
 import getItemType from "../../../../../utils/getItemType.js";
 
+import { selectRun } from "../../../../RunList/runsSlice.js";
+
 // import stageNames from "../../../../../data/stageNames.json";
 
 function SessionEndForm(props) {
   const unitSystem = React.useContext(UnitSystemContext);
 
   const activeUser = useSelector((state) => state.users.currentUser);
+
+  const thisRunData = useSelector((state) =>
+    selectRun(state, props.currentRunUid)
+  );
 
   const itemType = getItemType(props.thisStage);
 
@@ -112,15 +118,16 @@ function SessionEndForm(props) {
   const weightLabel = function (stageNum, system) {
     let itemName = "";
     let targetWeight;
+    const productInfo = thisRunData.productInfo;
 
     switch (stageNum) {
       case 1:
         itemName = "Batch";
-        targetWeight = props.thisRunData.productInfo.batchWeight;
+        targetWeight = productInfo.batchWeight;
         break;
       case 2:
         itemName = "Unit";
-        targetWeight = props.thisRunData.productInfo.unitWeight;
+        targetWeight = productInfo.unitWeight;
         break;
       default:
         return "Weight";
@@ -220,7 +227,6 @@ SessionEndForm.propTypes = {
   activeSessionData: PropTypes.object.isRequired,
   thisStage: PropTypes.number.isRequired,
   setFormActive: PropTypes.func.isRequired,
-  thisRunData: PropTypes.object.isRequired,
   currentRunUid: PropTypes.number.isRequired,
 };
 

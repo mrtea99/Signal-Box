@@ -7,13 +7,15 @@ import Button from "../../../Button/Button.js";
 import Modal from "../../../Modal/Modal.js";
 import AssignmentList from "../../../AssignmentOpener/AssignmentList/AssignmentList.js";
 
-import { selectStageSessions } from "../../../RunList/runsSlice.js";
+import { selectRun, selectStageSessions } from "../../../RunList/runsSlice.js";
 
 // import stageNames from "../../../../data/stageNames.json";
 import activityList from "../../../../data/activities.json";
 
 function SessionStart(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
+
+  const thisRunData = useSelector((state) => selectRun(state, props.currentRunUid));
 
   const [modalActive, setModalActive] = React.useState(false);
   const [formData, setFormData] = React.useState({
@@ -67,11 +69,11 @@ function SessionStart(props) {
     });
 
     // If the run has "Not Started" staus then change it to "In Progress"
-    if (props.thisRunData.status === "Not Started") {
+    if (thisRunData.status === "Not Started") {
       dispatch({
         type: "runs/update",
         payload: {
-          runId: props.thisRunData.id,
+          runId: props.currentRunUid,
           dataSection: null,
           dataKey: "status",
           newValue: "In Progress",
@@ -142,7 +144,6 @@ function SessionStart(props) {
 SessionStart.propTypes = {
   className: PropTypes.string,
   thisStage: PropTypes.number.isRequired,
-  thisRunData: PropTypes.object.isRequired,
   currentRunUid: PropTypes.number.isRequired,
 };
 

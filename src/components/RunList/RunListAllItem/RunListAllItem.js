@@ -1,13 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import StageNav from "../../StageNav/StageNav";
 import RunTitle from "../RunTitle/RunTitle.js";
 
 import styles from "./RunListAllItem.module.css";
 
+import { selectRun } from "../runsSlice";
+
 function RunListAllItem(props) {
-  const run = props.runData;
+  const thisRunData = useSelector((state) =>
+    selectRun(state, props.currentRunUid)
+  );
 
   const openEditor = function (runUid, stageNum) {
     props.setCurrentRunUid(runUid);
@@ -20,16 +25,15 @@ function RunListAllItem(props) {
         // onClick={() => setModalOverviewActive(run.id)}
         className={styles.itemHeader}
       >
-        <RunTitle runData={props.runData}>
-          {run.productInfo.productName}
+        <RunTitle currentRunUid={props.currentRunUid}>
+          {thisRunData.productInfo.productName}
         </RunTitle>
       </header>
 
       <StageNav
         currentRunUid={props.currentRunUid}
         activeStage={props.activeStage}
-        buttonCallback={(newIndex) => openEditor(run.id, newIndex)}
-        thisRunData={run}
+        buttonCallback={(newIndex) => openEditor(props.currentRunUid, newIndex)}
         sessionLabels
         syntax="list"
       ></StageNav>
@@ -38,10 +42,9 @@ function RunListAllItem(props) {
 }
 
 RunListAllItem.propTypes = {
-  runData: PropTypes.object.isRequired,
   setCurrentRunUid: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,
-  currentRunUid: PropTypes.number,
+  currentRunUid: PropTypes.number.isRequired,
 };
 
 export default RunListAllItem;

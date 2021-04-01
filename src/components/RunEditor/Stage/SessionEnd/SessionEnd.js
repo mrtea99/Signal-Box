@@ -24,7 +24,6 @@ function SessionEnd(props) {
             setFormActive={setModalActive}
             thisStage={props.thisStage}
             activeSessionData={props.activeSessionData}
-            thisRunData={props.thisRunData}
             currentRunUid={props.currentRunUid}
           />
         </Modal>
@@ -37,7 +36,6 @@ SessionEnd.propTypes = {
   className: PropTypes.string,
   activeSessionData: PropTypes.object.isRequired,
   thisStage: PropTypes.number.isRequired,
-  thisRunData: PropTypes.object.isRequired,
   currentRunUid: PropTypes.number.isRequired,
 };
 

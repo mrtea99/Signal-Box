@@ -31,7 +31,6 @@ function StageOverview(props) {
 }
 
 StageOverview.propTypes = {
-  thisRunData: PropTypes.object.isRequired,
   currentRunUid: PropTypes.number.isRequired,
 };
 

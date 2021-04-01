@@ -8,7 +8,7 @@ import Modal from "../../Modal/Modal.js";
 import styles from "./RunTitle.module.css";
 
 function RunTitle(props) {
-  const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
+  const [modalOverviewActive, setModalOverviewActive] = React.useState(null);
 
   const exampleProducts = [
     "Bombshell Clarifying Facial Soap",
@@ -28,18 +28,17 @@ function RunTitle(props) {
       <h3 className={styles.itemTitle}>
         {/* todo: remove this temp data */}
         {/* {props.children} -{" "} */}
-        {exampleProducts[props.runData.id.toString().charAt(12)]}
+        {exampleProducts[props.currentRunUid.toString().charAt(12)]}
       </h3>
       <Button
-        onClick={() => setModalOverviewActive(props.runData.id)}
+        onClick={() => setModalOverviewActive(props.currentRunUid)}
         icon="details"
       />
-      {modalOverviewActive === props.runData.id ? (
+      {modalOverviewActive === props.currentRunUid ? (
         <Modal title="Run Overview">
           <Button onClick={() => setModalOverviewActive(null)}>Close</Button>
           <StageOverview
-            thisRunData={props.runData}
-            currentRunUid={props.runData.id}
+            currentRunUid={props.currentRunUid}
           ></StageOverview>
         </Modal>
       ) : null}
@@ -48,7 +47,7 @@ function RunTitle(props) {
 }
 
 RunTitle.propTypes = {
-  runData: PropTypes.object.isRequired,
+  currentRunUid: PropTypes.number.isRequired,
 };
 
 export default RunTitle;

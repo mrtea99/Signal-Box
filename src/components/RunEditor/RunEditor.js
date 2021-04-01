@@ -86,7 +86,6 @@ function RunEditor(props) {
                           Close
                         </Button>
                         <StageOverview
-                          thisRunData={thisRunData}
                           currentRunUid={props.currentRunUid}
                         ></StageOverview>
                       </Modal>
@@ -105,7 +104,6 @@ function RunEditor(props) {
                 currentRunUid={props.currentRunUid}
                 activeStage={props.activeStage}
                 buttonCallback={props.setActiveStage}
-                thisRunData={thisRunData}
                 stageLabels
                 showActive
                 hideStatus={simpleMode}
@@ -117,7 +115,6 @@ function RunEditor(props) {
                 setCurrentRunUid={props.setCurrentRunUid}
                 thisStage={props.activeStage}
                 setActiveStage={props.setActiveStage}
-                thisRunData={thisRunData}
               />
             </div>
             {/* <pre>{JSON.stringify(thisRunData)}</pre> */}

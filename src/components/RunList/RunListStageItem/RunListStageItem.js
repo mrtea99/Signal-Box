@@ -78,7 +78,7 @@ function RunListStageItem(props) {
       <li
         className={`${styles.lineItem} ${styles.lineItemFull} ${props.columns[0].className}`}
       >
-        <RunTitle runData={thisRunData}>
+        <RunTitle currentRunUid={props.currentRunUid}>
           {thisRunData.productInfo.productName}
         </RunTitle>
       </li>
@@ -193,7 +193,6 @@ function RunListStageItem(props) {
 }
 
 RunListStageItem.propTypes = {
-  runData: PropTypes.object.isRequired,
   stageNum: PropTypes.number.isRequired,
   setCurrentRunUid: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,

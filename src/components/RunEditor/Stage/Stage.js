@@ -14,7 +14,7 @@ import ViewModeContext from "../../../contexts/ViewModeContext.js";
 
 import stageNames from "../../../data/stageNames.json";
 
-import { selectStageSessions } from "../../RunList/runsSlice.js";
+import { selectRun, selectStageSessions } from "../../RunList/runsSlice.js";
 
 function Stage(props) {
   const simpleMode = React.useContext(ViewModeContext) === "simple";
@@ -23,27 +23,32 @@ function Stage(props) {
 
   const activeUser = useSelector((state) => state.users.currentUser);
 
+  const thisRunData = useSelector((state) =>
+    selectRun(state, props.currentRunUid)
+  );
+
   // Stage Difficulty
   //-------------------------------------
   const getDifficulty = function (stageNum) {
     let difficulty = "";
     const defaultDifficulty = "N/A";
+    const productInfo = thisRunData.productInfo
 
     switch (stageNum) {
       case 0:
-        difficulty = props.thisRunData.productInfo.prepDifficulty;
+        difficulty = productInfo.prepDifficulty;
         break;
       case 1:
-        difficulty = props.thisRunData.productInfo.manufacturingDifficulty;
+        difficulty = productInfo.manufacturingDifficulty;
         break;
       case 2:
-        difficulty = props.thisRunData.productInfo.packagingDifficulty;
+        difficulty = productInfo.packagingDifficulty;
         break;
       case 3:
-        difficulty = props.thisRunData.productInfo.labelingDifficulty;
+        difficulty = productInfo.labelingDifficulty;
         break;
       case 4:
-        difficulty = props.thisRunData.productInfo.stockDifficulty;
+        difficulty = productInfo.stockDifficulty;
         break;
       default:
         difficulty = defaultDifficulty;
@@ -92,14 +97,14 @@ function Stage(props) {
     }
   };
   const activeProp = getStageActiveProp(props.thisStage);
-  const stageActive = activeProp ? props.thisRunData[activeProp] : true;
+  const stageActive = activeProp ? thisRunData[activeProp] : true;
 
   // Change a stage's active state
   //-------------------------------------
   const updateStageActive = function (newState, stage) {
     // Update correct active stage property in run if there is one
     const activeProperty = getStageActiveProp(stage);
-    const stageState = props.thisRunData[activeProperty];
+    const stageState = thisRunData[activeProperty];
 
     if (stageState === newState || activeProperty === null) {
       return false;
@@ -156,7 +161,6 @@ function Stage(props) {
             currentRunUid={props.currentRunUid}
             thisStage={props.thisStage}
             stageActive={stageActive}
-            thisRunData={props.thisRunData}
             activeSessionData={activeSessionData}
           />
         </div>
@@ -166,7 +170,6 @@ function Stage(props) {
               key="active"
               currentRunUid={props.currentRunUid}
               thisStage={props.thisStage}
-              thisRunData={props.thisRunData}
               activeSessionData={activeSessionData}
             />
           ) : (
@@ -208,7 +211,6 @@ Stage.propTypes = {
   setCurrentRunUid: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
   setActiveStage: PropTypes.func.isRequired,
-  thisRunData: PropTypes.object.isRequired,
 };
 
 export default Stage;

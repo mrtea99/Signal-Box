@@ -57,7 +57,6 @@ StageNav.propTypes = {
   stageLabels: PropTypes.bool,
   sessionLabels: PropTypes.bool,
   hideStatus: PropTypes.bool,
-  thisRunData: PropTypes.object.isRequired,
 };
 
 export default StageNav;

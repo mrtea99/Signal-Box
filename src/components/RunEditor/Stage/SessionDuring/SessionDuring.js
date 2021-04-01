@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import FormItem from "../../../FormItem/FormItem.js";
 import Timer from "../../../Timer/Timer.js";
@@ -18,9 +18,14 @@ import getItemType from "../../../../utils/getItemType.js";
 import stageNames from "../../../../data/stageNames.json";
 
 import UnitSystemContext from "../../../../contexts/UnitSystemContext";
+import { selectRun } from "../../../RunList/runsSlice.js";
 
 function SessionDuring(props) {
   const unitSystem = React.useContext(UnitSystemContext);
+
+  const thisRunData = useSelector((state) =>
+    selectRun(state, props.currentRunUid)
+  );
 
   // After Statuses
   // Notes (all)
@@ -67,8 +72,8 @@ function SessionDuring(props) {
       case 1:
         if (showRecipe()) {
           const weightOz =
-            props.thisRunData.productInfo.batchWeight *
-            props.thisRunData.batchQuantity;
+            thisRunData.productInfo.batchWeight *
+            thisRunData.batchQuantity;
 
           const weightGrams = weightOz * 28.3495; // todo replace conversion with util
 
@@ -90,19 +95,19 @@ function SessionDuring(props) {
                   <ul>
                     <li>
                       {stageNames[0]}:{" "}
-                      {props.thisRunData.productInfo.prepDifficulty}
+                      {thisRunData.productInfo.prepDifficulty}
                     </li>
                     <li>
                       {stageNames[1]}:{" "}
-                      {props.thisRunData.productInfo.manufacturingDifficulty}
+                      {thisRunData.productInfo.manufacturingDifficulty}
                     </li>
                     <li>
                       {stageNames[2]}:{" "}
-                      {props.thisRunData.productInfo.packagingDifficulty}
+                      {thisRunData.productInfo.packagingDifficulty}
                     </li>
                     <li>
                       {stageNames[3]}:{" "}
-                      {props.thisRunData.productInfo.labelingDifficulty}
+                      {thisRunData.productInfo.labelingDifficulty}
                     </li>
                   </ul>
                 }
@@ -116,13 +121,13 @@ function SessionDuring(props) {
             <DataListItem
               dataKey="Target Unit Quantity"
               dataValue={
-                props.thisRunData.consignedManufacturing *
-                props.thisRunData.productInfo.unitsPerBatch
+                thisRunData.consignedManufacturing *
+                thisRunData.productInfo.unitsPerBatch
               }
             />
             <DataListItem
               dataKey="Target Unit Weight"
-              dataValue={`${props.thisRunData.productInfo.unitWeight} ozm`}
+              dataValue={`${thisRunData.productInfo.unitWeight} ozm`}
             />
           </>
         );
@@ -131,13 +136,13 @@ function SessionDuring(props) {
           <>
             <DataListItem
               dataKey="Target Unit Quantity"
-              dataValue={props.thisRunData.consignedPackaging}
+              dataValue={thisRunData.consignedPackaging}
             />
             <DataListItem
               dataKey="Expiration Date"
               dataValue={<ExpiryDate currentRunUid={props.currentRunUid} />}
             />
-            <DataListItem dataKey="Run ID" dataValue={props.thisRunData.id} />
+            <DataListItem dataKey="Run ID" dataValue={thisRunData.id} />
           </>
         );
       case 4:
@@ -145,12 +150,12 @@ function SessionDuring(props) {
           <>
             <DataListItem
               dataKey="Total Units"
-              dataValue={props.thisRunData.consignedLabeling}
+              dataValue={thisRunData.consignedLabeling}
             />
             <DataListItem dataKey="Wicker Park Stock Amount" dataValue="TODO" />
             <DataListItem
               dataKey="Warehouse Storage Location"
-              dataValue={props.thisRunData.productInfo.storageLocation}
+              dataValue={thisRunData.productInfo.storageLocation}
             />
             <DataListItem
               dataKey="Shopify Sales Channel Availability"
@@ -182,7 +187,7 @@ function SessionDuring(props) {
                 </Stopwatch>
                 {showRecipe() ? (
                   <Button
-                    href={props.thisRunData.productInfo.recipeLink}
+                    href={thisRunData.productInfo.recipeLink}
                     fillWidth
                   >
                     Recipe
@@ -244,7 +249,6 @@ function SessionDuring(props) {
 SessionDuring.propTypes = {
   activeSessionData: PropTypes.object,
   thisStage: PropTypes.number,
-  thisRunData: PropTypes.object,
   currentRunUid: PropTypes.number,
 };
 
