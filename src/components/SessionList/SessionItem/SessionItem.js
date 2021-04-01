@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { useSelector } from "react-redux";
 
 import DateTimeFormatter from "../../DateTimeFormatter/DateTimeFormatter.js";
 import SessionDuration from "../SessionDuration/SessionDuration.js";
@@ -20,18 +21,22 @@ import styles from "./SessionItem.module.css";
 
 import ViewModeContext from "../../../contexts/ViewModeContext.js";
 
-function SessionItem(props) {
-  const {
-    session,
-    itemCount,
-    overview,
-    thisStageData,
-    thisStage,
-    columns,
-  } = props;
+import { selectStageSessions } from "../../RunList/runsSlice.js";
 
+function SessionItem({
+  session,
+  itemCount,
+  overview,
+  thisStage,
+  columns,
+  currentRunUid,
+}) {
   const viewMode = React.useContext(ViewModeContext);
   const simpleMode = viewMode === "simple";
+
+  const thisStageData = useSelector((state) =>
+    selectStageSessions(state, currentRunUid, thisStage)
+  );
 
   const itemName = getItemType(thisStage);
 
@@ -155,7 +160,7 @@ function SessionItem(props) {
                 key={session.sessionId}
                 thisStage={thisStage}
                 session={session}
-                currentRunUid={props.currentRunUid}
+                currentRunUid={currentRunUid}
               />
             ) : null}
             {session.type === "assign" && !simpleMode ? (
@@ -163,7 +168,7 @@ function SessionItem(props) {
                 key={session.sessionId}
                 thisStage={thisStage}
                 session={session}
-                currentRunUid={props.currentRunUid}
+                currentRunUid={currentRunUid}
               />
             ) : null}
             {session.type === "qa" ? (
@@ -171,7 +176,7 @@ function SessionItem(props) {
                 key={session.sessionId}
                 thisStage={thisStage}
                 session={session}
-                currentRunUid={props.currentRunUid}
+                currentRunUid={currentRunUid}
               />
             ) : null}
           </li>
@@ -254,10 +259,10 @@ function SessionItem(props) {
 SessionItem.propTypes = {
   session: PropTypes.object,
   itemCount: PropTypes.number,
-  thisStage: PropTypes.number,
-  thisStageData: PropTypes.array,
+  thisStage: PropTypes.number.isRequired,
   currentRunUid: PropTypes.number.isRequired,
   columns: PropTypes.array.isRequired,
+  overview: PropTypes.bool,
 };
 
 export default SessionItem;

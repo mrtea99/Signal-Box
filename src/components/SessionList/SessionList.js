@@ -52,7 +52,6 @@ function SessionList(props) {
             >
               <SessionItem
                 session={session}
-                thisStageData={thisStageData}
                 itemCount={thisStageData.length - index}
                 thisStage={props.thisStage}
                 columns={columns}
@@ -63,8 +62,8 @@ function SessionList(props) {
 
         <SessionItem
           overview
-          thisStageData={thisStageData}
           currentRunUid={props.currentRunUid}
+          thisStage={props.thisStage}
           columns={columns}
         />
       </ul>
