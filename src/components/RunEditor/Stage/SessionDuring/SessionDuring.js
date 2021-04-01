@@ -6,6 +6,7 @@ import FormItem from "../../../FormItem/FormItem.js";
 import Timer from "../../../Timer/Timer.js";
 import Stopwatch from "./Stopwatch/Stopwatch.js";
 import Button from "../../../Button/Button.js";
+import ExpiryDate from "./ExpiryDate/ExpiryDate.js";
 
 import styles from "./SessionDuring.module.css";
 import ButtonSpacer from "../../../Button/ButtonSpacer/ButtonSpacer.js";
@@ -51,15 +52,6 @@ function SessionDuring(props) {
         extraData: { [dataKey]: value },
       },
     });
-  };
-
-  const expiryCalc = function (start, months) {
-    const startDate = new Date(start);
-    const expiryDate = new Date(
-      startDate.setMonth(startDate.getMonth() + months)
-    );
-
-    return expiryDate.getTime();
   };
 
   const showRecipe = function () {
@@ -143,11 +135,7 @@ function SessionDuring(props) {
             />
             <DataListItem
               dataKey="Expiration Date"
-              dataValue={expiryCalc(
-                //todo: start time needs to be current month plus one
-                props.thisRunData.stages[1].sessions[0].startTime,
-                props.thisRunData.productInfo.expirationDuration
-              )}
+              dataValue={<ExpiryDate currentRunUid={props.currentRunUid} />}
             />
             <DataListItem dataKey="Run ID" dataValue={props.thisRunData.id} />
           </>
