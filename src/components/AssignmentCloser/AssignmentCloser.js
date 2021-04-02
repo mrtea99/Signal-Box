@@ -42,13 +42,12 @@ function AssignmentCloser(props) {
       dispatch({
         type: "sessions/end",
         payload: {
-          runId: props.currentRunUid,
-          stage: props.thisStage,
           sessionId: props.session.sessionId,
           extraData: {
             notes: formData.description,
             secondaryUser: formData.assignee,
             startTime: formData.startDate + formData.startTime,
+            endTime: Date.now(),
             extra: status,
           },
         },
@@ -57,8 +56,6 @@ function AssignmentCloser(props) {
       dispatch({
         type: "sessions/update",
         payload: {
-          runId: props.currentRunUid,
-          stage: props.thisStage,
           sessionId: props.session.sessionId,
           extraData: {
             notes: formData.description,

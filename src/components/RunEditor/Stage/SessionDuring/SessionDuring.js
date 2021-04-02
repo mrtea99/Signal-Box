@@ -51,8 +51,6 @@ function SessionDuring(props) {
     dispatch({
       type: "sessions/update",
       payload: {
-        runId: props.currentRunUid,
-        stage: props.thisStage,
         sessionId: props.activeSessionData.sessionId,
         extraData: { [dataKey]: value },
       },
@@ -72,8 +70,7 @@ function SessionDuring(props) {
       case 1:
         if (showRecipe()) {
           const weightOz =
-            thisRunData.productInfo.batchWeight *
-            thisRunData.batchQuantity;
+            thisRunData.productInfo.batchWeight * thisRunData.batchQuantity;
 
           const weightGrams = weightOz * 28.3495; // todo replace conversion with util
 
@@ -94,8 +91,7 @@ function SessionDuring(props) {
                 dataValue={
                   <ul>
                     <li>
-                      {stageNames[0]}:{" "}
-                      {thisRunData.productInfo.prepDifficulty}
+                      {stageNames[0]}: {thisRunData.productInfo.prepDifficulty}
                     </li>
                     <li>
                       {stageNames[1]}:{" "}
@@ -186,10 +182,7 @@ function SessionDuring(props) {
                   <Timer startTime={props.activeSessionData.startTime} />
                 </Stopwatch>
                 {showRecipe() ? (
-                  <Button
-                    href={thisRunData.productInfo.recipeLink}
-                    fillWidth
-                  >
+                  <Button href={thisRunData.productInfo.recipeLink} fillWidth>
                     Recipe
                   </Button>
                 ) : null}

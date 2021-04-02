@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const changeSession = function (runId, stage, sessionId, extraData, state) {
+const changeSession = function (state, sessionId, extraData) {
   const sessionToChange = state.sessionsList.find(
     (session) => session.sessionId === sessionId
   );
@@ -20,18 +20,14 @@ const sessionsSlice = createSlice({
       state.sessionsList.push(sessionData);
     },
     update: (state, action) => {
-      const { runId, stage, sessionId, extraData } = action.payload;
+      const { sessionId, extraData } = action.payload;
 
-      changeSession(runId, stage, sessionId, extraData, state);
+      changeSession(state, sessionId, extraData);
     },
     end: (state, action) => {
-      const { runId, stage, sessionId, extraData } = action.payload;
+      const { sessionId, extraData } = action.payload;
 
-      let combinedExtra = extraData || {};
-      // Todo: remove Date.now() as it is not allowed in a reducer
-      Object.assign(combinedExtra, { endTime: Date.now() });
-
-      changeSession(runId, stage, sessionId, combinedExtra, state);
+      changeSession(state, sessionId, extraData);
     },
   },
 });
@@ -43,9 +39,7 @@ export default sessionsSlice.reducer;
 // Selectors
 //------------------------------------
 export const selectStageSessions = (state, runId, stageNum) => {
-  const value = state.sessions.sessionsList.filter(
+  return state.sessions.sessionsList.filter(
     (session) => session.runId === runId && session.stage === stageNum
   );
-
-  return value;
 };

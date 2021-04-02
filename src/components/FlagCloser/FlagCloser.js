@@ -47,18 +47,15 @@ function FlagCloser(props) {
       dispatch({
         type: "sessions/end",
         payload: {
-          runId: props.currentRunUid,
-          stage: props.thisStage,
           sessionId: props.session.sessionId,
           extraData: { notes: newNote, amount: priority },
+          endTime: Date.now(),
         },
       });
     } else {
       dispatch({
         type: "sessions/update",
         payload: {
-          runId: props.currentRunUid,
-          stage: props.thisStage,
           sessionId: props.session.sessionId,
           extraData: { notes: newNote, amount: priority, extra: status },
         },

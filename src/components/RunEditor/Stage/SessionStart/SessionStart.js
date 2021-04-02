@@ -61,8 +61,6 @@ function SessionStart(props) {
       dispatch({
         type: "sessions/update",
         payload: {
-          runId: props.currentRunUid,
-          stage: props.thisStage,
           sessionId: sessionId,
           extraData: { endTime: Date.now() },
         },

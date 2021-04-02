@@ -13,7 +13,6 @@ import RunFilter from "./components/RunList/RunFilter/RunFilter.js";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
 
 import { selectAllRuns } from "./components/RunList/runsSlice.js";
-import { selectAllSessions } from "./components/SessionList/sessionsSlice.js";
 
 import stageNames from "./data/stageNames.json";
 

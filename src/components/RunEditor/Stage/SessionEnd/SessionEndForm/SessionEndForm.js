@@ -93,8 +93,6 @@ function SessionEndForm(props) {
     dispatch({
       type: "sessions/end",
       payload: {
-        runId: props.currentRunUid,
-        stage: props.thisStage,
         sessionId: props.activeSessionData.sessionId,
         extraData: {
           notes: noteData,
@@ -102,6 +100,7 @@ function SessionEndForm(props) {
           amountType: itemType,
           amountBad: amountBad,
           averageWeight: averageWeight,
+          endTime: Date.now(),
         },
       },
     });

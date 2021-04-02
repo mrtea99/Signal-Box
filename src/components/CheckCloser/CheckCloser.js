@@ -54,18 +54,15 @@ function CheckCloser(props) {
       dispatch({
         type: "sessions/end",
         payload: {
-          runId: props.currentRunUid,
-          stage: props.thisStage,
           sessionId: props.session.sessionId,
           extraData,
+          endTime: Date.now(),
         },
       });
     } else {
       dispatch({
         type: "sessions/update",
         payload: {
-          runId: props.currentRunUid,
-          stage: props.thisStage,
           sessionId: props.session.sessionId,
           extraData,
         },
