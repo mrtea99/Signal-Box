@@ -136,8 +136,6 @@ function Stage(props) {
     dispatch({
       type: "sessions/add",
       payload: {
-        runId: props.currentRunUid,
-        stage: stage,
         sessionData: newSession,
       },
     });

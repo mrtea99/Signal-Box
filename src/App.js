@@ -40,10 +40,10 @@ function App() {
   // Backend onload data
   //==============================================================================
   // Data for all runs - needs to replaced with API call
-  const runData = useSelector(selectAllRuns);
+  const runsData = useSelector(selectAllRuns);
   React.useEffect(() => {
-    window.localStorage.setItem("runData", JSON.stringify(runData));
-  }, [runData]);
+    window.localStorage.setItem("runsData", JSON.stringify(runsData));
+  }, [runsData]);
 
   // Data for all sessions - needs to replaced with API call
   const sessionsData = useSelector(selectAllSessions);

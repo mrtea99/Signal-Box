@@ -53,8 +53,6 @@ function SessionStart(props) {
     dispatch({
       type: "sessions/add",
       payload: {
-        runId: props.currentRunUid,
-        stage: props.thisStage,
         sessionData: newSession,
       },
     });

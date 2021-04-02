@@ -15,7 +15,7 @@ const sessionsSlice = createSlice({
   },
   reducers: {
     add: (state, action) => {
-      const { runId, stage, sessionData } = action.payload;
+      const { sessionData } = action.payload;
 
       state.sessionsList.push(sessionData);
     },

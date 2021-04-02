@@ -31,12 +31,10 @@ function RunInfoNew(props) {
       payload: { runId, dataSection, dataKey, newValue },
     });
   };
-  const addSession = function (runId, stageNum, sessionData) {
+  const addSession = function (sessionData) {
     dispatch({
       type: "sessions/add",
       payload: {
-        runId,
-        stageNum,
         sessionData,
       },
     });
@@ -139,11 +137,7 @@ function RunInfoNew(props) {
       stage.forEach((assignment) => {
         const updatedAssignment = { ...assignment, runId: newRun.id };
 
-        addSession(
-          updatedAssignment.runId,
-          updatedAssignment.stage,
-          updatedAssignment
-        );
+        addSession(updatedAssignment);
       })
     );
 
