@@ -31,6 +31,16 @@ function RunInfoNew(props) {
       payload: { runId, dataSection, dataKey, newValue },
     });
   };
+  const addSession = function (runId, stageNum, sessionData) {
+    dispatch({
+      type: "sessions/add",
+      payload: {
+        runId,
+        stageNum,
+        sessionData,
+      },
+    });
+  };
 
   // Form State
   //----------------------------------------
@@ -97,13 +107,6 @@ function RunInfoNew(props) {
   const buildRun = function (productTemplateData, batchQuantity) {
     const newRunId = Date.now();
 
-    // Add Run ID to batched assignments
-    const assignments = batchedAssignments.map((sessionList) => {
-      return sessionList.map((session) => {
-        return { ...session, runId: newRunId };
-      });
-    });
-
     return {
       id: newRunId,
       productName: productTemplateData.productName,
@@ -123,23 +126,7 @@ function RunInfoNew(props) {
       activeStocking: true,
       archived: 0,
       productInfo: productTemplateData,
-      stages: [
-        {
-          sessions: assignments[0],
-        },
-        {
-          sessions: assignments[1],
-        },
-        {
-          sessions: assignments[2],
-        },
-        {
-          sessions: assignments[3],
-        },
-        {
-          sessions: assignments[4],
-        },
-      ],
+      stages: [{}, {}, {}, {}, {}],
     };
   };
 
@@ -147,6 +134,18 @@ function RunInfoNew(props) {
     const newRun = buildRun(productTemplateData, batchQuantity);
 
     createRun(newRun);
+
+    batchedAssignments.forEach((stage) =>
+      stage.forEach((assignment) => {
+        const updatedAssignment = { ...assignment, runId: newRun.id };
+
+        addSession(
+          updatedAssignment.runId,
+          updatedAssignment.stage,
+          updatedAssignment
+        );
+      })
+    );
 
     closeModal();
   };
