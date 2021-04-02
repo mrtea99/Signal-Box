@@ -21,7 +21,7 @@ import styles from "./SessionItem.module.css";
 
 import ViewModeContext from "../../../contexts/ViewModeContext.js";
 
-import { selectStageSessions } from "../../RunList/runsSlice.js";
+import { selectStageSessions } from "../../SessionList/sessionsSlice.js";
 
 function SessionItem({
   session,

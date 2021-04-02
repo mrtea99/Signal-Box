@@ -11,7 +11,8 @@ import ButtonSpacer from "../../../Button/ButtonSpacer/ButtonSpacer.js";
 
 import styles from "./StageActions.module.css";
 
-import { selectRun, selectStageSessions } from "../../../RunList/runsSlice.js";
+import { selectRun } from "../../../RunList/runsSlice.js";
+import { selectStageSessions } from "../../../SessionList/sessionsSlice.js";
 
 function StageActions(props) {
   const thisRunData = useSelector((state) =>

@@ -9,7 +9,7 @@ import getItemType from "../../utils/getItemType.js";
 
 import styles from "./SessionList.module.css";
 
-import { selectStageSessions } from "../RunList/runsSlice.js";
+import { selectStageSessions } from "./sessionsSlice.js";
 
 function SessionList(props) {
   const thisStageData = useSelector((state) =>

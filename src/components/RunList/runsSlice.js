@@ -1,13 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const changeSession = function (runId, stage, sessionId, extraData, state) {
-  const sessionToChange = state.runsList
-    .find((run) => run.id === runId)
-    .stages[stage].sessions.find((session) => session.sessionId === sessionId);
-
-  Object.assign(sessionToChange, extraData);
-};
-
 export const runsSlice = createSlice({
   name: "runs",
   initialState: {
@@ -39,28 +31,6 @@ export const runsSlice = createSlice({
 
       state.runsList = state.runsList.filter((run) => runId !== run.id);
     },
-    addSession: (state, action) => {
-      const { runId, stage, sessionData } = action.payload;
-
-      const runToChange = state.runsList.find((run) => {
-        return run.id === runId;
-      });
-
-      runToChange.stages[stage].sessions.push(sessionData);
-    },
-    updateSession: (state, action) => {
-      const { runId, stage, sessionId, extraData } = action.payload;
-
-      changeSession(runId, stage, sessionId, extraData, state);
-    },
-    endSession: (state, action) => {
-      const { runId, stage, sessionId, extraData } = action.payload;
-
-      let combinedExtra = extraData || {};
-      Object.assign(combinedExtra, { endTime: Date.now() });
-
-      changeSession(runId, stage, sessionId, combinedExtra, state);
-    },
   },
 });
 
@@ -80,8 +50,3 @@ export const selectAllRuns = (state) => state.runs.runsList;
 
 export const selectRun = (state, runId) =>
   state.runs.runsList.find((run) => run.id === runId);
-
-export const selectStageSessions = (state, runId, stageNum) => {
-  return state.runs.runsList.find((run) => run.id === runId).stages[stageNum]
-    .sessions;
-};

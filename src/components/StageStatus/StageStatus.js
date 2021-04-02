@@ -7,7 +7,9 @@ import InfoPodSection from "../InfoPod/InfoPodSection/InfoPodSection.js";
 import StatusPodItem from "./StatusPodItem/StatusPodItem.js";
 
 import getStageStatus from "../../utils/getStageStatus.js";
-import { selectRun, selectStageSessions } from "../RunList/runsSlice.js";
+
+import { selectRun } from "../RunList/runsSlice.js";
+import { selectStageSessions } from "../SessionList/sessionsSlice.js";
 
 function StageStatus(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
@@ -18,6 +20,7 @@ function StageStatus(props) {
   const thisStageSessions = useSelector((state) =>
     selectStageSessions(state, props.currentRunUid, props.stageNum)
   );
+
   const stageStatus = getStageStatus(
     thisStageData,
     thisStageSessions,

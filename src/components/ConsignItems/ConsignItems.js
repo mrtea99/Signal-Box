@@ -11,7 +11,8 @@ import ActivityTotals from "./ActivityTotals/ActivityTotals.js";
 
 import styles from "./ConsignItems.module.css";
 
-import { selectStageSessions, selectRun } from "../RunList/runsSlice.js";
+import { selectRun } from "../RunList/runsSlice.js";
+import { selectStageSessions } from "../SessionList/sessionsSlice.js";
 
 import getItemType from "../../utils/getItemType.js";
 
@@ -71,13 +72,13 @@ function ConsignItems(props) {
     }
 
     updateRun(
-      thisRunData.id,
+      props.currentRunUid,
       null,
       updateGoodField,
       thisRunData[updateGoodField] + countGood
     );
     updateRun(
-      thisRunData.id,
+      props.currentRunUid,
       null,
       updateBadField,
       thisRunData[updateBadField] + countBad
@@ -106,7 +107,7 @@ function ConsignItems(props) {
     };
 
     dispatch({
-      type: "runs/addSession",
+      type: "sessions/add",
       payload: {
         runId: props.currentRunUid,
         stage: props.thisStage,

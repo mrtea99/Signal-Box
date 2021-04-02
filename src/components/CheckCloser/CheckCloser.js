@@ -52,7 +52,7 @@ function CheckCloser(props) {
 
     if (status === "resolved") {
       dispatch({
-        type: "runs/endSession",
+        type: "sessions/end",
         payload: {
           runId: props.currentRunUid,
           stage: props.thisStage,
@@ -62,7 +62,7 @@ function CheckCloser(props) {
       });
     } else {
       dispatch({
-        type: "runs/updateSession",
+        type: "sessions/update",
         payload: {
           runId: props.currentRunUid,
           stage: props.thisStage,

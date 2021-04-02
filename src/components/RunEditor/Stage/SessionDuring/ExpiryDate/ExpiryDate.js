@@ -2,10 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
-import {
-  selectStageSessions,
-  selectRun,
-} from "../../../../RunList/runsSlice.js";
+import { selectRun } from "../../../../RunList/runsSlice.js";
+import { selectStageSessions } from "../../../../SessionList/sessionsSlice.js";
 
 const ExpiryDate = function (props) {
   const expiryDuration = useSelector((state) =>

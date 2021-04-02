@@ -7,7 +7,8 @@ import Button from "../../../Button/Button.js";
 import Modal from "../../../Modal/Modal.js";
 import AssignmentList from "../../../AssignmentOpener/AssignmentList/AssignmentList.js";
 
-import { selectRun, selectStageSessions } from "../../../RunList/runsSlice.js";
+import { selectRun } from "../../../RunList/runsSlice.js";
+import { selectStageSessions } from "../../../SessionList/sessionsSlice.js";
 
 // import stageNames from "../../../../data/stageNames.json";
 import activityList from "../../../../data/activities.json";
@@ -15,7 +16,9 @@ import activityList from "../../../../data/activities.json";
 function SessionStart(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
 
-  const thisRunData = useSelector((state) => selectRun(state, props.currentRunUid));
+  const thisRunData = useSelector((state) =>
+    selectRun(state, props.currentRunUid)
+  );
 
   const [modalActive, setModalActive] = React.useState(false);
   const [formData, setFormData] = React.useState({
@@ -48,7 +51,7 @@ function SessionStart(props) {
     };
 
     dispatch({
-      type: "runs/addSession",
+      type: "sessions/add",
       payload: {
         runId: props.currentRunUid,
         stage: props.thisStage,
@@ -58,7 +61,7 @@ function SessionStart(props) {
 
     resolvedAssignments.forEach((sessionId) => {
       dispatch({
-        type: "runs/updateSession",
+        type: "sessions/update",
         payload: {
           runId: props.currentRunUid,
           stage: props.thisStage,

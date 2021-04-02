@@ -82,7 +82,7 @@ function SessionEndForm(props) {
       };
 
       dispatch({
-        type: "runs/addSession",
+        type: "sessions/add",
         payload: {
           runId: props.currentRunUid,
           stage: props.thisStage,
@@ -93,7 +93,7 @@ function SessionEndForm(props) {
 
     //End Work Session
     dispatch({
-      type: "runs/endSession",
+      type: "sessions/end",
       payload: {
         runId: props.currentRunUid,
         stage: props.thisStage,

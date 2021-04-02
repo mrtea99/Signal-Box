@@ -14,7 +14,8 @@ import ViewModeContext from "../../../contexts/ViewModeContext.js";
 
 import stageNames from "../../../data/stageNames.json";
 
-import { selectRun, selectStageSessions } from "../../RunList/runsSlice.js";
+import { selectRun } from "../../RunList/runsSlice.js";
+import { selectStageSessions } from "../../SessionList/sessionsSlice.js";
 
 function Stage(props) {
   const simpleMode = React.useContext(ViewModeContext) === "simple";
@@ -32,7 +33,7 @@ function Stage(props) {
   const getDifficulty = function (stageNum) {
     let difficulty = "";
     const defaultDifficulty = "N/A";
-    const productInfo = thisRunData.productInfo
+    const productInfo = thisRunData.productInfo;
 
     switch (stageNum) {
       case 0:
@@ -133,7 +134,7 @@ function Stage(props) {
       user: activeUser,
     };
     dispatch({
-      type: "runs/addSession",
+      type: "sessions/add",
       payload: {
         runId: props.currentRunUid,
         stage: stage,

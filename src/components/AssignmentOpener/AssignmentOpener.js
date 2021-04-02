@@ -59,7 +59,7 @@ function AssignmentOpener(props) {
       props.addAssignment(newSession, props.thisStage);
     } else {
       dispatch({
-        type: "runs/addSession",
+        type: "sessions/add",
         payload: {
           runId: props.currentRunUid,
           stage: props.thisStage,

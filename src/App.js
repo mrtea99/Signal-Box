@@ -13,6 +13,7 @@ import RunFilter from "./components/RunList/RunFilter/RunFilter.js";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
 
 import { selectAllRuns } from "./components/RunList/runsSlice.js";
+import { selectAllSessions } from "./components/SessionList/sessionsSlice.js";
 
 import stageNames from "./data/stageNames.json";
 
@@ -43,6 +44,12 @@ function App() {
   React.useEffect(() => {
     window.localStorage.setItem("runData", JSON.stringify(runData));
   }, [runData]);
+
+  // Data for all sessions - needs to replaced with API call
+  const sessionsData = useSelector(selectAllSessions);
+  React.useEffect(() => {
+    window.localStorage.setItem("sessionsData", JSON.stringify(sessionsData));
+  }, [sessionsData]);
 
   // Frontend onload data
   //==============================================================================

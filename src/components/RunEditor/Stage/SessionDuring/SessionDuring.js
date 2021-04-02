@@ -49,7 +49,7 @@ function SessionDuring(props) {
     setState(value);
 
     dispatch({
-      type: "runs/updateSession",
+      type: "sessions/update",
       payload: {
         runId: props.currentRunUid,
         stage: props.thisStage,
