@@ -46,7 +46,7 @@ function App() {
   }, [runsData]);
 
   // Data for all sessions - needs to replaced with API call
-  const sessionsData = useSelector(selectAllSessions);
+  const sessionsData = useSelector((state) => state.sessions.sessionsList);
   React.useEffect(() => {
     window.localStorage.setItem("sessionsData", JSON.stringify(sessionsData));
   }, [sessionsData]);

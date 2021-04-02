@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const runsSlice = createSlice({
   name: "runs",
   initialState: {
-    runsList: JSON.parse(window.localStorage.getItem("runData")) || [],
+    runsList: JSON.parse(window.localStorage.getItem("runsData")) || [],
   },
   reducers: {
     create: (state, action) => {

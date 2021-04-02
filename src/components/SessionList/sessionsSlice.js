@@ -42,8 +42,6 @@ export default sessionsSlice.reducer;
 
 // Selectors
 //------------------------------------
-export const selectAllSessions = (state) => state.sessions.sessionsList;
-
 export const selectStageSessions = (state, runId, stageNum) => {
   const value = state.sessions.sessionsList.filter(
     (session) => session.runId === runId && session.stage === stageNum
