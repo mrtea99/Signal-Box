@@ -43,7 +43,7 @@ function AssignmentOpener(props) {
 
     const newSession = {
       sessionId: newsessionId,
-      runId: props.currentRunUid || null,
+      runId: props.currentRunId || null,
       // stage: stageNames[props.thisStage],
       stage: props.thisStage,
       type: "assign",
@@ -101,7 +101,7 @@ function AssignmentOpener(props) {
 
 AssignmentOpener.propTypes = {
   thisStage: PropTypes.number.isRequired,
-  currentRunUid: PropTypes.number,
+  currentRunId: PropTypes.number,
   addAssignment: PropTypes.func,
   triggerCopy: PropTypes.string,
   buttonAttrs: PropTypes.object,

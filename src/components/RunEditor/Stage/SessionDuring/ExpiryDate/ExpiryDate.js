@@ -7,11 +7,11 @@ import { selectStageSessions } from "../../../../SessionList/sessionsSlice.js";
 
 const ExpiryDate = function (props) {
   const expiryDuration = useSelector((state) =>
-    selectRun(state, props.currentRunUid)
+    selectRun(state, props.currentRunId)
   ).productInfo.expirationDuration;
 
   const expiryStart = useSelector((state) =>
-    selectStageSessions(state, props.currentRunUid, 1)
+    selectStageSessions(state, props.currentRunId, 1)
   )[0].startTime;
 
   const expiryCalc = function (start, months) {
@@ -27,7 +27,7 @@ const ExpiryDate = function (props) {
 };
 
 ExpiryDate.propTypes = {
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunId: PropTypes.number.isRequired,
 };
 
 export default ExpiryDate;

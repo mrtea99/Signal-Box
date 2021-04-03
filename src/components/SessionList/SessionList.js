@@ -13,7 +13,7 @@ import { selectStageSessions } from "./sessionsSlice.js";
 
 function SessionList(props) {
   const thisStageData = useSelector((state) =>
-    selectStageSessions(state, props.currentRunUid, props.thisStage)
+    selectStageSessions(state, props.currentRunId, props.thisStage)
   );
 
   const itemName = getItemType(props.thisStage);
@@ -55,14 +55,14 @@ function SessionList(props) {
                 itemCount={thisStageData.length - index}
                 thisStage={props.thisStage}
                 columns={columns}
-                currentRunUid={props.currentRunUid}
+                currentRunId={props.currentRunId}
               />
             </li>
           ))}
 
         <SessionItem
           overview
-          currentRunUid={props.currentRunUid}
+          currentRunId={props.currentRunId}
           thisStage={props.thisStage}
           columns={columns}
         />
@@ -73,7 +73,7 @@ function SessionList(props) {
 
 SessionList.propTypes = {
   thisStage: PropTypes.number.isRequired,
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunId: PropTypes.number.isRequired,
 };
 
 export default SessionList;

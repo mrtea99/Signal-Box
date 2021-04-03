@@ -25,29 +25,29 @@ function SessionControl(props) {
               thisStage={props.thisStage}
               activeSessionData={props.activeSessionData}
               className={styles.sessionControl}
-              currentRunUid={props.currentRunUid}
+              currentRunId={props.currentRunId}
             />
           ) : (
             <SessionStart
               thisStage={props.thisStage}
               className={styles.sessionControl}
-              currentRunUid={props.currentRunUid}
+              currentRunId={props.currentRunId}
             />
           )}
           <ButtonSpacer direction="vert">
             {!simpleMode ? (
               <AssignmentOpener
                 thisStage={props.thisStage}
-                currentRunUid={props.currentRunUid}
+                currentRunId={props.currentRunId}
               />
             ) : null}
             <CheckOpener
               thisStage={props.thisStage}
-              currentRunUid={props.currentRunUid}
+              currentRunId={props.currentRunId}
             />
             <FlagOpener
               thisStage={props.thisStage}
-              currentRunUid={props.currentRunUid}
+              currentRunId={props.currentRunId}
             />
           </ButtonSpacer>
         </div>
@@ -60,7 +60,7 @@ SessionControl.propTypes = {
   stageActive: PropTypes.bool.isRequired,
   activeSessionData: PropTypes.object,
   thisStage: PropTypes.number.isRequired,
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunId: PropTypes.number.isRequired,
 };
 
 export default SessionControl;

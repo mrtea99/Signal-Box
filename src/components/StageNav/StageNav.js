@@ -16,7 +16,7 @@ function StageNav(props) {
   return (
     <ul className={styles.progBar}>
       {stageNames.map((stage, index) => (
-        <li key={props.currentRunUid + stage} className={styles.progItem}>
+        <li key={props.currentRunId + stage} className={styles.progItem}>
           <button
             className={`${styles.progBtn} ${
               props.activeStage === index && props.showActive
@@ -36,7 +36,7 @@ function StageNav(props) {
             {props.hideStatus ? null : (
               <span className={styles.status}>
                 <StageStatus
-                  currentRunUid={props.currentRunUid}
+                  currentRunId={props.currentRunId}
                   stageNum={index}
                   label={props.sessionLabels}
                 />
@@ -51,7 +51,7 @@ function StageNav(props) {
 
 StageNav.propTypes = {
   buttonCallback: PropTypes.func.isRequired,
-  currentRunUid: PropTypes.number,
+  currentRunId: PropTypes.number,
   activeStage: PropTypes.number,
   showActive: PropTypes.bool,
   stageLabels: PropTypes.bool,

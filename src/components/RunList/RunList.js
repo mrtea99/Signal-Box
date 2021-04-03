@@ -81,17 +81,17 @@ function RunList(props) {
             props.stageNum === "all" ? (
               <div className={styles.itemRow} key={run.id}>
                 <RunListAllItem
-                  currentRunUid={run.id}
-                  setCurrentRunUid={props.setCurrentRunUid}
+                  currentRunId={run.id}
+                  setCurrentRunId={props.setCurrentRunId}
                   setActiveStage={props.setActiveStage}
                 />
               </div>
             ) : (
               <div className={styles.itemRow} key={run.id}>
                 <RunListStageItem
-                  currentRunUid={run.id}
+                  currentRunId={run.id}
                   stageNum={props.stageNum}
-                  setCurrentRunUid={props.setCurrentRunUid}
+                  setCurrentRunId={props.setCurrentRunId}
                   setActiveStage={props.setActiveStage}
                   columns={columns}
                 />
@@ -110,7 +110,7 @@ RunList.propTypes = {
   stageNum: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(["all"])])
     .isRequired,
   filters: PropTypes.object.isRequired,
-  setCurrentRunUid: PropTypes.func.isRequired,
+  setCurrentRunId: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,
 };
 

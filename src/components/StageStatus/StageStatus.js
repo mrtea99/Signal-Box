@@ -15,10 +15,10 @@ function StageStatus(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
 
   const thisStageData = useSelector((state) =>
-    selectRun(state, props.currentRunUid)
+    selectRun(state, props.currentRunId)
   );
   const thisStageSessions = useSelector((state) =>
-    selectStageSessions(state, props.currentRunUid, props.stageNum)
+    selectStageSessions(state, props.currentRunId, props.stageNum)
   );
 
   const stageStatus = getStageStatus(
@@ -88,7 +88,7 @@ StageStatus.propTypes = {
   fullWidth: PropTypes.bool,
   label: PropTypes.bool,
   layout: PropTypes.oneOf(["horiz", "vert"]),
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunId: PropTypes.number.isRequired,
 };
 
 export default StageStatus;

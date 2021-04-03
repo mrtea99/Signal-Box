@@ -22,7 +22,7 @@ function SessionEndForm(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
 
   const thisRunData = useSelector((state) =>
-    selectRun(state, props.currentRunUid)
+    selectRun(state, props.currentRunId)
   );
 
   const itemType = getItemType(props.thisStage);
@@ -71,7 +71,7 @@ function SessionEndForm(props) {
 
       const newSession = {
         sessionId: newsessionId,
-        runId: props.currentRunUid,
+        runId: props.currentRunId,
         // stage: stageNames[props.thisStage],
         stage: props.thisStage,
         type: "qa",
@@ -224,7 +224,7 @@ SessionEndForm.propTypes = {
   activeSessionData: PropTypes.object.isRequired,
   thisStage: PropTypes.number.isRequired,
   setFormActive: PropTypes.func.isRequired,
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunId: PropTypes.number.isRequired,
 };
 
 export default SessionEndForm;

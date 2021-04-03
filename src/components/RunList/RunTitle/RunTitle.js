@@ -28,17 +28,17 @@ function RunTitle(props) {
       <h3 className={styles.itemTitle}>
         {/* todo: remove this temp data */}
         {/* {props.children} -{" "} */}
-        {exampleProducts[props.currentRunUid.toString().charAt(12)]}
+        {exampleProducts[props.currentRunId.toString().charAt(12)]}
       </h3>
       <Button
-        onClick={() => setModalOverviewActive(props.currentRunUid)}
+        onClick={() => setModalOverviewActive(props.currentRunId)}
         icon="details"
       />
-      {modalOverviewActive === props.currentRunUid ? (
+      {modalOverviewActive === props.currentRunId ? (
         <Modal title="Run Overview">
           <Button onClick={() => setModalOverviewActive(null)}>Close</Button>
           <StageOverview
-            currentRunUid={props.currentRunUid}
+            currentRunId={props.currentRunId}
           ></StageOverview>
         </Modal>
       ) : null}
@@ -47,7 +47,7 @@ function RunTitle(props) {
 }
 
 RunTitle.propTypes = {
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunId: PropTypes.number.isRequired,
 };
 
 export default RunTitle;

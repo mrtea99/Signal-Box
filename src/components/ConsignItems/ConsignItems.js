@@ -21,7 +21,7 @@ import getItemType from "../../utils/getItemType.js";
 function ConsignItems(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
   const thisRunData = useSelector((state) =>
-    selectRun(state, props.currentRunUid)
+    selectRun(state, props.currentRunId)
   );
 
   const [countGood, setCountGood] = React.useState(0);
@@ -46,7 +46,7 @@ function ConsignItems(props) {
   };
 
   const stageSessions = useSelector((state) =>
-    selectStageSessions(state, props.currentRunUid, props.thisStage)
+    selectStageSessions(state, props.currentRunId, props.thisStage)
   );
 
   const handleSubmit = function () {
@@ -72,13 +72,13 @@ function ConsignItems(props) {
     }
 
     updateRun(
-      props.currentRunUid,
+      props.currentRunId,
       null,
       updateGoodField,
       thisRunData[updateGoodField] + countGood
     );
     updateRun(
-      props.currentRunUid,
+      props.currentRunId,
       null,
       updateBadField,
       thisRunData[updateBadField] + countBad
@@ -94,7 +94,7 @@ function ConsignItems(props) {
 
     const newSession = {
       sessionId: newsessionId,
-      runId: props.currentRunUid,
+      runId: props.currentRunId,
       // stage: stageNames[props.thisStage],
       stage: props.thisStage,
       type: "consign",
@@ -205,7 +205,7 @@ ConsignItems.propTypes = {
   thisStage: PropTypes.number.isRequired,
   updateStageActive: PropTypes.func.isRequired,
   stageStatus: PropTypes.object.isRequired,
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunId: PropTypes.number.isRequired,
 };
 
 export default ConsignItems;

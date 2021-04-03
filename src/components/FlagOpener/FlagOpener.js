@@ -19,7 +19,7 @@ function FlagOpener(props) {
 
     const newSession = {
       sessionId: newsessionId,
-      runId: props.currentRunUid,
+      runId: props.currentRunId,
       // stage: stageNames[props.thisStage],
       stage: props.thisStage,
       type: "flag",
@@ -117,7 +117,7 @@ function FlagOpener(props) {
 
 FlagOpener.propTypes = {
   thisStage: PropTypes.number.isRequired,
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunId: PropTypes.number.isRequired,
 };
 
 export default FlagOpener;

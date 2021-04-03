@@ -52,12 +52,12 @@ function App() {
 
   // Frontend onload data
   //==============================================================================
-  const savedCurrentRunUid = () =>
-    parseInt(window.localStorage.getItem("currentRunUid"), 10) || null;
-  const [currentRunUid, setCurrentRunUid] = React.useState(savedCurrentRunUid);
+  const savedCurrentRunId = () =>
+    parseInt(window.localStorage.getItem("currentRunId"), 10) || null;
+  const [currentRunId, setCurrentRunId] = React.useState(savedCurrentRunId);
   React.useEffect(() => {
-    window.localStorage.setItem("currentRunUid", currentRunUid);
-  }, [currentRunUid]);
+    window.localStorage.setItem("currentRunId", currentRunId);
+  }, [currentRunId]);
 
   const savedActiveStage = () =>
     parseInt(window.localStorage.getItem("activeStage"), 10) || 0;
@@ -201,7 +201,7 @@ function App() {
                       content: (
                         <RunList
                           key={stage}
-                          setCurrentRunUid={setCurrentRunUid}
+                          setCurrentRunId={setCurrentRunId}
                           setActiveStage={setActiveStage}
                           stageNum={index === 0 ? "all" : index - 1}
                           filters={runFilters}
@@ -212,8 +212,8 @@ function App() {
                 </section>
                 <section>
                   <RunEditor
-                    currentRunUid={currentRunUid}
-                    setCurrentRunUid={setCurrentRunUid}
+                    currentRunId={currentRunId}
+                    setCurrentRunId={setCurrentRunId}
                     activeStage={activeStage}
                     setActiveStage={setActiveStage}
                   />

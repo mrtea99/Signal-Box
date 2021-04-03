@@ -35,6 +35,11 @@ function AssignmentCloser(props) {
   const [formData, setFormData] = React.useState(defaultFormData);
   const [status, setStatus] = React.useState(props.session.extra);
 
+  const resetFormData = function () {
+    setFormData(defaultFormData);
+    setStatus(props.session.extra);
+  };
+
   const dispatch = useDispatch();
 
   const handleSubmit = function () {
@@ -66,12 +71,15 @@ function AssignmentCloser(props) {
       });
     }
 
-    // handleCancel();
+    resetFormData();
   };
 
   const handleCancel = function () {
-    setFormData(defaultFormData);
-    setStatus(props.session.extra);
+    resetFormData();
+  };
+
+  const handleOpen = function () {
+    resetFormData();
   };
 
   return (
@@ -81,6 +89,7 @@ function AssignmentCloser(props) {
           title="Edit Assignment"
           handleSubmit={handleSubmit}
           handleCancel={handleCancel}
+          handleOpen={handleOpen}
           triggerCopy={""}
           submitCopy={"Save"}
           buttonAttrs={{ color: "assign", icon: "assign" }}
@@ -114,7 +123,7 @@ function AssignmentCloser(props) {
 AssignmentCloser.propTypes = {
   session: PropTypes.object.isRequired,
   thisStage: PropTypes.number.isRequired,
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunId: PropTypes.number.isRequired,
 };
 
 export default AssignmentCloser;

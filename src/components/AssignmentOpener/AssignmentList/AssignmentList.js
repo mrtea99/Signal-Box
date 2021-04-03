@@ -52,7 +52,7 @@ function AssignmentList(props) {
                   <AssignmentCloser
                     session={session}
                     thisStage={props.thisStage}
-                    currentRunUid={props.currentRunUid}
+                    currentRunId={props.currentRunId}
                   />
                 </div>
                 <div className={`${styles.colResolve} ${styles.resolve}`}>
@@ -86,7 +86,7 @@ AssignmentList.propTypes = {
   resolvedAssignments: PropTypes.array.isRequired,
   setResolvedAssignments: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunId: PropTypes.number.isRequired,
 };
 
 export default AssignmentList;

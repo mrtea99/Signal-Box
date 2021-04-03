@@ -17,7 +17,7 @@ function SessionStart(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
 
   const thisRunData = useSelector((state) =>
-    selectRun(state, props.currentRunUid)
+    selectRun(state, props.currentRunId)
   );
 
   const [modalActive, setModalActive] = React.useState(false);
@@ -39,7 +39,7 @@ function SessionStart(props) {
 
     const newSession = {
       sessionId: newsessionId,
-      runId: props.currentRunUid,
+      runId: props.currentRunId,
       // stage: stageNames[props.thisStage],
       stage: props.thisStage,
       type: "work",
@@ -72,7 +72,7 @@ function SessionStart(props) {
       dispatch({
         type: "runs/update",
         payload: {
-          runId: props.currentRunUid,
+          runId: props.currentRunId,
           dataSection: null,
           dataKey: "status",
           newValue: "In Progress",
@@ -89,7 +89,7 @@ function SessionStart(props) {
   };
 
   const stageSessions = useSelector((state) =>
-    selectStageSessions(state, props.currentRunUid, props.thisStage)
+    selectStageSessions(state, props.currentRunId, props.thisStage)
   );
   const assignSessions = stageSessions.filter((session) => {
     return (
@@ -125,7 +125,7 @@ function SessionStart(props) {
             resolvedAssignments={resolvedAssignments}
             setResolvedAssignments={setResolvedAssignments}
             thisStage={props.thisStage}
-            currentRunUid={props.currentRunUid}
+            currentRunId={props.currentRunId}
           />
           <SessionStartForm
             thisStage={props.thisStage}
@@ -143,7 +143,7 @@ function SessionStart(props) {
 SessionStart.propTypes = {
   className: PropTypes.string,
   thisStage: PropTypes.number.isRequired,
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunId: PropTypes.number.isRequired,
 };
 
 export default SessionStart;

@@ -152,7 +152,7 @@ function CheckCloser(props) {
 CheckCloser.propTypes = {
   session: PropTypes.object.isRequired,
   thisStage: PropTypes.number.isRequired,
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunId: PropTypes.number.isRequired,
 };
 
 export default CheckCloser;

@@ -29,13 +29,13 @@ function SessionItem({
   overview,
   thisStage,
   columns,
-  currentRunUid,
+  currentRunId,
 }) {
   const viewMode = React.useContext(ViewModeContext);
   const simpleMode = viewMode === "simple";
 
   const thisStageData = useSelector((state) =>
-    selectStageSessions(state, currentRunUid, thisStage)
+    selectStageSessions(state, currentRunId, thisStage)
   );
 
   const itemName = getItemType(thisStage);
@@ -160,7 +160,7 @@ function SessionItem({
                 key={session.sessionId}
                 thisStage={thisStage}
                 session={session}
-                currentRunUid={currentRunUid}
+                currentRunId={currentRunId}
               />
             ) : null}
             {session.type === "assign" && !simpleMode ? (
@@ -168,7 +168,7 @@ function SessionItem({
                 key={session.sessionId}
                 thisStage={thisStage}
                 session={session}
-                currentRunUid={currentRunUid}
+                currentRunId={currentRunId}
               />
             ) : null}
             {session.type === "qa" ? (
@@ -176,7 +176,7 @@ function SessionItem({
                 key={session.sessionId}
                 thisStage={thisStage}
                 session={session}
-                currentRunUid={currentRunUid}
+                currentRunId={currentRunId}
               />
             ) : null}
           </li>
@@ -260,7 +260,7 @@ SessionItem.propTypes = {
   session: PropTypes.object,
   itemCount: PropTypes.number,
   thisStage: PropTypes.number.isRequired,
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunId: PropTypes.number.isRequired,
   columns: PropTypes.array.isRequired,
   overview: PropTypes.bool,
 };

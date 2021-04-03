@@ -13,7 +13,7 @@ import FormItem from "../FormItem/FormItem.js";
 import productTemplates from "../../data/productTemplates.json";
 
 function RunInfoNew(props) {
-  const mode = props.currentRunUid ? "change" : "new";
+  const mode = props.currentRunId ? "change" : "new";
   const runStatuses = ["Not Started", "In Progress", "Complete", "Archived"];
   const modalTitle = mode === "new" ? "Create New Run" : "Edit Run Info";
 
@@ -145,9 +145,9 @@ function RunInfoNew(props) {
   };
 
   const updateRunInfo = function (productTemplateData, batchQuantity) {
-    updateRun(props.currentRunUid, null, "productInfo", productTemplateData);
-    updateRun(props.currentRunUid, null, "batchQuantity", batchQuantity);
-    updateRun(props.currentRunUid, null, "status", runStatus);
+    updateRun(props.currentRunId, null, "productInfo", productTemplateData);
+    updateRun(props.currentRunId, null, "batchQuantity", batchQuantity);
+    updateRun(props.currentRunId, null, "status", runStatus);
 
     closeModal();
   };
@@ -192,7 +192,7 @@ function RunInfoNew(props) {
           <ButtonSpacer align="right">
             {mode === "change" ? (
               <RunDelete
-                currentRunUid={props.currentRunUid}
+                currentRunId={props.currentRunId}
                 successCallback={() => closeModal()}
               />
             ) : null}
@@ -220,7 +220,7 @@ function RunInfoNew(props) {
 
 RunInfoNew.propTypes = {
   thisRunData: PropTypes.object,
-  currentRunUid: PropTypes.number,
+  currentRunId: PropTypes.number,
 };
 
 export default RunInfoNew;

@@ -18,10 +18,10 @@ function RunListStageItem(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
 
   const thisRunData = useSelector((state) =>
-    selectRun(state, props.currentRunUid)
+    selectRun(state, props.currentRunId)
   );
   const thisStageSessions = useSelector((state) =>
-    selectStageSessions(state, props.currentRunUid, props.stageNum)
+    selectStageSessions(state, props.currentRunId, props.stageNum)
   );
 
   const stageStatus = getStageStatus(
@@ -32,7 +32,7 @@ function RunListStageItem(props) {
   );
 
   const openEditor = function (runUid, stageNum) {
-    props.setCurrentRunUid(runUid);
+    props.setCurrentRunId(runUid);
     props.setActiveStage(stageNum);
   };
 
@@ -79,7 +79,7 @@ function RunListStageItem(props) {
       <li
         className={`${styles.lineItem} ${styles.lineItemFull} ${props.columns[0].className}`}
       >
-        <RunTitle currentRunUid={props.currentRunUid}>
+        <RunTitle currentRunId={props.currentRunId}>
           {thisRunData.productInfo.productName}
         </RunTitle>
       </li>
@@ -184,7 +184,7 @@ function RunListStageItem(props) {
         <span className={styles.cellLabel}>Open</span>
         <span className={styles.cellContent}>
           <Button
-            onClick={() => openEditor(props.setCurrentRunUid, props.stageNum)}
+            onClick={() => openEditor(props.setCurrentRunId, props.stageNum)}
             icon="start"
           ></Button>
         </span>
@@ -195,10 +195,10 @@ function RunListStageItem(props) {
 
 RunListStageItem.propTypes = {
   stageNum: PropTypes.number.isRequired,
-  setCurrentRunUid: PropTypes.func.isRequired,
+  setCurrentRunId: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,
   columns: PropTypes.array.isRequired,
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunId: PropTypes.number.isRequired,
 };
 
 export default RunListStageItem;

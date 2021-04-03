@@ -16,10 +16,10 @@ import { selectStageSessions } from "../../../SessionList/sessionsSlice.js";
 
 function StageActions(props) {
   const thisRunData = useSelector((state) =>
-    selectRun(state, props.currentRunUid)
+    selectRun(state, props.currentRunId)
   );
   const thisStageSessions = useSelector((state) =>
-    selectStageSessions(state, props.currentRunUid, props.thisStage)
+    selectStageSessions(state, props.currentRunId, props.thisStage)
   );
   const stageStatus = getStageStatus(
     thisRunData,
@@ -91,7 +91,7 @@ function StageActions(props) {
                         <Button
                           onClick={() => {
                             completeStage();
-                            props.setCurrentRunUid(null);
+                            props.setCurrentRunId(null);
                           }}
                         >
                           {inactiveMessage(stageStatus.stageStatusNext)} &amp;
@@ -154,7 +154,7 @@ function StageActions(props) {
       ) : (
         <div>
           <ConsignItems
-            currentRunUid={props.currentRunUid}
+            currentRunId={props.currentRunId}
             thisStage={props.thisStage}
             stageStatus={stageStatus}
             updateStageActive={props.updateStageActive}
@@ -168,9 +168,9 @@ function StageActions(props) {
 StageActions.propTypes = {
   thisStage: PropTypes.number.isRequired,
   updateStageActive: PropTypes.func.isRequired,
-  setCurrentRunUid: PropTypes.func.isRequired,
+  setCurrentRunId: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunId: PropTypes.number.isRequired,
 };
 
 export default StageActions;

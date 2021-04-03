@@ -24,7 +24,7 @@ function SessionDuring(props) {
   const unitSystem = React.useContext(UnitSystemContext);
 
   const thisRunData = useSelector((state) =>
-    selectRun(state, props.currentRunUid)
+    selectRun(state, props.currentRunId)
   );
 
   // After Statuses
@@ -136,7 +136,7 @@ function SessionDuring(props) {
             />
             <DataListItem
               dataKey="Expiration Date"
-              dataValue={<ExpiryDate currentRunUid={props.currentRunUid} />}
+              dataValue={<ExpiryDate currentRunId={props.currentRunId} />}
             />
             <DataListItem dataKey="Run ID" dataValue={thisRunData.id} />
           </>
@@ -242,7 +242,7 @@ function SessionDuring(props) {
 SessionDuring.propTypes = {
   activeSessionData: PropTypes.object,
   thisStage: PropTypes.number,
-  currentRunUid: PropTypes.number,
+  currentRunId: PropTypes.number,
 };
 
 export default SessionDuring;

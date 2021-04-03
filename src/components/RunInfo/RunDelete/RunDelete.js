@@ -31,7 +31,7 @@ function RunDelete(props) {
             </Button>
             <Button
               onClick={() => {
-                deleteRun(props.currentRunUid);
+                deleteRun(props.currentRunId);
                 setModalActive(false);
                 if (props.successCallback) {
                   props.successCallback();
@@ -49,7 +49,7 @@ function RunDelete(props) {
 }
 
 RunDelete.propTypes = {
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunId: PropTypes.number.isRequired,
   successCallback: PropTypes.func,
 };
 

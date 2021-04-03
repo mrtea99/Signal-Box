@@ -27,11 +27,11 @@ function RunEditor(props) {
   const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
 
   const thisRunData = useSelector((state) =>
-    selectRun(state, props.currentRunUid)
+    selectRun(state, props.currentRunId)
   );
 
   const handleExitClick = function () {
-    props.setCurrentRunUid(null);
+    props.setCurrentRunId(null);
     props.setActiveStage(0);
   };
 
@@ -71,7 +71,7 @@ function RunEditor(props) {
                     </div>
                     <ButtonSpacer>
                       <RunInfo
-                        currentRunUid={props.currentRunUid}
+                        currentRunId={props.currentRunId}
                         thisRunData={thisRunData}
                       />
 
@@ -86,7 +86,7 @@ function RunEditor(props) {
                           Close
                         </Button>
                         <StageOverview
-                          currentRunUid={props.currentRunUid}
+                          currentRunId={props.currentRunId}
                         ></StageOverview>
                       </Modal>
                     ) : null}
@@ -101,7 +101,7 @@ function RunEditor(props) {
               /> */}
 
               <StageNav
-                currentRunUid={props.currentRunUid}
+                currentRunId={props.currentRunId}
                 activeStage={props.activeStage}
                 buttonCallback={props.setActiveStage}
                 stageLabels
@@ -110,9 +110,9 @@ function RunEditor(props) {
               />
 
               <Stage
-                key={props.currentRunUid + props.activeStage}
-                currentRunUid={props.currentRunUid}
-                setCurrentRunUid={props.setCurrentRunUid}
+                key={props.currentRunId + props.activeStage}
+                currentRunId={props.currentRunId}
+                setCurrentRunId={props.setCurrentRunId}
                 thisStage={props.activeStage}
                 setActiveStage={props.setActiveStage}
               />
@@ -130,8 +130,8 @@ function RunEditor(props) {
 }
 
 RunEditor.propTypes = {
-  currentRunUid: PropTypes.number,
-  setCurrentRunUid: PropTypes.func.isRequired,
+  currentRunId: PropTypes.number,
+  setCurrentRunId: PropTypes.func.isRequired,
   activeStage: PropTypes.number.isRequired,
   setActiveStage: PropTypes.func.isRequired,
 };

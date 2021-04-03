@@ -11,11 +11,11 @@ import { selectRun } from "../runsSlice";
 
 function RunListAllItem(props) {
   const thisRunData = useSelector((state) =>
-    selectRun(state, props.currentRunUid)
+    selectRun(state, props.currentRunId)
   );
 
   const openEditor = function (runUid, stageNum) {
-    props.setCurrentRunUid(runUid);
+    props.setCurrentRunId(runUid);
     props.setActiveStage(stageNum);
   };
 
@@ -25,15 +25,15 @@ function RunListAllItem(props) {
         // onClick={() => setModalOverviewActive(run.id)}
         className={styles.itemHeader}
       >
-        <RunTitle currentRunUid={props.currentRunUid}>
+        <RunTitle currentRunId={props.currentRunId}>
           {thisRunData.productInfo.productName}
         </RunTitle>
       </header>
 
       <StageNav
-        currentRunUid={props.currentRunUid}
+        currentRunId={props.currentRunId}
         activeStage={props.activeStage}
-        buttonCallback={(newIndex) => openEditor(props.currentRunUid, newIndex)}
+        buttonCallback={(newIndex) => openEditor(props.currentRunId, newIndex)}
         sessionLabels
         syntax="list"
       ></StageNav>
@@ -42,9 +42,9 @@ function RunListAllItem(props) {
 }
 
 RunListAllItem.propTypes = {
-  setCurrentRunUid: PropTypes.func.isRequired,
+  setCurrentRunId: PropTypes.func.isRequired,
   setActiveStage: PropTypes.func.isRequired,
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunId: PropTypes.number.isRequired,
 };
 
 export default RunListAllItem;

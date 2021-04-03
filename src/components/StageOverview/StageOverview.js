@@ -15,14 +15,14 @@ function StageOverview(props) {
             {stageName}
             {": "}
             <StageStatus
-              currentRunUid={props.currentRunUid}
+              currentRunId={props.currentRunId}
               stageNum={index}
               label
             />
           </h3>
           <SessionList
             thisStage={index}
-            currentRunUid={props.currentRunUid}
+            currentRunId={props.currentRunId}
           />
         </section>
       ))}
@@ -31,7 +31,7 @@ function StageOverview(props) {
 }
 
 StageOverview.propTypes = {
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunId: PropTypes.number.isRequired,
 };
 
 export default StageOverview;

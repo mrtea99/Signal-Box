@@ -183,7 +183,7 @@ function FlagCloser(props) {
 FlagCloser.propTypes = {
   session: PropTypes.object.isRequired,
   thisStage: PropTypes.number.isRequired,
-  currentRunUid: PropTypes.number.isRequired,
+  currentRunId: PropTypes.number.isRequired,
 };
 
 export default FlagCloser;
