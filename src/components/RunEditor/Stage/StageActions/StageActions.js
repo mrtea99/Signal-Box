@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
 
 import getStageStatus from "../../../../utils/getStageStatus.js";
 
@@ -49,6 +50,17 @@ function StageActions(props) {
     setModalActive(false);
   };
 
+  let history = useHistory();
+  const completeStageAndExit = function () {
+    completeStage();
+    history.push("/");
+  };
+
+  const completeStageAndNext = function () {
+    completeStage();
+    history.push(`/run/${props.currentRunId}/${props.thisStage + 1}`);
+  };
+
   const blockComplete = Boolean(
     stageStatus.issueActive ||
       stageStatus.blockerActive ||
@@ -90,8 +102,7 @@ function StageActions(props) {
                         <br />
                         <Button
                           onClick={() => {
-                            completeStage();
-                            props.setCurrentRunId(null);
+                            completeStageAndExit();
                           }}
                         >
                           {inactiveMessage(stageStatus.stageStatusNext)} &amp;
@@ -102,8 +113,7 @@ function StageActions(props) {
                             <br />
                             <Button
                               onClick={() => {
-                                completeStage();
-                                props.setActiveStage(props.thisStage + 1);
+                                completeStageAndNext();
                               }}
                             >
                               {inactiveMessage(stageStatus.stageStatusNext)}{" "}
@@ -168,8 +178,6 @@ function StageActions(props) {
 StageActions.propTypes = {
   thisStage: PropTypes.number.isRequired,
   updateStageActive: PropTypes.func.isRequired,
-  setCurrentRunId: PropTypes.func.isRequired,
-  setActiveStage: PropTypes.func.isRequired,
   currentRunId: PropTypes.number.isRequired,
 };
 

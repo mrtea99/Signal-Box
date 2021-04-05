@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
 
 import StageNav from "../../StageNav/StageNav";
 import RunTitle from "../RunTitle/RunTitle.js";
@@ -14,9 +15,9 @@ function RunListAllItem(props) {
     selectRun(state, props.currentRunId)
   );
 
+  let history = useHistory();
   const openEditor = function (runUid, stageNum) {
-    props.setCurrentRunId(runUid);
-    props.setActiveStage(stageNum);
+    history.push(`/run/${runUid}/${stageNum}`);
   };
 
   return (
@@ -42,8 +43,6 @@ function RunListAllItem(props) {
 }
 
 RunListAllItem.propTypes = {
-  setCurrentRunId: PropTypes.func.isRequired,
-  setActiveStage: PropTypes.func.isRequired,
   currentRunId: PropTypes.number.isRequired,
 };
 

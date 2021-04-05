@@ -17,7 +17,7 @@ function SiteHeader(props) {
           <img
             className={styles.siteLogo}
             alt="Mojo Spa Logo"
-            src="./logo.svg"
+            src="/logo.svg"
           />
         </div>
         <div>

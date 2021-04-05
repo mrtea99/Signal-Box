@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import SiteSidebar from "./components/SiteSidebar/SiteSidebar.js";
 import RunList from "./components/RunList/RunList.js";
@@ -52,19 +53,6 @@ function App() {
 
   // Frontend onload data
   //==============================================================================
-  const savedCurrentRunId = () =>
-    parseInt(window.localStorage.getItem("currentRunId"), 10) || null;
-  const [currentRunId, setCurrentRunId] = React.useState(savedCurrentRunId);
-  React.useEffect(() => {
-    window.localStorage.setItem("currentRunId", currentRunId);
-  }, [currentRunId]);
-
-  const savedActiveStage = () =>
-    parseInt(window.localStorage.getItem("activeStage"), 10) || 0;
-  const [activeStage, setActiveStage] = React.useState(savedActiveStage);
-  React.useEffect(() => {
-    window.localStorage.setItem("activeStage", activeStage);
-  }, [activeStage]);
 
   // React.useEffect(() => {
   //   dispatch({
@@ -147,7 +135,7 @@ function App() {
   // Render
   //==============================================================================
   return (
-    <>
+    <Router>
       {loading ? (
         <LoadingScreen />
       ) : (
@@ -183,47 +171,46 @@ function App() {
                 />
               </SiteSidebar>
               <main className={styles.siteContent}>
-                <section>
-                  <menu className={styles.listControls}>
-                    <section className={styles.filterControls}>
-                      <RunFilter
-                        runFilters={runFilters}
-                        setRunFilters={setRunFilters}
+                <Switch>
+                  <Route path="/run/:runId/:stageNum">
+                    <section>
+                      <RunEditor />
+                    </section>
+                  </Route>
+                  <Route path="/">
+                    <section>
+                      <menu className={styles.listControls}>
+                        <section className={styles.filterControls}>
+                          <RunFilter
+                            runFilters={runFilters}
+                            setRunFilters={setRunFilters}
+                          />
+                        </section>
+                        <section className={styles.otherControls}>
+                          <RunInfo />
+                        </section>
+                      </menu>
+                      <TabBox
+                        boxes={["All", ...stageNames].map((stage, index) => ({
+                          label: stage,
+                          content: (
+                            <RunList
+                              key={stage}
+                              stageNum={index === 0 ? "all" : index - 1}
+                              filters={runFilters}
+                            />
+                          ),
+                        }))}
                       />
                     </section>
-                    <section className={styles.otherControls}>
-                      <RunInfo />
-                    </section>
-                  </menu>
-                  <TabBox
-                    boxes={["All", ...stageNames].map((stage, index) => ({
-                      label: stage,
-                      content: (
-                        <RunList
-                          key={stage}
-                          setCurrentRunId={setCurrentRunId}
-                          setActiveStage={setActiveStage}
-                          stageNum={index === 0 ? "all" : index - 1}
-                          filters={runFilters}
-                        />
-                      ),
-                    }))}
-                  />
-                </section>
-                <section>
-                  <RunEditor
-                    currentRunId={currentRunId}
-                    setCurrentRunId={setCurrentRunId}
-                    activeStage={activeStage}
-                    setActiveStage={setActiveStage}
-                  />
-                </section>
+                  </Route>
+                </Switch>
               </main>
             </div>
           </div>
         </GlobalContexts>
       )}
-    </>
+    </Router>
   );
 }
 

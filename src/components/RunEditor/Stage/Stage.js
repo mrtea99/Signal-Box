@@ -188,9 +188,7 @@ function Stage(props) {
           )}
           <StageActions
             currentRunId={props.currentRunId}
-            setCurrentRunId={props.setCurrentRunId}
             thisStage={props.thisStage}
-            setActiveStage={props.setActiveStage}
             updateStageActive={updateStageActive}
           />
         </div>
@@ -207,9 +205,7 @@ function Stage(props) {
 
 Stage.propTypes = {
   currentRunId: PropTypes.number.isRequired,
-  setCurrentRunId: PropTypes.func.isRequired,
   thisStage: PropTypes.number.isRequired,
-  setActiveStage: PropTypes.func.isRequired,
 };
 
 export default Stage;

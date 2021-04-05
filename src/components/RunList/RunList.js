@@ -82,8 +82,6 @@ function RunList(props) {
               <div className={styles.itemRow} key={run.id}>
                 <RunListAllItem
                   currentRunId={run.id}
-                  setCurrentRunId={props.setCurrentRunId}
-                  setActiveStage={props.setActiveStage}
                 />
               </div>
             ) : (
@@ -91,8 +89,6 @@ function RunList(props) {
                 <RunListStageItem
                   currentRunId={run.id}
                   stageNum={props.stageNum}
-                  setCurrentRunId={props.setCurrentRunId}
-                  setActiveStage={props.setActiveStage}
                   columns={columns}
                 />
               </div>
@@ -110,8 +106,6 @@ RunList.propTypes = {
   stageNum: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(["all"])])
     .isRequired,
   filters: PropTypes.object.isRequired,
-  setCurrentRunId: PropTypes.func.isRequired,
-  setActiveStage: PropTypes.func.isRequired,
 };
 
 export default RunList;

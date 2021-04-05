@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
+import { useHistory } from "react-router";
 
 import getStageStatus from "../../../utils/getStageStatus.js";
 
@@ -31,9 +32,9 @@ function RunListStageItem(props) {
     activeUser
   );
 
+  let history = useHistory();
   const openEditor = function (runUid, stageNum) {
-    props.setCurrentRunId(runUid);
-    props.setActiveStage(stageNum);
+    history.push(`/run/${runUid}/${stageNum}`);
   };
 
   const highestFlag = function (stageStatus) {
@@ -184,7 +185,7 @@ function RunListStageItem(props) {
         <span className={styles.cellLabel}>Open</span>
         <span className={styles.cellContent}>
           <Button
-            onClick={() => openEditor(props.setCurrentRunId, props.stageNum)}
+            onClick={() => openEditor(props.currentRunId, props.stageNum)}
             icon="start"
           ></Button>
         </span>
@@ -195,8 +196,6 @@ function RunListStageItem(props) {
 
 RunListStageItem.propTypes = {
   stageNum: PropTypes.number.isRequired,
-  setCurrentRunId: PropTypes.func.isRequired,
-  setActiveStage: PropTypes.func.isRequired,
   columns: PropTypes.array.isRequired,
   currentRunId: PropTypes.number.isRequired,
 };

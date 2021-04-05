@@ -1,6 +1,7 @@
 import React from "react";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
+import { useHistory, useParams } from "react-router";
 
 import Stage from "./Stage/Stage.js";
 import StageNav from "../StageNav/StageNav.js";
@@ -21,18 +22,24 @@ import { selectRun } from "../RunList/runsSlice.js";
 import ViewModeContext from "../../contexts/ViewModeContext.js";
 
 function RunEditor(props) {
+  let { runId, stageNum } = useParams();
+  runId = parseInt(runId);
+  stageNum = parseInt(stageNum);
+
   const viewMode = React.useContext(ViewModeContext);
   const simpleMode = viewMode === "simple";
 
   const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
 
-  const thisRunData = useSelector((state) =>
-    selectRun(state, props.currentRunId)
-  );
+  const thisRunData = useSelector((state) => selectRun(state, runId));
 
+  let history = useHistory();
   const handleExitClick = function () {
-    props.setCurrentRunId(null);
-    props.setActiveStage(0);
+    history.push("/");
+  };
+
+  const changeStage = function (runId, newIndex) {
+    history.push(`/run/${runId}/${newIndex}`);
   };
 
   return (
@@ -70,10 +77,7 @@ function RunEditor(props) {
                       </h4>
                     </div>
                     <ButtonSpacer>
-                      <RunInfo
-                        currentRunId={props.currentRunId}
-                        thisRunData={thisRunData}
-                      />
+                      <RunInfo currentRunId={runId} thisRunData={thisRunData} />
 
                       <Button
                         onClick={() => setModalOverviewActive(true)}
@@ -85,9 +89,7 @@ function RunEditor(props) {
                         <Button onClick={() => setModalOverviewActive(false)}>
                           Close
                         </Button>
-                        <StageOverview
-                          currentRunId={props.currentRunId}
-                        ></StageOverview>
+                        <StageOverview currentRunId={runId}></StageOverview>
                       </Modal>
                     ) : null}
                   </div>
@@ -101,20 +103,18 @@ function RunEditor(props) {
               /> */}
 
               <StageNav
-                currentRunId={props.currentRunId}
-                activeStage={props.activeStage}
-                buttonCallback={props.setActiveStage}
+                currentRunId={runId}
+                activeStage={stageNum}
+                buttonCallback={(newIndex) => changeStage(runId, newIndex)}
                 stageLabels
                 showActive
                 hideStatus={simpleMode}
               />
 
               <Stage
-                key={props.currentRunId + props.activeStage}
-                currentRunId={props.currentRunId}
-                setCurrentRunId={props.setCurrentRunId}
-                thisStage={props.activeStage}
-                setActiveStage={props.setActiveStage}
+                key={runId + stageNum}
+                currentRunId={runId}
+                thisStage={stageNum}
               />
             </div>
             {/* <pre>{JSON.stringify(thisRunData)}</pre> */}
@@ -129,11 +129,6 @@ function RunEditor(props) {
   );
 }
 
-RunEditor.propTypes = {
-  currentRunId: PropTypes.number,
-  setCurrentRunId: PropTypes.func.isRequired,
-  activeStage: PropTypes.number.isRequired,
-  setActiveStage: PropTypes.func.isRequired,
-};
+// RunEditor.propTypes = {};
 
 export default RunEditor;
