@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -18,7 +18,7 @@ import { selectRun } from "../../RunList/runsSlice.js";
 import { selectStageSessions } from "../../SessionList/sessionsSlice.js";
 
 function Stage(props) {
-  const simpleMode = React.useContext(ViewModeContext) === "simple";
+  const simpleMode = useContext(ViewModeContext) === "simple";
 
   const dispatch = useDispatch();
 

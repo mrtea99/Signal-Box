@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 
 import RunList from "../../components/RunList/RunList.js";
@@ -34,8 +34,8 @@ function AdminPanel() {
 
   const savedRunFilters = () =>
     JSON.parse(window.localStorage.getItem("runFilters")) || defaultRunFilters;
-  const [runFilters, setRunFilters] = React.useState(savedRunFilters);
-  React.useEffect(() => {
+  const [runFilters, setRunFilters] = useState(savedRunFilters);
+  useEffect(() => {
     window.localStorage.setItem("runFilters", JSON.stringify(runFilters));
   }, [runFilters]);
 

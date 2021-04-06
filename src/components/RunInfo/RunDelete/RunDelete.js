@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 
@@ -7,7 +7,7 @@ import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
 import Modal from "../../Modal/Modal.js";
 
 function RunDelete(props) {
-  const [modalActive, setModalActive] = React.useState(false);
+  const [modalActive, setModalActive] = useState(false);
 
   const dispatch = useDispatch();
   const deleteRun = function (runId) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
 import SessionStart from "../SessionStart/SessionStart.js";
@@ -13,7 +13,7 @@ import styles from "./SessionControl.module.css";
 import ViewModeContext from "../../../../contexts/ViewModeContext.js";
 
 function SessionControl(props) {
-  const viewMode = React.useContext(ViewModeContext);
+  const viewMode = useContext(ViewModeContext);
   const simpleMode = viewMode === "simple";
 
   return (

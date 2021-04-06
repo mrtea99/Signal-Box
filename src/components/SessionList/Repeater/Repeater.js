@@ -1,10 +1,10 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
 function Repeater(props) {
-  const [returnValue, setReturnValue] = React.useState(props.callback());
+  const [returnValue, setReturnValue] = useState(props.callback());
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timerInterval = setInterval(() => {
       setReturnValue(props.callback());
     }, props.interval);

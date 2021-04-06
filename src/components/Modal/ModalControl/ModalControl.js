@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import Button from "../../Button/Button.js";
@@ -7,8 +7,8 @@ import Modal from "../../Modal/Modal.js";
 import Pager from "../../Pager/Pager.js";
 
 function ModalControl(props) {
-  const [modalActive, setModalActive] = React.useState(false);
-  const [pageNumber, setPageNumber] = React.useState(0);
+  const [modalActive, setModalActive] = useState(false);
+  const [pageNumber, setPageNumber] = useState(0);
 
   const handleSubmit = function () {
     setModalActive(false);

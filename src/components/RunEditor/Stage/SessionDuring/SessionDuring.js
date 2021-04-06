@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -21,7 +21,7 @@ import UnitSystemContext from "../../../../contexts/UnitSystemContext";
 import { selectRun } from "../../../RunList/runsSlice.js";
 
 function SessionDuring(props) {
-  const unitSystem = React.useContext(UnitSystemContext);
+  const unitSystem = useContext(UnitSystemContext);
 
   const thisRunData = useSelector((state) =>
     selectRun(state, props.currentRunId)
@@ -29,15 +29,15 @@ function SessionDuring(props) {
 
   // After Statuses
   // Notes (all)
-  const [noteData, setNoteData] = React.useState(
+  const [noteData, setNoteData] = useState(
     props.activeSessionData ? props.activeSessionData["notes"] || "" : null
   );
   // Amount made (manu, pack, label)
-  const [amount, setAmount] = React.useState(
+  const [amount, setAmount] = useState(
     props.activeSessionData ? props.activeSessionData["amount"] || 0 : null
   );
   // Amount Bad (manu, pack, label)
-  const [amountBad, setAmountBad] = React.useState(
+  const [amountBad, setAmountBad] = useState(
     props.activeSessionData ? props.activeSessionData["amountBad"] || 0 : null
   );
 

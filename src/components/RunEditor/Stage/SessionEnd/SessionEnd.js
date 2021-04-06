@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import Button from "../../../Button/Button.js";
@@ -6,7 +6,7 @@ import Modal from "../../../Modal/Modal.js";
 import SessionEndForm from "./SessionEndForm/SessionEndForm.js";
 
 function SessionEnd(props) {
-  const [modalActive, setModalActive] = React.useState(false);
+  const [modalActive, setModalActive] = useState(false);
 
   return (
     <div className={props.className}>

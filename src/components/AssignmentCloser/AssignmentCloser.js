@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 
@@ -32,8 +32,8 @@ function AssignmentCloser(props) {
     startTime: dateStart - dateStartRounded,
   };
 
-  const [formData, setFormData] = React.useState(defaultFormData);
-  const [status, setStatus] = React.useState(props.session.extra);
+  const [formData, setFormData] = useState(defaultFormData);
+  const [status, setStatus] = useState(props.session.extra);
 
   const resetFormData = function () {
     setFormData(defaultFormData);

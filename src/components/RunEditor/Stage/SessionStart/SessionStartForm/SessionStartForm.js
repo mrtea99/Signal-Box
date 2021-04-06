@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
@@ -13,8 +13,8 @@ import activityList from "../../../../../data/activities.json";
 function SessionStartForm(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
 
-  const [temperature, setTemperature] = React.useState(70);
-  const [humidity, setHumidity] = React.useState(50);
+  const [temperature, setTemperature] = useState(70);
+  const [humidity, setHumidity] = useState(50);
 
   const validateForm = function () {
     if (

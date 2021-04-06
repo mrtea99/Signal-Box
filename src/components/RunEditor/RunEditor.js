@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 // import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
@@ -48,12 +48,12 @@ function RunEditor(props) {
 
   // View Mode
   //----------------------
-  const viewMode = React.useContext(ViewModeContext);
+  const viewMode = useContext(ViewModeContext);
   const simpleMode = viewMode === "simple";
 
   // Modal State
   //----------------------
-  const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
+  const [modalOverviewActive, setModalOverviewActive] = useState(false);
 
   // Render
   //----------------------

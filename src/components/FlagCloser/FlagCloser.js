@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -15,11 +15,11 @@ function FlagCloser(props) {
     priority: props.session.amount,
   };
 
-  const [description, setDescription] = React.useState(
+  const [description, setDescription] = useState(
     defaultFormData.description
   );
-  const [status, setStatus] = React.useState(defaultFormData.status);
-  const [priority, setPriority] = React.useState(defaultFormData.priority);
+  const [status, setStatus] = useState(defaultFormData.status);
+  const [priority, setPriority] = useState(defaultFormData.priority);
 
   const resetFormData = function () {
     setDescription(defaultFormData.description);

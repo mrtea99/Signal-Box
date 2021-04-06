@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
@@ -28,7 +28,7 @@ function StageActions(props) {
     props.thisStage
   );
 
-  const [modalActive, setModalActive] = React.useState(false);
+  const [modalActive, setModalActive] = useState(false);
 
   const inactiveMessage = function (status) {
     switch (status) {

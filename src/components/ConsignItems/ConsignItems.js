@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -24,8 +24,8 @@ function ConsignItems(props) {
     selectRun(state, props.currentRunId)
   );
 
-  const [countGood, setCountGood] = React.useState(0);
-  const [countBad, setCountBad] = React.useState(0);
+  const [countGood, setCountGood] = useState(0);
+  const [countBad, setCountBad] = useState(0);
 
   const resetState = function () {
     setCountGood(0);

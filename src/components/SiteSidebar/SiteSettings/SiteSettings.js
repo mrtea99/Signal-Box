@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import FormItem from "../../FormItem/FormItem.js";
@@ -11,7 +11,7 @@ import { withTranslation } from "react-i18next";
 function SiteSettings(props) {
   const savedLanguage = () =>
     window.localStorage.getItem("language") || "en-us";
-  const [lang, setLang] = React.useState(savedLanguage);
+  const [lang, setLang] = useState(savedLanguage);
   const changeLang = function (newLang) {
     setLang(newLang);
     window.localStorage.setItem("language", newLang);

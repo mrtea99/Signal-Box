@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -11,8 +11,8 @@ function FlagOpener(props) {
   const activeUser = useSelector((state) => state.users.currentUser);
   const dispatch = useDispatch();
 
-  const [description, setDescription] = React.useState("");
-  const [priority, setPriority] = React.useState(1);
+  const [description, setDescription] = useState("");
+  const [priority, setPriority] = useState(1);
 
   const handleSubmit = function () {
     const newsessionId = Date.now();

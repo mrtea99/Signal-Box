@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import DurationFormatter from "../DurationFormatter/DurationFormatter";
 
 function Timer(props) {
-  const startTime = React.useState(new Date(props.startTime))[0];
-  const [duration, setDuration] = React.useState(getTimeDiff(startTime));
+  const startTime = useState(new Date(props.startTime))[0];
+  const [duration, setDuration] = useState(getTimeDiff(startTime));
 
-  React.useEffect(() => {
+  useEffect(() => {
     const timerInterval = setInterval(() => {
       const diffTime = getTimeDiff(startTime);
       setDuration(diffTime);

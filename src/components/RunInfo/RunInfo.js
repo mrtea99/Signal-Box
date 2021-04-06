@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 
@@ -17,7 +17,7 @@ function RunInfoNew(props) {
   const runStatuses = ["Not Started", "In Progress", "Complete", "Archived"];
   const modalTitle = mode === "new" ? "Create New Run" : "Edit Run Info";
 
-  const [active, setActive] = React.useState(false);
+  const [active, setActive] = useState(false);
 
   // Redux
   //----------------------------------------
@@ -51,24 +51,24 @@ function RunInfoNew(props) {
       (obj) => obj.productSKU === props.thisRunData.productInfo.productSKU
     );
   };
-  const [currentTemplate, setCurrentTemplate] = React.useState(
+  const [currentTemplate, setCurrentTemplate] = useState(
     defaultCurrentTemplate
   );
 
   const defaultBatchQuantity =
     mode === "new" ? 1 : props.thisRunData.batchQuantity;
-  const [batchQuantity, setBatchQuantity] = React.useState(
+  const [batchQuantity, setBatchQuantity] = useState(
     defaultBatchQuantity
   );
 
   const defaultBatchedAssignments = [[], [], [], [], []];
-  const [batchedAssignments, setBatchedAssignments] = React.useState(
+  const [batchedAssignments, setBatchedAssignments] = useState(
     defaultBatchedAssignments
   );
 
   const defaultRunStatus =
     mode === "new" ? runStatuses[0] : props.thisRunData.status;
-  const [runStatus, setRunStatus] = React.useState(defaultRunStatus);
+  const [runStatus, setRunStatus] = useState(defaultRunStatus);
 
   const resetFormState = function () {
     setCurrentTemplate(defaultCurrentTemplate);

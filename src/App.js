@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   BrowserRouter as Router,
@@ -30,10 +30,10 @@ function App() {
   //==============================================================================
   const disableLoadingScreen = true;
 
-  const [loading, setLoading] = React.useState(!disableLoadingScreen);
+  const [loading, setLoading] = useState(!disableLoadingScreen);
 
   //temp fake loading time
-  React.useEffect(() => {
+  useEffect(() => {
     setTimeout(() => setLoading(false), 3000);
   });
 
@@ -41,27 +41,27 @@ function App() {
   //==============================================================================
   // Data for all runs - needs to replaced with API call
   const runsData = useSelector(selectAllRuns);
-  React.useEffect(() => {
+  useEffect(() => {
     window.localStorage.setItem("runsData", JSON.stringify(runsData));
   }, [runsData]);
 
   // Data for all sessions - needs to replaced with API call
   const sessionsData = useSelector((state) => state.sessions.sessionsList);
-  React.useEffect(() => {
+  useEffect(() => {
     window.localStorage.setItem("sessionsData", JSON.stringify(sessionsData));
   }, [sessionsData]);
 
   // Frontend onload data
   //==============================================================================
 
-  // React.useEffect(() => {
+  // useEffect(() => {
   //   dispatch({
   //     type: "users/setCurrentUser",
   //     payload: parseInt(window.localStorage.getItem("activeUser")) || 1,
   //   });
   // }, [dispatch]);
   const activeUser = useSelector((state) => state.users.currentUser);
-  React.useEffect(() => {
+  useEffect(() => {
     window.localStorage.setItem("activeUser", activeUser);
   }, [activeUser]);
 
@@ -78,45 +78,45 @@ function App() {
   const savedTimeFormat = () =>
     window.localStorage.getItem("timeFormat") ||
     defaultSiteSettings["timeFormat"];
-  const [timeFormat, setTimeFormat] = React.useState(savedTimeFormat);
-  React.useEffect(() => {
+  const [timeFormat, setTimeFormat] = useState(savedTimeFormat);
+  useEffect(() => {
     window.localStorage.setItem("timeFormat", timeFormat);
   }, [timeFormat]);
 
   const savedDateFormat = () =>
     window.localStorage.getItem("dateFormat") ||
     defaultSiteSettings["dateFormat"];
-  const [dateFormat, setDateFormat] = React.useState(savedDateFormat);
-  React.useEffect(() => {
+  const [dateFormat, setDateFormat] = useState(savedDateFormat);
+  useEffect(() => {
     window.localStorage.setItem("dateFormat", dateFormat);
   }, [dateFormat]);
 
   const savedUnitSystem = () =>
     window.localStorage.getItem("unitSystem") ||
     defaultSiteSettings["unitSystem"];
-  const [unitSystem, setUnitSystem] = React.useState(savedUnitSystem);
-  React.useEffect(() => {
+  const [unitSystem, setUnitSystem] = useState(savedUnitSystem);
+  useEffect(() => {
     window.localStorage.setItem("unitSystem", unitSystem);
   }, [unitSystem]);
 
   const savedSiteTheme = () =>
     window.localStorage.getItem("siteTheme") ||
     defaultSiteSettings["siteTheme"];
-  const [siteTheme, setSiteTheme] = React.useState(savedSiteTheme);
-  React.useEffect(() => {
+  const [siteTheme, setSiteTheme] = useState(savedSiteTheme);
+  useEffect(() => {
     window.localStorage.setItem("siteTheme", siteTheme);
   }, [siteTheme]);
 
   const savedViewMode = () =>
     window.localStorage.getItem("viewMode") || defaultSiteSettings["viewMode"];
-  const [viewMode, setViewMode] = React.useState(savedViewMode);
-  React.useEffect(() => {
+  const [viewMode, setViewMode] = useState(savedViewMode);
+  useEffect(() => {
     window.localStorage.setItem("viewMode", viewMode);
   }, [viewMode]);
 
   // UI state
   //==============================================================================
-  const [sidebarActive, setSidebarActive] = React.useState(false);
+  const [sidebarActive, setSidebarActive] = useState(false);
 
   // Render
   //==============================================================================

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import TabList from "./TabList/TabList.js";
 
 function TabBox(props) {
-  const [selectedBox, setSelectedBox] = React.useState(0);
+  const [selectedBox, setSelectedBox] = useState(0);
 
   return (
     <div>

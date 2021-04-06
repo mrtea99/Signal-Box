@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -36,7 +36,7 @@ function AssignmentOpener(props) {
     startTime: shiftTimes[0],
   };
 
-  const [formData, setFormData] = React.useState(defaultFormData);
+  const [formData, setFormData] = useState(defaultFormData);
 
   const handleSubmit = function () {
     const newsessionId = Date.now();

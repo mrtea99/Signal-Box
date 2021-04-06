@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -16,7 +16,7 @@ function CheckOpener(props) {
     extra: "now",
   };
 
-  const [formData, setFormData] = React.useState(defaultFormData);
+  const [formData, setFormData] = useState(defaultFormData);
 
   const resetFormData = function () {
     setFormData(defaultFormData);

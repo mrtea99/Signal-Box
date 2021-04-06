@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 
@@ -18,13 +18,13 @@ function CheckCloser(props) {
     status: "active",
   };
 
-  const [description, setDescription] = React.useState(
+  const [description, setDescription] = useState(
     defaultFormState.description
   );
-  const [count, setCount] = React.useState(defaultFormState.count);
-  const [countBad, setCountBad] = React.useState(defaultFormState.countBad);
-  const [assignee, setAssignee] = React.useState(defaultFormState.assignee);
-  const [status, setStatus] = React.useState(defaultFormState.status);
+  const [count, setCount] = useState(defaultFormState.count);
+  const [countBad, setCountBad] = useState(defaultFormState.countBad);
+  const [assignee, setAssignee] = useState(defaultFormState.assignee);
+  const [status, setStatus] = useState(defaultFormState.status);
 
   const resetFormState = function () {
     setDescription(defaultFormState.description);

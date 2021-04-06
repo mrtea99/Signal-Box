@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
 import FormItem from "../../FormItem/FormItem.js";
@@ -6,7 +6,7 @@ import FormItem from "../../FormItem/FormItem.js";
 import UnitSystemContext from "../../../contexts/UnitSystemContext.js";
 
 function WeightField(props) {
-  const unitSystem = React.useContext(UnitSystemContext);
+  const unitSystem = useContext(UnitSystemContext);
 
   const updateConverter = function (metricValue) {
     const usValue = convertValue(metricValue, "metric");

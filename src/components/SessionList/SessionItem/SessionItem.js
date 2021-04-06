@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
@@ -31,7 +31,7 @@ function SessionItem({
   columns,
   currentRunId,
 }) {
-  const viewMode = React.useContext(ViewModeContext);
+  const viewMode = useContext(ViewModeContext);
   const simpleMode = viewMode === "simple";
 
   const thisStageData = useSelector((state) =>

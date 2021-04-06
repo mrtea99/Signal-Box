@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -20,8 +20,8 @@ function SessionStart(props) {
     selectRun(state, props.currentRunId)
   );
 
-  const [modalActive, setModalActive] = React.useState(false);
-  const [formData, setFormData] = React.useState({
+  const [modalActive, setModalActive] = useState(false);
+  const [formData, setFormData] = useState({
     activity: activityList[props.thisStage][0],
   });
 
@@ -109,7 +109,7 @@ function SessionStart(props) {
     return defaultResolved;
   };
 
-  const [resolvedAssignments, setResolvedAssignments] = React.useState(
+  const [resolvedAssignments, setResolvedAssignments] = useState(
     findDefaultResolved()
   );
 

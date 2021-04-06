@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import Button from "../Button/Button.js";
 
 function Pager(props) {
-  const [pageNumberChild, setPageNumberChild] = React.useState(0);
+  const [pageNumberChild, setPageNumberChild] = useState(0);
 
   const pageNumber =
     props.pageNumber !== undefined ? props.pageNumber : pageNumberChild;

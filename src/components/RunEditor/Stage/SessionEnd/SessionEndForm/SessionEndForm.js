@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -17,7 +17,7 @@ import { selectRun } from "../../../../RunList/runsSlice.js";
 // import stageNames from "../../../../../data/stageNames.json";
 
 function SessionEndForm(props) {
-  const unitSystem = React.useContext(UnitSystemContext);
+  const unitSystem = useContext(UnitSystemContext);
 
   const activeUser = useSelector((state) => state.users.currentUser);
 
@@ -37,27 +37,27 @@ function SessionEndForm(props) {
 
   // After Statuses
   // Notes (all)
-  const [noteData, setNoteData] = React.useState(
+  const [noteData, setNoteData] = useState(
     props.activeSessionData["notes"] || ""
   );
   // Amount made (manu, pack, label)
-  const [amount, setAmount] = React.useState(
+  const [amount, setAmount] = useState(
     props.activeSessionData["amount"] || (showAmounts ? 0 : null)
   );
   // Amount Bad (manu, pack, label)
-  const [amountBad, setAmountBad] = React.useState(
+  const [amountBad, setAmountBad] = useState(
     props.activeSessionData["amountBad"] || (showAmounts ? 0 : null)
   );
   // Average unit/batch weight (manu, pack)
-  const [averageWeight, setAverageWeight] = React.useState(
+  const [averageWeight, setAverageWeight] = useState(
     props.activeSessionData["averageWeight"] || (showWeight ? 0 : null)
   );
 
-  const [skipQa, setSkipQa] = React.useState(
+  const [skipQa, setSkipQa] = useState(
     props.thisStage === 0 || props.thisStage === 4 || !showQa ? true : false
   );
 
-  const [qaFormData, setQaFormData] = React.useState({
+  const [qaFormData, setQaFormData] = useState({
     notes: "",
     extra: "now",
   });

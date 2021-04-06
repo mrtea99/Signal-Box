@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import Button from "../../Button/Button.js";
@@ -8,7 +8,7 @@ import Modal from "../../Modal/Modal.js";
 import styles from "./RunTitle.module.css";
 
 function RunTitle(props) {
-  const [modalOverviewActive, setModalOverviewActive] = React.useState(null);
+  const [modalOverviewActive, setModalOverviewActive] = useState(null);
 
   const exampleProducts = [
     "Bombshell Clarifying Facial Soap",
