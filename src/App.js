@@ -158,18 +158,11 @@ function App() {
               </SiteSidebar>
               <main className={styles.siteContent}>
                 <Switch>
-                  <Route path="/run/:runId/:stageNum">
-                    <section>
-                      <RunEditor />
-                    </section>
+                  <Route path={["/run/:runId/:stageNum", "/run/:runId"]}>
+                    <RunEditor />
                   </Route>
-                  {/* <Route path="/run/:runId">
-                    <Redirect to={`/run/${runId}/0`} />
-                  </Route> */}
                   <Route path={["/admin/:stageNum", "/admin"]}>
-                    <section>
-                      <AdminPanel />
-                    </section>
+                    <AdminPanel />
                   </Route>
                   <Route path="/">
                     <Redirect to={`/admin`} />

@@ -24,7 +24,15 @@ import ViewModeContext from "../../contexts/ViewModeContext.js";
 function RunEditor(props) {
   let { runId, stageNum } = useParams();
   runId = parseInt(runId);
-  stageNum = parseInt(stageNum);
+
+  // If no stage is in path then default to 0
+  let history = useHistory();
+  if (stageNum === undefined) {
+    history.push(`/run/${runId}/0`);
+    stageNum = 0;
+  } else {
+    stageNum = parseInt(stageNum);
+  }
 
   const viewMode = React.useContext(ViewModeContext);
   const simpleMode = viewMode === "simple";
@@ -33,7 +41,6 @@ function RunEditor(props) {
 
   const thisRunData = useSelector((state) => selectRun(state, runId));
 
-  let history = useHistory();
   const handleExitClick = function () {
     history.push("/");
   };

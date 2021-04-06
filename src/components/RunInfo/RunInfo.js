@@ -43,7 +43,7 @@ function RunInfoNew(props) {
   // Form State
   //----------------------------------------
   const defaultCurrentTemplate = () => {
-    if (!props.thisRunData) {
+    if (mode === "new") {
       return null;
     }
 
@@ -55,9 +55,8 @@ function RunInfoNew(props) {
     defaultCurrentTemplate
   );
 
-  const defaultBatchQuantity = props.thisRunData
-    ? props.thisRunData.batchQuantity
-    : 1;
+  const defaultBatchQuantity =
+    mode === "new" ? 1 : props.thisRunData.batchQuantity;
   const [batchQuantity, setBatchQuantity] = React.useState(
     defaultBatchQuantity
   );
@@ -67,9 +66,8 @@ function RunInfoNew(props) {
     defaultBatchedAssignments
   );
 
-  const defaultRunStatus = props.thisRunData
-    ? props.thisRunData.status
-    : runStatuses[0];
+  const defaultRunStatus =
+    mode === "new" ? runStatuses[0] : props.thisRunData.status;
   const [runStatus, setRunStatus] = React.useState(defaultRunStatus);
 
   const resetFormState = function () {
