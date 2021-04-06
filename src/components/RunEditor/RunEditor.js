@@ -10,7 +10,6 @@ import StageOverview from "../StageOverview/StageOverview.js";
 import Modal from "../Modal/Modal.js";
 import Button from "../Button/Button.js";
 import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
-// import UserSwitcher from "../UserSwitcher/UserSwitcher.js";
 // import TableHeader from "../TableHeader/TableHeader.js";
 
 import styles from "./RunEditor.module.css";
@@ -20,25 +19,15 @@ import { selectRun } from "../RunList/runsSlice.js";
 // import stageNames from "../../data/stageNames.json";
 
 import ViewModeContext from "../../contexts/ViewModeContext.js";
+import { Link } from "react-router-dom";
 
 function RunEditor(props) {
+  // Router
+  //----------------------
   let { runId, stageNum } = useParams();
-  runId = parseInt(runId);
-
-  // If no stage is in path then default to 0
   let history = useHistory();
-  if (stageNum === undefined) {
-    history.push(`/run/${runId}/0`);
-    stageNum = 0;
-  } else {
-    stageNum = parseInt(stageNum);
-  }
 
-  const viewMode = React.useContext(ViewModeContext);
-  const simpleMode = viewMode === "simple";
-
-  const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
-
+  runId = parseInt(runId);
   const thisRunData = useSelector((state) => selectRun(state, runId));
 
   const handleExitClick = function () {
@@ -49,6 +38,25 @@ function RunEditor(props) {
     history.push(`/run/${runId}/${newIndex}`);
   };
 
+  // If no stage is in path then default to 0
+  if (stageNum === undefined) {
+    stageNum = 0;
+    changeStage(runId, stageNum);
+  } else {
+    stageNum = parseInt(stageNum);
+  }
+
+  // View Mode
+  //----------------------
+  const viewMode = React.useContext(ViewModeContext);
+  const simpleMode = viewMode === "simple";
+
+  // Modal State
+  //----------------------
+  const [modalOverviewActive, setModalOverviewActive] = React.useState(false);
+
+  // Render
+  //----------------------
   return (
     <>
       {thisRunData ? (
@@ -58,7 +66,6 @@ function RunEditor(props) {
               <Button onClick={() => handleExitClick()} icon="cross" iconFirst>
                 Close
               </Button>
-              {/* {simpleMode ? null : <UserSwitcher />} */}
             </header>
             <div>
               <section className={styles.runInfo}>
@@ -128,8 +135,11 @@ function RunEditor(props) {
           </div>
         </div>
       ) : (
-        <div className={styles.runEditor}>
-          <p>No Run loaded</p>
+        <div className={`${styles.runEditor} ${styles.runEditorActive}`}>
+          <p>
+            Run not found
+            <br /> <Link to="/">Home</Link>
+          </p>
         </div>
       )}
     </>
