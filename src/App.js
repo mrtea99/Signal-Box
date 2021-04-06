@@ -1,25 +1,25 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Redirect,
+} from "react-router-dom";
 
 import SiteSidebar from "./components/SiteSidebar/SiteSidebar.js";
-import RunList from "./components/RunList/RunList.js";
 import RunEditor from "./components/RunEditor/RunEditor.js";
-import RunInfo from "./components/RunInfo/RunInfo.js";
-import TabBox from "./components/TabBox/TabBox.js";
 import SiteHeader from "./components/SiteHeader/SiteHeader.js";
 import SiteSettings from "./components/SiteSidebar/SiteSettings/SiteSettings.js";
 import GlobalContexts from "./components/GlobalContexts/GlobalContexts.js";
-import RunFilter from "./components/RunList/RunFilter/RunFilter.js";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
 
 import { selectAllRuns } from "./components/RunList/runsSlice.js";
 
-import stageNames from "./data/stageNames.json";
-
 // import { useTranslation } from "react-i18next";
 
 import styles from "./App.module.css";
+import AdminPanel from "./components/AdminPanel/AdminPanel.js";
 
 function App() {
   // i18n
@@ -114,20 +114,6 @@ function App() {
     window.localStorage.setItem("viewMode", viewMode);
   }, [viewMode]);
 
-  // Filters
-  //-------------------------------------
-  const defaultRunFilters = {
-    showUser: [],
-    showUnresolvedQa: false,
-  };
-
-  const savedRunFilters = () =>
-    JSON.parse(window.localStorage.getItem("runFilters")) || defaultRunFilters;
-  const [runFilters, setRunFilters] = React.useState(savedRunFilters);
-  React.useEffect(() => {
-    window.localStorage.setItem("runFilters", JSON.stringify(runFilters));
-  }, [runFilters]);
-
   // UI state
   //==============================================================================
   const [sidebarActive, setSidebarActive] = React.useState(false);
@@ -177,32 +163,16 @@ function App() {
                       <RunEditor />
                     </section>
                   </Route>
-                  <Route path="/">
+                  {/* <Route path="/run/:runId">
+                    <Redirect to={`/run/${runId}/0`} />
+                  </Route> */}
+                  <Route path={["/admin/:stageNum", "/admin"]}>
                     <section>
-                      <menu className={styles.listControls}>
-                        <section className={styles.filterControls}>
-                          <RunFilter
-                            runFilters={runFilters}
-                            setRunFilters={setRunFilters}
-                          />
-                        </section>
-                        <section className={styles.otherControls}>
-                          <RunInfo />
-                        </section>
-                      </menu>
-                      <TabBox
-                        boxes={["All", ...stageNames].map((stage, index) => ({
-                          label: stage,
-                          content: (
-                            <RunList
-                              key={stage}
-                              stageNum={index === 0 ? "all" : index - 1}
-                              filters={runFilters}
-                            />
-                          ),
-                        }))}
-                      />
+                      <AdminPanel />
                     </section>
+                  </Route>
+                  <Route path="/">
+                    <Redirect to={`/admin`} />
                   </Route>
                 </Switch>
               </main>

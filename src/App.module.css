@@ -29,14 +29,3 @@
   flex-grow: 1;
   margin-top: var(--height-site-header);
 }
-
-.listControls {
-  padding: 0.5rem 0;
-  display: flex;
-}
-.filterControls {
-  flex-grow: 1;
-}
-.otherControls {
-  flex-grow: 0;
-}

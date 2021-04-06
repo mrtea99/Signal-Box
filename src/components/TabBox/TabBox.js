@@ -11,16 +11,18 @@ function TabBox(props) {
       <nav>
         <TabList
           tabs={props.boxes.map((box, index) => box.label)}
-          indexCallback={setSelectedBox}
-          activeTab={selectedBox}
+          indexCallback={props.changeActiveBox || setSelectedBox}
+          activeTab={props.activeBox || selectedBox}
         />
       </nav>
-      <div>{props.boxes[selectedBox].content}</div>
+      <div>{props.boxes[props.activeBox || selectedBox].content}</div>
     </div>
   );
 }
 
 TabBox.propTypes = {
+  activeBox: PropTypes.number,
+  changeActiveBox: PropTypes.func,
   boxes: PropTypes.array.isRequired,
 };
 
