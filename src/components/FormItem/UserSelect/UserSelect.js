@@ -26,9 +26,9 @@ function UserSelect(props) {
         None
       </option>
       {usersList.map((user) =>
-        excludedUsers && excludedUsers.includes(user.id) ? null : (
-          <option key={user.id} value={user.id}>
-            {user.title}
+        excludedUsers && excludedUsers.includes(user.Id) ? null : (
+          <option key={user.Id} value={user.Id}>
+            {user.Title}
           </option>
         )
       )}

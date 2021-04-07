@@ -5,13 +5,13 @@ import { useSelector } from "react-redux";
 function UserName(props) {
   const userData = useSelector((state) => {
     return state.users.usersList.find(
-      (userItem) => userItem.id === parseInt(props.userId)
+      (userItem) => userItem.Id === parseInt(props.userId)
     );
   });
 
   return (
     <>
-      {userData === undefined ? "User ID not found" : userData.title}
+      {userData === undefined ? "User ID not found" : userData.Title}
     </>
   );
 }

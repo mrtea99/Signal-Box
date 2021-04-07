@@ -28,8 +28,8 @@ function UserSwitcher(props) {
         className={styles.select}
       >
         {usersList.map((user) => (
-          <option key={user.id} value={user.id}>
-            {user.title}
+          <option key={user.Id} value={user.Id}>
+            {user.Title}
           </option>
         ))}
       </select>
