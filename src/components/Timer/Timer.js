@@ -3,26 +3,24 @@ import PropTypes from "prop-types";
 import DurationFormatter from "../DurationFormatter/DurationFormatter";
 
 function Timer(props) {
-  const startTime = new Date(props.startTime);
+  const getTimeDiff = function (timeStart) {
+    const diffTime = Date.now() - new Date(timeStart);
 
-  const [duration, setDuration] = useState(getTimeDiff(startTime));
+    return diffTime;
+  };
+
+  const [duration, setDuration] = useState(getTimeDiff(props.startTime));
 
   useEffect(() => {
     const timerInterval = setInterval(() => {
-      const diffTime = getTimeDiff(startTime);
+      const diffTime = getTimeDiff(props.startTime);
       setDuration(diffTime);
     }, 333);
 
     return () => {
       clearInterval(timerInterval);
     };
-  }, [startTime]);
-
-  function getTimeDiff(timeStart) {
-    const diffTime = Date.now() - timeStart;
-
-    return diffTime;
-  }
+  }, [props.startTime]);
 
   return <DurationFormatter rawTime={duration} ticking />;
 }
