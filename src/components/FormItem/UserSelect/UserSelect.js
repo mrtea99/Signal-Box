@@ -7,7 +7,7 @@ import FormItem from "../FormItem";
 function UserSelect(props) {
   const { excludedUsers, ...itemProps } = props;
 
-  const userList = useSelector((state) => state.users.usersList);
+  const usersList = useSelector((state) => state.users.usersList);
 
   return (
     <FormItem
@@ -16,7 +16,7 @@ function UserSelect(props) {
       value={props.value ? props.value : ""}
       updateHandler={(value) => {
         if (value.length) {
-          props.updateHandler(value);
+          props.updateHandler(parseInt(value));
         } else {
           props.updateHandler(null);
         }
@@ -25,7 +25,7 @@ function UserSelect(props) {
       <option key="default" value="">
         None
       </option>
-      {userList.map((user) =>
+      {usersList.map((user) =>
         excludedUsers && excludedUsers.includes(user.id) ? null : (
           <option key={user.id} value={user.id}>
             {user.title}

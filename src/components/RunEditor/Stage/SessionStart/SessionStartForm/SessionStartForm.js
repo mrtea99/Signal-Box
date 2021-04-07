@@ -69,7 +69,7 @@ function SessionStartForm(props) {
         label="Assistor:"
         ident={"sess-assistor-stage-" + props.thisStage}
         updateHandler={updateAssistor}
-        value={props.formData.assistor || null}
+        value={parseInt(props.formData.assistor) || null}
         excludedUsers={[activeUser]}
       />
       {props.formData.activity.fields &&
