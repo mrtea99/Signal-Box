@@ -7,8 +7,19 @@ import styles from "./Modal.module.css";
 function Modal(props) {
   const mount = document.getElementById("modal-root");
 
+  const outerClickClose = function (e) {
+    if (e.target === e.currentTarget) {
+      if (props.setActive) {
+        props.setActive(false);
+      }
+      if (props.handleCancel) {
+        props.handleCancel();
+      }
+    }
+  };
+
   return createPortal(
-    <div className={styles.modalOuter}>
+    <div className={styles.modalOuter} onClick={(e) => outerClickClose(e)}>
       <div className={styles.modalInner}>
         {props.title ? <h3 className={styles.title}>{props.title}</h3> : null}
         {props.children}
@@ -20,7 +31,9 @@ function Modal(props) {
 
 Modal.propTypes = {
   title: PropTypes.string,
-  children: PropTypes.node
-}
+  children: PropTypes.node,
+  setActive: PropTypes.func,
+  handleCancel: PropTypes.func,
+};
 
 export default Modal;

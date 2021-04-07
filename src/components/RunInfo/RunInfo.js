@@ -160,7 +160,7 @@ function RunInfoNew(props) {
         <Button onClick={() => handleOpen()}>Info</Button>
       )}
       {active ? (
-        <Modal title={modalTitle}>
+        <Modal title={modalTitle} handleCancel={handleCancel}>
           <RunInfoForm
             currentTemplate={currentTemplate}
             setCurrentTemplate={setCurrentTemplate}

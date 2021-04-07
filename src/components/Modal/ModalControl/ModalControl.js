@@ -78,7 +78,7 @@ function ModalControl(props) {
         {props.triggerCopy}
       </Button>
       {modalActive ? (
-        <Modal title={props.title}>
+        <Modal title={props.title} handleCancel={handleCancel}>
           {props.pages ? (
             <>
               <Pager

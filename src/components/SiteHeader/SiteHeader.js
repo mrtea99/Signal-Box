@@ -5,6 +5,7 @@ import Button from "../Button/Button.js";
 import UserSwitcher from "../UserSwitcher/UserSwitcher.js";
 
 import styles from "./SiteHeader.module.css";
+import { Link } from "react-router-dom";
 
 function SiteHeader(props) {
   return (
@@ -14,11 +15,13 @@ function SiteHeader(props) {
           <Button onClick={() => props.setSidebarActive(true)} icon="menu" />
         </div>
         <div className={styles.siteLogoWrapper}>
-          <img
-            className={styles.siteLogo}
-            alt="Mojo Spa Logo"
-            src="/logo.svg"
-          />
+          <Link to="/">
+            <img
+              className={styles.siteLogo}
+              alt="Mojo Spa Logo"
+              src="/logo.svg"
+            />
+          </Link>
         </div>
         <div>
           <UserSwitcher />

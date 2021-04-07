@@ -19,7 +19,10 @@ function SessionEnd(props) {
         End Session
       </Button>
       {modalActive ? (
-        <Modal title={`End ${props.activeSessionData.activity.name} Session`}>
+        <Modal
+          title={`End ${props.activeSessionData.activity.name} Session`}
+          setActive={setModalActive}
+        >
           <SessionEndForm
             setFormActive={setModalActive}
             thisStage={props.thisStage}

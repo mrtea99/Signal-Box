@@ -94,7 +94,7 @@ function StageActions(props) {
                     {inactiveMessage(stageStatus.stageStatusNext)}
                   </Button>
                   {modalActive ? (
-                    <Modal>
+                    <Modal setActive={setModalActive}>
                       <ButtonSpacer direction="vert">
                         <Button onClick={completeStage}>
                           {inactiveMessage(stageStatus.stageStatusNext)}

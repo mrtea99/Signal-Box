@@ -23,7 +23,7 @@ function RunDelete(props) {
         Delete
       </Button>
       {modalActive ? (
-        <Modal title="Confirm Delete Run">
+        <Modal title="Confirm Delete Run" setActive={setModalActive}>
           <p>Are you sure you want to permanently delete this run?</p>
           <ButtonSpacer align="right">
             <Button onClick={() => setModalActive(false)} color="cancel">

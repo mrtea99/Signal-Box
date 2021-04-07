@@ -119,7 +119,7 @@ function SessionStart(props) {
         Start New Session
       </Button>
       {modalActive ? (
-        <Modal title="Start New Session">
+        <Modal title="Start New Session" handleCancel={handleCancel}>
           <AssignmentList
             assignSessions={assignSessions}
             resolvedAssignments={resolvedAssignments}
