@@ -13,6 +13,8 @@ import { selectAllRuns } from "./runsSlice.js";
 import stageNames from "../../data/stageNames.json";
 
 function RunList(props) {
+  // Columns
+  // --------------------------------
   let columns;
   if (props.stageNum === "all") {
     columns = stageNames.map((stageName) => ({
@@ -30,43 +32,47 @@ function RunList(props) {
     ];
   }
 
+  // Filters
+  // --------------------------------
+  const sessionsList = useSelector((state) => state.sessions.sessionsList);
+
   const runsList = useSelector(selectAllRuns);
   let filteredRunsList = [...runsList];
 
   // Only show runs edited by users listed in an array
   if (props.filters.showUser && props.filters.showUser.length) {
+    const userRunIds = [];
+
+    sessionsList.forEach((session) => {
+      if (
+        (props.stageNum === "all" || props.stageNum === session.stage) &&
+        props.filters.showUser.includes(session.user)
+      ) {
+        userRunIds.push(session.runId);
+      }
+    });
+
     filteredRunsList = filteredRunsList.filter((run) => {
-      let userSession = false;
-      const visibleStages =
-        props.stageNum === "all" ? run.stages : [run.stages[props.stageNum]];
-
-      visibleStages.forEach((stage) => {
-        stage.sessions.forEach((session) => {
-          if (props.filters.showUser.includes(session.user)) {
-            userSession = true;
-          }
-        });
-      });
-
-      return userSession;
+      return userRunIds.includes(run.id);
     });
   }
 
-  // Show runs with unresolved QA sessions
+  // Only show runs edited by users listed in an array
   if (props.filters.showUnresolvedQa) {
-    filteredRunsList = filteredRunsList.filter((run) => {
-      let unresolvedQa = false;
-      const visibleStages =
-        props.stageNum === "all" ? run.stages : [run.stages[props.stageNum]];
+    const unresolvedRunIds = [];
 
-      visibleStages.forEach((stage) => {
-        stage.sessions.forEach((session) => {
-          if (session.type === "qa" && !session.endTime) {
-            unresolvedQa = true;
-          }
-        });
-      });
-      return unresolvedQa;
+    sessionsList.forEach((session) => {
+      if (
+        (props.stageNum === "all" || props.stageNum === session.stage) &&
+        session.type === "qa" &&
+        !session.endTime
+      ) {
+        unresolvedRunIds.push(session.runId);
+      }
+    });
+
+    filteredRunsList = filteredRunsList.filter((run) => {
+      return unresolvedRunIds.includes(run.id);
     });
   }
 
@@ -80,9 +86,7 @@ function RunList(props) {
           filteredRunsList.map((run, index) =>
             props.stageNum === "all" ? (
               <div className={styles.itemRow} key={run.id}>
-                <RunListAllItem
-                  currentRunId={run.id}
-                />
+                <RunListAllItem currentRunId={run.id} />
               </div>
             ) : (
               <div className={styles.itemRow} key={run.id}>
