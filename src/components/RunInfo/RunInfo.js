@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router";
 
 import Modal from "../Modal/Modal.js";
 import RunInfoForm from "./RunInfoForm/RunInfoForm.js";
@@ -57,9 +58,7 @@ function RunInfoNew(props) {
 
   const defaultBatchQuantity =
     mode === "new" ? 1 : props.thisRunData.batchQuantity;
-  const [batchQuantity, setBatchQuantity] = useState(
-    defaultBatchQuantity
-  );
+  const [batchQuantity, setBatchQuantity] = useState(defaultBatchQuantity);
 
   const defaultBatchedAssignments = [[], [], [], [], []];
   const [batchedAssignments, setBatchedAssignments] = useState(
@@ -98,6 +97,13 @@ function RunInfoNew(props) {
 
   const closeModal = function () {
     setActive(false);
+  };
+
+  let history = useHistory();
+  const deleteSuccess = function () {
+    closeModal();
+
+    history.push("/");
   };
 
   const buildRun = function (productTemplateData, batchQuantity) {
@@ -191,7 +197,9 @@ function RunInfoNew(props) {
             {mode === "change" ? (
               <RunDelete
                 currentRunId={props.currentRunId}
-                successCallback={() => closeModal()}
+                successCallback={() => {
+                  deleteSuccess();
+                }}
               />
             ) : null}
             <Button
