@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import DurationFormatter from "../DurationFormatter/DurationFormatter";
 
 function Timer(props) {
-  const startTime = useState(new Date(props.startTime))[0];
+  const startTime = new Date(props.startTime);
+
   const [duration, setDuration] = useState(getTimeDiff(startTime));
 
   useEffect(() => {
@@ -15,11 +16,10 @@ function Timer(props) {
     return () => {
       clearInterval(timerInterval);
     };
-  });
+  }, [startTime]);
 
   function getTimeDiff(timeStart) {
-    const currentTime = Date.now();
-    const diffTime = currentTime - timeStart;
+    const diffTime = Date.now() - timeStart;
 
     return diffTime;
   }

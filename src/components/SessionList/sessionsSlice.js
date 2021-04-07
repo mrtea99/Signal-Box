@@ -5,8 +5,6 @@ const changeSession = function (state, sessionId, extraData) {
     (session) => session.sessionId === sessionId
   );
 
-  console.log(extraData)
-
   Object.assign(sessionToChange, extraData);
 };
 
