@@ -6,8 +6,10 @@ import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import FormItem from "../FormItem/FormItem.js";
 import UserName from "../UserSwitcher/UserName/UserName.js";
 
+import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
+
 function FlagCloser(props) {
-  const activeUser = useSelector((state) => state.users.currentUser);
+  const activeUser = useSelector(selectCurrentUser);
 
   const defaultFormData = {
     description: props.session.note || "",
@@ -15,9 +17,7 @@ function FlagCloser(props) {
     priority: props.session.amount,
   };
 
-  const [description, setDescription] = useState(
-    defaultFormData.description
-  );
+  const [description, setDescription] = useState(defaultFormData.description);
   const [status, setStatus] = useState(defaultFormData.status);
   const [priority, setPriority] = useState(defaultFormData.priority);
 

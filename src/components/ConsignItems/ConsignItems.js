@@ -13,13 +13,14 @@ import styles from "./ConsignItems.module.css";
 
 import { selectRun } from "../RunList/runsSlice.js";
 import { selectStageSessions } from "../SessionList/sessionsSlice.js";
+import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 
 import getItemType from "../../utils/getItemType.js";
 
 // import stageNames from "../../data/stageNames.json";
 
 function ConsignItems(props) {
-  const activeUser = useSelector((state) => state.users.currentUser);
+  const activeUser = useSelector(selectCurrentUser);
   const thisRunData = useSelector((state) =>
     selectRun(state, props.currentRunId)
   );

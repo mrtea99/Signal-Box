@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import FormItem from "../FormItem/FormItem.js";
 
+import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
+
 // import stageNames from "../../data/stageNames.json";
 
 function FlagOpener(props) {
-  const activeUser = useSelector((state) => state.users.currentUser);
+  const activeUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
 
   const [description, setDescription] = useState("");

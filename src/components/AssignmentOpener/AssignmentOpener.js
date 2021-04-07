@@ -5,10 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import AssignmentOpenerForm from "./AssignmentOpenerForm/AssignmentOpenerForm.js";
 
+import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
+
 // import stageNames from "../../data/stageNames.json";
 
 function AssignmentOpener(props) {
-  const activeUser = useSelector((state) => state.users.currentUser);
+  const activeUser = useSelector(selectCurrentUser);
+
   const dispatch = useDispatch();
 
   const millisecondsPerHour = 3600000;

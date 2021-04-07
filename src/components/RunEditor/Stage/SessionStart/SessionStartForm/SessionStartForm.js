@@ -8,10 +8,12 @@ import FormItem from "../../../../FormItem/FormItem.js";
 import TemperatureField from "../../../../FormItem/TemperatureField/TemperatureField.js";
 import UserSelect from "../../../../FormItem/UserSelect/UserSelect.js";
 
+import { selectCurrentUser } from "../../../../UserSwitcher/usersSlice.js";
+
 import activityList from "../../../../../data/activities.json";
 
 function SessionStartForm(props) {
-  const activeUser = useSelector((state) => state.users.currentUser);
+  const activeUser = useSelector(selectCurrentUser);
 
   const [temperature, setTemperature] = useState(70);
   const [humidity, setHumidity] = useState(50);

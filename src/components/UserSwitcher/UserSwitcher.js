@@ -6,8 +6,10 @@ import Icon from "../Icon/Icon.js";
 
 import styles from "./UserSwitcher.module.css";
 
+import { selectCurrentUser } from "./usersSlice.js";
+
 function UserSwitcher(props) {
-  const activeUser = useSelector((state) => state.users.currentUser);
+  const activeUser = useSelector(selectCurrentUser);
   const usersList = useSelector((state) => state.users.usersList);
 
   const dispatch = useDispatch();

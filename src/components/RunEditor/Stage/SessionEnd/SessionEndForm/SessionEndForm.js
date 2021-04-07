@@ -13,13 +13,14 @@ import UnitSystemContext from "../../../../../contexts/UnitSystemContext.js";
 import getItemType from "../../../../../utils/getItemType.js";
 
 import { selectRun } from "../../../../RunList/runsSlice.js";
+import { selectCurrentUser } from "../../../../UserSwitcher/usersSlice.js";
 
 // import stageNames from "../../../../../data/stageNames.json";
 
 function SessionEndForm(props) {
   const unitSystem = useContext(UnitSystemContext);
 
-  const activeUser = useSelector((state) => state.users.currentUser);
+  const activeUser = useSelector(selectCurrentUser);
 
   const thisRunData = useSelector((state) =>
     selectRun(state, props.currentRunId)

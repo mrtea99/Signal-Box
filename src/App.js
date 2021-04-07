@@ -13,13 +13,14 @@ import SiteHeader from "./components/SiteHeader/SiteHeader.js";
 import SiteSettings from "./components/SiteSidebar/SiteSettings/SiteSettings.js";
 import GlobalContexts from "./components/GlobalContexts/GlobalContexts.js";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
+import AdminPanel from "./components/AdminPanel/AdminPanel.js";
 
 import { selectAllRuns } from "./components/RunList/runsSlice.js";
+import { selectCurrentUser } from "./components/UserSwitcher/usersSlice.js";
 
 // import { useTranslation } from "react-i18next";
 
 import styles from "./App.module.css";
-import AdminPanel from "./components/AdminPanel/AdminPanel.js";
 
 function App() {
   // i18n
@@ -60,7 +61,7 @@ function App() {
   //     payload: parseInt(window.localStorage.getItem("activeUser")) || 1,
   //   });
   // }, [dispatch]);
-  const activeUser = useSelector((state) => state.users.currentUser);
+  const activeUser = useSelector(selectCurrentUser);
   useEffect(() => {
     window.localStorage.setItem("activeUser", activeUser);
   }, [activeUser]);

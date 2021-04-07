@@ -12,11 +12,13 @@ import Button from "../../Button/Button.js";
 import RunTitle from "../RunTitle/RunTitle.js";
 
 import styles from "./RunListStageItem.module.css";
+
 import { selectRun } from "../runsSlice.js";
 import { selectStageSessions } from "../../SessionList/sessionsSlice.js";
+import { selectCurrentUser } from "../../UserSwitcher/usersSlice.js";
 
 function RunListStageItem(props) {
-  const activeUser = useSelector((state) => state.users.currentUser);
+  const activeUser = useSelector(selectCurrentUser);
 
   const thisRunData = useSelector((state) =>
     selectRun(state, props.currentRunId)

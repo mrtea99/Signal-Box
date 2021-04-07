@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
 
@@ -16,13 +16,14 @@ import stageNames from "../../../data/stageNames.json";
 
 import { selectRun } from "../../RunList/runsSlice.js";
 import { selectStageSessions } from "../../SessionList/sessionsSlice.js";
+import { selectCurrentUser } from "../../UserSwitcher/usersSlice.js";
 
 function Stage(props) {
   const simpleMode = useContext(ViewModeContext) === "simple";
 
   const dispatch = useDispatch();
 
-  const activeUser = useSelector((state) => state.users.currentUser);
+  const activeUser = useSelector(selectCurrentUser);
 
   const thisRunData = useSelector((state) =>
     selectRun(state, props.currentRunId)

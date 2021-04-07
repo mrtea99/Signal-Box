@@ -5,10 +5,12 @@ import { useDispatch, useSelector } from "react-redux";
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import CheckOpenerForm from "./CheckOpenerForm/CheckOpenerForm.js";
 
+import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
+
 // import stageNames from "../../data/stageNames.json";
 
 function CheckOpener(props) {
-  const activeUser = useSelector((state) => state.users.currentUser);
+  const activeUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
 
   const defaultFormData = {

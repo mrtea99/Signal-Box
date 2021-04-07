@@ -9,12 +9,13 @@ import AssignmentList from "../../../AssignmentOpener/AssignmentList/AssignmentL
 
 import { selectRun } from "../../../RunList/runsSlice.js";
 import { selectStageSessions } from "../../../SessionList/sessionsSlice.js";
+import { selectCurrentUser } from "../../../UserSwitcher/usersSlice.js";
 
 // import stageNames from "../../../../data/stageNames.json";
 import activityList from "../../../../data/activities.json";
 
 function SessionStart(props) {
-  const activeUser = useSelector((state) => state.users.currentUser);
+  const activeUser = useSelector(selectCurrentUser);
 
   const thisRunData = useSelector((state) =>
     selectRun(state, props.currentRunId)
