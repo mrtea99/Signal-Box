@@ -28,7 +28,8 @@ function Timer(props) {
 }
 
 Timer.propTypes = {
-  startTime: PropTypes.number.isRequired,
+  startTime: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    .isRequired,
 };
 
 export default Timer;

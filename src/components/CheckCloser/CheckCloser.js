@@ -18,9 +18,7 @@ function CheckCloser(props) {
     status: "active",
   };
 
-  const [description, setDescription] = useState(
-    defaultFormState.description
-  );
+  const [description, setDescription] = useState(defaultFormState.description);
   const [count, setCount] = useState(defaultFormState.count);
   const [countBad, setCountBad] = useState(defaultFormState.countBad);
   const [assignee, setAssignee] = useState(defaultFormState.assignee);
@@ -48,6 +46,7 @@ function CheckCloser(props) {
       amountType: getItemType(props.thisStage),
       amountBad: countBad,
       secondaryUser: assignee,
+      endTime: new Date().toISOString(),
     };
 
     if (status === "resolved") {
@@ -56,7 +55,6 @@ function CheckCloser(props) {
         payload: {
           sessionId: props.session.sessionId,
           extraData,
-          endTime: Date.now(),
         },
       });
     } else {

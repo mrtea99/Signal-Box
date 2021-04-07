@@ -31,7 +31,7 @@ function CheckOpener(props) {
       // stage: stageNames[props.thisStage],
       stage: props.thisStage,
       type: "qa",
-      startTime: Date.now(),
+      startTime: new Date().toISOString(),
       endTime: null,
       user: activeUser,
       ...formData,

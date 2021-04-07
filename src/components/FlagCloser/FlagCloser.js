@@ -49,7 +49,7 @@ function FlagCloser(props) {
         payload: {
           sessionId: props.session.sessionId,
           extraData: { notes: newNote, amount: priority },
-          endTime: Date.now(),
+          endTime: new Date().toISOString(),
         },
       });
     } else {

@@ -55,10 +55,10 @@ function SessionItem({
         if (thisStageData[i].endTime) {
           totalDuration =
             totalDuration +
-            (thisStageData[i].endTime - thisStageData[i].startTime);
+            (new Date(thisStageData[i].endTime) - new Date(thisStageData[i].startTime));
         } else {
           totalDuration =
-            totalDuration + (Date.now() - thisStageData[i].startTime);
+            totalDuration + (Date.now() - new Date(thisStageData[i].startTime));
         }
       }
     }

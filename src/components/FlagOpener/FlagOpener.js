@@ -23,7 +23,7 @@ function FlagOpener(props) {
       // stage: stageNames[props.thisStage],
       stage: props.thisStage,
       type: "flag",
-      startTime: Date.now(),
+      startTime: new Date().toISOString(),
       endTime: null,
       user: activeUser,
       amount: priority,

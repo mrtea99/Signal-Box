@@ -51,8 +51,10 @@ function AssignmentCloser(props) {
           extraData: {
             notes: formData.description,
             secondaryUser: formData.assignee,
-            startTime: formData.startDate + formData.startTime,
-            endTime: Date.now(),
+            startTime: new Date(
+              formData.startDate + formData.startTime
+            ).toISOString(),
+            endTime: new Date().toISOString(),
             extra: status,
           },
         },

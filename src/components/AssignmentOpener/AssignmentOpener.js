@@ -47,7 +47,9 @@ function AssignmentOpener(props) {
       // stage: stageNames[props.thisStage],
       stage: props.thisStage,
       type: "assign",
-      startTime: formData.startDate + formData.startTime,
+      startTime: new Date(
+        formData.startDate + formData.startTime
+      ).toISOString(),
       endTime: null,
       user: activeUser,
       secondaryUser: parseInt(formData.assignee) || null,

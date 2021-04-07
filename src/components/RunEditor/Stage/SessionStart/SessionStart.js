@@ -43,7 +43,7 @@ function SessionStart(props) {
       // stage: stageNames[props.thisStage],
       stage: props.thisStage,
       type: "work",
-      startTime: Date.now(),
+      startTime: new Date().toISOString(),
       endTime: null,
       activity: formData.activity,
       user: activeUser,
@@ -62,7 +62,7 @@ function SessionStart(props) {
         type: "sessions/update",
         payload: {
           sessionId: sessionId,
-          extraData: { endTime: Date.now() },
+          extraData: { endTime: new Date().toISOString() },
         },
       });
     });

@@ -75,7 +75,6 @@ function DateTimeFormatter(props) {
 
     // return `${hour}:${min}:${sec}${afterWords}`;
     return `${hour}:${min}${afterWords}`;
-
   };
 
   return (
@@ -90,6 +89,6 @@ function DateTimeFormatter(props) {
 export default DateTimeFormatter;
 
 DateTimeFormatter.propTypes = {
-  date: PropTypes.number.isRequired,
+  date: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   splitLines: PropTypes.bool,
 };

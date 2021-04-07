@@ -129,8 +129,8 @@ function Stage(props) {
       stage: stage,
       type: newState ? "activate" : "deactivate",
       activity: newState,
-      startTime: Date.now(),
-      endTime: Date.now(),
+      startTime: new Date().toISOString(),
+      endTime: new Date().toISOString(),
       user: activeUser,
     };
     dispatch({

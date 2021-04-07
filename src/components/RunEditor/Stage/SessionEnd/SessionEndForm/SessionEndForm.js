@@ -75,7 +75,7 @@ function SessionEndForm(props) {
         // stage: stageNames[props.thisStage],
         stage: props.thisStage,
         type: "qa",
-        startTime: Date.now(),
+        startTime: new Date().toISOString(),
         endTime: null,
         user: activeUser,
         ...qaFormData,
@@ -100,7 +100,7 @@ function SessionEndForm(props) {
           amountType: itemType,
           amountBad: amountBad,
           averageWeight: averageWeight,
-          endTime: Date.now(),
+          endTime: new Date().toISOString(),
         },
       },
     });
