@@ -15,6 +15,11 @@ function RunDelete(props) {
       type: "runs/delete",
       payload: runId,
     });
+
+    dispatch({
+      type: "sessions/deleteAllInRun",
+      payload: runId,
+    });
   };
 
   return (

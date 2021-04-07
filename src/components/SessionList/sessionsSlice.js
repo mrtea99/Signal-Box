@@ -29,6 +29,18 @@ const sessionsSlice = createSlice({
 
       changeSession(state, sessionId, extraData);
     },
+    deleteAllInRun: (state, action) => {
+      const runId = action.payload;
+
+      state.sessionsList.forEach((session) => {
+        if (session.runId === runId) {
+          const index = state.sessionsList.indexOf(session);
+          if (index > -1) {
+            state.sessionsList.splice(index, 1);
+          }
+        }
+      });
+    },
   },
 });
 
