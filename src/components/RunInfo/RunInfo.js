@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
+import { useTranslation } from "react-i18next";
 
 import Modal from "../Modal/Modal.js";
 import RunInfoForm from "./RunInfoForm/RunInfoForm.js";
@@ -14,6 +15,8 @@ import FormItem from "../FormItem/FormItem.js";
 import productTemplates from "../../data/productTemplates.json";
 
 function RunInfoNew(props) {
+  const { t } = useTranslation();
+
   const mode = props.currentRunId ? "change" : "new";
   const runStatuses = ["Not Started", "In Progress", "Complete", "Archived"];
   const modalTitle = mode === "new" ? "Create New Run" : "Edit Run Info";
@@ -160,10 +163,10 @@ function RunInfoNew(props) {
     <>
       {mode === "new" ? (
         <Button onClick={() => handleOpen()} icon="plus">
-          New Run
+          {t("New Run")}
         </Button>
       ) : (
-        <Button onClick={() => handleOpen()}>Info</Button>
+        <Button onClick={() => handleOpen()}>{t("Info")}</Button>
       )}
       {active ? (
         <Modal title={modalTitle} handleCancel={handleCancel}>
@@ -215,7 +218,7 @@ function RunInfoNew(props) {
               disabled={currentTemplate === null ? true : false}
               onClick={handleSubmit}
             >
-              {mode === "new" ? "Create New Run" : "Save"}
+              {mode === "new" ? t("Create New Run") : t("Save")}
             </Button>
           </ButtonSpacer>
         </Modal>

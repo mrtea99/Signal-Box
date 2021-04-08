@@ -7,6 +7,9 @@ const resources = {
   en: {
     translation: {
       "New Run": "New Run",
+      Info: "Info",
+      "Create New Run": "Create New Run",
+      Save: "Save",
     },
   },
   es: {
