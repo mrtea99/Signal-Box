@@ -58,23 +58,25 @@ function SessionDuring(props) {
   };
 
   const showRecipe = function () {
-    return (
-      props.thisStage === 1 ||
-      props.activeSessionData.activity.name === "Create Blend / Base"
-    );
+    return props.activeSessionData.activity.fields.includes("recipe");
   };
+
+  const activityFields = props.activeSessionData
+    ? props.activeSessionData.activity.fields
+    : null;
 
   const readOnlyFields = function () {
     switch (props.thisStage) {
       case 0:
       case 1:
-        if (showRecipe()) {
+        let recipeNode;
+        if (activityFields.includes("recipe")) {
           const weightOz =
             thisRunData.productInfo.batchWeight * thisRunData.batchQuantity;
 
           const weightGrams = weightOz * 28.3495; // todo replace conversion with util
 
-          return (
+          recipeNode = (
             <DataListItem
               dataKey="Target Total Weight"
               dataValue={
@@ -82,35 +84,49 @@ function SessionDuring(props) {
               }
             />
           );
-        } else {
-          return (
-            <>
-              <DataListItem dataKey="Shopify Inventory" dataValue="TODO" />
-              <DataListItem
-                dataKey="Difficulty"
-                dataValue={
-                  <ul>
-                    <li>
-                      {stageNames[0]}: {thisRunData.productInfo.prepDifficulty}
-                    </li>
-                    <li>
-                      {stageNames[1]}:{" "}
-                      {thisRunData.productInfo.manufacturingDifficulty}
-                    </li>
-                    <li>
-                      {stageNames[2]}:{" "}
-                      {thisRunData.productInfo.packagingDifficulty}
-                    </li>
-                    <li>
-                      {stageNames[3]}:{" "}
-                      {thisRunData.productInfo.labelingDifficulty}
-                    </li>
-                  </ul>
-                }
-              />
-            </>
+        }
+
+        let inventoryNode;
+        if (activityFields.includes("inventory")) {
+          inventoryNode = (
+            <DataListItem dataKey="Shopify Inventory" dataValue="TODO" />
           );
         }
+
+        let difficultyNode;
+        if (activityFields.includes("difficulty")) {
+          difficultyNode = (
+            <DataListItem
+              dataKey="Difficulty"
+              dataValue={
+                <ul>
+                  <li>
+                    {stageNames[0]}: {thisRunData.productInfo.prepDifficulty}
+                  </li>
+                  <li>
+                    {stageNames[1]}:{" "}
+                    {thisRunData.productInfo.manufacturingDifficulty}
+                  </li>
+                  <li>
+                    {stageNames[2]}:{" "}
+                    {thisRunData.productInfo.packagingDifficulty}
+                  </li>
+                  <li>
+                    {stageNames[3]}:{" "}
+                    {thisRunData.productInfo.labelingDifficulty}
+                  </li>
+                </ul>
+              }
+            />
+          );
+        }
+        return (
+          <>
+            {recipeNode}
+            {inventoryNode}
+            {difficultyNode}
+          </>
+        );
       case 2:
         return (
           <>

@@ -24,9 +24,9 @@ function InfoPodItem(props) {
       `}
     >
       <span
-        className={`${styles.inner} ${
-          fullViewMode ? styles.innerVert : ""
-        } ${!showIcon ? styles.innerText : ""}`}
+        className={`${styles.inner} ${fullViewMode ? styles.innerVert : ""} ${
+          !showIcon ? styles.innerText : ""
+        }`}
       >
         <span className={styles.key}>
           {showIcon ? (
@@ -48,7 +48,7 @@ function InfoPodItem(props) {
           ) : null}
         </span>
         {(!fullViewMode && props.priority === "value") || fullViewMode ? (
-          <span>{props.value}</span>
+          <span className={styles.value}>{props.value}</span>
         ) : null}
       </span>
     </span>
@@ -63,7 +63,11 @@ InfoPodItem.propTypes = {
   layout: PropTypes.oneOf(["horiz", "vert"]),
   icon: PropTypes.string,
   name: PropTypes.string,
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.node]),
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.node,
+  ]),
   priority: PropTypes.oneOf(["icon", "value"]),
   viewMode: PropTypes.oneOf(["full", "basic"]),
 };

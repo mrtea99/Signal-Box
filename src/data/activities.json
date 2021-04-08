@@ -1,19 +1,19 @@
 [
   [
-    { "name": "Material Check", "fields": [] },
+    { "name": "Material Check", "fields": ["inventory", "difficulty"] },
     {
       "name": "Create Blend / Base",
-      "fields": ["atmos", "amounts", "weight", "qa"]
+      "fields": ["atmos", "amounts", "weight", "qa", "recipe"]
     },
-    { "name": "Misc", "fields": [] },
-    { "name": "Assisting", "fields": [] }
+    { "name": "Misc", "fields": ["inventory", "difficulty"] },
+    { "name": "Assisting", "fields": ["inventory", "difficulty"] }
   ],
   [
     { "name": "Materials / Equip Prep", "fields": [] },
     { "name": "Manufacturing", "fields": ["atmos", "amounts", "weight", "qa"] },
     {
       "name": "Create Blend / Base",
-      "fields": ["atmos", "amounts", "weight", "qa"]
+      "fields": ["atmos", "amounts", "weight", "qa", "recipe"]
     },
     { "name": "Cooling", "fields": ["atmos"] },
     { "name": "Curing", "fields": ["atmos"] },
