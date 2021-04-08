@@ -185,7 +185,7 @@ function RunInfoNew(props) {
           ) : null}
 
           <FormItem
-            label="Run Status:"
+            label={`${t("Run Status")}:`}
             type="toggleButton"
             ident="flag-status"
             itemLabels={runStatuses}
@@ -212,7 +212,7 @@ function RunInfoNew(props) {
               }}
               color="cancel"
             >
-              Cancel
+              {t("Cancel")}
             </Button>
             <Button
               disabled={currentTemplate === null ? true : false}

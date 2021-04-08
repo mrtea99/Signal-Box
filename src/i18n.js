@@ -10,6 +10,8 @@ const resources = {
       Info: "Info",
       "Create New Run": "Create New Run",
       Save: "Save",
+      Cancel: "Cancel",
+      "Run Status": "Run Status",
     },
   },
   es: {
