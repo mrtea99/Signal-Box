@@ -14,7 +14,7 @@ function Repeater(props) {
     };
   });
 
-  return returnValue;
+  return <>{returnValue}</>;
 }
 
 Repeater.propTypes = {
