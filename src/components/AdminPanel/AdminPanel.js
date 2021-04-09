@@ -10,7 +10,11 @@ import styles from "./AdminPanel.module.css";
 
 import stageNames from "../../data/stageNames.json";
 
+import { useTranslation } from "react-i18next";
+
 function AdminPanel() {
+  const { t } = useTranslation();
+
   // Tab URL
   //-------------------------------------
   const { stageNum } = useParams();
@@ -54,7 +58,7 @@ function AdminPanel() {
       <TabBox
         activeBox={activeBox}
         changeActiveBox={changeActiveBox}
-        boxes={["All", ...stageNames].map((stage, index) => ({
+        boxes={[t("All"), ...stageNames].map((stage, index) => ({
           label: stage,
           content: (
             <RunList

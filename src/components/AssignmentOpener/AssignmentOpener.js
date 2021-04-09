@@ -9,7 +9,11 @@ import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 
 // import stageNames from "../../data/stageNames.json";
 
+import { useTranslation } from "react-i18next";
+
 function AssignmentOpener(props) {
+  const { t } = useTranslation();
+
   const activeUser = useSelector(selectCurrentUser);
 
   const dispatch = useDispatch();
@@ -80,10 +84,10 @@ function AssignmentOpener(props) {
 
   return (
     <ModalControl
-      title="Assign Stage"
+      title={t("Assign Stage")}
       handleSubmit={handleSubmit}
       handleCancel={handleCancel}
-      triggerCopy={props.triggerCopy || "Assign Stage"}
+      triggerCopy={props.triggerCopy || t("Assign Stage")}
       buttonAttrs={
         props.buttonAttrs || {
           fillWidth: true,

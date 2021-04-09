@@ -7,7 +7,11 @@ import AssignmentOpenerForm from "../AssignmentOpener/AssignmentOpenerForm/Assig
 import FormItem from "../FormItem/FormItem.js";
 import UserName from "../UserSwitcher/UserName/UserName.js";
 
+import { useTranslation } from "react-i18next";
+
 function AssignmentCloser(props) {
+  const { t } = useTranslation();
+
   const millisecondsPerHour = 3600000;
   const shiftTimes = [
     millisecondsPerHour * 9,
@@ -88,12 +92,12 @@ function AssignmentCloser(props) {
     <>
       {props.session.endTime ? null : (
         <ModalControl
-          title="Edit Assignment"
+          title={t("Edit Assignment")}
           handleSubmit={handleSubmit}
           handleCancel={handleCancel}
           handleOpen={handleOpen}
           triggerCopy={""}
-          submitCopy={"Save"}
+          submitCopy={t("Save")}
           buttonAttrs={{ color: "assign", icon: "assign" }}
         >
           <p>
@@ -106,7 +110,7 @@ function AssignmentCloser(props) {
             shiftTimes={shiftTimes}
           />
           <FormItem
-            label="Status:"
+            label={`${t("Status")}:`}
             type="toggleButton"
             ident="assignment-status"
             itemLabels={["Active", "Resolved"]}

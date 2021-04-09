@@ -8,7 +8,11 @@ import styles from "./AssignmentList.module.css";
 import AssignmentCloser from "../../AssignmentCloser/AssignmentCloser";
 import UserName from "../../UserSwitcher/UserName/UserName";
 
+import { useTranslation } from "react-i18next";
+
 function AssignmentList(props) {
+  const { t } = useTranslation();
+
   const markResolved = function (checked, sessionId) {
     if (checked) {
       props.setResolvedAssignments([...props.resolvedAssignments, sessionId]);
@@ -23,9 +27,9 @@ function AssignmentList(props) {
   };
 
   const columns = [
-    { copy: "Assignment", className: styles.colMain },
-    { copy: "Edit", className: styles.colAction },
-    { copy: "Resolve", className: styles.colResolve },
+    { copy: t("Assignment"), className: styles.colMain },
+    { copy: t("Edit"), className: styles.colAction },
+    { copy: t("Resolve"), className: styles.colResolve },
   ];
 
   return (
@@ -39,11 +43,11 @@ function AssignmentList(props) {
               <li key={session.sessionId} className={styles.assItem}>
                 <div className={`${styles.colMain} ${styles.main}`}>
                   <h3 className={styles.itemTitle}>
-                    Assignee:{" "}
+                    {`${t("Assignee")}:`}
                     {session.secondaryUser ? (
                       <UserName userId={session.secondaryUser} />
                     ) : (
-                      "None"
+                      t("None")
                     )}
                   </h3>
                   <p className={styles.itemNote}>{session.notes}</p>

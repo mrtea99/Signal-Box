@@ -9,7 +9,11 @@ import styles from "./AssignmentBatcher.module.css";
 
 import stageNames from "../../../data/stageNames.json";
 
+import { useTranslation } from "react-i18next";
+
 function AssignmentBatcher(props) {
+  const { t } = useTranslation();
+
   const addAssignment = function (sessionData, stageNumber) {
     let newBatch = [...props.batchedAssignments];
     let newBatchStage = [...newBatch[stageNumber]];
@@ -34,11 +38,12 @@ function AssignmentBatcher(props) {
 
   return (
     <>
-      <h3>Assignments:</h3>
+      <h3>{t("Assignments")}:</h3>
       <ul className={styles.stageList}>
         {stageNames.map((stageName, stageNumber) => (
           <li key={`assign-${stageName}`} className={styles.stageItem}>
-            <h4 className={styles.stageName}>{stageName}</h4>
+            {/* todo translate stage name */}
+            <h4 className={styles.stageName}>{t(stageName)}</h4>
             <ul className={styles.assList}>
               {props.batchedAssignments[stageNumber].map(
                 (assignmentSession) => (
@@ -50,7 +55,7 @@ function AssignmentBatcher(props) {
                       {assignmentSession.secondaryUser ? (
                         <UserName userId={assignmentSession.secondaryUser} />
                       ) : (
-                        "No Assignee"
+                        t("No Assignee")
                       )}
                     </h5>
                     <Button
@@ -71,7 +76,7 @@ function AssignmentBatcher(props) {
             <AssignmentOpener
               thisStage={stageNumber}
               addAssignment={addAssignment}
-              triggerCopy={"Add"}
+              triggerCopy={t("Add")}
               buttonAttrs={{
                 color: "assign",
                 icon: "plus",
