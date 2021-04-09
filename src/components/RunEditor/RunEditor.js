@@ -31,7 +31,8 @@ function RunEditor(props) {
   const thisRunData = useSelector((state) => selectRun(state, runId));
 
   const handleExitClick = function () {
-    history.push("/");
+    const backLoc = window.localStorage.getItem("editorBackLoc") || "/";
+    history.push(backLoc);
   };
 
   const changeStage = function (runId, newIndex) {
@@ -99,7 +100,10 @@ function RunEditor(props) {
                       />
                     </ButtonSpacer>
                     {modalOverviewActive ? (
-                      <Modal title="Run Overview" setActive={setModalOverviewActive}>
+                      <Modal
+                        title="Run Overview"
+                        setActive={setModalOverviewActive}
+                      >
                         <Button onClick={() => setModalOverviewActive(false)}>
                           Close
                         </Button>

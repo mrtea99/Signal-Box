@@ -53,7 +53,9 @@ function StageActions(props) {
   let history = useHistory();
   const completeStageAndExit = function () {
     completeStage();
-    history.push("/");
+
+    const backLoc = window.localStorage.getItem("editorBackLoc") || "/";
+    history.push(backLoc);
   };
 
   const completeStageAndNext = function () {

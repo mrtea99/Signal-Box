@@ -36,6 +36,7 @@ function RunListStageItem(props) {
 
   let history = useHistory();
   const openEditor = function (runUid, stageNum) {
+    window.localStorage.setItem("editorBackLoc", window.location.pathname);
     history.push(`/run/${runUid}/${stageNum}`);
   };
 
