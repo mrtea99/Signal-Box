@@ -7,15 +7,19 @@ import styles from "./ActivityTotals.module.css";
 
 import activityList from "../../../data/activities.json";
 
+import { useTranslation } from "react-i18next";
+
 const ActivityTotals = function (props) {
+  const { t } = useTranslation();
+
   const buildTotals = function () {
-    let totalsData = [{ name: "QA", amount: 0, amountBad: 0 }];
+    let totalsData = [{ name: t("QA"), amount: 0, amountBad: 0 }];
 
     props.sessions.forEach((session, index) => {
       let activityName;
       switch (session.type) {
         case "qa":
-          activityName = "QA";
+          activityName = t("QA");
           break;
         case "work":
           activityName = session.activity.name;
@@ -62,9 +66,9 @@ const ActivityTotals = function (props) {
   const activityTotals = buildTotals();
 
   const columns = [
-    { copy: "Activity", className: styles.colActivity },
-    { copy: props.itemName || "Item", className: styles.colItem },
-    { copy: "Defective", className: styles.colDefective },
+    { copy: t("Activity"), className: styles.colActivity },
+    { copy: props.itemName || t("Items"), className: styles.colItem },
+    { copy: t("Defective"), className: styles.colDefective },
   ];
 
   return (
@@ -76,7 +80,7 @@ const ActivityTotals = function (props) {
             <li
               key={activity.name}
               className={`${styles.activityItem} ${
-                activity.name === "QA" ? styles.activityItemQa : ""
+                activity.name === t("QA") ? styles.activityItemQa : ""
               }`}
             >
               <div className={`${styles.colActivity} ${styles.activityName}`}>

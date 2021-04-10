@@ -19,7 +19,11 @@ import getItemType from "../../utils/getItemType.js";
 
 // import stageNames from "../../data/stageNames.json";
 
+import { useTranslation } from "react-i18next";
+
 function ConsignItems(props) {
+  const { t } = useTranslation();
+
   const activeUser = useSelector(selectCurrentUser);
   const thisRunData = useSelector((state) =>
     selectRun(state, props.currentRunId)
@@ -124,18 +128,18 @@ function ConsignItems(props) {
   let itemName;
   switch (props.thisStage) {
     case 1:
-      itemName = "Batches";
+      itemName = t("Batches");
       break;
     case 2:
     case 3:
-      itemName = "Units";
+      itemName = t("Units");
       break;
     default:
-      itemName = "Items";
+      itemName = t("Items");
       break;
   }
 
-  const triggerCopy = "Consign " + itemName;
+  const triggerCopy = `${t("Consign")} ${itemName}`;
 
   const consInfoPod = (
     <InfoPod fullWidth>
@@ -146,7 +150,7 @@ function ConsignItems(props) {
           <InfoPodItem
             active
             key={"remaining"}
-            name="Remaining"
+            name={t("Remaining")}
             value={
               props.stageStatus.targetItemCount - props.stageStatus.itemCount
             }
@@ -154,7 +158,7 @@ function ConsignItems(props) {
         ]}
       >
         <InfoPodItem
-          name="Consigned"
+          name={t("Consigned")}
           value={props.stageStatus.completionFraction}
         />
       </InfoPodSection>
@@ -171,13 +175,13 @@ function ConsignItems(props) {
         handleCancel={handleCancel}
         buttonAttrs={{ color: "complete", icon: "next" }}
       >
-        <h4>Activity Totals:</h4>
+        <h4>{t("Activity Totals")}:</h4>
         <ActivityTotals sessions={stageSessions} itemName={itemName} />
-        <h4>Consignments Summary:</h4>
+        <h4>{t("Consignments Summary")}:</h4>
         {consInfoPod}
-        <h4>New Consignment:</h4>
+        <h4>{t("New Consignment")}:</h4>
         <FormItem
-          label="Consignment amount:"
+          label={`${t("Consignment amount")}:`}
           type="number"
           ident="consign-items"
           updateHandler={(value) => {
@@ -188,7 +192,7 @@ function ConsignItems(props) {
         />
 
         <FormItem
-          label="Defective amount:"
+          label={`${t("Defective amount")}:`}
           type="number"
           ident="consign-items-bad"
           updateHandler={(value) => {
