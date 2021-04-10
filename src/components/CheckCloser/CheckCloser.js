@@ -50,10 +50,11 @@ function CheckCloser(props) {
       amountType: getItemType(props.thisStage),
       amountBad: countBad,
       secondaryUser: assignee,
-      endTime: new Date().toISOString(),
     };
 
     if (status === "resolved") {
+      Object.assign(extraData, { endTime: new Date().toISOString() });
+
       dispatch({
         type: "sessions/end",
         payload: {
