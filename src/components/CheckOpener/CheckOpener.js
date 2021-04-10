@@ -60,6 +60,7 @@ function CheckOpener(props) {
   return (
     <ModalControl
       title={t("Request QA Check")}
+      triggerCopy={t("Request QA Check")}
       handleSubmit={handleSubmit}
       handleCancel={handleCancel}
       buttonAttrs={{ fillWidth: true, color: "qa", icon: "qa" }}
