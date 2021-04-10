@@ -9,7 +9,11 @@ import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 
 // import stageNames from "../../data/stageNames.json";
 
+import { useTranslation } from "react-i18next";
+
 function FlagOpener(props) {
+  const { t } = useTranslation();
+
   const activeUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
 
@@ -49,51 +53,17 @@ function FlagOpener(props) {
     setPriority(1);
   };
 
-  // const translatePriority = function (count) {
-  //   switch (count) {
-  //     case 0:
-  //       return "note";
-  //     case 1:
-  //       return "issue";
-  //     case 2:
-  //       return "blocker";
-  //     default:
-  //       return "N/A";
-  //   }
-  // };
-
   return (
     <ModalControl
-      title="Raise Flag"
+      title={t("Raise Flag")}
       handleSubmit={handleSubmit}
       handleCancel={handleCancel}
-      triggerCopy={"Flag Problem"}
+      triggerCopy={t("Flag Problem")}
       buttonAttrs={{ fillWidth: true, color: "issue", icon: "issue" }}
     >
       <form>
-        {/* <FormItem
-          label="Blocker"
-          type="checkbox"
-          ident="issue-blocker"
-          updateHandler={(value) => {value ? setIsBlocker(2) : setIsBlocker(3)}}
-          checked={isBlocker}
-        /> */}
-
-        {/* <FormItem
-          label="Priority"
-          type="select"
-          ident="flag-blocker"
-          updateHandler={(value) => {
-            setPriority(parseInt(value));
-          }}
-        >
-          <option value="0">Note</option>
-          <option value="1">Issue</option>
-          <option value="2">Blocker</option>
-        </FormItem> */}
-
         <FormItem
-          label="Priority:"
+          label={`${t("Priority")}:`}
           type="toggleButton"
           ident="flag-priority"
           itemLabels={["Note", "Issue", "Blocker"]}
@@ -105,11 +75,11 @@ function FlagOpener(props) {
         />
 
         <FormItem
-          label="Description:"
+          label={`${t("Description")}:`}
           type="textarea"
           ident="issue-description"
           updateHandler={(value) => {
-            setDescription("Reported: " + value);
+            setDescription(`${t("Reported")}: ${value}`);
           }}
         />
       </form>

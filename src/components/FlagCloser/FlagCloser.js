@@ -8,7 +8,11 @@ import UserName from "../UserSwitcher/UserName/UserName.js";
 
 import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 
+import { useTranslation } from "react-i18next";
+
 function FlagCloser(props) {
+  const { t } = useTranslation();
+
   const activeUser = useSelector(selectCurrentUser);
 
   const defaultFormData = {
@@ -30,10 +34,12 @@ function FlagCloser(props) {
   const dispatch = useDispatch();
 
   const handleSubmit = function () {
+    const dateNow = new Date().toISOString();
+
     const labeledDescription =
-      (status === "resolved" ? "Fix" : "Update") +
+      (status === "resolved" ? t("Fix") : t("Update")) +
       " [" +
-      Date.now() +
+      dateNow +
       " " +
       activeUser +
       "]: " +
@@ -49,7 +55,7 @@ function FlagCloser(props) {
         payload: {
           sessionId: props.session.sessionId,
           extraData: { notes: newNote, amount: priority },
-          endTime: new Date().toISOString(),
+          endTime: dateNow,
         },
       });
     } else {
@@ -76,13 +82,13 @@ function FlagCloser(props) {
   const translatePriority = function (count, caps) {
     switch (count) {
       case 0:
-        return caps ? "Note" : "note";
+        return caps ? t("Note") : "note";
       case 1:
-        return caps ? "Issue" : "issue";
+        return caps ? t("Issue") : "issue";
       case 2:
-        return caps ? "Blocker" : "blocker";
+        return caps ? t("Blocker") : "blocker";
       default:
-        return "N/A";
+        return t("N/A");
     }
   };
 
@@ -90,7 +96,7 @@ function FlagCloser(props) {
     <>
       {props.session.endTime ? null : (
         <ModalControl
-          title={"Update " + translatePriority(priority, true)}
+          title={`${t("Update")} ${translatePriority(priority, true)}`}
           handleSubmit={handleSubmit}
           handleCancel={handleCancel}
           handleOpen={handleOpen}
@@ -102,10 +108,10 @@ function FlagCloser(props) {
         >
           <div>
             <p>
-              Raised by: <UserName userId={props.session.user} />
+              {t("Raised by")}: <UserName userId={props.session.user} />
             </p>
             <p>
-              Notes:
+              {t("Notes")}:
               <br />
               {props.session.notes.split("\n").map((item, key) => {
                 return (
@@ -118,25 +124,11 @@ function FlagCloser(props) {
             </p>
           </div>
 
-          {/* <FormItem
-            label="Priority:"
-            type="select"
-            ident="flag-blocker"
-            updateHandler={(value) => {
-              setPriority(parseInt(value));
-            }}
-            value={priority}
-          >
-            <option value="0">Note</option>
-            <option value="1">Issue</option>
-            <option value="2">Blocker</option>
-          </FormItem> */}
-
           <FormItem
-            label="Priority:"
+            label={`${t("Priority")}:`}
             type="toggleButton"
             ident="flag-priority"
-            itemLabels={["Note", "Issue", "Blocker"]}
+            itemLabels={[t("Note"), t("Issue"), t("Blocker")]}
             itemValues={["0", "1", "2"]}
             value={priority.toString()}
             updateHandler={(value) => {
@@ -144,21 +136,11 @@ function FlagCloser(props) {
             }}
           />
 
-          {/* <FormItem
-            label="Resolved"
-            type="checkbox"
-            ident="fix-resolved"
-            updateHandler={(value) => {
-              setResolved(value);
-            }}
-            value={resolved}
-          /> */}
-
           <FormItem
-            label="Status:"
+            label={`${t("Status")}:`}
             type="toggleButton"
             ident="flag-status"
-            itemLabels={["Active", "Waiting", "Resolved"]}
+            itemLabels={[t("Active"), t("Waiting"), t("Resolved")]}
             itemValues={["active", "waiting", "resolved"]}
             value={status}
             updateHandler={(value) => {
@@ -167,7 +149,11 @@ function FlagCloser(props) {
           />
 
           <FormItem
-            label={status === "resolved" ? "Fix Description:" : "Update Note:"}
+            label={
+              status === "resolved"
+                ? t("Fix Description") + ":"
+                : t("Update Note") + ":"
+            }
             type="textarea"
             ident="flag-note"
             updateHandler={(value) => {
