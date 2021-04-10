@@ -9,7 +9,11 @@ import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 
 // import stageNames from "../../data/stageNames.json";
 
+import { useTranslation } from "react-i18next";
+
 function CheckOpener(props) {
+  const { t } = useTranslation();
+
   const activeUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
 
@@ -55,10 +59,9 @@ function CheckOpener(props) {
 
   return (
     <ModalControl
-      title="Request QA Check"
+      title={t("Request QA Check")}
       handleSubmit={handleSubmit}
       handleCancel={handleCancel}
-      triggerCopy={"Request QA Check"}
       buttonAttrs={{ fillWidth: true, color: "qa", icon: "qa" }}
     >
       <form>

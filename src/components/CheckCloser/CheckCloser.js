@@ -9,7 +9,11 @@ import UserSelect from "../FormItem/UserSelect/UserSelect.js";
 
 import getItemType from "../../utils/getItemType.js";
 
+import { useTranslation } from "react-i18next";
+
 function CheckCloser(props) {
+  const { t } = useTranslation();
+
   const defaultFormState = {
     description: "",
     count: props.session.amount || 0,
@@ -82,59 +86,63 @@ function CheckCloser(props) {
     <>
       {props.session.endTime ? null : (
         <ModalControl
-          title="QA Check"
+          title={t("QA Check")}
           handleSubmit={handleSubmit}
           handleCancel={handleCancel}
           handleOpen={handleOpen}
           triggerCopy={""}
-          submitCopy={"Save"}
+          submitCopy={t("Save")}
           buttonAttrs={{ color: "qa", icon: "qa" }}
         >
           <div>
             <p>{props.session.notes}</p>
             <p>
-              Creator: <UserName userId={props.session.user} />
+              {t("Creator")}: <UserName userId={props.session.user} />
             </p>
             <UserSelect
-              label="Assignee:"
+              label={`${t("Assignee")}:`}
               ident={"assignee-" + props.thisStage}
               updateHandler={(value) => setAssignee(parseInt(value))}
               value={assignee}
             />
-            <p>Timeframe: {props.session.extra}</p>
-            <p>Raising Note: {props.session.notes}</p>
+            <p>
+              {t("Timeframe")}: {props.session.extra}
+            </p>
+            <p>
+              {t("Raising Note")}: {props.session.notes}
+            </p>
           </div>
 
           <FormItem
-            label="Checker Note:"
+            label={`${t("Checker Note")}:`}
             type="textarea"
             ident="check-description"
             updateHandler={(value) => {
-              setDescription("Checked: " + value);
+              setDescription(`${t("Checked")}: ${value}`);
             }}
           />
 
           <FormItem
+            label={`${t("Passed")}:`}
             type="number"
             ident={"check-count"}
-            label={"Passed:"}
             updateHandler={(value) => setCount(parseInt(value))}
             value={count}
             min="0"
           />
           <FormItem
+            label={`${t("Failed")}:`}
             type="number"
             ident={"check-count-bad"}
-            label={"Failed:"}
             updateHandler={(value) => setCountBad(parseInt(value))}
             value={countBad}
             min="0"
           />
           <FormItem
-            label="Status:"
+            label={`${t("Status")}:`}
             type="toggleButton"
             ident="assignment-status"
-            itemLabels={["Active", "Resolved"]}
+            itemLabels={[t("Active"), t("Resolved")]}
             itemValues={["active", "resolved"]}
             value={status}
             updateHandler={(value) => {
