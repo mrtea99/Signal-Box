@@ -6,6 +6,10 @@ import Icon from "../Icon/Icon.js";
 
 import styles from "./FormItem.module.css";
 
+/**
+ * Component for displaying multiple form element types
+ */
+
 function FormItem(props) {
   const { ident, label, type, updateHandler, hideLabel, ...fieldProps } = props;
 
@@ -166,14 +170,23 @@ function FormItem(props) {
 }
 
 FormItem.propTypes = {
+  /** ID and Name of form item */
   ident: PropTypes.string.isRequired,
+  /** Label */
   label: PropTypes.string,
+  /** Type of element */
   type: PropTypes.string.isRequired,
+  /** Callback for when form item value changes */
   updateHandler: PropTypes.func.isRequired,
+  /** Value */
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** Minimum Number */
   min: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** Maximum Number */
   max: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  /** className to add */
   className: PropTypes.string,
+  /** Do not display label */
   hideLabel: PropTypes.bool,
 };
 

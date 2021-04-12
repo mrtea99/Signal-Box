@@ -14,4 +14,17 @@ module.exports = {
       border: "#6f7271",
     },
   },
+  sections: [
+    {
+      name: "General",
+      components: [
+        "src/components/Button/Button.js",
+        "src/components/DataList/DataList.js",
+      ],
+    },
+    {
+      name: "Form Elements",
+      components: "src/components/FormItem/FormItem.js",
+    },
+  ],
 };
