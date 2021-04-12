@@ -12,8 +12,8 @@
   font-family: var(--font-default);
   cursor: pointer;
   text-align: center;
-  transition: background-color 250ms ease-in-out, box-shadow 250ms ease-in-out, outline 250ms ease-in-out,
-    transform 150ms ease;
+  transition: background-color 250ms ease-in-out, box-shadow 250ms ease-in-out,
+    outline 250ms ease-in-out, transform 150ms ease;
   -webkit-appearance: none;
   -moz-appearance: none;
 
