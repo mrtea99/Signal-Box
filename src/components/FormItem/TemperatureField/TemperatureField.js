@@ -5,6 +5,10 @@ import FormItem from "../../FormItem/FormItem.js";
 
 import UnitSystemContext from "../../../contexts/UnitSystemContext.js";
 
+/**
+ * Special number field that converts from metric to U.S. Customary if needed
+ */
+
 function TemperatureField(props) {
   const unitSystem = useContext(UnitSystemContext);
 
@@ -53,9 +57,13 @@ function TemperatureField(props) {
 }
 
 TemperatureField.propTypes = {
+  /** Callback for when value changes */
   updateHandler: PropTypes.func.isRequired,
+  /** ID and name of field */
   ident: PropTypes.string.isRequired,
+  /** Label copy */
   label: PropTypes.string.isRequired,
+  /** Value */
   value: PropTypes.number.isRequired,
 };
 

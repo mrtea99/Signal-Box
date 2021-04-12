@@ -5,6 +5,10 @@ import FormItem from "../../FormItem/FormItem.js";
 
 import UnitSystemContext from "../../../contexts/UnitSystemContext.js";
 
+/**
+ * Special weight field that converts from metric to U.S. Customary if needed
+ */
+
 function WeightField(props) {
   const unitSystem = useContext(UnitSystemContext);
 

@@ -9,6 +9,8 @@ module.exports = {
   theme: {
     color: {
       base: "#ffffff",
+      link: "#ffffff",
+      light: "#ffffff",
       baseBackground: "#575253",
       sidebarBackground: "#ea407b",
       border: "#6f7271",
@@ -24,7 +26,11 @@ module.exports = {
     },
     {
       name: "Form Elements",
-      components: "src/components/FormItem/FormItem.js",
+      components: [
+        "src/components/FormItem/FormItem.js",
+        "src/components/FormItem/TemperatureField/TemperatureField.js",
+        "src/components/FormItem/WeightField/WeightField.js",
+      ],
     },
   ],
 };
