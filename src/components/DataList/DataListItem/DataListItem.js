@@ -18,6 +18,8 @@ function DataListItem(props) {
 DataListItem.propTypes = {
   dataKey: PropTypes.node.isRequired,
   dataValue: PropTypes.node,
+  newLine: PropTypes.bool,
+  itemProps: PropTypes.object,
 };
 
 export default DataListItem;
