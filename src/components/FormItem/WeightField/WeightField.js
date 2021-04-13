@@ -5,11 +5,15 @@ import FormItem from "../../FormItem/FormItem.js";
 
 import UnitSystemContext from "../../../contexts/UnitSystemContext.js";
 
+import { useTranslation } from "react-i18next";
+
 /**
  * Special weight field that converts from metric to U.S. Customary if needed
  */
 
 function WeightField(props) {
+  const { t } = useTranslation();
+
   const unitSystem = useContext(UnitSystemContext);
 
   const updateConverter = function (metricValue) {
@@ -41,7 +45,7 @@ function WeightField(props) {
           key={props.ident + "g"}
           type="number"
           ident={props.ident}
-          label={`${props.label} (grams):`}
+          label={`${props.label} (${t("grams")}):`}
           updateHandler={updateConverter}
           min="0"
           value={convertValue(props.value, "us")}
@@ -51,7 +55,7 @@ function WeightField(props) {
           key={props.ident + "oz"}
           type="number"
           ident={props.ident}
-          label={`${props.label} (ounces):`}
+          label={`${props.label} (${t("ounces")}):`}
           updateHandler={props.updateHandler}
           min="0"
           value={props.value}

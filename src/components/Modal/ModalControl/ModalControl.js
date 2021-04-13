@@ -6,7 +6,11 @@ import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
 import Modal from "../../Modal/Modal.js";
 import Pager from "../../Pager/Pager.js";
 
+import { useTranslation } from "react-i18next";
+
 function ModalControl(props) {
+  const { t } = useTranslation();
+
   const [modalActive, setModalActive] = useState(false);
   const [pageNumber, setPageNumber] = useState(0);
 
@@ -40,7 +44,7 @@ function ModalControl(props) {
   const submitButton = function () {
     return (
       <Button {...saveBtnAttrs} onClick={(e) => handleSubmit(e)}>
-        {props.submitCopy || props.triggerCopy || "Save"}
+        {props.submitCopy || props.triggerCopy || t("Save")}
       </Button>
     );
   };
@@ -53,7 +57,7 @@ function ModalControl(props) {
         }}
         color="cancel"
       >
-        Cancel
+        {t("Cancel")}
       </Button>
     );
   };

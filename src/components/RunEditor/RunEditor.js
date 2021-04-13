@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
-// import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router";
+import { Link } from "react-router-dom";
 
 import Stage from "./Stage/Stage.js";
 import StageNav from "../StageNav/StageNav.js";
@@ -19,9 +19,12 @@ import { selectRun } from "../RunList/runsSlice.js";
 // import stageNames from "../../data/stageNames.json";
 
 import ViewModeContext from "../../contexts/ViewModeContext.js";
-import { Link } from "react-router-dom";
 
-function RunEditor(props) {
+import { useTranslation } from "react-i18next";
+
+function RunEditor() {
+  const { t } = useTranslation();
+
   // Router
   //----------------------
   let { runId, stageNum } = useParams();
@@ -65,7 +68,7 @@ function RunEditor(props) {
           <div className={styles.inner}>
             <header className={styles.controlBar}>
               <Button onClick={() => handleExitClick()} icon="cross" iconFirst>
-                Close
+                {t("Exit Run")}
               </Button>
             </header>
             <div>
@@ -77,7 +80,7 @@ function RunEditor(props) {
                   </h3>
                   {simpleMode ? null : (
                     <h4 className={styles.runInfoItem}>
-                      Run ID: {thisRunData.id}
+                      {t("Run ID")}: {thisRunData.id}
                     </h4>
                   )}
                 </div>
@@ -85,10 +88,10 @@ function RunEditor(props) {
                   <div className={`${styles.runInfoSec} ${styles.runInfoRun}`}>
                     <div className={styles.infoBox}>
                       <h4 className={styles.runInfoItem}>
-                        Status: {thisRunData.status}
+                        {t("Status")}: {thisRunData.status}
                       </h4>
                       <h4 className={styles.runInfoItem}>
-                        Batches: {thisRunData.batchQuantity}
+                        {t("Batches")}: {thisRunData.batchQuantity}
                       </h4>
                     </div>
                     <ButtonSpacer>
@@ -105,7 +108,7 @@ function RunEditor(props) {
                         setActive={setModalOverviewActive}
                       >
                         <Button onClick={() => setModalOverviewActive(false)}>
-                          Close
+                          {t("Close")}
                         </Button>
                         <StageOverview currentRunId={runId}></StageOverview>
                       </Modal>
@@ -141,15 +144,13 @@ function RunEditor(props) {
       ) : (
         <div className={`${styles.runEditor} ${styles.runEditorActive}`}>
           <p>
-            Run not found
-            <br /> <Link to="/">Home</Link>
+            {t("Run not found")}
+            <br /> <Link to="/">{t("Home")}</Link>
           </p>
         </div>
       )}
     </>
   );
 }
-
-// RunEditor.propTypes = {};
 
 export default RunEditor;

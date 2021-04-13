@@ -9,20 +9,22 @@ import DataListItem from "../../DataList/DataListItem/DataListItem.js";
 
 import productTemplates from "../../../data/productTemplates.json";
 
-function RunInfoForm(props) {
-  const {
-    currentTemplate,
-    setCurrentTemplate,
-    batchQuantity,
-    setBatchQuantity,
-  } = props;
+import { useTranslation } from "react-i18next";
+
+function RunInfoForm({
+  currentTemplate,
+  setCurrentTemplate,
+  batchQuantity,
+  setBatchQuantity,
+}) {
+  const { t } = useTranslation();
 
   return (
     <form>
       <div className={styles.formMain}>
         <div className={styles.userFields}>
           <FormItem
-            label="Product:"
+            label={`${t("Product")}:`}
             type="select"
             ident="product"
             updateHandler={(value) => {
@@ -31,7 +33,7 @@ function RunInfoForm(props) {
             value={currentTemplate === null ? "default" : currentTemplate}
           >
             <option value="default" disabled>
-              Choose a template
+              {t("Choose a template")}
             </option>
             {productTemplates.map((template, index) => (
               <option key={template.productName} value={index}>
@@ -42,7 +44,7 @@ function RunInfoForm(props) {
           {productTemplates[currentTemplate] ? (
             <>
               <FormItem
-                label="Batch Quantity:"
+                label={`${t("Batch Quantity")}:`}
                 type="number"
                 ident="quantity"
                 updateHandler={(value) => {
@@ -52,7 +54,7 @@ function RunInfoForm(props) {
                 min="0"
               />
               <p>
-                Unit Quantity:{" "}
+                {t("Unit Quantity")}:{" "}
                 {batchQuantity *
                   productTemplates[currentTemplate].unitsPerBatch}
               </p>
@@ -65,15 +67,15 @@ function RunInfoForm(props) {
           {productTemplates[currentTemplate] ? (
             <DataList>
               <DataListItem
-                dataKey="SKU"
+                dataKey={t("SKU")}
                 dataValue={productTemplates[currentTemplate].productSKU}
               />
               <DataListItem
-                dataKey="Base Name"
+                dataKey={t("Base Name")}
                 dataValue={productTemplates[currentTemplate].baseName}
               />
               <DataListItem
-                dataKey="Base Type"
+                dataKey={t("Base Type")}
                 dataValue={productTemplates[currentTemplate].baseType}
               />
             </DataList>

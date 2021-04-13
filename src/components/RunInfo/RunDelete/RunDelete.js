@@ -6,7 +6,11 @@ import Button from "../../Button/Button.js";
 import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer.js";
 import Modal from "../../Modal/Modal.js";
 
+import { useTranslation } from "react-i18next";
+
 function RunDelete(props) {
+  const { t } = useTranslation();
+
   const [modalActive, setModalActive] = useState(false);
 
   const dispatch = useDispatch();
@@ -25,14 +29,14 @@ function RunDelete(props) {
   return (
     <>
       <Button onClick={() => setModalActive(true)} color="delete">
-        Delete
+        {t("Delete Run")}
       </Button>
       {modalActive ? (
         <Modal title="Confirm Delete Run" setActive={setModalActive}>
-          <p>Are you sure you want to permanently delete this run?</p>
+          <p>{t("Are you sure you want to permanently delete this run?")}</p>
           <ButtonSpacer align="right">
             <Button onClick={() => setModalActive(false)} color="cancel">
-              Cancel
+              {t("Cancel")}
             </Button>
             <Button
               onClick={() => {
@@ -44,7 +48,7 @@ function RunDelete(props) {
               }}
               color="delete"
             >
-              Delete
+              {t("Delete Run")}
             </Button>
           </ButtonSpacer>
         </Modal>

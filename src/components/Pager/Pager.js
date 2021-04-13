@@ -3,7 +3,11 @@ import PropTypes from "prop-types";
 
 import Button from "../Button/Button.js";
 
+import { useTranslation } from "react-i18next";
+
 function Pager(props) {
+  const { t } = useTranslation();
+
   const [pageNumberChild, setPageNumberChild] = useState(0);
 
   const pageNumber =
@@ -20,26 +24,26 @@ function Pager(props) {
       })}
       <br />
       {/* {pageNumber > 0 ? ( */}
-        <Button
-          disabled={pageNumber === 0}
-          onClick={() =>
-            setPageNumber(pageNumber > 0 ? pageNumber - 1 : pageNumber)
-          }
-        >
-          Prev
-        </Button>
+      <Button
+        disabled={pageNumber === 0}
+        onClick={() =>
+          setPageNumber(pageNumber > 0 ? pageNumber - 1 : pageNumber)
+        }
+      >
+        {t("Prev")}
+      </Button>
       {/* ) : null} */}
       {/* {pageNumber < props.pages.length - 1 ? ( */}
-        <Button
-          disabled={pageNumber === props.pages.length - 1}
-          onClick={() =>
-            setPageNumber(
-              pageNumber < props.pages.length - 1 ? pageNumber + 1 : pageNumber
-            )
-          }
-        >
-          Next
-        </Button>
+      <Button
+        disabled={pageNumber === props.pages.length - 1}
+        onClick={() =>
+          setPageNumber(
+            pageNumber < props.pages.length - 1 ? pageNumber + 1 : pageNumber
+          )
+        }
+      >
+        {t("Next")}
+      </Button>
       {/* ) : null} */}
     </>
   );
