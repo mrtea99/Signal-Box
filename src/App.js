@@ -165,9 +165,7 @@ function App() {
                   <Route path={["/admin/:stageNum", "/admin"]}>
                     <AdminPanel />
                   </Route>
-                  <Route path="/">
-                    <Redirect to={`/admin`} />
-                  </Route>
+                  <Redirect from="/" to={`/admin`} />
                 </Switch>
               </main>
             </div>
