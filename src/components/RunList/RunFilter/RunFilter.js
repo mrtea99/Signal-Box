@@ -7,7 +7,11 @@ import ModalControl from "../../Modal/ModalControl/ModalControl.js";
 
 import { selectCurrentUser } from "../../UserSwitcher/usersSlice.js";
 
+import { useTranslation } from "react-i18next";
+
 function RunFilter(props) {
+  const { t } = useTranslation();
+
   const activeUser = useSelector(selectCurrentUser);
 
   const updateFilters = function (filterKey, filterValue) {
@@ -20,14 +24,14 @@ function RunFilter(props) {
   return (
     <div>
       <ModalControl
-        title="Filter Runs"
-        triggerCopy={"Filter"}
+        title={t("Filter Runs")}
+        triggerCopy={t("Filter")}
         buttonAttrs={{ icon: "filter" }}
       >
-        <h3>Show runs with:</h3>
+        <h3>{t("Show runs with")}:</h3>
         <form>
           <FormItem
-            label="Unresolved QA Sessions"
+            label={t("Unresolved QA Sessions")}
             type="checkbox"
             ident="filter-qa"
             updateHandler={(value) => {
@@ -36,7 +40,7 @@ function RunFilter(props) {
             checked={props.runFilters["showUnresolvedQa"]}
           />
           <FormItem
-            label="Work by you"
+            label={t("Work by you")}
             type="checkbox"
             ident="filter-user"
             updateHandler={(value) => {

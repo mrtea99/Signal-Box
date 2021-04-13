@@ -12,7 +12,11 @@ import { selectAllRuns } from "./runsSlice.js";
 
 import stageNames from "../../data/stageNames.json";
 
+import { useTranslation } from "react-i18next";
+
 function RunList(props) {
+  const { t } = useTranslation();
+
   // Columns
   // --------------------------------
   let columns;
@@ -22,13 +26,13 @@ function RunList(props) {
     }));
   } else {
     columns = [
-      { copy: "Product", className: styles.colProduct },
-      { copy: "Status", className: styles.colStatus },
-      { copy: "Progress", className: styles.colProgress },
-      { copy: "User", className: styles.colSingle },
-      { copy: "QA", className: styles.colSingle },
-      { copy: "Flags", className: styles.colSingle },
-      { copy: "Open", className: styles.colIconButton },
+      { copy: t("Product"), className: styles.colProduct },
+      { copy: t("Status"), className: styles.colStatus },
+      { copy: t("Progress"), className: styles.colProgress },
+      { copy: t("User"), className: styles.colSingle },
+      { copy: t("QA"), className: styles.colSingle },
+      { copy: t("Flags"), className: styles.colSingle },
+      { copy: t("Open"), className: styles.colIconButton },
     ];
   }
 
@@ -99,7 +103,7 @@ function RunList(props) {
             )
           )
         ) : (
-          <h3>No Runs Available</h3>
+          <h3>{t("No Runs Available")}</h3>
         )}
       </div>
     </div>

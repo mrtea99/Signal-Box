@@ -11,7 +11,11 @@ import styles from "./SessionList.module.css";
 
 import { selectStageSessions } from "./sessionsSlice.js";
 
+import { useTranslation } from "react-i18next";
+
 function SessionList(props) {
+  const { t } = useTranslation();
+
   const thisStageData = useSelector((state) =>
     selectStageSessions(state, props.currentRunId, props.thisStage)
   );
@@ -19,21 +23,24 @@ function SessionList(props) {
   const itemName = getItemType(props.thisStage);
 
   const columns = [
-    { copy: "№", className: `${styles.colNumber} ${styles.colFixed}` },
-    { copy: "Activity", className: styles.colActivity },
+    { copy: t("№"), className: `${styles.colNumber} ${styles.colFixed}` },
+    { copy: t("Activity"), className: styles.colActivity },
     {
-      copy: "Start Time",
+      copy: t("Start Time"),
       className: `${styles.colStartTime} ${styles.colFixed}`,
     },
-    { copy: "Duration", className: `${styles.colDuration} ${styles.colFixed}` },
+    {
+      copy: t("Duration"),
+      className: `${styles.colDuration} ${styles.colFixed}`,
+    },
     { copy: itemName, className: `${styles.colItemsGood} ${styles.colFixed}` },
     {
-      copy: "Defective",
+      copy: t("Defective"),
       className: `${styles.colItemsBad} ${styles.colFixed}`,
     },
-    { copy: "Users", className: `${styles.colTech} ${styles.colFixed}` },
-    { copy: "Action", className: `${styles.colAction} ${styles.colFixed}` },
-    { copy: "Info", className: `${styles.colInfo} ${styles.colFixed}` },
+    { copy: t("Users"), className: `${styles.colTech} ${styles.colFixed}` },
+    { copy: t("Action"), className: `${styles.colAction} ${styles.colFixed}` },
+    { copy: t("Info"), className: `${styles.colInfo} ${styles.colFixed}` },
   ];
 
   return (

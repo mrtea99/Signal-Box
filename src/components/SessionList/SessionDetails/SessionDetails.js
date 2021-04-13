@@ -10,7 +10,11 @@ import UserName from "../../UserSwitcher/UserName/UserName.js";
 import getItemType from "../../../utils/getItemType.js";
 import getSessionName from "../../../utils/getSessionName.js";
 
+import { useTranslation } from "react-i18next";
+
 function SessionDetails(props) {
+  const { t } = useTranslation();
+
   const { session, thisStage } = props;
   const itemName = getItemType(thisStage);
 
@@ -23,46 +27,45 @@ function SessionDetails(props) {
     switch (session.type) {
       case "work":
       case "consign":
-        return "Technician";
+        return t("Technician");
       case "qa":
-        return "Requester";
+        return t("Requester");
       case "flag":
-        return "Reporter";
+        return t("Reporter");
       case "assign":
-        return "Assigned by";
+        return t("Assigned by");
       default:
-        return "User";
+        return t("User");
     }
   };
 
   const getSecondaryUserKey = (session) => {
     switch (session.type) {
       case "work":
-        return "Assitor";
+        return t("Assitor");
       case "qa":
-        return "Checker";
+        return t("Checker");
       case "flag":
-        return "Assigned to";
       case "assign":
-        return "Assigned to";
+        return t("Assigned to");
       default:
-        return "User";
+        return t("User");
     }
   };
 
   const getStatus = (session) => {
     switch (session.type) {
       case "work":
-        return session.endTime ? "Resolved" : "Unresolved";
+        return session.endTime ? t("Resolved") : t("Unresolved");
       case "qa":
       case "assign":
-        return session.endTime ? "Resolved" : "Active";
+        return session.endTime ? t("Resolved") : t("Active");
       case "flag":
         return capitalise(session.extra);
       case "consign":
-        return "Complete";
+        return t("Complete");
       default:
-        return "N/A";
+        return t("N/A");
     }
   };
 
@@ -70,34 +73,37 @@ function SessionDetails(props) {
     <>
       <DataList>
         {/* Activity */}
-        <DataListItem dataKey="Activity" dataValue={getSessionName(session)} />
+        <DataListItem
+          dataKey={t("Activity")}
+          dataValue={getSessionName(session)}
+        />
 
         {/* ID */}
-        <DataListItem dataKey="ID" dataValue={session.sessionId} />
+        <DataListItem dataKey={t("ID")} dataValue={session.sessionId} />
 
         {/* Session Status */}
-        <DataListItem dataKey="Status" dataValue={getStatus(session)} />
+        <DataListItem dataKey={t("Status")} dataValue={getStatus(session)} />
 
         {/* Time / Duration */}
         {session.startTime === session.endTime ? (
           <DataListItem
-            dataKey="Time"
+            dataKey={t("Time")}
             dataValue={<DateTimeFormatter date={session.startTime} />}
           />
         ) : (
           <>
             <DataListItem
-              dataKey="Start Time"
+              dataKey={t("Start Time")}
               dataValue={<DateTimeFormatter date={session.startTime} />}
             />
             {session.endTime ? (
               <DataListItem
-                dataKey="End Time"
+                dataKey={t("End Time")}
                 dataValue={<DateTimeFormatter date={session.endTime} />}
               />
             ) : null}
             <DataListItem
-              dataKey="Duration"
+              dataKey={t("Duration")}
               dataValue={<SessionDuration session={session} />}
             />
           </>
@@ -124,7 +130,7 @@ function SessionDetails(props) {
               dataValue={session.amount || "-"}
             />
             <DataListItem
-              dataKey="Defective"
+              dataKey={t("Defective")}
               dataValue={session.amountBad || "-"}
             />
           </>
@@ -134,7 +140,7 @@ function SessionDetails(props) {
         {session.notes && session.notes.length ? (
           <DataListItem
             newLine
-            dataKey="Notes"
+            dataKey={t("Notes")}
             dataValue={session.notes.split("\n").map((item, key) => {
               return (
                 <span key={key}>
@@ -148,7 +154,7 @@ function SessionDetails(props) {
 
         {/* Extra */}
         {session.type === "qa" ? (
-          <DataListItem dataKey="Timeframe" dataValue={session.extra} />
+          <DataListItem dataKey={t("Timeframe")} dataValue={session.extra} />
         ) : null}
       </DataList>
     </>

@@ -15,13 +15,14 @@ import UserName from "../../UserSwitcher/UserName/UserName.js";
 
 import getFlagName from "../../../utils/getFlagName.js";
 import getSessionName from "../../../utils/getSessionName.js";
-import getItemType from "../../../utils/getItemType.js";
 
 import styles from "./SessionItem.module.css";
 
 import ViewModeContext from "../../../contexts/ViewModeContext.js";
 
 import { selectStageSessions } from "../../SessionList/sessionsSlice.js";
+
+import { useTranslation } from "react-i18next";
 
 function SessionItem({
   session,
@@ -31,14 +32,14 @@ function SessionItem({
   columns,
   currentRunId,
 }) {
+  const { t } = useTranslation();
+
   const viewMode = useContext(ViewModeContext);
   const simpleMode = viewMode === "simple";
 
   const thisStageData = useSelector((state) =>
     selectStageSessions(state, currentRunId, thisStage)
   );
-
-  const itemName = getItemType(thisStage);
 
   let allResolved = true;
   for (let i = 0; i < thisStageData.length; i++) {
@@ -55,7 +56,8 @@ function SessionItem({
         if (thisStageData[i].endTime) {
           totalDuration =
             totalDuration +
-            (new Date(thisStageData[i].endTime) - new Date(thisStageData[i].startTime));
+            (new Date(thisStageData[i].endTime) -
+              new Date(thisStageData[i].startTime));
         } else {
           totalDuration =
             totalDuration + (Date.now() - new Date(thisStageData[i].startTime));
@@ -98,7 +100,7 @@ function SessionItem({
           <li
             className={`${styles.contentItem} ${styles.colStartTime} ${columns[2].className}`}
           >
-            <span className={styles.cellLabel}>Start Time:</span>
+            <span className={styles.cellLabel}>{columns[2].copy}:</span>
             <span className={styles.cellContent}>
               <DateTimeFormatter date={session.startTime} />
             </span>
@@ -107,7 +109,7 @@ function SessionItem({
           <li
             className={`${styles.contentItem} ${styles.colDuration} ${columns[3].className} `}
           >
-            <span className={styles.cellLabel}>Duration:</span>
+            <span className={styles.cellLabel}>{columns[3].copy}:</span>
             <span className={styles.cellContent}>
               <SessionDuration session={session} />
             </span>
@@ -116,7 +118,7 @@ function SessionItem({
           <li
             className={`${styles.contentItem} ${styles.colItemsGood} ${columns[4].className}`}
           >
-            <span className={styles.cellLabel}>{itemName}:</span>
+            <span className={styles.cellLabel}>{columns[4].copy}:</span>
             <span className={styles.cellContent}>
               {session.amount === undefined ||
               session.amount === null ||
@@ -129,7 +131,7 @@ function SessionItem({
           <li
             className={`${styles.contentItem} ${styles.colItemsBad} ${columns[5].className}`}
           >
-            <span className={styles.cellLabel}>Defective:</span>
+            <span className={styles.cellLabel}>{columns[5].copy}:</span>
             <span className={styles.cellContent}>
               {session.amountBad === undefined || session.amount === null
                 ? "-"
@@ -140,7 +142,7 @@ function SessionItem({
           <li
             className={`${styles.contentItem} ${styles.colTech} ${columns[6].className}`}
           >
-            <span className={styles.cellLabel}>Users:</span>
+            <span className={styles.cellLabel}>{columns[6].copy}:</span>
             <span className={styles.cellContent}>
               <UserName userId={session.user} />
               {session.secondaryUser ? (
@@ -185,7 +187,7 @@ function SessionItem({
             className={`${styles.contentItem} ${styles.colInfo} ${columns[8].className}`}
           >
             <ModalControl
-              title="Session Details"
+              title={t("Session Details")}
               triggerCopy={""}
               buttonAttrs={{
                 icon:
@@ -206,12 +208,12 @@ function SessionItem({
           <li
             className={`${styles.contentItem} ${styles.colActivity} ${columns[1].className}`}
           >
-            Overall
+            {t("Overall")}
           </li>
           <li
             className={`${styles.contentItem} ${styles.colStartTime} ${columns[2].className}`}
           >
-            <span className={styles.cellLabel}>Start Time:</span>
+            <span className={styles.cellLabel}>{columns[2].copy}:</span>
             <span className={styles.cellContent}>
               {thisStageData.length ? (
                 <DateTimeFormatter
@@ -226,7 +228,7 @@ function SessionItem({
           <li
             className={`${styles.contentItem} ${styles.colDuration} ${columns[3].className}`}
           >
-            <span className={styles.cellLabel}>Duration:</span>
+            <span className={styles.cellLabel}>{columns[3].copy}:</span>
             <span className={styles.cellContent}>
               {allResolved ? (
                 findTotalDuration()

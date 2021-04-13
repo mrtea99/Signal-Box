@@ -88,7 +88,7 @@ function RunListStageItem(props) {
         </RunTitle>
       </li>
       <li className={`${styles.lineItem} ${props.columns[1].className}`}>
-        <span className={styles.cellLabel}>Status</span>
+        <span className={styles.cellLabel}>{props.columns[1].copy}</span>
         <span className={styles.cellContent}>
           <InfoPod>
             <InfoPodSection>
@@ -102,7 +102,7 @@ function RunListStageItem(props) {
         </span>
       </li>
       <li className={`${styles.lineItem} ${props.columns[2].className}`}>
-        <span className={styles.cellLabel}>Progress</span>
+        <span className={styles.cellLabel}>{props.columns[2].copy}</span>
         <span className={styles.cellContent}>
           <InfoPod>
             <InfoPodSection
@@ -126,7 +126,7 @@ function RunListStageItem(props) {
         </span>
       </li>
       <li className={`${styles.lineItem} ${props.columns[3].className}`}>
-        <span className={styles.cellLabel}>User</span>
+        <span className={styles.cellLabel}>{props.columns[3].copy}</span>
         <span className={styles.cellContent}>
           <InfoPod>
             {stageStatus.userTotal ? (
@@ -157,7 +157,7 @@ function RunListStageItem(props) {
         </span>
       </li>
       <li className={`${styles.lineItem} ${props.columns[4].className}`}>
-        <span className={styles.cellLabel}>QA</span>
+        <span className={styles.cellLabel}>{props.columns[4].copy}</span>
         <span className={styles.cellContent}>
           <InfoPod>
             <InfoPodSection>
@@ -167,7 +167,7 @@ function RunListStageItem(props) {
         </span>
       </li>
       <li className={`${styles.lineItem} ${props.columns[5].className}`}>
-        <span className={styles.cellLabel}>Flags</span>
+        <span className={styles.cellLabel}>{props.columns[5].copy}</span>
         <span className={styles.cellContent}>
           {highestFlag(stageStatus) ? (
             <InfoPod>
@@ -185,7 +185,7 @@ function RunListStageItem(props) {
         </span>
       </li>
       <li className={`${styles.lineItem} ${props.columns[6].className}`}>
-        <span className={styles.cellLabel}>Open</span>
+        <span className={styles.cellLabel}>{props.columns[6].copy}</span>
         <span className={styles.cellContent}>
           <Button
             onClick={() => openEditor(props.currentRunId, props.stageNum)}
