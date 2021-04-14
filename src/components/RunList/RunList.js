@@ -9,6 +9,7 @@ import RunListStageItem from "./RunListStageItem/RunListStageItem.js";
 import styles from "./RunList.module.css";
 
 import { selectAllRuns } from "./runsSlice.js";
+import { selectAllSessions } from "../SessionList/sessionsSlice.js";
 
 import stageNames from "../../data/stageNames.json";
 
@@ -38,7 +39,7 @@ function RunList(props) {
 
   // Filters
   // --------------------------------
-  const sessionsList = useSelector((state) => state.sessions.sessionsList);
+  const sessionsList = useSelector(selectAllSessions);
 
   const runsList = useSelector(selectAllRuns);
   let filteredRunsList = [...runsList];

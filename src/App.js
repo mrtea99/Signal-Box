@@ -16,17 +16,12 @@ import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
 import AdminPanel from "./components/AdminPanel/AdminPanel.js";
 
 import { selectAllRuns } from "./components/RunList/runsSlice.js";
+import { selectAllSessions } from "./components/SessionList/sessionsSlice.js";
 import { selectCurrentUser } from "./components/UserSwitcher/usersSlice.js";
-
-// import { useTranslation } from "react-i18next";
 
 import styles from "./App.module.css";
 
 function App() {
-  // i18n
-  //==============================================================================
-  // const { t } = useTranslation();
-
   // Loading Screen
   //==============================================================================
   const disableLoadingScreen = true;
@@ -47,20 +42,13 @@ function App() {
   }, [runsData]);
 
   // Data for all sessions - needs to replaced with API call
-  const sessionsData = useSelector((state) => state.sessions.sessionsList);
+  const sessionsData = useSelector(selectAllSessions);
   useEffect(() => {
     window.localStorage.setItem("sessionsData", JSON.stringify(sessionsData));
   }, [sessionsData]);
 
   // Frontend onload data
   //==============================================================================
-
-  // useEffect(() => {
-  //   dispatch({
-  //     type: "users/setCurrentUser",
-  //     payload: parseInt(window.localStorage.getItem("activeUser")) || 1,
-  //   });
-  // }, [dispatch]);
   const activeUser = useSelector(selectCurrentUser);
   useEffect(() => {
     window.localStorage.setItem("activeUser", activeUser);
