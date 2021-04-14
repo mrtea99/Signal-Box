@@ -1,0 +1,39 @@
+{
+  "files": {
+    "main.css": "/static/css/main.51381b39.chunk.css",
+    "main.js": "/build/main.df1213d5.js",
+    "runtime-main.js": "/build/bundle.483fa668.js",
+    "build/2.8ca9927e.js": "/build/2.8ca9927e.js",
+    "build/2.8ca9927e.js.LICENSE.txt": "/build/2.8ca9927e.js.LICENSE.txt",
+    "index.html": "/index.html",
+    "static/css/main.51381b39.chunk.css.map": "/static/css/main.51381b39.chunk.css.map",
+    "static/media/arrow-left.53480b84.svg": "/static/media/arrow-left.53480b84.svg",
+    "static/media/arrow-right.bdb3030f.svg": "/static/media/arrow-right.bdb3030f.svg",
+    "static/media/bookmark.ccb0200c.svg": "/static/media/bookmark.ccb0200c.svg",
+    "static/media/checkmark.9c3d9135.svg": "/static/media/checkmark.9c3d9135.svg",
+    "static/media/cog.8087eefe.svg": "/static/media/cog.8087eefe.svg",
+    "static/media/cross.2e09a284.svg": "/static/media/cross.2e09a284.svg",
+    "static/media/file-text.e540ee73.svg": "/static/media/file-text.e540ee73.svg",
+    "static/media/filter.80437b97.svg": "/static/media/filter.80437b97.svg",
+    "static/media/menu.c0ac6ddc.svg": "/static/media/menu.c0ac6ddc.svg",
+    "static/media/minus.dfd53cf8.svg": "/static/media/minus.dfd53cf8.svg",
+    "static/media/notification.d596a5aa.svg": "/static/media/notification.d596a5aa.svg",
+    "static/media/pie-chart.9a08536a.svg": "/static/media/pie-chart.9a08536a.svg",
+    "static/media/play.5728c1d0.svg": "/static/media/play.5728c1d0.svg",
+    "static/media/plus.f427cb42.svg": "/static/media/plus.f427cb42.svg",
+    "static/media/profile.ca68ed46.svg": "/static/media/profile.ca68ed46.svg",
+    "static/media/search.ba592450.svg": "/static/media/search.ba592450.svg",
+    "static/media/spinner8.d233fbf2.svg": "/static/media/spinner8.d233fbf2.svg",
+    "static/media/star-full.78d934e6.svg": "/static/media/star-full.78d934e6.svg",
+    "static/media/stop.aa549aa6.svg": "/static/media/stop.aa549aa6.svg",
+    "static/media/user.67c4ef0d.svg": "/static/media/user.67c4ef0d.svg",
+    "static/media/warning.48f810bb.svg": "/static/media/warning.48f810bb.svg",
+    "static/media/wrench.68f2d6f7.svg": "/static/media/wrench.68f2d6f7.svg"
+  },
+  "entrypoints": [
+    "build/bundle.483fa668.js",
+    "build/2.8ca9927e.js",
+    "static/css/main.51381b39.chunk.css",
+    "build/main.df1213d5.js"
+  ]
+}

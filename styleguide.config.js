@@ -6,6 +6,7 @@ module.exports = {
     path.join(__dirname, "src/index.css"),
   ],
   skipComponentsWithoutExample: true,
+  styleguideDir: "public/styleguide",
   theme: {
     color: {
       base: "#ffffff",

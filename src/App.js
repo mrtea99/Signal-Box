@@ -14,6 +14,7 @@ import SiteSettings from "./components/SiteSidebar/SiteSettings/SiteSettings.js"
 import GlobalContexts from "./components/GlobalContexts/GlobalContexts.js";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
 import AdminPanel from "./components/AdminPanel/AdminPanel.js";
+import Button from "./components/Button/Button.js";
 
 import { selectAllRuns } from "./components/RunList/runsSlice.js";
 import { selectAllSessions } from "./components/SessionList/sessionsSlice.js";
@@ -144,6 +145,10 @@ function App() {
                   viewMode={viewMode}
                   setViewMode={setViewMode}
                 />
+                <br />
+                <Button fillWidth href="/styleguide/" color="cancel">
+                  Styleguide
+                </Button>
               </SiteSidebar>
               <main className={styles.siteContent}>
                 <Switch>
