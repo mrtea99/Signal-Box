@@ -6,12 +6,16 @@ import Icon from "../../Icon/Icon.js";
 
 import styles from "./StatusPodItem.module.css";
 
+import { useTranslation } from "react-i18next";
+
 function StatusPodItem(props) {
+  const { t } = useTranslation();
+
   const { statusField, stageStatus, stageNum, ...itemProps } = props;
 
   const getLabel = function () {
     if (props.stageStatus.blockerActive) {
-      return "Blocked";
+      return t("Blocked");
     } else {
       if (props.stageStatus.workActive) {
         return props.stageStatus.workActiveNames;
@@ -55,12 +59,10 @@ function StatusPodItem(props) {
               styles["podItem" + props.stageStatus.stageStatusName]
             }`}
             icon="settings"
-            name="Status"
+            name={t("Status")}
             value={getLabel()}
             priority="value"
-          >
-            {/* {getLabel()} */}
-          </InfoPodItem>
+          />
         );
       case "completion":
         return (
@@ -71,12 +73,10 @@ function StatusPodItem(props) {
               styles["podItem" + props.stageStatus.stageStatusName]
             }`}
             icon="progress"
-            name="Progress"
+            name={t("Progress")}
             value={combinedCompletion()}
             priority="value"
-          >
-            {/* {combinedCompletion()} */}
-          </InfoPodItem>
+          />
         );
       case "completionFraction":
         if (
@@ -94,18 +94,14 @@ function StatusPodItem(props) {
                 styles["podItem" + props.stageStatus.stageStatusName]
               }`}
               icon="progress"
-              name="Progress"
+              name={t("Progress")}
               value={
                 props.stageStatus.itemCount +
                 "/" +
                 props.stageStatus.targetItemCount
               }
               priority="value"
-            >
-              {/* {props.stageStatus.itemCount +
-                "/" +
-                props.stageStatus.targetItemCount} */}
-            </InfoPodItem>
+            />
           );
         }
         return null;
@@ -123,15 +119,10 @@ function StatusPodItem(props) {
                   : ""
               }`}
               icon="user"
-              name="Your Sessions"
+              name={t("Your Sessions")}
               value={props.stageStatus.userTotal}
               priority="icon"
-            >
-              {/* <Icon
-                name="user"
-                className={`${styles.icon} ${styles.iconUser}`}
-              ></Icon> */}
-            </InfoPodItem>
+            />
           );
         }
         return null;
@@ -141,9 +132,11 @@ function StatusPodItem(props) {
             <InfoPodItem
               {...itemProps}
               active={props.stageStatus.assignActive}
-              className={props.stageStatus.assignUserActive ? styles.flagAssign : ""}
+              className={
+                props.stageStatus.assignUserActive ? styles.flagAssign : ""
+              }
               icon="assign"
-              name="Assignments"
+              name={t("Assignments")}
               value={props.stageStatus.assignActive}
               priority="icon"
             />
@@ -158,12 +151,10 @@ function StatusPodItem(props) {
               active={props.stageStatus.qaActive}
               className={styles.flagQa}
               icon="qa"
-              name="QA Requests"
+              name={t("QA Requests")}
               value={props.stageStatus.qaActive}
               priority="icon"
-            >
-              {/* <Icon name="qa" className={styles.icon}></Icon> */}
-            </InfoPodItem>
+            />
           );
         }
         return null;
@@ -175,12 +166,10 @@ function StatusPodItem(props) {
               active={props.stageStatus.noteActive}
               className={styles.flagNote}
               icon="details"
-              name="Notes"
+              name={t("Notes")}
               value={props.stageStatus.noteActive}
               priority="icon"
-            >
-              {/* <Icon name="details" className={styles.icon}></Icon> */}
-            </InfoPodItem>
+            />
           );
         }
         return null;
@@ -192,12 +181,10 @@ function StatusPodItem(props) {
               active={props.stageStatus.issueActive}
               className={styles.flagIssue}
               icon="issue"
-              name="Issues"
+              name={t("Issues")}
               value={props.stageStatus.issueActive}
               priority="icon"
-            >
-              {/* <Icon name="issue" className={styles.icon}></Icon> */}
-            </InfoPodItem>
+            />
           );
         }
         return null;
@@ -209,12 +196,10 @@ function StatusPodItem(props) {
               active={props.stageStatus.blockerActive}
               className={styles.flagBlocker}
               icon="blocker"
-              name="Blockers"
+              name={t("Blockers")}
               value={props.stageStatus.blockerActive}
               priority="icon"
-            >
-              {/* <Icon name="blocker" className={styles.icon}></Icon> */}
-            </InfoPodItem>
+            />
           );
         }
         return null;

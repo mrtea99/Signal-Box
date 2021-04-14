@@ -2,7 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
+import { useTranslation } from "react-i18next";
+
 function UserName(props) {
+  const { t } = useTranslation();
+
   const userData = useSelector((state) => {
     return state.users.usersList.find(
       (userItem) => userItem.Id === parseInt(props.userId)
@@ -10,9 +14,7 @@ function UserName(props) {
   });
 
   return (
-    <>
-      {userData === undefined ? "User ID not found" : userData.Title}
-    </>
+    <>{userData === undefined ? t("User ID not found") : userData.Title}</>
   );
 }
 

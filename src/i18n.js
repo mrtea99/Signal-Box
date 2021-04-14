@@ -120,6 +120,12 @@ const resources = {
       "№": "№",
       Users: "Users",
       Action: "Action",
+      Blocked: "Blocked",
+      "Your Sessions": "Your Sessions",
+      "QA Requests": "QA Requests",
+      Issues: "Issues",
+      Blockers: "Blockers",
+      "User ID not found": "User ID not found",
     },
   },
   es: {
