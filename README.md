@@ -1,16 +1,17 @@
 ## About
 
-<!-- Screnshot -->
+<!-- Screenshot -->
 
 Signal Box is a production run manager built for a beauty product company. It tracks the progress of each product from manufacturing to stocking. Progress, Activities, QA requests, issues and assignments are all managed for each stage.
 
 ### Built Using
 
-* React
-* React Router
-* Redux
-* CSS Modules
-* i18next
+- React
+- React Router
+- Redux
+- CSS Modules
+- i18next
+- React Styleguidist
 
 ### Project Name
 
@@ -22,6 +23,18 @@ A [Signal Box](https://en.wikipedia.org/wiki/Signalling_control) controls the mo
 
 Runs the app in the development mode.<br />
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+## Styleguide
+
+With the server running go to /styleguide/ to see the static version.
+
+### `npm styleguide`
+
+Runs the styleguide for live updating.
+
+### `npm styleguide:build`
+
+Builds the static version of the styleguide.
 
 ## Acknowledgements
 
