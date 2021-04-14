@@ -69,14 +69,14 @@ function SessionDuring(props) {
     switch (props.thisStage) {
       case 0:
       case 1:
-        let recipeNode;
-        if (activityFields.includes("recipe")) {
+        let weightNode;
+        if (activityFields.includes("weight")) {
           const weightOz =
             thisRunData.productInfo.batchWeight * thisRunData.batchQuantity;
 
           const weightGrams = weightOz * 28.3495; // todo replace conversion with util
 
-          recipeNode = (
+          weightNode = (
             <DataListItem
               dataKey="Target Total Weight"
               dataValue={
@@ -122,7 +122,7 @@ function SessionDuring(props) {
         }
         return (
           <>
-            {recipeNode}
+            {weightNode}
             {inventoryNode}
             {difficultyNode}
           </>

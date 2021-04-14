@@ -9,16 +9,19 @@
     { "name": "Assisting", "fields": ["inventory", "difficulty"] }
   ],
   [
-    { "name": "Materials / Equip Prep", "fields": [] },
-    { "name": "Manufacturing", "fields": ["atmos", "amounts", "weight", "qa"] },
+    { "name": "Materials / Equip Prep", "fields": ["weight", "recipe"] },
+    {
+      "name": "Manufacturing",
+      "fields": ["atmos", "amounts", "weight", "qa", "recipe"]
+    },
     {
       "name": "Create Blend / Base",
       "fields": ["atmos", "amounts", "weight", "qa", "recipe"]
     },
-    { "name": "Cooling", "fields": ["atmos"] },
-    { "name": "Curing", "fields": ["atmos"] },
-    { "name": "Finishing Touches", "fields": [] },
-    { "name": "Assisting", "fields": [] }
+    { "name": "Cooling", "fields": ["weight", "atmos", "recipe"] },
+    { "name": "Curing", "fields": ["weight", "atmos", "recipe"] },
+    { "name": "Finishing Touches", "fields": ["weight", "recipe"] },
+    { "name": "Assisting", "fields": ["weight", "recipe"] }
   ],
   [
     { "name": "Packaging Prep", "fields": [] },
