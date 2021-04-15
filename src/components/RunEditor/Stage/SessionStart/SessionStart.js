@@ -22,17 +22,25 @@ function SessionStart(props) {
   );
 
   const [modalActive, setModalActive] = useState(false);
-  const [formData, setFormData] = useState({
+
+  const defaultFormData = {
     activity: activityList[props.thisStage][0],
     atmosData: [],
-  });
+  };
 
-  const dispatch = useDispatch();
+  const [formData, setFormData] = useState(defaultFormData);
+
+  const resetFormData = function () {
+    setFormData(defaultFormData);
+  };
 
   const handleOpen = function () {
     setResolvedAssignments(findDefaultResolved());
+    resetFormData();
     setModalActive(true);
   };
+
+  const dispatch = useDispatch();
 
   const handleSubmit = function (e) {
     e.preventDefault();
@@ -110,7 +118,7 @@ function SessionStart(props) {
   };
 
   const handleCancel = function () {
-    setFormData({ activity: activityList[props.thisStage][0] });
+    resetFormData();
     setModalActive(false);
   };
 
