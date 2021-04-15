@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import Button from "../../../../Button/Button.js";
 import ButtonSpacer from "../../../../Button/ButtonSpacer/ButtonSpacer.js";
 import FormItem from "../../../../FormItem/FormItem.js";
-import TemperatureField from "../../../../FormItem/TemperatureField/TemperatureField.js";
+// import TemperatureField from "../../../../FormItem/TemperatureField/TemperatureField.js";
 import UserSelect from "../../../../FormItem/UserSelect/UserSelect.js";
 
 import { selectCurrentUser } from "../../../../UserSwitcher/usersSlice.js";
@@ -87,15 +87,15 @@ function SessionStartForm(props) {
         //     updateHandler={(value) => setTemperature(value)}
         //     value={temperature}
         //   />
-        //   <FormItem
-        //     type="number"
-        //     ident={"sess-humidity-stage-" + props.thisStage}
-        //     label="Room Humidity (%):"
-        //     updateHandler={(value) => setHumidity(value)}
-        //     min="0"
-        //     max="100"
-        //     value={humidity}
-        //   />
+        // <FormItem
+        //   type="number"
+        //   ident={"sess-humidity-stage-" + props.thisStage}
+        //   label="Room Humidity (%):"
+        //   updateHandler={(value) => setHumidity(value)}
+        //   min="0"
+        //   max="100"
+        //   value={humidity}
+        // />
         // </>
         <AtmosBatcher atmosData={atmosData} setAtmosData={setAtmosData} />
       ) : null}
