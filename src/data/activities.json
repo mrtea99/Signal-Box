@@ -25,16 +25,16 @@
   ],
   [
     { "name": "Packaging Prep", "fields": [] },
-    { "name": "Packaging", "fields": ["atmos", "amounts", "weight", "qa"] },
-    { "name": "Pouring", "fields": ["atmos", "amounts", "weight", "qa"] },
+    { "name": "Packaging", "fields": ["amounts", "weight", "qa"] },
+    { "name": "Pouring", "fields": ["amounts", "weight", "qa"] },
     { "name": "Cooling", "fields": ["atmos"] },
     { "name": "Finishing Touches", "fields": [] },
     { "name": "Assisting", "fields": [] }
   ],
   [
-    { "name": "Labeling", "fields": ["atmos", "amounts", "qa"] },
-    { "name": "Sealing", "fields": ["atmos", "amounts", "qa"] },
-    { "name": "Boxing", "fields": ["atmos", "amounts", "qa"] },
+    { "name": "Labeling", "fields": ["amounts", "qa"] },
+    { "name": "Sealing", "fields": ["amounts", "qa"] },
+    { "name": "Boxing", "fields": ["amounts", "qa"] },
     { "name": "Assisting", "fields": [] }
   ],
   [

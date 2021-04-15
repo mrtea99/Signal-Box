@@ -11,33 +11,37 @@ import UserSelect from "../../../../FormItem/UserSelect/UserSelect.js";
 import { selectCurrentUser } from "../../../../UserSwitcher/usersSlice.js";
 
 import activityList from "../../../../../data/activities.json";
+import AtmosBatcher from "../../../../AtmosBatcher/AtmosBatcher.js";
 
 function SessionStartForm(props) {
   const activeUser = useSelector(selectCurrentUser);
 
-  const [temperature, setTemperature] = useState(70);
-  const [humidity, setHumidity] = useState(50);
+  // const [temperature, setTemperature] = useState(70);
+  // const [humidity, setHumidity] = useState(50);
+
+  const [atmosData, setAtmosData] = useState([]);
 
   const validateForm = function () {
-    if (
-      props.formData.activity.fields &&
-      props.formData.activity.fields.includes("atmos")
-    ) {
-      if (
-        typeof temperature === "number" &&
-        temperature >= 32 &&
-        temperature <= 120 &&
-        typeof humidity === "number" &&
-        humidity >= 0 &&
-        humidity <= 100
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    } else {
-      return true;
-    }
+    // if (
+    //   props.formData.activity.fields &&
+    //   props.formData.activity.fields.includes("atmos")
+    // ) {
+    //   if (
+    //     typeof temperature === "number" &&
+    //     temperature >= 32 &&
+    //     temperature <= 120 &&
+    //     typeof humidity === "number" &&
+    //     humidity >= 0 &&
+    //     humidity <= 100
+    //   ) {
+    //     return true;
+    //   } else {
+    //     return false;
+    //   }
+    // } else {
+    //   return true;
+    // }
+    return true;
   };
 
   const updateAssistor = function (assistorName) {
@@ -76,23 +80,24 @@ function SessionStartForm(props) {
       />
       {props.formData.activity.fields &&
       props.formData.activity.fields.includes("atmos") ? (
-        <>
-          <TemperatureField
-            ident={"sess-temp-stage-" + props.thisStage}
-            label={"Room Temperature"}
-            updateHandler={(value) => setTemperature(value)}
-            value={temperature}
-          />
-          <FormItem
-            type="number"
-            ident={"sess-humidity-stage-" + props.thisStage}
-            label="Room Humidity (%):"
-            updateHandler={(value) => setHumidity(value)}
-            min="0"
-            max="100"
-            value={humidity}
-          />
-        </>
+        // <>
+        //   <TemperatureField
+        //     ident={"sess-temp-stage-" + props.thisStage}
+        //     label={"Room Temperature"}
+        //     updateHandler={(value) => setTemperature(value)}
+        //     value={temperature}
+        //   />
+        //   <FormItem
+        //     type="number"
+        //     ident={"sess-humidity-stage-" + props.thisStage}
+        //     label="Room Humidity (%):"
+        //     updateHandler={(value) => setHumidity(value)}
+        //     min="0"
+        //     max="100"
+        //     value={humidity}
+        //   />
+        // </>
+        <AtmosBatcher atmosData={atmosData} setAtmosData={setAtmosData} />
       ) : null}
       <ButtonSpacer align="right">
         <Button onClick={() => props.handleCancel()} color="cancel">
