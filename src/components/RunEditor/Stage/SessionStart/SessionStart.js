@@ -24,6 +24,7 @@ function SessionStart(props) {
   const [modalActive, setModalActive] = useState(false);
   const [formData, setFormData] = useState({
     activity: activityList[props.thisStage][0],
+    atmosData: [],
   });
 
   const dispatch = useDispatch();

@@ -17,6 +17,8 @@ function AtmosBatcher(props) {
       id: Date.now(),
       temperature: 75,
       humidity: 50,
+      location: null,
+      notes: "",
     };
 
     newAtmosData.push(atmosItem);

@@ -19,8 +19,6 @@ function SessionStartForm(props) {
   // const [temperature, setTemperature] = useState(70);
   // const [humidity, setHumidity] = useState(50);
 
-  const [atmosData, setAtmosData] = useState([]);
-
   const validateForm = function () {
     // if (
     //   props.formData.activity.fields &&
@@ -46,6 +44,10 @@ function SessionStartForm(props) {
 
   const updateAssistor = function (assistorName) {
     props.setFormData({ ...props.formData, assistor: assistorName });
+  };
+
+  const updateAtmosData = function (newAtmosData) {
+    props.setFormData({ ...props.formData, atmosData: newAtmosData });
   };
 
   return (
@@ -97,7 +99,10 @@ function SessionStartForm(props) {
         //   value={humidity}
         // />
         // </>
-        <AtmosBatcher atmosData={atmosData} setAtmosData={setAtmosData} />
+        <AtmosBatcher
+          atmosData={props.formData.atmosData}
+          setAtmosData={updateAtmosData}
+        />
       ) : null}
       <ButtonSpacer align="right">
         <Button onClick={() => props.handleCancel()} color="cancel">
