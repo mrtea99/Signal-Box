@@ -48,6 +48,12 @@ function App() {
     window.localStorage.setItem("sessionsData", JSON.stringify(sessionsData));
   }, [sessionsData]);
 
+  // Data for all runs - needs to replaced with API call
+  const atmosData = useSelector((state) => state.atmos.atmosList);
+  useEffect(() => {
+    window.localStorage.setItem("atmosData", JSON.stringify(atmosData));
+  }, [atmosData]);
+
   // Frontend onload data
   //==============================================================================
   const activeUser = useSelector(selectCurrentUser);

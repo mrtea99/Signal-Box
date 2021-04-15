@@ -39,6 +39,8 @@ function SessionStart(props) {
 
     const newsessionId = Date.now();
 
+    // Dispatch new session
+    //---------------------------------
     const newSession = {
       sessionId: newsessionId,
       runId: props.currentRunId,
@@ -59,6 +61,8 @@ function SessionStart(props) {
       },
     });
 
+    // Dispatch resolved assignments
+    //---------------------------------
     resolvedAssignments.forEach((sessionId) => {
       dispatch({
         type: "sessions/update",
@@ -69,7 +73,25 @@ function SessionStart(props) {
       });
     });
 
+    // Dispatch batched Atmos Data
+    //---------------------------------
+    if (formData.atmosData.length) {
+      formData.atmosData.forEach((atmosItem) => {
+        const newAtmosItem = {
+          ...atmosItem,
+          sessionId: newsessionId,
+          runId: props.currentRunId,
+        };
+
+        dispatch({
+          type: "atmos/add",
+          payload: newAtmosItem,
+        });
+      });
+    }
+
     // If the run has "Not Started" staus then change it to "In Progress"
+    //---------------------------------
     if (thisRunData.status === "Not Started") {
       dispatch({
         type: "runs/update",
@@ -82,6 +104,8 @@ function SessionStart(props) {
       });
     }
 
+    // Close modal
+    //---------------------------------
     setModalActive(false);
   };
 

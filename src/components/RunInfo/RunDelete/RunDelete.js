@@ -24,6 +24,11 @@ function RunDelete(props) {
       type: "sessions/deleteAllInRun",
       payload: runId,
     });
+
+    dispatch({
+      type: "atmos/deleteAllInRun",
+      payload: runId,
+    });
   };
 
   return (
