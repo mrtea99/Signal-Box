@@ -26,11 +26,11 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
 ## Styleguide
 
-With the server running go to /styleguide/ to see the static version.
+With the server running go to [/styleguide](http://localhost:3000/styleguide/) to see the static version.
 
 ### `npm styleguide`
 
-Runs the styleguide for live updating.
+Runs the styleguide for live updating. Open [http://localhost:6060/](http://localhost:6060/) to view.
 
 ### `npm styleguide:build`
 
