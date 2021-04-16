@@ -99,6 +99,13 @@ const resources = {
       Assistor: "Assistor",
       "Start New Session": "Start New Session",
       "Complete Stage": "Complete Stage",
+      "Completion not possible":
+        "Cannot complete stage until all QA, Assignment, and Flag sessions are resolved.",
+      "Complete Stage and Exit": "Complete Stage and Exit",
+      "Complete Stage and go to next stage":
+        "Complete Stage and go to next stage",
+      "Stage Status": "Stage Status",
+      "Undo Complete Stage": "Undo Complete Stage",
       Easy: "Easy",
       Medium: "Medium",
       Hard: "Hard",

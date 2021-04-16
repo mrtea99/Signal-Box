@@ -34,22 +34,6 @@ function StageActions(props) {
 
   const [modalActive, setModalActive] = useState(false);
 
-  // todo remove nextstage words
-  const inactiveMessage = function (status) {
-    switch (status) {
-      case "complete":
-        return "End stage";
-      case "skipped":
-        return "Skip stage";
-      case "paused":
-        return "Pause stage";
-      case "pending":
-        return "Set stage to pending";
-      default:
-        return t("Complete Stage");
-    }
-  };
-
   const completeStage = function () {
     props.updateStageActive(false, props.thisStage);
     setModalActive(false);
@@ -82,12 +66,7 @@ function StageActions(props) {
           <>
             {stageStatus.stageStatusName !== "working" ? (
               <div>
-                {blockComplete ? (
-                  <p>
-                    Cannot complete stage until all QA, Assignment, and Flag
-                    sessions are resolved.
-                  </p>
-                ) : null}
+                {blockComplete ? <p>{t("Completion not possible")}</p> : null}
                 <>
                   <Button
                     onClick={() => {
@@ -98,13 +77,13 @@ function StageActions(props) {
                     icon="tick"
                     disabled={blockComplete}
                   >
-                    {inactiveMessage(stageStatus.stageStatusNext)}
+                    {t("Complete Stage")}
                   </Button>
                   {modalActive ? (
                     <Modal setActive={setModalActive}>
                       <ButtonSpacer direction="vert">
                         <Button onClick={completeStage}>
-                          {inactiveMessage(stageStatus.stageStatusNext)}
+                          {t("Complete Stage")}
                         </Button>
                         <br />
                         <Button
@@ -112,8 +91,7 @@ function StageActions(props) {
                             completeStageAndExit();
                           }}
                         >
-                          {inactiveMessage(stageStatus.stageStatusNext)} &amp;
-                          exit
+                          {t("Complete Stage and Exit")}
                         </Button>
                         {props.thisStage !== 4 ? (
                           <>
@@ -123,8 +101,7 @@ function StageActions(props) {
                                 completeStageAndNext();
                               }}
                             >
-                              {inactiveMessage(stageStatus.stageStatusNext)}{" "}
-                              &amp; go to next stage
+                              {t("Complete Stage and go to next stage")}
                             </Button>
                           </>
                         ) : null}
@@ -135,7 +112,7 @@ function StageActions(props) {
                           }}
                           color="cancel"
                         >
-                          Cancel
+                          {t("Cancel")}
                         </Button>
                       </ButtonSpacer>
                     </Modal>
@@ -146,26 +123,17 @@ function StageActions(props) {
           </>
         ) : (
           <div>
-            {stageStatus.stageStatusName === "pending" ? (
-              <div>
-                <Button
-                  onClick={() => props.updateStageActive(true, props.thisStage)}
-                  fillWidth
-                >
-                  Start stage
-                </Button>
-              </div>
-            ) : (
-              <div>
-                <h3>Stage {stageStatus.stageStatusName}</h3>
-                <Button
-                  onClick={() => props.updateStageActive(true, props.thisStage)}
-                  fillWidth
-                >
-                  Undo Complete Stage
-                </Button>
-              </div>
-            )}
+            <div>
+              <h3>
+                {t("Stage Status")}: {stageStatus.stageStatusName}
+              </h3>
+              <Button
+                onClick={() => props.updateStageActive(true, props.thisStage)}
+                fillWidth
+              >
+                {t("Undo Complete Stage")}
+              </Button>
+            </div>
           </div>
         )
       ) : (
