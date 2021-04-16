@@ -3,11 +3,15 @@ import PropTypes from "prop-types";
 
 import styles from "./Stopwatch.module.css";
 
+import { useTranslation } from "react-i18next";
+
 function Stopwatch(props) {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.label}>
-        <span className={styles.labelInner}>Duration:</span>
+        <span className={styles.labelInner}>{t("Duration")}:</span>
       </div>
       <div className={styles.time}>{props.children}</div>
     </div>

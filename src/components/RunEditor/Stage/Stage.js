@@ -18,7 +18,11 @@ import { selectRun } from "../../RunList/runsSlice.js";
 import { selectStageSessions } from "../../SessionList/sessionsSlice.js";
 import { selectCurrentUser } from "../../UserSwitcher/usersSlice.js";
 
+import { useTranslation } from "react-i18next";
+
 function Stage(props) {
+  const { t } = useTranslation();
+
   const simpleMode = useContext(ViewModeContext) === "simple";
 
   const dispatch = useDispatch();
@@ -59,7 +63,7 @@ function Stage(props) {
     difficulty =
       difficulty && difficulty.length ? difficulty : defaultDifficulty;
 
-    return difficulty;
+    return t(difficulty);
   };
 
   // Active work session
@@ -152,7 +156,7 @@ function Stage(props) {
           <h2 className={styles.stageTitle}>{stageNames[props.thisStage]}</h2>
         </div>
         <h4 className={styles.stageDifficulty}>
-          Difficulty: {getDifficulty(props.thisStage)}
+          {t("Difficulty")}: {getDifficulty(props.thisStage)}
         </h4>
       </header>
       <div className={styles.sessionHolder}>

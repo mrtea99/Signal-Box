@@ -17,7 +17,11 @@ import { selectCurrentUser } from "../../../../UserSwitcher/usersSlice.js";
 
 // import stageNames from "../../../../../data/stageNames.json";
 
+import { useTranslation } from "react-i18next";
+
 function SessionEndForm(props) {
+  const { t } = useTranslation();
+
   const unitSystem = useContext(UnitSystemContext);
 
   const activeUser = useSelector(selectCurrentUser);
@@ -120,22 +124,22 @@ function SessionEndForm(props) {
 
     switch (stageNum) {
       case 1:
-        itemName = "Batch";
+        itemName = t("Average Batch Weight");
         targetWeight = productInfo.batchWeight;
         break;
       case 2:
-        itemName = "Unit";
+        itemName = t("Average Unit Weight");
         targetWeight = productInfo.unitWeight;
         break;
       default:
-        return "Weight";
+        return t("Average Item Weight");
     }
 
     //todo abstract metric conversion
-    return `Average ${itemName} Weight (Target: ${
+    return `${itemName} (${t("Target")}: ${
       unitSystem === "metric"
         ? Math.round(targetWeight / 0.035274) + " g"
-        : targetWeight + " ozm"
+        : targetWeight + " oz"
     })`;
   };
 
@@ -144,7 +148,7 @@ function SessionEndForm(props) {
       <FormItem
         type="textarea"
         ident={"sess-notes-step-" + props.thisStage}
-        label="Note"
+        label={t("Note")}
         updateHandler={(value) =>
           handleFieldChange(value, setNoteData, "notes")
         }
@@ -156,7 +160,7 @@ function SessionEndForm(props) {
           <FormItem
             type="number"
             ident={"sess-amount-step-" + props.thisStage}
-            label={"Completed " + itemType}
+            label={`${t("Completed")} ${itemType}`}
             updateHandler={(value) =>
               handleFieldChange(value, setAmount, "amount")
             }
@@ -166,7 +170,7 @@ function SessionEndForm(props) {
           <FormItem
             type="number"
             ident={"sess-amount-bad-step-" + props.thisStage}
-            label={"Defective " + itemType}
+            label={`${t("Defective")} ${itemType}`}
             updateHandler={(value) =>
               handleFieldChange(value, setAmountBad, "amountBad")
             }
@@ -190,7 +194,7 @@ function SessionEndForm(props) {
       {showQa ? (
         <>
           <FormItem
-            label="Skip Qa"
+            label={t("Skip QA")}
             type="checkbox"
             ident="sess-skip-qa"
             updateHandler={(value) => setSkipQa(value)}
@@ -198,7 +202,7 @@ function SessionEndForm(props) {
           />
 
           {skipQa ? (
-            <p>QA Skipped</p>
+            <p>{t("QA Skipped")}</p>
           ) : (
             <CheckOpenerForm
               formData={qaFormData}
@@ -211,10 +215,10 @@ function SessionEndForm(props) {
 
       <ButtonSpacer align="right">
         <Button onClick={() => props.setFormActive(false)} color="cancel">
-          Cancel
+          {t("Cancel")}
         </Button>
         <Button onClick={handleEndClick} icon="stop">
-          End Session
+          {t("End Session")}
         </Button>
       </ButtonSpacer>
     </form>

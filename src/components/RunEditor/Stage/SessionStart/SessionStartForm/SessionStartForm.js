@@ -6,13 +6,17 @@ import Button from "../../../../Button/Button.js";
 import ButtonSpacer from "../../../../Button/ButtonSpacer/ButtonSpacer.js";
 import FormItem from "../../../../FormItem/FormItem.js";
 import UserSelect from "../../../../FormItem/UserSelect/UserSelect.js";
+import AtmosBatcher from "../../../../AtmosBatcher/AtmosBatcher.js";
 
 import { selectCurrentUser } from "../../../../UserSwitcher/usersSlice.js";
 
 import activityList from "../../../../../data/activities.json";
-import AtmosBatcher from "../../../../AtmosBatcher/AtmosBatcher.js";
+
+import { useTranslation } from "react-i18next";
 
 function SessionStartForm(props) {
+  const { t } = useTranslation();
+
   const activeUser = useSelector(selectCurrentUser);
 
   const updateAssistor = function (assistorName) {
@@ -28,7 +32,7 @@ function SessionStartForm(props) {
       <FormItem
         type="select"
         ident={"sess-activity-stage-" + props.thisStage}
-        label="Activity:"
+        label={`${t("Activity")}:`}
         updateHandler={(value) =>
           props.setFormData({
             ...props.formData,
@@ -47,7 +51,7 @@ function SessionStartForm(props) {
         ))}
       </FormItem>
       <UserSelect
-        label="Assistor:"
+        label={`${t("Assistor")}:`}
         ident={"sess-assistor-stage-" + props.thisStage}
         updateHandler={updateAssistor}
         value={parseInt(props.formData.assistor) || null}
@@ -62,10 +66,10 @@ function SessionStartForm(props) {
       ) : null}
       <ButtonSpacer align="right">
         <Button onClick={() => props.handleCancel()} color="cancel">
-          Cancel
+          {t("Cancel")}
         </Button>
         <Button onClick={props.handleNewClick} icon="start">
-          Start New Session
+          {t("Start New Session")}
         </Button>
       </ButtonSpacer>
     </form>

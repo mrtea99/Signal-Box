@@ -18,9 +18,14 @@ import getItemType from "../../../../utils/getItemType.js";
 import stageNames from "../../../../data/stageNames.json";
 
 import UnitSystemContext from "../../../../contexts/UnitSystemContext";
+
 import { selectRun } from "../../../RunList/runsSlice.js";
 
+import { useTranslation } from "react-i18next";
+
 function SessionDuring(props) {
+  const { t } = useTranslation();
+
   const unitSystem = useContext(UnitSystemContext);
 
   const thisRunData = useSelector((state) =>
@@ -78,7 +83,7 @@ function SessionDuring(props) {
 
           weightNode = (
             <DataListItem
-              dataKey="Target Total Weight"
+              dataKey={t("Target Total Weight")}
               dataValue={
                 unitSystem === "metric" ? `${weightGrams} g` : `${weightOz} oz`
               }
@@ -89,7 +94,7 @@ function SessionDuring(props) {
         let inventoryNode;
         if (activityFields.includes("inventory")) {
           inventoryNode = (
-            <DataListItem dataKey="Shopify Inventory" dataValue="TODO" />
+            <DataListItem dataKey={t("Shopify Inventory")} dataValue="TODO" />
           );
         }
 
@@ -97,7 +102,7 @@ function SessionDuring(props) {
         if (activityFields.includes("difficulty")) {
           difficultyNode = (
             <DataListItem
-              dataKey="Difficulty"
+              dataKey={t("Difficulty")}
               dataValue={
                 <ul>
                   <li>
@@ -131,14 +136,14 @@ function SessionDuring(props) {
         return (
           <>
             <DataListItem
-              dataKey="Target Unit Quantity"
+              dataKey={t("Target Unit Quantity")}
               dataValue={
                 thisRunData.consignedManufacturing *
                 thisRunData.productInfo.unitsPerBatch
               }
             />
             <DataListItem
-              dataKey="Target Unit Weight"
+              dataKey={t("Target Unit Weight")}
               dataValue={`${thisRunData.productInfo.unitWeight} ozm`}
             />
           </>
@@ -147,33 +152,33 @@ function SessionDuring(props) {
         return (
           <>
             <DataListItem
-              dataKey="Target Unit Quantity"
+              dataKey={t("Target Unit Quantity")}
               dataValue={thisRunData.consignedPackaging}
             />
             <DataListItem
-              dataKey="Expiration Date"
+              dataKey={t("Expiration Date")}
               dataValue={<ExpiryDate currentRunId={props.currentRunId} />}
             />
-            <DataListItem dataKey="Run ID" dataValue={thisRunData.id} />
+            <DataListItem dataKey={t("Run ID")} dataValue={thisRunData.id} />
           </>
         );
       case 4:
         return (
           <>
             <DataListItem
-              dataKey="Total Units"
+              dataKey={t("Total Units")}
               dataValue={thisRunData.consignedLabeling}
             />
             <DataListItem dataKey="Wicker Park Stock Amount" dataValue="TODO" />
             <DataListItem
-              dataKey="Warehouse Storage Location"
+              dataKey={t("Warehouse Storage Location")}
               dataValue={thisRunData.productInfo.storageLocation}
             />
             <DataListItem
-              dataKey="Shopify Sales Channel Availability"
+              dataKey={t("Shopify Sales Channel Availability")}
               dataValue="TODO"
             />
-            <DataListItem dataKey="Shopify inventory" dataValue="TODO" />
+            <DataListItem dataKey={t("Shopify inventory")} dataValue="TODO" />
           </>
         );
       default:
@@ -211,7 +216,7 @@ function SessionDuring(props) {
               <FormItem
                 type="textarea"
                 ident={"sess-notes-step-" + props.thisStage}
-                label="Notes:"
+                label={`${t("Notes")}:`}
                 updateHandler={(value) =>
                   handleFieldChange(value, setNoteData, "notes")
                 }
@@ -223,7 +228,7 @@ function SessionDuring(props) {
                   <FormItem
                     type="number"
                     ident={"sess-amount-step-" + props.thisStage}
-                    label={`Completed ${itemType}:`}
+                    label={`${"Completed"} ${itemType}:`}
                     updateHandler={(value) =>
                       handleFieldChange(value, setAmount, "amount")
                     }
@@ -235,7 +240,7 @@ function SessionDuring(props) {
                   <FormItem
                     type="number"
                     ident={"sess-amount-bad-step-" + props.thisStage}
-                    label={`Defective ${itemType}:`}
+                    label={`${"Defective"} ${itemType}:`}
                     updateHandler={(value) =>
                       handleFieldChange(value, setAmountBad, "amountBad")
                     }

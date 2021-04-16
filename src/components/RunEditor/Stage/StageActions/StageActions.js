@@ -15,7 +15,11 @@ import styles from "./StageActions.module.css";
 import { selectRun } from "../../../RunList/runsSlice.js";
 import { selectStageSessions } from "../../../SessionList/sessionsSlice.js";
 
+import { useTranslation } from "react-i18next";
+
 function StageActions(props) {
+  const { t } = useTranslation();
+
   const thisRunData = useSelector((state) =>
     selectRun(state, props.currentRunId)
   );
@@ -30,6 +34,7 @@ function StageActions(props) {
 
   const [modalActive, setModalActive] = useState(false);
 
+  // todo remove nextstage words
   const inactiveMessage = function (status) {
     switch (status) {
       case "complete":
@@ -41,7 +46,7 @@ function StageActions(props) {
       case "pending":
         return "Set stage to pending";
       default:
-        return "Complete Stage";
+        return t("Complete Stage");
     }
   };
 

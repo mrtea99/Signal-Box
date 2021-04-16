@@ -5,7 +5,11 @@ import Button from "../../../Button/Button.js";
 import Modal from "../../../Modal/Modal.js";
 import SessionEndForm from "./SessionEndForm/SessionEndForm.js";
 
+import { useTranslation } from "react-i18next";
+
 function SessionEnd(props) {
+  const { t } = useTranslation();
+
   const [modalActive, setModalActive] = useState(false);
 
   return (
@@ -20,7 +24,10 @@ function SessionEnd(props) {
       </Button>
       {modalActive ? (
         <Modal
-          title={`End ${props.activeSessionData.activity.name} Session`}
+          // title={`End ${props.activeSessionData.activity.name} Session`}
+          title={t("End This Session", {
+            sessionName: props.activeSessionData.activity.name,
+          })}
           setActive={setModalActive}
         >
           <SessionEndForm

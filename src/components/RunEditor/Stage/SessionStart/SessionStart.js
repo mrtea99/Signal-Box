@@ -14,7 +14,11 @@ import { selectCurrentUser } from "../../../UserSwitcher/usersSlice.js";
 // import stageNames from "../../../../data/stageNames.json";
 import activityList from "../../../../data/activities.json";
 
+import { useTranslation } from "react-i18next";
+
 function SessionStart(props) {
+  const { t } = useTranslation();
+
   const activeUser = useSelector(selectCurrentUser);
 
   const thisRunData = useSelector((state) =>
@@ -150,10 +154,10 @@ function SessionStart(props) {
   return (
     <div className={props.className}>
       <Button onClick={() => handleOpen()} fillWidth icon="start" featured>
-        Start New Session
+        {t("Start New Session")}
       </Button>
       {modalActive ? (
-        <Modal title="Start New Session" handleCancel={handleCancel}>
+        <Modal title={t("Start New Session")} handleCancel={handleCancel}>
           <AssignmentList
             assignSessions={assignSessions}
             resolvedAssignments={resolvedAssignments}
