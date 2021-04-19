@@ -5,6 +5,10 @@ import styles from "./Stopwatch.module.css";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Styled wrapper to show children in a 'stopwatch' style.
+ */
+
 function Stopwatch(props) {
   const { t } = useTranslation();
 

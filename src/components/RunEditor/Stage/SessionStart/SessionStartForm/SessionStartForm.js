@@ -14,6 +14,10 @@ import activityList from "../../../../../data/activities.json";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Form fields to start a work session.
+ */
+
 function SessionStartForm(props) {
   const { t } = useTranslation();
 

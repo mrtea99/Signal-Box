@@ -19,6 +19,10 @@ import { selectCurrentUser } from "../../../../UserSwitcher/usersSlice.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Form fields to end a work session.
+ */
+
 function SessionEndForm(props) {
   const { t } = useTranslation();
 

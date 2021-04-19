@@ -6,6 +6,10 @@ import styles from "./LoadingScreen.module.css";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Displays a loading screen to replace all content while data is loaded
+ */
+
 function LoadingScreen() {
   const { t } = useTranslation();
 

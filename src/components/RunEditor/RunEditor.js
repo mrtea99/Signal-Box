@@ -22,6 +22,10 @@ import ViewModeContext from "../../contexts/ViewModeContext.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Displays the main run editor view
+ */
+
 function RunEditor() {
   const { t } = useTranslation();
 

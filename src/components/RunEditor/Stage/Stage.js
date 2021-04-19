@@ -20,6 +20,12 @@ import { selectCurrentUser } from "../../UserSwitcher/usersSlice.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Displays a single run stage.
+ * Includes the controls to edit the stage, the stage status,
+ * any active work session, and lists all sessions for this stage.
+ */
+
 function Stage(props) {
   const { t } = useTranslation();
 

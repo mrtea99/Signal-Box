@@ -4,6 +4,10 @@ import { createPortal } from "react-dom";
 
 import styles from "./Modal.module.css";
 
+/**
+ * Uses a portal to make a dialog box
+ */
+
 function Modal(props) {
   const mount = document.getElementById("modal-root");
 

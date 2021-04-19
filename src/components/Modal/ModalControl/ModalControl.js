@@ -8,6 +8,10 @@ import Pager from "../../Pager/Pager.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Makes a dialog box and handles active state, and pagination state.
+ */
+
 function ModalControl(props) {
   const { t } = useTranslation();
 

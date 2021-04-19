@@ -11,6 +11,12 @@ import productTemplates from "../../../data/productTemplates.json";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Form to set run parameters, wither on creation or editing.
+ * Users can choose product and batch count required.
+ * Displays product data and calculates unit count.
+ */
+
 function RunInfoForm({
   currentTemplate,
   setCurrentTemplate,

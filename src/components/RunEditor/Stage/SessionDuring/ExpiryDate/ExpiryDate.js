@@ -5,6 +5,11 @@ import { useSelector } from "react-redux";
 import { selectRun } from "../../../../RunList/runsSlice.js";
 import { selectStageSessions } from "../../../../SessionList/sessionsSlice.js";
 
+/**
+ * Calculates the correct expiry date for a product based on the runId,
+ * using the start date of the first manufacturing session.
+ */
+
 const ExpiryDate = function (props) {
   const expiryDuration = useSelector((state) =>
     selectRun(state, props.currentRunId)

@@ -14,6 +14,10 @@ import FormItem from "../FormItem/FormItem.js";
 
 import productTemplates from "../../data/productTemplates.json";
 
+/**
+ * Dialog to create / edit a run.
+ */
+
 function RunInfoNew(props) {
   const { t } = useTranslation();
 

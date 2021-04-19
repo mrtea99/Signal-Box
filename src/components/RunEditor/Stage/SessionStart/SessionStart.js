@@ -16,6 +16,10 @@ import activityList from "../../../../data/activities.json";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Dialog to start a work session.
+ */
+
 function SessionStart(props) {
   const { t } = useTranslation();
 

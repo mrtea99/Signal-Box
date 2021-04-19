@@ -7,6 +7,10 @@ import SessionEndForm from "./SessionEndForm/SessionEndForm.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Dialog to end a work session.
+ */
+
 function SessionEnd(props) {
   const { t } = useTranslation();
 

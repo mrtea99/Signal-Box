@@ -8,6 +8,10 @@ import Modal from "../../Modal/Modal.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Dialog to delete a run.
+ */
+
 function RunDelete(props) {
   const { t } = useTranslation();
 

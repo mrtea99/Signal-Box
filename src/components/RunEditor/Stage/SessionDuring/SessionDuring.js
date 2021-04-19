@@ -23,6 +23,11 @@ import { selectRun } from "../../../RunList/runsSlice.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Displays the state of a work session in progress,
+ * and displays fields for updating some state.
+ */
+
 function SessionDuring(props) {
   const { t } = useTranslation();
 

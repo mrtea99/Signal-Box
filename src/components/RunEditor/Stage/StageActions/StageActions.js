@@ -17,6 +17,10 @@ import { selectStageSessions } from "../../../SessionList/sessionsSlice.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Controls to update stage state.
+ */
+
 function StageActions(props) {
   const { t } = useTranslation();
 

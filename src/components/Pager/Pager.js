@@ -5,6 +5,10 @@ import Button from "../Button/Button.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Displays content in pages, with previous / next buttons.
+ */
+
 function Pager(props) {
   const { t } = useTranslation();
 

@@ -12,6 +12,12 @@ import styles from "./SessionControl.module.css";
 
 import ViewModeContext from "../../../../contexts/ViewModeContext.js";
 
+/**
+ * Controls for a stage.
+ * Lets users start / end work sessions,
+ * and start assignment, flag, and qa sessions.
+ */
+
 function SessionControl(props) {
   const viewMode = useContext(ViewModeContext);
   const simpleMode = viewMode === "simple";
