@@ -10,6 +10,10 @@ import UserName from "../../UserSwitcher/UserName/UserName";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Displays a list of assignment sessions, with edit button and checkbox to mark each as resolved
+ */
+
 function AssignmentList(props) {
   const { t } = useTranslation();
 

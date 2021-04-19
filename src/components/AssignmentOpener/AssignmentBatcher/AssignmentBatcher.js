@@ -11,6 +11,11 @@ import stageNames from "../../../data/stageNames.json";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Alows the initial setup of several assignment sessions,
+ * which are batched up ready to be fully created all together.
+ */
+
 function AssignmentBatcher(props) {
   const { t } = useTranslation();
 

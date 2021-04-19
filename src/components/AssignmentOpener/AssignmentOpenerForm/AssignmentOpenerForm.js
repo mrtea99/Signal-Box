@@ -6,6 +6,10 @@ import UserSelect from "../../FormItem/UserSelect/UserSelect.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Form for editing an assignment session
+ */
+
 function AssignmentOpenerForm(props) {
   const { t } = useTranslation();
 

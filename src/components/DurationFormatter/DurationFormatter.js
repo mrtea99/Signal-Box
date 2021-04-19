@@ -3,6 +3,11 @@ import PropTypes from "prop-types";
 
 import styles from "./DurationFormatter.module.css";
 
+/**
+ * Displays a duration in hours and mins, converted from javascript time.
+ * Can optionaly show a flashing separator to indicate an active state.
+ */
+
 function DurationFormatter(props) {
   let duraton = props.rawTime;
 

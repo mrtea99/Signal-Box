@@ -10,6 +10,10 @@ import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Dialog for editing / ending a flag session.
+ */
+
 function FlagCloser(props) {
   const { t } = useTranslation();
 

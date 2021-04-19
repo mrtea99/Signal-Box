@@ -11,6 +11,10 @@ import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Dialog for starting an assignment session
+ */
+
 function AssignmentOpener(props) {
   const { t } = useTranslation();
 

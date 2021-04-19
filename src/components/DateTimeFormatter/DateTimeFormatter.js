@@ -6,6 +6,10 @@ import styles from "./DateTimeFormatter.module.css";
 import TimeFormatContext from "../../contexts/TimeFormatContext.js";
 import DateFormatContext from "../../contexts/DateFormatContext.js";
 
+/**
+ * Displays a date and time in the format decided by site context.
+ */
+
 function DateTimeFormatter(props) {
   const timeFormat = useContext(TimeFormatContext);
   const dateFormat = useContext(DateFormatContext);

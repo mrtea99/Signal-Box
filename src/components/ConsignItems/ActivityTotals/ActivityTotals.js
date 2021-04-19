@@ -9,6 +9,12 @@ import activityList from "../../../data/activities.json";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Displays a summary of work sessions in a stage,
+ * showing total counts for each activity type and also QA.
+ * Designed to allow users to decide how many items should be consigned.
+ */
+
 const ActivityTotals = function (props) {
   const { t } = useTranslation();
 

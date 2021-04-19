@@ -22,6 +22,8 @@ module.exports = {
       name: "General",
       components: [
         "src/components/Button/Button.js",
+        "src/components/Button/ButtonSpacer/ButtonSpacer.js",
+        "src/components/Icon/Icon.js",
         "src/components/DataList/DataList.js",
       ],
     },

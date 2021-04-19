@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 
 import styles from "./DataListItem.module.css";
 
+/**
+ * Displays a key / value pair. To be used as a child of DataList.
+ */
+
 function DataListItem(props) {
   const { dataKey, dataValue, newLine, ...itemProps } = props;
 

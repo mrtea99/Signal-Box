@@ -11,6 +11,10 @@ import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Dialog for creating a QA session
+ */
+
 function CheckOpener(props) {
   const { t } = useTranslation();
 

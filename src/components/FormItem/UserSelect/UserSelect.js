@@ -4,6 +4,10 @@ import { useSelector } from "react-redux";
 
 import FormItem from "../FormItem";
 
+/**
+ * Dropdown to select a site user.
+ */
+
 function UserSelect(props) {
   const { excludedUsers, ...itemProps } = props;
 

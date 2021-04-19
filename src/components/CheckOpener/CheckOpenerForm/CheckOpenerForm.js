@@ -6,6 +6,10 @@ import UserSelect from "../../FormItem/UserSelect/UserSelect.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Form for some QA session fields
+ */
+
 function CheckOpenerForm(props) {
   const { t } = useTranslation();
 

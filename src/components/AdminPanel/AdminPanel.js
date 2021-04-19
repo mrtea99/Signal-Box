@@ -12,6 +12,10 @@ import stageNames from "../../data/stageNames.json";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * View for Admins to see the status of all runs and stages, with filters
+ */
+
 function AdminPanel() {
   const { t } = useTranslation();
 

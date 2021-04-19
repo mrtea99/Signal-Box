@@ -21,6 +21,12 @@ import getItemType from "../../utils/getItemType.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Dialog for consigning items from a stage.
+ * Creates consign sessions.
+ * Updates the correct fields in the run.
+ */
+
 function ConsignItems(props) {
   const { t } = useTranslation();
 

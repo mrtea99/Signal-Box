@@ -8,7 +8,8 @@ import FormItem from "../FormItem/FormItem";
 import { useTranslation } from "react-i18next";
 
 /**
- * Creates new Atmos entries for a session
+ * Alows the creation of several atmos entries for a session,
+ * which are batched up ready to be saved all together.
  */
 
 function AtmosBatcher(props) {

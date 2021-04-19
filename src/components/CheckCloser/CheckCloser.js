@@ -11,6 +11,10 @@ import getItemType from "../../utils/getItemType.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Dialog for editing / ending a QA session
+ */
+
 function CheckCloser(props) {
   const { t } = useTranslation();
 

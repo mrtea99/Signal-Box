@@ -9,6 +9,10 @@ import UserName from "../UserSwitcher/UserName/UserName.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Dialog for editing / ending an assignment session
+ */
+
 function AssignmentCloser(props) {
   const { t } = useTranslation();
 

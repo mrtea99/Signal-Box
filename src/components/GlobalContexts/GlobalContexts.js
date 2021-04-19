@@ -7,6 +7,10 @@ import UnitSystemContext from "../../contexts/UnitSystemContext.js";
 import ViewModeContext from "../../contexts/ViewModeContext.js";
 import SiteThemeContext from "../../contexts/SiteThemeContext.js";
 
+/**
+ * All global site contexts.
+ */
+
 function GlobalContexts(props) {
   return (
     <TimeFormatContext.Provider value={props.timeFormat}>

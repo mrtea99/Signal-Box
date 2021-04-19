@@ -26,9 +26,13 @@ import { ReactComponent as Spinner8 } from "./spinner8.svg";
 
 import styles from "./Icon.module.css";
 
+/**
+ * Displays an icon inline.
+ */
+
 function Icon(props) {
   let { name, className } = props;
-  className = `${className} ${styles.icon}`
+  className = `${className} ${styles.icon}`;
   const attrs = { className };
 
   const iconElem = function () {
@@ -49,6 +53,8 @@ function Icon(props) {
         return <Warning {...attrs} />;
       case "blocker":
         return <Notification {...attrs} />;
+      case "assign":
+        return <StarFull {...attrs} />;
       case "next":
         return <ArrowRight {...attrs} />;
       case "previous":
@@ -67,16 +73,14 @@ function Icon(props) {
         return <Minus {...attrs} />;
       case "user":
         return <User {...attrs} />;
+      case "progress":
+        return <PieChart {...attrs} />;
       case "settings":
         return <Cog {...attrs} />;
       case "menu":
         return <Menu {...attrs} />;
       case "filter":
         return <Filter {...attrs} />;
-      case "assign":
-        return <StarFull {...attrs} />;
-      case "progress":
-        return <PieChart {...attrs} />;
       case "spinner":
         return <Spinner8 {...attrs} />;
       default:
@@ -88,7 +92,9 @@ function Icon(props) {
 }
 
 Icon.propTypes = {
+  /**  Name of icon */
   name: PropTypes.string.isRequired,
+  /**  Classname to add to icon element */
   className: PropTypes.string,
 };
 
