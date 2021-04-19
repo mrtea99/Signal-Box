@@ -24,6 +24,10 @@ import { selectStageSessions } from "../../SessionList/sessionsSlice.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Displays a session item for the session list.
+ */
+
 function SessionItem({
   session,
   itemCount,

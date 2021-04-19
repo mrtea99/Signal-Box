@@ -5,6 +5,10 @@ import styles from "./SiteSidebar.module.css";
 
 import Button from "../Button/Button.js";
 
+/**
+ * Main sidebar for the site, primarily used for settings panel.
+ */
+
 function SiteSidebar(props) {
   const closeSidebar = function () {
     props.setSidebarActive(false);

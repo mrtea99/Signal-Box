@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 
 import styles from "./TabList.module.css";
 
+/**
+ * List of tabs to control tabbed content.
+ */
+
 function TabList(props) {
   return (
     <ul className={styles.list}>
@@ -28,7 +32,7 @@ function TabList(props) {
 TabList.propTypes = {
   tabs: PropTypes.array.isRequired,
   activeTab: PropTypes.number,
-  indexCallback: PropTypes.func.isRequired
-}
+  indexCallback: PropTypes.func.isRequired,
+};
 
 export default TabList;

@@ -7,6 +7,10 @@ import UserSwitcher from "../UserSwitcher/UserSwitcher.js";
 import styles from "./SiteHeader.module.css";
 import { Link } from "react-router-dom";
 
+/**
+ * Main header bar for the site.
+ */
+
 function SiteHeader(props) {
   return (
     <header className={styles.siteHeader}>

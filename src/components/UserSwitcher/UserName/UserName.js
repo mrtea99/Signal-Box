@@ -4,6 +4,10 @@ import { useSelector } from "react-redux";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Displays a user's name (Title field) based on their user id.
+ */
+
 function UserName(props) {
   const { t } = useTranslation();
 

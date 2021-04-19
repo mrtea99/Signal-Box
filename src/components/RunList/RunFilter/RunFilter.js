@@ -9,6 +9,10 @@ import { selectCurrentUser } from "../../UserSwitcher/usersSlice.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Dialog to let user edit current filters for the runlist
+ */
+
 function RunFilter(props) {
   const { t } = useTranslation();
 

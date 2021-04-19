@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 
+/**
+ * Calls a function on a set interval.
+ */
+
 function Repeater(props) {
   const [returnValue, setReturnValue] = useState(props.callback());
 

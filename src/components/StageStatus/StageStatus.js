@@ -12,6 +12,9 @@ import { selectRun } from "../RunList/runsSlice.js";
 import { selectStageSessions } from "../SessionList/sessionsSlice.js";
 import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 
+/**
+ * Displays a summary of the current status of a stage.
+ */
 
 function StageStatus(props) {
   const activeUser = useSelector(selectCurrentUser);
@@ -75,7 +78,7 @@ function StageStatus(props) {
         ]}
       >
         <StatusPodItem
-          key="user"
+          key="completion"
           statusField="completion"
           stageStatus={stageStatus}
           stageNum={props.stageNum}

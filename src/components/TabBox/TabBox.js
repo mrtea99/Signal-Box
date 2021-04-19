@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 
 import TabList from "./TabList/TabList.js";
 
+/**
+ * Wrapper to hold tabbed content and controls
+ */
+
 function TabBox(props) {
   const [selectedBox, setSelectedBox] = useState(0);
 

@@ -13,6 +13,11 @@ import { selectStageSessions } from "./sessionsSlice.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Displays a list of all sessions in a stage.
+ * Also shows an 'overview' with totals.
+ */
+
 function SessionList(props) {
   const { t } = useTranslation();
 

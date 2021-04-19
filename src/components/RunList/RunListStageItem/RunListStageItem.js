@@ -17,6 +17,10 @@ import { selectRun } from "../runsSlice.js";
 import { selectStageSessions } from "../../SessionList/sessionsSlice.js";
 import { selectCurrentUser } from "../../UserSwitcher/usersSlice.js";
 
+/**
+ * Displays a single run showing the status for a single stage
+ */
+
 function RunListStageItem(props) {
   const activeUser = useSelector(selectCurrentUser);
 

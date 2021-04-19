@@ -7,6 +7,10 @@ import Modal from "../../Modal/Modal.js";
 
 import styles from "./RunTitle.module.css";
 
+/**
+ * Displays the title of a run with a button to see the run overview.
+ */
+
 function RunTitle(props) {
   const [modalOverviewActive, setModalOverviewActive] = useState(null);
 

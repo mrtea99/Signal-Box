@@ -7,6 +7,10 @@ import styles from "./StageNav.module.css";
 
 import stageNames from "../../data/stageNames.json";
 
+/**
+ * Displays all the stages for a run with status.
+ */
+
 function StageNav(props) {
   const handleNavList = function (stageIndex, e) {
     e.preventDefault();

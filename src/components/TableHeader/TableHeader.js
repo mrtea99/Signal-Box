@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 
 import styles from "./TableHeader.module.css";
 
+/**
+ * Styled table header
+ */
+
 function TableHeader(props) {
   return (
     <ul className={styles.headerList}>

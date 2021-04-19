@@ -4,6 +4,12 @@ import PropTypes from "prop-types";
 import DurationFormatter from "../../DurationFormatter/DurationFormatter.js";
 import Timer from "../../Timer/Timer.js";
 
+/**
+ * Displays the correct duration for a session,
+ * depending on if the duration has any length,
+ * or if the session is still ongoing.
+ */
+
 function SessionDuration(props) {
   const { session } = props;
 

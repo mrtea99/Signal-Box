@@ -8,6 +8,10 @@ import styles from "./StatusPodItem.module.css";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Displays the status of one aspect of the stage
+ */
+
 function StatusPodItem(props) {
   const { t } = useTranslation();
 

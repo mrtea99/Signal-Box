@@ -6,6 +6,10 @@ import StageStatus from "../StageStatus/StageStatus.js";
 
 import stageNames from "../../data/stageNames.json";
 
+/**
+ * Displays the session list for each stage in a run, with the stage's status.
+ */
+
 function StageOverview(props) {
   return (
     <article>
@@ -20,10 +24,7 @@ function StageOverview(props) {
               label
             />
           </h3>
-          <SessionList
-            thisStage={index}
-            currentRunId={props.currentRunId}
-          />
+          <SessionList thisStage={index} currentRunId={props.currentRunId} />
         </section>
       ))}
     </article>

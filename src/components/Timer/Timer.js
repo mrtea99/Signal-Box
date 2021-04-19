@@ -2,6 +2,10 @@ import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import DurationFormatter from "../DurationFormatter/DurationFormatter";
 
+/**
+ * Displays the difference between a given javascript time and the curent time.
+ */
+
 function Timer(props) {
   const getTimeDiff = function (timeStart) {
     const diffTime = Date.now() - new Date(timeStart);

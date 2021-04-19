@@ -15,6 +15,12 @@ import stageNames from "../../data/stageNames.json";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Displays a list of runs, with a table header.
+ * Shows either all stages or a specific one.
+ * Filters the list content based on 'filters' prop.
+ */
+
 function RunList(props) {
   const { t } = useTranslation();
 

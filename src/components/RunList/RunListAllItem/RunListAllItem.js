@@ -10,6 +10,10 @@ import styles from "./RunListAllItem.module.css";
 
 import { selectRun } from "../runsSlice";
 
+/**
+ * Displays a single run showing the status for all stages
+ */
+
 function RunListAllItem(props) {
   const thisRunData = useSelector((state) =>
     selectRun(state, props.currentRunId)

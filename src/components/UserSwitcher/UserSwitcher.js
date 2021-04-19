@@ -7,6 +7,10 @@ import styles from "./UserSwitcher.module.css";
 
 import { selectCurrentUser } from "./usersSlice.js";
 
+/**
+ * Updates the site's current user
+ */
+
 function UserSwitcher() {
   const activeUser = useSelector(selectCurrentUser);
   const usersList = useSelector((state) => state.users.usersList);

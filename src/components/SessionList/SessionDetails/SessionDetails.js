@@ -12,6 +12,11 @@ import getSessionName from "../../../utils/getSessionName.js";
 
 import { useTranslation } from "react-i18next";
 
+/**
+ * Displays all the information stored in a session,
+ * formatted to be user readable.
+ */
+
 function SessionDetails(props) {
   const { t } = useTranslation();
 
