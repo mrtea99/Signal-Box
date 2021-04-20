@@ -5,6 +5,10 @@ import Icon from "../../Icon/Icon.js";
 
 import styles from "./InfoPodItem.module.css";
 
+/**
+ * Single infopod item, shows a value wih an optional key and icon label
+ */
+
 function InfoPodItem(props) {
   const fullViewMode = props.viewMode === "full";
 
@@ -56,19 +60,29 @@ function InfoPodItem(props) {
 }
 
 InfoPodItem.propTypes = {
+  /** Extra classname to add for styling */
   className: PropTypes.string,
+  /** If this is to be a label pod */
   coreStyle: PropTypes.string,
+  /** If this is a round pod or a bubble to the side of another */
   type: PropTypes.oneOf(["bubble", "core"]),
+  /** Visible state */
   active: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]),
+  /** Direction of bubbles from a core */
   layout: PropTypes.oneOf(["horiz", "vert"]),
+  /** Icon to show with label */
   icon: PropTypes.string,
+  /** Text for label */
   name: PropTypes.string,
+  /** Main value to display */
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
     PropTypes.node,
   ]),
+  /** Which part should be hidden if there is not enough room when resizing */
   priority: PropTypes.oneOf(["icon", "value"]),
+  /** Wether to show labels and icons */
   viewMode: PropTypes.oneOf(["full", "basic"]),
 };
 

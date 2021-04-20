@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 
 import styles from "./InfoPod.module.css";
 
+/**
+ * Parent wrapper for InfoPods
+ */
+
 function InfoPod(props) {
   return (
     <span
