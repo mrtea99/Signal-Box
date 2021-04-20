@@ -27,6 +27,8 @@ const resources = {
       "Front room": "Front room",
       Kitchen: "Kitchen",
       "Back room": "Back room",
+      "Primary Atmos Reading": "Primary Atmos Reading",
+      "Additional Atmos Reading": "Additional Atmos Reading",
       "QA Check": "QA Check",
       Creator: "Creator",
       Timeframe: "Timeframe",

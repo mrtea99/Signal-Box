@@ -26,6 +26,7 @@ function AtmosBatcher(props) {
       humidity: 50,
       location: locations[0],
       notes: "",
+      primary: false,
     };
 
     newAtmosData.push(atmosItem);
@@ -44,11 +45,30 @@ function AtmosBatcher(props) {
     props.setAtmosData(newAtmosData);
   };
 
+  const deleteItem = function (itemId) {
+    let newAtmosData = props.atmosData.filter((atmosItem) => {
+      return atmosItem.id !== itemId;
+    });
+
+    // Set the first item in the array to be the primary reading
+    newAtmosData.forEach((atmosItem) => (atmosItem.primary = false));
+    if (newAtmosData.length) {
+      newAtmosData[0].primary = true;
+    }
+
+    props.setAtmosData(newAtmosData);
+  };
+
   return (
     <>
       <ul>
         {props.atmosData.map((atmosItem, index) => (
           <li key={"atmos-item-" + atmosItem.id}>
+            <h3>
+              {index === 0
+                ? t("Primary Atmos Reading")
+                : t("Additional Atmos Reading") + " " + index}
+            </h3>
             <TemperatureField
               ident={"sess-temp-stage-" + props.thisStage + index}
               label={`${t("Room Temperature")}:`}
@@ -92,6 +112,9 @@ function AtmosBatcher(props) {
                 </option>
               ))}
             </FormItem>
+            <Button color="delete" onClick={() => deleteItem(atmosItem.id)}>
+              Delete
+            </Button>
           </li>
         ))}
       </ul>
