@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/static/css/main.51381b39.chunk.css",
-    "main.js": "/build/main.df1213d5.js",
+    "main.css": "/static/css/main.62462c47.chunk.css",
+    "main.js": "/build/main.28303417.js",
     "runtime-main.js": "/build/bundle.483fa668.js",
-    "build/2.8ca9927e.js": "/build/2.8ca9927e.js",
-    "build/2.8ca9927e.js.LICENSE.txt": "/build/2.8ca9927e.js.LICENSE.txt",
+    "build/2.8ab44002.js": "/build/2.8ab44002.js",
+    "build/2.8ab44002.js.LICENSE.txt": "/build/2.8ab44002.js.LICENSE.txt",
     "index.html": "/index.html",
-    "static/css/main.51381b39.chunk.css.map": "/static/css/main.51381b39.chunk.css.map",
+    "static/css/main.62462c47.chunk.css.map": "/static/css/main.62462c47.chunk.css.map",
     "static/media/arrow-left.53480b84.svg": "/static/media/arrow-left.53480b84.svg",
     "static/media/arrow-right.bdb3030f.svg": "/static/media/arrow-right.bdb3030f.svg",
     "static/media/bookmark.ccb0200c.svg": "/static/media/bookmark.ccb0200c.svg",
@@ -32,8 +32,8 @@
   },
   "entrypoints": [
     "build/bundle.483fa668.js",
-    "build/2.8ca9927e.js",
-    "static/css/main.51381b39.chunk.css",
-    "build/main.df1213d5.js"
+    "build/2.8ab44002.js",
+    "static/css/main.62462c47.chunk.css",
+    "build/main.28303417.js"
   ]
 }
