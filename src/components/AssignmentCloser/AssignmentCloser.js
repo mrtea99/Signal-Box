@@ -8,6 +8,7 @@ import FormItem from "../FormItem/FormItem.js";
 import UserName from "../UserSwitcher/UserName/UserName.js";
 
 import { useTranslation } from "react-i18next";
+import Button from "../Button/Button.js";
 
 /**
  * Dialog for editing / ending an assignment session
@@ -92,6 +93,10 @@ function AssignmentCloser(props) {
     resetFormData();
   };
 
+  const handleDelete = function () {
+    dispatch({ type: "sessions/delete", payload: props.session.sessionId });
+  };
+
   return (
     <>
       {props.session.endTime ? null : (
@@ -105,7 +110,7 @@ function AssignmentCloser(props) {
           buttonAttrs={{ color: "assign", icon: "assign" }}
         >
           <p>
-            Assigner: <UserName userId={props.session.user} />
+            {t("Assigner")}: <UserName userId={props.session.user} />
           </p>
           <AssignmentOpenerForm
             formData={formData}
@@ -124,6 +129,9 @@ function AssignmentCloser(props) {
               setStatus(value);
             }}
           />
+          <Button color="delete" onClick={() => handleDelete()}>
+            Delete
+          </Button>
         </ModalControl>
       )}
     </>

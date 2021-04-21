@@ -47,7 +47,7 @@ function AssignmentList(props) {
               <li key={session.sessionId} className={styles.assItem}>
                 <div className={`${styles.colMain} ${styles.main}`}>
                   <h3 className={styles.itemTitle}>
-                    {`${t("Assignee")}:`}
+                    {`${t("Assignee")}: `}
                     {session.secondaryUser ? (
                       <UserName userId={session.secondaryUser} />
                     ) : (

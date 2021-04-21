@@ -8,6 +8,7 @@ const resources = {
     translation: {
       All: "All",
       "Edit Assignment": "Edit Assignment",
+      Assigner: "Assigner",
       Status: "Status",
       "Assign Stage": "Assign Stage",
       Assignments: "Assignments",

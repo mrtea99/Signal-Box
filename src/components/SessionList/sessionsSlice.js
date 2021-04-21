@@ -29,6 +29,15 @@ const sessionsSlice = createSlice({
 
       changeSession(state, sessionId, extraData);
     },
+    delete: (state, action) => {
+      const sessionId = action.payload;
+
+      const filteredSessionsList = state.sessionsList.filter(
+        (session) => session.sessionId !== sessionId
+      );
+
+      state.sessionsList = filteredSessionsList;
+    },
     deleteAllInRun: (state, action) => {
       const runId = action.payload;
 
