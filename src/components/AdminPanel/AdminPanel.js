@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useHistory, useParams } from "react-router";
 
 import RunList from "../../components/RunList/RunList.js";
-import RunInfo from "../../components/RunInfo/RunInfo.js";
+import SetRunInfo from "../SetRunInfo/SetRunInfo.js";
 import TabBox from "../../components/TabBox/TabBox.js";
 import RunFilter from "../../components/RunList/RunFilter/RunFilter.js";
 
@@ -56,7 +56,7 @@ function AdminPanel() {
           <RunFilter runFilters={runFilters} setRunFilters={setRunFilters} />
         </section>
         <section className={styles.otherControls}>
-          <RunInfo />
+          <SetRunInfo />
         </section>
       </menu>
       <TabBox

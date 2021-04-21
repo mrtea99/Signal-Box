@@ -5,7 +5,7 @@ import { useHistory } from "react-router";
 import { useTranslation } from "react-i18next";
 
 import Modal from "../Modal/Modal.js";
-import RunInfoForm from "./RunInfoForm/RunInfoForm.js";
+import RunInfoForm from "./SetRunInfoForm/SetRunInfoForm.js";
 import RunDelete from "./RunDelete/RunDelete.js";
 import Button from "../Button/Button.js";
 import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
@@ -18,7 +18,7 @@ import productTemplates from "../../data/productTemplates.json";
  * Dialog to create / edit a run.
  */
 
-function RunInfoNew(props) {
+function SetRunInfo(props) {
   const { t } = useTranslation();
 
   const mode = props.currentRunId ? "change" : "new";
@@ -231,9 +231,9 @@ function RunInfoNew(props) {
   );
 }
 
-RunInfoNew.propTypes = {
+SetRunInfo.propTypes = {
   thisRunData: PropTypes.object,
   currentRunId: PropTypes.number,
 };
 
-export default RunInfoNew;
+export default SetRunInfo;

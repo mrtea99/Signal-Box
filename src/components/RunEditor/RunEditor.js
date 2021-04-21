@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 import Stage from "./Stage/Stage.js";
 import StageNav from "../StageNav/StageNav.js";
-import RunInfo from "../RunInfo/RunInfo.js";
+import SetRunInfo from "../SetRunInfo/SetRunInfo.js";
 import StageOverview from "../StageOverview/StageOverview.js";
 import Modal from "../Modal/Modal.js";
 import Button from "../Button/Button.js";
@@ -99,7 +99,10 @@ function RunEditor() {
                       </h4>
                     </div>
                     <ButtonSpacer>
-                      <RunInfo currentRunId={runId} thisRunData={thisRunData} />
+                      <SetRunInfo
+                        currentRunId={runId}
+                        thisRunData={thisRunData}
+                      />
 
                       <Button
                         onClick={() => setModalOverviewActive(true)}

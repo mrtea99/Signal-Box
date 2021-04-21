@@ -3,9 +3,10 @@ import PropTypes from "prop-types";
 
 import FormItem from "../../FormItem/FormItem.js";
 
-import styles from "./RunInfoForm.module.css";
 import DataList from "../../DataList/DataList.js";
 import DataListItem from "../../DataList/DataListItem/DataListItem.js";
+
+import styles from "./SetRunInfoForm.module.css";
 
 import productTemplates from "../../../data/productTemplates.json";
 
