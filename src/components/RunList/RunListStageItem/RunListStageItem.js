@@ -87,9 +87,7 @@ function RunListStageItem(props) {
       <li
         className={`${styles.lineItem} ${styles.lineItemFull} ${props.columns[0].className}`}
       >
-        <RunTitle currentRunId={props.currentRunId}>
-          {thisRunData.productInfo.productName}
-        </RunTitle>
+        <RunTitle currentRunId={props.currentRunId} mini />
       </li>
       <li className={`${styles.lineItem} ${props.columns[1].className}`}>
         <span className={styles.cellLabel}>{props.columns[1].copy}</span>

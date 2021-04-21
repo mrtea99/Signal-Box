@@ -119,6 +119,7 @@ const resources = {
       Medium: "Medium",
       Hard: "Hard",
       "Exit Run": "Exit Run",
+      "Production Run of": "Production Run of",
       "Run not found": "Run not found",
       Home: "Home",
       "Delete Run": "Delete Run",

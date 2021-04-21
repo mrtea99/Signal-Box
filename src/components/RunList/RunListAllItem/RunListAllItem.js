@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
 
 import StageNav from "../../StageNav/StageNav";
@@ -8,17 +7,11 @@ import RunTitle from "../RunTitle/RunTitle.js";
 
 import styles from "./RunListAllItem.module.css";
 
-import { selectRun } from "../runsSlice";
-
 /**
  * Displays a single run showing the status for all stages
  */
 
 function RunListAllItem(props) {
-  const thisRunData = useSelector((state) =>
-    selectRun(state, props.currentRunId)
-  );
-
   let history = useHistory();
   const openEditor = function (runUid, stageNum) {
     window.localStorage.setItem("editorBackLoc", window.location.pathname);
@@ -28,9 +21,7 @@ function RunListAllItem(props) {
   return (
     <div>
       <header className={styles.itemHeader}>
-        <RunTitle currentRunId={props.currentRunId}>
-          {thisRunData.productInfo.productName}
-        </RunTitle>
+        <RunTitle currentRunId={props.currentRunId} mini />
       </header>
 
       <StageNav
