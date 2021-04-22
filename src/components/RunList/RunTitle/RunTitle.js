@@ -48,25 +48,6 @@ function RunTitle(props) {
   );
 
   return (
-    // <>
-    //   {miniMode ? (
-    //     <div className={`${styles.itemInfo}`}>
-    //       <h3 className={styles.itemTitle}>
-    //         {/* todo: remove this temp data */}
-    //         {/* {props.children} -{" "} */}
-    //         {exampleProducts[props.currentRunId.toString().charAt(12)]}
-    //       </h3>
-    //       <Button onClick={() => setModalOverviewActive(true)} icon="details" />
-    //       {modalOverviewActive ? (
-    //         <Modal title="Run Overview" setActive={setModalOverviewActive}>
-    //           <Button onClick={() => setModalOverviewActive(false)}>
-    //             {t("Close")}
-    //           </Button>
-    //           <StageOverview currentRunId={props.currentRunId} />
-    //         </Modal>
-    //       ) : null}
-    //     </div>
-    //   ) : (
     <section
       className={`${styles.runInfo} ${miniMode ? styles.runInfoMini : ""}`}
     >
@@ -120,8 +101,6 @@ function RunTitle(props) {
         </div>
       )}
     </section>
-    //   )}
-    // </>
   );
 }
 

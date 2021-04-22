@@ -22,7 +22,8 @@ function AssignmentOpener(props) {
 
   const dispatch = useDispatch();
 
-  const millisecondsPerHour = 3600000;
+  const millisecondsPerMinute = 60000;
+  const millisecondsPerHour = millisecondsPerMinute * 60;
   const shiftTimes = [
     millisecondsPerHour * 9,
     millisecondsPerHour * 12,
@@ -31,14 +32,18 @@ function AssignmentOpener(props) {
 
   //Calculate time at midnight today, so shift time can be added to it
   const dateNow = new Date();
-  const timeToToday = new Date(
+  const dateToday = new Date(
     dateNow.getFullYear(),
     dateNow.getMonth(),
     dateNow.getDate(),
     0,
     0,
     0
-  ).getTime();
+  );
+
+  const timezoneOffset =
+    dateToday.getTimezoneOffset() * -1 * millisecondsPerMinute;
+  const timeToToday = dateToday.getTime() + timezoneOffset;
 
   const defaultFormData = {
     description: "",

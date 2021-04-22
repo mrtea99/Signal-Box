@@ -17,7 +17,8 @@ import Button from "../Button/Button.js";
 function AssignmentCloser(props) {
   const { t } = useTranslation();
 
-  const millisecondsPerHour = 3600000;
+  const millisecondsPerMinute = 60000;
+  const millisecondsPerHour = millisecondsPerMinute * 60;
   const shiftTimes = [
     millisecondsPerHour * 9,
     millisecondsPerHour * 12,
@@ -32,13 +33,17 @@ function AssignmentCloser(props) {
     0,
     0,
     0
-  ).getTime();
+  );
+
+  const timezoneOffset =
+    dateStartRounded.getTimezoneOffset() * -1 * millisecondsPerMinute;
+  const timeStartRounded = dateStartRounded.getTime() + timezoneOffset;
 
   const defaultFormData = {
     description: props.session.notes,
     assignee: props.session.secondaryUser,
-    startDate: dateStartRounded,
-    startTime: dateStart - dateStartRounded,
+    startDate: timeStartRounded,
+    startTime: dateStart - timeStartRounded,
   };
 
   const [formData, setFormData] = useState(defaultFormData);
