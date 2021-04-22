@@ -27,7 +27,7 @@ function RunTitle(props) {
   const simpleMode = viewMode === "simple";
   const miniMode = props.mini;
 
-  const [modalOverviewActive, setModalOverviewActive] = useState(null);
+  const [modalOverviewActive, setModalOverviewActive] = useState(false);
 
   //Temp example product names
   const exampleProducts = [
@@ -48,76 +48,80 @@ function RunTitle(props) {
   );
 
   return (
-    <>
-      {miniMode ? (
-        <div className={`${styles.itemInfo}`}>
-          <h3 className={styles.itemTitle}>
-            {/* todo: remove this temp data */}
-            {/* {props.children} -{" "} */}
-            {exampleProducts[props.currentRunId.toString().charAt(12)]}
-          </h3>
-          <Button
-            onClick={() => setModalOverviewActive(props.currentRunId)}
-            icon="details"
-          />
-          {modalOverviewActive === props.currentRunId ? (
+    // <>
+    //   {miniMode ? (
+    //     <div className={`${styles.itemInfo}`}>
+    //       <h3 className={styles.itemTitle}>
+    //         {/* todo: remove this temp data */}
+    //         {/* {props.children} -{" "} */}
+    //         {exampleProducts[props.currentRunId.toString().charAt(12)]}
+    //       </h3>
+    //       <Button onClick={() => setModalOverviewActive(true)} icon="details" />
+    //       {modalOverviewActive ? (
+    //         <Modal title="Run Overview" setActive={setModalOverviewActive}>
+    //           <Button onClick={() => setModalOverviewActive(false)}>
+    //             {t("Close")}
+    //           </Button>
+    //           <StageOverview currentRunId={props.currentRunId} />
+    //         </Modal>
+    //       ) : null}
+    //     </div>
+    //   ) : (
+    <section
+      className={`${styles.runInfo} ${miniMode ? styles.runInfoMini : ""}`}
+    >
+      <div className={`${styles.runInfoSec} ${styles.runInfoProd}`}>
+        {miniMode ? null : (
+          <h2 className={styles.runInfoTitle}>{t("Production Run of")}:</h2>
+        )}
+        <h3 className={styles.runInfoName}>
+          {/* {thisRunData.productInfo.productName} */}
+          {/* todo: remove temp names */}
+          {exampleProducts[props.currentRunId.toString().charAt(12)]}
+        </h3>
+        {simpleMode || miniMode ? null : (
+          <h4 className={styles.runInfoItem}>
+            {t("Run ID")}: {thisRunData.id}
+          </h4>
+        )}
+      </div>
+      {simpleMode ? null : (
+        <div className={`${styles.runInfoSec} ${styles.runInfoRun}`}>
+          {miniMode ? null : (
+            <div className={styles.infoBox}>
+              <h4 className={styles.runInfoItem}>
+                {t("Status")}: {thisRunData.status}
+              </h4>
+              <h4 className={styles.runInfoItem}>
+                {t("Batches")}: {thisRunData.batchQuantity}
+              </h4>
+            </div>
+          )}
+          <ButtonSpacer>
+            {miniMode ? null : (
+              <SetRunInfo
+                currentRunId={props.currentRunId}
+                thisRunData={thisRunData}
+              />
+            )}
+            <Button
+              onClick={() => setModalOverviewActive(true)}
+              icon="details"
+            />
+          </ButtonSpacer>
+          {modalOverviewActive ? (
             <Modal title="Run Overview" setActive={setModalOverviewActive}>
-              <Button onClick={() => setModalOverviewActive(null)}>
-                Close
+              <Button onClick={() => setModalOverviewActive(false)}>
+                {t("Close")}
               </Button>
               <StageOverview currentRunId={props.currentRunId}></StageOverview>
             </Modal>
           ) : null}
         </div>
-      ) : (
-        <section className={styles.runInfo}>
-          <div className={`${styles.runInfoSec} ${styles.runInfoProd}`}>
-            <h2 className={styles.runInfoTitle}>{t("Production Run of")}:</h2>
-            <h3 className={styles.runInfoName}>
-              {thisRunData.productInfo.productName}
-            </h3>
-            {simpleMode ? null : (
-              <h4 className={styles.runInfoItem}>
-                {t("Run ID")}: {thisRunData.id}
-              </h4>
-            )}
-          </div>
-          {simpleMode ? null : (
-            <div className={`${styles.runInfoSec} ${styles.runInfoRun}`}>
-              <div className={styles.infoBox}>
-                <h4 className={styles.runInfoItem}>
-                  {t("Status")}: {thisRunData.status}
-                </h4>
-                <h4 className={styles.runInfoItem}>
-                  {t("Batches")}: {thisRunData.batchQuantity}
-                </h4>
-              </div>
-              <ButtonSpacer>
-                <SetRunInfo
-                  currentRunId={props.currentRunId}
-                  thisRunData={thisRunData}
-                />
-
-                <Button
-                  onClick={() => setModalOverviewActive(true)}
-                  icon="details"
-                />
-              </ButtonSpacer>
-              {modalOverviewActive ? (
-                <Modal title="Run Overview" setActive={setModalOverviewActive}>
-                  <Button onClick={() => setModalOverviewActive(false)}>
-                    {t("Close")}
-                  </Button>
-                  <StageOverview
-                    currentRunId={props.currentRunId}
-                  ></StageOverview>
-                </Modal>
-              ) : null}
-            </div>
-          )}
-        </section>
       )}
-    </>
+    </section>
+    //   )}
+    // </>
   );
 }
 

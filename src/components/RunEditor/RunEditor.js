@@ -68,7 +68,7 @@ function RunEditor() {
                 {t("Exit Run")}
               </Button>
             </header>
-            <div>
+            <div className={styles.contentPane}>
               <RunTitle currentRunId={thisRunData.id} />
 
               {/* <TableHeader
