@@ -33,9 +33,6 @@ function SessionDuring(props) {
 
   const unitSystem = useContext(UnitSystemContext);
 
-  // todo replace direct conversion with util
-  const ounceGramRatio = 28.3495;
-
   const thisRunData = useSelector((state) =>
     selectRun(state, props.currentRunId)
   );
@@ -74,6 +71,12 @@ function SessionDuring(props) {
     return props.activeSessionData.activity.fields.includes("recipe");
   };
 
+  // todo replace direct conversion with util
+  const convertToMetric = function (weightOz) {
+    const weightGrams = Math.round(weightOz * 28.3495);
+    return weightGrams;
+  };
+
   const activityFields = props.activeSessionData
     ? props.activeSessionData.activity.fields
     : null;
@@ -87,7 +90,7 @@ function SessionDuring(props) {
           const weightOz =
             thisRunData.productInfo.batchWeight * thisRunData.batchQuantity;
 
-          const weightGrams = weightOz * ounceGramRatio;
+          const weightGrams = convertToMetric(weightOz);
 
           weightNode = (
             <DataListItem
@@ -142,7 +145,7 @@ function SessionDuring(props) {
         );
       case 2:
         const weightOz = thisRunData.productInfo.unitWeight;
-        const weightGrams = weightOz * ounceGramRatio;
+        const weightGrams = convertToMetric(weightOz);
 
         return (
           <>
