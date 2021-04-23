@@ -33,6 +33,9 @@ function SessionDuring(props) {
 
   const unitSystem = useContext(UnitSystemContext);
 
+  // todo replace direct conversion with util
+  const ounceGramRatio = 28.3495;
+
   const thisRunData = useSelector((state) =>
     selectRun(state, props.currentRunId)
   );
@@ -84,7 +87,7 @@ function SessionDuring(props) {
           const weightOz =
             thisRunData.productInfo.batchWeight * thisRunData.batchQuantity;
 
-          const weightGrams = weightOz * 28.3495; // todo replace conversion with util
+          const weightGrams = weightOz * ounceGramRatio;
 
           weightNode = (
             <DataListItem
@@ -138,6 +141,9 @@ function SessionDuring(props) {
           </>
         );
       case 2:
+        const weightOz = thisRunData.productInfo.unitWeight;
+        const weightGrams = weightOz * ounceGramRatio;
+
         return (
           <>
             <DataListItem
@@ -149,7 +155,9 @@ function SessionDuring(props) {
             />
             <DataListItem
               dataKey={t("Target Unit Weight")}
-              dataValue={`${thisRunData.productInfo.unitWeight} ozm`}
+              dataValue={
+                unitSystem === "metric" ? `${weightGrams} g` : `${weightOz} oz`
+              }
             />
           </>
         );
