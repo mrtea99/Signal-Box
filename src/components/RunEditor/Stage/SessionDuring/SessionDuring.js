@@ -7,11 +7,11 @@ import Timer from "../../../Timer/Timer.js";
 import Stopwatch from "./Stopwatch/Stopwatch.js";
 import Button from "../../../Button/Button.js";
 import ExpiryDate from "./ExpiryDate/ExpiryDate.js";
-
-import styles from "./SessionDuring.module.css";
 import ButtonSpacer from "../../../Button/ButtonSpacer/ButtonSpacer.js";
 import DataList from "../../../DataList/DataList.js";
 import DataListItem from "../../../DataList/DataListItem/DataListItem.js";
+
+import styles from "./SessionDuring.module.css";
 
 import getItemType from "../../../../utils/getItemType.js";
 

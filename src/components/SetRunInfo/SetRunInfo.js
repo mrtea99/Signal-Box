@@ -59,13 +59,25 @@ function SetRunInfo(props) {
       (obj) => obj.productSKU === props.thisRunData.productInfo.productSKU
     );
   };
-  const [currentTemplate, setCurrentTemplate] = useState(
-    defaultCurrentTemplate
-  );
 
   const defaultBatchQuantity =
     mode === "new" ? 1 : props.thisRunData.batchQuantity;
-  const [batchQuantity, setBatchQuantity] = useState(defaultBatchQuantity);
+
+  const defaultPriority = mode === "new" ? 1 : props.thisRunData.priority;
+
+  const defaultTargetStartDate =
+    mode === "new"
+      ? new Date().toISOString()
+      : props.thisRunData.targetStartDate;
+
+  const defaultFormData = {
+    currentTemplate: defaultCurrentTemplate(),
+    batchQuantity: defaultBatchQuantity,
+    priority: defaultPriority,
+    targetStartDate: defaultTargetStartDate,
+  };
+
+  const [formData, setFormData] = useState(defaultFormData);
 
   const defaultBatchedAssignments = [[], [], [], [], []];
   const [batchedAssignments, setBatchedAssignments] = useState(
@@ -77,8 +89,7 @@ function SetRunInfo(props) {
   const [runStatus, setRunStatus] = useState(defaultRunStatus);
 
   const resetFormState = function () {
-    setCurrentTemplate(defaultCurrentTemplate);
-    setBatchQuantity(defaultBatchQuantity);
+    setFormData(defaultFormData);
     setBatchedAssignments(defaultBatchedAssignments);
     setRunStatus(defaultRunStatus);
   };
@@ -91,11 +102,11 @@ function SetRunInfo(props) {
   };
 
   const handleSubmit = function () {
-    let productInfo = { ...productTemplates[currentTemplate] };
+    let productInfo = { ...productTemplates[formData.currentTemplate] };
 
     mode === "new"
-      ? createRunInfo(productInfo, batchQuantity)
-      : updateRunInfo(productInfo, batchQuantity);
+      ? createRunInfo(productInfo, formData)
+      : updateRunInfo(productInfo, formData);
   };
 
   const handleCancel = function () {
@@ -113,7 +124,7 @@ function SetRunInfo(props) {
     history.push("/");
   };
 
-  const buildRun = function (productTemplateData, batchQuantity) {
+  const buildRun = function (productTemplateData, formData) {
     const newRunId = Date.now();
 
     return {
@@ -122,9 +133,9 @@ function SetRunInfo(props) {
       productSKU: productTemplateData.productSKU,
       status: runStatus,
       outputType: productTemplateData.outputType,
-      priority: 1,
-      targetStartDate: 0,
-      batchQuantity: batchQuantity,
+      priority: formData.priority,
+      targetStartDate: formData.targetStartDate,
+      batchQuantity: formData.batchQuantity,
       activePrep: true,
       consignedManufacturing: 0,
       defectiveManufacturing: 0,
@@ -135,12 +146,11 @@ function SetRunInfo(props) {
       activeStocking: true,
       archived: 0,
       productInfo: productTemplateData,
-      stages: [{}, {}, {}, {}, {}],
     };
   };
 
-  const createRunInfo = function (productTemplateData, batchQuantity) {
-    const newRun = buildRun(productTemplateData, batchQuantity);
+  const createRunInfo = function (productTemplateData, formData) {
+    const newRun = buildRun(productTemplateData, formData);
 
     createRun(newRun);
 
@@ -155,9 +165,21 @@ function SetRunInfo(props) {
     closeModal();
   };
 
-  const updateRunInfo = function (productTemplateData, batchQuantity) {
+  const updateRunInfo = function (productTemplateData, formData) {
     updateRun(props.currentRunId, null, "productInfo", productTemplateData);
-    updateRun(props.currentRunId, null, "batchQuantity", batchQuantity);
+    updateRun(
+      props.currentRunId,
+      null,
+      "batchQuantity",
+      formData.batchQuantity
+    );
+    updateRun(props.currentRunId, null, "priority", formData.priority);
+    updateRun(
+      props.currentRunId,
+      null,
+      "targetStartDate",
+      formData.targetStartDate
+    );
     updateRun(props.currentRunId, null, "status", runStatus);
 
     closeModal();
@@ -174,12 +196,7 @@ function SetRunInfo(props) {
       )}
       {active ? (
         <Modal title={modalTitle} handleCancel={handleCancel}>
-          <RunInfoForm
-            currentTemplate={currentTemplate}
-            setCurrentTemplate={setCurrentTemplate}
-            batchQuantity={batchQuantity}
-            setBatchQuantity={setBatchQuantity}
-          />
+          <RunInfoForm formData={formData} setFormData={setFormData} />
 
           {mode === "new" ? (
             <AssignmentBatcher
@@ -219,7 +236,7 @@ function SetRunInfo(props) {
               {t("Cancel")}
             </Button>
             <Button
-              disabled={currentTemplate === null ? true : false}
+              disabled={formData.currentTemplate === null ? true : false}
               onClick={handleSubmit}
             >
               {mode === "new" ? t("Create New Run") : t("Save")}

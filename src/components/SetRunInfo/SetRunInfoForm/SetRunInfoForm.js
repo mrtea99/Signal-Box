@@ -18,13 +18,16 @@ import { useTranslation } from "react-i18next";
  * Displays product data and calculates unit count.
  */
 
-function RunInfoForm({
-  currentTemplate,
-  setCurrentTemplate,
-  batchQuantity,
-  setBatchQuantity,
-}) {
+function SetRunInfoForm({ formData, setFormData }) {
   const { t } = useTranslation();
+
+  const updateFormData = function (field, value) {
+    let updatedFormData = { ...formData };
+
+    updatedFormData[field] = value;
+
+    setFormData(updatedFormData);
+  };
 
   return (
     <form>
@@ -35,9 +38,13 @@ function RunInfoForm({
             type="select"
             ident="product"
             updateHandler={(value) => {
-              setCurrentTemplate(parseInt(value));
+              updateFormData("currentTemplate", parseInt(value));
             }}
-            value={currentTemplate === null ? "default" : currentTemplate}
+            value={
+              formData.currentTemplate === null
+                ? "default"
+                : formData.currentTemplate
+            }
           >
             <option value="default" disabled>
               {t("Choose a template")}
@@ -48,42 +55,69 @@ function RunInfoForm({
               </option>
             ))}
           </FormItem>
-          {productTemplates[currentTemplate] ? (
+          {productTemplates[formData.currentTemplate] ? (
             <>
               <FormItem
                 label={`${t("Batch Quantity")}:`}
                 type="number"
                 ident="quantity"
                 updateHandler={(value) => {
-                  setBatchQuantity(parseInt(value));
+                  updateFormData("batchQuantity", parseInt(value));
                 }}
-                value={batchQuantity}
+                value={formData.batchQuantity}
                 min="0"
               />
               <p>
                 {t("Unit Quantity")}:{" "}
-                {batchQuantity *
-                  productTemplates[currentTemplate].unitsPerBatch}
+                {formData.batchQuantity *
+                  productTemplates[formData.currentTemplate].unitsPerBatch}
               </p>
             </>
           ) : null}
+          <FormItem
+            label={`${t("Priorty")}:`}
+            type="select"
+            ident="run-priority"
+            updateHandler={(value) => {
+              updateFormData("priority", parseInt(value));
+            }}
+            value={formData.priority === null ? 1 : formData.priority}
+          >
+            {[1, 2, 3, 4, 5].map((priority) => (
+              <option key={"priorty-" + priority} value={priority}>
+                {priority}
+              </option>
+            ))}
+          </FormItem>
+
+          <FormItem
+            ident="run-target-start-date"
+            type="date"
+            label={`${t("Target Start Date")}:`}
+            value={formData.targetStartDate}
+            updateHandler={(value) => {
+              updateFormData("targetStartDate", new Date(value).toISOString());
+            }}
+          />
         </div>
 
         <div className={styles.readOnly}>
-          <h3 className={styles.readOnlyTitle}>Product Info:</h3>
-          {productTemplates[currentTemplate] ? (
+          <h3 className={styles.readOnlyTitle}>{t("Product Info")}:</h3>
+          {productTemplates[formData.currentTemplate] ? (
             <DataList>
               <DataListItem
                 dataKey={t("SKU")}
-                dataValue={productTemplates[currentTemplate].productSKU}
+                dataValue={
+                  productTemplates[formData.currentTemplate].productSKU
+                }
               />
               <DataListItem
                 dataKey={t("Base Name")}
-                dataValue={productTemplates[currentTemplate].baseName}
+                dataValue={productTemplates[formData.currentTemplate].baseName}
               />
               <DataListItem
                 dataKey={t("Base Type")}
-                dataValue={productTemplates[currentTemplate].baseType}
+                dataValue={productTemplates[formData.currentTemplate].baseType}
               />
             </DataList>
           ) : null}
@@ -95,11 +129,9 @@ function RunInfoForm({
   );
 }
 
-RunInfoForm.propTypes = {
-  currentTemplate: PropTypes.number,
-  setCurrentTemplate: PropTypes.func.isRequired,
-  batchQuantity: PropTypes.number.isRequired,
-  setBatchQuantity: PropTypes.func.isRequired,
+SetRunInfoForm.propTypes = {
+  formData: PropTypes.object.isRequired,
+  setFormData: PropTypes.func.isRequired,
 };
 
-export default RunInfoForm;
+export default SetRunInfoForm;
