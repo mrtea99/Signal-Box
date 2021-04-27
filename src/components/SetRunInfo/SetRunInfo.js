@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router";
 import { useTranslation } from "react-i18next";
 
@@ -12,7 +12,7 @@ import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
 import AssignmentBatcher from "../AssignmentOpener/AssignmentBatcher/AssignmentBatcher.js";
 import FormItem from "../FormItem/FormItem.js";
 
-import productTemplates from "../../data/productTemplates.json";
+import { selectAllProductTemplates } from "./productTemplatesSlice.js";
 
 /**
  * Dialog to create / edit a run.
@@ -27,7 +27,9 @@ function SetRunInfo(props) {
 
   const [active, setActive] = useState(false);
 
-  // Redux
+  const productTemplates = useSelector(selectAllProductTemplates);
+
+  // Run Redux
   //----------------------------------------
   const dispatch = useDispatch();
   const createRun = function (newRunData) {

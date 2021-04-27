@@ -3,6 +3,7 @@ import usersReducer from "./components/UserSwitcher/usersSlice.js";
 import runsReducer from "./components/RunList/runsSlice.js";
 import sessionsReducer from "./components/SessionList/sessionsSlice.js";
 import atmosReducer from "./components/AtmosBatcher/atmosSlice.js";
+import productTemplatesReducer from "./components/SetRunInfo/productTemplatesSlice.js";
 
 export default configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export default configureStore({
     runs: runsReducer,
     sessions: sessionsReducer,
     atmos: atmosReducer,
+    productTemplates: productTemplatesReducer,
   },
 });

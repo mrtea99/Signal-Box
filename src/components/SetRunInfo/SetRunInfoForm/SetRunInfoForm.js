@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 
 import FormItem from "../../FormItem/FormItem.js";
@@ -8,14 +9,15 @@ import DataListItem from "../../DataList/DataListItem/DataListItem.js";
 
 import styles from "./SetRunInfoForm.module.css";
 
-import productTemplates from "../../../data/productTemplates.json";
+import { selectAllProductTemplates } from "../productTemplatesSlice.js";
 
 import { useTranslation } from "react-i18next";
 
 /**
  * Form to set run parameters, wither on creation or editing.
- * Users can choose product and batch count required.
- * Displays product data and calculates unit count.
+ * Users can choose product, batch count, priority and start date.
+ * Selected product read-only data is displayed.
+ * Unit count is calculated from batch count.
  */
 
 function SetRunInfoForm({ formData, setFormData }) {
@@ -28,6 +30,10 @@ function SetRunInfoForm({ formData, setFormData }) {
 
     setFormData(updatedFormData);
   };
+
+  const productTemplates = useSelector(selectAllProductTemplates);
+
+  const currentTemplateData = productTemplates[formData.currentTemplate];
 
   return (
     <form>
@@ -55,7 +61,7 @@ function SetRunInfoForm({ formData, setFormData }) {
               </option>
             ))}
           </FormItem>
-          {productTemplates[formData.currentTemplate] ? (
+          {currentTemplateData ? (
             <>
               <FormItem
                 label={`${t("Batch Quantity")}:`}
@@ -67,11 +73,14 @@ function SetRunInfoForm({ formData, setFormData }) {
                 value={formData.batchQuantity}
                 min="0"
               />
-              <p>
-                {t("Unit Quantity")}:{" "}
-                {formData.batchQuantity *
-                  productTemplates[formData.currentTemplate].unitsPerBatch}
-              </p>
+              <DataList>
+                <DataListItem
+                  dataKey={t("Unit Quantity")}
+                  dataValue={
+                    formData.batchQuantity * currentTemplateData.unitsPerBatch
+                  }
+                ></DataListItem>
+              </DataList>
             </>
           ) : null}
           <FormItem
@@ -103,28 +112,24 @@ function SetRunInfoForm({ formData, setFormData }) {
 
         <div className={styles.readOnly}>
           <h3 className={styles.readOnlyTitle}>{t("Product Info")}:</h3>
-          {productTemplates[formData.currentTemplate] ? (
+          {currentTemplateData ? (
             <DataList>
               <DataListItem
                 dataKey={t("SKU")}
-                dataValue={
-                  productTemplates[formData.currentTemplate].productSKU
-                }
+                dataValue={currentTemplateData.productSKU}
               />
               <DataListItem
                 dataKey={t("Base Name")}
-                dataValue={productTemplates[formData.currentTemplate].baseName}
+                dataValue={currentTemplateData.baseName}
               />
               <DataListItem
                 dataKey={t("Base Type")}
-                dataValue={productTemplates[formData.currentTemplate].baseType}
+                dataValue={currentTemplateData.baseType}
               />
             </DataList>
           ) : null}
         </div>
       </div>
-
-      {/* <pre>{JSON.stringify(productTemplates[currentTemplate])}</pre> */}
     </form>
   );
 }
