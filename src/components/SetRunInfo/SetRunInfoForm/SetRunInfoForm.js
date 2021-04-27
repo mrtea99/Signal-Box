@@ -33,7 +33,9 @@ function SetRunInfoForm({ formData, setFormData }) {
 
   const productTemplates = useSelector(selectAllProductTemplates);
 
-  const currentTemplateData = productTemplates[formData.currentTemplate];
+  const currentTemplateData = productTemplates.find(
+    (template) => template.productSKU === formData.currentTemplate
+  );
 
   return (
     <form>
@@ -44,7 +46,7 @@ function SetRunInfoForm({ formData, setFormData }) {
             type="select"
             ident="product"
             updateHandler={(value) => {
-              updateFormData("currentTemplate", parseInt(value));
+              updateFormData("currentTemplate", value);
             }}
             value={
               formData.currentTemplate === null
@@ -55,8 +57,8 @@ function SetRunInfoForm({ formData, setFormData }) {
             <option value="default" disabled>
               {t("Choose a template")}
             </option>
-            {productTemplates.map((template, index) => (
-              <option key={template.productName} value={index}>
+            {productTemplates.map((template) => (
+              <option key={template.productSKU} value={template.productSKU}>
                 {template.productName}
               </option>
             ))}

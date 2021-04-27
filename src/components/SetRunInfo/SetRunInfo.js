@@ -57,9 +57,7 @@ function SetRunInfo(props) {
       return null;
     }
 
-    return productTemplates.findIndex(
-      (obj) => obj.productSKU === props.thisRunData.productInfo.productSKU
-    );
+    return props.thisRunData.productInfo.productSKU;
   };
 
   const defaultBatchQuantity =
@@ -104,7 +102,11 @@ function SetRunInfo(props) {
   };
 
   const handleSubmit = function () {
-    let productInfo = { ...productTemplates[formData.currentTemplate] };
+    let productInfo = {
+      ...productTemplates.find(
+        (template) => template.productSKU === formData.currentTemplate
+      ),
+    };
 
     mode === "new"
       ? createRunInfo(productInfo, formData)
