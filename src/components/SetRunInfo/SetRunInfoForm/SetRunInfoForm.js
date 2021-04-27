@@ -121,12 +121,24 @@ function SetRunInfoForm({ formData, setFormData }) {
                 dataValue={currentTemplateData.productSKU}
               />
               <DataListItem
+                dataKey={t("Product Category")}
+                dataValue={currentTemplateData.productCategory}
+              />
+              <DataListItem
+                dataKey={t("Product Subcategory")}
+                dataValue={currentTemplateData.productSubcategory}
+              />
+              <DataListItem
                 dataKey={t("Base Name")}
                 dataValue={currentTemplateData.baseName}
               />
               <DataListItem
                 dataKey={t("Base Type")}
                 dataValue={currentTemplateData.baseType}
+              />
+              <DataListItem
+                dataKey={t("Base Variation")}
+                dataValue={currentTemplateData.baseVariation}
               />
             </DataList>
           ) : null}
