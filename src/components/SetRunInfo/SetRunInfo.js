@@ -8,7 +8,6 @@ import Modal from "../Modal/Modal.js";
 import RunInfoForm from "./SetRunInfoForm/SetRunInfoForm.js";
 import RunDelete from "./RunDelete/RunDelete.js";
 import Button from "../Button/Button.js";
-import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer.js";
 import AssignmentBatcher from "../AssignmentOpener/AssignmentBatcher/AssignmentBatcher.js";
 import FormItem from "../FormItem/FormItem.js";
 
@@ -199,7 +198,37 @@ function SetRunInfo(props) {
         <Button onClick={() => handleOpen()}>{t("Info")}</Button>
       )}
       {active ? (
-        <Modal title={modalTitle} handleCancel={handleCancel}>
+        <Modal
+          title={modalTitle}
+          handleCancel={handleCancel}
+          controls={
+            <>
+              {mode === "change" ? (
+                <RunDelete
+                  currentRunId={props.currentRunId}
+                  successCallback={() => {
+                    deleteSuccess();
+                  }}
+                />
+              ) : null}
+              <Button
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleCancel();
+                }}
+                color="cancel"
+              >
+                {t("Cancel")}
+              </Button>
+              <Button
+                disabled={formData.currentTemplate === null ? true : false}
+                onClick={handleSubmit}
+              >
+                {mode === "new" ? t("Create New Run") : t("Save")}
+              </Button>
+            </>
+          }
+        >
           <RunInfoForm formData={formData} setFormData={setFormData} />
 
           {mode === "new" ? (
@@ -220,32 +249,6 @@ function SetRunInfo(props) {
               setRunStatus(value);
             }}
           />
-
-          <ButtonSpacer align="right">
-            {mode === "change" ? (
-              <RunDelete
-                currentRunId={props.currentRunId}
-                successCallback={() => {
-                  deleteSuccess();
-                }}
-              />
-            ) : null}
-            <Button
-              onClick={(e) => {
-                e.preventDefault();
-                handleCancel();
-              }}
-              color="cancel"
-            >
-              {t("Cancel")}
-            </Button>
-            <Button
-              disabled={formData.currentTemplate === null ? true : false}
-              onClick={handleSubmit}
-            >
-              {mode === "new" ? t("Create New Run") : t("Save")}
-            </Button>
-          </ButtonSpacer>
         </Modal>
       ) : null}
     </>

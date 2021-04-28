@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { createPortal } from "react-dom";
 
+import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer";
+
 import styles from "./Modal.module.css";
 
 /**
@@ -25,8 +27,23 @@ function Modal(props) {
   return createPortal(
     <div className={styles.modalOuter} onClick={(e) => outerClickClose(e)}>
       <div className={styles.modalInner}>
-        {props.title ? <h3 className={styles.title}>{props.title}</h3> : null}
-        {props.children}
+        {props.title ? (
+          <header className={styles.titleHeader}>
+            <h3 className={styles.title}>{props.title}</h3>
+          </header>
+        ) : null}
+        <div
+          className={`${styles.content} ${
+            props.title ? styles.contentWithTitle : null
+          }`}
+        >
+          {props.children}
+        </div>
+        {props.controls ? (
+          <footer className={styles.controlsFooter}>
+            <ButtonSpacer align="right">{props.controls}</ButtonSpacer>
+          </footer>
+        ) : null}
       </div>
     </div>,
     mount
@@ -36,6 +53,7 @@ function Modal(props) {
 Modal.propTypes = {
   title: PropTypes.string,
   children: PropTypes.node,
+  controls: PropTypes.node,
   setActive: PropTypes.func,
   handleCancel: PropTypes.func,
 };

@@ -91,10 +91,15 @@ function RunTitle(props) {
             />
           </ButtonSpacer>
           {modalOverviewActive ? (
-            <Modal title="Run Overview" setActive={setModalOverviewActive}>
-              <Button onClick={() => setModalOverviewActive(false)}>
-                {t("Close")}
-              </Button>
+            <Modal
+              title="Run Overview"
+              setActive={setModalOverviewActive}
+              controls={
+                <Button onClick={() => setModalOverviewActive(false)}>
+                  {t("Close")}
+                </Button>
+              }
+            >
               <StageOverview currentRunId={props.currentRunId}></StageOverview>
             </Modal>
           ) : null}

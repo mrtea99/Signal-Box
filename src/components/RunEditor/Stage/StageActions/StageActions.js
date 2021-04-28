@@ -84,7 +84,20 @@ function StageActions(props) {
                     {t("Complete Stage")}
                   </Button>
                   {modalActive ? (
-                    <Modal setActive={setModalActive}>
+                    <Modal
+                      setActive={setModalActive}
+                      title={t("Complete Stage")}
+                      controls={
+                        <Button
+                          onClick={() => {
+                            setModalActive(false);
+                          }}
+                          color="cancel"
+                        >
+                          {t("Cancel")}
+                        </Button>
+                      }
+                    >
                       <ButtonSpacer direction="vert">
                         <Button onClick={completeStage}>
                           {t("Complete Stage")}
@@ -109,15 +122,6 @@ function StageActions(props) {
                             </Button>
                           </>
                         ) : null}
-                        <br />
-                        <Button
-                          onClick={() => {
-                            setModalActive(false);
-                          }}
-                          color="cancel"
-                        >
-                          {t("Cancel")}
-                        </Button>
                       </ButtonSpacer>
                     </Modal>
                   ) : null}

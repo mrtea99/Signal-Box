@@ -1,4 +1,10 @@
 .modalOuter {
+  --width-modal-border: 0.2rem;
+  --color-modal-border: var(--color-grey-darker);
+  --width-modal-padding: 1rem;
+  --height-modal-padding: 0.6rem;
+  --size-modal-margin: 1rem;
+
   position: fixed;
   top: 0;
   right: 0;
@@ -9,23 +15,39 @@
 }
 
 .modalInner {
-  --size-modal-margin: 1rem;
-
   position: absolute;
   top: 50%;
   left: 50%;
   background-color: var(--color-bg);
   transform: translate(-50%, -50%);
-  padding: 1rem;
+
   max-height: calc(100vh - (var(--size-modal-margin) * 2));
   max-width: calc(100vw - (var(--size-modal-margin) * 2));
-  /* min-height: 30vh; */
   min-width: 30vw;
   overflow: scroll;
 }
 
+.titleHeader {
+  border-bottom: var(--width-modal-border) solid var(--color-modal-border);
+  background-color: var(--color-grey-bright);
+  padding: var(--height-modal-padding) var(--width-modal-padding);
+}
+
 .title {
-  margin: 0 0 1rem 0;
+  margin: 0;
   font-size: var(--text-large);
-  text-decoration: underline;
+}
+
+.content {
+  padding: var(--width-modal-padding);
+}
+
+.contentWithTitle {
+  border-top: 0;
+}
+
+.controlsFooter {
+  border-top: var(--width-modal-border) solid var(--color-modal-border);
+  background-color: var(--color-grey-bright);
+  padding: var(--height-modal-padding) var(--width-modal-padding);
 }

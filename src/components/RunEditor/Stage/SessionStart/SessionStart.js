@@ -50,9 +50,7 @@ function SessionStart(props) {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = function (e) {
-    e.preventDefault();
-
+  const handleSubmit = function () {
     const newsessionId = Date.now();
 
     // Dispatch new session
@@ -161,7 +159,20 @@ function SessionStart(props) {
         {t("Start New Session")}
       </Button>
       {modalActive ? (
-        <Modal title={t("Start New Session")} handleCancel={handleCancel}>
+        <Modal
+          title={t("Start New Session")}
+          handleCancel={handleCancel}
+          controls={
+            <>
+              <Button onClick={() => handleCancel()} color="cancel">
+                {t("Cancel")}
+              </Button>
+              <Button onClick={() => handleSubmit()} icon="start">
+                {t("Start New Session")}
+              </Button>
+            </>
+          }
+        >
           <AssignmentList
             assignSessions={assignSessions}
             resolvedAssignments={resolvedAssignments}

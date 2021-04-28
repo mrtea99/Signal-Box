@@ -28,12 +28,12 @@ function SessionEnd(props) {
       </Button>
       {modalActive ? (
         <Modal
-          // title={`End ${props.activeSessionData.activity.name} Session`}
           title={t("End This Session", {
             sessionName: props.activeSessionData.activity.name,
           })}
           setActive={setModalActive}
         >
+          {/* todo: move form controls into modal component */}
           <SessionEndForm
             setFormActive={setModalActive}
             thisStage={props.thisStage}

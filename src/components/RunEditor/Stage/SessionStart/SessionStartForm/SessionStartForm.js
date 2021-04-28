@@ -2,8 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
-import Button from "../../../../Button/Button.js";
-import ButtonSpacer from "../../../../Button/ButtonSpacer/ButtonSpacer.js";
 import FormItem from "../../../../FormItem/FormItem.js";
 import UserSelect from "../../../../FormItem/UserSelect/UserSelect.js";
 import AtmosBatcher from "../../../../AtmosBatcher/AtmosBatcher.js";
@@ -68,14 +66,6 @@ function SessionStartForm(props) {
           setAtmosData={updateAtmosData}
         />
       ) : null}
-      <ButtonSpacer align="right">
-        <Button onClick={() => props.handleCancel()} color="cancel">
-          {t("Cancel")}
-        </Button>
-        <Button onClick={props.handleNewClick} icon="start">
-          {t("Start New Session")}
-        </Button>
-      </ButtonSpacer>
     </form>
   );
 }

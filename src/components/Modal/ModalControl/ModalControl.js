@@ -86,7 +86,25 @@ function ModalControl(props) {
         {props.triggerCopy}
       </Button>
       {modalActive ? (
-        <Modal title={props.title} handleCancel={handleCancel}>
+        <Modal
+          title={props.title}
+          handleCancel={handleCancel}
+          controls={
+            props.pages ? (
+              <ButtonSpacer align="right">
+                <>{cancelButton()}</>
+                {props.handleSubmit && pageNumber === props.pages.length - 1 ? (
+                  <>{submitButton()}</>
+                ) : null}
+              </ButtonSpacer>
+            ) : (
+              <ButtonSpacer align="right">
+                <>{cancelButton()}</>
+                {props.handleSubmit ? <>{submitButton()}</> : null}
+              </ButtonSpacer>
+            )
+          }
+        >
           {props.pages ? (
             <>
               <Pager
@@ -96,26 +114,9 @@ function ModalControl(props) {
               >
                 Test
               </Pager>
-              <br />
-              <ButtonSpacer align="right">
-                <>{cancelButton()}</>
-                {props.handleSubmit && pageNumber === props.pages.length - 1 ? (
-                  <>{submitButton()}</>
-                ) : null}
-              </ButtonSpacer>
             </>
           ) : (
-            <>
-              {props.children}
-              {props.handleSubmit ? (
-                <ButtonSpacer align="right">
-                  <>{cancelButton()}</>
-                  <>{submitButton()}</>
-                </ButtonSpacer>
-              ) : (
-                <>{cancelButton()}</>
-              )}
-            </>
+            <>{props.children}</>
           )}
         </Modal>
       ) : null}
