@@ -9,7 +9,9 @@ import styles from "./Button.module.css";
  */
 
 function Button(props) {
-  let styleClasses = styles.button;
+  let styleClasses = props.className
+    ? props.className + " " + styles.button
+    : styles.button;
 
   if (props.fillWidth) {
     styleClasses += " " + styles.buttonFillWidth;
@@ -66,7 +68,7 @@ function Button(props) {
 
   return (
     <OuterElem>
-      <span className={styles.copy}>{props.children}</span>
+      {props.children ? <span>{props.children}</span> : null}
       {props.icon ? (
         <span className={styles.iconWrapper}>
           <Icon name={props.icon} className={styles.icon}></Icon>

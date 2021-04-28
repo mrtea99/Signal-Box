@@ -31,11 +31,19 @@
   border-bottom: var(--width-modal-border) solid var(--color-modal-border);
   background-color: var(--color-grey-bright);
   padding: var(--height-modal-padding) var(--width-modal-padding);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .title {
   margin: 0;
   font-size: var(--text-large);
+}
+
+.titleClose {
+  margin-left: 1rem;
 }
 
 .content {

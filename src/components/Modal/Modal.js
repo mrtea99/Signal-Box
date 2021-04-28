@@ -2,9 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import { createPortal } from "react-dom";
 
+import Button from "../Button/Button";
 import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer";
 
 import styles from "./Modal.module.css";
+import Icon from "../Icon/Icon";
 
 /**
  * Uses a portal to make a dialog box
@@ -15,12 +17,16 @@ function Modal(props) {
 
   const outerClickClose = function (e) {
     if (e.target === e.currentTarget) {
-      if (props.setActive) {
-        props.setActive(false);
-      }
-      if (props.handleCancel) {
-        props.handleCancel();
-      }
+      closeModal();
+    }
+  };
+
+  const closeModal = function () {
+    if (props.setActive) {
+      props.setActive(false);
+    }
+    if (props.handleCancel) {
+      props.handleCancel();
     }
   };
 
@@ -30,6 +36,12 @@ function Modal(props) {
         {props.title ? (
           <header className={styles.titleHeader}>
             <h3 className={styles.title}>{props.title}</h3>
+            <Button
+              color="cancel"
+              className={styles.titleClose}
+              onClick={() => closeModal()}
+              icon={"cross"}
+            />
           </header>
         ) : null}
         <div
