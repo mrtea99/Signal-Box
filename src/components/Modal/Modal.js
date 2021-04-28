@@ -6,7 +6,6 @@ import Button from "../Button/Button";
 import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer";
 
 import styles from "./Modal.module.css";
-import Icon from "../Icon/Icon";
 
 /**
  * Uses a portal to make a dialog box
