@@ -46,6 +46,12 @@
   flex-direction: column;
   justify-content: space-between;
 }
+.stageControl > * {
+  margin-bottom: 0.75rem;
+}
+.stageControl > *:last-child {
+  margin-bottom: 0;
+}
 
 .stageStatus {
   margin: 0;
