@@ -7,6 +7,7 @@ import Stage from "./Stage/Stage.js";
 import StageNav from "../StageNav/StageNav.js";
 import Button from "../Button/Button.js";
 // import TableHeader from "../TableHeader/TableHeader.js";
+import RunTitle from "../RunList/RunTitle/RunTitle.js";
 
 import styles from "./RunEditor.module.css";
 
@@ -15,9 +16,9 @@ import { selectRun } from "../RunList/runsSlice.js";
 // import stageNames from "../../data/stageNames.json";
 
 import ViewModeContext from "../../contexts/ViewModeContext.js";
+import SiteThemeContext from "../../contexts/SiteThemeContext.js";
 
 import { useTranslation } from "react-i18next";
-import RunTitle from "../RunList/RunTitle/RunTitle.js";
 
 /**
  * Displays the main run editor view
@@ -25,6 +26,9 @@ import RunTitle from "../RunList/RunTitle/RunTitle.js";
 
 function RunEditor() {
   const { t } = useTranslation();
+
+  const siteTheme = useContext(SiteThemeContext);
+  const lightTheme = siteTheme === "light";
 
   // Router
   //----------------------
@@ -61,7 +65,11 @@ function RunEditor() {
   return (
     <>
       {thisRunData ? (
-        <div className={`${styles.runEditor} ${styles.runEditorActive}`}>
+        <div
+          className={`${styles.runEditor} ${styles.runEditorActive} ${
+            lightTheme ? styles.runEditorLight : null
+          }`}
+        >
           <div className={styles.inner}>
             <header className={styles.controlBar}>
               <Button onClick={() => handleExitClick()} icon="cross" iconFirst>

@@ -13,6 +13,7 @@
   border-top: none;
   height: 100%;
   background-color: var(--color-grey-dark);
+  color: var(--color-text);
 }
 
 .sessionPlaceholder {

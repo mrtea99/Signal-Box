@@ -1,4 +1,5 @@
 .runInfo {
+  color: var(--color-text);
   background-color: var(--color-grey-bright);
   display: flex;
   flex-direction: column;

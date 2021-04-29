@@ -21,6 +21,10 @@
   pointer-events: all;
 }
 
+.runEditorLight {
+  background-color: var(--color-bg-light);
+}
+
 .controlBar {
   display: flex;
   flex-direction: row;
@@ -30,6 +34,12 @@
 
 .contentPane {
   margin-top: 1em;
+  background-color: var(--color-fg);
+}
+
+.runEditorLight .contentPane {
+  color: var(--color-text-alt);
+  background-color: var(--color-fg-light);
 }
 
 .inner {

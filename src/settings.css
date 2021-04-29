@@ -32,6 +32,9 @@
   --color-bg: var(--color-grey-dark);
   --color-fg: var(--color-grey-light);
 
+  --color-bg-light: var(--color-white);
+  --color-fg-light: var(--color-pink-light);
+
   --color-cancel: var(--color-grey-darker);
   --color-qa: var(--color-purple);
   --color-note: var(--color-pink);

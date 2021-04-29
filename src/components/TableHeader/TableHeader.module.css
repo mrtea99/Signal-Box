@@ -1,10 +1,10 @@
-
 .headerList {
   display: flex;
   flex-direction: row;
   margin: 0;
   padding: 0;
   background-color: var(--color-accent);
+  color: var(--color-text);
   justify-content: space-around;
 }
 
@@ -17,4 +17,3 @@
   text-align: center;
   width: 100%;
 }
-
