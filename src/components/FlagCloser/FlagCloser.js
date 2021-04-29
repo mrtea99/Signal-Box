@@ -58,8 +58,7 @@ function FlagCloser(props) {
         type: "sessions/end",
         payload: {
           sessionId: props.session.sessionId,
-          extraData: { notes: newNote, amount: priority },
-          endTime: dateNow,
+          extraData: { notes: newNote, amount: priority, endTime: dateNow },
         },
       });
     } else {
