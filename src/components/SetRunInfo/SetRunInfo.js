@@ -21,7 +21,13 @@ function SetRunInfo(props) {
   const { t } = useTranslation();
 
   const mode = props.currentRunId ? "change" : "new";
-  const runStatuses = ["Not Started", "In Progress", "Complete", "Archived"];
+  const runStatuses = [
+    "Not Started",
+    "In Progress",
+    "Complete",
+    "Archived",
+    "Abandoned",
+  ];
   const modalTitle = mode === "new" ? "Create New Run" : "Edit Run Info";
 
   const [active, setActive] = useState(false);

@@ -86,7 +86,7 @@ function SetRunInfoForm({ formData, setFormData }) {
             </>
           ) : null}
           <FormItem
-            label={`${t("Priorty")}:`}
+            label={`${t("Priority")}:`}
             type="select"
             ident="run-priority"
             updateHandler={(value) => {
@@ -95,7 +95,7 @@ function SetRunInfoForm({ formData, setFormData }) {
             value={formData.priority === null ? 1 : formData.priority}
           >
             {[1, 2, 3, 4, 5].map((priority) => (
-              <option key={"priorty-" + priority} value={priority}>
+              <option key={"Priority-" + priority} value={priority}>
                 {priority}
               </option>
             ))}
