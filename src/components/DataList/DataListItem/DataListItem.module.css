@@ -16,6 +16,7 @@
   width: 5rem;
   text-align: right;
   background-color: var(--color-grey-bright);
+  color: var(--color-text);
 }
 
 @media (min-width: 768px) {
@@ -28,4 +29,5 @@
 .value {
   flex-grow: 1;
   background-color: var(--color-grey-darker);
+  color: var(--color-text);
 }
