@@ -17,6 +17,19 @@ function AtmosBatcher(props) {
 
   const locations = ["Front room", "Kitchen", "Back room"];
 
+  // Set the index of the default location based on the current stage
+  let defaultLocation;
+  switch (props.thisStage) {
+    case 2:
+      defaultLocation = 1;
+      break;
+    case 3:
+      defaultLocation = 2;
+      break;
+    default:
+      defaultLocation = 0;
+  }
+
   const addItem = function () {
     const newAtmosData = [...props.atmosData];
 
@@ -24,7 +37,7 @@ function AtmosBatcher(props) {
       id: Date.now(),
       temperature: 75,
       humidity: 50,
-      location: locations[0],
+      location: locations[defaultLocation],
       notes: "",
       primary: false,
     };
@@ -107,13 +120,13 @@ function AtmosBatcher(props) {
               }
             >
               {locations.map((location) => (
-                <option key={location} value={t(location)}>
-                  {location}
+                <option key={location} value={location}>
+                  {t(location)}
                 </option>
               ))}
             </FormItem>
             <Button color="delete" onClick={() => deleteItem(atmosItem.id)}>
-              Delete
+              {t("Delete")}
             </Button>
           </li>
         ))}
@@ -129,6 +142,7 @@ function AtmosBatcher(props) {
 AtmosBatcher.propTypes = {
   atmosData: PropTypes.array.isRequired,
   setAtmosData: PropTypes.func.isRequired,
+  thisStage: PropTypes.number,
 };
 
 export default AtmosBatcher;

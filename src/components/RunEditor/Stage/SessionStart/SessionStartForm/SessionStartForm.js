@@ -64,6 +64,7 @@ function SessionStartForm(props) {
         <AtmosBatcher
           atmosData={props.formData.atmosData}
           setAtmosData={updateAtmosData}
+          thisStage={props.thisStage}
         />
       ) : null}
     </form>
