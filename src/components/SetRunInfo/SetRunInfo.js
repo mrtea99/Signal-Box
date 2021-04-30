@@ -241,6 +241,7 @@ function SetRunInfo(props) {
             <AssignmentBatcher
               batchedAssignments={batchedAssignments}
               setBatchedAssignments={setBatchedAssignments}
+              dateDefault={formData.targetStartDate}
             />
           ) : null}
 

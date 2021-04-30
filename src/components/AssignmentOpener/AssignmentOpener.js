@@ -30,8 +30,8 @@ function AssignmentOpener(props) {
     millisecondsPerHour * 15,
   ];
 
-  //Calculate time at midnight today, so shift time can be added to it
-  const dateNow = new Date();
+  //Calculate time at midnight, so shift time can be added to it
+  const dateNow = props.dateDefault ? new Date(props.dateDefault) : new Date();
   const dateToday = new Date(
     dateNow.getFullYear(),
     dateNow.getMonth(),
@@ -84,10 +84,10 @@ function AssignmentOpener(props) {
       });
     }
 
-    handleCancel();
+    resetFormData();
   };
 
-  const handleCancel = function () {
+  const resetFormData = function () {
     setFormData(defaultFormData);
   };
 
@@ -95,7 +95,8 @@ function AssignmentOpener(props) {
     <ModalControl
       title={t("Assign Stage")}
       handleSubmit={handleSubmit}
-      handleCancel={handleCancel}
+      handleCancel={resetFormData}
+      handleOpen={resetFormData}
       triggerCopy={props.triggerCopy || t("Assign Stage")}
       buttonAttrs={
         props.buttonAttrs || {
@@ -123,6 +124,7 @@ AssignmentOpener.propTypes = {
   addAssignment: PropTypes.func,
   triggerCopy: PropTypes.string,
   buttonAttrs: PropTypes.object,
+  dateDefault: PropTypes.string,
 };
 
 export default AssignmentOpener;

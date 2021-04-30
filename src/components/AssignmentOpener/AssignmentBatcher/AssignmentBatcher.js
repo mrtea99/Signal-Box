@@ -86,6 +86,7 @@ function AssignmentBatcher(props) {
                 color: "assign",
                 icon: "plus",
               }}
+              dateDefault={props.dateDefault}
             />
           </li>
         ))}
@@ -97,6 +98,7 @@ function AssignmentBatcher(props) {
 AssignmentBatcher.propTypes = {
   batchedAssignments: PropTypes.array.isRequired,
   setBatchedAssignments: PropTypes.func.isRequired,
+  dateDefault: PropTypes.string,
 };
 
 export default AssignmentBatcher;
