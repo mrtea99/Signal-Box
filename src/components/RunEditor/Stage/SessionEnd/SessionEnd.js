@@ -47,31 +47,48 @@ function SessionEnd(props) {
   const dispatch = useDispatch();
 
   // After Statuses
+  const defaultFormData = {
+    noteData: props.activeSessionData["notes"] || "",
+    amount: props.activeSessionData["amount"] || (showAmounts ? 0 : null),
+    amountBad: props.activeSessionData["amountBad"] || (showAmounts ? 0 : null),
+    averageWeight:
+      props.activeSessionData["averageWeight"] || (showWeight ? 0 : null),
+    skipQa:
+      props.thisStage === 0 || props.thisStage === 4 || !showQa ? true : false,
+    qaFormData: {
+      notes: "",
+      extra: "now",
+    },
+  };
+
   // Notes (all)
-  const [noteData, setNoteData] = useState(
-    props.activeSessionData["notes"] || ""
-  );
+  const [noteData, setNoteData] = useState(defaultFormData.noteData);
   // Amount made (manu, pack, label)
-  const [amount, setAmount] = useState(
-    props.activeSessionData["amount"] || (showAmounts ? 0 : null)
-  );
+  const [amount, setAmount] = useState(defaultFormData.amount);
   // Amount Bad (manu, pack, label)
-  const [amountBad, setAmountBad] = useState(
-    props.activeSessionData["amountBad"] || (showAmounts ? 0 : null)
-  );
+  const [amountBad, setAmountBad] = useState(defaultFormData.amountBad);
   // Average unit/batch weight (manu, pack)
   const [averageWeight, setAverageWeight] = useState(
-    props.activeSessionData["averageWeight"] || (showWeight ? 0 : null)
+    defaultFormData.averageWeight
   );
 
-  const [skipQa, setSkipQa] = useState(
-    props.thisStage === 0 || props.thisStage === 4 || !showQa ? true : false
-  );
+  const [skipQa, setSkipQa] = useState(defaultFormData.skipQa);
+  const [qaFormData, setQaFormData] = useState(defaultFormData.qaFormData);
 
-  const [qaFormData, setQaFormData] = useState({
-    notes: "",
-    extra: "now",
-  });
+  const resetFormData = function () {
+    setNoteData(defaultFormData.noteData);
+    setAmount(defaultFormData.amount);
+    setAmountBad(defaultFormData.amountBad);
+    setAverageWeight(defaultFormData.averageWeight);
+    setSkipQa(defaultFormData.skipQa);
+    setQaFormData(defaultFormData.qaFormData);
+  };
+
+  const handleOpen = function () {
+    resetFormData();
+
+    setModalActive(true);
+  };
 
   const handleEndClick = function () {
     //Start QA Session
@@ -149,12 +166,7 @@ function SessionEnd(props) {
 
   return (
     <div className={props.className}>
-      <Button
-        onClick={() => setModalActive(true)}
-        fillWidth
-        icon="stop"
-        featured
-      >
+      <Button onClick={handleOpen} fillWidth icon="stop" featured>
         End Session
       </Button>
       {modalActive ? (
