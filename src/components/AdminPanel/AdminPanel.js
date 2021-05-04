@@ -62,7 +62,7 @@ function AdminPanel() {
       <TabBox
         activeBox={activeBox}
         changeActiveBox={changeActiveBox}
-        boxes={[t("All"), ...stageNames].map((stage, index) => ({
+        boxes={[t("All Stages"), ...stageNames].map((stage, index) => ({
           label: stage,
           content: (
             <RunList

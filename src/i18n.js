@@ -6,7 +6,7 @@ import { initReactI18next } from "react-i18next";
 const resources = {
   en: {
     translation: {
-      All: "All",
+      All: "All Stages",
       "Edit Assignment": "Edit Assignment",
       Assigner: "Assigner",
       Status: "Status",
