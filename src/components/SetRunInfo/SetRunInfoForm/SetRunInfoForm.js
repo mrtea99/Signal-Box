@@ -37,6 +37,21 @@ function SetRunInfoForm({ formData, setFormData }) {
     (template) => template.productSKU === formData.currentTemplate
   );
 
+  const incomingInventory = useSelector((state) => {
+    if (currentTemplateData) {
+      const sameProductRuns = state.runs.runsList.filter(
+        (run) => run.productSKU === currentTemplateData.productSKU
+      );
+
+      let totalManufactured = 0;
+      sameProductRuns.forEach((run) => {
+        totalManufactured += run.consignedManufacturing;
+      });
+
+      return totalManufactured * currentTemplateData.unitsPerBatch;
+    }
+  });
+
   return (
     <form>
       <div className={styles.formMain}>
@@ -116,6 +131,14 @@ function SetRunInfoForm({ formData, setFormData }) {
           <h3 className={styles.readOnlyTitle}>{t("Product Info")}:</h3>
           {currentTemplateData ? (
             <DataList>
+              <DataListItem
+                dataKey={t("Shopify Inventory")}
+                dataValue={"TODO"}
+              />
+              <DataListItem
+                dataKey={t("Incoming Inventory")}
+                dataValue={incomingInventory}
+              />
               <DataListItem
                 dataKey={t("SKU")}
                 dataValue={currentTemplateData.productSKU}

@@ -175,6 +175,24 @@ function SetRunInfo(props) {
   };
 
   const updateRunInfo = function (productTemplateData, formData) {
+    updateRun(
+      props.currentRunId,
+      null,
+      "productName",
+      productTemplateData.productName
+    );
+    updateRun(
+      props.currentRunId,
+      null,
+      "productSKU",
+      productTemplateData.productSKU
+    );
+    updateRun(
+      props.currentRunId,
+      null,
+      "outputType",
+      productTemplateData.outputType
+    );
     updateRun(props.currentRunId, null, "productInfo", productTemplateData);
     updateRun(
       props.currentRunId,

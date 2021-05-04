@@ -132,6 +132,7 @@ const resources = {
       "Product Info": "Product Info",
       "Product Category": "Product Category",
       "Product Subcategory": "Product Subcategory",
+      "Incoming Inventory": "Incoming Inventory",
       SKU: "SKU",
       "Base Name": "Base Name",
       "Base Type": "Base Type",
