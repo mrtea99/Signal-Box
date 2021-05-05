@@ -49,10 +49,10 @@ function AssignmentOpenerForm(props) {
         type="toggleButton"
         ident="assignment-time"
         itemLabels={["Morning", "Noon", "Afternoon"]}
-        itemValues={props.shiftTimes}
+        itemValues={["morning", "noon", "afternoon"]}
         value={props.formData.startTime}
         updateHandler={(value) => {
-          props.setFormData({ ...props.formData, startTime: parseInt(value) });
+          props.setFormData({ ...props.formData, startTime: value });
         }}
       />
     </>

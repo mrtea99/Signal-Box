@@ -9,6 +9,8 @@ import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 
 // import stageNames from "../../data/stageNames.json";
 
+import { getShiftTime } from "../../utils/getShiftTime.js";
+
 import { useTranslation } from "react-i18next";
 
 /**
@@ -22,34 +24,14 @@ function AssignmentOpener(props) {
 
   const dispatch = useDispatch();
 
-  const millisecondsPerMinute = 60000;
-  const millisecondsPerHour = millisecondsPerMinute * 60;
-  const shiftTimes = [
-    millisecondsPerHour * 9,
-    millisecondsPerHour * 12,
-    millisecondsPerHour * 15,
-  ];
-
   //Calculate time at midnight, so shift time can be added to it
-  const dateNow = props.dateDefault ? new Date(props.dateDefault) : new Date();
-  const dateToday = new Date(
-    dateNow.getFullYear(),
-    dateNow.getMonth(),
-    dateNow.getDate(),
-    0,
-    0,
-    0
-  );
-
-  const timezoneOffset =
-    dateToday.getTimezoneOffset() * -1 * millisecondsPerMinute;
-  const timeToToday = dateToday.getTime() + timezoneOffset;
+  const baseDate = props.dateDefault ? new Date(props.dateDefault) : new Date();
 
   const defaultFormData = {
     description: "",
     assignee: null,
-    startDate: timeToToday,
-    startTime: shiftTimes[0],
+    startDate: baseDate.getTime(),
+    startTime: "morning",
   };
 
   const [formData, setFormData] = useState(defaultFormData);
@@ -64,7 +46,7 @@ function AssignmentOpener(props) {
       stage: props.thisStage,
       type: "assign",
       startTime: new Date(
-        formData.startDate + formData.startTime
+        getShiftTime(formData.startTime, formData.startDate)
       ).toISOString(),
       endTime: null,
       user: activeUser,
@@ -111,7 +93,6 @@ function AssignmentOpener(props) {
           formData={formData}
           setFormData={setFormData}
           thisStage={props.thisStage}
-          shiftTimes={shiftTimes}
         />
       </form>
     </ModalControl>

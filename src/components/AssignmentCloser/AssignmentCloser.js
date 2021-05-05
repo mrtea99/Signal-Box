@@ -6,9 +6,11 @@ import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import AssignmentOpenerForm from "../AssignmentOpener/AssignmentOpenerForm/AssignmentOpenerForm.js";
 import FormItem from "../FormItem/FormItem.js";
 import UserName from "../UserSwitcher/UserName/UserName.js";
+import Button from "../Button/Button.js";
+
+import { getShiftName, getShiftTime } from "../../utils/getShiftTime.js";
 
 import { useTranslation } from "react-i18next";
-import Button from "../Button/Button.js";
 
 /**
  * Dialog for editing / ending an assignment session
@@ -17,33 +19,11 @@ import Button from "../Button/Button.js";
 function AssignmentCloser(props) {
   const { t } = useTranslation();
 
-  const millisecondsPerMinute = 60000;
-  const millisecondsPerHour = millisecondsPerMinute * 60;
-  const shiftTimes = [
-    millisecondsPerHour * 9,
-    millisecondsPerHour * 12,
-    millisecondsPerHour * 15,
-  ];
-
-  const dateStart = new Date(props.session.startTime);
-  const dateStartRounded = new Date(
-    dateStart.getFullYear(),
-    dateStart.getMonth(),
-    dateStart.getDate(),
-    0,
-    0,
-    0
-  );
-
-  const timezoneOffset =
-    dateStartRounded.getTimezoneOffset() * -1 * millisecondsPerMinute;
-  const timeStartRounded = dateStartRounded.getTime() + timezoneOffset;
-
   const defaultFormData = {
     description: props.session.notes,
     assignee: props.session.secondaryUser,
-    startDate: timeStartRounded,
-    startTime: dateStart - timeStartRounded,
+    startDate: props.session.startTime,
+    startTime: getShiftName(props.session.startTime),
   };
 
   const [formData, setFormData] = useState(defaultFormData);
@@ -66,7 +46,7 @@ function AssignmentCloser(props) {
             notes: formData.description,
             secondaryUser: formData.assignee,
             startTime: new Date(
-              formData.startDate + formData.startTime
+              getShiftTime(formData.startTime, formData.startDate)
             ).toISOString(),
             endTime: new Date().toISOString(),
             extra: status,
@@ -81,7 +61,9 @@ function AssignmentCloser(props) {
           extraData: {
             notes: formData.description,
             secondaryUser: formData.assignee,
-            startTime: formData.startDate + formData.startTime,
+            startTime: new Date(
+              getShiftTime(formData.startTime, formData.startDate)
+            ).toISOString(),
           },
         },
       });
@@ -121,7 +103,6 @@ function AssignmentCloser(props) {
             formData={formData}
             setFormData={setFormData}
             thisStage={props.thisStage}
-            shiftTimes={shiftTimes}
           />
           <FormItem
             label={`${t("Status")}:`}
@@ -135,7 +116,7 @@ function AssignmentCloser(props) {
             }}
           />
           <Button color="delete" onClick={() => handleDelete()}>
-            Delete
+            {t("Delete")}
           </Button>
         </ModalControl>
       )}

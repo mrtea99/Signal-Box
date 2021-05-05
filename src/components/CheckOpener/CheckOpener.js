@@ -23,7 +23,7 @@ function CheckOpener(props) {
 
   const defaultFormData = {
     notes: "",
-    extra: "now",
+    timeframe: "now",
   };
 
   const [formData, setFormData] = useState(defaultFormData);
@@ -44,7 +44,8 @@ function CheckOpener(props) {
       startTime: new Date().toISOString(),
       endTime: null,
       user: activeUser,
-      ...formData,
+      notes: formData.notes,
+      extra: formData.timeframe,
     };
 
     dispatch({

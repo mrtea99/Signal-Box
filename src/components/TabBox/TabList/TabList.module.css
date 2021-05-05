@@ -1,5 +1,5 @@
 .list {
-  margin: 0 0 0 1rem;
+  margin: 0;
   padding: 0;
   display: flex;
   flex-direction: row;
@@ -8,6 +8,7 @@
 @media (min-width: 768px) {
   .list {
     flex-direction: row;
+    margin: 0 0 0 1rem;
   }
 }
 
@@ -53,6 +54,7 @@
 }
 
 .button:hover {
+  color: var(--color-grey-light);
   background: var(--color-pink);
 }
 

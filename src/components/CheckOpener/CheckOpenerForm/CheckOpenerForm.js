@@ -47,9 +47,9 @@ function CheckOpenerForm(props) {
           t("Before next day"),
         ]}
         itemValues={["now", "shift", "day"]}
-        value={props.formData.extra}
+        value={props.formData.timeframe}
         updateHandler={(value) => {
-          props.setFormData({ ...props.formData, extra: value });
+          props.setFormData({ ...props.formData, timeframe: value });
         }}
       />
     </>
