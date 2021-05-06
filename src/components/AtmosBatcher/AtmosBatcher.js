@@ -5,6 +5,8 @@ import Button from "../Button/Button";
 import TemperatureField from "../FormItem/TemperatureField/TemperatureField";
 import FormItem from "../FormItem/FormItem";
 
+import styles from "./AtmosBatcher.module.css";
+
 import { useTranslation } from "react-i18next";
 
 /**
@@ -74,14 +76,36 @@ function AtmosBatcher(props) {
 
   return (
     <>
-      <ul>
+      <ul className={styles.readingList}>
         {props.atmosData.map((atmosItem, index) => (
-          <li key={"atmos-item-" + atmosItem.id}>
-            <h3>
-              {index === 0
-                ? t("Primary Atmos Reading")
-                : t("Additional Atmos Reading") + " " + index}
-            </h3>
+          <li key={"atmos-item-" + atmosItem.id} className={styles.reading}>
+            <header className={styles.readingHeader}>
+              <h3 className={styles.readingTitle}>
+                {index === 0
+                  ? t("Primary Climate Reading")
+                  : t("Additional Atmos Reading") + " " + index}
+              </h3>
+              <Button
+                color="delete"
+                onClick={() => deleteItem(atmosItem.id)}
+                icon="cross"
+              />
+            </header>
+            <FormItem
+              ident={"sess-atmos-loc-stage-" + props.thisStage + index}
+              type="select"
+              label={`${t("Location")}:`}
+              value={atmosItem.location}
+              updateHandler={(value) =>
+                updateItem(atmosItem.id, "location", value)
+              }
+            >
+              {locations.map((location) => (
+                <option key={location} value={location}>
+                  {t(location)}
+                </option>
+              ))}
+            </FormItem>
             <TemperatureField
               ident={"sess-temp-stage-" + props.thisStage + index}
               label={`${t("Room Temperature")}:`}
@@ -110,30 +134,12 @@ function AtmosBatcher(props) {
               }
               value={atmosItem.notes}
             />
-            <FormItem
-              ident={"sess-atmos-loc-stage-" + props.thisStage + index}
-              type="select"
-              label={`${t("Location")}:`}
-              value={atmosItem.location}
-              updateHandler={(value) =>
-                updateItem(atmosItem.id, "location", value)
-              }
-            >
-              {locations.map((location) => (
-                <option key={location} value={location}>
-                  {t(location)}
-                </option>
-              ))}
-            </FormItem>
-            <Button color="delete" onClick={() => deleteItem(atmosItem.id)}>
-              {t("Delete")}
-            </Button>
           </li>
         ))}
       </ul>
 
       <Button onClick={addItem} icon="plus">
-        {t("Add")}
+        {t("Add Climate Reading")}
       </Button>
     </>
   );

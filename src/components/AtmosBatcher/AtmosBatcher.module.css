@@ -1,0 +1,22 @@
+.readingList {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.reading {
+  background-color: var(--color-fg);
+  padding: 0.5rem;
+}
+
+.readingHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.readingTitle {
+  margin: 0;
+  padding: 0;
+}
