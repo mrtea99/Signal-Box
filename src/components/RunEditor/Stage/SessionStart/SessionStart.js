@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory, useParams } from "react-router";
 
 import SessionStartForm from "./SessionStartForm/SessionStartForm.js";
 import Button from "../../../Button/Button.js";
@@ -29,7 +30,10 @@ function SessionStart(props) {
     selectRun(state, props.currentRunId)
   );
 
-  const [modalActive, setModalActive] = useState(false);
+  const { runId, stageNum, sessionId } = useParams();
+  let history = useHistory();
+
+  const [modalActive, setModalActive] = useState(sessionId === "start");
 
   const defaultFormData = {
     activity: activityList[props.thisStage][0],
@@ -40,6 +44,12 @@ function SessionStart(props) {
 
   const resetFormData = function () {
     setFormData(defaultFormData);
+  };
+
+  const closeModal = function () {
+    setModalActive(false);
+
+    history.push(`/run/${runId}/${stageNum}`);
   };
 
   const handleOpen = function () {
@@ -120,12 +130,12 @@ function SessionStart(props) {
 
     // Close modal
     //---------------------------------
-    setModalActive(false);
+    closeModal();
   };
 
   const handleCancel = function () {
     resetFormData();
-    setModalActive(false);
+    closeModal();
   };
 
   const stageSessions = useSelector((state) =>
