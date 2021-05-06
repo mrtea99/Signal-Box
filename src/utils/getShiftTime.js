@@ -4,7 +4,6 @@ const shiftTimes = {
   morning: millisecondsPerHour * 9,
   noon: millisecondsPerHour * 12,
   afternoon: millisecondsPerHour * 15,
-  end: millisecondsPerHour * 18,
 };
 
 //Calculate time at midnight, so shift time can be added to it
@@ -41,8 +40,6 @@ function getShiftTime(shiftName, baseTime) {
       return baseDateTime + shiftTimes.noon;
     case "afternoon":
       return baseDateTime + shiftTimes.afternoon;
-    case "end":
-      return baseDateTime + shiftTimes.end;
     default:
       return undefined;
   }
