@@ -15,7 +15,7 @@ import { useTranslation } from "react-i18next";
 function ModalControl(props) {
   const { t } = useTranslation();
 
-  const [modalActive, setModalActive] = useState(false);
+  const [modalActive, setModalActive] = useState(props.startOpen || false);
   const [pageNumber, setPageNumber] = useState(0);
 
   const handleSubmit = function () {
