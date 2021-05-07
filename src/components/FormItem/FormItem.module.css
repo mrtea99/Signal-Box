@@ -42,10 +42,16 @@
 }
 
 /* number */
+.fieldWrapNumber {
+  background-color: var(--color-white);
+  border-radius: 1rem;
+}
+
 .fieldNumber {
   text-align: center;
   font-size: var(--text-larger);
   -moz-appearance: textfield;
+  margin: 0 0.2rem;
 }
 .fieldNumber::-webkit-outer-spin-button,
 .fieldNumber::-webkit-inner-spin-button {

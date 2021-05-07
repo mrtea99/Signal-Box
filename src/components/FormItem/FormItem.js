@@ -36,7 +36,7 @@ function FormItem(props) {
       break;
     case "number":
       fieldElem = (
-        <div className={styles.fieldWrap}>
+        <div className={`${styles.fieldWrap} ${styles.fieldWrapNumber}`}>
           <Button
             className={styles.fieldButton}
             icon={"minus"}

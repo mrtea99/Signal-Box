@@ -30,6 +30,8 @@
 
   outline: 1px solid transparent;
   box-shadow: 0 0 0 0 var(--color-grey-transp);
+
+  border-radius: 0.3rem;
 }
 
 .button:hover,
@@ -62,6 +64,13 @@
   padding-right: 0.5rem;
 }
 
+.iconOnly {
+  justify-content: center;
+}
+.iconOnly .iconWrapper {
+  margin-left: 0;
+}
+
 .featured {
   text-align: center;
   flex-direction: column;
@@ -76,9 +85,6 @@
 }
 .iconFirst .iconWrapper {
   margin-right: var(--width-icon-spacing);
-  margin-left: 0;
-}
-.iconOnly .iconWrapper {
   margin-left: 0;
 }
 
