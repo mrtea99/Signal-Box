@@ -18,7 +18,7 @@
   -moz-appearance: none;
 
   text-transform: uppercase;
-  font-weight: bold;
+  font-weight: var(--font--weight-bold);
   font-size: var(--text-larger);
 
   min-height: var(--size-touch-min);

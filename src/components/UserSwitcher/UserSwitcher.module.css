@@ -16,15 +16,17 @@
   color: var(--color-text);
   min-height: var(--size-touch-min);
   min-width: var(--size-touch-min);
-  padding: var(--height-pad-vert) calc(var(--width-pad-outer) + var(--width-pad-inner) + var(--size-icon)) var(--height-pad-vert) var(--width-pad-outer);
+  padding: var(--height-pad-vert)
+    calc(var(--width-pad-outer) + var(--width-pad-inner) + var(--size-icon))
+    var(--height-pad-vert) var(--width-pad-outer);
   font-size: var(--text-normal);
-  font-weight: bold;
+  font-weight: var(--font--weight-bold);
   line-height: 1.3em;
   border: 0;
   cursor: pointer;
   white-space: normal;
   max-width: 13rem;
-  text-align-last: right; 
+  text-align-last: right;
 }
 .select::-ms-expand {
   display: none;
@@ -35,7 +37,7 @@
 }
 
 .select option {
-  font-weight: normal;
+  font-weight: var(--font--weight-normal);
   /* direction: rtl;  */
 }
 
@@ -59,5 +61,5 @@
 }
 
 .icon path {
-  transform: translateY(1px);/* temp fix for annoying svg */
+  transform: translateY(1px); /* temp fix for annoying svg */
 }

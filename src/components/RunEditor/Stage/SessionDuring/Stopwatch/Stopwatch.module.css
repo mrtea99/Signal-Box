@@ -26,7 +26,7 @@
   border: 0.2rem solid var(--color-stopwatch);
   padding: 0.2rem 0.7rem 0.3rem 0.7rem;
   text-align: center;
-  font-weight: bold;
+  font-weight: var(--font--weight-bold);
   font-size: 2em;
   line-height: 1em;
 }

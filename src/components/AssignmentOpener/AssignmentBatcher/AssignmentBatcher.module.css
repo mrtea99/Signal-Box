@@ -39,7 +39,7 @@
   background-color: var(--color-pink-bright);
   padding: 0.3rem;
   text-transform: uppercase;
-  font-weight: normal;
+  font-weight: var(--font--weight-normal);
   font-size: var(--text-smaller);
 }
 
@@ -66,6 +66,6 @@
 .assName {
   margin: 0;
   padding: 0 1em 0 0;
-  font-weight: normal;
+  font-weight: var(--font--weight-normal);
   font-size: 1rem;
 }
