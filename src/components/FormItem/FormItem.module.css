@@ -73,7 +73,7 @@
   font-weight: normal;
 }
 
-.fieldSelectBtn {
+.fieldExtraBtn {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -176,4 +176,11 @@
 .fieldDate {
   font-family: var(--font-default);
   font-size: 1em;
+  padding: 0.5rem calc(var(--size-touch-min) + 1rem) 0.5rem 1rem;
+}
+
+.fieldDate::-webkit-inner-spin-button,
+.fieldDate::-webkit-calendar-picker-indicator {
+  display: none;
+  -webkit-appearance: none;
 }

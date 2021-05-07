@@ -23,6 +23,7 @@ import { ReactComponent as Filter } from "./filter.svg";
 import { ReactComponent as StarFull } from "./star-full.svg";
 import { ReactComponent as PieChart } from "./pie-chart.svg";
 import { ReactComponent as Spinner8 } from "./spinner8.svg";
+import { ReactComponent as Calendar } from "./calendar.svg";
 
 import styles from "./Icon.module.css";
 
@@ -83,6 +84,8 @@ function Icon(props) {
         return <Filter {...attrs} />;
       case "spinner":
         return <Spinner8 {...attrs} />;
+      case "calendar":
+        return <Calendar {...attrs} />;
       default:
         return null;
     }

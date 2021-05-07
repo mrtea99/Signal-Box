@@ -83,7 +83,7 @@ function FormItem(props) {
           >
             {props.children}
           </select>
-          <span className={styles.fieldSelectBtn}>
+          <span className={styles.fieldExtraBtn}>
             <Icon name="start" className={styles.fieldSelectArrow} />
           </span>
         </div>
@@ -150,9 +150,13 @@ function FormItem(props) {
             id={ident}
             onChange={(e) => updateHandler(e.target.valueAsNumber)}
             className={`${styles.field} ${styles.fieldDate}`}
+            required
             {...fieldProps}
             value={new Date(fieldProps.value).toISOString().substr(0, 10)}
           />
+          <span className={styles.fieldExtraBtn}>
+            <Icon name="calendar" />
+          </span>
         </div>
       );
       break;
