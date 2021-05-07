@@ -57,7 +57,7 @@ function SessionEnd(props) {
       props.thisStage === 0 || props.thisStage === 4 || !showQa ? true : false,
     qaFormData: {
       notes: "",
-      extra: "now",
+      timeframe: "now",
     },
   };
 
