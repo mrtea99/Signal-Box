@@ -26,15 +26,7 @@ function AssignmentOpenerForm(props) {
         }
         value={props.formData.assignee}
       />
-      <FormItem
-        label={`${t("Notes")}:`}
-        type="textarea"
-        ident="assignment-notes"
-        updateHandler={(value) => {
-          props.setFormData({ ...props.formData, description: value });
-        }}
-        value={props.formData.description}
-      />
+
       <FormItem
         label={`${t("Planned Start Date")}:`}
         type="date"
@@ -54,6 +46,15 @@ function AssignmentOpenerForm(props) {
         updateHandler={(value) => {
           props.setFormData({ ...props.formData, startTime: value });
         }}
+      />
+      <FormItem
+        label={`${t("Notes")}:`}
+        type="textarea"
+        ident="assignment-notes"
+        updateHandler={(value) => {
+          props.setFormData({ ...props.formData, description: value });
+        }}
+        value={props.formData.description}
       />
     </>
   );

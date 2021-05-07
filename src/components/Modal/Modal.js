@@ -15,9 +15,9 @@ function Modal(props) {
   const mount = document.getElementById("modal-root");
 
   const outerClickClose = function (e) {
-    if (e.target === e.currentTarget) {
-      closeModal();
-    }
+    // if (e.target === e.currentTarget) {
+    //   closeModal();
+    // }
   };
 
   const closeModal = function () {

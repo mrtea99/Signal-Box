@@ -1,6 +1,5 @@
 .modalOuter {
   --width-modal-border: 0.2rem;
-  --color-modal-border: var(--color-grey-darker);
   --width-modal-padding: 1rem;
   --height-modal-padding: 0.6rem;
   --size-modal-margin: 1rem;
@@ -28,7 +27,6 @@
 }
 
 .titleHeader {
-  border-bottom: var(--width-modal-border) solid var(--color-modal-border);
   background-color: var(--color-grey-bright);
   padding: var(--height-modal-padding) var(--width-modal-padding);
   display: flex;
@@ -39,7 +37,7 @@
 
 .title {
   margin: 0;
-  font-size: var(--text-large);
+  font-size: var(--text-largest);
 }
 
 .titleClose {
@@ -55,7 +53,6 @@
 }
 
 .controlsFooter {
-  border-top: var(--width-modal-border) solid var(--color-modal-border);
   background-color: var(--color-grey-bright);
   padding: var(--height-modal-padding) var(--width-modal-padding);
 }

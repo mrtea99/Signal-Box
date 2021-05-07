@@ -187,22 +187,12 @@ function SessionEnd(props) {
           }
         >
           <form>
-            <FormItem
-              type="textarea"
-              ident={"sess-notes-step-" + props.thisStage}
-              label={t("Note")}
-              updateHandler={(value) =>
-                handleFieldChange(value, setNoteData, "notes")
-              }
-              value={noteData}
-            />
-
             {showAmounts ? (
               <>
                 <FormItem
                   type="number"
                   ident={"sess-amount-step-" + props.thisStage}
-                  label={`${t("Completed")} ${itemType}`}
+                  label={`${t("Completed")} ${itemType}:`}
                   updateHandler={(value) =>
                     handleFieldChange(value, setAmount, "amount")
                   }
@@ -212,7 +202,7 @@ function SessionEnd(props) {
                 <FormItem
                   type="number"
                   ident={"sess-amount-bad-step-" + props.thisStage}
-                  label={`${t("Defective")} ${itemType}`}
+                  label={`${t("Defective")} ${itemType}:`}
                   updateHandler={(value) =>
                     handleFieldChange(value, setAmountBad, "amountBad")
                   }
@@ -254,6 +244,15 @@ function SessionEnd(props) {
                 )}
               </>
             ) : null}
+            <FormItem
+              type="textarea"
+              ident={"sess-notes-step-" + props.thisStage}
+              label={`${t("Note")}:`}
+              updateHandler={(value) =>
+                handleFieldChange(value, setNoteData, "notes")
+              }
+              value={noteData}
+            />
           </form>
         </Modal>
       ) : null}

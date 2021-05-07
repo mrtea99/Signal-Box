@@ -47,14 +47,11 @@
   --font-default: "Helvetica Neue", Helvetica, Arial, "Lucida Grande",
     sans-serif;
 
-  /* 12pt */
   --text-smaller: 0.8em;
-  /* 16pt */
   --text-normal: 1em;
-  /* 18pt */
   --text-larger: 1.125em;
-  /* 24pt */
   --text-large: 1.375em;
+  --text-largest: 1.563em;
 
   /* Break points */
   --break-extra: 1440px;

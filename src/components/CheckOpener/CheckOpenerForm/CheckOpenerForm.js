@@ -15,17 +15,6 @@ function CheckOpenerForm(props) {
 
   return (
     <>
-      <FormItem
-        label={`${t("QA Note")}:`}
-        type="textarea"
-        ident="qa-description"
-        updateHandler={(value) => {
-          props.setFormData({
-            ...props.formData,
-            notes: `${t("Requested")}: ${value}`,
-          });
-        }}
-      />
       <UserSelect
         label={`${t("Checker")}:`}
         ident={"sess-assistor-stage-" + props.thisStage}
@@ -50,6 +39,17 @@ function CheckOpenerForm(props) {
         value={props.formData.timeframe}
         updateHandler={(value) => {
           props.setFormData({ ...props.formData, timeframe: value });
+        }}
+      />
+      <FormItem
+        label={`${t("QA Note")}:`}
+        type="textarea"
+        ident="qa-description"
+        updateHandler={(value) => {
+          props.setFormData({
+            ...props.formData,
+            notes: `${t("Requested")}: ${value}`,
+          });
         }}
       />
     </>
