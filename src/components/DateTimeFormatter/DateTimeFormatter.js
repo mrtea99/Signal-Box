@@ -85,7 +85,9 @@ function DateTimeFormatter(props) {
     <time dateTime={new Date(props.date).toISOString()}>
       <span className={styles.date}>{formatDate(props.date)}</span>
       {props.splitLines ? <br /> : " "}
-      <span className={styles.time}>{formatTime(props.date)}</span>
+      {!props.hideTime ? (
+        <span className={styles.time}>{formatTime(props.date)}</span>
+      ) : null}
     </time>
   );
 }
@@ -94,5 +96,6 @@ export default DateTimeFormatter;
 
 DateTimeFormatter.propTypes = {
   date: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  hideTime: PropTypes.bool,
   splitLines: PropTypes.bool,
 };

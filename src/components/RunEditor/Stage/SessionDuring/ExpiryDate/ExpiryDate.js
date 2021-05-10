@@ -2,6 +2,8 @@ import React from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
 
+import DateTimeFormatter from "../../../../DateTimeFormatter/DateTimeFormatter.js";
+
 import { selectRun } from "../../../../RunList/runsSlice.js";
 import { selectStageSessions } from "../../../../SessionList/sessionsSlice.js";
 
@@ -28,7 +30,14 @@ const ExpiryDate = function (props) {
     return expiryDate.getTime();
   };
 
-  return <>{expiryCalc(expiryStart, expiryDuration)}</>;
+  return (
+    <>
+      <DateTimeFormatter
+        date={expiryCalc(expiryStart, expiryDuration)}
+        hideTime
+      ></DateTimeFormatter>
+    </>
+  );
 };
 
 ExpiryDate.propTypes = {
