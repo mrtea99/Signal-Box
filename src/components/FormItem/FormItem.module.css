@@ -201,6 +201,7 @@
 
 .fieldDate::-webkit-inner-spin-button,
 .fieldDate::-webkit-calendar-picker-indicator {
-  display: none;
-  -webkit-appearance: none;
+  /* display: none;
+  -webkit-appearance: none; */
+  opacity: 0;
 }
