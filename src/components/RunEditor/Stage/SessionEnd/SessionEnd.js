@@ -242,6 +242,7 @@ function SessionEnd(props) {
                   ident="sess-skip-qa"
                   updateHandler={(value) => setSkipQa(value)}
                   checked={skipQa}
+                  spacing="both"
                 />
               </>
             ) : null}

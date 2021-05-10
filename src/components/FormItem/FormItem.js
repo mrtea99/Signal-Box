@@ -165,8 +165,28 @@ function FormItem(props) {
       break;
   }
 
+  let itemSpacing = null;
+
+  switch (props.spacing) {
+    case "none":
+      itemSpacing = styles.itemWrapSpaceNone;
+      break;
+    case "top":
+      itemSpacing = styles.itemWrapSpaceTop;
+      break;
+    case "both":
+      itemSpacing = styles.itemWrapSpaceBoth;
+      break;
+    default:
+      break;
+  }
+
   return (
-    <div className={`${fieldProps.className || ""} ${styles.itemWrap}`}>
+    <div
+      className={`${fieldProps.className || ""} ${
+        styles.itemWrap
+      } ${itemSpacing}`}
+    >
       {!props.hideLabel ? labelElem : null}
       {fieldElem}
     </div>
@@ -192,6 +212,8 @@ FormItem.propTypes = {
   className: PropTypes.string,
   /** Do not display label */
   hideLabel: PropTypes.bool,
+  /** Add spacing above whole item */
+  spacing: PropTypes.oneOf(["top", "both"]),
 };
 
 export default FormItem;

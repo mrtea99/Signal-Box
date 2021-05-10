@@ -5,6 +5,18 @@
   width: 100%;
 }
 
+.itemWrapSpaceNone {
+  margin-bottom: 0;
+}
+
+.itemWrapSpaceTop {
+  margin: 0.6rem 0 0 0;
+}
+
+.itemWrapSpaceBoth {
+  margin: 0.6rem 0;
+}
+
 .label {
   font-size: var(--text-normal);
   font-weight: var(--font--weight-normal);
@@ -177,6 +189,7 @@
 .checkboxInput {
   min-height: var(--size-touch-min);
   min-width: var(--size-touch-min);
+  cursor: pointer;
 }
 
 /* date */
