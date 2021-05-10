@@ -7,6 +7,7 @@ import CheckOpenerForm from "../../../CheckOpener/CheckOpenerForm/CheckOpenerFor
 import FormItem from "../../../FormItem/FormItem.js";
 import WeightField from "../../../FormItem/WeightField/WeightField.js";
 import Modal from "../../../Modal/Modal.js";
+import FormLayout from "../../../FormItem/FormLayout/FormLayout.js";
 
 import UnitSystemContext from "../../../../contexts/UnitSystemContext.js";
 
@@ -188,7 +189,7 @@ function SessionEnd(props) {
         >
           <form>
             {showAmounts ? (
-              <>
+              <FormLayout>
                 <FormItem
                   type="number"
                   ident={"sess-amount-step-" + props.thisStage}
@@ -209,7 +210,7 @@ function SessionEnd(props) {
                   value={amountBad}
                   min="0"
                 />
-              </>
+              </FormLayout>
             ) : null}
 
             {showWeight ? (

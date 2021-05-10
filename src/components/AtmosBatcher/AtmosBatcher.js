@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import Button from "../Button/Button";
 import TemperatureField from "../FormItem/TemperatureField/TemperatureField";
 import FormItem from "../FormItem/FormItem";
+import FormLayout from "../FormItem/FormLayout/FormLayout";
 
 import styles from "./AtmosBatcher.module.css";
 
@@ -106,25 +107,27 @@ function AtmosBatcher(props) {
                 </option>
               ))}
             </FormItem>
-            <TemperatureField
-              ident={"sess-temp-stage-" + props.thisStage + index}
-              label={`${t("Room Temperature")}:`}
-              updateHandler={(value) =>
-                updateItem(atmosItem.id, "temperature", value)
-              }
-              value={atmosItem.temperature}
-            />
-            <FormItem
-              type="number"
-              ident={"sess-humidity-stage-" + props.thisStage + index}
-              label={`${t("Room Humidity")} (%):`}
-              updateHandler={(value) =>
-                updateItem(atmosItem.id, "humidity", value)
-              }
-              min="0"
-              max="100"
-              value={atmosItem.humidity}
-            />
+            <FormLayout>
+              <TemperatureField
+                ident={"sess-temp-stage-" + props.thisStage + index}
+                label={`${t("Room Temperature")}:`}
+                updateHandler={(value) =>
+                  updateItem(atmosItem.id, "temperature", value)
+                }
+                value={atmosItem.temperature}
+              />
+              <FormItem
+                type="number"
+                ident={"sess-humidity-stage-" + props.thisStage + index}
+                label={`${t("Room Humidity")} (%):`}
+                updateHandler={(value) =>
+                  updateItem(atmosItem.id, "humidity", value)
+                }
+                min="0"
+                max="100"
+                value={atmosItem.humidity}
+              />
+            </FormLayout>
             <FormItem
               ident={"sess-atmos-note-stage-" + props.thisStage + index}
               type="textarea"

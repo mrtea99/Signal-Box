@@ -166,7 +166,7 @@ function FormItem(props) {
   }
 
   return (
-    <div className={`${fieldProps.className} ${styles.itemWrap}`}>
+    <div className={`${fieldProps.className || ""} ${styles.itemWrap}`}>
       {!props.hideLabel ? labelElem : null}
       {fieldElem}
     </div>

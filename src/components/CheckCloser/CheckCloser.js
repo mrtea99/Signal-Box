@@ -7,6 +7,7 @@ import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import FormItem from "../FormItem/FormItem.js";
 import UserName from "../UserSwitcher/UserName/UserName.js";
 import UserSelect from "../FormItem/UserSelect/UserSelect.js";
+import FormLayout from "../FormItem/FormLayout/FormLayout.js";
 
 import getItemType from "../../utils/getItemType.js";
 
@@ -141,23 +142,24 @@ function CheckCloser(props) {
               setDescription(`${t("Checked")}: ${value}`);
             }}
           />
-
-          <FormItem
-            label={`${t("Passed")}:`}
-            type="number"
-            ident={"check-count"}
-            updateHandler={(value) => setCount(parseInt(value))}
-            value={count}
-            min="0"
-          />
-          <FormItem
-            label={`${t("Failed")}:`}
-            type="number"
-            ident={"check-count-bad"}
-            updateHandler={(value) => setCountBad(parseInt(value))}
-            value={countBad}
-            min="0"
-          />
+          <FormLayout>
+            <FormItem
+              label={`${t("Passed")}:`}
+              type="number"
+              ident={"check-count"}
+              updateHandler={(value) => setCount(parseInt(value))}
+              value={count}
+              min="0"
+            />
+            <FormItem
+              label={`${t("Failed")}:`}
+              type="number"
+              ident={"check-count-bad"}
+              updateHandler={(value) => setCountBad(parseInt(value))}
+              value={countBad}
+              min="0"
+            />
+          </FormLayout>
           <FormItem
             label={`${t("Status")}:`}
             type="toggleButton"

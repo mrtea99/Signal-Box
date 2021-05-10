@@ -8,6 +8,7 @@ import InfoPodItem from "../InfoPod/InfoPodItem/InfoPodItem.js";
 import InfoPodSection from "../InfoPod/InfoPodSection/InfoPodSection.js";
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import ActivityTotals from "./ActivityTotals/ActivityTotals.js";
+import FormLayout from "../FormItem/FormLayout/FormLayout.js";
 
 import styles from "./ConsignItems.module.css";
 
@@ -186,27 +187,29 @@ function ConsignItems(props) {
         <h4>{t("Consignments Summary")}:</h4>
         {consInfoPod}
         <h4>{t("New Consignment")}:</h4>
-        <FormItem
-          label={`${t("Consignment amount")}:`}
-          type="number"
-          ident="consign-items"
-          updateHandler={(value) => {
-            setCountGood(parseInt(value));
-          }}
-          min="0"
-          value={countGood}
-        />
+        <FormLayout>
+          <FormItem
+            label={`${t("Consignment amount")}:`}
+            type="number"
+            ident="consign-items"
+            updateHandler={(value) => {
+              setCountGood(parseInt(value));
+            }}
+            min="0"
+            value={countGood}
+          />
 
-        <FormItem
-          label={`${t("Defective amount")}:`}
-          type="number"
-          ident="consign-items-bad"
-          updateHandler={(value) => {
-            setCountBad(parseInt(value));
-          }}
-          min="0"
-          value={countBad}
-        />
+          <FormItem
+            label={`${t("Defective amount")}:`}
+            type="number"
+            ident="consign-items-bad"
+            updateHandler={(value) => {
+              setCountBad(parseInt(value));
+            }}
+            min="0"
+            value={countBad}
+          />
+        </FormLayout>
       </ModalControl>
     </div>
   );

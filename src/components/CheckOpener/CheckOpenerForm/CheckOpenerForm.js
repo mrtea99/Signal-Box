@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import FormItem from "../../FormItem/FormItem.js";
 import UserSelect from "../../FormItem/UserSelect/UserSelect.js";
+import FormLayout from "../../FormItem/FormLayout/FormLayout.js";
 
 import { useTranslation } from "react-i18next";
 
@@ -15,17 +16,30 @@ function CheckOpenerForm(props) {
 
   return (
     <>
-      <UserSelect
-        label={`${t("Checker")}:`}
-        ident={"sess-assistor-stage-" + props.thisStage}
-        updateHandler={(value) =>
-          props.setFormData({
-            ...props.formData,
-            secondaryUser: parseInt(value),
-          })
-        }
-        value={props.formData.secondaryUser}
-      />
+      <FormLayout>
+        <UserSelect
+          label={`${t("Checker")}:`}
+          ident={"sess-assistor-stage-" + props.thisStage}
+          updateHandler={(value) =>
+            props.setFormData({
+              ...props.formData,
+              secondaryUser: parseInt(value),
+            })
+          }
+          value={props.formData.secondaryUser}
+        />
+        <FormItem
+          label={`${t("QA Note")}:`}
+          type="textarea"
+          ident="qa-description"
+          updateHandler={(value) => {
+            props.setFormData({
+              ...props.formData,
+              notes: `${t("Requested")}: ${value}`,
+            });
+          }}
+        />
+      </FormLayout>
       <FormItem
         label={`${t("Timeframe")}:`}
         type="toggleButton"
@@ -39,17 +53,6 @@ function CheckOpenerForm(props) {
         value={props.formData.timeframe}
         updateHandler={(value) => {
           props.setFormData({ ...props.formData, timeframe: value });
-        }}
-      />
-      <FormItem
-        label={`${t("QA Note")}:`}
-        type="textarea"
-        ident="qa-description"
-        updateHandler={(value) => {
-          props.setFormData({
-            ...props.formData,
-            notes: `${t("Requested")}: ${value}`,
-          });
         }}
       />
     </>
