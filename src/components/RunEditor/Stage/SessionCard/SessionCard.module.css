@@ -1,0 +1,29 @@
+.sessionTitle {
+  margin: 0;
+  background-color: var(--color-pink-bright);
+  color: var(--color-white);
+  margin: 0;
+  padding: 0.5rem;
+  text-transform: uppercase;
+  font-size: var(--text-larger);
+}
+
+.sessionTitleQa {
+  background-color: var(--color-qa);
+}
+
+.content {
+  border: 0.2rem solid var(--color-pink-bright);
+  border-top: none;
+  height: 100%;
+  background-color: var(--color-grey-dark);
+  color: var(--color-text);
+}
+
+.contentQa {
+  border-color: var(--color-qa);
+}
+
+.contentPadded {
+  padding: 0.6rem;
+}

@@ -19,6 +19,7 @@ import { selectCurrentUser } from "../../../UserSwitcher/usersSlice.js";
 // import stageNames from "../../../../../data/stageNames.json";
 
 import { useTranslation } from "react-i18next";
+import SessionCard from "../SessionCard/SessionCard.js";
 
 /**
  * Form fields to end a work session.
@@ -226,23 +227,22 @@ function SessionEnd(props) {
 
             {showQa ? (
               <>
+                {skipQa ? null : ( // <p>{t("QA Skipped")}</p>
+                  <SessionCard title="New QA Check" padding type="qa">
+                    <CheckOpenerForm
+                      formData={qaFormData}
+                      setFormData={setQaFormData}
+                      thisStage={props.thisStage}
+                    />
+                  </SessionCard>
+                )}
                 <FormItem
-                  label={t("Skip QA")}
+                  label={t("Skip QA Check")}
                   type="checkbox"
                   ident="sess-skip-qa"
                   updateHandler={(value) => setSkipQa(value)}
                   checked={skipQa}
                 />
-
-                {skipQa ? (
-                  <p>{t("QA Skipped")}</p>
-                ) : (
-                  <CheckOpenerForm
-                    formData={qaFormData}
-                    setFormData={setQaFormData}
-                    thisStage={props.thisStage}
-                  />
-                )}
               </>
             ) : null}
             <FormItem

@@ -102,7 +102,7 @@ const resources = {
       "Average Unit Weight": "Average Unit Weight",
       "Average Item Weight": "Average Item Weight",
       Target: "Target",
-      "Skip QA": "Skip QA",
+      "Skip QA Check": "Skip QA Check",
       "QA Skipped": "QA Skipped",
       "End Session": "End Session",
       "End This Session": "End {{sessionName}} Session",

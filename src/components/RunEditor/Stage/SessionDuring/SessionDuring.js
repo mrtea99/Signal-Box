@@ -22,6 +22,7 @@ import UnitSystemContext from "../../../../contexts/UnitSystemContext";
 import { selectRun } from "../../../RunList/runsSlice.js";
 
 import { useTranslation } from "react-i18next";
+import SessionCard from "../SessionCard/SessionCard.js";
 
 /**
  * Displays the state of a work session in progress,
@@ -205,10 +206,10 @@ function SessionDuring(props) {
   return (
     <>
       {props.activeSessionData ? (
-        <article className={styles.session}>
-          <h4 className={styles.sessionTitle}>
-            {props.activeSessionData.activity.name} Session
-          </h4>
+        <SessionCard
+          title={`${props.activeSessionData.activity.name} Session`}
+          type="working"
+        >
           <div className={styles.readOnly}>
             <DataList className={styles.readOnlyList}>
               {readOnlyFields()}
@@ -268,7 +269,7 @@ function SessionDuring(props) {
               ) : null}
             </form>
           </div>
-        </article>
+        </SessionCard>
       ) : (
         <div className={styles.sessionPlaceholder}></div>
       )}
