@@ -8,6 +8,10 @@ import FormItem from "../FormItem/FormItem.js";
 import UserName from "../UserSwitcher/UserName/UserName.js";
 import UserSelect from "../FormItem/UserSelect/UserSelect.js";
 import FormLayout from "../FormItem/FormLayout/FormLayout.js";
+import DateTimeFormatter from "../DateTimeFormatter/DateTimeFormatter.js";
+import Timer from "../Timer/Timer.js";
+import DataList from "../DataList/DataList.js";
+import DataListItem from "../DataList/DataListItem/DataListItem.js";
 
 import getItemType from "../../utils/getItemType.js";
 
@@ -115,24 +119,35 @@ function CheckCloser(props) {
           buttonAttrs={{ color: "qa", icon: "qa" }}
           startOpen={startOpen}
         >
-          <div>
-            <p>{props.session.notes}</p>
-            <p>
-              {t("Creator")}: <UserName userId={props.session.user} />
-            </p>
-            <UserSelect
-              label={`${t("Assignee")}:`}
-              ident={"assignee-" + props.thisStage}
-              updateHandler={(value) => setAssignee(parseInt(value))}
-              value={assignee}
+          <DataList>
+            <DataListItem
+              dataKey={t("Creator")}
+              dataValue={<UserName userId={props.session.user} />}
             />
-            <p>
-              {t("Timeframe")}: {props.session.extra}
-            </p>
-            <p>
-              {t("Raising Note")}: {props.session.notes}
-            </p>
-          </div>
+            <DataListItem
+              dataKey={t("Start Time")}
+              dataValue={
+                <DateTimeFormatter
+                  date={props.session.startTime}
+                ></DateTimeFormatter>
+              }
+            />
+            <DataListItem
+              dataKey={t("Duration")}
+              dataValue={<Timer startTime={props.session.startTime}></Timer>}
+            />
+          </DataList>
+          <UserSelect
+            label={`${t("Assignee")}:`}
+            ident={"assignee-" + props.thisStage}
+            updateHandler={(value) => setAssignee(parseInt(value))}
+            value={assignee}
+            spacing="both"
+          />
+
+          <p>
+            {t("Raising Note")}: {props.session.notes || "None"}
+          </p>
 
           <FormItem
             label={`${t("Checker Note")}:`}

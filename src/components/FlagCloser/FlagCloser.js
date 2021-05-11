@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import FormItem from "../FormItem/FormItem.js";
 import UserName from "../UserSwitcher/UserName/UserName.js";
+import DataList from "../DataList/DataList.js";
+import DataListItem from "../DataList/DataListItem/DataListItem.js";
 
 import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 
@@ -48,10 +50,16 @@ function FlagCloser(props) {
       activeUser +
       "]: " +
       description;
-    const newNote =
-      props.session.notes && props.session.notes.length
-        ? props.session.notes + "\n" + labeledDescription
-        : labeledDescription;
+
+    let newNote = "";
+    if (description.length) {
+      newNote =
+        props.session.notes && props.session.notes.length
+          ? props.session.notes + "\n" + labeledDescription
+          : labeledDescription;
+    } else {
+      newNote = props.session.notes || "";
+    }
 
     if (status === "resolved") {
       dispatch({
@@ -70,12 +78,10 @@ function FlagCloser(props) {
         },
       });
     }
-
-    resetFormData();
   };
 
   const handleCancel = function () {
-    resetFormData();
+    // resetFormData();
   };
 
   const handleOpen = function () {
@@ -105,27 +111,16 @@ function FlagCloser(props) {
           handleOpen={handleOpen}
           triggerCopy={""}
           buttonAttrs={{
-            color: translatePriority(props.session.amount),
-            icon: translatePriority(props.session.amount),
+            color: translatePriority(priority),
+            icon: translatePriority(priority),
           }}
         >
-          <div>
-            <p>
-              {t("Raised by")}: <UserName userId={props.session.user} />
-            </p>
-            <p>
-              {t("Notes")}:
-              <br />
-              {props.session.notes.split("\n").map((item, key) => {
-                return (
-                  <span key={key}>
-                    {item}
-                    <br />
-                  </span>
-                );
-              })}
-            </p>
-          </div>
+          <DataList>
+            <DataListItem
+              dataKey={t("Raised by")}
+              dataValue={<UserName userId={props.session.user} />}
+            ></DataListItem>
+          </DataList>
 
           <FormItem
             label={`${t("Priority")}:`}
@@ -137,19 +132,20 @@ function FlagCloser(props) {
             updateHandler={(value) => {
               setPriority(parseInt(value));
             }}
+            spacing="both"
           />
-
-          <FormItem
-            label={`${t("Status")}:`}
-            type="toggleButton"
-            ident="flag-status"
-            itemLabels={[t("Active"), t("Waiting"), t("Resolved")]}
-            itemValues={["active", "waiting", "resolved"]}
-            value={status}
-            updateHandler={(value) => {
-              setStatus(value);
-            }}
-          />
+          <p>
+            {t("Notes")}:
+            <br />
+            {props.session.notes.split("\n").map((item, key) => {
+              return (
+                <span key={key}>
+                  {item}
+                  <br />
+                </span>
+              );
+            })}
+          </p>
 
           <FormItem
             label={
@@ -161,6 +157,17 @@ function FlagCloser(props) {
             ident="flag-note"
             updateHandler={(value) => {
               setDescription(value);
+            }}
+          />
+          <FormItem
+            label={`${t("Status")}:`}
+            type="toggleButton"
+            ident="flag-status"
+            itemLabels={[t("Active"), t("Waiting"), t("Resolved")]}
+            itemValues={["active", "waiting", "resolved"]}
+            value={status}
+            updateHandler={(value) => {
+              setStatus(value);
             }}
           />
         </ModalControl>

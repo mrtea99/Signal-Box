@@ -5,6 +5,7 @@ import FormItem from "../../FormItem/FormItem.js";
 import UserSelect from "../../FormItem/UserSelect/UserSelect.js";
 
 import { useTranslation } from "react-i18next";
+import FormLayout from "../../FormItem/FormLayout/FormLayout.js";
 
 /**
  * Form for editing an assignment session
@@ -15,27 +16,29 @@ function AssignmentOpenerForm(props) {
 
   return (
     <>
-      <UserSelect
-        label={`${t("Assignee")}:`}
-        ident={"assignee-" + props.thisStage}
-        updateHandler={(value) =>
-          props.setFormData({
-            ...props.formData,
-            assignee: parseInt(value) || null,
-          })
-        }
-        value={props.formData.assignee}
-      />
+      <FormLayout>
+        <UserSelect
+          label={`${t("Assignee")}:`}
+          ident={"assignee-" + props.thisStage}
+          updateHandler={(value) =>
+            props.setFormData({
+              ...props.formData,
+              assignee: parseInt(value) || null,
+            })
+          }
+          value={props.formData.assignee}
+        />
 
-      <FormItem
-        label={`${t("Planned Start Date")}:`}
-        type="date"
-        ident="assignment-date"
-        updateHandler={(value) => {
-          props.setFormData({ ...props.formData, startDate: value });
-        }}
-        value={props.formData.startDate}
-      />
+        <FormItem
+          label={`${t("Planned Start Date")}:`}
+          type="date"
+          ident="assignment-date"
+          updateHandler={(value) => {
+            props.setFormData({ ...props.formData, startDate: value });
+          }}
+          value={props.formData.startDate}
+        />
+      </FormLayout>
       <FormItem
         label={`${t("Planned Start Time")}:`}
         type="toggleButton"

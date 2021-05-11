@@ -7,6 +7,8 @@ import AssignmentOpenerForm from "../AssignmentOpener/AssignmentOpenerForm/Assig
 import FormItem from "../FormItem/FormItem.js";
 import UserName from "../UserSwitcher/UserName/UserName.js";
 import Button from "../Button/Button.js";
+import DataListItem from "../DataList/DataListItem/DataListItem.js";
+import DataList from "../DataList/DataList.js";
 
 import { getShiftName, getShiftTime } from "../../utils/getShiftTime.js";
 
@@ -95,10 +97,19 @@ function AssignmentCloser(props) {
           triggerCopy={""}
           submitCopy={t("Save")}
           buttonAttrs={{ color: "assign", icon: "assign" }}
+          extraControls={
+            <Button color="delete" onClick={() => handleDelete()}>
+              {t("Delete")}
+            </Button>
+          }
         >
-          <p>
-            {t("Assigner")}: <UserName userId={props.session.user} />
-          </p>
+          <DataList>
+            <DataListItem
+              dataKey={t("Assigner")}
+              dataValue={<UserName userId={props.session.user} />}
+            ></DataListItem>
+          </DataList>
+          <br />
           <AssignmentOpenerForm
             formData={formData}
             setFormData={setFormData}
@@ -115,9 +126,6 @@ function AssignmentCloser(props) {
               setStatus(value);
             }}
           />
-          <Button color="delete" onClick={() => handleDelete()}>
-            {t("Delete")}
-          </Button>
         </ModalControl>
       )}
     </>

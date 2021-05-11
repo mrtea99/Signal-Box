@@ -156,11 +156,6 @@ function SessionDetails(props) {
             })}
           />
         ) : null}
-
-        {/* Extra */}
-        {session.type === "qa" ? (
-          <DataListItem dataKey={t("Timeframe")} dataValue={session.extra} />
-        ) : null}
       </DataList>
     </>
   );

@@ -99,6 +99,7 @@ function ModalControl(props) {
               </ButtonSpacer>
             ) : (
               <ButtonSpacer align="right">
+                {props.extraControls || null}
                 <>{cancelButton()}</>
                 {props.handleSubmit ? <>{submitButton()}</> : null}
               </ButtonSpacer>
@@ -132,6 +133,7 @@ ModalControl.propTypes = {
   triggerCopy: PropTypes.string,
   children: PropTypes.node,
   pages: PropTypes.array,
+  extraControls: PropTypes.node,
 };
 
 export default ModalControl;
