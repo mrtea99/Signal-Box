@@ -15,6 +15,22 @@ function SessionCard(props) {
       titleTypeClass = styles.sessionTitleQa;
       contentTypeClass = styles.contentQa;
       break;
+    case "note":
+      titleTypeClass = styles.sessionTitleNote;
+      contentTypeClass = styles.contentNote;
+      break;
+    case "issue":
+      titleTypeClass = styles.sessionTitleIssue;
+      contentTypeClass = styles.contentIssue;
+      break;
+    case "blocker":
+      titleTypeClass = styles.sessionTitleBlocker;
+      contentTypeClass = styles.contentBlocker;
+      break;
+    case "assignment":
+      titleTypeClass = styles.sessionTitleAssignment;
+      contentTypeClass = styles.contentAssignment;
+      break;
     default:
       break;
   }
@@ -38,6 +54,14 @@ function SessionCard(props) {
 
 SessionCard.propTypes = {
   title: PropTypes.string,
+  type: PropTypes.oneOf([
+    "working",
+    "qa",
+    "note",
+    "issue",
+    "blocker",
+    "assignment",
+  ]),
   padding: PropTypes.bool,
 };
 

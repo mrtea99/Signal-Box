@@ -13,6 +13,7 @@ import DataList from "../DataList/DataList.js";
 import { getShiftName, getShiftTime } from "../../utils/getShiftTime.js";
 
 import { useTranslation } from "react-i18next";
+import SessionCard from "../RunEditor/Stage/SessionCard/SessionCard.js";
 
 /**
  * Dialog for editing / ending an assignment session
@@ -103,29 +104,31 @@ function AssignmentCloser(props) {
             </Button>
           }
         >
-          <DataList>
-            <DataListItem
-              dataKey={t("Assigner")}
-              dataValue={<UserName userId={props.session.user} />}
-            ></DataListItem>
-          </DataList>
-          <br />
-          <AssignmentOpenerForm
-            formData={formData}
-            setFormData={setFormData}
-            thisStage={props.thisStage}
-          />
-          <FormItem
-            label={`${t("Status")}:`}
-            type="toggleButton"
-            ident="assignment-status"
-            itemLabels={["Active", "Resolved"]}
-            itemValues={["active", "resolved"]}
-            value={status}
-            updateHandler={(value) => {
-              setStatus(value);
-            }}
-          />
+          <SessionCard type="assignment" padding title={t("Assignment")}>
+            <DataList>
+              <DataListItem
+                dataKey={t("Assigner")}
+                dataValue={<UserName userId={props.session.user} />}
+              ></DataListItem>
+            </DataList>
+            <br />
+            <AssignmentOpenerForm
+              formData={formData}
+              setFormData={setFormData}
+              thisStage={props.thisStage}
+            />
+            <FormItem
+              label={`${t("Status")}:`}
+              type="toggleButton"
+              ident="assignment-status"
+              itemLabels={["Active", "Resolved"]}
+              itemValues={["active", "resolved"]}
+              value={status}
+              updateHandler={(value) => {
+                setStatus(value);
+              }}
+            />
+          </SessionCard>
         </ModalControl>
       )}
     </>

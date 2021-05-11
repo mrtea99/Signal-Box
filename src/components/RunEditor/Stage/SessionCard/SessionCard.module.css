@@ -20,6 +20,18 @@
 .sessionTitleQa {
   background-color: var(--color-qa);
 }
+.sessionTitleNote {
+  background-color: var(--color-note);
+}
+.sessionTitleIssue {
+  background-color: var(--color-issue);
+}
+.sessionTitleBlocker {
+  background-color: var(--color-blocker);
+}
+.sessionTitleAssignment {
+  background-color: var(--color-assign);
+}
 
 .content {
   border: 0.2rem solid var(--color-grey-bright);
@@ -34,6 +46,18 @@
 }
 .contentQa {
   border-color: var(--color-qa);
+}
+.contentNote {
+  border-color: var(--color-note);
+}
+.contentIssue {
+  border-color: var(--color-issue);
+}
+.contentBlocker {
+  border-color: var(--color-blocker);
+}
+.contentAssignment {
+  border-color: var(--color-assign);
 }
 
 .contentPadded {
