@@ -271,7 +271,7 @@ function SessionDuring(props) {
           </div>
         </SessionCard>
       ) : (
-        <div className={styles.sessionPlaceholder}></div>
+        <SessionCard />
       )}
     </>
   );

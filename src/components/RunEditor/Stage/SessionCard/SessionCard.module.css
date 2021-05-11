@@ -1,6 +1,12 @@
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
 .sessionTitle {
   margin: 0;
-  background-color: var(--color-pink-bright);
+  background-color: var(--color-grey-bright);
   color: var(--color-white);
   margin: 0;
   padding: 0.5rem;
@@ -8,18 +14,24 @@
   font-size: var(--text-larger);
 }
 
+.sessionTitleWorking {
+  background-color: var(--color-working);
+}
 .sessionTitleQa {
   background-color: var(--color-qa);
 }
 
 .content {
-  border: 0.2rem solid var(--color-pink-bright);
+  border: 0.2rem solid var(--color-grey-bright);
   border-top: none;
-  height: 100%;
   background-color: var(--color-grey-dark);
   color: var(--color-text);
+  flex-grow: 1;
 }
 
+.contentWorking {
+  border-color: var(--color-working);
+}
 .contentQa {
   border-color: var(--color-qa);
 }

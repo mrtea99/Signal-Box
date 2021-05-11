@@ -8,7 +8,6 @@ function SessionCard(props) {
   let contentTypeClass = null;
   switch (props.type) {
     case "working":
-    default:
       titleTypeClass = styles.sessionTitleWorking;
       contentTypeClass = styles.contentWorking;
       break;
@@ -16,12 +15,15 @@ function SessionCard(props) {
       titleTypeClass = styles.sessionTitleQa;
       contentTypeClass = styles.contentQa;
       break;
+    default:
+      break;
   }
 
   return (
-    <article>
+    <article className={styles.card}>
       <h4 className={`${styles.sessionTitle} ${titleTypeClass}`}>
-        {props.title}
+        {props.title || "\u00A0"}
+        {/* \u00A0 aka &nbsp; */}
       </h4>
       <div
         className={`${styles.content} ${contentTypeClass} ${
@@ -35,7 +37,7 @@ function SessionCard(props) {
 }
 
 SessionCard.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
   padding: PropTypes.bool,
 };
 
