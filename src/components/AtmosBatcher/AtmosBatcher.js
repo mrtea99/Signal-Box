@@ -9,6 +9,7 @@ import FormLayout from "../FormItem/FormLayout/FormLayout";
 import styles from "./AtmosBatcher.module.css";
 
 import { useTranslation } from "react-i18next";
+import ButtonSpacer from "../Button/ButtonSpacer/ButtonSpacer";
 
 /**
  * Alows the creation of several atmos entries for a session,
@@ -84,7 +85,8 @@ function AtmosBatcher(props) {
               <h3 className={styles.readingTitle}>
                 {index === 0
                   ? t("Primary Climate Reading")
-                  : t("Additional Atmos Reading") + " " + index}
+                  : t("Additional Climate Reading") +
+                    (props.atmosData.length > 2 ? " " + index : "")}
               </h3>
               <Button
                 color="delete"
@@ -92,21 +94,6 @@ function AtmosBatcher(props) {
                 icon="cross"
               />
             </header>
-            <FormItem
-              ident={"sess-atmos-loc-stage-" + props.thisStage + index}
-              type="select"
-              label={`${t("Location")}:`}
-              value={atmosItem.location}
-              updateHandler={(value) =>
-                updateItem(atmosItem.id, "location", value)
-              }
-            >
-              {locations.map((location) => (
-                <option key={location} value={location}>
-                  {t(location)}
-                </option>
-              ))}
-            </FormItem>
             <FormLayout>
               <TemperatureField
                 ident={"sess-temp-stage-" + props.thisStage + index}
@@ -127,23 +114,39 @@ function AtmosBatcher(props) {
                 max="100"
                 value={atmosItem.humidity}
               />
+              <FormItem
+                ident={"sess-atmos-loc-stage-" + props.thisStage + index}
+                type="select"
+                label={`${t("Location")}:`}
+                value={atmosItem.location}
+                updateHandler={(value) =>
+                  updateItem(atmosItem.id, "location", value)
+                }
+              >
+                {locations.map((location) => (
+                  <option key={location} value={location}>
+                    {t(location)}
+                  </option>
+                ))}
+              </FormItem>
+              <FormItem
+                ident={"sess-atmos-note-stage-" + props.thisStage + index}
+                type="textarea"
+                label={`${t("Note")}:`}
+                updateHandler={(value) =>
+                  updateItem(atmosItem.id, "notes", value)
+                }
+                value={atmosItem.notes}
+              />{" "}
             </FormLayout>
-            <FormItem
-              ident={"sess-atmos-note-stage-" + props.thisStage + index}
-              type="textarea"
-              label={`${t("Note")}:`}
-              updateHandler={(value) =>
-                updateItem(atmosItem.id, "notes", value)
-              }
-              value={atmosItem.notes}
-            />
           </li>
         ))}
       </ul>
-
-      <Button onClick={addItem} icon="plus">
-        {t("Add Climate Reading")}
-      </Button>
+      <ButtonSpacer align="right">
+        <Button onClick={addItem} icon="plus">
+          {t("Add Climate Reading")}
+        </Button>
+      </ButtonSpacer>
     </>
   );
 }
