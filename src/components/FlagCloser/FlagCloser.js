@@ -7,11 +7,12 @@ import FormItem from "../FormItem/FormItem.js";
 import UserName from "../UserSwitcher/UserName/UserName.js";
 import DataList from "../DataList/DataList.js";
 import DataListItem from "../DataList/DataListItem/DataListItem.js";
+// import SessionCard from "../RunEditor/Stage/SessionCard/SessionCard.js";
+import DateTimeFormatter from "../DateTimeFormatter/DateTimeFormatter.js";
 
 import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 
 import { useTranslation } from "react-i18next";
-import SessionCard from "../RunEditor/Stage/SessionCard/SessionCard.js";
 
 /**
  * Dialog for editing / ending a flag session.
@@ -116,67 +117,75 @@ function FlagCloser(props) {
             icon: translatePriority(priority),
           }}
         >
-          <SessionCard
+          {/* <SessionCard
             type={translatePriority(priority)}
             padding
             title={t(translatePriority(priority, true))}
-          >
-            <DataList>
-              <DataListItem
-                dataKey={t("Raised by")}
-                dataValue={<UserName userId={props.session.user} />}
-              ></DataListItem>
-            </DataList>
-
-            <FormItem
-              label={`${t("Priority")}:`}
-              type="toggleButton"
-              ident="flag-priority"
-              itemLabels={[t("Note"), t("Issue"), t("Blocker")]}
-              itemValues={["0", "1", "2"]}
-              value={priority.toString()}
-              updateHandler={(value) => {
-                setPriority(parseInt(value));
-              }}
-              spacing="both"
+          > */}
+          <DataList>
+            <DataListItem
+              dataKey={t("Raised by")}
+              dataValue={<UserName userId={props.session.user} />}
             />
-            <p>
-              {t("Notes")}:
-              <br />
-              {props.session.notes.split("\n").map((item, key) => {
-                return (
-                  <span key={key}>
-                    {item}
-                    <br />
-                  </span>
-                );
-              })}
-            </p>
-
-            <FormItem
-              label={
-                status === "resolved"
-                  ? t("Fix Description") + ":"
-                  : t("Update Note") + ":"
+            <DataListItem
+              dataKey={t("Start Time")}
+              dataValue={
+                <DateTimeFormatter
+                  date={props.session.startTime}
+                ></DateTimeFormatter>
               }
-              type="textarea"
-              ident="flag-note"
-              updateHandler={(value) => {
-                setDescription(value);
-              }}
             />
-            <FormItem
-              label={`${t("Status")}:`}
-              type="toggleButton"
-              ident="flag-status"
-              itemLabels={[t("Active"), t("Waiting"), t("Resolved")]}
-              itemValues={["active", "waiting", "resolved"]}
-              value={status}
-              updateHandler={(value) => {
-                setStatus(value);
-              }}
-            />
-          </SessionCard>
+          </DataList>
+
+          <FormItem
+            label={`${t("Priority")}:`}
+            type="toggleButton"
+            ident="flag-priority"
+            itemLabels={[t("Note"), t("Issue"), t("Blocker")]}
+            itemValues={["0", "1", "2"]}
+            value={priority.toString()}
+            updateHandler={(value) => {
+              setPriority(parseInt(value));
+            }}
+            spacing="both"
+          />
+          <p>
+            {t("Notes")}:
+            <br />
+            {props.session.notes.split("\n").map((item, key) => {
+              return (
+                <span key={key}>
+                  {item}
+                  <br />
+                </span>
+              );
+            })}
+          </p>
+
+          <FormItem
+            label={
+              status === "resolved"
+                ? t("Fix Description") + ":"
+                : t("Update Note") + ":"
+            }
+            type="textarea"
+            ident="flag-note"
+            updateHandler={(value) => {
+              setDescription(value);
+            }}
+          />
+          <FormItem
+            label={`${t("Status")}:`}
+            type="toggleButton"
+            ident="flag-status"
+            itemLabels={[t("Active"), t("Waiting"), t("Resolved")]}
+            itemValues={["active", "waiting", "resolved"]}
+            value={status}
+            updateHandler={(value) => {
+              setStatus(value);
+            }}
+          />
+          {/* </SessionCard> */}
         </ModalControl>
       )}
     </>

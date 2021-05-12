@@ -9,14 +9,13 @@ import UserName from "../UserSwitcher/UserName/UserName.js";
 import UserSelect from "../FormItem/UserSelect/UserSelect.js";
 import FormLayout from "../FormItem/FormLayout/FormLayout.js";
 import DateTimeFormatter from "../DateTimeFormatter/DateTimeFormatter.js";
-import Timer from "../Timer/Timer.js";
 import DataList from "../DataList/DataList.js";
 import DataListItem from "../DataList/DataListItem/DataListItem.js";
+// import SessionCard from "../RunEditor/Stage/SessionCard/SessionCard.js";
 
 import getItemType from "../../utils/getItemType.js";
 
 import { useTranslation } from "react-i18next";
-import SessionCard from "../RunEditor/Stage/SessionCard/SessionCard.js";
 
 /**
  * Dialog for editing / ending a QA session
@@ -120,75 +119,75 @@ function CheckCloser(props) {
           buttonAttrs={{ color: "qa", icon: "qa" }}
           startOpen={startOpen}
         >
-          <SessionCard type="qa" padding title={t("QA Check")}>
-            <DataList>
-              <DataListItem
-                dataKey={t("Creator")}
-                dataValue={<UserName userId={props.session.user} />}
-              />
-              <DataListItem
-                dataKey={t("Start Time")}
-                dataValue={
-                  <DateTimeFormatter
-                    date={props.session.startTime}
-                  ></DateTimeFormatter>
-                }
-              />
-              <DataListItem
+          {/* <SessionCard type="qa" padding title={t("QA Check")}> */}
+          <DataList>
+            <DataListItem
+              dataKey={t("Creator")}
+              dataValue={<UserName userId={props.session.user} />}
+            />
+            <DataListItem
+              dataKey={t("Start Time")}
+              dataValue={
+                <DateTimeFormatter
+                  date={props.session.startTime}
+                ></DateTimeFormatter>
+              }
+            />
+            {/* <DataListItem
                 dataKey={t("Duration")}
                 dataValue={<Timer startTime={props.session.startTime}></Timer>}
-              />
-            </DataList>
-            <UserSelect
-              label={`${t("Assignee")}:`}
-              ident={"assignee-" + props.thisStage}
-              updateHandler={(value) => setAssignee(parseInt(value))}
-              value={assignee}
-              spacing="both"
-            />
+              /> */}
+          </DataList>
+          <UserSelect
+            label={`${t("Assignee")}:`}
+            ident={"assignee-" + props.thisStage}
+            updateHandler={(value) => setAssignee(parseInt(value))}
+            value={assignee}
+            spacing="both"
+          />
 
-            <p>
-              {t("Raising Note")}: {props.session.notes || "None"}
-            </p>
+          <p>
+            {t("Raising Note")}: {props.session.notes || "None"}
+          </p>
 
+          <FormItem
+            label={`${t("Checker Note")}:`}
+            type="textarea"
+            ident="check-description"
+            updateHandler={(value) => {
+              setDescription(`${t("Checked")}: ${value}`);
+            }}
+          />
+          <FormLayout>
             <FormItem
-              label={`${t("Checker Note")}:`}
-              type="textarea"
-              ident="check-description"
-              updateHandler={(value) => {
-                setDescription(`${t("Checked")}: ${value}`);
-              }}
+              label={`${t("Passed")}:`}
+              type="number"
+              ident={"check-count"}
+              updateHandler={(value) => setCount(parseInt(value))}
+              value={count}
+              min="0"
             />
-            <FormLayout>
-              <FormItem
-                label={`${t("Passed")}:`}
-                type="number"
-                ident={"check-count"}
-                updateHandler={(value) => setCount(parseInt(value))}
-                value={count}
-                min="0"
-              />
-              <FormItem
-                label={`${t("Failed")}:`}
-                type="number"
-                ident={"check-count-bad"}
-                updateHandler={(value) => setCountBad(parseInt(value))}
-                value={countBad}
-                min="0"
-              />
-            </FormLayout>
             <FormItem
-              label={`${t("Status")}:`}
-              type="toggleButton"
-              ident="assignment-status"
-              itemLabels={[t("Active"), t("Resolved")]}
-              itemValues={["active", "resolved"]}
-              value={status}
-              updateHandler={(value) => {
-                setStatus(value);
-              }}
+              label={`${t("Failed")}:`}
+              type="number"
+              ident={"check-count-bad"}
+              updateHandler={(value) => setCountBad(parseInt(value))}
+              value={countBad}
+              min="0"
             />
-          </SessionCard>
+          </FormLayout>
+          <FormItem
+            label={`${t("Status")}:`}
+            type="toggleButton"
+            ident="assignment-status"
+            itemLabels={[t("Active"), t("Resolved")]}
+            itemValues={["active", "resolved"]}
+            value={status}
+            updateHandler={(value) => {
+              setStatus(value);
+            }}
+          />
+          {/* </SessionCard> */}
         </ModalControl>
       )}
     </>
