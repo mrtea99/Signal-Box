@@ -200,7 +200,7 @@ function SessionItem({
                     : "details",
               }}
             >
-              <SessionDetails session={session} thisStage={thisStage} />
+              <SessionDetails session={session} />
             </ModalControl>
           </li>
         </ul>

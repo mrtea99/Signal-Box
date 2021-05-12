@@ -20,8 +20,8 @@ import { useTranslation } from "react-i18next";
 function SessionDetails(props) {
   const { t } = useTranslation();
 
-  const { session, thisStage } = props;
-  const itemName = getItemType(thisStage);
+  const { session } = props;
+  const itemName = getItemType(session.stage);
 
   const capitalise = (s) => {
     if (typeof s !== "string") return "";
@@ -163,7 +163,6 @@ function SessionDetails(props) {
 
 SessionDetails.propTypes = {
   session: PropTypes.object.isRequired,
-  thisStage: PropTypes.number.isRequired,
 };
 
 export default SessionDetails;
