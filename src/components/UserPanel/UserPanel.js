@@ -7,6 +7,8 @@ import UserName from "../UserSwitcher/UserName/UserName.js";
 import Stopwatch from "../RunEditor/Stage/SessionDuring/Stopwatch/Stopwatch.js";
 import Timer from "../Timer/Timer.js";
 
+import styles from "./UserPanel.module.css";
+
 import getFlagName from "../../utils/getFlagName.js";
 
 import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
@@ -22,8 +24,9 @@ function UserPanel() {
 
     const thisUserSessions = allSessions.filter(
       (session) =>
-        session.user === displayUser &&
-        !["consign", "activate", "deactivate"].includes(session.type) &&
+        (session.secondaryUser === displayUser ||
+          (session.user === displayUser && session.type === "work")) &&
+        !["consign", "activate", "deactivate", "flag"].includes(session.type) &&
         session.endTime === null
     );
     return thisUserSessions;
@@ -59,9 +62,9 @@ function UserPanel() {
       <h2>
         Que for <UserName userId={displayUser} />
       </h2>
-      <ul>
+      <ul className={styles.sessionsList}>
         {userSessions.map((session) => (
-          <li key={session.sessionId}>
+          <li key={session.sessionId} className={styles.sessionItem}>
             <SessionCard
               type={
                 session.type === "flag"
@@ -71,9 +74,14 @@ function UserPanel() {
               title={session.type}
               onClick={() => goToSession(session)}
             >
-              <Stopwatch>
-                <Timer startTime={session.startTime} />
-              </Stopwatch>
+              <div className={styles.sessionInner}>
+                <p>Run ID: {session.runId}</p>
+                <div className={styles.sessionTime}>
+                  <Stopwatch>
+                    <Timer startTime={session.startTime} />
+                  </Stopwatch>
+                </div>
+              </div>
             </SessionCard>
           </li>
         ))}
