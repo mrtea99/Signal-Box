@@ -14,7 +14,7 @@
   font-size: var(--text-larger);
 }
 
-.sessionTitleWorking {
+.sessionTitleWork {
   background-color: var(--color-working);
 }
 .sessionTitleQa {
@@ -29,7 +29,7 @@
 .sessionTitleBlocker {
   background-color: var(--color-blocker);
 }
-.sessionTitleAssignment {
+.sessionTitleAssign {
   background-color: var(--color-assign);
 }
 
@@ -41,7 +41,7 @@
   flex-grow: 1;
 }
 
-.contentWorking {
+.contentWork {
   border-color: var(--color-working);
 }
 .contentQa {
@@ -56,7 +56,7 @@
 .contentBlocker {
   border-color: var(--color-blocker);
 }
-.contentAssignment {
+.contentAssign {
   border-color: var(--color-assign);
 }
 

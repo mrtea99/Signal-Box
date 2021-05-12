@@ -208,7 +208,7 @@ function SessionDuring(props) {
       {props.activeSessionData ? (
         <SessionCard
           title={`${props.activeSessionData.activity.name} Session`}
-          type="working"
+          type="work"
         >
           <div className={styles.readOnly}>
             <DataList className={styles.readOnlyList}>

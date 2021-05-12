@@ -10,9 +10,12 @@ import DataListItem from "../DataList/DataListItem/DataListItem.js";
 // import SessionCard from "../RunEditor/Stage/SessionCard/SessionCard.js";
 import DateTimeFormatter from "../DateTimeFormatter/DateTimeFormatter.js";
 
+import getFlagName from "../../utils/getFlagName.js";
+
 import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 
 import { useTranslation } from "react-i18next";
+import { useHistory, useParams } from "react-router";
 
 /**
  * Dialog for editing / ending a flag session.
@@ -37,6 +40,17 @@ function FlagCloser(props) {
     setDescription(defaultFormData.description);
     setStatus(defaultFormData.status);
     setPriority(defaultFormData.priority);
+  };
+
+  const { runId, stageNum, sessionId } = useParams();
+  let history = useHistory();
+
+  const startOpen = parseInt(sessionId) === props.session.sessionId;
+
+  const closeModal = function () {
+    resetFormData();
+
+    history.push(`/run/${runId}/${stageNum}`);
   };
 
   const dispatch = useDispatch();
@@ -83,44 +97,34 @@ function FlagCloser(props) {
   };
 
   const handleCancel = function () {
-    // resetFormData();
+    // closeModal();
   };
 
   const handleOpen = function () {
-    resetFormData();
-  };
+    closeModal();
 
-  const translatePriority = function (count, caps) {
-    switch (count) {
-      case 0:
-        return caps ? t("Note") : "note";
-      case 1:
-        return caps ? t("Issue") : "issue";
-      case 2:
-        return caps ? t("Blocker") : "blocker";
-      default:
-        return t("N/A");
-    }
+    history.push(`/run/${runId}/${stageNum}/${props.session.sessionId}`);
   };
 
   return (
     <>
       {props.session.endTime ? null : (
         <ModalControl
-          title={`${t("Update")} ${translatePriority(priority, true)}`}
+          title={`${t("Update")} ${getFlagName(priority, true)}`}
           handleSubmit={handleSubmit}
           handleCancel={handleCancel}
           handleOpen={handleOpen}
           triggerCopy={""}
           buttonAttrs={{
-            color: translatePriority(priority),
-            icon: translatePriority(priority),
+            color: getFlagName(priority),
+            icon: getFlagName(priority),
           }}
+          startOpen={startOpen}
         >
           {/* <SessionCard
-            type={translatePriority(priority)}
+            type={getFlagName(priority)}
             padding
-            title={t(translatePriority(priority, true))}
+            title={t(getFlagName(priority, true))}
           > */}
           <DataList>
             <DataListItem

@@ -14,6 +14,7 @@ import SiteSettings from "./components/SiteSidebar/SiteSettings/SiteSettings.js"
 import GlobalContexts from "./components/GlobalContexts/GlobalContexts.js";
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen.js";
 import AdminPanel from "./components/AdminPanel/AdminPanel.js";
+import UserPanel from "./components/UserPanel/UserPanel.js";
 import Button from "./components/Button/Button.js";
 
 import { selectAllRuns } from "./components/RunList/runsSlice.js";
@@ -169,6 +170,9 @@ function App() {
                   </Route>
                   <Route path={["/admin/:stageNum", "/admin"]}>
                     <AdminPanel />
+                  </Route>
+                  <Route path={["/user/:userId", "/user"]}>
+                    <UserPanel />
                   </Route>
                   <Redirect from="/" to={`/admin`} />
                 </Switch>
