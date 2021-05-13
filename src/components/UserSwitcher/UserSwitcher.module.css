@@ -4,7 +4,41 @@
   --width-pad-inner: 0.6rem;
   --height-pad-vert: 0.2rem;
 
+  display: flex;
+  flex-direction: row;
+}
+
+.link {
+  color: var(--color-text);
+  text-decoration: none;
+  background-color: var(--color-grey-light);
+  margin-right: 0.5rem;
+  min-height: var(--size-touch-min);
+  min-width: var(--size-touch-min);
+  padding: var(--height-pad-vert) var(--width-pad-outer);
+  display: flex;
+  align-items: center;
+  font-weight: var(--font--weight-bold);
+  max-width: 13rem;
+}
+
+.userIcon {
+  border: 2px solid var(--color-white);
+  border-radius: 50%;
+  height: var(--size-icon);
+  width: var(--size-icon);
+  margin-right: var(--width-pad-inner);
+  /* margin: 0 var(--width-pad-inner) 0 var(--width-pad-outer); */
+}
+
+.userIcon path {
+  transform: translateY(1px); /* temp fix for annoying svg */
+}
+
+.switcher {
   position: relative;
+  background-color: var(--color-grey-light);
+  color: var(--color-text);
 }
 
 .select {
@@ -12,20 +46,16 @@
   -webkit-appearance: none;
   appearance: none;
 
-  background-color: var(--color-grey-light);
-  color: var(--color-text);
-  min-height: var(--size-touch-min);
-  min-width: var(--size-touch-min);
-  padding: var(--height-pad-vert)
-    calc(var(--width-pad-outer) + var(--width-pad-inner) + var(--size-icon))
-    var(--height-pad-vert) var(--width-pad-outer);
+  background-color: var(--color-bg);
+  color: transparent;
+  height: var(--size-touch-min);
+  width: var(--size-touch-min);
   font-size: var(--text-normal);
   font-weight: var(--font--weight-bold);
   line-height: 1.3em;
   border: 0;
   cursor: pointer;
   white-space: normal;
-  max-width: 13rem;
   text-align-last: right;
 }
 .select::-ms-expand {
@@ -38,6 +68,7 @@
 
 .select option {
   font-weight: var(--font--weight-normal);
+  color: var(--color-text);
   /* direction: rtl;  */
 }
 
@@ -46,6 +77,7 @@
   right: 0;
   top: 0;
   bottom: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,13 +85,7 @@
 }
 
 .icon {
-  border: 2px solid var(--color-white);
-  border-radius: 50%;
-  height: var(--size-icon);
-  width: var(--size-icon);
-  margin: 0 var(--width-pad-inner) 0 var(--width-pad-outer);
-}
-
-.icon path {
-  transform: translateY(1px); /* temp fix for annoying svg */
+  height: 1rem;
+  width: 1rem;
+  transform: rotate(90deg);
 }

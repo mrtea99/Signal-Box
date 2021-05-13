@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Icon from "../Icon/Icon";
 import styles from "./Button.module.css";
+import { Link } from "react-router-dom";
 
 /**
  * Standard large button, designed for touch interaction
@@ -51,18 +52,26 @@ function Button(props) {
         </a>
       );
     } else {
-      return (
-        <button
-          className={styleClasses}
-          disabled={props.disabled}
-          onClick={(e) => {
-            e.preventDefault();
-            props.onClick(e);
-          }}
-        >
-          {btnProps.children}
-        </button>
-      );
+      if (props.path) {
+        return (
+          <Link className={styleClasses} to={props.path}>
+            {btnProps.children}
+          </Link>
+        );
+      } else {
+        return (
+          <button
+            className={styleClasses}
+            disabled={props.disabled}
+            onClick={(e) => {
+              e.preventDefault();
+              props.onClick(e);
+            }}
+          >
+            {btnProps.children}
+          </button>
+        );
+      }
     }
   };
 
