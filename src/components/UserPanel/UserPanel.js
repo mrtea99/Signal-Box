@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router";
+import { useParams } from "react-router";
 
 import SessionCard from "../RunEditor/Stage/SessionCard/SessionCard.js";
 import UserName from "../UserSwitcher/UserName/UserName.js";
@@ -45,13 +45,15 @@ function UserPanel() {
   //   const run = useSelector((state) => selectRun(state, runId));
   // };
 
-  const history = useHistory();
+  // const history = useHistory();
   const goToSession = function (session) {
     let goToPath = "";
     switch (session.type) {
       case "work":
-      case "assign":
         goToPath = `/run/${session.runId}/${session.stage}`;
+        break;
+      case "assign":
+        goToPath = `/run/${session.runId}/${session.stage}/start`;
         break;
       case "flag":
       case "qa":
@@ -61,9 +63,7 @@ function UserPanel() {
         break;
     }
 
-    if (goToPath) {
-      history.push(goToPath);
-    }
+    return goToPath;
   };
 
   return (
@@ -81,21 +81,9 @@ function UserPanel() {
                   : session.type
               }
               title={getSessionName(session)}
-              // onClick={() => goToSession(session)}
             >
               <div className={styles.sessionInner}>
                 <div>
-                  Run ID: {session.runId} <br />
-                  {session.type === "qa" ? (
-                    <CheckCloser
-                      thisStage={session.stage}
-                      session={session}
-                      currentRunId={session.runId}
-                    />
-                  ) : (
-                    <Button onClick={() => goToSession(session)} icon="start" />
-                  )}
-                  <br />
                   <ModalControl
                     title={t("Session Details")}
                     triggerCopy={""}
@@ -108,6 +96,20 @@ function UserPanel() {
                   >
                     <SessionDetails session={session} />
                   </ModalControl>
+                  {t("Run ID")}: {session.runId}
+                  <br />
+                  <br />
+                  {session.type === "qa" ? (
+                    <CheckCloser
+                      thisStage={session.stage}
+                      session={session}
+                      currentRunId={session.runId}
+                    />
+                  ) : (
+                    <Button path={() => goToSession(session)} icon="start">
+                      {session.type === "work" ? "Continue" : "Start"}
+                    </Button>
+                  )}
                 </div>
 
                 <div className={styles.sessionTime}>
