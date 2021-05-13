@@ -58,7 +58,7 @@ function SessionItemCard({ session }) {
     const dayNumber = new Date(time).getDay();
     const shiftName = getShiftName(time) || "";
 
-    return dayNames[dayNumber] + " " + shiftName;
+    return `${dayNames[dayNumber]}${shiftName.length ? " " + shiftName : ""}`;
   };
 
   return (
