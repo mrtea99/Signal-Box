@@ -61,7 +61,7 @@ function SessionDetails(props) {
   const getStatus = (session) => {
     switch (session.type) {
       case "work":
-        return session.endTime ? t("Resolved") : t("Unresolved");
+        return session.endTime ? t("Complete") : t("In Progress");
       case "qa":
       case "assign":
         return session.endTime ? t("Resolved") : t("Active");

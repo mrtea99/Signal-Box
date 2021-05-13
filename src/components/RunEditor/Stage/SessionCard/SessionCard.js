@@ -2,14 +2,17 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import styles from "./SessionCard.module.css";
+import Icon from "../../../Icon/Icon";
 
 function SessionCard(props) {
   let titleTypeClass = null;
   let contentTypeClass = null;
+  let iconName = props.type;
   switch (props.type) {
     case "work":
       titleTypeClass = styles.sessionTitleWork;
       contentTypeClass = styles.contentWork;
+      iconName = "start";
       break;
     case "qa":
       titleTypeClass = styles.sessionTitleQa;
@@ -41,8 +44,13 @@ function SessionCard(props) {
         className={`${styles.sessionTitle} ${titleTypeClass}`}
         onClick={props.onClick || null}
       >
-        {props.title || "\u00A0"}
-        {/* \u00A0 aka &nbsp; */}
+        {props.title ? (
+          <>
+            <Icon name={iconName} className={styles.titleIcon} /> {props.title}
+          </>
+        ) : (
+          <>{"\u00A0"}</>
+        )}
       </h4>
       <div
         className={`${styles.content} ${contentTypeClass} ${

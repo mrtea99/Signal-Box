@@ -6,15 +6,22 @@ import SessionCard from "../RunEditor/Stage/SessionCard/SessionCard.js";
 import UserName from "../UserSwitcher/UserName/UserName.js";
 import Stopwatch from "../RunEditor/Stage/SessionDuring/Stopwatch/Stopwatch.js";
 import Timer from "../Timer/Timer.js";
+import SessionDetails from "../SessionList/SessionDetails/SessionDetails.js";
+import ModalControl from "../Modal/ModalControl/ModalControl.js";
 
 import styles from "./UserPanel.module.css";
 
 import getFlagName from "../../utils/getFlagName.js";
+import getSessionName from "../../utils/getSessionName.js";
 
 import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 // import { selectRun } from "../RunList/runsSlice.js";
 
+import { useTranslation } from "react-i18next";
+
 function UserPanel() {
+  const { t } = useTranslation();
+
   const { userId } = useParams();
   const activeUser = useSelector(selectCurrentUser);
   const displayUser = parseInt(userId) || activeUser;
@@ -71,11 +78,26 @@ function UserPanel() {
                   ? getFlagName(session.amount)
                   : session.type
               }
-              title={session.type}
+              title={getSessionName(session)}
               onClick={() => goToSession(session)}
             >
               <div className={styles.sessionInner}>
-                <p>Run ID: {session.runId}</p>
+                <p>
+                  Run ID: {session.runId}{" "}
+                  <ModalControl
+                    title={t("Session Details")}
+                    triggerCopy={""}
+                    buttonAttrs={{
+                      icon:
+                        session.notes && session.notes.length
+                          ? "detailsAlt"
+                          : "details",
+                    }}
+                  >
+                    <SessionDetails session={session} />
+                  </ModalControl>
+                </p>
+
                 <div className={styles.sessionTime}>
                   <Stopwatch>
                     <Timer startTime={session.startTime} />

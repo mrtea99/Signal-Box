@@ -209,6 +209,7 @@ function SessionDuring(props) {
         <SessionCard
           title={`${props.activeSessionData.activity.name} Session`}
           type="work"
+          icon="play"
         >
           <div className={styles.readOnly}>
             <DataList className={styles.readOnlyList}>

@@ -12,6 +12,8 @@
   padding: 0.5rem;
   text-transform: uppercase;
   font-size: var(--text-larger);
+  display: flex;
+  align-items: center;
 }
 
 .sessionTitleWork {
@@ -31,6 +33,10 @@
 }
 .sessionTitleAssign {
   background-color: var(--color-assign);
+}
+
+.titleIcon {
+  margin-right: 0.3em;
 }
 
 .content {

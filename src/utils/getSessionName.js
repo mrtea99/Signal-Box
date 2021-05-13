@@ -1,9 +1,10 @@
 import getFlagName from "./getFlagName.js";
+import stageNames from "../data/stageNames.json";
 
 function getSessionName(session) {
   switch (session.type) {
     case "work":
-      return session.activity.name;
+      return `${session.activity.name} Session`;
     case "qa":
       return "QA Check";
     case "flag":
@@ -13,9 +14,9 @@ function getSessionName(session) {
     case "activate":
       return "Undo Complete Stage";
     case "consign":
-      return `Consign ${session.stage === "Manufacture" ? "Batches" : "Units"}`;
+      return `Consign ${session.stage === 1 ? "Batches" : "Units"}`;
     case "assign":
-      return "Assignment";
+      return `${stageNames[session.stage]} Assignment`;
     default:
       return "Activity";
   }
