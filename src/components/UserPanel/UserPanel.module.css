@@ -9,10 +9,3 @@
 .sessionItem {
   margin-bottom: 1rem;
 }
-
-.sessionInner {
-  padding: 1rem;
-  display: flex;
-  justify-content: space-between;
-  background-color: var(--color-grey-bright);
-}

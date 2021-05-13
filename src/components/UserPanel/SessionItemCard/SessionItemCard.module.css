@@ -1,0 +1,29 @@
+.sessionInner {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--color-grey-bright);
+}
+
+.sessionInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.runTitle {
+  margin-left: 1rem;
+  margin-bottom: 1rem;
+}
+
+.runName {
+  margin: 0 0 0.3em 0;
+  padding: 0;
+}
+
+.runId {
+  font-weight: var(--font--weight-normal);
+  font-size: var(--text-smaller);
+  margin: 0;
+  padding: 0;
+}
