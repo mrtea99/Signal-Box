@@ -97,10 +97,29 @@ function SessionItemCard({ session }) {
                 session={session}
                 currentRunId={session.runId}
               />
-              <Button path={() => goToSession(session)}>{"View Stage"}</Button>
+              <Button
+                path={() => goToSession(session)}
+                onClick={() =>
+                  window.localStorage.setItem(
+                    "editorBackLoc",
+                    window.location.pathname
+                  )
+                }
+              >
+                {"View Stage"}
+              </Button>
             </ButtonSpacer>
           ) : (
-            <Button path={() => goToSession(session)} icon="start">
+            <Button
+              path={() => goToSession(session)}
+              icon="start"
+              onClick={() =>
+                window.localStorage.setItem(
+                  "editorBackLoc",
+                  window.location.pathname
+                )
+              }
+            >
               {session.type === "work" ? "Continue" : "Start"}
             </Button>
           )}

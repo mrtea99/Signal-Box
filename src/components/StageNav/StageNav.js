@@ -6,28 +6,32 @@ import StageStatus from "../StageStatus/StageStatus.js";
 import styles from "./StageNav.module.css";
 
 import stageNames from "../../data/stageNames.json";
+import { Link } from "react-router-dom";
 
 /**
  * Displays all the stages for a run with status.
  */
 
 function StageNav(props) {
-  const handleNavList = function (stageIndex, e) {
-    e.preventDefault();
-    props.buttonCallback(stageIndex);
+  const handleNavList = function () {
+    const leavingPath = window.location.pathname;
+    if (!leavingPath.includes("/run/")) {
+      window.localStorage.setItem("editorBackLoc", window.location.pathname);
+    }
   };
 
   return (
     <ul className={styles.progBar}>
       {stageNames.map((stage, index) => (
         <li key={props.currentRunId + stage} className={styles.progItem}>
-          <button
+          <Link
             className={`${styles.progBtn} ${
               props.activeStage === index && props.showActive
                 ? styles.progBtnActive
                 : ""
             }`}
-            onClick={(e) => handleNavList(index, e)}
+            onClick={() => handleNavList()}
+            to={`/run/${props.currentRunId}/${index}`}
           >
             <span
               className={`${styles.btnLabel} ${
@@ -46,7 +50,7 @@ function StageNav(props) {
                 />
               </span>
             )}
-          </button>
+          </Link>
         </li>
       ))}
     </ul>
@@ -54,7 +58,6 @@ function StageNav(props) {
 }
 
 StageNav.propTypes = {
-  buttonCallback: PropTypes.func.isRequired,
   currentRunId: PropTypes.number,
   activeStage: PropTypes.number,
   showActive: PropTypes.bool,

@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useHistory } from "react-router";
 
 import StageNav from "../../StageNav/StageNav";
 import RunTitle from "../RunTitle/RunTitle.js";
@@ -12,12 +11,6 @@ import styles from "./RunListAllItem.module.css";
  */
 
 function RunListAllItem(props) {
-  let history = useHistory();
-  const openEditor = function (runUid, stageNum) {
-    window.localStorage.setItem("editorBackLoc", window.location.pathname);
-    history.push(`/run/${runUid}/${stageNum}`);
-  };
-
   return (
     <div>
       <header className={styles.itemHeader}>
@@ -27,7 +20,6 @@ function RunListAllItem(props) {
       <StageNav
         currentRunId={props.currentRunId}
         activeStage={props.activeStage}
-        buttonCallback={(newIndex) => openEditor(props.currentRunId, newIndex)}
         sessionLabels
         syntax="list"
       ></StageNav>

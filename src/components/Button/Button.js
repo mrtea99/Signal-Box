@@ -54,7 +54,11 @@ function Button(props) {
     } else {
       if (props.path) {
         return (
-          <Link className={styleClasses} to={props.path}>
+          <Link
+            className={styleClasses}
+            to={props.path}
+            onClick={props.onClick}
+          >
             {btnProps.children}
           </Link>
         );

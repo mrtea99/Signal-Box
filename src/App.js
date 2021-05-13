@@ -163,11 +163,11 @@ function App() {
                     path={[
                       "/run/:runId/:stageNum/:sessionId",
                       "/run/:runId/:stageNum",
-                      "/run/:runId",
                     ]}
                   >
                     <RunEditor />
                   </Route>
+                  <Redirect from="/run/:runId" to="/run/:runId/0" />
                   <Route path={["/admin/:stageNum", "/admin"]}>
                     <AdminPanel />
                   </Route>

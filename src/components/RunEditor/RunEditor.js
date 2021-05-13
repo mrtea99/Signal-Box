@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router";
+import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 
 import Stage from "./Stage/Stage.js";
@@ -33,27 +33,16 @@ function RunEditor() {
   // Router
   //----------------------
   let { runId, stageNum } = useParams();
-  let history = useHistory();
-
   runId = parseInt(runId);
+  stageNum = parseInt(stageNum);
+
   const thisRunData = useSelector((state) => selectRun(state, runId));
 
-  const handleExitClick = function () {
-    const backLoc = window.localStorage.getItem("editorBackLoc") || "/";
-    history.push(backLoc);
-  };
+  const backLoc = window.localStorage.getItem("editorBackLoc") || "/";
 
-  const changeStage = function (runId, newIndex) {
-    history.push(`/run/${runId}/${newIndex}`);
-  };
-
-  // If no stage is in path then default to 0
-  if (stageNum === undefined) {
-    stageNum = 0;
-    changeStage(runId, stageNum);
-  } else {
-    stageNum = parseInt(stageNum);
-  }
+  // const handleExitClick = function () {
+  //   history.push(backLoc);
+  // };
 
   // View Mode
   //----------------------
@@ -72,7 +61,7 @@ function RunEditor() {
         >
           <div className={styles.inner}>
             <header className={styles.controlBar}>
-              <Button onClick={() => handleExitClick()} icon="cross" iconFirst>
+              <Button path={backLoc} icon="cross" iconFirst>
                 {t("Exit Run")}
               </Button>
             </header>
@@ -88,7 +77,6 @@ function RunEditor() {
               <StageNav
                 currentRunId={runId}
                 activeStage={stageNum}
-                buttonCallback={(newIndex) => changeStage(runId, newIndex)}
                 stageLabels
                 showActive
                 hideStatus={simpleMode}

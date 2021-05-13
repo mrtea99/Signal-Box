@@ -38,12 +38,6 @@ function RunListStageItem(props) {
     activeUser
   );
 
-  let history = useHistory();
-  const openEditor = function (runUid, stageNum) {
-    window.localStorage.setItem("editorBackLoc", window.location.pathname);
-    history.push(`/run/${runUid}/${stageNum}`);
-  };
-
   const highestFlag = function (stageStatus) {
     if (stageStatus.blockerActive) {
       return "blocker";
@@ -190,7 +184,13 @@ function RunListStageItem(props) {
         <span className={styles.cellLabel}>{props.columns[6].copy}</span>
         <span className={styles.cellContent}>
           <Button
-            onClick={() => openEditor(props.currentRunId, props.stageNum)}
+            onClick={() =>
+              window.localStorage.setItem(
+                "editorBackLoc",
+                window.location.pathname
+              )
+            }
+            path={`/run/${props.currentRunId}/${props.stageNum}`}
             icon="start"
           ></Button>
         </span>
