@@ -53,7 +53,7 @@ function getShiftName(givenDateString) {
   const timeRemaining = givenTime - timeMidnight;
 
   return Object.keys(shiftTimes).find((key) => {
-    return shiftTimes[key] === timeRemaining ? key : undefined;
+    return timeRemaining === shiftTimes[key] ? key : undefined;
   });
 }
 
