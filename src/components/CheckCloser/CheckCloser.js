@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
-import { useHistory, useParams } from "react-router";
+// import { useHistory, useParams } from "react-router";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import FormItem from "../FormItem/FormItem.js";
@@ -46,15 +46,15 @@ function CheckCloser(props) {
     setStatus(defaultFormState.status);
   };
 
-  const { runId, stageNum, sessionId } = useParams();
-  let history = useHistory();
+  // const { runId, stageNum, sessionId } = useParams();
+  // let history = useHistory();
 
-  const startOpen = parseInt(sessionId) === props.session.sessionId;
+  // const startOpen = parseInt(sessionId) === props.session.sessionId;
 
   const closeModal = function () {
     resetFormState();
 
-    history.push(`/run/${runId}/${stageNum}`);
+    // history.push(`/run/${runId}/${stageNum}`);
   };
 
   const dispatch = useDispatch();
@@ -103,7 +103,7 @@ function CheckCloser(props) {
   const handleOpen = function () {
     resetFormState();
 
-    history.push(`/run/${runId}/${stageNum}/${props.session.sessionId}`);
+    // history.push(`/run/${runId}/${stageNum}/${props.session.sessionId}`);
   };
 
   return (
@@ -117,7 +117,7 @@ function CheckCloser(props) {
           triggerCopy={""}
           submitCopy={t("Save")}
           buttonAttrs={{ color: "qa", icon: "qa" }}
-          startOpen={startOpen}
+          // startOpen={startOpen}
         >
           {/* <SessionCard type="qa" padding title={t("QA Check")}> */}
           <DataList>

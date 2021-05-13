@@ -18,6 +18,8 @@ import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 // import { selectRun } from "../RunList/runsSlice.js";
 
 import { useTranslation } from "react-i18next";
+import CheckCloser from "../CheckCloser/CheckCloser.js";
+import Button from "../Button/Button.js";
 
 function UserPanel() {
   const { t } = useTranslation();
@@ -79,11 +81,21 @@ function UserPanel() {
                   : session.type
               }
               title={getSessionName(session)}
-              onClick={() => goToSession(session)}
+              // onClick={() => goToSession(session)}
             >
               <div className={styles.sessionInner}>
-                <p>
-                  Run ID: {session.runId}{" "}
+                <div>
+                  Run ID: {session.runId} <br />
+                  {session.type === "qa" ? (
+                    <CheckCloser
+                      thisStage={session.stage}
+                      session={session}
+                      currentRunId={session.runId}
+                    />
+                  ) : (
+                    <Button onClick={() => goToSession(session)} icon="start" />
+                  )}
+                  <br />
                   <ModalControl
                     title={t("Session Details")}
                     triggerCopy={""}
@@ -96,7 +108,7 @@ function UserPanel() {
                   >
                     <SessionDetails session={session} />
                   </ModalControl>
-                </p>
+                </div>
 
                 <div className={styles.sessionTime}>
                   <Stopwatch>

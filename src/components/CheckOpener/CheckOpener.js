@@ -44,6 +44,7 @@ function CheckOpener(props) {
       startTime: new Date().toISOString(),
       endTime: null,
       user: activeUser,
+      secondaryUser: formData.secondaryUser,
       notes: formData.notes,
       extra: formData.timeframe,
     };

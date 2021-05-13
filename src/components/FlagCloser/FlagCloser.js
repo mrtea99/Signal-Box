@@ -15,7 +15,7 @@ import getFlagName from "../../utils/getFlagName.js";
 import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 
 import { useTranslation } from "react-i18next";
-import { useHistory, useParams } from "react-router";
+// import { useHistory, useParams } from "react-router";
 
 /**
  * Dialog for editing / ending a flag session.
@@ -42,15 +42,15 @@ function FlagCloser(props) {
     setPriority(defaultFormData.priority);
   };
 
-  const { runId, stageNum, sessionId } = useParams();
-  let history = useHistory();
+  // const { runId, stageNum, sessionId } = useParams();
+  // let history = useHistory();
 
-  const startOpen = parseInt(sessionId) === props.session.sessionId;
+  // const startOpen = parseInt(sessionId) === props.session.sessionId;
 
   const closeModal = function () {
     resetFormData();
 
-    history.push(`/run/${runId}/${stageNum}`);
+    // history.push(`/run/${runId}/${stageNum}`);
   };
 
   const dispatch = useDispatch();
@@ -103,7 +103,7 @@ function FlagCloser(props) {
   const handleOpen = function () {
     closeModal();
 
-    history.push(`/run/${runId}/${stageNum}/${props.session.sessionId}`);
+    // history.push(`/run/${runId}/${stageNum}/${props.session.sessionId}`);
   };
 
   return (
@@ -119,7 +119,7 @@ function FlagCloser(props) {
             color: getFlagName(priority),
             icon: getFlagName(priority),
           }}
-          startOpen={startOpen}
+          // startOpen={startOpen}
         >
           {/* <SessionCard
             type={getFlagName(priority)}
