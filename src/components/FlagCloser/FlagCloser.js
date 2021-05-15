@@ -15,6 +15,7 @@ import getFlagName from "../../utils/getFlagName.js";
 import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 
 import { useTranslation } from "react-i18next";
+import UserSelect from "../FormItem/UserSelect/UserSelect.js";
 // import { useHistory, useParams } from "react-router";
 
 /**
@@ -30,16 +31,13 @@ function FlagCloser(props) {
     description: props.session.note || "",
     status: props.session.extra,
     priority: props.session.amount,
+    fixer: props.session.secondaryUser,
   };
 
-  const [description, setDescription] = useState(defaultFormData.description);
-  const [status, setStatus] = useState(defaultFormData.status);
-  const [priority, setPriority] = useState(defaultFormData.priority);
+  const [formData, setFormData] = useState(defaultFormData);
 
   const resetFormData = function () {
-    setDescription(defaultFormData.description);
-    setStatus(defaultFormData.status);
-    setPriority(defaultFormData.priority);
+    setFormData(defaultFormData);
   };
 
   // const { runId, stageNum, sessionId } = useParams();
@@ -59,16 +57,16 @@ function FlagCloser(props) {
     const dateNow = new Date().toISOString();
 
     const labeledDescription =
-      (status === "resolved" ? t("Fix") : t("Update")) +
+      (formData.status === "resolved" ? t("Fix") : t("Update")) +
       " [" +
       dateNow +
       " " +
       activeUser +
       "]: " +
-      description;
+      formData.description;
 
     let newNote = "";
-    if (description.length) {
+    if (formData.description.length) {
       newNote =
         props.session.notes && props.session.notes.length
           ? props.session.notes + "\n" + labeledDescription
@@ -77,12 +75,17 @@ function FlagCloser(props) {
       newNote = props.session.notes || "";
     }
 
-    if (status === "resolved") {
+    if (formData.status === "resolved") {
       dispatch({
         type: "sessions/end",
         payload: {
           sessionId: props.session.sessionId,
-          extraData: { notes: newNote, amount: priority, endTime: dateNow },
+          extraData: {
+            notes: newNote,
+            amount: formData.priority,
+            endTime: dateNow,
+            secondaryUser: formData.fixer,
+          },
         },
       });
     } else {
@@ -90,7 +93,12 @@ function FlagCloser(props) {
         type: "sessions/update",
         payload: {
           sessionId: props.session.sessionId,
-          extraData: { notes: newNote, amount: priority, extra: status },
+          extraData: {
+            notes: newNote,
+            amount: formData.priority,
+            extra: formData.status,
+            secondaryUser: formData.fixer,
+          },
         },
       });
     }
@@ -110,14 +118,14 @@ function FlagCloser(props) {
     <>
       {props.session.endTime ? null : (
         <ModalControl
-          title={`${t("Update")} ${getFlagName(priority, true)}`}
+          title={`${t("Update")} ${getFlagName(formData.priority, true)}`}
           handleSubmit={handleSubmit}
           handleCancel={handleCancel}
           handleOpen={handleOpen}
           triggerCopy={""}
           buttonAttrs={{
-            color: getFlagName(priority),
-            icon: getFlagName(priority),
+            color: getFlagName(formData.priority),
+            icon: getFlagName(formData.priority),
           }}
           // startOpen={startOpen}
         >
@@ -147,11 +155,22 @@ function FlagCloser(props) {
             ident="flag-priority"
             itemLabels={[t("Note"), t("Issue"), t("Blocker")]}
             itemValues={["0", "1", "2"]}
-            value={priority.toString()}
+            value={formData.priority.toString()}
             updateHandler={(value) => {
-              setPriority(parseInt(value));
+              setFormData({ ...formData, priority: parseInt(value) });
             }}
             spacing="both"
+          />
+          <UserSelect
+            label={`${t("Assignee")}:`}
+            ident={"sess-fixer-stage-" + props.thisStage}
+            updateHandler={(value) =>
+              setFormData({
+                ...formData,
+                fixer: parseInt(value),
+              })
+            }
+            value={formData.fixer}
           />
           <p>
             {t("Notes")}:
@@ -168,14 +187,14 @@ function FlagCloser(props) {
 
           <FormItem
             label={
-              status === "resolved"
+              formData.status === "resolved"
                 ? t("Fix Description") + ":"
                 : t("Update Note") + ":"
             }
             type="textarea"
             ident="flag-note"
             updateHandler={(value) => {
-              setDescription(value);
+              setFormData({ ...formData, description: value });
             }}
           />
           <FormItem
@@ -184,9 +203,9 @@ function FlagCloser(props) {
             ident="flag-status"
             itemLabels={[t("Active"), t("Waiting"), t("Resolved")]}
             itemValues={["active", "waiting", "resolved"]}
-            value={status}
+            value={formData.status}
             updateHandler={(value) => {
-              setStatus(value);
+              setFormData({ ...formData, status: value });
             }}
           />
           {/* </SessionCard> */}

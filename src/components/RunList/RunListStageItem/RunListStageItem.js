@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router";
 
 import getStageStatus from "../../../utils/getStageStatus.js";
 

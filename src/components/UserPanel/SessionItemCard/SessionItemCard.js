@@ -5,9 +5,9 @@ import Button from "../../Button/Button";
 import CheckCloser from "../../CheckCloser/CheckCloser";
 import ModalControl from "../../Modal/ModalControl/ModalControl";
 import SessionCard from "../../RunEditor/Stage/SessionCard/SessionCard";
-import Stopwatch from "../../RunEditor/Stage/SessionDuring/Stopwatch/Stopwatch";
+// import Stopwatch from "../../RunEditor/Stage/SessionDuring/Stopwatch/Stopwatch";
 import SessionDetails from "../../SessionList/SessionDetails/SessionDetails";
-import Timer from "../../Timer/Timer";
+// import Timer from "../../Timer/Timer";
 import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer";
 
 import getFlagName from "../../../utils/getFlagName.js";
@@ -17,9 +17,10 @@ import styles from "./SessionItemCard.module.css";
 
 import { selectRun } from "../../RunList/runsSlice.js";
 
-import { getShiftName } from "../../../utils/getShiftTime.js";
+// import { getShiftName } from "../../../utils/getShiftTime.js";
 
 import { useTranslation } from "react-i18next";
+import FlagCloser from "../../FlagCloser/FlagCloser";
 
 function SessionItemCard({ session }) {
   const { t } = useTranslation();
@@ -44,22 +45,22 @@ function SessionItemCard({ session }) {
     return goToPath;
   };
 
-  const prettyTime = function (time) {
-    const dayNames = [
-      t("Sunday"),
-      t("Monday"),
-      t("Tuesday"),
-      t("Wednesday"),
-      t("Thursday"),
-      t("Friday"),
-      t("Saturday"),
-    ];
+  // const prettyTime = function (time) {
+  //   const dayNames = [
+  //     t("Sunday"),
+  //     t("Monday"),
+  //     t("Tuesday"),
+  //     t("Wednesday"),
+  //     t("Thursday"),
+  //     t("Friday"),
+  //     t("Saturday"),
+  //   ];
 
-    const dayNumber = new Date(time).getDay();
-    const shiftName = getShiftName(time) || "";
+  //   const dayNumber = new Date(time).getDay();
+  //   const shiftName = getShiftName(time) || "";
 
-    return `${dayNames[dayNumber]}${shiftName.length ? " " + shiftName : ""}`;
-  };
+  //   return `${dayNames[dayNumber]}${shiftName.length ? " " + shiftName : ""}`;
+  // };
 
   return (
     <SessionCard
@@ -90,13 +91,10 @@ function SessionItemCard({ session }) {
               </h4>
             </div>
           </header>
-          {session.type === "qa" ? (
+        </div>
+        <div>
+          {session.type === "qa" || session.type === "flag" ? (
             <ButtonSpacer>
-              <CheckCloser
-                thisStage={session.stage}
-                session={session}
-                currentRunId={session.runId}
-              />
               <Button
                 path={() => goToSession(session)}
                 onClick={() =>
@@ -108,6 +106,19 @@ function SessionItemCard({ session }) {
               >
                 {"View Stage"}
               </Button>
+              {session.type === "qa" ? (
+                <CheckCloser
+                  thisStage={session.stage}
+                  session={session}
+                  currentRunId={session.runId}
+                />
+              ) : (
+                <FlagCloser
+                  thisStage={session.stage}
+                  session={session}
+                  currentRunId={session.runId}
+                />
+              )}
             </ButtonSpacer>
           ) : (
             <Button
@@ -124,13 +135,12 @@ function SessionItemCard({ session }) {
             </Button>
           )}
         </div>
-
-        <div className={styles.sessionTime}>
+        {/* <div className={styles.sessionTime}>
           <Stopwatch>
             <Timer startTime={session.startTime} />
           </Stopwatch>
           {prettyTime(session.startTime)}
-        </div>
+        </div> */}
       </div>
     </SessionCard>
   );

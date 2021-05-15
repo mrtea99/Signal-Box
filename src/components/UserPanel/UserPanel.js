@@ -21,7 +21,7 @@ function UserPanel() {
       (session) =>
         (session.secondaryUser === displayUser ||
           (session.user === displayUser && session.type === "work")) &&
-        !["consign", "activate", "deactivate", "flag"].includes(session.type) &&
+        !["consign", "activate", "deactivate"].includes(session.type) &&
         session.endTime === null
     );
     return thisUserSessions;

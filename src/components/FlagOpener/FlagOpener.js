@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import ModalControl from "../Modal/ModalControl/ModalControl.js";
 import FormItem from "../FormItem/FormItem.js";
+import UserSelect from "../FormItem/UserSelect/UserSelect.js";
 
 import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 
@@ -21,8 +22,15 @@ function FlagOpener(props) {
   const activeUser = useSelector(selectCurrentUser);
   const dispatch = useDispatch();
 
-  const [description, setDescription] = useState("");
-  const [priority, setPriority] = useState(1);
+  const defultFormState = {
+    description: "",
+    priority: 1,
+    fixer: null,
+  };
+
+  // const [description, setDescription] = useState("");
+  // const [priority, setPriority] = useState(1);
+  const [formState, setFormState] = useState(defultFormState);
 
   const handleSubmit = function () {
     const newsessionId = Date.now();
@@ -36,9 +44,10 @@ function FlagOpener(props) {
       startTime: new Date().toISOString(),
       endTime: null,
       user: activeUser,
-      amount: priority,
+      secondaryUser: formState.fixer,
+      amount: formState.priority,
       amountType: "Priority",
-      notes: description,
+      notes: formState.description,
       extra: "active",
     };
 
@@ -53,8 +62,7 @@ function FlagOpener(props) {
   };
 
   const handleCancel = function () {
-    setDescription("");
-    setPriority(1);
+    setFormState(defultFormState);
   };
 
   return (
@@ -72,10 +80,21 @@ function FlagOpener(props) {
           ident="flag-priority"
           itemLabels={["Note", "Issue", "Blocker"]}
           itemValues={["0", "1", "2"]}
-          value={priority.toString()}
+          value={formState.priority.toString()}
           updateHandler={(value) => {
-            setPriority(parseInt(value));
+            setFormState({ ...formState, priority: parseInt(value) });
           }}
+        />
+        <UserSelect
+          label={`${t("Assignee")}:`}
+          ident={"sess-fixer-stage-" + props.thisStage}
+          updateHandler={(value) =>
+            setFormState({
+              ...formState,
+              fixer: parseInt(value),
+            })
+          }
+          value={formState.fixer}
         />
 
         <FormItem
@@ -83,7 +102,10 @@ function FlagOpener(props) {
           type="textarea"
           ident="issue-description"
           updateHandler={(value) => {
-            setDescription(`${t("Reported")}: ${value}`);
+            setFormState({
+              ...formState,
+              description: `${t("Reported")}: ${value}`,
+            });
           }}
         />
       </form>
