@@ -40,9 +40,8 @@ function SessionEnd(props) {
 
   const itemType = getItemType(props.thisStage);
 
-  const showAmounts = props.activeSessionData.activity.fields.includes(
-    "amounts"
-  );
+  const showAmounts =
+    props.activeSessionData.activity.fields.includes("amounts");
   const showWeight = props.activeSessionData.activity.fields.includes("weight");
   const showQa = props.activeSessionData.activity.fields.includes("qa");
 
@@ -97,16 +96,21 @@ function SessionEnd(props) {
     if (!skipQa) {
       const newsessionId = Date.now();
 
+      const startTime =
+        qaFormData.timeframe === "now"
+          ? new Date()
+          : new Date(parseInt(qaFormData.timeframe));
+
       const newSession = {
         sessionId: newsessionId,
         runId: props.currentRunId,
         // stage: stageNames[props.thisStage],
         stage: props.thisStage,
         type: "qa",
-        startTime: new Date().toISOString(),
+        startTime: startTime.toISOString(),
         endTime: null,
         user: activeUser,
-        ...qaFormData,
+        notes: qaFormData.notes,
       };
 
       dispatch({

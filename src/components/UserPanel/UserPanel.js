@@ -27,10 +27,22 @@ function UserPanel() {
     return thisUserSessions;
   });
 
+  // const sessionSections = {};
+
+  // userSessions.forEach(session => {
+  //   if (session.type === "work") {
+  //     sessionSections.working = sessionSections.working || [];
+
+  //     sessionSections.working.push(session)
+  //   }
+  // });
+
+  // console.log(sessionSections)
+
   return (
     <>
       <h2>
-        Que for <UserName userId={displayUser} />
+        Queue for <UserName userId={displayUser} />
       </h2>
       <ul className={styles.sessionsList}>
         {userSessions.map((session) => (

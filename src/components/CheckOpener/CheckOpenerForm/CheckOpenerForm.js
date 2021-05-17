@@ -5,6 +5,8 @@ import FormItem from "../../FormItem/FormItem.js";
 import UserSelect from "../../FormItem/UserSelect/UserSelect.js";
 import FormLayout from "../../FormItem/FormLayout/FormLayout.js";
 
+import { getShiftTime } from "../../../utils/getShiftTime.js";
+
 import { useTranslation } from "react-i18next";
 
 /**
@@ -13,6 +15,13 @@ import { useTranslation } from "react-i18next";
 
 function CheckOpenerForm(props) {
   const { t } = useTranslation();
+
+  const timeNow = new Date().getTime();
+  const shiftTimes = [
+    "now",
+    getShiftTime("next", timeNow).toString(),
+    getShiftTime("tomorrow", timeNow).toString(),
+  ];
 
   return (
     <>
@@ -49,7 +58,7 @@ function CheckOpenerForm(props) {
           t("Before next shift"),
           t("Before next day"),
         ]}
-        itemValues={["now", "shift", "day"]}
+        itemValues={shiftTimes}
         value={props.formData.timeframe}
         updateHandler={(value) => {
           props.setFormData({ ...props.formData, timeframe: value });

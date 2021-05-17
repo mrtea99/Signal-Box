@@ -1,10 +1,27 @@
 const millisecondsPerMinute = 60000;
 const millisecondsPerHour = millisecondsPerMinute * 60;
-const shiftTimes = {
-  morning: millisecondsPerHour * 9,
-  noon: millisecondsPerHour * 12,
-  afternoon: millisecondsPerHour * 15,
-};
+const shiftTimes = [
+  {
+    name: "morning",
+    start: millisecondsPerHour * 9,
+    end: millisecondsPerHour * 12 - 1,
+  },
+  {
+    name: "noon",
+    start: millisecondsPerHour * 12,
+    end: millisecondsPerHour * 15 - 1,
+  },
+  {
+    name: "afternoon",
+    start: millisecondsPerHour * 15,
+    end: millisecondsPerHour * 18 - 1,
+  },
+  {
+    name: "evening",
+    start: millisecondsPerHour * 16,
+    end: millisecondsPerHour * 24 - 1,
+  },
+];
 
 //Calculate time at midnight, so shift time can be added to it
 function dateToMidnight(time) {
@@ -19,29 +36,40 @@ function dateToMidnight(time) {
     0
   );
 
-  const timezoneOffset =
-    dateMidnight.getTimezoneOffset() * -1 * millisecondsPerMinute;
-  const dateTime = dateMidnight.getTime() + timezoneOffset;
+  // const timezoneOffset =
+  //   dateMidnight.getTimezoneOffset() * -1 * millisecondsPerMinute;
+  // const dateTime = dateMidnight.getTime() + timezoneOffset;
 
-  return dateTime;
+  // return dateTime;
+
+  return dateMidnight.getTime();
 }
 
 function getShiftTime(shiftName, baseTime) {
   const baseDateTime = dateToMidnight(baseTime);
 
-  // const baseDateTime = baseTime
-  // ? dateToMidnight(baseTime)
-  // : dateToMidnight(Date.now().getTime());
-
   switch (shiftName) {
-    case "morning":
-      return baseDateTime + shiftTimes.morning;
-    case "noon":
-      return baseDateTime + shiftTimes.noon;
-    case "afternoon":
-      return baseDateTime + shiftTimes.afternoon;
+    case "next":
+      const currentShiftIndex = shiftTimes.indexOf(
+        shiftTimes.find((shift) => shift.name === getShiftName(baseTime))
+      );
+
+      const nextShiftIndex =
+        currentShiftIndex === shiftTimes.length ? 0 : currentShiftIndex + 1;
+
+      return baseDateTime + shiftTimes[nextShiftIndex].start;
+    case "tomorrow":
+      return (
+        baseDateTime +
+        millisecondsPerHour * 24 +
+        shiftTimes.find((shift) => shift.name === "morning").start
+      );
     default:
-      return undefined;
+      return (
+        baseDateTime +
+          shiftTimes.find((shift) => shift.name === shiftName).start ||
+        undefined
+      );
   }
 }
 
@@ -52,9 +80,11 @@ function getShiftName(givenDateString) {
 
   const timeRemaining = givenTime - timeMidnight;
 
-  return Object.keys(shiftTimes).find((key) => {
-    return timeRemaining === shiftTimes[key] ? key : undefined;
+  const currentShift = shiftTimes.find((shift) => {
+    return timeRemaining >= shift.start && timeRemaining <= shift.end;
   });
+
+  return currentShift ? currentShift.name : undefined;
 }
 
 export { getShiftTime, getShiftName };

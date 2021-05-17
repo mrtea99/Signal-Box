@@ -35,18 +35,22 @@ function CheckOpener(props) {
   const handleSubmit = function () {
     const newsessionId = Date.now();
 
+    const startTime =
+      formData.timeframe === "now"
+        ? new Date()
+        : new Date(parseInt(formData.timeframe));
+
     const newSession = {
       sessionId: newsessionId,
       runId: props.currentRunId,
       // stage: stageNames[props.thisStage],
       stage: props.thisStage,
       type: "qa",
-      startTime: new Date().toISOString(),
+      startTime: startTime.toISOString(),
       endTime: null,
       user: activeUser,
       secondaryUser: formData.secondaryUser,
       notes: formData.notes,
-      extra: formData.timeframe,
     };
 
     dispatch({
