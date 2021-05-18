@@ -4,11 +4,13 @@ import { useParams } from "react-router";
 
 import UserName from "../UserSwitcher/UserName/UserName.js";
 import SessionItemCard from "./SessionItemCard/SessionItemCard.js";
+import QueueWrapper from "./QueueWrapper/QueueWrapper.js";
 
 import styles from "./UserPanel.module.css";
 
 import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
-import QueueWrapper from "./QueueWrapper/QueueWrapper.js";
+
+import { getShiftName } from "../../utils/getShiftTime.js";
 
 function UserPanel() {
   const { userId } = useParams();
@@ -26,19 +28,9 @@ function UserPanel() {
         session.endTime === null
     );
     return thisUserSessions;
-  });
-
-  // const sessionSections = {};
-
-  // userSessions.forEach(session => {
-  //   if (session.type === "work") {
-  //     sessionSections.working = sessionSections.working || [];
-
-  //     sessionSections.working.push(session)
-  //   }
-  // });
-
-  // console.log(sessionSections)
+  }).sort(
+    (a, b) => new Date(a.startTime).getTime() - new Date(b.startTime).getTime()
+  );
 
   const activeSessions = userSessions.filter((session) => {
     if (session.type === "work") {
@@ -68,6 +60,56 @@ function UserPanel() {
     return false;
   });
 
+  var sessionSections = [{ name: "overdue", sessions: [] }];
+
+  todoSessions.forEach((session) => {
+    const sessionDate = new Date(session.startTime);
+    const nowDate = new Date();
+
+    if (sessionDate < nowDate) {
+      sessionSections
+        .find((section) => section.name === "overdue")
+        .sessions.push(session);
+    } else {
+      // sessionSections
+      //   .find((section) => section.name === "upcoming")
+      //   .sessions.push(session);
+
+      // Make a 'day' name with time at midnight
+      const sessionName = new Date(
+        sessionDate.getFullYear(),
+        sessionDate.getMonth(),
+        sessionDate.getDate(),
+        0,
+        0,
+        0
+      ).getTime();
+
+      // Find or make new day
+      let sessionDay = sessionSections.find(
+        (section) => section.name === sessionName
+      );
+
+      if (!sessionDay) {
+        sessionSections.push({ name: sessionName, shifts: [] });
+        sessionDay = sessionSections[sessionSections.length - 1];
+      }
+
+      // Find or make new shift in day
+      const shiftName = getShiftName(sessionDate) || "Unknown";
+
+      let sessionShift = sessionDay.shifts.find(
+        (shift) => shift.name === shiftName
+      );
+
+      if (!sessionShift) {
+        sessionDay.shifts.push({ name: shiftName, sessions: [] });
+        sessionShift = sessionDay.shifts[sessionDay.shifts.length - 1];
+      }
+      sessionShift.sessions.push(session);
+    }
+  });
+
   return (
     <main className={styles.main}>
       <h2>
@@ -87,13 +129,43 @@ function UserPanel() {
         </section>
         <section className={`${styles.queue} ${styles.queueTodo}`}>
           <QueueWrapper title="To do">
-            <ul className={styles.sessionsList}>
-              {todoSessions.map((session) => (
-                <li key={session.sessionId} className={styles.sessionItem}>
-                  <SessionItemCard session={session} />
+            {sessionSections.map((section) => (
+              <ul key={`${section.name}`}>
+                <li>
+                  <h4>
+                    {section.name === "overdue"
+                      ? "Overdue"
+                      : new Date(section.name).toISOString()}
+                  </h4>
+                  <ul className={styles.sessionsList}>
+                    {section.sessions
+                      ? section.sessions.map((session) => (
+                          <li
+                            key={session.sessionId}
+                            className={styles.sessionItem}
+                          >
+                            <SessionItemCard session={session} />
+                          </li>
+                        ))
+                      : section.shifts.map((shift) => (
+                          <li key={`${section.name}-${shift.name}`}>
+                            <h4>{shift.name}</h4>
+                            <ul>
+                              {shift.sessions.map((session) => (
+                                <li
+                                  key={session.sessionId}
+                                  className={styles.sessionItem}
+                                >
+                                  <SessionItemCard session={session} />
+                                </li>
+                              ))}
+                            </ul>
+                          </li>
+                        ))}
+                  </ul>
                 </li>
-              ))}
-            </ul>
+              </ul>
+            ))}
           </QueueWrapper>
         </section>
         <section className={`${styles.queue} ${styles.queueWaiting}`}>
