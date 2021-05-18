@@ -28,6 +28,19 @@
   }
 }
 
+@media (min-width: 1080px) {
+  .queue {
+    width: calc((100% - 2rem) / 3);
+    margin-right: 1rem;
+  }
+  .queue:nth-child(even) {
+    margin-right: 1rem;
+  }
+  .queue:nth-child(3n) {
+    margin-right: 0;
+  }
+}
+
 .sessionsList {
   list-style-type: none;
   margin: 0;

@@ -40,6 +40,34 @@ function UserPanel() {
 
   // console.log(sessionSections)
 
+  const activeSessions = userSessions.filter((session) => {
+    if (session.type === "work") {
+      return true;
+    }
+
+    if (session.type === "flag" && session.extra !== "waiting") {
+      return true;
+    }
+
+    return false;
+  });
+
+  const waitingSessions = userSessions.filter((session) => {
+    if (session.type === "flag" && session.extra === "waiting") {
+      return true;
+    }
+
+    return false;
+  });
+
+  const todoSessions = userSessions.filter((session) => {
+    if (session.type === "assign" || session.type === "qa") {
+      return true;
+    }
+
+    return false;
+  });
+
   return (
     <main className={styles.main}>
       <h2>
@@ -49,7 +77,7 @@ function UserPanel() {
         <section className={`${styles.queue} ${styles.queueActive}`}>
           <QueueWrapper title="Active">
             <ul className={styles.sessionsList}>
-              {userSessions.map((session) => (
+              {activeSessions.map((session) => (
                 <li key={session.sessionId} className={styles.sessionItem}>
                   <SessionItemCard session={session} />
                 </li>
@@ -60,7 +88,7 @@ function UserPanel() {
         <section className={`${styles.queue} ${styles.queueTodo}`}>
           <QueueWrapper title="To do">
             <ul className={styles.sessionsList}>
-              {userSessions.map((session) => (
+              {todoSessions.map((session) => (
                 <li key={session.sessionId} className={styles.sessionItem}>
                   <SessionItemCard session={session} />
                 </li>
@@ -71,7 +99,7 @@ function UserPanel() {
         <section className={`${styles.queue} ${styles.queueWaiting}`}>
           <QueueWrapper title="Waiting">
             <ul className={styles.sessionsList}>
-              {userSessions.map((session) => (
+              {waitingSessions.map((session) => (
                 <li key={session.sessionId} className={styles.sessionItem}>
                   <SessionItemCard session={session} />
                 </li>
