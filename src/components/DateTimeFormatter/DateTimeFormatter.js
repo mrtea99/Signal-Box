@@ -95,7 +95,11 @@ function DateTimeFormatter(props) {
 export default DateTimeFormatter;
 
 DateTimeFormatter.propTypes = {
-  date: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
+  date: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.instanceOf(Date),
+  ]).isRequired,
   hideTime: PropTypes.bool,
   splitLines: PropTypes.bool,
 };

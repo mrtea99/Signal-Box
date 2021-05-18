@@ -11,6 +11,7 @@ import styles from "./UserPanel.module.css";
 import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 
 import { getShiftName } from "../../utils/getShiftTime.js";
+import DateTimeFormatter from "../DateTimeFormatter/DateTimeFormatter.js";
 
 function UserPanel() {
   const { userId } = useParams();
@@ -76,14 +77,17 @@ function UserPanel() {
       //   .sessions.push(session);
 
       // Make a 'day' name with time at midnight
-      const sessionName = new Date(
+      const dateMidnight = new Date(
         sessionDate.getFullYear(),
         sessionDate.getMonth(),
         sessionDate.getDate(),
         0,
         0,
         0
-      ).getTime();
+      );
+
+      const timezoneOffset = dateMidnight.getTimezoneOffset() * -1 * 60000;
+      const sessionName = dateMidnight.getTime() + timezoneOffset;
 
       // Find or make new day
       let sessionDay = sessionSections.find(
@@ -133,9 +137,14 @@ function UserPanel() {
               <ul key={`${section.name}`}>
                 <li>
                   <h4>
-                    {section.name === "overdue"
-                      ? "Overdue"
-                      : new Date(section.name).toISOString()}
+                    {section.name === "overdue" ? (
+                      "Overdue"
+                    ) : (
+                      <DateTimeFormatter
+                        date={new Date(section.name)}
+                        hideTime={true}
+                      />
+                    )}
                   </h4>
                   <ul className={styles.sessionsList}>
                     {section.sessions
