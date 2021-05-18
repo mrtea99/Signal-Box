@@ -72,11 +72,7 @@ function UserPanel() {
         .find((section) => section.name === "overdue")
         .sessions.push(session);
     } else {
-      // sessionSections
-      //   .find((section) => section.name === "upcoming")
-      //   .sessions.push(session);
-
-      // Make a 'day' name with time at midnight
+      // Make a 'day' name from time at midnight
       const dateMidnight = new Date(
         sessionDate.getFullYear(),
         sessionDate.getMonth(),
@@ -134,32 +130,44 @@ function UserPanel() {
         <section className={`${styles.queue} ${styles.queueTodo}`}>
           <QueueWrapper title="To do">
             {sessionSections.map((section) => (
-              <ul key={`${section.name}`}>
-                <li>
-                  <h4>
+              <ul key={`${section.name}`} className={styles.sessionSection}>
+                {(section.sessions && section.sessions.length) ||
+                (section.shifts && section.shifts.length) ? (
+                  <li>
                     {section.name === "overdue" ? (
-                      "Overdue"
+                      <h4
+                        className={`${styles.sectionTitle} ${styles.sectionTitleOverdue}`}
+                      >
+                        Due
+                      </h4>
                     ) : (
-                      <DateTimeFormatter
-                        date={new Date(section.name)}
-                        hideTime={true}
-                      />
+                      <h4 className={styles.sectionTitle}>
+                        <DateTimeFormatter
+                          date={new Date(section.name)}
+                          hideTime={true}
+                        />
+                      </h4>
                     )}
-                  </h4>
-                  <ul className={styles.sessionsList}>
-                    {section.sessions
-                      ? section.sessions.map((session) => (
+
+                    {section.sessions ? (
+                      <ul className={styles.sessionsList}>
+                        {section.sessions.map((session) => (
                           <li
                             key={session.sessionId}
                             className={styles.sessionItem}
                           >
                             <SessionItemCard session={session} />
                           </li>
-                        ))
-                      : section.shifts.map((shift) => (
+                        ))}
+                      </ul>
+                    ) : (
+                      <ul className={styles.sessionSubSection}>
+                        {section.shifts.map((shift) => (
                           <li key={`${section.name}-${shift.name}`}>
-                            <h4>{shift.name}</h4>
-                            <ul>
+                            <h4 className={styles.subDectionTitle}>
+                              {shift.name}
+                            </h4>
+                            <ul className={styles.sessionsList}>
                               {shift.sessions.map((session) => (
                                 <li
                                   key={session.sessionId}
@@ -171,8 +179,10 @@ function UserPanel() {
                             </ul>
                           </li>
                         ))}
-                  </ul>
-                </li>
+                      </ul>
+                    )}
+                  </li>
+                ) : null}
               </ul>
             ))}
           </QueueWrapper>
