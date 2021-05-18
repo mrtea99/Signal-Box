@@ -17,6 +17,7 @@
 
 .runName {
   margin: 0 0 0.2em 0;
+  font-size: var(--text-normal);
   padding: 0;
 }
 

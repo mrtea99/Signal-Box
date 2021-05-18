@@ -96,7 +96,7 @@ function UserPanel() {
       }
 
       // Find or make new shift in day
-      const shiftName = getShiftName(sessionDate) || "Unknown";
+      const shiftName = getShiftName(sessionDate) || "No Shift";
 
       let sessionShift = sessionDay.shifts.find(
         (shift) => shift.name === shiftName
@@ -113,7 +113,7 @@ function UserPanel() {
   return (
     <main className={styles.main}>
       <h2>
-        Queue for <UserName userId={displayUser} />
+        User: <UserName userId={displayUser} />
       </h2>
       <div className={styles.queuesContainer}>
         <section className={`${styles.queue} ${styles.queueActive}`}>
