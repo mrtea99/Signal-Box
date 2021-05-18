@@ -198,6 +198,7 @@ function SessionItem({
                   session.notes && session.notes.length
                     ? "detailsAlt"
                     : "details",
+                color: "cancel",
               }}
             >
               <SessionDetails session={session} />

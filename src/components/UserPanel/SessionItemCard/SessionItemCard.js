@@ -31,14 +31,11 @@ function SessionItemCard({ session }) {
   const goToSession = function (session) {
     let goToPath = "";
     switch (session.type) {
-      case "work":
-      case "qa":
-        goToPath = `/run/${session.runId}/${session.stage}`;
-        break;
       case "assign":
         goToPath = `/run/${session.runId}/${session.stage}/start`;
         break;
       default:
+        goToPath = `/run/${session.runId}/${session.stage}`;
         break;
     }
 
@@ -80,6 +77,7 @@ function SessionItemCard({ session }) {
                   session.notes && session.notes.length
                     ? "detailsAlt"
                     : "details",
+                color: "cancel",
               }}
             >
               <SessionDetails session={session} />
@@ -95,7 +93,7 @@ function SessionItemCard({ session }) {
         <div>
           {session.type === "qa" || session.type === "flag" ? (
             <ButtonSpacer>
-              <Button
+              {/* <Button
                 path={() => goToSession(session)}
                 onClick={() =>
                   window.localStorage.setItem(
@@ -105,7 +103,7 @@ function SessionItemCard({ session }) {
                 }
               >
                 {"View Stage"}
-              </Button>
+              </Button> */}
               {session.type === "qa" ? (
                 <CheckCloser
                   thisStage={session.stage}
@@ -131,7 +129,7 @@ function SessionItemCard({ session }) {
                 )
               }
             >
-              {session.type === "work" ? "Continue" : "Start"}
+              {/* {session.type === "work" ? "Continue" : "Start"} */}
             </Button>
           )}
         </div>

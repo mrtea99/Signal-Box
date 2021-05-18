@@ -1,8 +1,8 @@
 .sessionInner {
-  padding: 1rem;
+  padding: 0.7rem;
   display: flex;
   justify-content: space-between;
-  background-color: var(--color-grey-bright);
+  background-color: var(--color-grey-light);
 }
 
 .sessionInfo {
@@ -12,12 +12,11 @@
 }
 
 .runTitle {
-  margin-left: 1rem;
-  margin-bottom: 1rem;
+  margin: 0 0.7rem;
 }
 
 .runName {
-  margin: 0 0 0.3em 0;
+  margin: 0 0 0.2em 0;
   padding: 0;
 }
 
