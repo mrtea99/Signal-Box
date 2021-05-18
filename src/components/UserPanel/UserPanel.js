@@ -8,6 +8,7 @@ import SessionItemCard from "./SessionItemCard/SessionItemCard.js";
 import styles from "./UserPanel.module.css";
 
 import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
+import QueueWrapper from "./QueueWrapper/QueueWrapper.js";
 
 function UserPanel() {
   const { userId } = useParams();
@@ -40,18 +41,46 @@ function UserPanel() {
   // console.log(sessionSections)
 
   return (
-    <>
+    <main className={styles.main}>
       <h2>
         Queue for <UserName userId={displayUser} />
       </h2>
-      <ul className={styles.sessionsList}>
-        {userSessions.map((session) => (
-          <li key={session.sessionId} className={styles.sessionItem}>
-            <SessionItemCard session={session} />
-          </li>
-        ))}
-      </ul>
-    </>
+      <div className={styles.queuesContainer}>
+        <section className={`${styles.queue} ${styles.queueActive}`}>
+          <QueueWrapper title="Active">
+            <ul className={styles.sessionsList}>
+              {userSessions.map((session) => (
+                <li key={session.sessionId} className={styles.sessionItem}>
+                  <SessionItemCard session={session} />
+                </li>
+              ))}
+            </ul>
+          </QueueWrapper>
+        </section>
+        <section className={`${styles.queue} ${styles.queueTodo}`}>
+          <QueueWrapper title="To do">
+            <ul className={styles.sessionsList}>
+              {userSessions.map((session) => (
+                <li key={session.sessionId} className={styles.sessionItem}>
+                  <SessionItemCard session={session} />
+                </li>
+              ))}
+            </ul>
+          </QueueWrapper>
+        </section>
+        <section className={`${styles.queue} ${styles.queueWaiting}`}>
+          <QueueWrapper title="Waiting">
+            <ul className={styles.sessionsList}>
+              {userSessions.map((session) => (
+                <li key={session.sessionId} className={styles.sessionItem}>
+                  <SessionItemCard session={session} />
+                </li>
+              ))}
+            </ul>
+          </QueueWrapper>
+        </section>
+      </div>
+    </main>
   );
 }
 
