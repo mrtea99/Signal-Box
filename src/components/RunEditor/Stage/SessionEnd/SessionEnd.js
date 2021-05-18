@@ -111,6 +111,7 @@ function SessionEnd(props) {
         endTime: null,
         user: activeUser,
         notes: qaFormData.notes,
+        secondaryUser: qaFormData.secondaryUser,
       };
 
       dispatch({
