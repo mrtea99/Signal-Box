@@ -1,5 +1,6 @@
 .main {
   margin-top: 5rem;
+  width: 100%;
 }
 
 .queuesContainer {
@@ -10,7 +11,7 @@
 @media (min-width: 768px) {
   .queuesContainer {
     flex-direction: row;
-    flex-wrap: wrap;
+    overflow: scroll;
   }
 }
 
@@ -18,7 +19,7 @@
   margin-bottom: 1rem;
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .queue {
     width: calc((100% - 1rem) / 2);
     margin-right: 1rem;
@@ -26,16 +27,17 @@
   .queue:nth-child(even) {
     margin-right: 0;
   }
-}
+} */
 
-@media (min-width: 1080px) {
+@media (min-width: 768px) {
   .queue {
     width: calc((100% - 2rem) / 3);
+    min-width: 20rem;
     margin-right: 1rem;
   }
-  .queue:nth-child(even) {
+  /* .queue:nth-child(even) {
     margin-right: 1rem;
-  }
+  } */
   .queue:nth-child(3n) {
     margin-right: 0;
   }

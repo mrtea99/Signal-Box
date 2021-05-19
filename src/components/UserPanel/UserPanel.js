@@ -111,22 +111,11 @@ function UserPanel() {
   });
 
   return (
-    <main className={styles.main}>
+    <div className={styles.main}>
       <h2>
         User: <UserName userId={displayUser} />
       </h2>
       <div className={styles.queuesContainer}>
-        <section className={`${styles.queue} ${styles.queueActive}`}>
-          <QueueWrapper title="Active">
-            <ul className={styles.sessionsList}>
-              {activeSessions.map((session) => (
-                <li key={session.sessionId} className={styles.sessionItem}>
-                  <SessionItemCard session={session} />
-                </li>
-              ))}
-            </ul>
-          </QueueWrapper>
-        </section>
         <section className={`${styles.queue} ${styles.queueTodo}`}>
           <QueueWrapper title="To do">
             {sessionSections.map((section) => (
@@ -187,6 +176,17 @@ function UserPanel() {
             ))}
           </QueueWrapper>
         </section>
+        <section className={`${styles.queue} ${styles.queueActive}`}>
+          <QueueWrapper title="Active">
+            <ul className={styles.sessionsList}>
+              {activeSessions.map((session) => (
+                <li key={session.sessionId} className={styles.sessionItem}>
+                  <SessionItemCard session={session} />
+                </li>
+              ))}
+            </ul>
+          </QueueWrapper>
+        </section>
         <section className={`${styles.queue} ${styles.queueWaiting}`}>
           <QueueWrapper title="Waiting">
             <ul className={styles.sessionsList}>
@@ -199,7 +199,7 @@ function UserPanel() {
           </QueueWrapper>
         </section>
       </div>
-    </main>
+    </div>
   );
 }
 
