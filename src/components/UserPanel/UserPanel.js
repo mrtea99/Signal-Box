@@ -133,7 +133,9 @@ function UserPanel() {
                       <h4 className={styles.sectionTitle}>
                         <DateTimeFormatter
                           date={new Date(section.name)}
-                          hideTime={true}
+                          hideTime
+                          showDay
+                          showRelative
                         />
                       </h4>
                     )}

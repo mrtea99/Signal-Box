@@ -6,11 +6,15 @@ import styles from "./DateTimeFormatter.module.css";
 import TimeFormatContext from "../../contexts/TimeFormatContext.js";
 import DateFormatContext from "../../contexts/DateFormatContext.js";
 
+import { useTranslation } from "react-i18next";
+
 /**
  * Displays a date and time in the format decided by site context.
  */
 
 function DateTimeFormatter(props) {
+  const { t } = useTranslation();
+
   const timeFormat = useContext(TimeFormatContext);
   const dateFormat = useContext(DateFormatContext);
 
@@ -81,12 +85,73 @@ function DateTimeFormatter(props) {
     return `${hour}:${min}${afterWords}`;
   };
 
+  const formatDay = function (time) {
+    const dayNames = [
+      t("Sunday"),
+      t("Monday"),
+      t("Tuesday"),
+      t("Wednesday"),
+      t("Thursday"),
+      t("Friday"),
+      t("Saturday"),
+    ];
+    const dayNumber = new Date(time).getDay();
+
+    return dayNames[dayNumber];
+  };
+
+  const formatRelative = function (time) {
+    const timeNow = new Date();
+
+    const dayTime = new Date(
+      time.getFullYear(),
+      time.getMonth(),
+      time.getDate()
+    );
+
+    const dayToday = new Date(
+      timeNow.getFullYear(),
+      timeNow.getMonth(),
+      timeNow.getDate()
+    );
+
+    const dayTomorrow = new Date(
+      timeNow.getFullYear(),
+      timeNow.getMonth(),
+      timeNow.getDate() + 1
+    );
+
+    if (dayTime.getTime() === dayToday.getTime()) {
+      return "Today";
+    }
+
+    if (dayTime.getTime() === dayTomorrow.getTime()) {
+      return "Tomorrow";
+    }
+
+    return undefined;
+  };
+
   return (
     <time dateTime={new Date(props.date).toISOString()}>
+      {props.showRelative && formatRelative(props.date) ? (
+        <>
+          <span className={styles.day}>{formatRelative(props.date)}</span>
+          <>{props.splitLines ? <br /> : " - "}</>
+        </>
+      ) : null}
+      {props.showDay ? (
+        <>
+          <span className={styles.day}>{formatDay(props.date)}</span>
+          <>{props.splitLines ? <br /> : " - "}</>
+        </>
+      ) : null}
       <span className={styles.date}>{formatDate(props.date)}</span>
-      {props.splitLines ? <br /> : " "}
       {!props.hideTime ? (
-        <span className={styles.time}>{formatTime(props.date)}</span>
+        <>
+          <>{props.splitLines ? <br /> : " "}</>
+          <span className={styles.time}>{formatTime(props.date)}</span>
+        </>
       ) : null}
     </time>
   );
@@ -102,4 +167,6 @@ DateTimeFormatter.propTypes = {
   ]).isRequired,
   hideTime: PropTypes.bool,
   splitLines: PropTypes.bool,
+  showDay: PropTypes.bool,
+  showRelative: PropTypes.bool,
 };
