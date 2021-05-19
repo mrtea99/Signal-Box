@@ -40,7 +40,7 @@
 }
 
 .runInfoTitle {
-  font-weight: var(--font--weight-normal);
+  font-weight: var(--font-weight-normal);
   margin: 0;
   padding: 0;
   font-size: var(--text-smaller);
@@ -52,7 +52,7 @@
   font-size: var(--text-large);
   max-width: 45rem;
   flex-grow: 1;
-  font-weight: var(--font--weight-bold);
+  font-weight: var(--font-weight-bold);
 }
 
 .runInfoMini .runInfoName {
@@ -67,7 +67,7 @@
 
 .runInfoItem {
   margin: 0;
-  font-weight: var(--font--weight-normal);
+  font-weight: var(--font-weight-normal);
 }
 
 /* Run Info

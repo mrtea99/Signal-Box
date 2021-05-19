@@ -12,7 +12,7 @@
 }
 
 .key {
-  font-weight: var(--font--weight-bold);
+  font-weight: var(--font-weight-bold);
   width: 5rem;
   text-align: right;
   background-color: var(--color-grey-bright);

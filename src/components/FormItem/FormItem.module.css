@@ -21,7 +21,7 @@
 
 .label {
   font-size: var(--text-normal);
-  font-weight: var(--font--weight-normal);
+  font-weight: var(--font-weight-normal);
   padding: 0 0 0.3rem 0;
   margin: 0;
 }
@@ -91,7 +91,7 @@
 }
 
 .fieldSelect option {
-  font-weight: var(--font--weight-normal);
+  font-weight: var(--font-weight-normal);
 }
 
 .fieldExtraBtn {

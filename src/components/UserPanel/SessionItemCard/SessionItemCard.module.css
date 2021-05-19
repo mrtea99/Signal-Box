@@ -22,7 +22,7 @@
 }
 
 .runId {
-  font-weight: var(--font--weight-normal);
+  font-weight: var(--font-weight-normal);
   font-size: var(--text-smaller);
   margin: 0;
   padding: 0;

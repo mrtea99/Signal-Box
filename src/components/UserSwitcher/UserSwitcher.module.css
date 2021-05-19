@@ -18,7 +18,7 @@
   padding: var(--height-pad-vert) var(--width-pad-outer);
   display: flex;
   align-items: center;
-  font-weight: var(--font--weight-bold);
+  font-weight: var(--font-weight-bold);
   max-width: 13rem;
 }
 
@@ -51,7 +51,7 @@
   height: var(--size-touch-min);
   width: var(--size-touch-min);
   font-size: var(--text-normal);
-  font-weight: var(--font--weight-bold);
+  font-weight: var(--font-weight-bold);
   line-height: 1.3em;
   border: 0;
   cursor: pointer;
@@ -67,7 +67,7 @@
 }
 
 .select option {
-  font-weight: var(--font--weight-normal);
+  font-weight: var(--font-weight-normal);
   color: var(--color-text);
   /* direction: rtl;  */
 }
