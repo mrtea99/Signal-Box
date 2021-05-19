@@ -187,17 +187,19 @@ function UserPanel() {
             </ul>
           </QueueWrapper>
         </section>
-        <section className={`${styles.queue} ${styles.queueWaiting}`}>
-          <QueueWrapper title="Waiting">
-            <ul className={styles.sessionsList}>
-              {waitingSessions.map((session) => (
-                <li key={session.sessionId} className={styles.sessionItem}>
-                  <SessionItemCard session={session} />
-                </li>
-              ))}
-            </ul>
-          </QueueWrapper>
-        </section>
+        {waitingSessions.length ? (
+          <section className={`${styles.queue} ${styles.queueWaiting}`}>
+            <QueueWrapper title="Waiting">
+              <ul className={styles.sessionsList}>
+                {waitingSessions.map((session) => (
+                  <li key={session.sessionId} className={styles.sessionItem}>
+                    <SessionItemCard session={session} />
+                  </li>
+                ))}
+              </ul>
+            </QueueWrapper>
+          </section>
+        ) : null}
       </div>
     </div>
   );

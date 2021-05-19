@@ -5,10 +5,8 @@ import Button from "../../Button/Button";
 import CheckCloser from "../../CheckCloser/CheckCloser";
 import ModalControl from "../../Modal/ModalControl/ModalControl";
 import SessionCard from "../../RunEditor/Stage/SessionCard/SessionCard";
-// import Stopwatch from "../../RunEditor/Stage/SessionDuring/Stopwatch/Stopwatch";
 import SessionDetails from "../../SessionList/SessionDetails/SessionDetails";
-// import Timer from "../../Timer/Timer";
-import ButtonSpacer from "../../Button/ButtonSpacer/ButtonSpacer";
+import FlagCloser from "../../FlagCloser/FlagCloser";
 
 import getFlagName from "../../../utils/getFlagName.js";
 import getSessionName from "../../../utils/getSessionName.js";
@@ -17,10 +15,7 @@ import styles from "./SessionItemCard.module.css";
 
 import { selectRun } from "../../RunList/runsSlice.js";
 
-// import { getShiftName } from "../../../utils/getShiftTime.js";
-
 import { useTranslation } from "react-i18next";
-import FlagCloser from "../../FlagCloser/FlagCloser";
 
 function SessionItemCard({ session }) {
   const { t } = useTranslation();
@@ -91,54 +86,40 @@ function SessionItemCard({ session }) {
           </header>
         </div>
         <div>
-          {session.type === "qa" || session.type === "flag" ? (
-            <ButtonSpacer>
-              {/* <Button
-                path={() => goToSession(session)}
-                onClick={() =>
-                  window.localStorage.setItem(
-                    "editorBackLoc",
-                    window.location.pathname
-                  )
-                }
-              >
-                {"View Stage"}
-              </Button> */}
+          {session.endTime === null ? (
+            <>
               {session.type === "qa" ? (
                 <CheckCloser
                   thisStage={session.stage}
                   session={session}
                   currentRunId={session.runId}
                 />
-              ) : (
+              ) : null}
+
+              {session.type === "flag" ? (
                 <FlagCloser
                   thisStage={session.stage}
                   session={session}
                   currentRunId={session.runId}
                 />
-              )}
-            </ButtonSpacer>
-          ) : (
-            <Button
-              path={() => goToSession(session)}
-              icon="start"
-              onClick={() =>
-                window.localStorage.setItem(
-                  "editorBackLoc",
-                  window.location.pathname
-                )
-              }
-            >
-              {/* {session.type === "work" ? "Continue" : "Start"} */}
-            </Button>
-          )}
+              ) : null}
+              {session.type === "work" || session.type === "assign" ? (
+                <Button
+                  path={() => goToSession(session)}
+                  icon="start"
+                  onClick={() =>
+                    window.localStorage.setItem(
+                      "editorBackLoc",
+                      window.location.pathname
+                    )
+                  }
+                >
+                  {/* {session.type === "work" ? "Continue" : "Start"} */}
+                </Button>
+              ) : null}
+            </>
+          ) : null}
         </div>
-        {/* <div className={styles.sessionTime}>
-          <Stopwatch>
-            <Timer startTime={session.startTime} />
-          </Stopwatch>
-          {prettyTime(session.startTime)}
-        </div> */}
       </div>
     </SessionCard>
   );
