@@ -122,11 +122,11 @@ function DateTimeFormatter(props) {
     );
 
     if (dayTime.getTime() === dayToday.getTime()) {
-      return "Today";
+      return t("Today");
     }
 
     if (dayTime.getTime() === dayTomorrow.getTime()) {
-      return "Tomorrow";
+      return t("Tomorrow");
     }
 
     return undefined;

@@ -5,15 +5,19 @@ import { useParams } from "react-router";
 import UserName from "../UserSwitcher/UserName/UserName.js";
 import SessionItemCard from "./SessionItemCard/SessionItemCard.js";
 import QueueWrapper from "./QueueWrapper/QueueWrapper.js";
+import DateTimeFormatter from "../DateTimeFormatter/DateTimeFormatter.js";
 
 import styles from "./UserPanel.module.css";
 
 import { selectCurrentUser } from "../UserSwitcher/usersSlice.js";
 
 import { getShiftName } from "../../utils/getShiftTime.js";
-import DateTimeFormatter from "../DateTimeFormatter/DateTimeFormatter.js";
+
+import { useTranslation } from "react-i18next";
 
 function UserPanel() {
+  const { t } = useTranslation();
+
   const { userId } = useParams();
   const activeUser = useSelector(selectCurrentUser);
   const displayUser = parseInt(userId) || activeUser;
@@ -113,11 +117,11 @@ function UserPanel() {
   return (
     <div className={styles.main}>
       <h2>
-        User: <UserName userId={displayUser} />
+        {t("User")}: <UserName userId={displayUser} />
       </h2>
       <div className={styles.queuesContainer}>
         <section className={`${styles.queue} ${styles.queueTodo}`}>
-          <QueueWrapper title="To do">
+          <QueueWrapper title={t("To do")}>
             {sessionSections.map((section) => (
               <ul key={`${section.name}`} className={styles.sessionSection}>
                 {(section.sessions && section.sessions.length) ||
@@ -127,7 +131,7 @@ function UserPanel() {
                       <h4
                         className={`${styles.sectionTitle} ${styles.sectionTitleOverdue}`}
                       >
-                        Due
+                        {t("Due")}
                       </h4>
                     ) : (
                       <h4 className={styles.sectionTitle}>
@@ -179,7 +183,7 @@ function UserPanel() {
           </QueueWrapper>
         </section>
         <section className={`${styles.queue} ${styles.queueActive}`}>
-          <QueueWrapper title="Active">
+          <QueueWrapper title={t("Active")}>
             <ul className={styles.sessionsList}>
               {activeSessions.map((session) => (
                 <li key={session.sessionId} className={styles.sessionItem}>
@@ -191,7 +195,7 @@ function UserPanel() {
         </section>
         {waitingSessions.length ? (
           <section className={`${styles.queue} ${styles.queueWaiting}`}>
-            <QueueWrapper title="Waiting">
+            <QueueWrapper title={t("Waiting")}>
               <ul className={styles.sessionsList}>
                 {waitingSessions.map((session) => (
                   <li key={session.sessionId} className={styles.sessionItem}>
